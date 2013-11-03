@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to open an existing library.
- * 
+ *
  * @author Haixing Hu
  */
-public class OpenLibraryAction extends BaseAction {      
+public class OpenLibraryAction extends BaseAction {
 
-  public OpenLibraryAction(Application application) {    
+  public OpenLibraryAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.file.open-library";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

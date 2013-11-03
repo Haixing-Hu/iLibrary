@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to close the current library.
- * 
+ *
  * @author Haixing Hu
  */
-public class CloseLibraryAction extends BaseAction {      
+public class CloseLibraryAction extends BaseAction {
 
-  public CloseLibraryAction(Application application) {    
+  public CloseLibraryAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.file.close-library";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

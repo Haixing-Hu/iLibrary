@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to display the manual of the application.
- * 
+ *
  * @author Haixing Hu
  */
-public class ManualAction extends BaseAction {      
+public class ManualAction extends BaseAction {
 
-  public ManualAction(Application application) {    
+  public ManualAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.help.manual";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

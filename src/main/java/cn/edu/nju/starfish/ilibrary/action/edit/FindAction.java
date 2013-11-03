@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to find the specified text or the specified document.
- * 
+ *
  * @author Haixing Hu
  */
-public class FindAction extends BaseAction {      
+public class FindAction extends BaseAction {
 
-  public FindAction(Application application) {    
+  public FindAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.find";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

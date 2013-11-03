@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to open the page setup dialog.
- * 
+ *
  * @author Haixing Hu
  */
-public class PageSetupAction extends BaseAction {      
+public class PageSetupAction extends BaseAction {
 
-  public PageSetupAction(Application application) {    
+  public PageSetupAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.file.page-setup";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to visit the website of the application.
- * 
+ *
  * @author Haixing Hu
  */
-public class WebsiteAction extends BaseAction {      
+public class WebsiteAction extends BaseAction {
 
-  public WebsiteAction(Application application) {    
+  public WebsiteAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.help.website";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to find the next match.
- * 
+ *
  * @author Haixing Hu
  */
-public class FindNextAction extends BaseAction {      
+public class FindNextAction extends BaseAction {
 
-  public FindNextAction(Application application) {    
+  public FindNextAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.find-next";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

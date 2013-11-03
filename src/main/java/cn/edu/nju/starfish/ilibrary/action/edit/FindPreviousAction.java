@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to find the previous match.
- * 
+ *
  * @author Haixing Hu
  */
-public class FindPreviousAction extends BaseAction {      
+public class FindPreviousAction extends BaseAction {
 
-  public FindPreviousAction(Application application) {    
+  public FindPreviousAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.find-previous";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

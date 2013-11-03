@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to print the current document.
- * 
+ *
  * @author Haixing Hu
  */
-public class PrintAction extends BaseAction {      
+public class PrintAction extends BaseAction {
 
-  public PrintAction(Application application) {    
+  public PrintAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.file.print";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

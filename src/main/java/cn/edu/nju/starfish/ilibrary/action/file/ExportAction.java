@@ -11,22 +11,17 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to export document entries.
- * 
+ *
  * @author Haixing Hu
  */
-public class ExportAction extends BaseAction {      
+public class ExportAction extends BaseAction {
 
-  public ExportAction(Application application) {    
+  public ExportAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.file.export";
-  }
-
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
   }
 }

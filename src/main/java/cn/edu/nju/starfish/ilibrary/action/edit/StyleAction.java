@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to select the style of reference.
- * 
+ *
  * @author Haixing Hu
  */
-public class StyleAction extends BaseAction {      
+public class StyleAction extends BaseAction {
 
-  public StyleAction(Application application) {    
+  public StyleAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.style";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

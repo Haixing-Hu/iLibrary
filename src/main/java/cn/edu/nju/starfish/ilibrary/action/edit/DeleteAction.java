@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to delete the selected text or the selected document.
- * 
+ *
  * @author Haixing Hu
  */
-public class DeleteAction extends BaseAction {      
+public class DeleteAction extends BaseAction {
 
-  public DeleteAction(Application application) {    
+  public DeleteAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.delete";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

@@ -11,22 +11,17 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to copy the selected text.
- * 
+ *
  * @author Haixing Hu
  */
-public class CopyAction extends BaseAction {      
+public class CopyAction extends BaseAction {
 
-  public CopyAction(Application application) {    
+  public CopyAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.copy";
-  }
-
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
   }
 }

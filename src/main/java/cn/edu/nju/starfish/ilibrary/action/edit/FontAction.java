@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to set the display font.
- * 
+ *
  * @author Haixing Hu
  */
-public class FontAction extends BaseAction {      
+public class FontAction extends BaseAction {
 
-  public FontAction(Application application) {    
+  public FontAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.font";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

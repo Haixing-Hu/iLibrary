@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.menu;
 
-import org.apache.commons.lang.SystemUtils;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 
@@ -32,14 +31,14 @@ import cn.edu.nju.starfish.ilibrary.action.edit.UndoAction;
  * @author Haixing Hu
  */
 public final class EditMenu extends MenuManager {
-  
+
   public static final String KEY = "menu.edit";
-  
+
   private final Application application;
 
   /**
    * Creates a edit menu.
-   * 
+   *
    * @param application
    *          the application this new menu belongs to.
    */
@@ -63,19 +62,19 @@ public final class EditMenu extends MenuManager {
     this.add(new FindPreviousAction(application));
     this.add(new FindNextAction(application));
     //  Mac will display the "Preferences" menu item in its "Apple" menu item
-    if (! SystemUtils.IS_OS_MAC) {
+//    if (! SystemUtils.IS_OS_MAC) {
       this.add(new Separator());
       this.add(new PreferencesAction(application));
-    }
+//    }
   }
 
   /**
    * Gets the application this menu belongs to.
-   * 
+   *
    * @return the application this menu belongs to.
    */
   public Application getApplication() {
     return application;
   }
-  
+
 }

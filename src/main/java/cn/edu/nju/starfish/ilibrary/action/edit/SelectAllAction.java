@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to select all the text or all the documents.
- * 
+ *
  * @author Haixing Hu
  */
-public class SelectAllAction extends BaseAction {      
+public class SelectAllAction extends BaseAction {
 
-  public SelectAllAction(Application application) {    
+  public SelectAllAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.select-all";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

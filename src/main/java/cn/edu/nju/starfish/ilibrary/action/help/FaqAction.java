@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to display the FAQ of the application.
- * 
+ *
  * @author Haixing Hu
  */
-public class FaqAction extends BaseAction {      
+public class FaqAction extends BaseAction {
 
-  public FaqAction(Application application) {    
+  public FaqAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.help.faq";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

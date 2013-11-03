@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to display the about dialog.
- * 
+ *
  * @author Haixing Hu
  */
-public class AboutAction extends BaseAction {      
+public class AboutAction extends BaseAction {
 
-  public AboutAction(Application application) {    
+  public AboutAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.help.about";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

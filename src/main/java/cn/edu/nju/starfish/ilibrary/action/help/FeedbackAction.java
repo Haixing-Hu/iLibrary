@@ -11,22 +11,17 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to send a feedback to the author.
- * 
+ *
  * @author Haixing Hu
  */
-public class FeedbackAction extends BaseAction {      
+public class FeedbackAction extends BaseAction {
 
-  public FeedbackAction(Application application) {    
+  public FeedbackAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.help.feedback";
-  }
-
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
   }
 }

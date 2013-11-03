@@ -47,6 +47,30 @@
       <properties>
         <swt.artifactId>org.eclipse.swt.cocoa.macosx.x86_64</swt.artifactId>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>osxappbundle-maven-plugin</artifactId>
+            <version>1.0-alpha-4-SNAPSHOT</version>
+            <configuration>
+              <mainClass>cn.edu.nju.starfish.ilibrary.Application</mainClass>
+              <jvmVersion>1.6+</jvmVersion>
+              <!-- Fix a bug of SWT on Java 7 and Mac OS X 10.8 above -->
+              <vmOptions>-XstartOnFirstThread</vmOptions>
+              <!-- <iconFile>${basedir}/src/main/resources/iLibrary.icns</iconFile> -->
+            </configuration>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>bundle</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>win_x86</id>

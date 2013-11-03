@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to paste the text in the clipboard.
- * 
+ *
  * @author Haixing Hu
  */
-public class PasteAction extends BaseAction {      
+public class PasteAction extends BaseAction {
 
-  public PasteAction(Application application) {    
+  public PasteAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.paste";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }

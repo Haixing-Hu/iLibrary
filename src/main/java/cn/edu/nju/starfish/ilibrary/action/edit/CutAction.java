@@ -11,22 +11,18 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to cut the selected text.
- * 
+ *
  * @author Haixing Hu
  */
-public class CutAction extends BaseAction {      
+public class CutAction extends BaseAction {
 
-  public CutAction(Application application) {    
+  public CutAction(Application application) {
     super(application);
   }
-  
+
   @Override
   public String getKey() {
     return "action.edit.cut";
   }
 
-  @Override
-  public void run() {
-    application.displayUnimplementedError();
-  }
 }
