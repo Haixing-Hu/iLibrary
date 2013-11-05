@@ -155,5 +155,5 @@ public class AboutDialog extends Dialog {
   @Override
   protected Point getInitialSize() {
     return new Point(450, 300);
-  }
+  }  
 }

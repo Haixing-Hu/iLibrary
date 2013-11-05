@@ -293,9 +293,7 @@
       <groupId>org.eclipse.jface</groupId>
       <artifactId>org.eclipse.jface</artifactId>
       <version>3.8.0.v20120521-2329</version>
-    </dependency>
-    <!-- <dependency> <groupId>org.apache.commons</groupId> <artifactId>commons-lang3</artifactId> 
-      <version>3.1</version> </dependency> -->
+    </dependency>   
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
