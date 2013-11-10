@@ -53,6 +53,11 @@ public final class FileMenu extends BaseMenu {
       this.add(new Separator());
       this.add(am.getAction(QuitAction.KEY));
 //    }
+
+    this.disableItems(new String[] {
+        PrintAction.KEY,
+    });
+    this.update(true);
   }
 
 }

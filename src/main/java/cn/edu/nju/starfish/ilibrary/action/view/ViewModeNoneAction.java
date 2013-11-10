@@ -18,15 +18,15 @@ import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
 
 /**
- * The action to hide the inspector panel.
+ * The action to hide both the inspector panel and preview panel.
  *
  * @author Haixing Hu
  */
-public class HideInspectorAction extends BaseAction {
+public class ViewModeNoneAction extends BaseAction {
 
-  public static final String KEY = "action.view.hide-inspector";
+  public static final String KEY = "action.view.view-mode.none";
 
-  public HideInspectorAction(Application application) {
+  public ViewModeNoneAction(Application application) {
     super(application, KEY);
   }
 
@@ -35,23 +35,23 @@ public class HideInspectorAction extends BaseAction {
     //  hide the inspector panel
     final MainWindow mainWindow = application.getMainWindow();
     final InspectorPanel inspector = mainWindow.getInspectorPanel();
-    final PreviewPanel preview = mainWindow.getPreviewPanel();
     inspector.hide();
-    //  hide this menu item and show the "show inspector" menu item
+    //  hide the preview panel
+    final PreviewPanel preview = mainWindow.getPreviewPanel();
+    preview.hide();
+    //  hide the "hide inspector" menu item and "hide preview" menu item
+    //  show the "show inspector" menu item and "show preview" menu item
     final MainMenuBar menuBar = mainWindow.getMenuBarManager();
     final BaseMenu viewMenu = menuBar.getViewMenu();
-    viewMenu.hideItem(KEY);
+    viewMenu.hideItem(HideInspectorAction.KEY);
+    viewMenu.hideItem(HidePreviewAction.KEY);
     viewMenu.showItem(ShowInspectorAction.KEY);
+    viewMenu.showItem(ShowPreviewAction.KEY);
     viewMenu.update(true);
-    //  update the image of the "view mode" action
+    //  set the image of the "view mode" action to "view mode none" action's image
     final ActionManager am = application.getActionManager();
     final Action viewModeAction = am.getAction(ViewModeAction.KEY);
-    final Action action;
-    if (preview.isHidden()) {
-      action = am.getAction(ViewModeNoneAction.KEY);
-    } else {
-      action = am.getAction(ViewModePreviewAction.KEY);
-    }
-    viewModeAction.setImageDescriptor(action.getImageDescriptor());
+    final Action viewModeNoneAction = am.getAction(ViewModeNoneAction.KEY);
+    viewModeAction.setImageDescriptor(viewModeNoneAction.getImageDescriptor());
   }
 }

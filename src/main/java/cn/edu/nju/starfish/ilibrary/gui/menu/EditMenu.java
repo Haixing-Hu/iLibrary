@@ -64,6 +64,17 @@ public final class EditMenu extends BaseMenu {
       this.add(new Separator());
       this.add(am.getAction(PreferencesAction.KEY));
 //    }
+
+    this.disableItems(new String[] {
+        UndoAction.KEY,
+        RedoAction.KEY,
+        CutAction.KEY,
+        CopyAction.KEY,
+        CopyReferenceAction.KEY,
+        PasteAction.KEY,
+        DeleteAction.KEY,
+    });
+    this.update(true);
   }
 
 }

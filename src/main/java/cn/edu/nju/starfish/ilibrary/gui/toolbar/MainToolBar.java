@@ -6,13 +6,14 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.toolbar;
 
+import org.apache.commons.configuration.Configuration;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.file.PrintAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
@@ -22,51 +23,67 @@ import cn.edu.nju.starfish.ilibrary.action.library.ShowNotesAction;
 import cn.edu.nju.starfish.ilibrary.action.share.EmailAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
+import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.widget.ForceTextToolBarManager;
 
 /**
  * The library tool bar.
  *
  * @author Haixing Hu
  */
-public final class MainToolBar {
+public final class MainToolBar extends Composite {
+
+  public static final String KEY = MainPanel.KEY + ".toolbar";
 
   private final Application application;
-  private final ToolBar toolBar;
+  private final int height;
+  private ForceTextToolBarManager toolBarManager;
 
   public MainToolBar(Application application, Composite parent) {
+    super(parent, SWT.FLAT);
     this.application = application;
-    this.toolBar = new ToolBar(parent, SWT.FLAT);
+    final Configuration config = application.getConfig();
+    this.height = config.getInt(KEY + ".height");
     createContents();
-    configLayoutData();
-  }
-
-  /**
-   * Configures the layout data of this tool bar.
-   */
-  private void configLayoutData() {
-    final GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-    toolBar.setLayoutData(layoutData);
   }
 
   /**
    * Creates the contents of this tool bar.
    */
   private void createContents() {
-    new MainToolItem(application, toolBar, ReadFullScreenAction.KEY);
-    new MainToolItem(application, toolBar, OpenFileAction.KEY);
-    new MainToolItem(application, toolBar, OpenUrlAction.KEY);
-    new MainToolItem(application, toolBar, EmailAction.KEY);
-    new MainToolItem(application, toolBar, PrintAction.KEY);
-    new ToolItem(toolBar, SWT.SEPARATOR);
-    new MainToolItem(application, toolBar, ShowKeywordsAction.KEY);
-    new MainToolItem(application, toolBar, ShowNotesAction.KEY);
-    new MainToolItem(application, toolBar, AddReviewAction.KEY);
-    new ToolItem(toolBar, SWT.SEPARATOR);
-    new MainToolItem(application, toolBar, ViewModeAction.KEY);
+    final RowLayout layout = new RowLayout(SWT.VERTICAL);
+    layout.justify = true;
+    layout.marginLeft = 0;
+    layout.marginTop = 0;
+    layout.marginRight = 0;
+    layout.marginBottom = 0;
+    layout.marginHeight = 0;
+    layout.marginWidth = 0;
+    this.setLayout(layout);
+
+    toolBarManager = new ForceTextToolBarManager(SWT.FLAT);
+    final ActionManager am = application.getActionManager();
+    toolBarManager.add(am.getAction(ReadFullScreenAction.KEY));
+    toolBarManager.add(am.getAction(OpenFileAction.KEY));
+    toolBarManager.add(am.getAction(OpenUrlAction.KEY));
+    toolBarManager.add(am.getAction(EmailAction.KEY));
+    toolBarManager.add(am.getAction(PrintAction.KEY));
+    toolBarManager.add(new Separator());
+    toolBarManager.add(am.getAction(ShowKeywordsAction.KEY));
+    toolBarManager.add(am.getAction(ShowNotesAction.KEY));
+    toolBarManager.add(am.getAction(AddReviewAction.KEY));
+    toolBarManager.add(new Separator());
+    toolBarManager.add(am.getAction(ViewModeAction.KEY));
+
+    toolBarManager.createControl(this);
   }
 
-
-  public ToolBar getControl() {
-    return toolBar;
+  /**
+   * Gets the height of this status line.
+   *
+   * @return the height of this status line.
+   */
+  public int getHeight() {
+    return height;
   }
 }

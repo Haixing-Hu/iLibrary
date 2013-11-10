@@ -6,14 +6,15 @@
 
 package cn.edu.nju.starfish.ilibrary.action.view;
 
+import org.eclipse.jface.action.Action;
+
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
-import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
-import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.MainTabFolder;
+import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
 
 /**
@@ -33,16 +34,24 @@ public class ShowPreviewAction extends BaseAction {
   public void run() {
     //  show the preview panel
     final MainWindow mainWindow = application.getMainWindow();
-    final MainPanel mainPanel = mainWindow.getMainPanel();
-    final MainTabFolder tabFolder = mainPanel.getTabFolder();
-    final LibraryTab libraryTab = tabFolder.getLibraryTab();
-    final PreviewPanel previewPanel = libraryTab.getPreviewPanel();
-    previewPanel.show();
+    final InspectorPanel inspector = mainWindow.getInspectorPanel();
+    final PreviewPanel preview = mainWindow.getPreviewPanel();
+    preview.show();
     //  hide this menu item and show the "hide preview" menu item
     final MainMenuBar menuBar = mainWindow.getMenuBarManager();
     final BaseMenu viewMenu = menuBar.getViewMenu();
     viewMenu.hideItem(KEY);
     viewMenu.showItem(HidePreviewAction.KEY);
     viewMenu.update(true);
+    //  update the image of the "view mode" action
+    final ActionManager am = application.getActionManager();
+    final Action viewModeAction = am.getAction(ViewModeAction.KEY);
+    final Action action;
+    if (inspector.isHidden()) {
+      action = am.getAction(ViewModePreviewAction.KEY);
+    } else {
+      action = am.getAction(ViewModeAllAction.KEY);
+    }
+    viewModeAction.setImageDescriptor(action.getImageDescriptor());
   }
 }

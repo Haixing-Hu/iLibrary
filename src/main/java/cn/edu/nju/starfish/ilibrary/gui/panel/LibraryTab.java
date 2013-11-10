@@ -13,7 +13,7 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.toolbar.DocumentFilterToolBar;
+import cn.edu.nju.starfish.ilibrary.gui.toolbar.FilterToolBar;
 
 /**
  * The library tab item.
@@ -22,9 +22,9 @@ import cn.edu.nju.starfish.ilibrary.gui.toolbar.DocumentFilterToolBar;
  */
 public class LibraryTab extends CTabItem {
 
-  public static final String KEY = MainPanel.KEY + ".library-tab";
+  public static final String KEY = MainTabFolder.KEY + ".library";
 
-  private DocumentFilterToolBar documentFilterToolBar;
+  private FilterToolBar filterToolBar;
   private DocumentList documentList;
   private PreviewPanel previewPanel;
 
@@ -44,14 +44,20 @@ public class LibraryTab extends CTabItem {
   private void createContents(Application application, CTabFolder parent) {
     final Composite composite = new Composite(parent, SWT.NONE);
     this.setControl(composite);
-    composite.setBackground(parent.getSelectionBackground());
+    // composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
     final FormLayout layout = new FormLayout();
-    layout.spacing = 3;
+    layout.marginLeft = 0;
+    layout.marginRight = 0;
+    layout.marginTop = 0;
+    layout.marginBottom = 0;
+    layout.marginHeight = 0;
+    layout.marginWidth = 0;
+    layout.spacing = 0;
     composite.setLayout(layout);
-    documentFilterToolBar = new DocumentFilterToolBar(application, composite);
+
+    filterToolBar = new FilterToolBar(application, composite);
     previewPanel = new PreviewPanel(application, composite);
-    documentList = new DocumentList(application, composite,
-        documentFilterToolBar.getControl(), previewPanel);
+    documentList = new DocumentList(application, composite, filterToolBar, previewPanel);
   }
 
   /**
@@ -59,8 +65,8 @@ public class LibraryTab extends CTabItem {
    *
    * @return the document filter tool bar.
    */
-  public DocumentFilterToolBar getDocumentFilterToolBar() {
-    return documentFilterToolBar;
+  public FilterToolBar getFilterToolBar() {
+    return filterToolBar;
   }
 
   /**

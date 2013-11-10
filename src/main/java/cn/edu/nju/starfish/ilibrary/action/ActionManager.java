@@ -44,6 +44,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
+import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkPrintedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkReadAction;
@@ -57,6 +58,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.MergePeriodicalsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergePublishersAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergeWebsitesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MoveToTrashAction;
+import cn.edu.nju.starfish.ilibrary.action.library.NewCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileWithAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
@@ -81,7 +83,6 @@ import cn.edu.nju.starfish.ilibrary.action.view.BackAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ColumnsAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ForwardAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HideInspectorAction;
-import cn.edu.nju.starfish.ilibrary.action.view.HideNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HidePreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextDocumentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextPageAction;
@@ -91,11 +92,14 @@ import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowDuplicatesAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowInspectorAction;
-import cn.edu.nju.starfish.ilibrary.action.view.ShowNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowPreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.SortByAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TableOfContentsAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ViewModeInspectorAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ViewModeNoneAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ViewModePreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomInAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomOutAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomToFitAction;
@@ -120,10 +124,22 @@ import cn.edu.nju.starfish.ilibrary.action.window.ReviewsAction;
  */
 public final class ActionManager {
 
+  private final Application application;
   private final Map<String, Action> actions;
 
   public ActionManager(Application application) {
+    this.application = application;
     actions = new HashMap<String, Action>();
+  }
+
+  /**
+   * Initializes this action manager.
+   * <p>
+   * The reason why the initialization does not take place at the constructor,
+   * is that the constructor of ViewModeAction will indirectly use the
+   * ActionManager.
+   */
+  public void initialize() {
     //  file actions
     this.add(new NewEntryAction(application));
     this.add(new NewLibraryAction(application));
@@ -157,13 +173,16 @@ public final class ActionManager {
     this.add(new AsWebpageAction(application));
     this.add(new ColumnsAction(application));
     this.add(new SortByAction(application));
-    this.add(new ViewModeAction(application));
-    this.add(new HideNavigatorAction(application));
-    this.add(new ShowNavigatorAction(application));
     this.add(new HideInspectorAction(application));
     this.add(new ShowInspectorAction(application));
     this.add(new HidePreviewAction(application));
     this.add(new ShowPreviewAction(application));
+    this.add(new ViewModeAllAction(application));
+    this.add(new ViewModeInspectorAction(application));
+    this.add(new ViewModePreviewAction(application));
+    this.add(new ViewModeNoneAction(application));
+    //  NOTE: the ViewModeAction must be created after ViewModeXXXAction
+    this.add(new ViewModeAction(application));
     this.add(new PreviousDocumentAction(application));
     this.add(new NextDocumentAction(application));
     this.add(new ShowDuplicatesAction(application));
@@ -196,6 +215,8 @@ public final class ActionManager {
     this.add(new AttachFileAction(application));
     this.add(new OpenUrlAction(application));
     this.add(new OpenUrlInBrowserAction(application));
+    this.add(new NewCollectionAction(application));
+    this.add(new ManageCollectionAction(application));
     this.add(new AddToCollectionAction(application));
     this.add(new EditInformationAction(application));
     this.add(new MergeDocumentsAction(application));

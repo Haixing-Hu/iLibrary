@@ -35,12 +35,13 @@ public class DocumentList extends CheckboxTableViewer {
     minHeight = config.getInt(KEY + ".height.min");
     maxHeight = config.getInt(KEY + ".height.max");
     configLayoutData(top, bottom);
+    this.getTable().setFocus();
   }
 
   private void configLayoutData(Control top, Control bottom) {
     final FormData layoutData = new FormData();
     layoutData.left = new FormAttachment(0);
-    layoutData.top = new FormAttachment(top, 3);
+    layoutData.top = new FormAttachment(top);
     layoutData.right = new FormAttachment(100);
     layoutData.bottom = new FormAttachment(bottom);
     this.getTable().setLayoutData(layoutData);

@@ -8,7 +8,6 @@ package cn.edu.nju.starfish.ilibrary.gui;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -20,8 +19,11 @@ import org.eclipse.swt.widgets.Shell;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
 import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
 import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.panel.MainTabFolder;
 import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
 
 /**
  * The main window of the application.
@@ -43,30 +45,30 @@ public final class MainWindow extends ApplicationWindow {
     this.application = application;
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
-    this.addStatusLine();
   }
 
   @Override
   protected Control createContents(Composite parent) {
-    final Composite container = new Composite(parent, SWT.NONE);
-    container.setLayout(new FormLayout());
-    navigatorPanel = new NavigatorPanel(application, container);
-    inspectorPanel = new InspectorPanel(application, container);
-    mainPanel  = new MainPanel(application, container,
+    final FormLayout layout = new FormLayout();
+    layout.marginTop = 0;
+    layout.marginBottom = 0;
+    layout.marginLeft = 0;
+    layout.marginRight = 0;
+    layout.marginHeight = 0;
+    layout.marginWidth = 0;
+    layout.spacing = 0;
+    parent.setLayout(layout);
+    navigatorPanel = new NavigatorPanel(application, parent);
+    inspectorPanel = new InspectorPanel(application, parent);
+    mainPanel  = new MainPanel(application, parent,
         navigatorPanel.getSash(), inspectorPanel.getSash());
-    return container;
+    return parent;
   }
 
   @Override
   protected MenuManager createMenuManager() {
     mainMenuBar = new MainMenuBar(application);
     return mainMenuBar;
-  }
-
-  @Override
-  protected StatusLineManager createStatusLineManager() {
-    StatusLineManager statusLine = new StatusLineManager();
-    return statusLine;
   }
 
   /**
@@ -78,11 +80,10 @@ public final class MainWindow extends ApplicationWindow {
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
     shell.setText(application.getName());
-    Configuration config = application.getConfig();
-    int minWidth = config.getInt(KEY + ".width.min");
-    int minHeight = config.getInt(KEY + ".height.min");
+    final Configuration config = application.getConfig();
+    final int minWidth = config.getInt(KEY + ".width.min");
+    final int minHeight = config.getInt(KEY + ".height.min");
     shell.setMinimumSize(minWidth, minHeight);
-    this.setStatus(application.getName() + " " + application.getVersion());
   }
 
   /**
@@ -92,9 +93,9 @@ public final class MainWindow extends ApplicationWindow {
    */
   @Override
   protected Point getInitialSize() {
-    Configuration config = application.getConfig();
-    int width = config.getInt(KEY + ".width.default");
-    int height = config.getInt(KEY + ".height.default");
+    final Configuration config = application.getConfig();
+    final int width = config.getInt(KEY + ".width.default");
+    final int height = config.getInt(KEY + ".height.default");
     return new Point(width, height);
   }
 
@@ -133,5 +134,17 @@ public final class MainWindow extends ApplicationWindow {
    */
   public InspectorPanel getInspectorPanel() {
     return inspectorPanel;
+  }
+
+  /**
+   * Gets the preview panel.
+   *
+   * @return the preview panel.
+   * @return
+   */
+  public PreviewPanel getPreviewPanel() {
+    final MainTabFolder tabFolder = mainPanel.getTabFolder();
+    final LibraryTab tab = tabFolder.getLibraryTab();
+    return tab.getPreviewPanel();
   }
 }

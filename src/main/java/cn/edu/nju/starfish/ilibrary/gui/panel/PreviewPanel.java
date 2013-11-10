@@ -39,7 +39,7 @@ public class PreviewPanel extends Composite {
   private boolean hidden;
 
   public PreviewPanel(Application application, Composite parent) {
-    super(parent, SWT.NONE);
+    super(parent, SWT.BORDER);
     this.application = application;
     final Configuration config = application.getConfig();
     defaultHeight = config.getInt(KEY + ".height.default");

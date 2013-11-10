@@ -14,6 +14,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
+import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkPrintedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkReadAction;
@@ -27,6 +28,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.MergePeriodicalsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergePublishersAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergeWebsitesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MoveToTrashAction;
+import cn.edu.nju.starfish.ilibrary.action.library.NewCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileWithAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
@@ -76,6 +78,8 @@ public final class LibraryMenu extends BaseMenu {
     this.add(am.getAction(OpenUrlAction.KEY));
     this.add(am.getAction(OpenUrlInBrowserAction.KEY));
     this.add(new Separator());
+    this.add(am.getAction(NewCollectionAction.KEY));
+    this.add(am.getAction(ManageCollectionAction.KEY));
     this.add(am.getAction(AddToCollectionAction.KEY));
     this.add(am.getAction(EditInformationAction.KEY));
     this.add(new Separator());
@@ -85,6 +89,37 @@ public final class LibraryMenu extends BaseMenu {
     this.add(am.getAction(MergeConferencesAction.KEY));
     this.add(am.getAction(MergePeriodicalsAction.KEY));
     this.add(am.getAction(MergeWebsitesAction.KEY));
+
+    this.hideItems(new String[]{
+        MarkUnflaggedAction.KEY,
+        MarkUnreadAction.KEY,
+        MarkUnprintedAction.KEY,
+        RestoreFromTrashAction.KEY,
+        MergeAuthorsAction.KEY,
+        MergePublishersAction.KEY,
+        MergeConferencesAction.KEY,
+        MergePeriodicalsAction.KEY,
+        MergeWebsitesAction.KEY,
+    });
+    this.disableItems(new String[] {
+        MarkFlaggedAction.KEY,
+        MarkReadAction.KEY,
+        MarkPrintedAction.KEY,
+        MoveToTrashAction.KEY,
+        ShowKeywordsAction.KEY,
+        ShowNotesAction.KEY,
+        AddReviewAction.KEY,
+        OpenFileAction.KEY,
+        OpenFileWithAction.KEY,
+        RevealFilePositionAction.KEY,
+        AttachFileAction.KEY,
+        OpenUrlAction.KEY,
+        OpenUrlInBrowserAction.KEY,
+        AddToCollectionAction.KEY,
+        EditInformationAction.KEY,
+        MergeDocumentsAction.KEY,
+    });
+    this.update(true);
   }
 
 }

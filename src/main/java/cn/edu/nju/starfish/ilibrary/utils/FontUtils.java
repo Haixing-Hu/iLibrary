@@ -27,9 +27,9 @@ public class FontUtils {
    *         height.
    */
   public static Font setHeight(Font font, int height) {
-    FontData[] fontData = font.getFontData();
-    for(int i = 0; i < fontData.length; ++i) {
-        fontData[i].setHeight(height);
+    final FontData[] fontData = font.getFontData();
+    for (final FontData element : fontData) {
+        element.setHeight(height);
     }
     return new Font(font.getDevice(), fontData);
   }
@@ -45,9 +45,9 @@ public class FontUtils {
    *         style.
    */
   public static Font setStyle(Font font, int style) {
-    FontData[] fontData = font.getFontData();
-    for(int i = 0; i < fontData.length; ++i) {
-        fontData[i].setStyle(style);
+    final FontData[] fontData = font.getFontData();
+    for (final FontData element : fontData) {
+        element.setStyle(style);
     }
     return new Font(font.getDevice(), fontData);
   }
@@ -65,10 +65,10 @@ public class FontUtils {
    *         style and the new height.
    */
   public static Font setStyleAndHeight(Font font, int style, int height) {
-    FontData[] fontData = font.getFontData();
-    for(int i = 0; i < fontData.length; ++i) {
-        fontData[i].setStyle(style);
-        fontData[i].setHeight(height);
+    final FontData[] fontData = font.getFontData();
+    for (final FontData element : fontData) {
+        element.setStyle(style);
+        element.setHeight(height);
     }
     return new Font(font.getDevice(), fontData);
   }

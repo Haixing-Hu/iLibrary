@@ -58,5 +58,11 @@ public final class WindowMenu extends BaseMenu {
     this.add(new Separator());
     this.add(am.getAction(CloseTabAction.KEY));
     this.add(am.getAction(CloseAllTabsAction.KEY));
+
+    this.disableItems(new String[] {
+        PreviousTabAction.KEY,
+        CloseTabAction.KEY,
+    });
+    this.update(true);
   }
 }

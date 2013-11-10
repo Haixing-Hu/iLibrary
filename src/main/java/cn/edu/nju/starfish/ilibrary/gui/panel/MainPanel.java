@@ -10,11 +10,12 @@ import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.statusline.MainStatusLine;
 import cn.edu.nju.starfish.ilibrary.gui.toolbar.MainToolBar;
 
 /**
@@ -31,6 +32,7 @@ public class MainPanel extends Composite {
   private final int maxWidth;
   private MainTabFolder tabFolder;
   private MainToolBar toolBar;
+  private MainStatusLine statusLine;
 
   /**
    * Constructs a {@link MainPanel}.
@@ -45,7 +47,7 @@ public class MainPanel extends Composite {
    *          the right control of the new panel.
    */
   public MainPanel(Application application, Composite parent, Control left, Control right) {
-    super(parent, SWT.BORDER);
+    super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
     minWidth = config.getInt(KEY + ".width.min");
@@ -76,17 +78,44 @@ public class MainPanel extends Composite {
    * Creates the contents of this panel.
    */
   private void createContents() {
-    final GridLayout layout = new GridLayout(1, false);
-    layout.verticalSpacing = 3;
+    final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
-    layout.marginBottom = 3;
+    layout.marginBottom = 0;
     layout.marginLeft = 0;
     layout.marginRight = 0;
     layout.marginHeight = 0;
     layout.marginWidth = 0;
-    setLayout(layout);
+    layout.spacing = 0;
+    this.setLayout(layout);
+
     tabFolder = new MainTabFolder(application, this);
     toolBar = new MainToolBar(application, this);
+    statusLine = new MainStatusLine(application, this);
+
+    final FormData fd_tabFolder = new FormData();
+    fd_tabFolder.left = new FormAttachment(0);
+    fd_tabFolder.top = new FormAttachment(0);
+    fd_tabFolder.right = new FormAttachment(100);
+    fd_tabFolder.bottom = new FormAttachment(toolBar);
+    tabFolder.setLayoutData(fd_tabFolder);
+
+    final FormData fd_toolBar = new FormData();
+    fd_toolBar.left = new FormAttachment(0);
+    fd_toolBar.top = new FormAttachment(statusLine, - toolBar.getHeight());
+    fd_toolBar.right = new FormAttachment(100);
+    fd_toolBar.bottom = new FormAttachment(statusLine);
+    toolBar.setLayoutData(fd_toolBar);
+
+    final FormData fd_statusLine = new FormData();
+    fd_statusLine.left = new FormAttachment(0);
+    fd_statusLine.top = new FormAttachment(100, - statusLine.getHeight());
+    fd_statusLine.right = new FormAttachment(100);
+    fd_statusLine.bottom = new FormAttachment(100);
+    statusLine.setLayoutData(fd_statusLine);
+
+    final String name = application.getName();
+    final String version = application.getVersion();
+    statusLine.setMessage(name + " " + version);
   }
 
   /**

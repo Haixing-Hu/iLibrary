@@ -6,10 +6,11 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.panel;
 
+import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -22,14 +23,21 @@ import cn.edu.nju.starfish.ilibrary.Application;
  */
 public class MainTabFolder extends CTabFolder {
 
+  public static final String KEY = MainPanel.KEY + ".tab";
+
   private final Application application;
   private LibraryTab libraryTab;
 
   public MainTabFolder(Application application, Composite parent) {
-    super(parent, SWT.NONE);
+    //  IMPORTANT: in order to remove the margin of the tab folder, the
+    //  style must be set to FLAT
+    super(parent, SWT.FLAT | SWT.NO_FOCUS);
     this.application = application;
+    this.marginHeight = 0;
+    this.marginWidth = 0;
+    //this.setSimple(false);
+
     configAppearance();
-    configLayoutData();
     createContents();
   }
 
@@ -37,16 +45,12 @@ public class MainTabFolder extends CTabFolder {
    * Configures the appearance of this tab folder.
    */
   private void configAppearance() {
-    final Color bgcolor = SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT);
-    setSelectionBackground(bgcolor);
-  }
-
-  /**
-   * Configures the layout data of this tab folder.
-   */
-  private void configLayoutData() {
-    final GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-    setLayoutData(layoutData);
+    final Configuration config = application.getConfig();
+    final String bg_path = config.getString(KEY + ".selection.background");
+    final Image bg_img = SWTResourceManager.getImage(MainTabFolder.class, bg_path);
+    this.setSelectionBackground(bg_img);
+    final Color color = SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_FOREGROUND);
+    this.setBackground(color);
   }
 
   /**
@@ -54,8 +58,11 @@ public class MainTabFolder extends CTabFolder {
    */
   private void createContents() {
     this.libraryTab = new LibraryTab(application, this);
+    this.setSelection(libraryTab);
     //  FIXME: test code
     new DocumentTab(application, this);
+
+
   }
 
   /**

@@ -20,7 +20,6 @@ import cn.edu.nju.starfish.ilibrary.action.view.BackAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ColumnsAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ForwardAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HideInspectorAction;
-import cn.edu.nju.starfish.ilibrary.action.view.HideNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HidePreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextDocumentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextPageAction;
@@ -30,10 +29,10 @@ import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowDuplicatesAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowInspectorAction;
-import cn.edu.nju.starfish.ilibrary.action.view.ShowNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowPreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.SortByAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TableOfContentsAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomInAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomOutAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomToFitAction;
@@ -66,12 +65,12 @@ public final class ViewMenu extends BaseMenu {
     this.add(am.getAction(ColumnsAction.KEY));
     this.add(am.getAction(SortByAction.KEY));
     this.add(new Separator());
-    this.add(am.getAction(HideNavigatorAction.KEY));
-    this.add(am.getAction(ShowNavigatorAction.KEY));
     this.add(am.getAction(HideInspectorAction.KEY));
     this.add(am.getAction(ShowInspectorAction.KEY));
     this.add(am.getAction(HidePreviewAction.KEY));
     this.add(am.getAction(ShowPreviewAction.KEY));
+//    this.add(new ViewModeSubMenu(application));
+    this.add(am.getAction(ViewModeAction.KEY));
     this.add(new Separator());
     this.add(am.getAction(PreviousDocumentAction.KEY));
     this.add(am.getAction(NextDocumentAction.KEY));
@@ -92,9 +91,9 @@ public final class ViewMenu extends BaseMenu {
     this.add(am.getAction(ForwardAction.KEY));
 
     this.hideItems(new String[]{
-        ShowNavigatorAction.KEY,
         ShowInspectorAction.KEY,
         ShowPreviewAction.KEY,
+        ShowAllAction.KEY,
         ActualSizeAction.KEY,
         ActualSizeAction.KEY,
         ZoomToFitAction.KEY,

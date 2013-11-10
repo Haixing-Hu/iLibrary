@@ -9,12 +9,12 @@ import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
@@ -51,6 +51,7 @@ public class TestGUI extends Composite {
     setLayout(gridLayout);
 
     final CTabFolder mainTabFolder = new CTabFolder(this, SWT.NONE);
+    mainTabFolder.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_FOREGROUND));
     mainTabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
     mainTabFolder.setSelectionBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
 
@@ -62,12 +63,11 @@ public class TestGUI extends Composite {
     composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
     libraryTab.setControl(composite);
     final FormLayout fl_composite = new FormLayout();
-    fl_composite.spacing = 3;
     composite.setLayout(fl_composite);
 
     final ToolBar libraryToolBar = new ToolBar(composite, SWT.NONE);
     libraryToolBar.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
-    final CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer.newCheckList(composite, SWT.BORDER | SWT.FULL_SELECTION | SWT.MULTI);
+    final CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer.newCheckList(composite, SWT.FULL_SELECTION | SWT.MULTI);
     final Composite previewPanel = new Composite(composite, SWT.NONE);
 
     final FormData fd_libraryToolBar = new FormData();
@@ -77,6 +77,7 @@ public class TestGUI extends Composite {
     libraryToolBar.setLayoutData(fd_libraryToolBar);
 
     libraryTable = checkboxTableViewer.getTable();
+    libraryTable.setHeaderVisible(true);
     final FormData fd_libraryTable = new FormData();
     fd_libraryTable.top = new FormAttachment(libraryToolBar);
     fd_libraryTable.left = new FormAttachment(0);
@@ -159,9 +160,12 @@ public class TestGUI extends Composite {
 
     final Composite composite_1 = new Composite(mainTabFolder, SWT.NONE);
     documentTab.setControl(composite_1);
-    composite_1.setLayout(new FillLayout(SWT.HORIZONTAL));
+    final RowLayout rl_composite_1 = new RowLayout(SWT.VERTICAL);
+    rl_composite_1.justify = true;
+    composite_1.setLayout(rl_composite_1);
 
-    final Label lblTab_1 = new Label(composite_1, SWT.NONE);
+    final Label lblTab_1 = new Label(composite_1, SWT.HORIZONTAL);
+    lblTab_1.setEnabled(false);
     lblTab_1.setText("Tab 2");
 
     final ToolBar mainToolBar = new ToolBar(this, SWT.NONE);

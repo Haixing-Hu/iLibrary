@@ -10,16 +10,18 @@ import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Sash;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.gui.statusline.InspectorStatusLine;
 
 /**
  * The panel displaying the inspection information.
@@ -38,9 +40,11 @@ public class InspectorPanel extends Composite {
   private final Sash sash;
   private int oldWidth;
   private boolean hidden;
+  private InspectorTabFolder tabFolder;
+  private InspectorStatusLine statusLine;
 
   public InspectorPanel(Application application, Composite parent) {
-    super(parent, SWT.BORDER | SWT.V_SCROLL);
+    super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
     defaultWidth = config.getInt(KEY + ".width.default");
@@ -77,6 +81,8 @@ public class InspectorPanel extends Composite {
     sashData.right = new FormAttachment(100, - defaultWidth);
     sashData.bottom = new FormAttachment(100);
     sash.setLayoutData(sashData);
+    final Color color = SWTResourceManager.getColor(SWT.COLOR_WIDGET_NORMAL_SHADOW);
+    sash.setBackground(color);
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent e) {
@@ -107,9 +113,32 @@ public class InspectorPanel extends Composite {
    * Creates the contents of this panel.
    */
   private void createContents() {
-    // TODO create the content of this panel
-    setLayout(new FillLayout());
-    new Label(this, SWT.NONE).setText("InspectorPanel");
+    final FormLayout layout = new FormLayout();
+    layout.marginTop = 0;
+    layout.marginBottom = 0;
+    layout.marginLeft = 0;
+    layout.marginRight = 0;
+    layout.marginHeight = 0;
+    layout.marginWidth = 0;
+    layout.spacing = 0;
+    this.setLayout(layout);
+
+    tabFolder = new InspectorTabFolder(application, this);
+    statusLine = new InspectorStatusLine(application, this);
+
+    final FormData fd_tabFolder = new FormData();
+    fd_tabFolder.left = new FormAttachment(0);
+    fd_tabFolder.top = new FormAttachment(0);
+    fd_tabFolder.right = new FormAttachment(100);
+    fd_tabFolder.bottom = new FormAttachment(statusLine);
+    tabFolder.setLayoutData(fd_tabFolder);
+
+    final FormData fd_statusLine = new FormData();
+    fd_statusLine.left = new FormAttachment(0);
+    fd_statusLine.top = new FormAttachment(100, - statusLine.getHeight());
+    fd_statusLine.right = new FormAttachment(100);
+    fd_statusLine.bottom = new FormAttachment(100);
+    statusLine.setLayoutData(fd_statusLine);
   }
 
   /**

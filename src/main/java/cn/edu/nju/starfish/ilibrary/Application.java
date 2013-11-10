@@ -46,13 +46,13 @@ public final class Application {
   public Application() {
     logger = LoggerFactory.getLogger(Application.class);
     context = new ClassPathXmlApplicationContext(CONTEXT_FILE);
-    //locale = Locale.getDefault();
-    locale = Locale.ENGLISH;
+    locale = Locale.getDefault();
     messageSource = context.getBean(MessageSource.class);
     config = context.getBean(Configuration.class);
     name = messageSource.getMessage("app.name", null, locale);
     version = config.getString("app.version");
     actionManager = new ActionManager(this);
+    actionManager.initialize();
     mainWindow = new MainWindow(this);
 //    //  adjust the Mac OS X Cococa UI
 //    if (SystemUtils.IS_OS_MAC) {
@@ -69,7 +69,12 @@ public final class Application {
   public void run() {
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
-    Display.getCurrent().dispose();
+    final Display display = Display.getCurrent();
+    if (display != null) {
+      //  if the program is terminated by external command (i.e., press CMD+Q in Mac),
+      //  the display could be null.
+      display.dispose();
+    }
   }
 
   /**

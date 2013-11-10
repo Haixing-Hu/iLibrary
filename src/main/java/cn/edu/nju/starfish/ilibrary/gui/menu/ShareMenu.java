@@ -42,5 +42,15 @@ public final class ShareMenu extends BaseMenu {
     this.add(am.getAction(TencentAction.KEY));
     this.add(new Separator());
     this.add(am.getAction(EmailAction.KEY));
+
+    this.disableItems(new String[] {
+        TwitterAction.KEY,
+        FacebookAction.KEY,
+        GooglePlusAction.KEY,
+        SinaAction.KEY,
+        TencentAction.KEY,
+        EmailAction.KEY,
+    });
+    this.update(true);
   }
 }
