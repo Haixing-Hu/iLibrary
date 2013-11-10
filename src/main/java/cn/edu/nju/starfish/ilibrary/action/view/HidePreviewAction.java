@@ -8,6 +8,13 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
+import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
+import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
+import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.panel.MainTabFolder;
+import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
 
 /**
  * The action to hide the preview panel.
@@ -16,13 +23,26 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class HidePreviewAction extends BaseAction {
 
+  public static final String KEY = "action.view.hide-preview";
+
   public HidePreviewAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
 
   @Override
-  public String getKey() {
-    return "action.view.hide-preview";
+  public void run() {
+    //  hide the preview panel
+    final MainWindow mainWindow = application.getMainWindow();
+    final MainPanel mainPanel = mainWindow.getMainPanel();
+    final MainTabFolder tabFolder = mainPanel.getTabFolder();
+    final LibraryTab libraryTab = tabFolder.getLibraryTab();
+    final PreviewPanel previewPanel = libraryTab.getPreviewPanel();
+    previewPanel.hide();
+    //  hide this menu item and show the "show preview" menu item
+    final MainMenuBar menuBar = mainWindow.getMenuBarManager();
+    final BaseMenu viewMenu = menuBar.getViewMenu();
+    viewMenu.hideItem(KEY);
+    viewMenu.showItem(ShowPreviewAction.KEY);
+    viewMenu.update(true);
   }
-
 }

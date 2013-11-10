@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ManualAction extends BaseAction {
 
-  public ManualAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.help.manual";
 
-  @Override
-  public String getKey() {
-    return "action.help.manual";
+  public ManualAction(Application application) {
+    super(application, KEY);
   }
 
 }

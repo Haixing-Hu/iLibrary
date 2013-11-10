@@ -15,13 +15,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class FeedbackAction extends BaseAction {
+  public static final String KEY = "action.help.feedback";
 
   public FeedbackAction(Application application) {
-    super(application);
-  }
-
-  @Override
-  public String getKey() {
-    return "action.help.feedback";
+    super(application, KEY);
   }
 }

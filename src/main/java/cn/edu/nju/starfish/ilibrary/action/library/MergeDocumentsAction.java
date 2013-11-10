@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MergeDocumentsAction extends BaseAction {
 
-  public MergeDocumentsAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.merge-documents";
 
-  @Override
-  public String getKey() {
-    return "action.library.merge-documents";
+  public MergeDocumentsAction(Application application) {
+    super(application, KEY);
   }
 
 }

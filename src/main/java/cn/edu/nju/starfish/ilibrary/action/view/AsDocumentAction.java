@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsDocumentAction extends BaseAction {
 
-  public AsDocumentAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.as-document";
 
-  @Override
-  public String getKey() {
-    return "action.view.as-document";
+  public AsDocumentAction(Application application) {
+    super(application, KEY);
   }
 
 }

@@ -16,12 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ZoomToFitAction extends BaseAction {
 
-  public ZoomToFitAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.zoom-to-fit";
 
-  @Override
-  public String getKey() {
-    return "action.view.as-cover-flow";
+  public ZoomToFitAction(Application application) {
+    super(application, KEY);
   }
 }

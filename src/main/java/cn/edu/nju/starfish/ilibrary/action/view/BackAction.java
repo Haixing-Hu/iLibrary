@@ -16,12 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class BackAction extends BaseAction {
 
-  public BackAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.back";
 
-  @Override
-  public String getKey() {
-    return "action.view.back";
+  public BackAction(Application application) {
+    super(application, KEY);
   }
 }

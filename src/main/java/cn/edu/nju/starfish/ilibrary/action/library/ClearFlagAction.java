@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ClearFlagAction extends BaseAction {
 
-  public ClearFlagAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.clear-flag";
 
-  @Override
-  public String getKey() {
-    return "action.library.clear-flag";
+  public ClearFlagAction(Application application) {
+    super(application, KEY);
   }
 
 }

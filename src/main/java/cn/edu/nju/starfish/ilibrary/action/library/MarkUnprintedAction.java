@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MarkUnprintedAction extends BaseAction {
 
-  public MarkUnprintedAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.mark-unprinted";
 
-  @Override
-  public String getKey() {
-    return "action.library.mark-unprinted";
+  public MarkUnprintedAction(Application application) {
+    super(application, KEY);
   }
 
 }

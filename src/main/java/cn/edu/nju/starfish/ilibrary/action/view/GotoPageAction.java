@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class GotoPageAction extends BaseAction {
 
-  public GotoPageAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.goto-page";
 
-  @Override
-  public String getKey() {
-    return "action.view.goto-page";
+  public GotoPageAction(Application application) {
+    super(application, KEY);
   }
 
 }

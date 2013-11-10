@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MinimizeAction extends BaseAction {
 
+  public static final String KEY = "action.window.minimize";
+
   public MinimizeAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.window.minimize";
-  }
-
 }

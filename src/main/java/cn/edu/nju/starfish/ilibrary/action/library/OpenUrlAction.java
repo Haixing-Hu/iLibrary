@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class OpenUrlAction extends BaseAction {
 
-  public OpenUrlAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.open-url";
 
-  @Override
-  public String getKey() {
-    return "action.library.open-url";
+  public OpenUrlAction(Application application) {
+    super(application, KEY);
   }
 
 }

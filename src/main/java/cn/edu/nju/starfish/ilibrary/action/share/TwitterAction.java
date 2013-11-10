@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class TwitterAction extends BaseAction {
 
-  public TwitterAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.share.twitter";
 
-  @Override
-  public String getKey() {
-    return "action.share.twitter";
+  public TwitterAction(Application application) {
+    super(application, KEY);
   }
 
 }

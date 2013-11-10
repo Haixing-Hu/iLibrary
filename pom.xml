@@ -288,26 +288,31 @@
       <groupId>org.eclipse.swt</groupId>
       <artifactId>${swt.artifactId}</artifactId>
       <version>4.3</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jface</groupId>
       <artifactId>org.eclipse.jface</artifactId>
       <version>3.8.0.v20120521-2329</version>
+      <scope>compile</scope>
     </dependency>   
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>3.2.4.RELEASE</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>commons-configuration</groupId>
       <artifactId>commons-configuration</artifactId>
       <version>1.10</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.simplericity.macify</groupId>
       <artifactId>macify</artifactId>
       <version>1.6</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>

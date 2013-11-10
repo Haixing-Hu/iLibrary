@@ -6,10 +6,10 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.menu;
 
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.edit.CopyAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CopyReferenceAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CutAction;
@@ -30,11 +30,9 @@ import cn.edu.nju.starfish.ilibrary.action.edit.UndoAction;
  *
  * @author Haixing Hu
  */
-public final class EditMenu extends MenuManager {
+public final class EditMenu extends BaseMenu {
 
   public static final String KEY = "menu.edit";
-
-  private final Application application;
 
   /**
    * Creates a edit menu.
@@ -43,38 +41,29 @@ public final class EditMenu extends MenuManager {
    *          the application this new menu belongs to.
    */
   public EditMenu(Application application) {
-    super(application.getTitle(KEY));
-    this.application = application;
-    this.add(new UndoAction(application));
-    this.add(new RedoAction(application));
+    super(application, KEY);
+    final ActionManager am = application.getActionManager();
+    this.add(am.getAction(UndoAction.KEY));
+    this.add(am.getAction(RedoAction.KEY));
     this.add(new Separator());
-    this.add(new CutAction(application));
-    this.add(new CopyAction(application));
-    this.add(new CopyReferenceAction(application));
-    this.add(new PasteAction(application));
-    this.add(new DeleteAction(application));
-    this.add(new SelectAllAction(application));
+    this.add(am.getAction(CutAction.KEY));
+    this.add(am.getAction(CopyAction.KEY));
+    this.add(am.getAction(CopyReferenceAction.KEY));
+    this.add(am.getAction(PasteAction.KEY));
+    this.add(am.getAction(DeleteAction.KEY));
+    this.add(am.getAction(SelectAllAction.KEY));
     this.add(new Separator());
-    this.add(new FontAction(application));
-    this.add(new StyleAction(application));
+    this.add(am.getAction(FontAction.KEY));
+    this.add(am.getAction(StyleAction.KEY));
     this.add(new Separator());
-    this.add(new FindAction(application));
-    this.add(new FindPreviousAction(application));
-    this.add(new FindNextAction(application));
+    this.add(am.getAction(FindAction.KEY));
+    this.add(am.getAction(FindPreviousAction.KEY));
+    this.add(am.getAction(FindNextAction.KEY));
     //  Mac will display the "Preferences" menu item in its "Apple" menu item
 //    if (! SystemUtils.IS_OS_MAC) {
       this.add(new Separator());
-      this.add(new PreferencesAction(application));
+      this.add(am.getAction(PreferencesAction.KEY));
 //    }
-  }
-
-  /**
-   * Gets the application this menu belongs to.
-   *
-   * @return the application this menu belongs to.
-   */
-  public Application getApplication() {
-    return application;
   }
 
 }

@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ActualSizeAction extends BaseAction {
 
-  public ActualSizeAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.actual-size";
 
-  @Override
-  public String getKey() {
-    return "action.view.actual-size";
+  public ActualSizeAction(Application application) {
+    super(application, KEY);
   }
 
 }

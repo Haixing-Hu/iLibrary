@@ -15,14 +15,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class RedoAction extends BaseAction {
+  public static final String KEY = "action.edit.redo";
 
   public RedoAction(Application application) {
-    super(application);
-  }
-
-  @Override
-  public String getKey() {
-    return "action.edit.redo";
+    super(application, KEY);
   }
 
 }

@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsPreviewAction extends BaseAction {
 
+  public static final String KEY = "action.view.as-preview";
+
   public AsPreviewAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.view.as-preview";
-  }
-
 }

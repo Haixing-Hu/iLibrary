@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class FacebookAction extends BaseAction {
 
-  public FacebookAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.share.facebook";
 
-  @Override
-  public String getKey() {
-    return "action.share.facebook";
+  public FacebookAction(Application application) {
+    super(application, KEY);
   }
 
 }

@@ -1,80 +1,79 @@
 /**
- * 
+ *
  */
 package cn.edu.nju.starfish.ilibrary;
 
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.StatusLineManager;
+import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Sash;
-import org.eclipse.swt.widgets.Shell;
 
-/**
- * @author starfish
- */
-public class Test {
+public class Test extends ApplicationWindow {
+
+  StatusLineManager slm = new StatusLineManager();
+  Ch4_StatusAction status_action = new Ch4_StatusAction(slm);
+
+  public Test() {
+    super(null);
+    addStatusLine();
+    addMenuBar();
+    addToolBar(SWT.FLAT | SWT.WRAP);
+  }
+
+  @Override
+  protected Control createContents(Composite parent) {
+    getShell().setText("Action/Contribution Example");
+    parent.setSize(290, 150);
+    return parent;
+  }
 
   public static void main(String[] args) {
-    Display display = new Display();
-    final Shell shell = new Shell(display);
-    Button button1 = new Button(shell, SWT.PUSH);
-    button1.setText("Button 1");
-    final Sash sash = new Sash(shell, SWT.VERTICAL);
-    Button button2 = new Button(shell, SWT.PUSH);
-    button2.setText("Button 2");
+    Test swin = new Test();
+    swin.setBlockOnOpen(true);
+    swin.open();
+    Display.getCurrent().dispose();
+  }
 
-    final FormLayout form = new FormLayout();
-    shell.setLayout(form);
+  @Override
+  protected MenuManager createMenuManager() {
+    MenuManager main_menu = new MenuManager(null);
+    MenuManager action_menu = new MenuManager("Menu");
+    main_menu.add(action_menu);
+    action_menu.add(status_action);
+    return main_menu;
+  }
 
-    FormData button1Data = new FormData();
-    button1Data.left = new FormAttachment(0, 0);
-    button1Data.right = new FormAttachment(sash, 0);
-    button1Data.top = new FormAttachment(0, 0);
-    button1Data.bottom = new FormAttachment(100, 0);
-    button1.setLayoutData(button1Data);
+  @Override
+  protected ToolBarManager createToolBarManager(int style) {
+    ToolBarManager tool_bar_manager = new ToolBarManager(style);
+    tool_bar_manager.add(status_action);
+    return tool_bar_manager;
+  }
 
-    final int limit = 20, percent = 50;
-    final FormData sashData = new FormData();
-    sashData.left = new FormAttachment(percent, 0);
-    sashData.top = new FormAttachment(0, 0);
-    sashData.bottom = new FormAttachment(100, 0);
-    sash.setLayoutData(sashData);
-    sash.addListener(SWT.Selection, new Listener() {
-      public void handleEvent(Event e) {
-        Rectangle sashRect = sash.getBounds();
-        Rectangle shellRect = shell.getClientArea();
-        int right = shellRect.width - sashRect.width - limit;
-        e.x = Math.max(Math.min(e.x, right), limit);
-        if (e.x != sashRect.x) {
-          sashData.left = new FormAttachment(0, e.x);
-          shell.layout();
-        }
-      }
-    });
+  @Override
+  protected StatusLineManager createStatusLineManager() {
+    return slm;
+  }
+}
 
-    FormData button2Data = new FormData();
-    button2Data.left = new FormAttachment(sash, 0);
-    button2Data.right = new FormAttachment(100, 0);
-    button2Data.top = new FormAttachment(0, 0);
-    button2Data.bottom = new FormAttachment(100, 0);
-    button2.setLayoutData(button2Data);
+class Ch4_StatusAction extends Action {
+  StatusLineManager statman;
+  short triggercount = 0;
 
-    shell.pack();
-    shell.open();
-    while (!shell.isDisposed()) {
-      if (!display.readAndDispatch())
-        display.sleep();
-    }
-    display.dispose();
+  public Ch4_StatusAction(StatusLineManager sm) {
+    super("&Trigger@Ctrl+T", AS_PUSH_BUTTON);
+    statman = sm;
+    setToolTipText("Trigger the Action");
+  }
+
+  @Override
+  public void run() {
+    triggercount++;
+    statman.setMessage("The status action has fired. Count: " + triggercount);
   }
 }

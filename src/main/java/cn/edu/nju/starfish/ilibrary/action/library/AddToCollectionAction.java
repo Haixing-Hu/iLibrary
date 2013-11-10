@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AddToCollectionAction extends BaseAction {
 
-  public AddToCollectionAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.add-to-collection";
 
-  @Override
-  public String getKey() {
-    return "action.library.add-to-collection";
+  public AddToCollectionAction(Application application) {
+    super(application, KEY);
   }
 
 }

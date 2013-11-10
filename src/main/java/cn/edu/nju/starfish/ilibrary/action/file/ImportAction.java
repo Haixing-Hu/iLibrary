@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ImportAction extends BaseAction {
 
-  public ImportAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.file.import";
 
-  @Override
-  public String getKey() {
-    return "action.file.import";
+  public ImportAction(Application application) {
+    super(application, KEY);
   }
 
 }

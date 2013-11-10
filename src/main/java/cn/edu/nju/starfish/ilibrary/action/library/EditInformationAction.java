@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class EditInformationAction extends BaseAction {
 
+  public static final String KEY = "action.library.edit-information";
+
   public EditInformationAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.library.edit-information";
-  }
-
 }

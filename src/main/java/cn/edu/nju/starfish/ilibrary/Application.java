@@ -11,12 +11,14 @@ import java.util.Locale;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.SystemUtils;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 
 /**
@@ -33,8 +35,9 @@ public final class Application {
   private final Locale locale;
   private final MessageSource messageSource;
   private final Configuration config;
-  private final String title;
+  private final String name;
   private final String version;
+  private final ActionManager actionManager;
   private final MainWindow mainWindow;
 
   /**
@@ -47,8 +50,9 @@ public final class Application {
     locale = Locale.ENGLISH;
     messageSource = context.getBean(MessageSource.class);
     config = context.getBean(Configuration.class);
-    title = messageSource.getMessage("app.title", null, locale);
+    name = messageSource.getMessage("app.name", null, locale);
     version = config.getString("app.version");
+    actionManager = new ActionManager(this);
     mainWindow = new MainWindow(this);
 //    //  adjust the Mac OS X Cococa UI
 //    if (SystemUtils.IS_OS_MAC) {
@@ -65,6 +69,7 @@ public final class Application {
   public void run() {
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
+    Display.getCurrent().dispose();
   }
 
   /**
@@ -95,12 +100,12 @@ public final class Application {
   }
 
   /**
-   * Gets the title of the application.
+   * Gets the name of the application.
    *
-   * @return the title of the application.
+   * @return the name of the application.
    */
-  public String getTitle() {
-    return title;
+  public String getName() {
+    return name;
   }
 
   /**
@@ -154,7 +159,7 @@ public final class Application {
    * @return The title associated with the specified action.
    */
   public String getTitle(String key) {
-    String title = messageSource.getMessage(key + ".title", null, locale);
+    final String title = messageSource.getMessage(key + ".title", null, locale);
     logger.debug("Find the title for {}: {}", key, title);
     return title;
   }
@@ -185,7 +190,9 @@ public final class Application {
    * @return the description the specified action, or null if it has no description.
    */
   public String getDescription(String key) {
-    return messageSource.getMessage(key + ".description", null, null, locale);
+    final String description = messageSource.getMessage(key + ".description", null, null, locale);
+    logger.debug("Find the description for {}: {}", key, description);
+    return description;
   }
 
   /**
@@ -196,7 +203,9 @@ public final class Application {
    * @return the URL of the icon the specified action, or null if it has no icon.
    */
   public String getIcon(String key) {
-    return config.getString(key + ".icon");
+    final String icon = config.getString(key + ".icon");
+    logger.debug("Find the icon for {}: {}", key, icon);
+    return icon;
   }
 
   /**
@@ -206,9 +215,18 @@ public final class Application {
    * @param key the key of the action.
    */
   public void displayUnimplementedError(String key) {
-    String title = this.getMessage("message.error");
-    String message = this.getMessage("message.error.unimplemented-function") + ": " + key;
+    final String title = this.getMessage("message.error");
+    final String message = this.getMessage("message.error.unimplemented-function") + ": " + key;
     MessageDialog.openError(mainWindow.getShell(), title, message);
+  }
+
+  /**
+   * Gets the action manager of this application.
+   *
+   * @return the action manager of this application.
+   */
+  public ActionManager getActionManager() {
+    return actionManager;
   }
 
   /**
@@ -231,7 +249,7 @@ public final class Application {
     final Application app = new Application();
     try {
       app.run();
-    } catch (Throwable t) {
+    } catch (final Throwable t) {
       t.printStackTrace();
     }
   }

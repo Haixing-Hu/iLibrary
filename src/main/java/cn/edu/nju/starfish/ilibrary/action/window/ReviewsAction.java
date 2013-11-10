@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ReviewsAction extends BaseAction {
 
+  public static final String KEY = "action.window.reviews";
+
   public ReviewsAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.window.reviews";
-  }
-
 }

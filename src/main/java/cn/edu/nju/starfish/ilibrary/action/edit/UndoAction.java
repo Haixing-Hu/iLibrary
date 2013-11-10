@@ -15,14 +15,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class UndoAction extends BaseAction {
+  public static final String KEY = "action.edit.undo";
 
   public UndoAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.edit.undo";
-  }
-
 }

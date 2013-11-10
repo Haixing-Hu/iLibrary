@@ -16,12 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CopyAction extends BaseAction {
 
-  public CopyAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.edit.copy";
 
-  @Override
-  public String getKey() {
-    return "action.edit.copy";
+  public CopyAction(Application application) {
+    super(application, KEY);
   }
 }

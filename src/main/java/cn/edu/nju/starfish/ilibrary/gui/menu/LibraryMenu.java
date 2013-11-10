@@ -6,10 +6,10 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.menu;
 
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
@@ -41,11 +41,9 @@ import cn.edu.nju.starfish.ilibrary.action.library.ShowNotesAction;
  *
  * @author Haixing Hu
  */
-public final class LibraryMenu extends MenuManager {
+public final class LibraryMenu extends BaseMenu {
 
   public static final String KEY = "menu.library";
-
-  private final Application application;
 
   /**
    * Creates a library menu.
@@ -54,48 +52,39 @@ public final class LibraryMenu extends MenuManager {
    *          the application this new menu belongs to.
    */
   public LibraryMenu(Application application) {
-    super(application.getTitle(KEY));
-    this.application = application;
-    this.add(new MarkFlaggedAction(application));
-    this.add(new MarkUnflaggedAction(application));
-    this.add(new MarkReadAction(application));
-    this.add(new MarkUnreadAction(application));
-    this.add(new MarkPrintedAction(application));
-    this.add(new MarkUnprintedAction(application));
+    super(application, KEY);
+    final ActionManager am = application.getActionManager();
+    this.add(am.getAction(MarkFlaggedAction.KEY));
+    this.add(am.getAction(MarkUnflaggedAction.KEY));
+    this.add(am.getAction(MarkReadAction.KEY));
+    this.add(am.getAction(MarkUnreadAction.KEY));
+    this.add(am.getAction(MarkPrintedAction.KEY));
+    this.add(am.getAction(MarkUnprintedAction.KEY));
     this.add(new Separator());
-    this.add(new MoveToTrashAction(application));
-    this.add(new RestoreFromTrashAction(application));
+    this.add(am.getAction(MoveToTrashAction.KEY));
+    this.add(am.getAction(RestoreFromTrashAction.KEY));
     this.add(new Separator());
-    this.add(new ShowKeywordsAction(application));
-    this.add(new ShowNotesAction(application));
-    this.add(new AddReviewAction(application));
+    this.add(am.getAction(ShowKeywordsAction.KEY));
+    this.add(am.getAction(ShowNotesAction.KEY));
+    this.add(am.getAction(AddReviewAction.KEY));
     this.add(new Separator());
-    this.add(new OpenFileAction(application));
-    this.add(new OpenFileWithAction(application));
-    this.add(new RevealFilePositionAction(application));
-    this.add(new AttachFileAction(application));
+    this.add(am.getAction(OpenFileAction.KEY));
+    this.add(am.getAction(OpenFileWithAction.KEY));
+    this.add(am.getAction(RevealFilePositionAction.KEY));
+    this.add(am.getAction(AttachFileAction.KEY));
     this.add(new Separator());
-    this.add(new OpenUrlAction(application));
-    this.add(new OpenUrlInBrowserAction(application));
+    this.add(am.getAction(OpenUrlAction.KEY));
+    this.add(am.getAction(OpenUrlInBrowserAction.KEY));
     this.add(new Separator());
-    this.add(new AddToCollectionAction(application));
-    this.add(new EditInformationAction(application));
+    this.add(am.getAction(AddToCollectionAction.KEY));
+    this.add(am.getAction(EditInformationAction.KEY));
     this.add(new Separator());
-    this.add(new MergeDocumentsAction(application));
-    this.add(new MergeAuthorsAction(application));
-    this.add(new MergePublishersAction(application));
-    this.add(new MergeConferencesAction(application));
-    this.add(new MergePeriodicalsAction(application));
-    this.add(new MergeWebsitesAction(application));
-  }
-
-  /**
-   * Gets the application this menu belongs to.
-   *
-   * @return the application this menu belongs to.
-   */
-  public Application getApplication() {
-    return application;
+    this.add(am.getAction(MergeDocumentsAction.KEY));
+    this.add(am.getAction(MergeAuthorsAction.KEY));
+    this.add(am.getAction(MergePublishersAction.KEY));
+    this.add(am.getAction(MergeConferencesAction.KEY));
+    this.add(am.getAction(MergePeriodicalsAction.KEY));
+    this.add(am.getAction(MergeWebsitesAction.KEY));
   }
 
 }

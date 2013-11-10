@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsCoverFlowAction extends BaseAction {
 
-  public AsCoverFlowAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.as-cover-flow";
 
-  @Override
-  public String getKey() {
-    return "action.view.as-cover-flow";
+  public AsCoverFlowAction(Application application) {
+    super(application, KEY);
   }
 
 }

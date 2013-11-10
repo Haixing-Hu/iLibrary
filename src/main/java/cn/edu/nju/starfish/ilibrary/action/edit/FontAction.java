@@ -15,14 +15,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class FontAction extends BaseAction {
+  public static final String KEY = "action.edit.font";
 
   public FontAction(Application application) {
-    super(application);
-  }
-
-  @Override
-  public String getKey() {
-    return "action.edit.font";
+    super(application, KEY);
   }
 
 }

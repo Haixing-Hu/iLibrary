@@ -16,12 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ExportAction extends BaseAction {
 
-  public ExportAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.file.export";
 
-  @Override
-  public String getKey() {
-    return "action.file.export";
+  public ExportAction(Application application) {
+    super(application, KEY);
   }
 }

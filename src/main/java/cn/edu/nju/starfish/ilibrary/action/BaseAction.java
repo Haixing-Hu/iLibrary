@@ -6,10 +6,7 @@
 
 package cn.edu.nju.starfish.ilibrary.action;
 
-import java.net.URL;
-
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.resource.ImageDescriptor;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 
@@ -27,40 +24,36 @@ public abstract class BaseAction extends Action {
    *
    * @param application
    *          the application this action belongs to.
+   * @param key
+   *          the key of this action, which will be used as the ID of the
+   *          new action.
    */
-  public BaseAction(Application application) {
+  public BaseAction(Application application, String key) {
     super();
     this.application = application;
-    String key = this.getKey();
-    String title = application.getTitle(key);
-    String shortcut = application.getShortcut(key);
+    this.setId(key);
+    final String title = application.getTitle(key);
+    final String shortcut = application.getShortcut(key);
     if (shortcut == null) {
       this.setText(title);
     } else {
       this.setText(title + "@" + shortcut);
     }
-    String description = application.getDescription(key);
+    final String description = application.getDescription(key);
     if (description != null) {
       this.setToolTipText(description);
     }
-    String icon = application.getIcon(key);
-    if (icon != null) {
-      try {
-        ImageDescriptor img = ImageDescriptor.createFromURL(new URL(icon));
-        this.setImageDescriptor(img);
-      } catch (Exception e) {
-        application.getLogger().error("Failed to load the action icon.");
-        e.printStackTrace();
-      }
-    }
+//    final String icon = application.getIcon(key);
+//    if (icon != null) {
+//      try {
+//        final ImageDescriptor img = ImageDescriptor.createFromFile(BaseAction.class, icon);
+//        this.setImageDescriptor(img);
+//      } catch (final Exception e) {
+//        application.getLogger().error("Failed to load the action icon.");
+//        e.printStackTrace();
+//      }
+//    }
   }
-
-  /**
-   * Gets the key of this action.
-   *
-   * @return the key of this action.
-   */
-  public abstract String getKey();
 
   /**
    * Gets the application this action belongs to.
@@ -74,6 +67,6 @@ public abstract class BaseAction extends Action {
   @Override
   public void run() {
     //  default implementation is to display an error message.
-    application.displayUnimplementedError(this.getKey());
+    application.displayUnimplementedError(this.getId());
   }
 }

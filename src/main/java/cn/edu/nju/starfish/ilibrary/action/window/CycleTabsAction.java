@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CycleTabsAction extends BaseAction {
 
+  public static final String KEY = "action.window.cycle-tabs";
+
   public CycleTabsAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.window.cycle-tabs";
-  }
-
 }

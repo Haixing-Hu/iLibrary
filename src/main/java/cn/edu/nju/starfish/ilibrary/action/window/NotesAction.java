@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class NotesAction extends BaseAction {
 
-  public NotesAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.window.notes";
 
-  @Override
-  public String getKey() {
-    return "action.window.notes";
+  public NotesAction(Application application) {
+    super(application, KEY);
   }
 
 }

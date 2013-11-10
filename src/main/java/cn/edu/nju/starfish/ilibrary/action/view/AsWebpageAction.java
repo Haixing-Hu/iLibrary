@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsWebpageAction extends BaseAction {
 
-  public AsWebpageAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.as-webpage";
 
-  @Override
-  public String getKey() {
-    return "action.view.as-webpage";
+  public AsWebpageAction(Application application) {
+    super(application, KEY);
   }
 
 }

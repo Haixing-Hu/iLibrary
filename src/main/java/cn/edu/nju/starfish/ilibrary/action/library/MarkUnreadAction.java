@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MarkUnreadAction extends BaseAction {
 
+  public static final String KEY = "action.library.mark-unread";
+
   public MarkUnreadAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.library.mark-unread";
-  }
-
 }

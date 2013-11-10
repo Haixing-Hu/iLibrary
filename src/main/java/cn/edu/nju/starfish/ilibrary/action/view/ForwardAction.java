@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ForwardAction extends BaseAction {
 
+  public static final String KEY = "action.view.forward";
+
   public ForwardAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.view.forward";
-  }
-
 }

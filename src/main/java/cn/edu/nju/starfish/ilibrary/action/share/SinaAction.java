@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class SinaAction extends BaseAction {
 
-  public SinaAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.share.sina";
 
-  @Override
-  public String getKey() {
-    return "action.share.sina";
+  public SinaAction(Application application) {
+    super(application, KEY);
   }
 
 }

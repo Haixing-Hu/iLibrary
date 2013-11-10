@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class RestoreFromTrashAction extends BaseAction {
 
-  public RestoreFromTrashAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.restore-from-trash";
 
-  @Override
-  public String getKey() {
-    return "action.library.restore-from-trash";
+  public RestoreFromTrashAction(Application application) {
+    super(application, KEY);
   }
 
 }

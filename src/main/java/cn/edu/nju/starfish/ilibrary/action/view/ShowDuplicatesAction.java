@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ShowDuplicatesAction extends BaseAction {
 
-  public ShowDuplicatesAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.show-duplicates";
 
-  @Override
-  public String getKey() {
-    return "action.view.show-duplicates";
+  public ShowDuplicatesAction(Application application) {
+    super(application, KEY);
   }
 
 }

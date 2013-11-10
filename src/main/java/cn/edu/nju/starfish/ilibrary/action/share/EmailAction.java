@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class EmailAction extends BaseAction {
 
-  public EmailAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.share.email";
 
-  @Override
-  public String getKey() {
-    return "action.share.email";
+  public EmailAction(Application application) {
+    super(application, KEY);
   }
 
 }

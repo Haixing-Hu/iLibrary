@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MarkReadAction extends BaseAction {
 
-  public MarkReadAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.mark-read";
 
-  @Override
-  public String getKey() {
-    return "action.library.mark-read";
+  public MarkReadAction(Application application) {
+    super(application, KEY);
   }
 
 }

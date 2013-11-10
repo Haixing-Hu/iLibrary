@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ColumnsAction extends BaseAction {
 
-  public ColumnsAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.columns";
 
-  @Override
-  public String getKey() {
-    return "action.view.columns";
+  public ColumnsAction(Application application) {
+    super(application, KEY);
   }
 
 }

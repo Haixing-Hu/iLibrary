@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class NextDocumentAction extends BaseAction {
 
+  public static final String KEY = "action.view.next-document";
+
   public NextDocumentAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.view.next-document";
-  }
-
 }

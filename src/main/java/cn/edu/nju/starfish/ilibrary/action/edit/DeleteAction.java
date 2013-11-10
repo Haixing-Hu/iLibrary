@@ -15,14 +15,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class DeleteAction extends BaseAction {
+  public static final String KEY = "action.edit.delete";
 
   public DeleteAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.edit.delete";
-  }
-
 }

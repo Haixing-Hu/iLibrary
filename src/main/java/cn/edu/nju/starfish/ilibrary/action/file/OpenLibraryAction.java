@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class OpenLibraryAction extends BaseAction {
 
+  public static final String KEY = "action.file.open-library";
+
   public OpenLibraryAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.file.open-library";
-  }
-
 }

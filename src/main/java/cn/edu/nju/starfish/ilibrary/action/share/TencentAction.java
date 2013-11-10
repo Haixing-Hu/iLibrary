@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class TencentAction extends BaseAction {
 
+  public static final String KEY = "action.share.tencent";
+
   public TencentAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.share.tencent";
-  }
-
 }

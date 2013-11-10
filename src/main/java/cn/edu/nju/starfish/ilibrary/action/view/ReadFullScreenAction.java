@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ReadFullScreenAction extends BaseAction {
 
+  public static final String KEY = "action.view.read-full-screen";
+
   public ReadFullScreenAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.view.read-full-screen";
-  }
-
 }

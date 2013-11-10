@@ -16,12 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ZoomOutAction extends BaseAction {
 
-  public ZoomOutAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.view.zoom-out";
 
-  @Override
-  public String getKey() {
-    return "action.view.as-cover-flow";
+  public ZoomOutAction(Application application) {
+    super(application, KEY);
   }
 }

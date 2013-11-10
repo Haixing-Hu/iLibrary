@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MergeConferencesAction extends BaseAction {
 
+  public static final String KEY = "action.library.merge-conferences";
+
   public MergeConferencesAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.library.merge-conferences";
-  }
-
 }

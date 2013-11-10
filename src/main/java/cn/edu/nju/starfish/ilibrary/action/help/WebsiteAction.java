@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class WebsiteAction extends BaseAction {
 
+  public static final String KEY = "action.help.website";
+
   public WebsiteAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.help.website";
-  }
-
 }

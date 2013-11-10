@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MergeWebsitesAction extends BaseAction {
 
-  public MergeWebsitesAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.merge-websites";
 
-  @Override
-  public String getKey() {
-    return "action.library.merge-websites";
+  public MergeWebsitesAction(Application application) {
+    super(application, KEY);
   }
 
 }

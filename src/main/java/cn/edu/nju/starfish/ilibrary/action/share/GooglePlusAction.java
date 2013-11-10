@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class GooglePlusAction extends BaseAction {
 
-  public GooglePlusAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.share.google-plus";
 
-  @Override
-  public String getKey() {
-    return "action.share.google-plus";
+  public GooglePlusAction(Application application) {
+    super(application, KEY);
   }
 
 }

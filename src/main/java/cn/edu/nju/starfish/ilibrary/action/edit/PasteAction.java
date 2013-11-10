@@ -15,14 +15,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class PasteAction extends BaseAction {
+  public static final String KEY = "action.edit.paste";
 
   public PasteAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.edit.paste";
-  }
-
 }

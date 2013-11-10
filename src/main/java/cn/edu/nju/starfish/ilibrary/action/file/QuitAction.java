@@ -14,18 +14,15 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
  * The action to quit the application.
- * 
+ *
  * @author Haixing Hu
  */
-public class QuitAction extends BaseAction implements Listener {      
+public class QuitAction extends BaseAction implements Listener {
 
-  public QuitAction(Application application) {    
-    super(application);
-  }
-  
-  @Override
-  public String getKey() {
-    return "action.file.quit";
+  public static final String KEY = "action.file.quit";
+
+  public QuitAction(Application application) {
+    super(application, KEY);
   }
 
   @Override
@@ -35,6 +32,6 @@ public class QuitAction extends BaseAction implements Listener {
 
   @Override
   public void handleEvent(Event event) {
-    this.run();    
+    this.run();
   }
 }

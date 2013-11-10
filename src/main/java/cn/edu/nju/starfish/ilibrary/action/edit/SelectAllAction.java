@@ -15,14 +15,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class SelectAllAction extends BaseAction {
+  public static final String KEY = "action.edit.select-all";
 
   public SelectAllAction(Application application) {
-    super(application);
-  }
-
-  @Override
-  public String getKey() {
-    return "action.edit.select-all";
+    super(application, KEY);
   }
 
 }

@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CloseTabAction extends BaseAction {
 
-  public CloseTabAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.window.close-tab";
 
-  @Override
-  public String getKey() {
-    return "action.window.close-tab";
+  public CloseTabAction(Application application) {
+    super(application, KEY);
   }
 
 }

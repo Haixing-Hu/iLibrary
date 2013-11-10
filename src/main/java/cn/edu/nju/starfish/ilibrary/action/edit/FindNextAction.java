@@ -15,14 +15,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class FindNextAction extends BaseAction {
+  public static final String KEY = "action.edit.find-next";
 
   public FindNextAction(Application application) {
-    super(application);
-  }
-
-  @Override
-  public String getKey() {
-    return "action.edit.find-next";
+    super(application, KEY);
   }
 
 }

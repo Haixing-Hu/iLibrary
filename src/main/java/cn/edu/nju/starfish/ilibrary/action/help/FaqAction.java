@@ -15,14 +15,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class FaqAction extends BaseAction {
+  public static final String KEY = "action.help.faq";
 
   public FaqAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.help.faq";
-  }
-
 }

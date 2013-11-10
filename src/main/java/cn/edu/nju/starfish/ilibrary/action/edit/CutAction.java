@@ -16,13 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CutAction extends BaseAction {
 
+  public static final String KEY = "action.edit.cut";
+
   public CutAction(Application application) {
-    super(application);
+    super(application, KEY);
   }
-
-  @Override
-  public String getKey() {
-    return "action.edit.cut";
-  }
-
 }

@@ -12,11 +12,11 @@ import cn.edu.nju.starfish.ilibrary.Application;
 
 /**
  * The main menu bar of the application.
- * 
+ *
  * @author Haixing Hu
  */
 public final class MainMenuBar extends MenuManager {
-  
+
   private final Application application;
   private final FileMenu fileMenu;
   private final EditMenu editMenu;
@@ -28,8 +28,8 @@ public final class MainMenuBar extends MenuManager {
 
   /**
    * Constructs a menu bar.
-   * 
-   * @param application 
+   *
+   * @param application
    *    the application the new menu bar belongs.
    */
   public MainMenuBar(Application application) {
@@ -53,10 +53,73 @@ public final class MainMenuBar extends MenuManager {
 
   /**
    * Gets the application this menu belongs to.
-   * 
+   *
    * @return the application this menu belongs to.
    */
   public Application getApplication() {
     return application;
+  }
+
+  /**
+   * Gets the file menu.
+   *
+   * @return the file menu.
+   */
+  public FileMenu getFileMenu() {
+    return fileMenu;
+  }
+
+  /**
+   * Gets the edit menu.
+   *
+   * @return the edit menu.
+   */
+  public EditMenu getEditMenu() {
+    return editMenu;
+  }
+
+  /**
+   * Gets the view menu.
+   *
+   * @return the view menu.
+   */
+  public ViewMenu getViewMenu() {
+    return viewMenu;
+  }
+
+  /**
+   * Gets the library menu.
+   *
+   * @return the library menu.
+   */
+  public LibraryMenu getLibraryMenu() {
+    return libraryMenu;
+  }
+
+  /**
+   * Gets the share menu.
+   *
+   * @return the share menu.
+   */
+  public ShareMenu getShareMenu() {
+    return shareMenu;
+  }
+
+  /**
+   * Gets the window menu.
+   *
+   * @return the window menu.
+   */
+  public WindowMenu getWindowMenu() {
+    return windowMenu;
+  }
+
+  /**
+   * Gets the help menu.
+   *
+   * @return the help menu.
+   */
+  public HelpMenu getHelpMenu() {
+    return helpMenu;
   }
 }

@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class PageSetupAction extends BaseAction {
 
-  public PageSetupAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.file.page-setup";
 
-  @Override
-  public String getKey() {
-    return "action.file.page-setup";
+  public PageSetupAction(Application application) {
+    super(application, KEY);
   }
 
 }

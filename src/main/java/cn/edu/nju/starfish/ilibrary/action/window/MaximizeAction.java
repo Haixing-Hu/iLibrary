@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MaximizeAction extends BaseAction {
 
-  public MaximizeAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.window.maximize";
 
-  @Override
-  public String getKey() {
-    return "action.window.maximize";
+  public MaximizeAction(Application application) {
+    super(application, KEY);
   }
 
 }

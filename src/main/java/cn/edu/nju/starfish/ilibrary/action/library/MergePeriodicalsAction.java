@@ -16,13 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MergePeriodicalsAction extends BaseAction {
 
-  public MergePeriodicalsAction(Application application) {
-    super(application);
-  }
+  public static final String KEY = "action.library.merge-periodicals";
 
-  @Override
-  public String getKey() {
-    return "action.library.merge-periodicals";
+  public MergePeriodicalsAction(Application application) {
+    super(application, KEY);
   }
 
 }
