@@ -35,8 +35,8 @@ import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlInBrowserAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RestoreFromTrashAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RevealFilePositionAction;
-import cn.edu.nju.starfish.ilibrary.action.library.ShowKeywordsAction;
-import cn.edu.nju.starfish.ilibrary.action.library.ShowNotesAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
 
 /**
  * The library menu.
@@ -66,8 +66,8 @@ public final class LibraryMenu extends BaseMenu {
     this.add(am.getAction(MoveToTrashAction.KEY));
     this.add(am.getAction(RestoreFromTrashAction.KEY));
     this.add(new Separator());
-    this.add(am.getAction(ShowKeywordsAction.KEY));
-    this.add(am.getAction(ShowNotesAction.KEY));
+    this.add(am.getAction(EditKeywordsAction.KEY));
+    this.add(am.getAction(EditNotesAction.KEY));
     this.add(am.getAction(AddReviewAction.KEY));
     this.add(new Separator());
     this.add(am.getAction(OpenFileAction.KEY));
@@ -106,8 +106,8 @@ public final class LibraryMenu extends BaseMenu {
         MarkReadAction.KEY,
         MarkPrintedAction.KEY,
         MoveToTrashAction.KEY,
-        ShowKeywordsAction.KEY,
-        ShowNotesAction.KEY,
+        EditKeywordsAction.KEY,
+        EditNotesAction.KEY,
         AddReviewAction.KEY,
         OpenFileAction.KEY,
         OpenFileWithAction.KEY,

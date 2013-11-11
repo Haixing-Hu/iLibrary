@@ -6,35 +6,72 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.panel;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.widget.BaseTabFolder;
 
 /**
  * The inspector tab folder.
  *
  * @author Haixing Hu
  */
-public class InspectorTabFolder extends Composite {
+public class InspectorTabFolder extends BaseTabFolder {
 
-  private final Application application;
+  public static final String KEY = InspectorPanel.KEY + ".tab";
+
+  private InfoTab infoTab;
+  private NotesTab notesTab;
+  private ReviewTab reviewTab;
+  private FilesTab filesTab;
 
   public InspectorTabFolder(Application application, Composite parent) {
-    super(parent, SWT.NONE);
-    this.application = application;
-    createContents();
+    super(application, KEY, parent);
   }
 
-  private void createContents() {
-    this.setLayout(new FillLayout());
-    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
-    this.setBackground(backgroundColor);
-    //  TODO
-    new Label(this, SWT.NONE).setText("InspectorTabFolder");
+  @Override
+  protected void createContents() {
+    this.infoTab = new InfoTab(application, this);
+    this.notesTab = new NotesTab(application, this);
+    this.reviewTab = new ReviewTab(application, this);
+    this.filesTab = new FilesTab(application, this);
+    this.setSelection(infoTab);
+  }
+
+  /**
+   * Gets the information tab.
+   *
+   * @return the information tab.
+   */
+  public InfoTab getInfoTab() {
+    return infoTab;
+  }
+
+  /**
+   * Gets the notes tab.
+   *
+   * @return the notes tab.
+   */
+  public NotesTab getNotesTab() {
+    return notesTab;
+  }
+
+  /**
+   * Gets the review tab.
+   *
+   * @return the review tab.
+   */
+  public ReviewTab getReviewTab() {
+    return reviewTab;
+  }
+
+  /**
+   * Gets the files tab.
+   *
+   * @return the files tab.
+   */
+  public FilesTab getFilesTab() {
+    return filesTab;
   }
 
 }

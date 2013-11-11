@@ -8,40 +8,32 @@ package cn.edu.nju.starfish.ilibrary.gui.panel;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.toolbar.FilterToolBar;
+import cn.edu.nju.starfish.ilibrary.gui.widget.BaseTabItem;
 
 /**
  * The library tab item.
  *
  * @author Haixing Hu
  */
-public class LibraryTab extends CTabItem {
+public final class LibraryTab extends BaseTabItem {
 
-  public static final String KEY = MainTabFolder.KEY + ".library";
+  public static final String KEY = CenterTabFolder.KEY + ".library";
 
   private FilterToolBar filterToolBar;
   private DocumentList documentList;
   private PreviewPanel previewPanel;
 
   public LibraryTab(Application application, CTabFolder parent) {
-    super(parent, SWT.NONE);
-    // TODO Auto-generated constructor stub
-    this.setText("   " + application.getTitle(KEY) + "   ");
-    this.createContents(application, parent);
+    super(application, KEY, parent, SWT.NONE);
   }
 
-  /**
-   * Creates the contents of this tab.
-   *
-   * @param application the application this tab belongs.
-   * @param parent the parent of this tab.
-   */
-  private void createContents(Application application, CTabFolder parent) {
+  @Override
+  protected void createContents() {
     final Composite composite = new Composite(parent, SWT.NONE);
     this.setControl(composite);
     // composite.setBackground(SWTResourceManager.getColor(SWT.COLOR_BLUE));

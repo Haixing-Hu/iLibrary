@@ -17,17 +17,18 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.BaseTabItem;
  *
  * @author Haixing Hu
  */
-public final class DocumentTab extends BaseTabItem {
+public final class ReviewTab extends BaseTabItem {
 
-  public static final String KEY = CenterTabFolder.KEY + ".document";
+  public static final String KEY = InspectorTabFolder.KEY + ".review";
 
-  public DocumentTab(Application application, CTabFolder parent) {
-    super(application, KEY, parent, SWT.CLOSE);
+  public ReviewTab(Application application, CTabFolder parent) {
+    super(application, KEY, parent, SWT.NONE);
   }
 
   @Override
   protected void createContents() {
     // TODO Auto-generated method stub
+
   }
 
 }

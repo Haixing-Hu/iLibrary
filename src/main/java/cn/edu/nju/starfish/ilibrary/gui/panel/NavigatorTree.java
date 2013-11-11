@@ -21,6 +21,8 @@ import cn.edu.nju.starfish.ilibrary.Application;
  */
 public class NavigatorTree extends Composite {
 
+  public static final String KEY = NavigatorPanel.KEY + ".tree";
+
   private final Application application;
 
   public NavigatorTree(Application application, Composite parent) {

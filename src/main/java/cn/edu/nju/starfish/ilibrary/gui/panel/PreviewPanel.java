@@ -28,7 +28,7 @@ import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
  */
 public class PreviewPanel extends Composite {
 
-  public static final String KEY = MainPanel.KEY + ".preview-panel";
+  public static final String KEY = CenterPanel.KEY + ".preview";
 
   private final Application application;
   private final int defaultHeight;
@@ -75,8 +75,8 @@ public class PreviewPanel extends Composite {
         newHeight = Math.max(newHeight, minHeight);
         newHeight = Math.min(newHeight, maxHeight);
         final MainWindow mainWindow = application.getMainWindow();
-        final MainPanel mainPanel = mainWindow.getMainPanel();
-        final MainTabFolder tabFolder = mainPanel.getTabFolder();
+        final CenterPanel mainPanel = mainWindow.getMainPanel();
+        final CenterTabFolder tabFolder = mainPanel.getTabFolder();
         final LibraryTab libraryTab = tabFolder.getLibraryTab();
         final DocumentList documentList = libraryTab.getDocumentList();
         final Control table = documentList.getControl();

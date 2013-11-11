@@ -75,6 +75,7 @@ public final class ViewMode {
       viewMenu.showItem(ShowPreviewAction.KEY);
       viewMenu.hideItem(HideInspectorAction.KEY);
       viewMenu.hideItem(HidePreviewAction.KEY);
+      viewMenu.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_none.getImageDescriptor());
       //  change the action's checking state
@@ -93,6 +94,7 @@ public final class ViewMode {
       viewMenu.showItem(ShowPreviewAction.KEY);
       viewMenu.hideItem(ShowInspectorAction.KEY);
       viewMenu.hideItem(HidePreviewAction.KEY);
+      viewMenu.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_inspector.getImageDescriptor());
       //  change the action's checking state
@@ -111,6 +113,7 @@ public final class ViewMode {
       viewMenu.showItem(HidePreviewAction.KEY);
       viewMenu.hideItem(HideInspectorAction.KEY);
       viewMenu.hideItem(ShowPreviewAction.KEY);
+      viewMenu.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_preview.getImageDescriptor());
       //  change the action's checking state
@@ -129,6 +132,7 @@ public final class ViewMode {
       viewMenu.showItem(HidePreviewAction.KEY);
       viewMenu.hideItem(ShowInspectorAction.KEY);
       viewMenu.hideItem(ShowInspectorAction.KEY);
+      viewMenu.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_all.getImageDescriptor());
       //  change the action's checking state

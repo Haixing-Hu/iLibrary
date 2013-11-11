@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.widget;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
@@ -15,28 +15,36 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.panel.CenterTabFolder;
 
 /**
- * The main tab folder.
+ * The abstract base class for all tab folders.
  *
  * @author Haixing Hu
  */
-public class MainTabFolder extends CTabFolder {
+public abstract class BaseTabFolder extends CTabFolder {
 
-  public static final String KEY = MainPanel.KEY + ".tab";
+  protected final Application application;
+  protected final String key;
+  protected final Composite parent;
 
-  private final Application application;
-  private LibraryTab libraryTab;
-
-  public MainTabFolder(Application application, Composite parent) {
+  /**
+   * Constructs a new tab folder.
+   *
+   * @param application
+   *          the application.
+   * @param key
+   *          the key of the new tab folder.
+   * @param parent
+   *          the parent of the new tab folder.
+   */
+  public BaseTabFolder(Application application, String key, Composite parent) {
     //  IMPORTANT: in order to remove the margin of the tab folder, the
     //  style must be set to FLAT
-    super(parent, SWT.FLAT | SWT.NO_FOCUS);
+    super(parent, SWT.FLAT);
     this.application = application;
-    this.marginHeight = 0;
-    this.marginWidth = 0;
-    //this.setSimple(false);
-
+    this.key = key;
+    this.parent = parent;
     configAppearance();
     createContents();
   }
@@ -46,32 +54,18 @@ public class MainTabFolder extends CTabFolder {
    */
   private void configAppearance() {
     final Configuration config = application.getConfig();
-    final String bg_path = config.getString(KEY + ".selection.background");
-    final Image bg_img = SWTResourceManager.getImage(MainTabFolder.class, bg_path);
+    final String bg_path = config.getString(key + ".selection-background");
+    final Image bg_img = SWTResourceManager.getImage(CenterTabFolder.class, bg_path);
     this.setSelectionBackground(bg_img);
     final Color color = SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_FOREGROUND);
     this.setBackground(color);
+    this.marginHeight = 0;
+    this.marginWidth = 0;
+    //this.setSimple(false);
   }
 
   /**
-   * Creates contents of this tab folder.
+   * Creates the contents of this tab folder.
    */
-  private void createContents() {
-    this.libraryTab = new LibraryTab(application, this);
-    this.setSelection(libraryTab);
-    //  FIXME: test code
-    new DocumentTab(application, this);
-
-
-  }
-
-  /**
-   * Gets the library tab.
-   *
-   * @return the library tab.
-   */
-  public LibraryTab getLibraryTab() {
-    return libraryTab;
-  }
-
+  protected abstract void createContents();
 }

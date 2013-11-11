@@ -30,7 +30,7 @@ import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
  */
 public final class NavigatorPanel extends Composite {
 
-  public static final String KEY = "gui.navigator-panel";
+  public static final String KEY = MainWindow.KEY + ".navigator";
 
   private final Application application;
   private final int defaultWidth;
@@ -93,7 +93,7 @@ public final class NavigatorPanel extends Composite {
         int newWidth = Math.max(e.x, minWidth);
         newWidth = Math.min(newWidth, maxWidth);
         final MainWindow mainWindow = application.getMainWindow();
-        final MainPanel mainPanel = mainWindow.getMainPanel();
+        final CenterPanel mainPanel = mainWindow.getMainPanel();
         final InspectorPanel inspectorPanel = mainWindow.getInspectorPanel();
         final Sash inspectorSash = inspectorPanel.getSash();
         newWidth = Math.min(newWidth, inspectorSash.getBounds().x - mainPanel.getMinWidth());

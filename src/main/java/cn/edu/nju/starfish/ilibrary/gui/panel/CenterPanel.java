@@ -16,27 +16,28 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.statusline.MainStatusLine;
-import cn.edu.nju.starfish.ilibrary.gui.toolbar.MainToolBar;
+import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.gui.statusline.CenterStatusLine;
+import cn.edu.nju.starfish.ilibrary.gui.toolbar.CenterToolBar;
 
 /**
  * The panel displaying the content of library or document.
  *
  * @author Haixing Hu
  */
-public class MainPanel extends Composite {
+public class CenterPanel extends Composite {
 
-  public static final String KEY = "gui.main-panel";
+  public static final String KEY = MainWindow.KEY + ".center";
 
   private final Application application;
   private final int minWidth;
   private final int maxWidth;
-  private MainTabFolder tabFolder;
-  private MainToolBar toolBar;
-  private MainStatusLine statusLine;
+  private CenterTabFolder tabFolder;
+  private CenterToolBar toolBar;
+  private CenterStatusLine statusLine;
 
   /**
-   * Constructs a {@link MainPanel}.
+   * Constructs a {@link CenterPanel}.
    *
    * @param application
    *          the application the new panel belongs.
@@ -47,7 +48,7 @@ public class MainPanel extends Composite {
    * @param right
    *          the right control of the new panel.
    */
-  public MainPanel(Application application, Composite parent, Control left, Control right) {
+  public CenterPanel(Application application, Composite parent, Control left, Control right) {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
@@ -92,9 +93,9 @@ public class MainPanel extends Composite {
     final Color backgroundColor = application.getMainWindow().getBackgroundColor();
     this.setBackground(backgroundColor);
 
-    tabFolder = new MainTabFolder(application, this);
-    toolBar = new MainToolBar(application, this);
-    statusLine = new MainStatusLine(application, this);
+    tabFolder = new CenterTabFolder(application, this);
+    toolBar = new CenterToolBar(application, this);
+    statusLine = new CenterStatusLine(application, this);
 
     final FormData fd_tabFolder = new FormData();
     fd_tabFolder.left = new FormAttachment(0);
@@ -155,7 +156,7 @@ public class MainPanel extends Composite {
    * @return
    *    the tab folder of this panel.
    */
-  public MainTabFolder getTabFolder() {
+  public CenterTabFolder getTabFolder() {
     return tabFolder;
   }
 
@@ -165,7 +166,7 @@ public class MainPanel extends Composite {
    * @return
    *    the tool bar of this panel.
    */
-  public MainToolBar getToolBar() {
+  public CenterToolBar getToolBar() {
     return toolBar;
   }
 }

@@ -31,7 +31,7 @@ import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
  */
 public class InspectorPanel extends Composite {
 
-  public static final String KEY = "gui.inspector-panel";
+  public static final String KEY = MainWindow.KEY + ".inspector";
 
   private final Application application;
   private final int defaultWidth;
@@ -89,7 +89,7 @@ public class InspectorPanel extends Composite {
         newWidth = Math.max(newWidth, minWidth);
         newWidth = Math.min(newWidth, maxWidth);
         final MainWindow mainWindow = application.getMainWindow();
-        final MainPanel mainPanel = mainWindow.getMainPanel();
+        final CenterPanel mainPanel = mainWindow.getMainPanel();
         final NavigatorPanel navigatorPanel = mainWindow.getNavigatorPanel();
         final Sash navigatorSash = navigatorPanel.getSash();
         final Rectangle navigatorSashRect = navigatorSash.getBounds();

@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.Application;
  */
 public class DocumentList extends CheckboxTableViewer {
 
-  public static final String KEY = MainPanel.KEY + ".document-list";
+  public static final String KEY = LibraryTab.KEY + ".document-list";
 
   private final int minHeight;
   private final int maxHeight;

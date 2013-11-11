@@ -10,15 +10,15 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
- * The action to show the notes of the selected documents.
+ * The action to edit the keywords of the selected document.
  *
  * @author Haixing Hu
  */
-public class ShowNotesAction extends BaseAction {
+public class EditKeywordsAction extends BaseAction {
 
-  public static final String KEY = "action.library.show-notes";
+  public static final String KEY = "action.library.edit-keywords";
 
-  public ShowNotesAction(Application application) {
+  public EditKeywordsAction(Application application) {
     super(application, KEY);
   }
 }

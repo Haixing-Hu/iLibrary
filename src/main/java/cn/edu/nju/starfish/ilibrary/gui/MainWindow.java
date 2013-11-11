@@ -24,10 +24,10 @@ import org.eclipse.swt.widgets.Shell;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
+import cn.edu.nju.starfish.ilibrary.gui.panel.CenterPanel;
+import cn.edu.nju.starfish.ilibrary.gui.panel.CenterTabFolder;
 import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
-import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.MainTabFolder;
 import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
 import cn.edu.nju.starfish.ilibrary.utils.ColorUtils;
@@ -39,7 +39,7 @@ import cn.edu.nju.starfish.ilibrary.utils.ColorUtils;
  */
 public final class MainWindow extends ApplicationWindow {
 
-  public static final String KEY = "gui.main-window";
+  public static final String KEY = "gui.main";
 
   private final Application application;
   private final int defaultHeight;
@@ -49,7 +49,7 @@ public final class MainWindow extends ApplicationWindow {
   private final Color backgroundColor;
   private MainMenuBar mainMenuBar;
   private NavigatorPanel navigatorPanel;
-  private MainPanel mainPanel;
+  private CenterPanel mainPanel;
   private InspectorPanel inspectorPanel;
 
   public MainWindow(Application application) {
@@ -80,7 +80,7 @@ public final class MainWindow extends ApplicationWindow {
     parent.setBackground(backgroundColor);
     navigatorPanel = new NavigatorPanel(application, parent);
     inspectorPanel = new InspectorPanel(application, parent);
-    mainPanel  = new MainPanel(application, parent,
+    mainPanel  = new CenterPanel(application, parent,
         navigatorPanel.getSash(), inspectorPanel.getSash());
     return parent;
   }
@@ -242,7 +242,7 @@ public final class MainWindow extends ApplicationWindow {
    *
    * @return the main panel.
    */
-  public MainPanel getMainPanel() {
+  public CenterPanel getMainPanel() {
     return mainPanel;
   }
 
@@ -262,7 +262,7 @@ public final class MainWindow extends ApplicationWindow {
    * @return
    */
   public PreviewPanel getPreviewPanel() {
-    final MainTabFolder tabFolder = mainPanel.getTabFolder();
+    final CenterTabFolder tabFolder = mainPanel.getTabFolder();
     final LibraryTab tab = tabFolder.getLibraryTab();
     return tab.getPreviewPanel();
   }

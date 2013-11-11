@@ -19,12 +19,12 @@ import cn.edu.nju.starfish.ilibrary.action.file.PrintAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
-import cn.edu.nju.starfish.ilibrary.action.library.ShowKeywordsAction;
-import cn.edu.nju.starfish.ilibrary.action.library.ShowNotesAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
 import cn.edu.nju.starfish.ilibrary.action.share.ShareAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
-import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.panel.CenterPanel;
 import cn.edu.nju.starfish.ilibrary.gui.widget.ForceTextToolBarManager;
 
 /**
@@ -32,15 +32,15 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.ForceTextToolBarManager;
  *
  * @author Haixing Hu
  */
-public final class MainToolBar extends Composite {
+public final class CenterToolBar extends Composite {
 
-  public static final String KEY = MainPanel.KEY + ".toolbar";
+  public static final String KEY = CenterPanel.KEY + ".toolbar";
 
   private final Application application;
   private final int height;
   private ForceTextToolBarManager toolBarManager;
 
-  public MainToolBar(Application application, Composite parent) {
+  public CenterToolBar(Application application, Composite parent) {
     super(parent, SWT.FLAT);
     this.application = application;
     final Configuration config = application.getConfig();
@@ -73,8 +73,8 @@ public final class MainToolBar extends Composite {
     toolBarManager.add(am.getAction(ShareAction.KEY));
     toolBarManager.add(am.getAction(PrintAction.KEY));
     toolBarManager.add(new Separator());
-    toolBarManager.add(am.getAction(ShowKeywordsAction.KEY));
-    toolBarManager.add(am.getAction(ShowNotesAction.KEY));
+    toolBarManager.add(am.getAction(EditKeywordsAction.KEY));
+    toolBarManager.add(am.getAction(EditNotesAction.KEY));
     toolBarManager.add(am.getAction(AddReviewAction.KEY));
     toolBarManager.add(new Separator());
     toolBarManager.add(am.getAction(ViewModeAction.KEY));
