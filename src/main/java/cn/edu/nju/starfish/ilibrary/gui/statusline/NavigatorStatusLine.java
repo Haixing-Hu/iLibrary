@@ -18,8 +18,8 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
-import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 
 /**
  * The status line in the navigator panel.
@@ -66,15 +66,18 @@ public class NavigatorStatusLine extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final String toolBarBackground = config.getString(KEY + ".background");
-    final Image toolBarBackgroundImg = SWTResourceManager.getImage(NavigatorStatusLine.class, toolBarBackground);
-    this.setBackgroundImage(toolBarBackgroundImg);
-
     final ActionManager am = application.getActionManager();
     toolBarManager = new ToolBarManager(SWT.FLAT);
     toolBarManager.add(am.getAction(CreateCollectionAction.KEY));
     toolBarManager.add(am.getAction(ManageCollectionAction.KEY));
     toolBarManager.createControl(this);
+
+    final String toolBarBackground = config.getString(KEY + ".background");
+    final Image toolBarBackgroundImg = SWTResourceManager.getImage(NavigatorStatusLine.class, toolBarBackground);
+    //  in order to be compatible on multi-platforms, we must set the
+    //  background image on both the composite and the tool bar.
+    this.setBackgroundImage(toolBarBackgroundImg);
+    toolBarManager.getControl().setBackgroundImage(toolBarBackgroundImg);
 
     corner = new Composite(this, SWT.NONE);
 

@@ -55,8 +55,6 @@ public final class FilterToolBar extends Composite {
   }
 
   private void createContents() {
-    final Image image = SWTResourceManager.getImage(FilterToolBar.class, background);
-    this.setBackgroundImage(image);
 
     final GridLayout layout = new GridLayout(1, true);
     layout.horizontalSpacing = 0;
@@ -72,6 +70,12 @@ public final class FilterToolBar extends Composite {
     toolBar = new ToolBar(this, SWT.FLAT);
     final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
     toolBar.setLayoutData(gd_toolBar);
+
+    final Image image = SWTResourceManager.getImage(FilterToolBar.class, background);
+    //  in order to be compatible on multi-platforms, we must set the
+    //  background image on both the composite and the tool bar.
+    this.setBackgroundImage(image);
+    toolBar.setBackgroundImage(image);
 
     final ToolItem tltmAll = new ToolItem(toolBar, SWT.CHECK);
     tltmAll.setText("All");

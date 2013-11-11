@@ -68,7 +68,10 @@ public class InspectorStatusLine extends Composite {
 
     final String toolBarBackground = config.getString(KEY + ".background");
     final Image toolBarBackgroundImg = SWTResourceManager.getImage(InspectorStatusLine.class, toolBarBackground);
+    //  in order to be compatible on multi-platforms, we must set the
+    //  background image on both the composite and the tool bar.
     this.setBackgroundImage(toolBarBackgroundImg);
+    toolBar.setBackgroundImage(toolBarBackgroundImg);
 
     final String cornerBackground = config.getString(KEY + ".corner.background");
     final Image cornerBackgroundImg = SWTResourceManager.getImage(InspectorStatusLine.class, cornerBackground);
