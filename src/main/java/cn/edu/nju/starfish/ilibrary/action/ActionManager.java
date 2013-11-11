@@ -51,6 +51,8 @@ import cn.edu.nju.starfish.ilibrary.action.library.DeleteCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.DuplicateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkPrintedAction;
@@ -72,8 +74,6 @@ import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlInBrowserAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RefreshCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RestoreFromTrashAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RevealFilePositionAction;
-import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
-import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
 import cn.edu.nju.starfish.ilibrary.action.share.EmailAction;
 import cn.edu.nju.starfish.ilibrary.action.share.FacebookAction;
 import cn.edu.nju.starfish.ilibrary.action.share.GooglePlusAction;
@@ -81,6 +81,10 @@ import cn.edu.nju.starfish.ilibrary.action.share.ShareAction;
 import cn.edu.nju.starfish.ilibrary.action.share.SinaAction;
 import cn.edu.nju.starfish.ilibrary.action.share.TencentAction;
 import cn.edu.nju.starfish.ilibrary.action.share.TwitterAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.FilesTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.InfoTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.NotesTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.ReviewsTabAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ActualSizeAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsCoverFlowAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsDocumentAction;
@@ -301,6 +305,11 @@ public final class ActionManager {
     this.add(new WebsiteAction(application));
     this.add(new FeedbackAction(application));
     this.add(new AboutAction(application));
+    //  UI actions
+    this.add(new InfoTabAction(application));
+    this.add(new NotesTabAction(application));
+    this.add(new ReviewsTabAction(application));
+    this.add(new FilesTabAction(application));
   }
 
   /**

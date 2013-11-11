@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.statusline;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
@@ -16,17 +16,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.panel.CenterPanel;
 import cn.edu.nju.starfish.ilibrary.utils.FontUtils;
 
 /**
- * The status line in the main panel.
+ * The footer the main panel.
  *
  * @author Haixing Hu
  */
-public class CenterStatusLine extends Composite {
+public class MainFooter extends Composite {
 
-  public static final String KEY = CenterPanel.KEY + ".statusline";
+  public static final String KEY = "footer";
 
   private final CLabel label;
   private final int height;
@@ -41,14 +40,14 @@ public class CenterStatusLine extends Composite {
    * @param style
    *    the style of the new status line.
    */
-  public CenterStatusLine(Application application, Composite parent) {
+  public MainFooter(Application application, Composite parent) {
     super(parent, SWT.NONE);
     final Configuration config = application.getConfig();
     setLayout(new FillLayout());
     label = new CLabel(this, SWT.NONE);
     height = config.getInt(KEY + ".height");
     final String background = config.getString(KEY + ".background");
-    final Image image = SWTResourceManager.getImage(CenterPanel.class, background);
+    final Image image = SWTResourceManager.getImage(MainPanel.class, background);
     label.setBackground(image);
     label.setAlignment(SWT.CENTER);
     final int fontSize = config.getInt(KEY + ".font.size");

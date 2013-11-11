@@ -22,10 +22,10 @@ import cn.edu.nju.starfish.ilibrary.action.view.ViewModeInspectorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeNoneAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModePreviewAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.main.PreviewPanel;
 import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
-import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
 
 /**
  * The enumeration of view mode states.

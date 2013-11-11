@@ -13,7 +13,6 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormLayout;
@@ -23,14 +22,13 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.main.LibraryTab;
+import cn.edu.nju.starfish.ilibrary.gui.main.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.main.MainTabFolder;
+import cn.edu.nju.starfish.ilibrary.gui.main.PreviewPanel;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
-import cn.edu.nju.starfish.ilibrary.gui.panel.CenterPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.CenterTabFolder;
-import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
-import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
-import cn.edu.nju.starfish.ilibrary.utils.ColorUtils;
+import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 
 /**
  * The main window of the application.
@@ -39,17 +37,16 @@ import cn.edu.nju.starfish.ilibrary.utils.ColorUtils;
  */
 public final class MainWindow extends ApplicationWindow {
 
-  public static final String KEY = "gui.main";
+  public static final String KEY = "window";
 
   private final Application application;
   private final int defaultHeight;
   private final int defaultWidth;
   private final int minHeight;
   private final int minWidth;
-  private final Color backgroundColor;
   private MainMenuBar mainMenuBar;
   private NavigatorPanel navigatorPanel;
-  private CenterPanel mainPanel;
+  private MainPanel mainPanel;
   private InspectorPanel inspectorPanel;
 
   public MainWindow(Application application) {
@@ -61,7 +58,6 @@ public final class MainWindow extends ApplicationWindow {
     this.minHeight = config.getInt(KEY + ".height.min");
     this.minWidth = config.getInt(KEY + ".width.min");
     final String colorName = config.getString(KEY + ".background.color");
-    this.backgroundColor = ColorUtils.parseRGB(colorName);
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
   }
@@ -77,10 +73,9 @@ public final class MainWindow extends ApplicationWindow {
     layout.marginWidth = 0;
     layout.spacing = 0;
     parent.setLayout(layout);
-    parent.setBackground(backgroundColor);
     navigatorPanel = new NavigatorPanel(application, parent);
     inspectorPanel = new InspectorPanel(application, parent);
-    mainPanel  = new CenterPanel(application, parent,
+    mainPanel  = new MainPanel(application, parent,
         navigatorPanel.getSash(), inspectorPanel.getSash());
     return parent;
   }
@@ -210,15 +205,6 @@ public final class MainWindow extends ApplicationWindow {
   }
 
   /**
-   * Gets the background color.
-   *
-   * @return the background color.
-   */
-  public Color getBackgroundColor() {
-    return backgroundColor;
-  }
-
-  /**
    * Gets the main menu bar.
    *
    * @return the main menu bar.
@@ -242,7 +228,7 @@ public final class MainWindow extends ApplicationWindow {
    *
    * @return the main panel.
    */
-  public CenterPanel getMainPanel() {
+  public MainPanel getMainPanel() {
     return mainPanel;
   }
 
@@ -262,7 +248,7 @@ public final class MainWindow extends ApplicationWindow {
    * @return
    */
   public PreviewPanel getPreviewPanel() {
-    final CenterTabFolder tabFolder = mainPanel.getTabFolder();
+    final MainTabFolder tabFolder = mainPanel.getTabFolder();
     final LibraryTab tab = tabFolder.getLibraryTab();
     return tab.getPreviewPanel();
   }

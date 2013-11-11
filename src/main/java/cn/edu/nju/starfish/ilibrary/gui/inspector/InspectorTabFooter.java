@@ -4,9 +4,10 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.statusline;
+package cn.edu.nju.starfish.ilibrary.gui.inspector;
 
 import org.apache.commons.configuration.Configuration;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -19,23 +20,23 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
-import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
-import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
-import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorFooter;
 
 /**
- * The status line in the navigator panel.
+ * The footer of the tab pages on the inspector panel.
  *
  * @author Haixing Hu
  */
-public class NavigatorStatusLine extends Composite {
+public class InspectorTabFooter extends Composite {
 
-  public static final String KEY = NavigatorPanel.KEY + ".statusline";
+  public static final String KEY = "footer";
 
-  private final Application application;
-  private ToolBarManager toolBarManager;
-  private Composite corner;
-  private final int height;
+  protected final Application application;
+  protected final String[] actionKeys;
+  protected Composite corner;
+  protected Composite fill;
+  protected ToolBarManager toolBarManager;
+  protected final int height;
 
   /**
    * Creates a status line.
@@ -44,12 +45,13 @@ public class NavigatorStatusLine extends Composite {
    *    the application.
    * @param parent
    *    the parent of the new status line.
-   * @param style
-   *    the style of the new status line.
+   * @param actionKeys
+   *    the array of keys of the action to be placed in the tool bar.
    */
-  public NavigatorStatusLine(Application application, Composite parent) {
+  public InspectorTabFooter(Application application, Composite parent, String[] actionKeys) {
     super(parent, SWT.NONE);
     this.application = application;
+    this.actionKeys = actionKeys;
     final Configuration config = application.getConfig();
     height = config.getInt(KEY + ".height");
     createContents();
@@ -69,40 +71,53 @@ public class NavigatorStatusLine extends Composite {
     this.setLayout(layout);
 
     final String statuslineBg = config.getString(KEY + ".background");
-    final Image statuslineBgImg = SWTResourceManager.getImage(NavigatorStatusLine.class, statuslineBg);
+    final Image statuslineBgImg = SWTResourceManager.getImage(NavigatorFooter.class, statuslineBg);
     this.setBackgroundImage(statuslineBgImg);
 
-    final ActionManager am = application.getActionManager();
     toolBarManager = new ToolBarManager(SWT.FLAT);
-    toolBarManager.add(am.getAction(CreateCollectionAction.KEY));
-    toolBarManager.add(am.getAction(ManageCollectionAction.KEY));
+    final ActionManager am = application.getActionManager();
+    if (actionKeys != null) {
+      for (final String key : actionKeys) {
+        final Action action = am.getAction(key);
+        toolBarManager.add(action);
+      }
+    }
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 
     final String toolbarBg = config.getString(KEY + ".toolbar.background");
-    final Image toolbarBgImg = SWTResourceManager.getImage(NavigatorStatusLine.class, toolbarBg);
+    final Image toolbarBgImg = SWTResourceManager.getImage(NavigatorFooter.class, toolbarBg);
     toolBar.setBackgroundImage(toolbarBgImg);
 
+    fill = new Composite(this, SWT.NONE);
+    fill.setBackgroundImage(statuslineBgImg);
+
     corner = new Composite(this, SWT.NONE);
-
     final String cornerBackground = config.getString(KEY + ".corner.background");
-    final Image cornerBackgroundImg = SWTResourceManager.getImage(NavigatorStatusLine.class, cornerBackground);
+    final Image cornerBackgroundImg = SWTResourceManager.getImage(InspectorTabFooter.class, cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
-
-    final int toolbarTop = config.getInt(KEY + ".toolbar.top");
-    final FormData fd_toolBar = new FormData();
-    fd_toolBar.left = new FormAttachment(0);
-    fd_toolBar.right = new FormAttachment(corner);
-    fd_toolBar.top = new FormAttachment(0, toolbarTop);
-    toolBar.setLayoutData(fd_toolBar);
 
     final int cornerWidth = config.getInt(KEY + ".corner.width");
     final FormData fd_corner = new FormData();
-    fd_corner.left = new FormAttachment(100, - cornerWidth);
+    fd_corner.left = new FormAttachment(0);
+    fd_corner.right = new FormAttachment(0, cornerWidth);
     fd_corner.top = new FormAttachment(0);
-    fd_corner.right = new FormAttachment(100);
     fd_corner.bottom = new FormAttachment(100);
     corner.setLayoutData(fd_corner);
+
+    final FormData fd_fill = new FormData();
+    fd_fill.left = new FormAttachment(corner);
+    fd_fill.right = new FormAttachment(toolBar);
+    fd_fill.top = new FormAttachment(0);
+    fd_fill.bottom = new FormAttachment(100);
+    fill.setLayoutData(fd_fill);
+
+    final int toolbarTop = config.getInt(KEY + ".toolbar.top");
+    final FormData fd_toolBar = new FormData();
+    //fd_toolBar.left = new FormAttachment(corner);
+    fd_toolBar.right = new FormAttachment(100);
+    fd_toolBar.top = new FormAttachment(0, toolbarTop);
+    toolBar.setLayoutData(fd_toolBar);
   }
 
 

@@ -4,12 +4,11 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.toolbar;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -17,30 +16,29 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.file.PrintAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
-import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
-import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
+import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
+import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
 import cn.edu.nju.starfish.ilibrary.action.share.ShareAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
-import cn.edu.nju.starfish.ilibrary.gui.panel.CenterPanel;
 import cn.edu.nju.starfish.ilibrary.gui.widget.ForceTextToolBarManager;
 
 /**
- * The library tool bar.
+ * The main tool bar.
  *
  * @author Haixing Hu
  */
-public final class CenterToolBar extends Composite {
+public final class MainToolBar extends Composite {
 
-  public static final String KEY = CenterPanel.KEY + ".toolbar";
+  public static final String KEY = "toolbar";
 
   private final Application application;
   private final int height;
   private ForceTextToolBarManager toolBarManager;
 
-  public CenterToolBar(Application application, Composite parent) {
+  public MainToolBar(Application application, Composite parent) {
     super(parent, SWT.FLAT);
     this.application = application;
     final Configuration config = application.getConfig();
@@ -62,9 +60,6 @@ public final class CenterToolBar extends Composite {
     layout.marginWidth = 0;
     this.setLayout(layout);
 
-    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
-    this.setBackground(backgroundColor);
-
     toolBarManager = new ForceTextToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
     toolBarManager.add(am.getAction(ReadFullScreenAction.KEY));
@@ -80,7 +75,6 @@ public final class CenterToolBar extends Composite {
     toolBarManager.add(am.getAction(ViewModeAction.KEY));
 
     toolBarManager.createControl(this);
-    toolBarManager.getControl().setBackground(backgroundColor);
   }
 
   /**

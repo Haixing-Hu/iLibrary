@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
@@ -22,14 +22,14 @@ import cn.edu.nju.starfish.ilibrary.Application;
  *
  * @author Haixing Hu
  */
-public class DocumentList extends CheckboxTableViewer {
+public class EntryTable extends CheckboxTableViewer {
 
-  public static final String KEY = LibraryTab.KEY + ".document-list";
+  public static final String KEY = LibraryTab.KEY + ".table";
 
   private final int minHeight;
   private final int maxHeight;
 
-  public DocumentList(Application application, Composite parent, Control top, Control bottom) {
+  public EntryTable(Application application, Composite parent, Control top, Control bottom) {
     super(new Table(parent, SWT.CHECK | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL));
     final Configuration config = application.getConfig();
     minHeight = config.getInt(KEY + ".height.min");

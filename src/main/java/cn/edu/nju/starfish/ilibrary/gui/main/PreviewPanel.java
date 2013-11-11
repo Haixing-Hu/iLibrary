@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
@@ -28,7 +28,7 @@ import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
  */
 public class PreviewPanel extends Composite {
 
-  public static final String KEY = CenterPanel.KEY + ".preview";
+  public static final String KEY = LibraryTab.KEY + ".preview";
 
   private final Application application;
   private final int defaultHeight;
@@ -75,12 +75,12 @@ public class PreviewPanel extends Composite {
         newHeight = Math.max(newHeight, minHeight);
         newHeight = Math.min(newHeight, maxHeight);
         final MainWindow mainWindow = application.getMainWindow();
-        final CenterPanel mainPanel = mainWindow.getMainPanel();
-        final CenterTabFolder tabFolder = mainPanel.getTabFolder();
+        final MainPanel mainPanel = mainWindow.getMainPanel();
+        final MainTabFolder tabFolder = mainPanel.getTabFolder();
         final LibraryTab libraryTab = tabFolder.getLibraryTab();
-        final DocumentList documentList = libraryTab.getDocumentList();
-        final Control table = documentList.getControl();
-        final int heightLimit = parentRect.height - table.getBounds().y - documentList.getMinHeight();
+        final EntryTable entryTable = libraryTab.getEntryTable();
+        final Control table = entryTable.getControl();
+        final int heightLimit = parentRect.height - table.getBounds().y - entryTable.getMinHeight();
         newHeight = Math.min(newHeight, heightLimit);
         e.y = parentRect.height - newHeight - sashHeight;  // it's important to modify the event
         if (e.detail != SWT.DRAG) {

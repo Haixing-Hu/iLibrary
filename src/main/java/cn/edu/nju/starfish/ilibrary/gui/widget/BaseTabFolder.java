@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.panel.CenterTabFolder;
+import cn.edu.nju.starfish.ilibrary.gui.main.MainTabFolder;
 
 /**
  * The abstract base class for all tab folders.
@@ -55,7 +55,7 @@ public abstract class BaseTabFolder extends CTabFolder {
   private void configAppearance() {
     final Configuration config = application.getConfig();
     final String bg_path = config.getString(key + ".selection-background");
-    final Image bg_img = SWTResourceManager.getImage(CenterTabFolder.class, bg_path);
+    final Image bg_img = SWTResourceManager.getImage(MainTabFolder.class, bg_path);
     this.setSelectionBackground(bg_img);
     final Color color = SWTResourceManager.getColor(SWT.COLOR_TITLE_INACTIVE_FOREGROUND);
     this.setBackground(color);

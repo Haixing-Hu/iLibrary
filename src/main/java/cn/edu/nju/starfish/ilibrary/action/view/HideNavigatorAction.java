@@ -11,7 +11,7 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
-import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 
 /**
  * The action to hide the navigator panel.

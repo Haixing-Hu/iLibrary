@@ -4,13 +4,14 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.inspector;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -20,17 +21,18 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
-import cn.edu.nju.starfish.ilibrary.gui.statusline.NavigatorStatusLine;
+import cn.edu.nju.starfish.ilibrary.gui.main.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
 /**
- * The panel display the navigation tree.
+ * The inspector panel.
  *
  * @author Haixing Hu
  */
-public final class NavigatorPanel extends Composite {
+public class InspectorPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".navigator";
+  public static final String KEY = MainWindow.KEY + ".inspector";
 
   private final Application application;
   private final int defaultWidth;
@@ -38,18 +40,10 @@ public final class NavigatorPanel extends Composite {
   private final int maxWidth;
   private final int sashWidth;
   private final Sash sash;
-  private NavigatorTree navigatorTree;
-  private NavigatorStatusLine statusLine;
+  private InspectorHeader header;
+  private InspectorTabFolder tabFolder;
 
-  /**
-   * Constructs a {@link NavigatorPanel}.
-   *
-   * @param application
-   *          the application the new panel belongs.
-   * @param parent
-   *          the parent of the new panel.
-   */
-  public NavigatorPanel(Application application, Composite parent) {
+  public InspectorPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
@@ -68,9 +62,9 @@ public final class NavigatorPanel extends Composite {
    */
   private void configLayoutData() {
     final FormData layoutData = new FormData();
-    layoutData.left = new FormAttachment(0);
+    layoutData.left = new FormAttachment(sash);
     layoutData.top = new FormAttachment(0);
-    layoutData.right = new FormAttachment(sash);
+    layoutData.right = new FormAttachment(100);
     layoutData.bottom = new FormAttachment(100);
     this.setLayoutData(layoutData);
   }
@@ -80,9 +74,9 @@ public final class NavigatorPanel extends Composite {
    */
   private void configSash() {
     final FormData sashData = new FormData();
-    sashData.left = new FormAttachment(0, defaultWidth);
+    sashData.left = new FormAttachment(100, - defaultWidth - sashWidth);
     sashData.top = new FormAttachment(0);
-    sashData.right = new FormAttachment(0, defaultWidth + sashWidth);
+    sashData.right = new FormAttachment(100, - defaultWidth);
     sashData.bottom = new FormAttachment(100);
     sash.setLayoutData(sashData);
     final Color color = SWTResourceManager.getColor(SWT.COLOR_WIDGET_NORMAL_SHADOW);
@@ -90,20 +84,25 @@ public final class NavigatorPanel extends Composite {
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent e) {
-        int newWidth = Math.max(e.x, minWidth);
+        final Composite parent = sash.getParent();
+        final Rectangle parentRect = parent.getClientArea();
+        int newWidth = parentRect.width - e.x - sashWidth;
+        newWidth = Math.max(newWidth, minWidth);
         newWidth = Math.min(newWidth, maxWidth);
         final MainWindow mainWindow = application.getMainWindow();
-        final CenterPanel mainPanel = mainWindow.getMainPanel();
-        final InspectorPanel inspectorPanel = mainWindow.getInspectorPanel();
-        final Sash inspectorSash = inspectorPanel.getSash();
-        newWidth = Math.min(newWidth, inspectorSash.getBounds().x - mainPanel.getMinWidth());
-        e.x = newWidth;  // it's important to modify the event
+        final MainPanel mainPanel = mainWindow.getMainPanel();
+        final NavigatorPanel navigatorPanel = mainWindow.getNavigatorPanel();
+        final Sash navigatorSash = navigatorPanel.getSash();
+        final Rectangle navigatorSashRect = navigatorSash.getBounds();
+        final int minLeftWidth = navigatorSashRect.x + navigatorSashRect.width + mainPanel.getMinWidth();
+        newWidth = Math.min(newWidth, parentRect.width - minLeftWidth);
+        e.x = parentRect.width - sashWidth - newWidth;  // it's important to modify the event
         if (e.detail != SWT.DRAG) {
-          sashData.left = new FormAttachment(0, newWidth);
-          sashData.right = new FormAttachment(0, newWidth + sashWidth);
-          sash.getParent().layout();
+          sashData.left = new FormAttachment(100, -(newWidth + sashWidth));
+          sashData.right = new FormAttachment(100, -newWidth);
+          parent.layout();
           final ApplicationState state = application.getState();
-          state.setNavigatorWidth(newWidth);
+          state.setInspectorWidth(newWidth);
         }
       }
     });
@@ -123,25 +122,22 @@ public final class NavigatorPanel extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
-    this.setBackground(backgroundColor);
+    header = new InspectorHeader(application, this);
+    tabFolder = new InspectorTabFolder(application, this);
 
-    navigatorTree = new NavigatorTree(application, this);
-    statusLine = new NavigatorStatusLine(application, this);
+    final FormData fd_header = new FormData();
+    fd_header.top = new FormAttachment(0);
+    fd_header.bottom = new FormAttachment(0, header.getHeight());
+    fd_header.left = new FormAttachment(0);
+    fd_header.right = new FormAttachment(100);
+    header.setLayoutData(fd_header);
 
-    final FormData fd_navigatorTree = new FormData();
-    fd_navigatorTree.left = new FormAttachment(0);
-    fd_navigatorTree.top = new FormAttachment(0);
-    fd_navigatorTree.right = new FormAttachment(100);
-    fd_navigatorTree.bottom = new FormAttachment(statusLine);
-    navigatorTree.setLayoutData(fd_navigatorTree);
-
-    final FormData fd_statusLine = new FormData();
-    fd_statusLine.left = new FormAttachment(0);
-    fd_statusLine.top = new FormAttachment(100, - statusLine.getHeight());
-    fd_statusLine.right = new FormAttachment(100);
-    fd_statusLine.bottom = new FormAttachment(100);
-    statusLine.setLayoutData(fd_statusLine);
+    final FormData fd_tabFolder = new FormData();
+    fd_tabFolder.top = new FormAttachment(header);
+    fd_tabFolder.bottom = new FormAttachment(100);
+    fd_tabFolder.left = new FormAttachment(0);
+    fd_tabFolder.right = new FormAttachment(100);
+    tabFolder.setLayoutData(fd_tabFolder);
   }
 
   /**
@@ -198,17 +194,18 @@ public final class NavigatorPanel extends Composite {
     return sash;
   }
 
+
   /**
    * Hides this panel.
    */
   public void hide() {
     final ApplicationState state = application.getState();
-    if (! state.isNavigatorHide()) {
+    if (! state.isInspectorHide()) {
       final FormData data = (FormData) sash.getLayoutData();
-      data.left = new FormAttachment(0);
-      data.right = new FormAttachment(0);
+      data.left = new FormAttachment(100);
+      data.right = new FormAttachment(100);
       sash.getParent().layout();
-      state.setNavigatorHide(true);
+      state.setInspectorHide(true);
     }
   }
 
@@ -217,32 +214,32 @@ public final class NavigatorPanel extends Composite {
    */
   public void show() {
     final ApplicationState state = application.getState();
-    if (state.isNavigatorHide()) {
-      final int oldWidth = state.getNavigatorWidth();
+    if (state.isInspectorHide()) {
+      final int oldWidth = state.getInspectorWidth();
       final FormData data = (FormData) sash.getLayoutData();
-      data.left = new FormAttachment(0, oldWidth);
-      data.right = new FormAttachment(0, oldWidth + sashWidth);
+      data.left = new FormAttachment(100, - oldWidth - sashWidth);
+      data.right = new FormAttachment(100, - oldWidth);
       sash.getParent().layout();
-      state.setNavigatorHide(false);
+      state.setInspectorHide(false);
     }
   }
 
   /**
-   * Gets the navigator tree.
+   * Gets the header.
    *
-   * @return the navigator tree.
+   * @return the header.
    */
-  public NavigatorTree getNavigatorTree() {
-    return navigatorTree;
+  public InspectorHeader getHeader() {
+    return header;
   }
 
   /**
-   * Gets the status line.
+   * Gets the tab folder.
    *
-   * @return the status line.
+   * @return the tab folder.
    */
-  public NavigatorStatusLine getStatusLine() {
-    return statusLine;
+  public InspectorTabFolder getTabFolder() {
+    return tabFolder;
   }
 
 

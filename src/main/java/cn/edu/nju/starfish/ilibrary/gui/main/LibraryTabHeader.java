@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.toolbar;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.Separator;
@@ -37,27 +37,28 @@ import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterBookAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterMediaAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterPatentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterReportAction;
-import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
 
 /**
  * The tool bar used to filter the documents.
  *
  * @author Haixing Hu
  */
-public final class FilterToolBar extends Composite {
+public final class LibraryTabHeader extends Composite {
 
-  public static final String KEY = LibraryTab.KEY + ".toolbar";
+  public static final String KEY = "header";
 
   private final Application application;
   private final int height;
+  private final int marginWidth;
   private final String background;
   private ToolBarManager toolBarManager;
 
-  public FilterToolBar(Application application, Composite parent) {
+  public LibraryTabHeader(Application application, Composite parent) {
     super(parent, SWT.FLAT);
     this.application = application;
     final Configuration config = application.getConfig();
     height = config.getInt(KEY + ".height");
+    marginWidth = config.getInt(KEY + ".margin-width");
     background = config.getString(KEY + ".background");
     configLayoutData();
     createContents();
@@ -82,9 +83,9 @@ public final class FilterToolBar extends Composite {
     layout.marginRight = 0;
     layout.marginBottom = 0;
     layout.marginHeight = 0;
-    layout.marginWidth = 0;
+    layout.marginWidth = marginWidth;
     this.setLayout(layout);
-    final Image image = SWTResourceManager.getImage(FilterToolBar.class, background);
+    final Image image = SWTResourceManager.getImage(LibraryTabHeader.class, background);
     this.setBackgroundImage(image);
 
     toolBarManager = new ToolBarManager(SWT.FLAT);

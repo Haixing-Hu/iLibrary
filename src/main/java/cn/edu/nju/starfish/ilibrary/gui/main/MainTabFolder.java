@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -12,17 +12,17 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.widget.BaseTabFolder;
 
 /**
- * The main tab folder.
+ * The tab folder in the main panel.
  *
  * @author Haixing Hu
  */
-public class CenterTabFolder extends BaseTabFolder {
+public class MainTabFolder extends BaseTabFolder {
 
-  public static final String KEY = CenterPanel.KEY + ".tab";
+  public static final String KEY = MainPanel.KEY + ".tab";
 
   private LibraryTab libraryTab;
 
-  public CenterTabFolder(Application application, Composite parent) {
+  public MainTabFolder(Application application, Composite parent) {
     super(application, KEY, parent);
   }
 

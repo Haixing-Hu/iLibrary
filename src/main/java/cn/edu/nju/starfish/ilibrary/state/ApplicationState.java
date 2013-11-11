@@ -9,9 +9,9 @@ package cn.edu.nju.starfish.ilibrary.state;
 import org.apache.commons.configuration.Configuration;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.main.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 
 
 /**
@@ -33,6 +33,7 @@ public final class ApplicationState {
   private boolean inspectorHide;
   private int previewHeight;
   private boolean previewHide;
+  private InspectorTab inspectorTab;
 
   public ApplicationState(Application application, Configuration config) {
     this.application = application;
@@ -47,6 +48,7 @@ public final class ApplicationState {
     inspectorHide = false;
     previewHeight = config.getInt(PreviewPanel.KEY + ".height.default");
     previewHide = false;
+    inspectorTab = InspectorTab.INFO;
   }
 
   /**
@@ -58,6 +60,7 @@ public final class ApplicationState {
     ReadFilter.update(application, readFilter);
     TypeFilter.update(application, typeFilter);
     AttachmentFilter.update(application, attachmentFilter);
+    InspectorTab.update(application, inspectorTab);
   }
 
   /**
@@ -256,6 +259,24 @@ public final class ApplicationState {
    */
   public void setPreviewHide(boolean previewHide) {
     this.previewHide = previewHide;
+  }
+
+  /**
+   * Gets the inspector tab.
+   *
+   * @return the inspector tab.
+   */
+  public InspectorTab getInspectorTab() {
+    return inspectorTab;
+  }
+
+  /**
+   * Sets the inspector tab.
+   *
+   * @param inspectorTab the new inspector tab to set.
+   */
+  public void setInspectorTab(InspectorTab inspectorTab) {
+    this.inspectorTab = inspectorTab;
   }
 
 }

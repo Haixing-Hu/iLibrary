@@ -153,6 +153,11 @@ action.help.website.title = 访问网站
 action.help.feedback.title = 发送反馈
 action.help.about.title = 关于
 
+action.ui.info-tab.title = 信息
+action.ui.notes-tab.title = 笔记
+action.ui.reviews-tab.title = 评论
+action.ui.files-tab.title = 文件
+
 # messages used in the application
 message.error = 错误
 message.info = 信息
@@ -161,9 +166,5 @@ message.confirm = 确认
 message.error.unimplemented-function = 该功能尚未实现
 
 # the text in the GUI widgets
-gui.main.center.tab.library.title = 图书馆
-gui.main.center.tab.document.title = 文档
-gui.main.inspector.tab.info.title = 信息
-gui.main.inspector.tab.notes.title = 笔记
-gui.main.inspector.tab.review.title = 评论
-gui.main.inspector.tab.files.title = 文件
+window.main.tab.library.title = 图书馆
+window.main.tab.document.title = 文档

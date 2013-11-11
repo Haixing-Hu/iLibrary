@@ -4,11 +4,10 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -17,27 +16,25 @@ import org.eclipse.swt.widgets.Control;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
-import cn.edu.nju.starfish.ilibrary.gui.statusline.CenterStatusLine;
-import cn.edu.nju.starfish.ilibrary.gui.toolbar.CenterToolBar;
 
 /**
- * The panel displaying the content of library or document.
+ * The main panel.
  *
  * @author Haixing Hu
  */
-public class CenterPanel extends Composite {
+public class MainPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".center";
+  public static final String KEY = MainWindow.KEY + ".main";
 
   private final Application application;
   private final int minWidth;
   private final int maxWidth;
-  private CenterTabFolder tabFolder;
-  private CenterToolBar toolBar;
-  private CenterStatusLine statusLine;
+  private MainTabFolder tabFolder;
+  private MainToolBar toolBar;
+  private MainFooter footer;
 
   /**
-   * Constructs a {@link CenterPanel}.
+   * Constructs a {@link MainPanel}.
    *
    * @param application
    *          the application the new panel belongs.
@@ -48,7 +45,7 @@ public class CenterPanel extends Composite {
    * @param right
    *          the right control of the new panel.
    */
-  public CenterPanel(Application application, Composite parent, Control left, Control right) {
+  public MainPanel(Application application, Composite parent, Control left, Control right) {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
@@ -90,12 +87,9 @@ public class CenterPanel extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
-    this.setBackground(backgroundColor);
-
-    tabFolder = new CenterTabFolder(application, this);
-    toolBar = new CenterToolBar(application, this);
-    statusLine = new CenterStatusLine(application, this);
+    tabFolder = new MainTabFolder(application, this);
+    toolBar = new MainToolBar(application, this);
+    footer = new MainFooter(application, this);
 
     final FormData fd_tabFolder = new FormData();
     fd_tabFolder.left = new FormAttachment(0);
@@ -106,21 +100,21 @@ public class CenterPanel extends Composite {
 
     final FormData fd_toolBar = new FormData();
     fd_toolBar.left = new FormAttachment(0);
-    fd_toolBar.top = new FormAttachment(statusLine, - toolBar.getHeight());
+    fd_toolBar.top = new FormAttachment(footer, - toolBar.getHeight());
     fd_toolBar.right = new FormAttachment(100);
-    fd_toolBar.bottom = new FormAttachment(statusLine);
+    fd_toolBar.bottom = new FormAttachment(footer);
     toolBar.setLayoutData(fd_toolBar);
 
     final FormData fd_statusLine = new FormData();
     fd_statusLine.left = new FormAttachment(0);
-    fd_statusLine.top = new FormAttachment(100, - statusLine.getHeight());
+    fd_statusLine.top = new FormAttachment(100, - footer.getHeight());
     fd_statusLine.right = new FormAttachment(100);
     fd_statusLine.bottom = new FormAttachment(100);
-    statusLine.setLayoutData(fd_statusLine);
+    footer.setLayoutData(fd_statusLine);
 
     final String name = application.getName();
     final String version = application.getVersion();
-    statusLine.setMessage(name + " " + version);
+    footer.setMessage(name + " " + version);
   }
 
   /**
@@ -156,7 +150,7 @@ public class CenterPanel extends Composite {
    * @return
    *    the tab folder of this panel.
    */
-  public CenterTabFolder getTabFolder() {
+  public MainTabFolder getTabFolder() {
     return tabFolder;
   }
 
@@ -166,7 +160,16 @@ public class CenterPanel extends Composite {
    * @return
    *    the tool bar of this panel.
    */
-  public CenterToolBar getToolBar() {
+  public MainToolBar getToolBar() {
     return toolBar;
+  }
+
+  /**
+   * Gets the footer.
+   *
+   * @return the footer.
+   */
+  public MainFooter getFooter() {
+    return footer;
   }
 }

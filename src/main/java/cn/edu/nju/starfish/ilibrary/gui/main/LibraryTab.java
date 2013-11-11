@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.panel;
+package cn.edu.nju.starfish.ilibrary.gui.main;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -12,7 +12,6 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.toolbar.FilterToolBar;
 import cn.edu.nju.starfish.ilibrary.gui.widget.BaseTabItem;
 
 /**
@@ -22,10 +21,10 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.BaseTabItem;
  */
 public final class LibraryTab extends BaseTabItem {
 
-  public static final String KEY = CenterTabFolder.KEY + ".library";
+  public static final String KEY = MainTabFolder.KEY + ".library";
 
-  private FilterToolBar filterToolBar;
-  private DocumentList documentList;
+  private LibraryTabHeader header;
+  private EntryTable entryTable;
   private PreviewPanel previewPanel;
 
   public LibraryTab(Application application, CTabFolder parent) {
@@ -47,27 +46,27 @@ public final class LibraryTab extends BaseTabItem {
     layout.spacing = 0;
     composite.setLayout(layout);
 
-    filterToolBar = new FilterToolBar(application, composite);
+    header = new LibraryTabHeader(application, composite);
     previewPanel = new PreviewPanel(application, composite);
-    documentList = new DocumentList(application, composite, filterToolBar, previewPanel);
+    entryTable = new EntryTable(application, composite, header, previewPanel);
   }
 
   /**
-   * Gets the document filter tool bar.
+   * Gets the header.
    *
-   * @return the document filter tool bar.
+   * @return the header.
    */
-  public FilterToolBar getFilterToolBar() {
-    return filterToolBar;
+  public LibraryTabHeader getHeader() {
+    return header;
   }
 
   /**
-   * Gets the document list.
+   * Gets the entry table.
    *
-   * @return the document list.
+   * @return the entry table.
    */
-  public DocumentList getDocumentList() {
-    return documentList;
+  public EntryTable getEntryTable() {
+    return entryTable;
   }
 
   /**
