@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
  */
 public class ViewModePreviewAction extends BaseAction {
 
-  public static final String KEY = "action.view.view-mode.preview";
+  public static final String KEY = ViewModeAction.KEY + ".preview";
 
   public ViewModePreviewAction(Application application) {
     super(application, KEY);

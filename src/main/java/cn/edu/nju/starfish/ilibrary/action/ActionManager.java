@@ -43,6 +43,13 @@ import cn.edu.nju.starfish.ilibrary.action.help.WebsiteAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionFromSelectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateNormalCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateSmartCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.DeleteCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.DuplicateCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
@@ -58,11 +65,11 @@ import cn.edu.nju.starfish.ilibrary.action.library.MergePeriodicalsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergePublishersAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergeWebsitesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MoveToTrashAction;
-import cn.edu.nju.starfish.ilibrary.action.library.NewCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileWithAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlInBrowserAction;
+import cn.edu.nju.starfish.ilibrary.action.library.RefreshCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RestoreFromTrashAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RevealFilePositionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ShowKeywordsAction;
@@ -83,6 +90,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.BackAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ColumnsAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ForwardAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HideInspectorAction;
+import cn.edu.nju.starfish.ilibrary.action.view.HideNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HidePreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextDocumentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextPageAction;
@@ -92,6 +100,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowDuplicatesAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowInspectorAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ShowNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowPreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.SortByAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TableOfContentsAction;
@@ -130,16 +139,6 @@ public final class ActionManager {
   public ActionManager(Application application) {
     this.application = application;
     actions = new HashMap<String, Action>();
-  }
-
-  /**
-   * Initializes this action manager.
-   * <p>
-   * The reason why the initialization does not take place at the constructor,
-   * is that the constructor of ViewModeAction will indirectly use the
-   * ActionManager.
-   */
-  public void initialize() {
     //  file actions
     this.add(new NewEntryAction(application));
     this.add(new NewLibraryAction(application));
@@ -173,6 +172,8 @@ public final class ActionManager {
     this.add(new AsWebpageAction(application));
     this.add(new ColumnsAction(application));
     this.add(new SortByAction(application));
+    this.add(new HideNavigatorAction(application));
+    this.add(new ShowNavigatorAction(application));
     this.add(new HideInspectorAction(application));
     this.add(new ShowInspectorAction(application));
     this.add(new HidePreviewAction(application));
@@ -215,8 +216,15 @@ public final class ActionManager {
     this.add(new AttachFileAction(application));
     this.add(new OpenUrlAction(application));
     this.add(new OpenUrlInBrowserAction(application));
-    this.add(new NewCollectionAction(application));
+    this.add(new CreateCollectionAction(application));
+    this.add(new CreateNormalCollectionAction(application));
+    this.add(new CreateSmartCollectionAction(application));
+    this.add(new CreateCollectionFromSelectionAction(application));
     this.add(new ManageCollectionAction(application));
+    this.add(new EditCollectionAction(application));
+    this.add(new RefreshCollectionAction(application));
+    this.add(new DuplicateCollectionAction(application));
+    this.add(new DeleteCollectionAction(application));
     this.add(new AddToCollectionAction(application));
     this.add(new EditInformationAction(application));
     this.add(new MergeDocumentsAction(application));

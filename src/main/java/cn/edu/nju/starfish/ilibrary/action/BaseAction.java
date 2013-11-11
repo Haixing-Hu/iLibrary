@@ -49,7 +49,7 @@ public class BaseAction extends Action {
    * @param style
    *          the style of the new action.
    */
-  public BaseAction(Application application, String key, int style) {
+  protected BaseAction(Application application, String key, int style) {
     super("", style);
     this.application = application;
     this.setId(key);

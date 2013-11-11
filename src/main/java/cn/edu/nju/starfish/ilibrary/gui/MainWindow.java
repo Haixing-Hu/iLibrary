@@ -6,14 +6,19 @@
 
 package cn.edu.nju.starfish.ilibrary.gui;
 
+import java.awt.Window;
+
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.util.Geometry;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 import cn.edu.nju.starfish.ilibrary.Application;
@@ -84,6 +89,57 @@ public final class MainWindow extends ApplicationWindow {
     final int minWidth = config.getInt(KEY + ".width.min");
     final int minHeight = config.getInt(KEY + ".height.min");
     shell.setMinimumSize(minWidth, minHeight);
+    //  NOTE: Mac OS X may automatically resize the startup windows,
+    //  therefore, the getInitialSize() will not be called by the
+    //  framework. So we call it manually
+    final Point initialSize = getInitialSize();
+    shell.setSize(initialSize);
+    //  and also, we set the initial location manually.
+    //  note that we cannot call the Window.getInitialLocation(int),
+    //  since it will use the Window.shell, which has not been initialized
+    //  while calling this function. So we copy the code and implement
+    //  another version by passing the shell as the argument.
+    shell.setLocation(getInitialLocation(shell, initialSize));
+  }
+  
+  /**
+   * Returns the initial location to use for the shell. The default
+   * implementation centers the shell horizontally (1/2 of the difference to
+   * the left and 1/2 to the right) and vertically (1/3 above and 2/3 below)
+   * relative to the parent shell, or display bounds if there is no parent
+   * shell.
+   * <p>
+   * <b>NOTE:</b> This function is copied from {@link Window#getInitialLocation},
+   * but we pass the shell as the first argument. In this way, the function
+   * could be called even if the {@link Window#shell} has not been initialized.
+   * 
+   * @param shell
+   *        the shell.
+   * @param initialSize
+   *            the initial size of the shell, as returned by
+   *            <code>getInitialSize</code>.
+   * @return the initial location of the shell
+   */
+  protected Point getInitialLocation(Shell shell, Point initialSize) {
+    Composite parent = shell.getParent();
+
+    Monitor monitor = shell.getDisplay().getPrimaryMonitor();
+    if (parent != null) {
+      monitor = parent.getMonitor();
+    }
+
+    Rectangle monitorBounds = monitor.getClientArea();
+    Point centerPoint;
+    if (parent != null) {
+      centerPoint = Geometry.centerPoint(parent.getBounds());
+    } else {
+      centerPoint = Geometry.centerPoint(monitorBounds);
+    }
+
+    return new Point(centerPoint.x - (initialSize.x / 2), Math.max(
+        monitorBounds.y, Math.min(centerPoint.y
+            - (initialSize.y * 2 / 3), monitorBounds.y
+            + monitorBounds.height - initialSize.y)));
   }
 
   /**

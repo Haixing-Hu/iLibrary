@@ -19,7 +19,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
-import cn.edu.nju.starfish.ilibrary.action.library.NewCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 
 /**
  * The status line in the navigator panel.
@@ -72,7 +72,7 @@ public class NavigatorStatusLine extends Composite {
 
     final ActionManager am = application.getActionManager();
     toolBarManager = new ToolBarManager(SWT.FLAT);
-    toolBarManager.add(am.getAction(NewCollectionAction.KEY));
+    toolBarManager.add(am.getAction(CreateCollectionAction.KEY));
     toolBarManager.add(am.getAction(ManageCollectionAction.KEY));
     toolBarManager.createControl(this);
 

@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
  */
 public class ViewModeNoneAction extends BaseAction {
 
-  public static final String KEY = "action.view.view-mode.none";
+  public static final String KEY = ViewModeAction.KEY + ".none";
 
   public ViewModeNoneAction(Application application) {
     super(application, KEY);

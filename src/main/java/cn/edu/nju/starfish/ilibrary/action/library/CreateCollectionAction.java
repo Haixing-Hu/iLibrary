@@ -10,22 +10,21 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
 
 /**
- * The action to manage collections.
+ * The action to create a new collection.
  *
  * @author Haixing Hu
  */
-public class ManageCollectionAction extends BaseDropDownAction {
+public class CreateCollectionAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.library.manage-collection";
+  public static final String KEY = "action.library.create-collection";
 
   private static final String SUB_ACTIONS[] = {
-    EditCollectionAction.KEY,
-    RefreshCollectionAction.KEY,
-    DuplicateCollectionAction.KEY,
-    DeleteCollectionAction.KEY,
+    CreateNormalCollectionAction.KEY,
+    CreateSmartCollectionAction.KEY,
+    CreateCollectionFromSelectionAction.KEY,
   };
 
-  public ManageCollectionAction(Application application) {
+  public CreateCollectionAction(Application application) {
     super(application, KEY, SUB_ACTIONS);
   }
 }

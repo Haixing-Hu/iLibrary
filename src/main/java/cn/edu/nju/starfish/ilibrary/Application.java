@@ -52,7 +52,6 @@ public final class Application {
     name = messageSource.getMessage("app.name", null, locale);
     version = config.getString("app.version");
     actionManager = new ActionManager(this);
-    actionManager.initialize();
     mainWindow = new MainWindow(this);
 //    //  adjust the Mac OS X Cococa UI
 //    if (SystemUtils.IS_OS_MAC) {

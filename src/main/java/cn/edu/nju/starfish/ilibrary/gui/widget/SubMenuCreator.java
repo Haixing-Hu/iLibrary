@@ -21,11 +21,13 @@ public class SubMenuCreator implements IMenuCreator {
 
   private final boolean displayImage;
   private final Action[] actions;
+  private Object parent;
   private Menu menu;
 
   public SubMenuCreator(boolean displayImage, Action ... actions) {
     this.displayImage = displayImage;
     this.actions = actions;
+    this.parent = null;
     this.menu = null;
   }
 
@@ -40,7 +42,7 @@ public class SubMenuCreator implements IMenuCreator {
   @Override
   public Menu getMenu(Control parent) {
     if (menu != null) {
-      if (menu.getParent() == parent) {
+      if (this.parent == parent) {
         return menu;
       }
       menu.dispose();
@@ -48,17 +50,22 @@ public class SubMenuCreator implements IMenuCreator {
     }
     menu = new Menu(parent);
     addActions(menu);
+    this.parent = parent;
     return menu;
   }
 
   @Override
   public Menu getMenu(Menu parent) {
     if (menu != null) {
+      if (this.parent == parent) {
+        return menu;
+      }
       menu.dispose();
       menu = null;
     }
     menu = new Menu(parent);
     addActions(menu);
+    this.parent = parent;
     return menu;
   }
 

@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
  */
 public class ViewModeAllAction extends BaseAction {
 
-  public static final String KEY = "action.view.view-mode.all";
+  public static final String KEY = ViewModeAction.KEY + ".all";
 
   public ViewModeAllAction(Application application) {
     super(application, KEY);

@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
  */
 public class ViewModeInspectorAction extends BaseAction {
 
-  public static final String KEY = "action.view.view-mode.inspector";
+  public static final String KEY = ViewModeAction.KEY + ".inspector";
 
   public ViewModeInspectorAction(Application application) {
     super(application, KEY);

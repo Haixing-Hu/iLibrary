@@ -10,15 +10,15 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 
 /**
- * The action to create a new collection.
+ * The action to create a smart collection.
  *
  * @author Haixing Hu
  */
-public class NewCollectionAction extends BaseAction {
+public class CreateSmartCollectionAction extends BaseAction {
 
-  public static final String KEY = "action.library.new-collection";
+  public static final String KEY = CreateCollectionAction.KEY + ".smart";
 
-  public NewCollectionAction(Application application) {
+  public CreateSmartCollectionAction(Application application) {
     super(application, KEY);
   }
 }

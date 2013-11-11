@@ -28,7 +28,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.MergePeriodicalsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergePublishersAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergeWebsitesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MoveToTrashAction;
-import cn.edu.nju.starfish.ilibrary.action.library.NewCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileWithAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
@@ -78,7 +78,7 @@ public final class LibraryMenu extends BaseMenu {
     this.add(am.getAction(OpenUrlAction.KEY));
     this.add(am.getAction(OpenUrlInBrowserAction.KEY));
     this.add(new Separator());
-    this.add(am.getAction(NewCollectionAction.KEY));
+    this.add(am.getAction(CreateCollectionAction.KEY));
     this.add(am.getAction(ManageCollectionAction.KEY));
     this.add(am.getAction(AddToCollectionAction.KEY));
     this.add(am.getAction(EditInformationAction.KEY));
