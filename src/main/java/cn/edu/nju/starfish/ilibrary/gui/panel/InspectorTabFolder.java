@@ -7,6 +7,7 @@
 package cn.edu.nju.starfish.ilibrary.gui.panel;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -25,9 +26,15 @@ public class InspectorTabFolder extends Composite {
   public InspectorTabFolder(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    // TODO Auto-generated constructor stub
+    createContents();
+  }
+
+  private void createContents() {
     this.setLayout(new FillLayout());
-    new Label(this, SWT.NONE).setText("InspectorTabFolder");
+    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
+    this.setBackground(backgroundColor);
+    //  TODO
+    new Label(this, SWT.NONE).setText("NavigationTree");
   }
 
 }

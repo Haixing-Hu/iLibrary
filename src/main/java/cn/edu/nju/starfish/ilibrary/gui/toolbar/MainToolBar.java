@@ -9,6 +9,7 @@ package cn.edu.nju.starfish.ilibrary.gui.toolbar;
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -61,6 +62,9 @@ public final class MainToolBar extends Composite {
     layout.marginWidth = 0;
     this.setLayout(layout);
 
+    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
+    this.setBackground(backgroundColor);
+
     toolBarManager = new ForceTextToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
     toolBarManager.add(am.getAction(ReadFullScreenAction.KEY));
@@ -76,6 +80,7 @@ public final class MainToolBar extends Composite {
     toolBarManager.add(am.getAction(ViewModeAction.KEY));
 
     toolBarManager.createControl(this);
+    toolBarManager.getControl().setBackground(backgroundColor);
   }
 
   /**

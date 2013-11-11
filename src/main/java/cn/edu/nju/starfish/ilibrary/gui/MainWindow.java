@@ -13,6 +13,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormLayout;
@@ -29,6 +30,7 @@ import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
 import cn.edu.nju.starfish.ilibrary.gui.panel.MainTabFolder;
 import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.utils.ColorUtils;
 
 /**
  * The main window of the application.
@@ -40,6 +42,11 @@ public final class MainWindow extends ApplicationWindow {
   public static final String KEY = "gui.main-window";
 
   private final Application application;
+  private final int defaultHeight;
+  private final int defaultWidth;
+  private final int minHeight;
+  private final int minWidth;
+  private final Color backgroundColor;
   private MainMenuBar mainMenuBar;
   private NavigatorPanel navigatorPanel;
   private MainPanel mainPanel;
@@ -48,6 +55,13 @@ public final class MainWindow extends ApplicationWindow {
   public MainWindow(Application application) {
     super(null);
     this.application = application;
+    final Configuration config = application.getConfig();
+    this.defaultHeight = config.getInt(KEY + ".height.default");
+    this.defaultWidth = config.getInt(KEY + ".width.default");
+    this.minHeight = config.getInt(KEY + ".height.min");
+    this.minWidth = config.getInt(KEY + ".width.min");
+    final String colorName = config.getString(KEY + ".background.color");
+    this.backgroundColor = ColorUtils.parseRGB(colorName);
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
   }
@@ -63,6 +77,7 @@ public final class MainWindow extends ApplicationWindow {
     layout.marginWidth = 0;
     layout.spacing = 0;
     parent.setLayout(layout);
+    parent.setBackground(backgroundColor);
     navigatorPanel = new NavigatorPanel(application, parent);
     inspectorPanel = new InspectorPanel(application, parent);
     mainPanel  = new MainPanel(application, parent,
@@ -85,9 +100,6 @@ public final class MainWindow extends ApplicationWindow {
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
     shell.setText(application.getName());
-    final Configuration config = application.getConfig();
-    final int minWidth = config.getInt(KEY + ".width.min");
-    final int minHeight = config.getInt(KEY + ".height.min");
     shell.setMinimumSize(minWidth, minHeight);
     //  NOTE: Mac OS X may automatically resize the startup windows,
     //  therefore, the getInitialSize() will not be called by the
@@ -101,7 +113,7 @@ public final class MainWindow extends ApplicationWindow {
     //  another version by passing the shell as the argument.
     shell.setLocation(getInitialLocation(shell, initialSize));
   }
-  
+
   /**
    * Returns the initial location to use for the shell. The default
    * implementation centers the shell horizontally (1/2 of the difference to
@@ -112,7 +124,7 @@ public final class MainWindow extends ApplicationWindow {
    * <b>NOTE:</b> This function is copied from {@link Window#getInitialLocation},
    * but we pass the shell as the first argument. In this way, the function
    * could be called even if the {@link Window#shell} has not been initialized.
-   * 
+   *
    * @param shell
    *        the shell.
    * @param initialSize
@@ -121,14 +133,14 @@ public final class MainWindow extends ApplicationWindow {
    * @return the initial location of the shell
    */
   protected Point getInitialLocation(Shell shell, Point initialSize) {
-    Composite parent = shell.getParent();
+    final Composite parent = shell.getParent();
 
     Monitor monitor = shell.getDisplay().getPrimaryMonitor();
     if (parent != null) {
       monitor = parent.getMonitor();
     }
 
-    Rectangle monitorBounds = monitor.getClientArea();
+    final Rectangle monitorBounds = monitor.getClientArea();
     Point centerPoint;
     if (parent != null) {
       centerPoint = Geometry.centerPoint(parent.getBounds());
@@ -138,8 +150,8 @@ public final class MainWindow extends ApplicationWindow {
 
     return new Point(centerPoint.x - (initialSize.x / 2), Math.max(
         monitorBounds.y, Math.min(centerPoint.y
-            - (initialSize.y * 2 / 3), monitorBounds.y
-            + monitorBounds.height - initialSize.y)));
+            - ((initialSize.y * 2) / 3), (monitorBounds.y
+            + monitorBounds.height) - initialSize.y)));
   }
 
   /**
@@ -149,10 +161,61 @@ public final class MainWindow extends ApplicationWindow {
    */
   @Override
   protected Point getInitialSize() {
-    final Configuration config = application.getConfig();
-    final int width = config.getInt(KEY + ".width.default");
-    final int height = config.getInt(KEY + ".height.default");
-    return new Point(width, height);
+    return new Point(defaultWidth, defaultHeight);
+  }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
+  }
+
+  /**
+   * Gets the default height.
+   *
+   * @return the default height.
+   */
+  public int getDefaultHeight() {
+    return defaultHeight;
+  }
+
+  /**
+   * Gets the default width.
+   *
+   * @return the default width.
+   */
+  public int getDefaultWidth() {
+    return defaultWidth;
+  }
+
+  /**
+   * Gets the minimum height.
+   *
+   * @return the minimum height.
+   */
+  public int getMinHeight() {
+    return minHeight;
+  }
+
+  /**
+   * Gets the minimum width.
+   *
+   * @return the minimum width.
+   */
+  public int getMinWidth() {
+    return minWidth;
+  }
+
+  /**
+   * Gets the background color.
+   *
+   * @return the background color.
+   */
+  public Color getBackgroundColor() {
+    return backgroundColor;
   }
 
   /**

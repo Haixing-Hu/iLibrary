@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class TestColor extends ApplicationWindow {
 
@@ -30,7 +31,8 @@ public class TestColor extends ApplicationWindow {
    */
   @Override
   protected Control createContents(Composite parent) {
-    Composite container = new Composite(parent, SWT.NONE);
+    final Composite container = new Composite(parent, SWT.NONE);
+    container.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BACKGROUND));
 
     return container;
   }
@@ -48,7 +50,7 @@ public class TestColor extends ApplicationWindow {
    */
   @Override
   protected MenuManager createMenuManager() {
-    MenuManager menuManager = new MenuManager("menu");
+    final MenuManager menuManager = new MenuManager("menu");
     return menuManager;
   }
 
@@ -58,7 +60,7 @@ public class TestColor extends ApplicationWindow {
    */
   @Override
   protected ToolBarManager createToolBarManager(int style) {
-    ToolBarManager toolBarManager = new ToolBarManager(style);
+    final ToolBarManager toolBarManager = new ToolBarManager(style);
     return toolBarManager;
   }
 
@@ -68,7 +70,7 @@ public class TestColor extends ApplicationWindow {
    */
   @Override
   protected StatusLineManager createStatusLineManager() {
-    StatusLineManager statusLineManager = new StatusLineManager();
+    final StatusLineManager statusLineManager = new StatusLineManager();
     return statusLineManager;
   }
 
@@ -78,11 +80,11 @@ public class TestColor extends ApplicationWindow {
    */
   public static void main(String args[]) {
     try {
-      TestColor window = new TestColor();
+      final TestColor window = new TestColor();
       window.setBlockOnOpen(true);
       window.open();
       Display.getCurrent().dispose();
-    } catch (Exception e) {
+    } catch (final Exception e) {
       e.printStackTrace();
     }
   }

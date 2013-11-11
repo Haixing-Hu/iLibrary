@@ -125,6 +125,9 @@ public final class NavigatorPanel extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
+    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
+    this.setBackground(backgroundColor);
+
     navigatorTree = new NavigatorTree(application, this);
     statusLine = new NavigatorStatusLine(application, this);
 

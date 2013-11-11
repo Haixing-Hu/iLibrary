@@ -123,6 +123,9 @@ public class InspectorPanel extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
+    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
+    this.setBackground(backgroundColor);
+
     tabFolder = new InspectorTabFolder(application, this);
     statusLine = new InspectorStatusLine(application, this);
 

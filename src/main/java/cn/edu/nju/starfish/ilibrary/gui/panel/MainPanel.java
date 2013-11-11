@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.gui.panel;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -87,6 +88,9 @@ public class MainPanel extends Composite {
     layout.marginWidth = 0;
     layout.spacing = 0;
     this.setLayout(layout);
+
+    final Color backgroundColor = application.getMainWindow().getBackgroundColor();
+    this.setBackground(backgroundColor);
 
     tabFolder = new MainTabFolder(application, this);
     toolBar = new MainToolBar(application, this);
