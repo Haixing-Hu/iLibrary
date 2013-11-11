@@ -27,7 +27,7 @@ import cn.edu.nju.starfish.ilibrary.action.file.QuitAction;
  */
 public final class FileMenu extends BaseMenu {
 
-  public static final String KEY = "menu.file";
+  public static final String KEY = "action.file";
 
   /**
    * Creates a file menu.

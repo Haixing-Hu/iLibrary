@@ -139,9 +139,10 @@ public class BaseDropDownAction extends BaseAction {
         for (final String key : actionKeys) {
           final Action action = am.getAction(key);
           if (action != null) {
-            final ActionContributionItem item =
+            final ActionContributionItem aci =
                 new NoImageActionContributionItem(action);
-            item.fill(parent, -1);
+            final int index = parent.getItemCount();
+            aci.fill(parent, index);
           }
         }
       }

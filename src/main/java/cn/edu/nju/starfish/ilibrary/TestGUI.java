@@ -14,7 +14,6 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
@@ -160,11 +159,23 @@ public class TestGUI extends Composite {
 
     final Composite composite_1 = new Composite(mainTabFolder, SWT.NONE);
     documentTab.setControl(composite_1);
-    final RowLayout rl_composite_1 = new RowLayout(SWT.VERTICAL);
-    rl_composite_1.justify = true;
-    composite_1.setLayout(rl_composite_1);
+    composite_1.setLayout(new FormLayout());
 
+    final Label lblNewLabel = new Label(composite_1, SWT.NONE);
     final Label lblTab_1 = new Label(composite_1, SWT.HORIZONTAL);
+
+    final FormData fd_lblNewLabel = new FormData();
+    fd_lblNewLabel.left = new FormAttachment(0);
+    fd_lblNewLabel.right  = new FormAttachment(lblTab_1);
+    lblNewLabel.setLayoutData(fd_lblNewLabel);
+    lblNewLabel.setText("New Label");
+
+    final FormData fd_lblTab_1 = new FormData();
+    fd_lblTab_1.bottom = new FormAttachment(0);
+    fd_lblTab_1.top = new FormAttachment(0);
+    fd_lblTab_1.left = new FormAttachment(100, -65);
+    fd_lblTab_1.right = new FormAttachment(100);
+    lblTab_1.setLayoutData(fd_lblTab_1);
     lblTab_1.setEnabled(false);
     lblTab_1.setText("Tab 2");
 

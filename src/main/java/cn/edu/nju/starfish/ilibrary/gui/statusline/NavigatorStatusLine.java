@@ -14,12 +14,14 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
+import cn.edu.nju.starfish.ilibrary.gui.panel.NavigatorPanel;
 
 /**
  * The status line in the navigator panel.
@@ -28,7 +30,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
  */
 public class NavigatorStatusLine extends Composite {
 
-  public static final String KEY = "gui.statusline";
+  public static final String KEY = NavigatorPanel.KEY + ".statusline";
 
   private final Application application;
   private ToolBarManager toolBarManager;
@@ -66,18 +68,20 @@ public class NavigatorStatusLine extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
+    final String statuslineBg = config.getString(KEY + ".background");
+    final Image statuslineBgImg = SWTResourceManager.getImage(NavigatorStatusLine.class, statuslineBg);
+    this.setBackgroundImage(statuslineBgImg);
+
     final ActionManager am = application.getActionManager();
     toolBarManager = new ToolBarManager(SWT.FLAT);
     toolBarManager.add(am.getAction(CreateCollectionAction.KEY));
     toolBarManager.add(am.getAction(ManageCollectionAction.KEY));
     toolBarManager.createControl(this);
+    final ToolBar toolBar = toolBarManager.getControl();
 
-    final String toolBarBackground = config.getString(KEY + ".background");
-    final Image toolBarBackgroundImg = SWTResourceManager.getImage(NavigatorStatusLine.class, toolBarBackground);
-    //  in order to be compatible on multi-platforms, we must set the
-    //  background image on both the composite and the tool bar.
-    this.setBackgroundImage(toolBarBackgroundImg);
-    toolBarManager.getControl().setBackgroundImage(toolBarBackgroundImg);
+    final String toolbarBg = config.getString(KEY + ".toolbar.background");
+    final Image toolbarBgImg = SWTResourceManager.getImage(NavigatorStatusLine.class, toolbarBg);
+    toolBar.setBackgroundImage(toolbarBgImg);
 
     corner = new Composite(this, SWT.NONE);
 
@@ -85,12 +89,12 @@ public class NavigatorStatusLine extends Composite {
     final Image cornerBackgroundImg = SWTResourceManager.getImage(NavigatorStatusLine.class, cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
+    final int toolbarTop = config.getInt(KEY + ".toolbar.top");
     final FormData fd_toolBar = new FormData();
     fd_toolBar.left = new FormAttachment(0);
-    fd_toolBar.top = new FormAttachment(0);
     fd_toolBar.right = new FormAttachment(corner);
-    fd_toolBar.bottom = new FormAttachment(100);
-    toolBarManager.getControl().setLayoutData(fd_toolBar);
+    fd_toolBar.top = new FormAttachment(0, toolbarTop);
+    toolBar.setLayoutData(fd_toolBar);
 
     final int cornerWidth = config.getInt(KEY + ".corner.width");
     final FormData fd_corner = new FormData();

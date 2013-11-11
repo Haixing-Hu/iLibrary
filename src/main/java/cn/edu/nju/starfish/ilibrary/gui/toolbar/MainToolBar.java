@@ -21,7 +21,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ShowKeywordsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ShowNotesAction;
-import cn.edu.nju.starfish.ilibrary.action.share.EmailAction;
+import cn.edu.nju.starfish.ilibrary.action.share.ShareAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
 import cn.edu.nju.starfish.ilibrary.gui.panel.MainPanel;
@@ -70,7 +70,7 @@ public final class MainToolBar extends Composite {
     toolBarManager.add(am.getAction(ReadFullScreenAction.KEY));
     toolBarManager.add(am.getAction(OpenFileAction.KEY));
     toolBarManager.add(am.getAction(OpenUrlAction.KEY));
-    toolBarManager.add(am.getAction(EmailAction.KEY));
+    toolBarManager.add(am.getAction(ShareAction.KEY));
     toolBarManager.add(am.getAction(PrintAction.KEY));
     toolBarManager.add(new Separator());
     toolBarManager.add(am.getAction(ShowKeywordsAction.KEY));

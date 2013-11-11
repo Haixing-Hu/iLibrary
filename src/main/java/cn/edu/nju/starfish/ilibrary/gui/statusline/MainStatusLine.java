@@ -26,7 +26,7 @@ import cn.edu.nju.starfish.ilibrary.utils.FontUtils;
  */
 public class MainStatusLine extends Composite {
 
-  public static final String KEY = "gui.statusline";
+  public static final String KEY = MainPanel.KEY + ".statusline";
 
   private final CLabel label;
   private final int height;

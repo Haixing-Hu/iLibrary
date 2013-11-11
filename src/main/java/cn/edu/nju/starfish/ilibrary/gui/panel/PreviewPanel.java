@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Sash;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
 /**
  * The preview panel.
@@ -35,8 +36,6 @@ public class PreviewPanel extends Composite {
   private final int maxHeight;
   private final int sashHeight;
   private final Sash sash;
-  private int oldHeight;
-  private boolean hidden;
 
   public PreviewPanel(Application application, Composite parent) {
     super(parent, SWT.BORDER);
@@ -47,8 +46,6 @@ public class PreviewPanel extends Composite {
     maxHeight = config.getInt(KEY + ".height.max");
     sashHeight = config.getInt(KEY + ".height.sash");
     sash = new Sash(parent, SWT.HORIZONTAL | SWT.BORDER | SWT.SMOOTH);
-    oldHeight = defaultHeight;
-    hidden = false;
     configLayoutData();
     configSash();
   }
@@ -90,7 +87,8 @@ public class PreviewPanel extends Composite {
           sashData.top = new FormAttachment(100, - newHeight - sashHeight);
           sashData.bottom = new FormAttachment(100, - newHeight);
           sash.getParent().layout();
-          oldHeight = newHeight;
+          final ApplicationState state = application.getState();
+          state.setPreviewHeight(newHeight);
         }
       }
     });
@@ -145,12 +143,13 @@ public class PreviewPanel extends Composite {
    * Hides this panel.
    */
   public void hide() {
-    if (! hidden) {
+    final ApplicationState state = application.getState();
+    if (! state.isPreviewHide()) {
       final FormData data = (FormData) sash.getLayoutData();
       data.top = new FormAttachment(100);
       data.bottom = new FormAttachment(100);
       sash.getParent().layout();
-      hidden = true;
+      state.setPreviewHide(true);
     }
   }
 
@@ -158,22 +157,14 @@ public class PreviewPanel extends Composite {
    * Shows this panel.
    */
   public void show() {
-    if (hidden) {
+    final ApplicationState state = application.getState();
+    if (state.isPreviewHide()) {
+      final int oldHeight = state.getPreviewHeight();
       final FormData data = (FormData) sash.getLayoutData();
       data.top = new FormAttachment(100, - oldHeight - sashHeight);
       data.bottom = new FormAttachment(100, - oldHeight);
       sash.getParent().layout();
-      hidden = false;
+      state.setPreviewHide(false);
     }
-  }
-
-  /**
-   * Tests whether this panel is hidden.
-   *
-   * @return
-   *    true if this panel is hidden, false otherwise.
-   */
-  public boolean isHidden() {
-    return hidden;
   }
 }

@@ -20,6 +20,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
 /**
  * The main class of the application.
@@ -37,6 +38,7 @@ public final class Application {
   private final Configuration config;
   private final String name;
   private final String version;
+  private final ApplicationState state;
   private final ActionManager actionManager;
   private final MainWindow mainWindow;
 
@@ -51,6 +53,7 @@ public final class Application {
     config = context.getBean(Configuration.class);
     name = messageSource.getMessage("app.name", null, locale);
     version = config.getString("app.version");
+    state = new ApplicationState(this, config);
     actionManager = new ActionManager(this);
     mainWindow = new MainWindow(this);
 //    //  adjust the Mac OS X Cococa UI
@@ -66,6 +69,8 @@ public final class Application {
    * Runs this application.
    */
   public void run() {
+    mainWindow.create();
+    state.sync();
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
     final Display display = Display.getCurrent();
@@ -231,6 +236,15 @@ public final class Application {
    */
   public ActionManager getActionManager() {
     return actionManager;
+  }
+
+  /**
+   * Gets the internal state of this application.
+   *
+   * @return the internal state of this application.
+   */
+  public ApplicationState getState() {
+    return state;
   }
 
   /**

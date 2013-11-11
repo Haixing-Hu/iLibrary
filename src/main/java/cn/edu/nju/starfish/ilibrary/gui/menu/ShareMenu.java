@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.action.share.TwitterAction;
  */
 public final class ShareMenu extends BaseMenu {
 
-  public static final String KEY = "menu.share";
+  public static final String KEY = "action.share";
 
   /**
    * Creates a share menu.

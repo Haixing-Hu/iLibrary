@@ -21,6 +21,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.statusline.NavigatorStatusLine;
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
 /**
  * The panel display the navigation tree.
@@ -37,8 +38,6 @@ public final class NavigatorPanel extends Composite {
   private final int maxWidth;
   private final int sashWidth;
   private final Sash sash;
-  private int oldWidth;
-  private boolean hidden;
   private NavigatorTree navigatorTree;
   private NavigatorStatusLine statusLine;
 
@@ -59,8 +58,6 @@ public final class NavigatorPanel extends Composite {
     maxWidth = config.getInt(KEY + ".width.max");
     sashWidth = config.getInt(KEY + ".width.sash");
     sash = new Sash(parent, SWT.VERTICAL | SWT.BORDER | SWT.SMOOTH);
-    oldWidth = defaultWidth;
-    hidden = false;
     configLayoutData();
     configSash();
     createContents();
@@ -105,7 +102,8 @@ public final class NavigatorPanel extends Composite {
           sashData.left = new FormAttachment(0, newWidth);
           sashData.right = new FormAttachment(0, newWidth + sashWidth);
           sash.getParent().layout();
-          oldWidth = newWidth;
+          final ApplicationState state = application.getState();
+          state.setNavigatorWidth(newWidth);
         }
       }
     });
@@ -204,12 +202,13 @@ public final class NavigatorPanel extends Composite {
    * Hides this panel.
    */
   public void hide() {
-    if (! hidden) {
+    final ApplicationState state = application.getState();
+    if (! state.isNavigatorHide()) {
       final FormData data = (FormData) sash.getLayoutData();
       data.left = new FormAttachment(0);
       data.right = new FormAttachment(0);
       sash.getParent().layout();
-      hidden = true;
+      state.setNavigatorHide(true);
     }
   }
 
@@ -217,23 +216,15 @@ public final class NavigatorPanel extends Composite {
    * Shows this panel.
    */
   public void show() {
-    if (hidden) {
+    final ApplicationState state = application.getState();
+    if (state.isNavigatorHide()) {
+      final int oldWidth = state.getNavigatorWidth();
       final FormData data = (FormData) sash.getLayoutData();
       data.left = new FormAttachment(0, oldWidth);
       data.right = new FormAttachment(0, oldWidth + sashWidth);
       sash.getParent().layout();
-      hidden = false;
+      state.setNavigatorHide(false);
     }
-  }
-
-  /**
-   * Tests whether this panel is hidden.
-   *
-   * @return
-   *    true if this panel is hidden, false otherwise.
-   */
-  public boolean isHidden() {
-    return hidden;
   }
 
   /**

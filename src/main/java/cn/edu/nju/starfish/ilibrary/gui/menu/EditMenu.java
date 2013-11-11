@@ -32,7 +32,7 @@ import cn.edu.nju.starfish.ilibrary.action.edit.UndoAction;
  */
 public final class EditMenu extends BaseMenu {
 
-  public static final String KEY = "menu.edit";
+  public static final String KEY = "action.edit";
 
   /**
    * Creates a edit menu.

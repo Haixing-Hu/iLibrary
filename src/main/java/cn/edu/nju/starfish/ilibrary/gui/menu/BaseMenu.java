@@ -33,7 +33,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    *
    * @return the application this menu belongs to.
    */
-  public Application getApplication() {
+  public final Application getApplication() {
     return application;
   }
 
@@ -45,7 +45,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @return the item corresponds to the specified ID, or null if no such
    *         item.
    */
-  public IContributionItem getItem(String id) {
+  public final IContributionItem getItem(String id) {
     final IContributionItem item = this.find(id);
     if (item == null) {
       return null;
@@ -62,7 +62,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @return the action corresponds to the specified ID, or null if no such
    *         action.
    */
-  public IAction getAction(String id) {
+  public final IAction getAction(String id) {
     final IContributionItem item = this.find(id);
     if (item == null) {
       return null;
@@ -80,7 +80,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param id
    *          the ID of the menu item to be hidden.
    */
-  public void hideItem(String id) {
+  public final void hideItem(String id) {
     final IContributionItem item = getItem(id);
     if (item != null) {
       item.setVisible(false);
@@ -96,7 +96,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param ids
    *   the IDs of the menu items to be hidden.
    */
-  public void hideItems(String ... ids) {
+  public final void hideItems(String ... ids) {
     for (final String id : ids) {
       final IContributionItem item = getItem(id);
       if (item != null) {
@@ -114,7 +114,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param id
    *   the ID of the menu item to be shown.
    */
-  public void showItem(String id) {
+  public final void showItem(String id) {
     final IContributionItem item = getItem(id);
     if (item != null) {
       item.setVisible(true);
@@ -130,7 +130,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param ids
    *   the IDs of the menu items to be shown.
    */
-  public void showItems(String ... ids) {
+  public final void showItems(String ... ids) {
     for (final String id : ids) {
       final IContributionItem item = getItem(id);
       if (item != null) {
@@ -149,7 +149,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param id
    *          the ID of the menu item to be disabled.
    */
-  public void disableItem(String id) {
+  public final void disableItem(String id) {
     final IAction action = getAction(id);
     if (action != null) {
       action.setEnabled(false);
@@ -165,7 +165,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param ids
    *   the IDs of the menu items to be disabled.
    */
-  public void disableItems(String ... ids) {
+  public final void disableItems(String ... ids) {
     for (final String id : ids) {
       final IAction action = getAction(id);
       if (action != null) {
@@ -183,7 +183,7 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param id
    *   the ID of the menu item to be enabled.
    */
-  public void enableItem(String id) {
+  public final void enableItem(String id) {
     final IAction action = getAction(id);
     if (action != null) {
       action.setEnabled(true);
@@ -199,11 +199,67 @@ public abstract class BaseMenu  extends NoImageMenuManager {
    * @param ids
    *   the IDs of the menu items to be enabled.
    */
-  public void enableItems(String ... ids) {
+  public final void enableItems(String ... ids) {
     for (final String id : ids) {
       final IAction action = getAction(id);
       if (action != null) {
         action.setEnabled(true);
+      }
+    }
+  }
+
+  /**
+   * Marks a menu item to be checked.
+   *
+   * @param id
+   *    the ID of the menu item to be marked.
+   */
+  public final void checkItem(String id) {
+    final IAction action = getAction(id);
+    if (action != null) {
+      action.setChecked(true);
+    }
+  }
+
+  /**
+   * Marks a menu item to be unchecked.
+   *
+   * @param id
+   *    the ID of the menu item to be marked.
+   */
+  public final void uncheckItem(String id) {
+    final IAction action = getAction(id);
+    if (action != null) {
+      action.setChecked(false);
+    }
+  }
+
+  /**
+   * Marks menu items to be checked.
+   *
+   * @param ids
+   *          the IDs of the menu items to be marked.
+   */
+  public final void checkItems(String... ids) {
+    for (final String id : ids) {
+      final IAction action = getAction(id);
+      if (action != null) {
+        action.setChecked(true);
+      }
+    }
+  }
+
+  /**
+   * Marks menu items to be unchecked.
+   *
+   * @param ids
+   *          the IDs of the menu items to be marked.
+   */
+  public final void uncheckItems(String... ids) {
+    for (final String id : ids) {
+      final IAction action = getAction(id);
+      if (action != null) {
+        action.setChecked(false);
       }
     }
   }

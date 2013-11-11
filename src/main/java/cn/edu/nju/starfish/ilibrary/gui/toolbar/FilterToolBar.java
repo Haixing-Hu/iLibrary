@@ -7,6 +7,8 @@
 package cn.edu.nju.starfish.ilibrary.gui.toolbar;
 
 import org.apache.commons.configuration.Configuration;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
@@ -15,10 +17,26 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.action.ActionManager;
+import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterHasFileAction;
+import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterNoFileAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterFlaggedAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterUnflaggedAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterHasReadAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterReadingAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterUnreadAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterArticleAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterBookAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterMediaAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterPatentAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterReportAction;
 import cn.edu.nju.starfish.ilibrary.gui.panel.LibraryTab;
 
 /**
@@ -33,7 +51,7 @@ public final class FilterToolBar extends Composite {
   private final Application application;
   private final int height;
   private final String background;
-  private ToolBar toolBar;
+  private ToolBarManager toolBarManager;
 
   public FilterToolBar(Application application, Composite parent) {
     super(parent, SWT.FLAT);
@@ -66,58 +84,39 @@ public final class FilterToolBar extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     this.setLayout(layout);
+    final Image image = SWTResourceManager.getImage(FilterToolBar.class, background);
+    this.setBackgroundImage(image);
 
-    toolBar = new ToolBar(this, SWT.FLAT);
+    toolBarManager = new ToolBarManager(SWT.FLAT);
+    final ActionManager am = application.getActionManager();
+    toolBarManager.add(am.getAction(FlagFilterAllAction.KEY));
+    toolBarManager.add(am.getAction(FlagFilterFlaggedAction.KEY));
+    toolBarManager.add(am.getAction(FlagFilterUnflaggedAction.KEY));
+    toolBarManager.add(new Separator());
+    toolBarManager.add(am.getAction(ReadFilterAllAction.KEY));
+    toolBarManager.add(am.getAction(ReadFilterUnreadAction.KEY));
+    toolBarManager.add(am.getAction(ReadFilterReadingAction.KEY));
+    toolBarManager.add(am.getAction(ReadFilterHasReadAction.KEY));
+    toolBarManager.add(new Separator());
+    toolBarManager.add(am.getAction(TypeFilterAllAction.KEY));
+    toolBarManager.add(am.getAction(TypeFilterArticleAction.KEY));
+    toolBarManager.add(am.getAction(TypeFilterBookAction.KEY));
+    toolBarManager.add(am.getAction(TypeFilterReportAction.KEY));
+    toolBarManager.add(am.getAction(TypeFilterPatentAction.KEY));
+    toolBarManager.add(am.getAction(TypeFilterMediaAction.KEY));
+    toolBarManager.add(new Separator());
+    toolBarManager.add(am.getAction(AttachmentFilterAllAction.KEY));
+    toolBarManager.add(am.getAction(AttachmentFilterHasFileAction.KEY));
+    toolBarManager.add(am.getAction(AttachmentFilterNoFileAction.KEY));
+    toolBarManager.createControl(this);
+    final ToolBar toolBar = toolBarManager.getControl();
+
     final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
     toolBar.setLayoutData(gd_toolBar);
 
-    final Image image = SWTResourceManager.getImage(FilterToolBar.class, background);
     //  in order to be compatible on multi-platforms, we must set the
-    //  background image on both the composite and the tool bar.
-    this.setBackgroundImage(image);
+    //  background image on both this composite and the tool bar.
     toolBar.setBackgroundImage(image);
-
-    final ToolItem tltmAll = new ToolItem(toolBar, SWT.CHECK);
-    tltmAll.setText("All");
-
-    final ToolItem tltmFlagged = new ToolItem(toolBar, SWT.CHECK);
-    tltmFlagged.setText("Flagged");
-
-    final ToolItem tltmUnread = new ToolItem(toolBar, SWT.CHECK);
-    tltmUnread.setText("Unread");
-
-    final ToolItem tltmNewItem_2 = new ToolItem(toolBar, SWT.SEPARATOR);
-    tltmNewItem_2.setText("New Item");
-
-    final ToolItem tltmAll_1 = new ToolItem(toolBar, SWT.CHECK);
-    tltmAll_1.setText("All");
-
-    final ToolItem tltmArticle = new ToolItem(toolBar, SWT.CHECK);
-    tltmArticle.setText("Article");
-
-    final ToolItem tltmBook = new ToolItem(toolBar, SWT.CHECK);
-    tltmBook.setText("Book");
-
-    final ToolItem tltmReport = new ToolItem(toolBar, SWT.CHECK);
-    tltmReport.setText("Report");
-
-    final ToolItem tltmMedia = new ToolItem(toolBar, SWT.CHECK);
-    tltmMedia.setText("Media");
-
-    final ToolItem tltmPatent = new ToolItem(toolBar, SWT.CHECK);
-    tltmPatent.setText("Patent");
-
-    final ToolItem tltmNewItem_3 = new ToolItem(toolBar, SWT.SEPARATOR);
-    tltmNewItem_3.setText("New Item");
-
-    final ToolItem tltmAll_2 = new ToolItem(toolBar, SWT.CHECK);
-    tltmAll_2.setText("All");
-
-    final ToolItem tltmPdf = new ToolItem(toolBar, SWT.CHECK);
-    tltmPdf.setText("PDF");
-
-    final ToolItem tltmNoPdf = new ToolItem(toolBar, SWT.CHECK);
-    tltmNoPdf.setText("No PDF");
   }
 
   public int getHeight() {

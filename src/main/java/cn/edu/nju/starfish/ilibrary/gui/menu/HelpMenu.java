@@ -23,7 +23,7 @@ import cn.edu.nju.starfish.ilibrary.action.help.WebsiteAction;
  */
 public final class HelpMenu extends BaseMenu {
 
-  public static final String KEY = "menu.help";
+  public static final String KEY = "action.help";
 
   /**
    * Creates a help menu.

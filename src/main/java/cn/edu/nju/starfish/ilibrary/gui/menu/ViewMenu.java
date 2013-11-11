@@ -16,8 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.view.AsDocumentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsPreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsThumbnailsAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsWebpageAction;
+import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterAction;
 import cn.edu.nju.starfish.ilibrary.action.view.BackAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ColumnsAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ForwardAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HideInspectorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HideNavigatorAction;
@@ -26,6 +28,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.NextDocumentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.NextPageAction;
 import cn.edu.nju.starfish.ilibrary.action.view.PreviousDocumentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.PreviousPageAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ReadFullScreenAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowDuplicatesAction;
@@ -34,6 +37,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.ShowNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowPreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.SortByAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TableOfContentsAction;
+import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomInAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ZoomOutAction;
@@ -46,7 +50,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.ZoomToFitAction;
  */
 public final class ViewMenu extends BaseMenu {
 
-  public static final String KEY = "menu.view";
+  public static final String KEY = "action.view";
 
   /**
    * Creates a view menu.
@@ -66,6 +70,10 @@ public final class ViewMenu extends BaseMenu {
     this.add(new Separator());
     this.add(am.getAction(ColumnsAction.KEY));
     this.add(am.getAction(SortByAction.KEY));
+    this.add(am.getAction(FlagFilterAction.KEY));
+    this.add(am.getAction(ReadFilterAction.KEY));
+    this.add(am.getAction(TypeFilterAction.KEY));
+    this.add(am.getAction(AttachmentFilterAction.KEY));
     this.add(new Separator());
     this.add(am.getAction(HideNavigatorAction.KEY));
     this.add(am.getAction(ShowNavigatorAction.KEY));

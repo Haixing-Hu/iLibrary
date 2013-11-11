@@ -31,7 +31,7 @@ import cn.edu.nju.starfish.ilibrary.action.window.ReviewsAction;
  */
 public final class WindowMenu extends BaseMenu {
 
-  public static final String KEY = "menu.window";
+  public static final String KEY = "action.window";
 
   /**
    * Creates a window menu.

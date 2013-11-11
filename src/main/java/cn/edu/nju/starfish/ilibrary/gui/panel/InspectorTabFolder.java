@@ -34,7 +34,7 @@ public class InspectorTabFolder extends Composite {
     final Color backgroundColor = application.getMainWindow().getBackgroundColor();
     this.setBackground(backgroundColor);
     //  TODO
-    new Label(this, SWT.NONE).setText("NavigationTree");
+    new Label(this, SWT.NONE).setText("InspectorTabFolder");
   }
 
 }

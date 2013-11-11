@@ -6,16 +6,10 @@
 
 package cn.edu.nju.starfish.ilibrary.action.view;
 
-import org.eclipse.jface.action.Action;
-
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
-import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
-import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
-import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
-import cn.edu.nju.starfish.ilibrary.gui.panel.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.panel.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
+import cn.edu.nju.starfish.ilibrary.state.ViewMode;
 
 /**
  * The action to hide the preview panel.
@@ -32,26 +26,9 @@ public class HidePreviewAction extends BaseAction {
 
   @Override
   public void run() {
-    //  hide the preview panel
-    final MainWindow mainWindow = application.getMainWindow();
-    final InspectorPanel inspector = mainWindow.getInspectorPanel();
-    final PreviewPanel preview = mainWindow.getPreviewPanel();
-    preview.hide();
-    //  hide this menu item and show the "show preview" menu item
-    final MainMenuBar menuBar = mainWindow.getMenuBarManager();
-    final BaseMenu viewMenu = menuBar.getViewMenu();
-    viewMenu.hideItem(KEY);
-    viewMenu.showItem(ShowPreviewAction.KEY);
-    viewMenu.update(true);
-    //  update the image of the "view mode" action
-    final ActionManager am = application.getActionManager();
-    final Action viewModeAction = am.getAction(ViewModeAction.KEY);
-    final Action action;
-    if (inspector.isHidden()) {
-      action = am.getAction(ViewModeNoneAction.KEY);
-    } else {
-      action = am.getAction(ViewModeInspectorAction.KEY);
-    }
-    viewModeAction.setImageDescriptor(action.getImageDescriptor());
+    final ApplicationState state = application.getState();
+    int mode = state.getViewMode();
+    mode &= (~ ViewMode.PREVIEW);
+    ViewMode.update(application, mode);
   }
 }

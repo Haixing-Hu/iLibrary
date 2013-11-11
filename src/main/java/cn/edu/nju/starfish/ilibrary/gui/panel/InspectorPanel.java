@@ -22,6 +22,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.statusline.InspectorStatusLine;
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
 /**
  * The panel displaying the inspection information.
@@ -38,8 +39,6 @@ public class InspectorPanel extends Composite {
   private final int maxWidth;
   private final int sashWidth;
   private final Sash sash;
-  private int oldWidth;
-  private boolean hidden;
   private InspectorTabFolder tabFolder;
   private InspectorStatusLine statusLine;
 
@@ -52,8 +51,6 @@ public class InspectorPanel extends Composite {
     maxWidth = config.getInt(KEY + ".width.max");
     sashWidth = config.getInt(KEY + ".width.sash");
     sash = new Sash(parent, SWT.VERTICAL | SWT.BORDER | SWT.SMOOTH);
-    oldWidth = defaultWidth;
-    hidden = false;
     configLayoutData();
     configSash();
     createContents();
@@ -103,7 +100,8 @@ public class InspectorPanel extends Composite {
           sashData.left = new FormAttachment(100, -(newWidth + sashWidth));
           sashData.right = new FormAttachment(100, -newWidth);
           parent.layout();
-          oldWidth = newWidth;
+          final ApplicationState state = application.getState();
+          state.setInspectorWidth(newWidth);
         }
       }
     });
@@ -203,12 +201,13 @@ public class InspectorPanel extends Composite {
    * Hides this panel.
    */
   public void hide() {
-    if (! hidden) {
+    final ApplicationState state = application.getState();
+    if (! state.isInspectorHide()) {
       final FormData data = (FormData) sash.getLayoutData();
       data.left = new FormAttachment(100);
       data.right = new FormAttachment(100);
       sash.getParent().layout();
-      hidden = true;
+      state.setInspectorHide(true);
     }
   }
 
@@ -216,22 +215,14 @@ public class InspectorPanel extends Composite {
    * Shows this panel.
    */
   public void show() {
-    if (hidden) {
+    final ApplicationState state = application.getState();
+    if (state.isInspectorHide()) {
+      final int oldWidth = state.getInspectorWidth();
       final FormData data = (FormData) sash.getLayoutData();
       data.left = new FormAttachment(100, - oldWidth - sashWidth);
       data.right = new FormAttachment(100, - oldWidth);
       sash.getParent().layout();
-      hidden = false;
+      state.setInspectorHide(false);
     }
-  }
-
-  /**
-   * Tests whether this panel is hidden.
-   *
-   * @return
-   *    true if this panel is hidden, false otherwise.
-   */
-  public boolean isHidden() {
-    return hidden;
   }
 }

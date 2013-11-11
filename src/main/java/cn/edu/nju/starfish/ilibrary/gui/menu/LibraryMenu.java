@@ -13,6 +13,7 @@ import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
+import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
@@ -28,7 +29,6 @@ import cn.edu.nju.starfish.ilibrary.action.library.MergePeriodicalsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergePublishersAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MergeWebsitesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MoveToTrashAction;
-import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenFileWithAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
@@ -45,7 +45,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.ShowNotesAction;
  */
 public final class LibraryMenu extends BaseMenu {
 
-  public static final String KEY = "menu.library";
+  public static final String KEY = "action.library";
 
   /**
    * Creates a library menu.
@@ -116,7 +116,7 @@ public final class LibraryMenu extends BaseMenu {
         OpenUrlAction.KEY,
         OpenUrlInBrowserAction.KEY,
         AddToCollectionAction.KEY,
-        EditInformationAction.KEY,
+        //EditInformationAction.KEY,
         MergeDocumentsAction.KEY,
     });
     this.update(true);
