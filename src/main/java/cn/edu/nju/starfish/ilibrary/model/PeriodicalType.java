@@ -7,10 +7,17 @@
 package cn.edu.nju.starfish.ilibrary.model;
 
 /**
- * The model of authors, which store the information of an author.
+ * The enumeration of predefined periodical types.
  *
  * @author Haixing Hu
  */
-public class Author {
+public enum PeriodicalType {
 
+  JOURNAL,
+
+  LAW_REPORT,
+
+  MAGAZINE,
+
+  NEWSPAPER,
 }

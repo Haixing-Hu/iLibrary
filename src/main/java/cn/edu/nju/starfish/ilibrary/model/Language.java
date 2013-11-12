@@ -6,77 +6,102 @@
 
 package cn.edu.nju.starfish.ilibrary.model;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-
-import cn.edu.nju.starfish.ilibrary.model.tag.Taggable;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * The model of publishers, which store the information of an publisher.
+ * The mode of languages.
  *
  * @author Haixing Hu
  */
-public class Publisher extends Taggable {
+public class Language {
 
   private int id;
+  private String code;
   private String name;
   private String abbreviation;
-  private List<City> cities;
-  private WebSite webSite;
   private String description;
-  private int documentCount;
 
   /**
-   * Default constructs a {@link Publisher}.
+   * Constructs a language.
    */
-  public Publisher() {
-    id = - 1;
+  public Language() {
+    id = -1;
+    code = null;
     name = null;
     abbreviation = null;
-    cities = null;
-    webSite = null;
     description = null;
-    documentCount = 0;
   }
 
   /**
-   * Constructs a {@link Publisher}.
+   * Constructs a language.
    *
    * @param name
-   *          the name of the new publisher.
+   *          the name of the new language.
    */
-  public Publisher(@Nullable String name) {
+  public Language(@Nullable String name) {
     this.id = - 1;
+    this.code = null;
     this.name = name;
     this.abbreviation = null;
-    this.cities = null;
-    this.webSite = null;
     this.description = null;
-    this.documentCount = 0;
   }
 
   /**
-   * Gets the ID.
+   * Constructs a language.
    *
-   * @return the ID.
+   * @param name
+   *          the name of the new language.
+   * @param abbreviation
+   *          the abbreviation of the new language.
+   */
+  public Language(@Nullable String name, @Nullable String abbreviation) {
+    this.id = - 1;
+    this.code = null;
+    this.name = name;
+    this.abbreviation = abbreviation;
+    this.description = null;
+  }
+
+  /**
+   * Gets the id.
+   *
+   * @return the id.
    */
   public int getId() {
     return id;
   }
 
   /**
-   * Sets the ID.
+   * Sets the id.
    *
    * @param id
-   *          the new ID to set.
+   *          the new id to set.
    */
   public void setId(int id) {
     this.id = id;
+  }
+
+  /**
+   * Gets the ISO 639-2 language code.
+   *
+   * @return the ISO 639-2 language code.
+   */
+  public String getCode() {
+    return code;
+  }
+
+  /**
+   * Sets the ISO 639-2 language code.
+   *
+   * @param code
+   *          the new ISO 639-2 language code to set.
+   */
+  public void setCode(@Nullable String code) {
+    this.code = code;
   }
 
   /**
@@ -118,43 +143,6 @@ public class Publisher extends Taggable {
   }
 
   /**
-   * Gets the cities.
-   *
-   * @return the cities.
-   */
-  public List<City> getCities() {
-    return cities;
-  }
-
-  /**
-   * Sets the cities.
-   *
-   * @param cities
-   *          the new cities to set.
-   */
-  public void setCities(@Nullable List<City> cities) {
-    this.cities = cities;
-  }
-
-  /**
-   * Gets the web site.
-   *
-   * @return the web site.
-   */
-  public WebSite getWebSite() {
-    return webSite;
-  }
-
-  /**
-   * Sets the web site.
-   *
-   * @param webSite the new web site to set.
-   */
-  public void setWebSite(@Nullable WebSite webSite) {
-    this.webSite = webSite;
-  }
-
-  /**
    * Gets the description.
    *
    * @return the description.
@@ -170,25 +158,6 @@ public class Publisher extends Taggable {
    */
   public void setDescription(@Nullable String description) {
     this.description = description;
-  }
-
-  /**
-   * Gets the document count.
-   *
-   * @return the document count.
-   */
-  public int getDocumentCount() {
-    return documentCount;
-  }
-
-  /**
-   * Sets the document count.
-   *
-   * @param documentCount
-   *          the new document count to set.
-   */
-  public void setDocumentCount(int documentCount) {
-    this.documentCount = documentCount;
   }
 
   /* (non-Javadoc)
@@ -212,8 +181,11 @@ public class Publisher extends Taggable {
    */
   @Override
   public String toString() {
-    return ReflectionToStringBuilder.toString(this);
+    return new ToStringBuilder(this)
+              .append("id", id)
+              .append("code", code)
+              .append("name", name)
+              .append("abbreviation", abbreviation)
+              .toString();
   }
-
-
 }

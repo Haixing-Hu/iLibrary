@@ -6,74 +6,115 @@
 
 package cn.edu.nju.starfish.ilibrary.model;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-import cn.edu.nju.starfish.ilibrary.model.tag.Taggable;
-
 /**
- * The model of publishers, which store the information of an publisher.
+ * The mode of cities.
  *
  * @author Haixing Hu
  */
-public class Publisher extends Taggable {
+public class City {
 
   private int id;
   private String name;
   private String abbreviation;
-  private List<City> cities;
-  private WebSite webSite;
+  private Country country;
   private String description;
-  private int documentCount;
 
   /**
-   * Default constructs a {@link Publisher}.
+   * Constructs a city.
    */
-  public Publisher() {
+  public City() {
     id = - 1;
     name = null;
     abbreviation = null;
-    cities = null;
-    webSite = null;
+    country = null;
     description = null;
-    documentCount = 0;
   }
 
   /**
-   * Constructs a {@link Publisher}.
+   * Constructs a city.
    *
    * @param name
-   *          the name of the new publisher.
+   *          the name of the new city.
    */
-  public Publisher(@Nullable String name) {
+  public City(@Nullable String name) {
     this.id = - 1;
     this.name = name;
     this.abbreviation = null;
-    this.cities = null;
-    this.webSite = null;
+    this.country = null;
     this.description = null;
-    this.documentCount = 0;
   }
 
   /**
-   * Gets the ID.
+   * Constructs a city.
    *
-   * @return the ID.
+   * @param name
+   *          the name of the new city.
+   * @param country
+   *          the country of the new city.
+   */
+  public City(@Nullable String name, @Nullable Country country) {
+    this.id = - 1;
+    this.name = name;
+    this.abbreviation = null;
+    this.country = country;
+    this.description = null;
+  }
+
+  /**
+   * Constructs a city.
+   *
+   * @param name
+   *          the name of the new city.
+   * @param abbreviation
+   *          the abbreviation of the new city.
+   */
+  public City(@Nullable String name, @Nullable String abbreviation) {
+    this.id = - 1;
+    this.name = name;
+    this.abbreviation = abbreviation;
+    this.country = null;
+    this.description = null;
+  }
+
+  /**
+   * Constructs a city.
+   *
+   * @param name
+   *          the name of the new city.
+   * @param abbreviation
+   *          the abbreviation of the new city.
+   * @param country
+   *          the country of the new city.
+   */
+  public City(@Nullable String name, @Nullable String abbreviation,
+      @Nullable Country country) {
+    this.id = - 1;
+    this.name = name;
+    this.abbreviation = abbreviation;
+    this.country = country;
+    this.description = null;
+  }
+
+  /**
+   * Gets the id.
+   *
+   * @return the id.
    */
   public int getId() {
     return id;
   }
 
   /**
-   * Sets the ID.
+   * Sets the id.
    *
    * @param id
-   *          the new ID to set.
+   *          the new id to set.
    */
   public void setId(int id) {
     this.id = id;
@@ -111,47 +152,29 @@ public class Publisher extends Taggable {
    * Sets the abbreviation.
    *
    * @param abbreviation
-   *          the new abbreviation to set.
+   *          the new abbreviation to set, which may be <code>null</code>.
    */
   public void setAbbreviation(@Nullable String abbreviation) {
     this.abbreviation = abbreviation;
   }
 
   /**
-   * Gets the cities.
+   * Gets the country.
    *
-   * @return the cities.
+   * @return the country.
    */
-  public List<City> getCities() {
-    return cities;
+  public Country getCountry() {
+    return country;
   }
 
   /**
-   * Sets the cities.
+   * Sets the country.
    *
-   * @param cities
-   *          the new cities to set.
+   * @param country
+   *          the new country to set, which may be <code>null</code>.
    */
-  public void setCities(@Nullable List<City> cities) {
-    this.cities = cities;
-  }
-
-  /**
-   * Gets the web site.
-   *
-   * @return the web site.
-   */
-  public WebSite getWebSite() {
-    return webSite;
-  }
-
-  /**
-   * Sets the web site.
-   *
-   * @param webSite the new web site to set.
-   */
-  public void setWebSite(@Nullable WebSite webSite) {
-    this.webSite = webSite;
+  public void setCountry(@Nullable Country country) {
+    this.country = country;
   }
 
   /**
@@ -172,26 +195,9 @@ public class Publisher extends Taggable {
     this.description = description;
   }
 
-  /**
-   * Gets the document count.
+  /*
+   * (non-Javadoc)
    *
-   * @return the document count.
-   */
-  public int getDocumentCount() {
-    return documentCount;
-  }
-
-  /**
-   * Sets the document count.
-   *
-   * @param documentCount
-   *          the new document count to set.
-   */
-  public void setDocumentCount(int documentCount) {
-    this.documentCount = documentCount;
-  }
-
-  /* (non-Javadoc)
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -199,7 +205,9 @@ public class Publisher extends Taggable {
     return HashCodeBuilder.reflectionHashCode(this);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   *
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -207,13 +215,13 @@ public class Publisher extends Taggable {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   *
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
     return ReflectionToStringBuilder.toString(this);
   }
-
-
 }

@@ -15,42 +15,63 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import cn.edu.nju.starfish.ilibrary.model.tag.Taggable;
 
 /**
- * The model of web sites.
+ * The model of institutes.
  *
  * @author Haixing Hu
  */
-public class WebSite extends Taggable {
+public class Institute extends Taggable {
 
   private int id;
-  private String title;
-  private String url;
-  private Language language;
+  private String name;
+  private City city;
+  private String email;
+  private WebSite website;
   private String description;
   private int documentCount;
 
   /**
-   * Default constructs a {@link WebSite}.
+   * Default constructs an {@link Institute}.
    */
-  public WebSite() {
+  public Institute() {
     id = -1;
-    title = null;
-    url = null;
-    language = null;
+    name = null;
+    city = null;
+    email = null;
+    website = null;
     description = null;
     documentCount = 0;
   }
 
   /**
-   * Constructs a {@link WebSite}.
+   * Constructs an {@link Institute}.
    *
-   * @param url
-   *          the URL of the new web site.
+   * @param name
+   *          the name of the new institute.
    */
-  public WebSite(@Nullable String url) {
-    this.id = - 1;
-    this.title = null;
-    this.url = url;
-    this.language = null;
+  public Institute(@Nullable String name) {
+    this.id = -1;
+    this.name = name;
+    this.city = null;
+    this.email = null;
+    this.website = null;
+    this.description = null;
+    this.documentCount = 0;
+  }
+
+  /**
+   * Constructs an {@link Institute}.
+   *
+   * @param name
+   *          the name of the new institute.
+   * @param city
+   *          the city of the new institute.
+   */
+  public Institute(@Nullable String name, @Nullable City city) {
+    this.id = -1;
+    this.name = name;
+    this.city = city;
+    this.email = null;
+    this.website = null;
     this.description = null;
     this.documentCount = 0;
   }
@@ -75,60 +96,79 @@ public class WebSite extends Taggable {
   }
 
   /**
-   * Gets the title.
+   * Gets the name.
    *
-   * @return the title.
+   * @return the name.
    */
-  public String getTitle() {
-    return title;
+  public String getName() {
+    return name;
   }
 
   /**
-   * Sets the title.
+   * Sets the name.
    *
-   * @param title
-   *          the new title to set.
+   * @param name
+   *          the new name to set.
    */
-  public void setTitle(@Nullable String title) {
-    this.title = title;
+  public void setName(@Nullable String name) {
+    this.name = name;
   }
 
   /**
-   * Gets the url.
+   * Gets the city.
    *
-   * @return the url.
+   * @return the city.
    */
-  public String getUrl() {
-    return url;
+  public City getCity() {
+    return city;
   }
 
   /**
-   * Sets the url.
+   * Sets the city.
    *
-   * @param url
-   *          the new url to set.
+   * @param city
+   *          the new city to set.
    */
-  public void setUrl(@Nullable String url) {
-    this.url = url;
+  public void setCity(@Nullable City city) {
+    this.city = city;
   }
 
   /**
-   * Gets the language.
+   * Gets the email.
    *
-   * @return the language.
+   * @return the email.
    */
-  public Language getLanguage() {
-    return language;
+  public String getEmail() {
+    return email;
   }
 
   /**
-   * Sets the language.
+   * Sets the email.
    *
-   * @param language
-   *          the new language to set.
+   * @param email
+   *          the new email to set.
    */
-  public void setLanguage(@Nullable Language language) {
-    this.language = language;
+  public void setEmail(@Nullable String email) {
+    this.email = email;
+  }
+
+  /**
+   * Gets the website.
+   *
+   * @return the website.
+   */
+  public WebSite getWebsite() {
+    return website;
+  }
+
+  /**
+   * Sets the website.
+   *
+   * @param website
+   *          the new website to set.
+   */
+  public void setWebsite(@Nullable WebSite website) {
+    this.website = website;
   }
 
   /**
@@ -145,7 +185,7 @@ public class WebSite extends Taggable {
    *
    * @param description the new description to set.
    */
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 

@@ -7,10 +7,26 @@
 package cn.edu.nju.starfish.ilibrary.model;
 
 /**
- * The model of tag, which store the information of a tag.
- * 
+ * The enumeration of access modes of publications.
+ *
  * @author Haixing Hu
  */
-public class Tag {
+public enum AccessMode {
+
+  /**
+   * Indicates an open access.
+   */
+  OPEN,
+
+  /**
+   * Indicates a free access.
+   */
+  FREE,
+
+
+  /**
+   * Indicates none of the above.
+   */
+  NONE,
 
 }
