@@ -19,7 +19,7 @@ import cn.edu.nju.starfish.ilibrary.model.tag.Taggable;
  *
  * @author Haixing Hu
  */
-public class WebSite extends Taggable {
+public class Website extends Taggable {
 
   private int id;
   private String title;
@@ -29,9 +29,9 @@ public class WebSite extends Taggable {
   private int documentCount;
 
   /**
-   * Default constructs a {@link WebSite}.
+   * Default constructs a {@link Website}.
    */
-  public WebSite() {
+  public Website() {
     id = -1;
     title = null;
     url = null;
@@ -41,12 +41,12 @@ public class WebSite extends Taggable {
   }
 
   /**
-   * Constructs a {@link WebSite}.
+   * Constructs a {@link Website}.
    *
    * @param url
    *          the URL of the new web site.
    */
-  public WebSite(@Nullable String url) {
+  public Website(@Nullable String url) {
     this.id = - 1;
     this.title = null;
     this.url = url;

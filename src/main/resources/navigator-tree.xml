@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigator>
+	<library>
+		<types>
+			<articles />
+			<books />
+			<media />
+			<patents-law />
+			<reports-references />
+		</types>
+		<search />
+		<recent-import />
+		<recent-read />
+		<archive />
+		<trash />
+	</library>
+	<my-works>
+		<manuscripts />
+		<publications />
+	</my-works>
+	<sources>
+		<authors />
+		<publishers />
+		<conferences />
+		<periodicals />
+		<websites />
+	</sources>
+	<collections />
+</navigator>

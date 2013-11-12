@@ -6,10 +6,20 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.navigator;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.apache.commons.configuration.Configuration;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 
@@ -18,22 +28,50 @@ import cn.edu.nju.starfish.ilibrary.Application;
  *
  * @author Haixing Hu
  */
-public class NavigatorTree extends Composite {
+public class NavigatorTree extends TreeViewer {
 
-  public static final String KEY = NavigatorPanel.KEY + ".tree";
+  public static final String KEY = NavigatorPanel.KEY + ".tree"; // window.navigator.tree
+
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(NavigatorTree.class);
 
   private final Application application;
 
   public NavigatorTree(Application application, Composite parent) {
-    super(parent, SWT.NONE);
+    super(parent, SWT.SINGLE);
     this.application = application;
     createContents();
   }
 
   private void createContents() {
-    this.setLayout(new FillLayout());
-    //  TODO
-    new Label(this, SWT.NONE).setText("NavigationTree");
+    final Configuration config = application.getConfig();
+    final String inputFile = config.getString(KEY + ".input");
+    final URL inputUrl = this.getClass().getResource(inputFile);
+    if (inputUrl == null) {
+      LOGGER.error("Failed to load the resource: {}", inputFile);
+      return;
+    }
+    InputStream stream = null;
+    try {
+      final DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+      final DocumentBuilder builder = builderFactory.newDocumentBuilder();
+      stream = inputUrl.openStream();
+      final Document doc = builder.parse(stream);
+      this.setContentProvider(new NavigatorTreeContentProvider());
+      this.setLabelProvider(new NavigatorTreeLabelProvider(application));
+      this.setInput(doc);
+    } catch (final Exception e) {
+      LOGGER.error("Failed to load the navigator tree definition file: {}", inputFile, e);
+      return;
+    } finally {
+      if (stream != null) {
+        try {
+          stream.close();
+        } catch (final IOException e) {
+          LOGGER.error("Closing stream filed: {}", e);
+        }
+      }
+    }
   }
 
 }

@@ -31,7 +31,7 @@ public class Person extends Taggable {
   private String displayName;
   private String nickname;
   private String email;
-  private WebSite homepage;
+  private Website homepage;
   private Institute institute;
   private String description;
   private int documentCount;
@@ -282,7 +282,7 @@ public class Person extends Taggable {
    *
    * @return the home page.
    */
-  public WebSite getHomepage() {
+  public Website getHomepage() {
     return homepage;
   }
 
@@ -292,7 +292,7 @@ public class Person extends Taggable {
    * @param homepage
    *          the new home page to set.
    */
-  public void setHomepage(@Nullable WebSite homepage) {
+  public void setHomepage(@Nullable Website homepage) {
     this.homepage = homepage;
   }
 

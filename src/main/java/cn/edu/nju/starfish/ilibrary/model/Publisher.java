@@ -27,7 +27,7 @@ public class Publisher extends Taggable {
   private String name;
   private String abbreviation;
   private List<City> cities;
-  private WebSite webSite;
+  private Website website;
   private String description;
   private int documentCount;
 
@@ -39,7 +39,7 @@ public class Publisher extends Taggable {
     name = null;
     abbreviation = null;
     cities = null;
-    webSite = null;
+    website = null;
     description = null;
     documentCount = 0;
   }
@@ -55,7 +55,7 @@ public class Publisher extends Taggable {
     this.name = name;
     this.abbreviation = null;
     this.cities = null;
-    this.webSite = null;
+    this.website = null;
     this.description = null;
     this.documentCount = 0;
   }
@@ -137,21 +137,21 @@ public class Publisher extends Taggable {
   }
 
   /**
-   * Gets the web site.
+   * Gets the website.
    *
-   * @return the web site.
+   * @return the website.
    */
-  public WebSite getWebSite() {
-    return webSite;
+  public Website getWebsite() {
+    return website;
   }
 
   /**
-   * Sets the web site.
+   * Sets the website.
    *
-   * @param webSite the new web site to set.
+   * @param website the new website to set.
    */
-  public void setWebSite(@Nullable WebSite webSite) {
-    this.webSite = webSite;
+  public void setWebsite(@Nullable Website website) {
+    this.website = website;
   }
 
   /**

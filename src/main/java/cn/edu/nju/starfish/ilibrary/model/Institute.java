@@ -25,7 +25,7 @@ public class Institute extends Taggable {
   private String name;
   private City city;
   private String email;
-  private WebSite website;
+  private Website website;
   private String description;
   private int documentCount;
 
@@ -157,7 +157,7 @@ public class Institute extends Taggable {
    *
    * @return the website.
    */
-  public WebSite getWebsite() {
+  public Website getWebsite() {
     return website;
   }
 
@@ -167,7 +167,7 @@ public class Institute extends Taggable {
    * @param website
    *          the new website to set.
    */
-  public void setWebsite(@Nullable WebSite website) {
+  public void setWebsite(@Nullable Website website) {
     this.website = website;
   }
 

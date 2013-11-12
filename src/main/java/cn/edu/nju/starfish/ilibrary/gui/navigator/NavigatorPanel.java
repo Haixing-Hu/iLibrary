@@ -73,7 +73,7 @@ public final class NavigatorPanel extends Composite {
     fd_navigatorTree.top = new FormAttachment(0);
     fd_navigatorTree.right = new FormAttachment(100);
     fd_navigatorTree.bottom = new FormAttachment(footer);
-    navigatorTree.setLayoutData(fd_navigatorTree);
+    navigatorTree.getControl().setLayoutData(fd_navigatorTree);
 
     final FormData fd_statusLine = new FormData();
     fd_statusLine.left = new FormAttachment(0);
