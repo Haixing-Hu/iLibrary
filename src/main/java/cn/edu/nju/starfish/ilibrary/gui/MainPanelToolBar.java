@@ -22,7 +22,7 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.ForceTextToolBarManager;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
- * The base class for tool bars on the main panel.
+ * The base class for the tool bars in the tabs of the main panel.
  *
  * @author Haixing Hu
  */

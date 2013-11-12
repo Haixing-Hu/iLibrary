@@ -38,7 +38,6 @@ public enum FlagFilter {
    * @param filter the new flag filter.
    */
   public static void update(Application application, FlagFilter filter) {
-    LOGGER.info("Changing flag filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
     final Action all = am.getAction(FlagFilterAllAction.KEY);

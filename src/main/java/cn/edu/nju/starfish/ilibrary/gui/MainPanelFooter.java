@@ -18,7 +18,7 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
- * The footer the main panel.
+ * The base class for the footers in the tabs of the main panel.
  *
  * @author Haixing Hu
  */

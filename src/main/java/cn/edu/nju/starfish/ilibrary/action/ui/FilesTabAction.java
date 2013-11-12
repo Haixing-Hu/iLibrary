@@ -27,6 +27,7 @@ public class FilesTabAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Switch inspector tab to {}", InspectorTab.FILES);
     InspectorTab.update(application, InspectorTab.FILES);
   }
 

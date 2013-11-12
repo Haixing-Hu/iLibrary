@@ -25,6 +25,7 @@ public class ReadFilterReadingAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
+    logger.info("Set the read filter to {}", ReadFilter.READING);
     ReadFilter.update(application, ReadFilter.READING);
   }
 

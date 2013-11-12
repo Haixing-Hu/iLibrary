@@ -27,6 +27,7 @@ public class ShowNavigatorAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Show the navigator.");
     //  show the navigator panel
     final MainWindow mainWindow = application.getMainWindow();
     mainWindow.showNavigator();

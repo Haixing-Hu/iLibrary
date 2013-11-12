@@ -18,14 +18,14 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.document.DocumentTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.library.LibraryTab;
-import cn.edu.nju.starfish.ilibrary.gui.viewer.ViewerTab;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
- * The tab folder in the main panel.
+ * The main panel, which is a tab folder.
  *
  * @author Haixing Hu
  */
@@ -35,7 +35,7 @@ public final class MainPanel extends CTabFolder {
 
   private final Application application;
   private LibraryTab libraryTab;
-  private List<ViewerTab> viewerTabs;
+  private List<DocumentTab> documentTabs;
 
   public MainPanel(Application application, Composite parent) {
     //  IMPORTANT: in order to remove the margin of the tab folder, the
@@ -66,10 +66,10 @@ public final class MainPanel extends CTabFolder {
    */
   private void createContents() {
     libraryTab = new LibraryTab(application, this);
-    viewerTabs = new LinkedList<ViewerTab>();
+    documentTabs = new LinkedList<DocumentTab>();
     this.setSelection(libraryTab);
     //  FIXME: debug code
-    viewerTabs.add(new ViewerTab(application, this));
+    documentTabs.add(new DocumentTab(application, this));
   }
 
   /**
@@ -82,12 +82,12 @@ public final class MainPanel extends CTabFolder {
   }
 
   /**
-   * Gets the list of viewer tab.
+   * Gets the list of document tabs.
    *
-   * @return the list of viewer tab.
+   * @return the list of document tabs.
    */
-  public List<ViewerTab> getViewerTabs() {
-    return viewerTabs;
+  public List<DocumentTab> getDocumentTabs() {
+    return documentTabs;
   }
 
   @Override

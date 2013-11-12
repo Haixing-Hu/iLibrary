@@ -53,7 +53,6 @@ public final class ViewMode {
    *      the new view mode.
    */
   public static void update(Application application, int mode) {
-    LOGGER.info("Changing view mode to: {}", mode);
     final ApplicationState state = application.getState();
     final MainWindow mainWindow = application.getMainWindow();
     final MainPanel mainPanel = mainWindow.getMainPanel();

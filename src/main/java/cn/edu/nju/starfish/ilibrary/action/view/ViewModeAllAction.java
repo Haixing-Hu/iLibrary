@@ -27,6 +27,7 @@ public class ViewModeAllAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Set the view mode to ALL");
     ViewMode.update(application, ViewMode.ALL);
   }
 }

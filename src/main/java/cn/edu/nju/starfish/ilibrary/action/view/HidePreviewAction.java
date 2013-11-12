@@ -26,6 +26,7 @@ public class HidePreviewAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Hide the preview.");
     final ApplicationState state = application.getState();
     int mode = state.getViewMode();
     mode &= (~ ViewMode.PREVIEW);

@@ -3,6 +3,7 @@ package cn.edu.nju.starfish.ilibrary;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -15,11 +16,11 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 public class TestGUI extends Composite {
@@ -161,23 +162,14 @@ public class TestGUI extends Composite {
     documentTab.setControl(composite_1);
     composite_1.setLayout(new FormLayout());
 
-    final Label lblNewLabel = new Label(composite_1, SWT.NONE);
-    final Label lblTab_1 = new Label(composite_1, SWT.HORIZONTAL);
-
-    final FormData fd_lblNewLabel = new FormData();
-    fd_lblNewLabel.left = new FormAttachment(0);
-    fd_lblNewLabel.right  = new FormAttachment(lblTab_1);
-    lblNewLabel.setLayoutData(fd_lblNewLabel);
-    lblNewLabel.setText("New Label");
-
-    final FormData fd_lblTab_1 = new FormData();
-    fd_lblTab_1.bottom = new FormAttachment(0);
-    fd_lblTab_1.top = new FormAttachment(0);
-    fd_lblTab_1.left = new FormAttachment(100, -65);
-    fd_lblTab_1.right = new FormAttachment(100);
-    lblTab_1.setLayoutData(fd_lblTab_1);
-    lblTab_1.setEnabled(false);
-    lblTab_1.setText("Tab 2");
+    final TreeViewer treeViewer = new TreeViewer(composite_1, SWT.BORDER);
+    final Tree tree = treeViewer.getTree();
+    final FormData fd_tree = new FormData();
+    fd_tree.top = new FormAttachment(0);
+    fd_tree.left = new FormAttachment(0);
+    fd_tree.right = new FormAttachment(0, 224);
+    fd_tree.bottom = new FormAttachment(100, -48);
+    tree.setLayoutData(fd_tree);
 
     final ToolBar mainToolBar = new ToolBar(this, SWT.NONE);
     mainToolBar.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false, 1, 1));

@@ -37,7 +37,7 @@ public final class LibraryPanel extends Composite {
   private LibraryPanelHeader header;
   private LibraryPanelContent content;
   private Sash sash;
-  private PreviewPanel preview;
+  private LibraryPanelPreview preview;
   private LibraryPanelToolBar toolBar;
   private LibraryPanelFooter footer;
 
@@ -56,7 +56,7 @@ public final class LibraryPanel extends Composite {
     header = new LibraryPanelHeader(application, this);
     content = new LibraryPanelContent(application, this);
     sash = new Sash(this, SWT.HORIZONTAL | SWT.BORDER | SWT.SMOOTH);
-    preview = new PreviewPanel(application, this);
+    preview = new LibraryPanelPreview(application, this);
     toolBar = new LibraryPanelToolBar(application, this);
     footer = new LibraryPanelFooter(application, this);
   }
@@ -218,7 +218,7 @@ public final class LibraryPanel extends Composite {
    *
    * @return the preview.
    */
-  public PreviewPanel getPreview() {
+  public LibraryPanelPreview getPreview() {
     return preview;
   }
 

@@ -27,6 +27,7 @@ public class ViewModeNoneAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Set the view mode to NONE");
     ViewMode.update(application, ViewMode.NONE);
   }
 }

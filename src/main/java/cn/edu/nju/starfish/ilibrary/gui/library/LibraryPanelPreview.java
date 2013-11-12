@@ -17,7 +17,7 @@ import cn.edu.nju.starfish.ilibrary.Application;
  *
  * @author Haixing Hu
  */
-public class PreviewPanel extends Composite {
+public class LibraryPanelPreview extends Composite {
 
   public static final String KEY = LibraryTab.KEY + ".preview"; //  "window.main.tab.library.preview"
 
@@ -26,7 +26,7 @@ public class PreviewPanel extends Composite {
   private final int minHeight;
   private final int maxHeight;
 
-  public PreviewPanel(Application application, Composite parent) {
+  public LibraryPanelPreview(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();

@@ -27,6 +27,7 @@ public class ViewModePreviewAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Set the view mode to PREVIEW");
     ViewMode.update(application, ViewMode.PREVIEW);
   }
 }

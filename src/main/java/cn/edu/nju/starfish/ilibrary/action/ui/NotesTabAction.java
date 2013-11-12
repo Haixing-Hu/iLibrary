@@ -27,6 +27,7 @@ public class NotesTabAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Switch inspector tab to {}", InspectorTab.NOTES);
     InspectorTab.update(application, InspectorTab.NOTES);
   }
 }

@@ -28,7 +28,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterReportAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanelHeader;
 
 /**
- * The tool bar used to filter the documents.
+ * The header in the library panel.
  *
  * @author Haixing Hu
  */

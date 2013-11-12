@@ -173,4 +173,4 @@ message.error.unimplemented-function = 该功能尚未实现
 
 # the text in the GUI widgets
 window.main.tab.library.title = 图书馆
-window.main.tab.viewer.title = 文档
+window.main.tab.document.title = 文档

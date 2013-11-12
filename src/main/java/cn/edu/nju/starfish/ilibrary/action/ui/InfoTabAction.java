@@ -27,6 +27,7 @@ public class InfoTabAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Switch inspector tab to {}", InspectorTab.INFO);
     InspectorTab.update(application, InspectorTab.INFO);
   }
 

@@ -12,7 +12,8 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.wb.swt.SWTResourceManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
@@ -24,7 +25,8 @@ import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
  */
 public class BaseAction extends Action {
 
-  protected Application application;
+  protected final Application application;
+  protected final Logger logger;
 
   /**
    * Constructs an action.
@@ -51,8 +53,9 @@ public class BaseAction extends Action {
    *          the style of the new action.
    */
   protected BaseAction(Application application, String key, int style) {
-    super("", style);
+    super(key, style);
     this.application = application;
+    this.logger = LoggerFactory.getLogger(this.getClass());
     this.setId(key);
     final String title = application.getTitle(key);
     final String shortcut = application.getShortcut(key);
@@ -94,13 +97,10 @@ public class BaseAction extends Action {
     if (imagePath == null) {
       this.setImageDescriptor(null);
     } else {
-      try {
-        final Image img = SWTResourceManager.getImage(BaseAction.class, imagePath);
+      final Image img = SWTUtils.loadImage(imagePath);
+      if (img != null) {
         final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
         this.setImageDescriptor(imgdes);
-      } catch (final Exception e) {
-        application.getLogger().error("Failed to load the action image: {}", imagePath);
-        e.printStackTrace();
       }
     }
   }

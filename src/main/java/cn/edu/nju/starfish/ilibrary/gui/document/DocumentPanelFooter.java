@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.viewer;
+package cn.edu.nju.starfish.ilibrary.gui.document;
 
 import org.eclipse.swt.widgets.Composite;
 
@@ -12,21 +12,21 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanelFooter;
 
 /**
- * The footer the viewer panel.
+ * The footer in the document panel.
  *
  * @author Haixing Hu
  */
-public class ViewerPanelFooter extends MainPanelFooter {
+public class DocumentPanelFooter extends MainPanelFooter {
 
   /**
-   * Creates a status line.
+   * Creates a footer.
    *
    * @param application
    *    the application.
    * @param parent
-   *    the parent of the new status line.
+   *    the parent of the new footer.
    */
-  public ViewerPanelFooter(Application application, Composite parent) {
+  public DocumentPanelFooter(Application application, Composite parent) {
     super(application, parent);
   }
 }

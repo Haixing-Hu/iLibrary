@@ -53,10 +53,9 @@ public enum InspectorTab {
    *          the tab to be switched to.
    */
   public static void update(Application application, InspectorTab tab) {
-    LOGGER.info("Switching inspector tab to: {}", tab);
     final MainWindow mainWindow = application.getMainWindow();
     final MainPanel mainPanel = mainWindow.getMainPanel();
-    final MainPanelTab tabItem = (MainPanelTab) mainPanel.getSelection();
+    final MainPanelTab tabItem = mainPanel.getSelection();
     final InspectorPanel inspector = tabItem.getInspector();
     final InspectorTabFolder tabFolder = inspector.getTabFolder();
     final StackLayout stackLayout = tabFolder.getStackLayout();

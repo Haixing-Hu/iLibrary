@@ -22,7 +22,7 @@ import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
- * The tool bar used to filter the documents.
+ * The base class for the headers in the tabs of the main panel.
  *
  * @author Haixing Hu
  */

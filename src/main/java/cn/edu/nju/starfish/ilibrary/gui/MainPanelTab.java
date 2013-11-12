@@ -25,7 +25,7 @@ import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
- * The abstract base class for all tab items in the main panel.
+ * The base class for the tabs of the main panel.
  *
  * @author Haixing Hu
  */

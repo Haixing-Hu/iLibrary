@@ -25,6 +25,7 @@ public class FlagFilterUnflaggedAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
+    logger.info("Set the flag filter to {}", FlagFilter.UNFLAGGED);
     FlagFilter.update(application, FlagFilter.UNFLAGGED);
   }
 

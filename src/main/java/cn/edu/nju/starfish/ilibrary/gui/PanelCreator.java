@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 import cn.edu.nju.starfish.ilibrary.Application;
 
 /**
- * An interface for the creators used to create a panel on a tab item.
+ * A creator used to create a panel on a tab item.
  *
  * @author Haixing Hu
  */

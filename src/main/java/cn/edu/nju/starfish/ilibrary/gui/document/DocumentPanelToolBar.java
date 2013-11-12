@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.viewer;
+package cn.edu.nju.starfish.ilibrary.gui.document;
 
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.widgets.Composite;
@@ -22,11 +22,11 @@ import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanelToolBar;
 
 /**
- * The main tool bar.
+ * The tool bar in the document panel.
  *
  * @author Haixing Hu
  */
-public final class ViewerPanelToolBar extends MainPanelToolBar {
+public final class DocumentPanelToolBar extends MainPanelToolBar {
 
   private static final String ACTIONS[] = {
     ReadFullScreenAction.KEY,
@@ -42,7 +42,7 @@ public final class ViewerPanelToolBar extends MainPanelToolBar {
     ViewModeAction.KEY,
   };
 
-  public ViewerPanelToolBar(Application application, Composite parent) {
+  public DocumentPanelToolBar(Application application, Composite parent) {
     super(application, parent, ACTIONS);
   }
 }

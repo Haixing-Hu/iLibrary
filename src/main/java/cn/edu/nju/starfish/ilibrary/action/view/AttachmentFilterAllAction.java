@@ -25,6 +25,7 @@ public class AttachmentFilterAllAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
+    logger.info("Set the attachment filter to {}", AttachmentFilter.ALL);
     AttachmentFilter.update(application, AttachmentFilter.ALL);
   }
 

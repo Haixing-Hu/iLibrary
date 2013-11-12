@@ -26,6 +26,7 @@ public class ShowPreviewAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Show the preview.");
     final ApplicationState state = application.getState();
     int mode = state.getViewMode();
     mode |= ViewMode.PREVIEW;

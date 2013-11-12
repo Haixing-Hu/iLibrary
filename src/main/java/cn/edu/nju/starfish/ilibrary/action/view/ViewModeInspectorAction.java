@@ -27,6 +27,7 @@ public class ViewModeInspectorAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Set the view mode to INSPECTOR");
     ViewMode.update(application, ViewMode.INSPECTOR);
   }
 }

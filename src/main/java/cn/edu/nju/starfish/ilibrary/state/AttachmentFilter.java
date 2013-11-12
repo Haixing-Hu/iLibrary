@@ -38,7 +38,6 @@ public enum AttachmentFilter {
    * @param filter the new attachment filter.
    */
   public static void update(Application application, AttachmentFilter filter) {
-    LOGGER.info("Changing attachment filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
     final Action all = am.getAction(AttachmentFilterAllAction.KEY);

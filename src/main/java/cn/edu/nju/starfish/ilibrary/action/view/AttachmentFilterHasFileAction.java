@@ -25,6 +25,7 @@ public class AttachmentFilterHasFileAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
+    logger.info("Set the attachment filter to {}", AttachmentFilter.HAS_FILE);
     AttachmentFilter.update(application, AttachmentFilter.HAS_FILE);
   }
 }

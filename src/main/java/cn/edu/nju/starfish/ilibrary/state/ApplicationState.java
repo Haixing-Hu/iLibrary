@@ -10,7 +10,7 @@ import org.apache.commons.configuration.Configuration;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.library.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.gui.library.LibraryPanelPreview;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 
 
@@ -48,7 +48,7 @@ public final class ApplicationState {
     navigatorHide = false;
     inspectorWidth = config.getInt(InspectorPanel.KEY + ".width.default");
     inspectorHide = false;
-    previewHeight = config.getInt(PreviewPanel.KEY + ".height.default");
+    previewHeight = config.getInt(LibraryPanelPreview.KEY + ".height.default");
     previewHide = false;
     inspectorTab = InspectorTab.INFO;
   }

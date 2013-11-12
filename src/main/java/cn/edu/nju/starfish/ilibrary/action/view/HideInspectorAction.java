@@ -26,6 +26,7 @@ public class HideInspectorAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Hide the inspector.");
     final ApplicationState state = application.getState();
     int mode = state.getViewMode();
     mode &= (~ ViewMode.INSPECTOR);

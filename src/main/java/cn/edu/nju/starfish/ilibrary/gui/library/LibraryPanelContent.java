@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Table;
 import cn.edu.nju.starfish.ilibrary.Application;
 
 /**
- * The content area of the library panel.
+ * The content panel in the library panel.
  *
  * @author Haixing Hu
  */

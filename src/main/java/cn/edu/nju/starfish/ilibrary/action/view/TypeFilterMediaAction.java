@@ -25,6 +25,7 @@ public class TypeFilterMediaAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
+    logger.info("Set the type filter to {}", TypeFilter.MEDIA);
     TypeFilter.update(application, TypeFilter.MEDIA);
   }
 }

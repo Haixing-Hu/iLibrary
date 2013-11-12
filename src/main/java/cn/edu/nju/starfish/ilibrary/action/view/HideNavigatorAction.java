@@ -27,6 +27,7 @@ public class HideNavigatorAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Hide the navigator.");
     //  hide the navigator panel
     final MainWindow mainWindow = application.getMainWindow();
     mainWindow.hideNavigator();

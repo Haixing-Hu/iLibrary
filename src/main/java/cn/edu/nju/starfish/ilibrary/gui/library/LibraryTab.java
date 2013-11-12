@@ -15,7 +15,7 @@ import cn.edu.nju.starfish.ilibrary.gui.MainPanelTab;
 import cn.edu.nju.starfish.ilibrary.gui.PanelCreator;
 
 /**
- * The library tab item.
+ * The library tab.
  *
  * @author Haixing Hu
  */

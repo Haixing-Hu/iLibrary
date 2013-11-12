@@ -48,7 +48,6 @@ public enum TypeFilter {
    * @param filter the new type filter.
    */
   public static void update(Application application, TypeFilter filter) {
-    LOGGER.info("Changing type filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
     final Action all = am.getAction(TypeFilterAllAction.KEY);

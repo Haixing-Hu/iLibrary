@@ -25,6 +25,7 @@ public class TypeFilterBookAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
+    logger.info("Set the type filter to {}", TypeFilter.BOOK);
     TypeFilter.update(application, TypeFilter.BOOK);
   }
 }

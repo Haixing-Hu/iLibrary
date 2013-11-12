@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.viewer;
+package cn.edu.nju.starfish.ilibrary.gui.document;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -19,15 +19,15 @@ import cn.edu.nju.starfish.ilibrary.gui.PanelCreator;
  *
  * @author Haixing Hu
  */
-public final class ViewerTab extends MainPanelTab {
+public final class DocumentTab extends MainPanelTab {
 
-  public static final String KEY = MainPanelTab.KEY + ".viewer";   //   "window.main.tab.viewer"
+  public static final String KEY = MainPanelTab.KEY + ".document";   //   "window.main.tab.document"
 
-  public ViewerTab(Application application, CTabFolder parent) {
+  public DocumentTab(Application application, CTabFolder parent) {
     super(application, KEY, parent, SWT.CLOSE, new PanelCreator() {
       @Override
       public Composite create(Application application, Composite parent) {
-        return new ViewerPanel(application, parent);
+        return new DocumentPanel(application, parent);
       }
     });
   }

@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.viewer;
+package cn.edu.nju.starfish.ilibrary.gui.document;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
@@ -15,21 +15,21 @@ import org.eclipse.swt.widgets.Composite;
 import cn.edu.nju.starfish.ilibrary.Application;
 
 /**
- * The viewer panel.
+ * The document panel.
  *
  * @author Haixing Hu
  */
-public final class ViewerPanel extends Composite {
+public final class DocumentPanel extends Composite {
 
-  public static final String KEY = ViewerTab.KEY + ".panel"; //  "window.main.tab.viewer.panel"
+  public static final String KEY = DocumentTab.KEY + ".panel"; //  "window.main.tab.document.panel"
 
   private final Application application;
-  private ViewerPanelHeader header;
-  private ViewPanelContent content;
-  private ViewerPanelToolBar toolBar;
-  private ViewerPanelFooter footer;
+  private DocumentPanelHeader header;
+  private DocumentPanelContent content;
+  private DocumentPanelToolBar toolBar;
+  private DocumentPanelFooter footer;
 
-  public ViewerPanel(Application application, Composite parent) {
+  public DocumentPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
     createContents();
@@ -37,10 +37,10 @@ public final class ViewerPanel extends Composite {
   }
 
   private void createContents() {
-    header = new ViewerPanelHeader(application, this);
-    content = new ViewPanelContent(application, this);
-    toolBar = new ViewerPanelToolBar(application, this);
-    footer = new ViewerPanelFooter(application, this);
+    header = new DocumentPanelHeader(application, this);
+    content = new DocumentPanelContent(application, this);
+    toolBar = new DocumentPanelToolBar(application, this);
+    footer = new DocumentPanelFooter(application, this);
   }
 
   private void layoutContents() {

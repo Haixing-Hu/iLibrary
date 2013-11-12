@@ -12,19 +12,19 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanelFooter;
 
 /**
- * The footer the library panel.
+ * The footer in the library panel.
  *
  * @author Haixing Hu
  */
 public class LibraryPanelFooter extends MainPanelFooter {
 
   /**
-   * Creates a status line.
+   * Creates a footer.
    *
    * @param application
    *    the application.
    * @param parent
-   *    the parent of the new status line.
+   *    the parent of the new footer.
    */
   public LibraryPanelFooter(Application application, Composite parent) {
     super(application, parent);

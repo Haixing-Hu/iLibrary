@@ -22,7 +22,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanelToolBar;
 
 /**
- * The main tool bar.
+ * The tool bar in the library panel.
  *
  * @author Haixing Hu
  */

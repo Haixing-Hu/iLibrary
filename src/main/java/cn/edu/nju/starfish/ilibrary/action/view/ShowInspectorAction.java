@@ -26,6 +26,7 @@ public class ShowInspectorAction extends BaseAction {
 
   @Override
   public void run() {
+    logger.info("Show the inspector.");
     final ApplicationState state = application.getState();
     int mode = state.getViewMode();
     mode |= ViewMode.INSPECTOR;
