@@ -14,6 +14,9 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import cn.edu.nju.starfish.ilibrary.model.tag.AccessModeTag;
+import cn.edu.nju.starfish.ilibrary.model.tag.PeriodicalTypeTag;
+import cn.edu.nju.starfish.ilibrary.model.tag.TagScope;
 import cn.edu.nju.starfish.ilibrary.model.tag.Taggable;
 
 /**
@@ -490,6 +493,60 @@ public class Periodical extends Taggable {
    */
   public void setDocumentCount(int documentCount) {
     this.documentCount = documentCount;
+  }
+
+  /**
+   * Gets the access mode of this periodical.
+   * <p>
+   * This function will check the tags of this object, and returns the name of
+   * the first tag whose scope is {@link TagScope#ACCESS_MODE}. If there is no
+   * such tag, this function will return the name of {@link AccessMode#NONE}.
+   *
+   * @return the name of the access mode of this periodical.
+   */
+  public String getAccessMode() {
+    return AccessModeTag.getAccessMode(tags);
+  }
+
+  /**
+   * Sets the access mode to this periodical.
+   * <p>
+   * After calling this function, the old tag or tags representing an access
+   * mode will be removed, and a new tag representing the specified access mode
+   * will be added to the tag list.
+   *
+   * @param accessMode
+   *          the name of the new access mode to be set to this periodical.
+   */
+  public void setAccessMode(String accessMode) {
+    tags = AccessModeTag.setAccessMode(tags, accessMode);
+  }
+
+  /**
+   * Gets the type of this periodical.
+   * <p>
+   * This function will check the tags of this object, and returns the name of
+   * the first tag whose scope is {@link TagScope#PERIODICAL_TYPE}. If there is
+   * no such tag, this function will return <code>null</code>.
+   *
+   * @return the name of the type of this periodical.
+   */
+  public String getType() {
+    return PeriodicalTypeTag.getPeriodicalType(tags);
+  }
+
+  /**
+   * Sets the type of this periodical.
+   * <p>
+   * After calling this function, the old tag or tags representing a periodical
+   * will be removed, and a new tag representing the specified periodical type
+   * will be added to the tag list.
+   *
+   * @param type
+   *          the name of the new periodical type to be set to this periodical.
+   */
+  public void setType(String type) {
+    tags = PeriodicalTypeTag.setPeriodicalType(tags, type);
   }
 
   /* (non-Javadoc)

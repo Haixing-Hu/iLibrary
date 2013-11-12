@@ -19,9 +19,9 @@ public enum TagScope {
   UNKNOWN,
 
   /**
-   * The tags in the this scope represent the category of the publication.
+   * The tags in the this scope represent the domain of the publication.
    */
-  CATEGORY,
+  DOMAIN,
 
   /**
    * The tags in the this scope represent the keyword of the publication.

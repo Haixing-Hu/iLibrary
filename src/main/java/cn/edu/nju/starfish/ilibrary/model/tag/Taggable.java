@@ -10,10 +10,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import cn.edu.nju.starfish.ilibrary.model.AccessMode;
-import cn.edu.nju.starfish.ilibrary.model.Conference;
 import cn.edu.nju.starfish.ilibrary.model.Label;
-import cn.edu.nju.starfish.ilibrary.utils.TagListUtils;
+import cn.edu.nju.starfish.ilibrary.utils.TagUtils;
 
 /**
  * The base class for all objects with a tag list.
@@ -51,15 +49,16 @@ public class Taggable {
   }
 
   /**
-   * Gets the list of tags in the specified scope from the tag list of this object.
+   * Gets the list of tags in the specified scope from the tag list of this
+   * object.
    *
    * @param scope
    *          the scope of tags, which cannot be <code>null</code> nor empty.
-   * @return the list of tags in the specified scope, or <code>null</code> if no such
-   *         tag.
+   * @return the list of tags in the specified scope, or <code>null</code> if no
+   *         such tag.
    */
   public final List<Tag> getTagsInScope(String scope) {
-    return TagListUtils.getTagsInScope(scope, tags);
+    return TagUtils.getTagsInScope(scope, tags);
   }
 
   /**
@@ -67,21 +66,37 @@ public class Taggable {
    *
    * @param scope
    *          the scope of tags, which cannot be <code>null</code> nor empty.
-   * @return the first tag in the specified scope, or <code>null</code> if no such
-   *         tag.
+   * @return the first tag in the specified scope, or <code>null</code> if no
+   *         such tag.
    */
   public final Tag getFirstTagInScope(String scope) {
-    return TagListUtils.getFirstTagInScope(scope, tags);
+    return TagUtils.getFirstTagInScope(scope, tags);
   }
 
   /**
-   * Removes all the tags in the specified scope from the tag list of this object.
+   * Adds a tag in the specified scope to the tag list of this object.
    *
    * @param scope
    *          the scope of tags, which cannot be <code>null</code> nor empty.
+   * @param name
+   *          the name of new tag in the specified scope to be added to the tag
+   *          list.
    */
-  public final void removeTagsInScope(String scope) {
-    TagListUtils.removeTagsInScope(scope, tags);
+  public final void addTagInScope(String scope, String name) {
+    tags = TagUtils.addTagInScope(scope, tags, name);
+  }
+
+  /**
+   * Adds the tags in the specified scope to the tag list of this object.
+   *
+   * @param scope
+   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   * @param names
+   *          the names of new tags in the specified scope to be added to the tag
+   *          list.
+   */
+  public final void addTagsInScope(String scope, List<String> names) {
+    tags = TagUtils.addTagsInScope(scope, tags, names);
   }
 
   /**
@@ -94,7 +109,7 @@ public class Taggable {
    *          list.
    */
   public final void updateTagInScope(String scope, String newName) {
-    tags = TagListUtils.updateTagInScope(scope, tags, newName);
+    tags = TagUtils.updateTagInScope(scope, tags, newName);
   }
 
   /**
@@ -103,47 +118,56 @@ public class Taggable {
    * @param scope
    *          the scope of tags, which cannot be <code>null</code> nor empty.
    * @param newNames
-   *          the names of new tags in the specified scope to be added to the tag
+   *          the names of new tags in the specified scope to be added to the
+   *          tag list.
+   */
+  public final void updateTagsInScope(String scope, List<String> newNames) {
+    tags = TagUtils.updateTagsInScope(scope, tags, newNames);
+  }
+
+  /**
+   * Removes a tag in the specified scope from the tag list of this object.
+   *
+   * @param scope
+   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   * @param name
+   *          the name of tag in the specified scope to be removed from the tag
    *          list.
    */
-  public final void updateTagsInScope(String scope, String ... newNames) {
-    tags = TagListUtils.updateTagsInScope(scope, tags, newNames);
+  public final void removeTagInScope(String scope, String name) {
+    TagUtils.removeTagInScope(scope, tags, name);
   }
 
   /**
-   * Gets the access mode of this object.
-   * <p>
-   * This function will check the tags of this object, and returns the name of
-   * the first tag whose scope is {@link TagScope#ACCESS_MODE}. If there is no
-   * such tag, this function will return the name of {@link AccessMode#NONE}.
+   * Removes tags in the specified scope from the tag list of this object.
    *
-   * @return the name of the access mode of this object.
+   * @param scope
+   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   * @param names
+   *          the names of tags in the specified scope to be removed from the tag
+   *          list.
    */
-  public final String getAccessMode() {
-    return AccessModeTag.getAccessMode(tags);
+  public final void removeTagsInScope(String scope, List<String> names) {
+    TagUtils.removeTagsInScope(scope, tags, names);
   }
 
   /**
-   * Sets the access mode to this object.
-   * <p>
-   * After calling this function, the old tag or tags representing an access
-   * mode will be removed, and a new tag representing the specified access mode
-   * will be added to the tag list.
+   * Removes all the tags in the specified scope from the tag list of this
+   * object.
    *
-   * @param accessMode
-   *          the name of the new access mode to be set to this object.
+   * @param scope
+   *          the scope of tags, which cannot be <code>null</code> nor empty.
    */
-  public final void setAccessMode(String accessMode) {
-    tags = AccessModeTag.setAccessMode(accessMode, tags);
+  public final void removeTagsInScope(String scope) {
+    TagUtils.removeTagsInScope(scope, tags);
   }
 
   /**
    * Gets the label of this object.
    * <p>
-   * This function will check the tags of this {@link Conference} object, and
-   * returns the name of the first tag whose scope is {@link TagScope#LABEL}. If
-   * there is no such tag, this function will return the name of
-   * {@link Label#NONE}.
+   * This function will check the tags of this object, and returns the name of
+   * the first tag whose scope is {@link TagScope#LABEL}. If there is no such
+   * tag, this function will return the name of {@link Label#NONE}.
    *
    * @return the enumeration of the label of this object.
    */
@@ -162,34 +186,102 @@ public class Taggable {
    *          the new label to be set to this object.
    */
   public final void setLabel(Label label) {
-    tags = LabelTag.setLabel(label, tags);
+    tags = LabelTag.setLabel(tags, label);
   }
 
   /**
-   * Gets the category of this object.
+   * Gets the domain of this object.
    * <p>
    * This function will check the tags of this object, and returns the name of
-   * the first tag whose scope is {@link TagScope#CATEGORY}. If there is no such
+   * the first tag whose scope is {@link TagScope#DOMAIN}. If there is no such
    * tag, this function will return <code>null</code>.
    *
-   * @return the name of the category of this object, or <code>null</code> if
-   *         the category is not set for this object.
+   * @return the name of the domain of this object, or <code>null</code> if
+   *         the domain is not set for this object.
    */
-  public final String getCategory() {
-    return CategoryTag.getCategory(tags);
+  public final String getDomain() {
+    return DomainTag.getDomain(tags);
   }
 
   /**
-   * Sets the category to this object.
+   * Sets the domain to this object.
    * <p>
    * After calling this function, the old tag or tags representing an access
-   * mode will be removed, and a new tag representing the specified category
+   * mode will be removed, and a new tag representing the specified domain
    * will be added to the tag list.
    *
-   * @param category
-   *          the name of the new category to be set to this object.
+   * @param domain
+   *          the name of the new domain to be set to this object.
    */
-  public final void setCategory(String category) {
-    tags = CategoryTag.setCategory(category, tags);
+  public final void setDomain(String domain) {
+    tags = DomainTag.setDomain(tags, domain);
   }
+
+  /**
+   * Gets the keywords of this object.
+   * <p>
+   * This function will check the tags of the tag list, and returns the names of
+   * the tags in the scope {@link TagScope#KEYWORD}. If there is no such tag,
+   * this function will return <code>null</code>.
+   *
+   * @return the list of keywords of this object, or <code>null</code> if no
+   *         keyword was set.
+   */
+  public final List<String> getKeywords() {
+    return KeywordTag.getKeywords(tags);
+  }
+
+  /**
+   * Sets the keywords of this object.
+   *
+   * @param keywords
+   *          the list of keywords to be set, which cannot be <code>null</code>,
+   *          and every elements in the array cannot be <code>null</code> nor empty.
+   */
+  public final void setKeywords(List<String> keywords) {
+    tags = KeywordTag.setKeywords(tags, keywords);
+  }
+
+  /**
+   * Adds a keyword to this object.
+   *
+   * @param keyword
+   *          the keywords to be added, which cannot be <code>null</code> nor empty.
+   */
+  public final void addKeyword(String keyword) {
+    tags = KeywordTag.addKeyword(tags, keyword);
+  }
+
+  /**
+   * Adds keywords to this object.
+   *
+   * @param keywords
+   *          the list of keywords to be added, which cannot be <code>null</code>,
+   *          and every elements in the array cannot be <code>null</code> nor empty.
+   */
+  public final void addKeywords(List<String> keywords) {
+    tags = KeywordTag.addKeywords(tags, keywords);
+  }
+
+  /**
+   * Removes a keyword from this object.
+   *
+   * @param keyword
+   *          the keywords to be removed, which cannot be <code>null</code> nor empty.
+   */
+  public final void removeKeyword(String keyword) {
+    KeywordTag.removeKeyword(tags, keyword);
+  }
+
+  /**
+   * Removes keywords from this object.
+   *
+   * @param keywords
+   *          the keywords to be removed, which cannot be <code>null</code>, and
+   *          every elements in the array cannot be <code>null</code> nor empty.
+   */
+  public final void removeKeywords(List<String> keywords) {
+    KeywordTag.removeKeywords(tags, keywords);
+  }
+
 }
