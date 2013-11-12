@@ -11,7 +11,6 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
-import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 
 /**
  * The action to hide the navigator panel.
@@ -30,12 +29,11 @@ public class HideNavigatorAction extends BaseAction {
   public void run() {
     //  hide the navigator panel
     final MainWindow mainWindow = application.getMainWindow();
-    final NavigatorPanel navigator = mainWindow.getNavigatorPanel();
-    navigator.hide();
+    mainWindow.hideNavigator();
     //  hide this menu item and show the "show navigator" menu item
     final MainMenuBar menuBar = mainWindow.getMenuBarManager();
     final BaseMenu viewMenu = menuBar.getViewMenu();
-    viewMenu.hideItem(KEY);
+    viewMenu.hideItem(HideNavigatorAction.KEY);
     viewMenu.showItem(ShowNavigatorAction.KEY);
     viewMenu.update(true);
   }

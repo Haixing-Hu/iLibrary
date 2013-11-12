@@ -9,7 +9,6 @@ package cn.edu.nju.starfish.ilibrary.gui.inspector;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
 
 /**
  * The footer of the info tab.
@@ -19,7 +18,7 @@ import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
 public class FilesTabFooter extends InspectorTabFooter {
 
   private static final String ACTIONS[] = {
-    AttachFileAction.KEY,
+   // AttachFileAction.KEY,
   };
 
   public FilesTabFooter(Application application, Composite parent) {

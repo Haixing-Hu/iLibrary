@@ -15,6 +15,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The base class for all actions.
@@ -68,14 +69,9 @@ public class BaseAction extends Action {
     }
     final String icon = application.getIcon(key);
     if (icon != null) {
-      try {
-        final Image img = SWTResourceManager.getImage(BaseAction.class, icon);
-        final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
-        this.setImageDescriptor(imgdes);
-      } catch (final Exception e) {
-        application.getLogger().error("Failed to load the action image: {}", icon);
-        e.printStackTrace();
-      }
+      final Image img = SWTUtils.loadImage(icon);
+      final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
+      this.setImageDescriptor(imgdes);
     }
   }
 

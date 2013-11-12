@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.main;
+package cn.edu.nju.starfish.ilibrary.gui;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
@@ -13,22 +13,24 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.utils.FontUtils;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The footer the main panel.
  *
  * @author Haixing Hu
  */
-public class MainFooter extends Composite {
+public class MainPanelFooter extends Composite {
 
   public static final String KEY = "footer";
 
-  private final CLabel label;
-  private final int height;
+  protected final Application application;
+  protected final int height;
+  protected final String background;
+  protected final int fontSize;
+  protected CLabel label;
 
   /**
    * Creates a status line.
@@ -40,18 +42,24 @@ public class MainFooter extends Composite {
    * @param style
    *    the style of the new status line.
    */
-  public MainFooter(Application application, Composite parent) {
+  public MainPanelFooter(Application application, Composite parent) {
     super(parent, SWT.NONE);
+    this.application = application;
     final Configuration config = application.getConfig();
+    height = config.getInt(KEY + ".height");
+    background = config.getString(KEY + ".background");
+    fontSize = config.getInt(KEY + ".font.size");
+    createContents();
+  }
+
+  private final void createContents() {
     setLayout(new FillLayout());
     label = new CLabel(this, SWT.NONE);
-    height = config.getInt(KEY + ".height");
-    final String background = config.getString(KEY + ".background");
-    final Image image = SWTResourceManager.getImage(MainPanel.class, background);
-    label.setBackground(image);
+    final Image img = SWTUtils.loadImage(background);
+    this.setBackgroundImage(img);
+    label.setBackground(img);
     label.setAlignment(SWT.CENTER);
-    final int fontSize = config.getInt(KEY + ".font.size");
-    final Font font = FontUtils.setHeight(label.getFont(), fontSize);
+    final Font font = SWTUtils.setFontHeight(label.getFont(), fontSize);
     label.setFont(font);
   }
 
@@ -61,7 +69,7 @@ public class MainFooter extends Composite {
    * @param message
    *    the message to be set.
    */
-  public void setMessage(String message) {
+  public final void setMessage(String message) {
     label.setText(message);
   }
 
@@ -70,7 +78,7 @@ public class MainFooter extends Composite {
    *
    * @return the height of this status line.
    */
-  public int getHeight() {
+  public final int getHeight() {
     return height;
   }
 }

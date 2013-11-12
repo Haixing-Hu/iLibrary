@@ -17,6 +17,8 @@ import cn.edu.nju.starfish.ilibrary.action.ui.FilesTabAction;
 import cn.edu.nju.starfish.ilibrary.action.ui.InfoTabAction;
 import cn.edu.nju.starfish.ilibrary.action.ui.NotesTabAction;
 import cn.edu.nju.starfish.ilibrary.action.ui.ReviewsTabAction;
+import cn.edu.nju.starfish.ilibrary.gui.MainPanel;
+import cn.edu.nju.starfish.ilibrary.gui.MainPanelTab;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.FilesTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InfoTab;
@@ -53,7 +55,9 @@ public enum InspectorTab {
   public static void update(Application application, InspectorTab tab) {
     LOGGER.info("Switching inspector tab to: {}", tab);
     final MainWindow mainWindow = application.getMainWindow();
-    final InspectorPanel inspector = mainWindow.getInspectorPanel();
+    final MainPanel mainPanel = mainWindow.getMainPanel();
+    final MainPanelTab tabItem = (MainPanelTab) mainPanel.getSelection();
+    final InspectorPanel inspector = tabItem.getInspector();
     final InspectorTabFolder tabFolder = inspector.getTabFolder();
     final StackLayout stackLayout = tabFolder.getStackLayout();
     final InfoTab infoTab = tabFolder.getInfoTab();

@@ -10,6 +10,7 @@ import org.eclipse.jface.action.Separator;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
+import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CopyAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CopyReferenceAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CutAction;
@@ -52,6 +53,8 @@ public final class EditMenu extends BaseMenu {
     this.add(am.getAction(PasteAction.KEY));
     this.add(am.getAction(DeleteAction.KEY));
     this.add(am.getAction(SelectAllAction.KEY));
+    this.add(new Separator());
+    this.add(am.getAction(AnnotateAction.KEY));
     this.add(new Separator());
     this.add(am.getAction(FontAction.KEY));
     this.add(am.getAction(StyleAction.KEY));

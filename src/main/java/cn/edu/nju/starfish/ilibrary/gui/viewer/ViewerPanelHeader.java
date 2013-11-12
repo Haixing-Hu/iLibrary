@@ -4,24 +4,25 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.gui.inspector;
+package cn.edu.nju.starfish.ilibrary.gui.viewer;
 
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.MainPanelHeader;
 
 /**
- * The footer of the info tab.
+ * The tool bar used to filter the documents.
  *
  * @author Haixing Hu
  */
-public class ReviewsTabFooter extends InspectorTabFooter {
+public final class ViewerPanelHeader extends MainPanelHeader {
 
   private static final String ACTIONS[] = {
-   // AddReviewAction.KEY,
+    //  TODO
   };
 
-  public ReviewsTabFooter(Application application, Composite parent) {
+  public ViewerPanelHeader(Application application, Composite parent) {
     super(application, parent, ACTIONS);
   }
 }

@@ -12,6 +12,11 @@ import java.util.Map;
 import org.eclipse.jface.action.Action;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateAction;
+import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateHighlightAction;
+import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateSelectionAction;
+import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateStrikethroughAction;
+import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateUnderlineAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CopyAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CopyReferenceAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.CutAction;
@@ -183,6 +188,11 @@ public final class ActionManager {
     this.add(new PasteAction(application));
     this.add(new DeleteAction(application));
     this.add(new SelectAllAction(application));
+    this.add(new AnnotateAction(application));
+    this.add(new AnnotateSelectionAction(application));
+    this.add(new AnnotateHighlightAction(application));
+    this.add(new AnnotateUnderlineAction(application));
+    this.add(new AnnotateStrikethroughAction(application));
     this.add(new FontAction(application));
     this.add(new StyleAction(application));
     this.add(new FindAction(application));

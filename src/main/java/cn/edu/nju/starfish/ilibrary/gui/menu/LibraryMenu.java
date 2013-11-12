@@ -15,6 +15,8 @@ import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkPrintedAction;
@@ -35,8 +37,6 @@ import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlAction;
 import cn.edu.nju.starfish.ilibrary.action.library.OpenUrlInBrowserAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RestoreFromTrashAction;
 import cn.edu.nju.starfish.ilibrary.action.library.RevealFilePositionAction;
-import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
-import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
 
 /**
  * The library menu.
@@ -116,7 +116,7 @@ public final class LibraryMenu extends BaseMenu {
         OpenUrlAction.KEY,
         OpenUrlInBrowserAction.KEY,
         AddToCollectionAction.KEY,
-        //EditInformationAction.KEY,
+        EditInformationAction.KEY,
         MergeDocumentsAction.KEY,
     });
     this.update(true);

@@ -21,9 +21,9 @@ import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeInspectorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeNoneAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModePreviewAction;
+import cn.edu.nju.starfish.ilibrary.gui.MainPanel;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
-import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.main.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.gui.library.LibraryTab;
 import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
 
@@ -56,8 +56,8 @@ public final class ViewMode {
     LOGGER.info("Changing view mode to: {}", mode);
     final ApplicationState state = application.getState();
     final MainWindow mainWindow = application.getMainWindow();
-    final InspectorPanel inspector = mainWindow.getInspectorPanel();
-    final PreviewPanel preview = mainWindow.getPreviewPanel();
+    final MainPanel mainPanel = mainWindow.getMainPanel();
+    final LibraryTab libraryTab = (LibraryTab) mainPanel.getItem(0);
     final MainMenuBar menuBar = mainWindow.getMenuBarManager();
     final BaseMenu viewMenu = menuBar.getViewMenu();
     final ActionManager am = application.getActionManager();
@@ -68,8 +68,8 @@ public final class ViewMode {
     final Action mode_none = am.getAction(ViewModeNoneAction.KEY);
     switch (mode) {
     case NONE:
-      inspector.hide();
-      preview.hide();
+      mainPanel.hideInspector();
+      libraryTab.hidePreview();
       //  change the menu items
       viewMenu.showItem(ShowInspectorAction.KEY);
       viewMenu.showItem(ShowPreviewAction.KEY);
@@ -87,8 +87,8 @@ public final class ViewMode {
       state.setViewMode(mode);
       break;
     case INSPECTOR:
-      inspector.show();
-      preview.hide();
+      mainPanel.showInspector();
+      libraryTab.hidePreview();
       // change the menu items
       viewMenu.showItem(HideInspectorAction.KEY);
       viewMenu.showItem(ShowPreviewAction.KEY);
@@ -106,8 +106,8 @@ public final class ViewMode {
       state.setViewMode(mode);
       break;
     case PREVIEW:
-      inspector.hide();
-      preview.show();
+      mainPanel.hideInspector();
+      libraryTab.showPreview();
       // change the menu items
       viewMenu.showItem(ShowInspectorAction.KEY);
       viewMenu.showItem(HidePreviewAction.KEY);
@@ -125,8 +125,8 @@ public final class ViewMode {
       state.setViewMode(mode);
       break;
     case ALL:
-      inspector.show();
-      preview.show();
+      mainPanel.showInspector();
+      libraryTab.showPreview();
       // change the menu items
       viewMenu.showItem(HideInspectorAction.KEY);
       viewMenu.showItem(HidePreviewAction.KEY);

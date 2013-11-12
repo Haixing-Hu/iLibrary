@@ -13,22 +13,26 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Monitor;
+import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.main.LibraryTab;
-import cn.edu.nju.starfish.ilibrary.gui.main.MainPanel;
-import cn.edu.nju.starfish.ilibrary.gui.main.MainTabFolder;
-import cn.edu.nju.starfish.ilibrary.gui.main.PreviewPanel;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The main window of the application.
@@ -44,10 +48,12 @@ public final class MainWindow extends ApplicationWindow {
   private final int defaultWidth;
   private final int minHeight;
   private final int minWidth;
-  private MainMenuBar mainMenuBar;
-  private NavigatorPanel navigatorPanel;
+  private final int sashWidth;
+  private final Color sashColor;
+  private MainMenuBar menuBar;
+  private NavigatorPanel navigator;
+  private Sash sash;
   private MainPanel mainPanel;
-  private InspectorPanel inspectorPanel;
 
   public MainWindow(Application application) {
     super(null);
@@ -57,13 +63,23 @@ public final class MainWindow extends ApplicationWindow {
     this.defaultWidth = config.getInt(KEY + ".width.default");
     this.minHeight = config.getInt(KEY + ".height.min");
     this.minWidth = config.getInt(KEY + ".width.min");
-    final String colorName = config.getString(KEY + ".background.color");
+    this.sashWidth = config.getInt("sash.width");
+    this.sashColor = SWTUtils.parseRGB(config.getString("sash.color"));
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
   }
 
   @Override
   protected Control createContents(Composite parent) {
+    navigator = new NavigatorPanel(application, parent);
+    sash = new Sash(parent, SWT.VERTICAL | SWT.BORDER);
+    mainPanel  = new MainPanel(application, parent);
+    layoutContents(parent);
+    configSash();
+    return parent;
+  }
+
+  private void layoutContents(Composite parent) {
     final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
     layout.marginBottom = 0;
@@ -73,17 +89,69 @@ public final class MainWindow extends ApplicationWindow {
     layout.marginWidth = 0;
     layout.spacing = 0;
     parent.setLayout(layout);
-    navigatorPanel = new NavigatorPanel(application, parent);
-    inspectorPanel = new InspectorPanel(application, parent);
-    mainPanel  = new MainPanel(application, parent,
-        navigatorPanel.getSash(), inspectorPanel.getSash());
-    return parent;
+
+    //  configure the layout data
+    final FormData fd_navigator = new FormData();
+    fd_navigator.top = new FormAttachment(0);
+    fd_navigator.bottom = new FormAttachment(100);
+    fd_navigator.left = new FormAttachment(0);
+    fd_navigator.right = new FormAttachment(sash);
+    navigator.setLayoutData(fd_navigator);
+
+    final int navigatorWidth = navigator.getDefaultWidth();
+
+    final FormData fd_sash = new FormData();
+    fd_sash.top = new FormAttachment(0);
+    fd_sash.bottom = new FormAttachment(100);
+    fd_sash.left = new FormAttachment(0, navigatorWidth);
+    fd_sash.right = new FormAttachment(0, navigatorWidth + sashWidth);
+    sash.setLayoutData(fd_sash);
+
+    final FormData fd_mainPanel = new FormData();
+    fd_mainPanel.top = new FormAttachment(0);
+    fd_mainPanel.bottom = new FormAttachment(100);
+    fd_mainPanel.left = new FormAttachment(sash);
+    fd_mainPanel.right = new FormAttachment(100);
+    mainPanel.setLayoutData(fd_mainPanel);
+
+  }
+
+  private void configSash() {
+    sash.setForeground(sashColor);
+    sash.setBackground(sashColor);
+
+    final ApplicationState state = application.getState();
+    final FormData fd_sash = (FormData) sash.getLayoutData();
+    sash.addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        int newWidth = event.x;
+        newWidth = Math.max(newWidth, navigator.getMinWidth());
+        newWidth = Math.min(newWidth, navigator.getMaxWidth());
+        final Rectangle rect = sash.getParent().getClientArea();
+        final MainPanelTab tab = mainPanel.getSelection();
+        final InspectorPanel inspector = tab.getInspector();
+        final int minPanelWidth = tab.getMinPanelWidth();
+        final int maxPanelWidth = tab.getMaxPanelWidth();
+        final int inspectorWidth = inspector.getBounds().width;
+        newWidth = Math.min(newWidth, rect.width - minPanelWidth - inspectorWidth);
+        newWidth = Math.max(newWidth, rect.width - maxPanelWidth - inspectorWidth);
+        // it's important to modify the event
+        event.x = newWidth;
+        if (event.detail != SWT.DRAG) {
+          fd_sash.left = new FormAttachment(0, newWidth);
+          fd_sash.right = new FormAttachment(0, newWidth + sashWidth);
+          sash.getParent().layout();
+          state.setNavigatorWidth(newWidth);
+        }
+      }
+    });
   }
 
   @Override
   protected MenuManager createMenuManager() {
-    mainMenuBar = new MainMenuBar(application);
-    return mainMenuBar;
+    menuBar = new MainMenuBar(application);
+    return menuBar;
   }
 
   /**
@@ -211,7 +279,7 @@ public final class MainWindow extends ApplicationWindow {
    */
   @Override
   public MainMenuBar getMenuBarManager() {
-    return mainMenuBar;
+    return menuBar;
   }
 
   /**
@@ -220,7 +288,7 @@ public final class MainWindow extends ApplicationWindow {
    * @return the navigator panel.
    */
   public NavigatorPanel getNavigatorPanel() {
-    return navigatorPanel;
+    return navigator;
   }
 
   /**
@@ -233,23 +301,31 @@ public final class MainWindow extends ApplicationWindow {
   }
 
   /**
-   * Gets the inspector panel.
-   *
-   * @return the inspector panel.
+   * Hides the navigator panel.
    */
-  public InspectorPanel getInspectorPanel() {
-    return inspectorPanel;
+  public void hideNavigator() {
+    final ApplicationState state = application.getState();
+    if (! state.isNavigatorHide()) {
+      final FormData data = (FormData) sash.getLayoutData();
+      data.left = new FormAttachment(0);
+      data.right = new FormAttachment(0);
+      sash.getParent().layout();
+      state.setNavigatorHide(true);
+    }
   }
 
   /**
-   * Gets the preview panel.
-   *
-   * @return the preview panel.
-   * @return
+   * Shows the navigator panel.
    */
-  public PreviewPanel getPreviewPanel() {
-    final MainTabFolder tabFolder = mainPanel.getTabFolder();
-    final LibraryTab tab = tabFolder.getLibraryTab();
-    return tab.getPreviewPanel();
+  public void showNavigator() {
+    final ApplicationState state = application.getState();
+    if (state.isNavigatorHide()) {
+      final int oldWidth = state.getNavigatorWidth();
+      final FormData data = (FormData) sash.getLayoutData();
+      data.left = new FormAttachment(0, oldWidth);
+      data.right = new FormAttachment(0, oldWidth + sashWidth);
+      sash.getParent().layout();
+      state.setNavigatorHide(false);
+    }
   }
 }

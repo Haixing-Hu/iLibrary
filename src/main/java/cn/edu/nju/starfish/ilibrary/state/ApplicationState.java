@@ -10,7 +10,7 @@ import org.apache.commons.configuration.Configuration;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.main.PreviewPanel;
+import cn.edu.nju.starfish.ilibrary.gui.library.PreviewPanel;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 
 
@@ -22,6 +22,7 @@ import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
 public final class ApplicationState {
 
   private final Application application;
+  private AnnotateMode annotateMode;
   private int viewMode;
   private FlagFilter flagFilter;
   private ReadFilter readFilter;
@@ -37,6 +38,7 @@ public final class ApplicationState {
 
   public ApplicationState(Application application, Configuration config) {
     this.application = application;
+    annotateMode = AnnotateMode.SELECTION;
     viewMode = ViewMode.ALL;
     flagFilter = FlagFilter.ALL;
     readFilter = ReadFilter.ALL;
@@ -55,12 +57,31 @@ public final class ApplicationState {
    * Synchronize the state with the application.
    */
   public void sync() {
+    AnnotateMode.update(application, annotateMode);
     ViewMode.update(application, viewMode);
     FlagFilter.update(application, flagFilter);
     ReadFilter.update(application, readFilter);
     TypeFilter.update(application, typeFilter);
     AttachmentFilter.update(application, attachmentFilter);
     InspectorTab.update(application, inspectorTab);
+  }
+
+  /**
+   * Gets the annotate mode.
+   *
+   * @return the annotate mode.
+   */
+  public AnnotateMode getAnnotateMode() {
+    return annotateMode;
+  }
+
+  /**
+   * Sets the annotate mode.
+   *
+   * @param annotateMode the new annotate mode to set.
+   */
+  public void setAnnotateMode(AnnotateMode annotateMode) {
+    this.annotateMode = annotateMode;
   }
 
   /**

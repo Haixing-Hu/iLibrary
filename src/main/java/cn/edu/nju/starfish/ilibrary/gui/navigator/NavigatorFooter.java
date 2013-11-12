@@ -15,12 +15,12 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The footer of the navigator panel.
@@ -67,25 +67,25 @@ public class NavigatorFooter extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final String statuslineBg = config.getString(KEY + ".background");
-    final Image statuslineBgImg = SWTResourceManager.getImage(NavigatorFooter.class, statuslineBg);
-    this.setBackgroundImage(statuslineBgImg);
+    final String background = config.getString(KEY + ".background");
+    final Image img = SWTUtils.loadImage(background);
+    this.setBackgroundImage(img);
 
-    final ActionManager am = application.getActionManager();
     toolBarManager = new ToolBarManager(SWT.FLAT);
+    final ActionManager am = application.getActionManager();
     toolBarManager.add(am.getAction(CreateCollectionAction.KEY));
     toolBarManager.add(am.getAction(ManageCollectionAction.KEY));
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 
-    final String toolbarBg = config.getString(KEY + ".toolbar.background");
-    final Image toolbarBgImg = SWTResourceManager.getImage(NavigatorFooter.class, toolbarBg);
-    toolBar.setBackgroundImage(toolbarBgImg);
+    final String toolbar_background = config.getString(KEY + ".toolbar.background");
+    final Image toolbar_img = SWTUtils.loadImage(toolbar_background);
+    toolBar.setBackgroundImage(toolbar_img);
 
     corner = new Composite(this, SWT.NONE);
 
     final String cornerBackground = config.getString(KEY + ".corner.background");
-    final Image cornerBackgroundImg = SWTResourceManager.getImage(NavigatorFooter.class, cornerBackground);
+    final Image cornerBackgroundImg = SWTUtils.loadImage(cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
     final int toolbarTop = config.getInt(KEY + ".toolbar.top");
