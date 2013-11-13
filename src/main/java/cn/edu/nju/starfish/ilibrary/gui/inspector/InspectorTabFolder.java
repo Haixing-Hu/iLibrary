@@ -27,7 +27,7 @@ public final class InspectorTabFolder extends Composite {
 
   private final Application application;
   private StackLayout stackLayout;
-  private NoteTab infoTab;
+  private InfoTab infoTab;
   private NotesTab notesTab;
   private ReviewsTab reviewsTab;
   private FilesTab filesTab;
@@ -44,7 +44,7 @@ public final class InspectorTabFolder extends Composite {
     stackLayout.marginWidth = 0;
     this.setLayout(stackLayout);
 
-    infoTab = new NoteTab(application, this);
+    infoTab = new InfoTab(application, this);
     notesTab = new NotesTab(application, this);
     reviewsTab = new ReviewsTab(application, this);
     filesTab = new FilesTab(application, this);
@@ -67,7 +67,7 @@ public final class InspectorTabFolder extends Composite {
    *
    * @return the info tab.
    */
-  public NoteTab getInfoTab() {
+  public InfoTab getInfoTab() {
     return infoTab;
   }
 

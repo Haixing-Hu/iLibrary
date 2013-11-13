@@ -91,12 +91,12 @@ public final class InspectorHeader extends Composite {
   }
 
   /**
-   * Gets the tool bar.
+   * Gets the tool bar manager.
    *
-   * @return the tool bar.
+   * @return the tool bar manager.
    */
-  public ToolBar getToolBar() {
-    return toolBarManager.getControl();
+  public ToolBarManager getToolBarManager() {
+    return toolBarManager;
   }
 
   /**

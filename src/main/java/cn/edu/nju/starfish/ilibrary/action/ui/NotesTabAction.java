@@ -7,7 +7,7 @@
 package cn.edu.nju.starfish.ilibrary.action.ui;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.InspectorTab;
 
@@ -16,7 +16,7 @@ import cn.edu.nju.starfish.ilibrary.state.InspectorTab;
  *
  * @author Haixing Hu
  */
-public class NotesTabAction extends BaseAction {
+public class NotesTabAction extends BaseCheckBoxAction {
 
   public static final String KEY = "action.ui.notes-tab";
 

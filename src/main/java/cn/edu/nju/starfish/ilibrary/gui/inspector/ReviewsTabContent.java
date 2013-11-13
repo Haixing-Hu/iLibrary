@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
  */
 public class ReviewsTabContent extends Composite {
 
-  public static final String KEY = NoteTab.KEY + ".content"; // "window.inspector.tab.review.content"
+  public static final String KEY = ReviewsTab.KEY + ".content"; // "window.inspector.tab.reviews.content"
 
   private final Application application;
 
