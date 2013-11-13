@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
@@ -66,7 +67,8 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
       return icon;
     }
     if (isCollectionNode(node)) {
-      final String col_key = NavigatorTreeNode.KEY + ".collection";
+      final String suffix = (node.isSmart() ? KeySuffix.SMART_COLLECTION : KeySuffix.COLLECTION);
+      final String col_key = NavigatorTreeNode.KEY + suffix;
       return application.getIcon(col_key);
     } else {  //  otherwise
       return null;

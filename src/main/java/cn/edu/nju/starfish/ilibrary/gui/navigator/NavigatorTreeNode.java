@@ -28,16 +28,21 @@ public final class NavigatorTreeNode {
 
   public static final String COLLECTIONS_KEY = ROOT_NAME + ".collections";
 
+  public static final String SMART_ATTRIBUTE = "smart";
+
   private static final Logger LOGGER =
       LoggerFactory.getLogger(NavigatorTreeNode.class);
 
   private final String key;
+  private final boolean smart;
   private final Element domElement;
   private final NavigatorTreeNode parent;
   private final List<NavigatorTreeNode> children;
 
   public NavigatorTreeNode(Element domElement, @Nullable NavigatorTreeNode parent) {
     this.domElement = domElement;
+    final String attr = domElement.getAttribute(SMART_ATTRIBUTE);
+    this.smart = Boolean.TRUE.toString().equalsIgnoreCase(attr);
     this.parent = parent;
     this.children = new LinkedList<NavigatorTreeNode>();
     if (parent == null) {
@@ -56,6 +61,15 @@ public final class NavigatorTreeNode {
    */
   public String getKey() {
     return key;
+  }
+
+  /**
+   * Gets the smart.
+   *
+   * @return the smart.
+   */
+  public boolean isSmart() {
+    return smart;
   }
 
   /**

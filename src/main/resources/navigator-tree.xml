@@ -23,8 +23,8 @@
         <periodicals />
         <websites />
     </sources>
-    <collections>
-        <flagged/>
+    <collections>        
         <sample-collection/>
+        <sample-smart-collection smart="true"/>
     </collections>
 </navigator>
