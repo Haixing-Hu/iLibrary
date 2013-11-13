@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to view the document in the actual size.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ActualSizeAction extends BaseAction {
 
-  public static final String KEY = "action.view.actual-size";
+  public static final String KEY = ViewAction.KEY + ".actual-size";
 
-  public ActualSizeAction(Application application) {
-    super(application, KEY);
+  public ActualSizeAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

@@ -7,7 +7,7 @@
 package cn.edu.nju.starfish.ilibrary.gui.inspector;
 
 import org.apache.commons.configuration.Configuration;
-import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -79,7 +79,7 @@ public class InspectorTabFooter extends Composite {
     final ActionManager am = application.getActionManager();
     if (actionKeys != null) {
       for (final String key : actionKeys) {
-        final Action action = am.getAction(key);
+        final IAction action = am.get(key);
         toolBarManager.add(action);
       }
     }

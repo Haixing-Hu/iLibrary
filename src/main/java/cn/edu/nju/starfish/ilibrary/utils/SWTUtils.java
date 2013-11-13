@@ -41,7 +41,7 @@ public class SWTUtils {
    *          the path of the image.
    * @return the image loaded, or null if failed.
    */
-  public static Image loadImage(String path) {
+  public static Image getImage(String path) {
     LOGGER.debug("Loading image: {}", path);
     try {
       Image image = IMAGE_CACHE.get(path);

@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to close the current tab.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CloseTabAction extends BaseAction {
 
-  public static final String KEY = "action.window.close-tab";
+  public static final String KEY = WindowAction.KEY + ".close-tab";
 
-  public CloseTabAction(Application application) {
-    super(application, KEY);
+  public CloseTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

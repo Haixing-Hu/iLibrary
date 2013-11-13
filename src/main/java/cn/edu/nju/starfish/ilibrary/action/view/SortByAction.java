@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to set the sorting order of the documents.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class SortByAction extends BaseAction {
 
-  public static final String KEY = "action.view.sort-by";
+  public static final String KEY = ViewAction.KEY + ".sort-by";
 
-  public SortByAction(Application application) {
-    super(application, KEY);
+  public SortByAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

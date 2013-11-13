@@ -66,10 +66,10 @@ public final class InspectorHeader extends Composite {
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.getAction(InfoTabAction.KEY));
-    toolBarManager.add(am.getAction(NotesTabAction.KEY));
-    toolBarManager.add(am.getAction(ReviewsTabAction.KEY));
-    toolBarManager.add(am.getAction(FilesTabAction.KEY));
+    toolBarManager.add(am.get(InfoTabAction.KEY));
+    toolBarManager.add(am.get(NotesTabAction.KEY));
+    toolBarManager.add(am.get(ReviewsTabAction.KEY));
+    toolBarManager.add(am.get(FilesTabAction.KEY));
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 

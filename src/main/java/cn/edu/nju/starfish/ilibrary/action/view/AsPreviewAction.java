@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to view as the preview of the electronic document.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsPreviewAction extends BaseAction {
 
-  public static final String KEY = "action.view.as-preview";
+  public static final String KEY = ViewAction.KEY + ".as-preview";
 
-  public AsPreviewAction(Application application) {
-    super(application, KEY);
+  public AsPreviewAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to merge the selected conferences.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MergeConferencesAction extends BaseAction {
 
-  public static final String KEY = "action.library.merge-conferences";
+  public static final String KEY = LibraryAction.KEY + ".merge-conferences";
 
-  public MergeConferencesAction(Application application) {
-    super(application, KEY);
+  public MergeConferencesAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

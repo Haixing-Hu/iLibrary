@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.edit;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.AnnotateMode;
 
 /**
@@ -17,10 +18,10 @@ import cn.edu.nju.starfish.ilibrary.state.AnnotateMode;
  */
 public class AnnotateSelectionAction extends BaseAction {
 
-  public static final String KEY = "action.edit.annotate.selection";
+  public static final String KEY = AnnotateAction.KEY + ".selection";
 
-  public AnnotateSelectionAction(Application application) {
-    super(application, KEY);
+  public AnnotateSelectionAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override

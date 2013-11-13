@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.TypeFilter;
 
 /**
@@ -19,8 +20,8 @@ public class TypeFilterAllAction extends BaseCheckBoxAction {
 
   public static final String KEY = TypeFilterAction.KEY + ".all";
 
-  public TypeFilterAllAction(Application application) {
-    super(application, KEY);
+  public TypeFilterAllAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override

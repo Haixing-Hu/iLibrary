@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to switch to the previous tab.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class PreviousTabAction extends BaseAction {
 
-  public static final String KEY = "action.window.previous-tab";
+  public static final String KEY = WindowAction.KEY + ".previous-tab";
 
-  public PreviousTabAction(Application application) {
-    super(application, KEY);
+  public PreviousTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

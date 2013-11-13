@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.eclipse.jface.action.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +16,7 @@ import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateHighlightAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateSelectionAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateStrikethroughAction;
 import cn.edu.nju.starfish.ilibrary.action.edit.AnnotateUnderlineAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 
 /**
  * The enumeration of annotate modes.
@@ -47,11 +47,11 @@ public enum AnnotateMode {
     LOGGER.info("Setting the annotate mode to: {}", mode);
     //  TODO: set the annotate mode
     final ActionManager am = application.getActionManager();
-    final Action annotate = am.getAction(AnnotateAction.KEY);
-    final Action selection = am.getAction(AnnotateSelectionAction.KEY);
-    final Action highlight = am.getAction(AnnotateHighlightAction.KEY);
-    final Action underline = am.getAction(AnnotateUnderlineAction.KEY);
-    final Action strikethrough = am.getAction(AnnotateStrikethroughAction.KEY);
+    final Action annotate = am.get(AnnotateAction.KEY);
+    final Action selection = am.get(AnnotateSelectionAction.KEY);
+    final Action highlight = am.get(AnnotateHighlightAction.KEY);
+    final Action underline = am.get(AnnotateUnderlineAction.KEY);
+    final Action strikethrough = am.get(AnnotateStrikethroughAction.KEY);
     switch (mode) {
     case SELECTION:
       //  update action's checking status

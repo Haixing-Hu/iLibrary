@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to zoom in the current document.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ZoomInAction extends BaseAction {
 
-  public static final String KEY = "action.view.zoom-in";
+  public static final String KEY = ViewAction.KEY + ".zoom-in";
 
-  public ZoomInAction(Application application) {
-    super(application, KEY);
+  public ZoomInAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

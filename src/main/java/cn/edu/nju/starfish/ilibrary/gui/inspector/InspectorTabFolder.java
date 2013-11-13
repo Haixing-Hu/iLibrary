@@ -21,13 +21,13 @@ import cn.edu.nju.starfish.ilibrary.Application;
  */
 public final class InspectorTabFolder extends Composite {
 
-  public static final String KEY = InspectorPanel.KEY + ".tab";
+  public static final String KEY = InspectorPanel.KEY + ".tab"; // "window.inspector.tab"
 
   private static final Logger LOGGER = LoggerFactory.getLogger(InspectorTabFolder.class);
 
   private final Application application;
   private StackLayout stackLayout;
-  private InfoTab infoTab;
+  private NoteTab infoTab;
   private NotesTab notesTab;
   private ReviewsTab reviewsTab;
   private FilesTab filesTab;
@@ -44,7 +44,7 @@ public final class InspectorTabFolder extends Composite {
     stackLayout.marginWidth = 0;
     this.setLayout(stackLayout);
 
-    infoTab = new InfoTab(application, this);
+    infoTab = new NoteTab(application, this);
     notesTab = new NotesTab(application, this);
     reviewsTab = new ReviewsTab(application, this);
     filesTab = new FilesTab(application, this);
@@ -67,7 +67,7 @@ public final class InspectorTabFolder extends Composite {
    *
    * @return the info tab.
    */
-  public InfoTab getInfoTab() {
+  public NoteTab getInfoTab() {
     return infoTab;
   }
 

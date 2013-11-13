@@ -8,18 +8,18 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
- * The action to show the notes of the current document.
+ * The action to switch to the library tab.
  *
  * @author Haixing Hu
  */
-public class NotesAction extends BaseAction {
+public class ShowLibraryTabAction extends BaseAction {
 
-  public static final String KEY = "action.window.notes";
+  public static final String KEY = WindowAction.KEY + ".library";
 
-  public NotesAction(Application application) {
-    super(application, KEY);
+  public ShowLibraryTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
-
 }

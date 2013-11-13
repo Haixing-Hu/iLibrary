@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to view as cover flow.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsCoverFlowAction extends BaseAction {
 
-  public static final String KEY = "action.view.as-cover-flow";
+  public static final String KEY = ViewAction.KEY + ".as-cover-flow";
 
-  public AsCoverFlowAction(Application application) {
-    super(application, KEY);
+  public AsCoverFlowAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to open the file of the selected document with an external program.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class OpenFileWithAction extends BaseAction {
 
-  public static final String KEY = "action.library.open-file-with";
+  public static final String KEY = LibraryAction.KEY + ".open-file-with";
 
-  public OpenFileWithAction(Application application) {
-    super(application, KEY);
+  public OpenFileWithAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

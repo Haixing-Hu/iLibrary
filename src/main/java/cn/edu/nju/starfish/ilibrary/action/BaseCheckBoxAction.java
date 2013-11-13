@@ -6,9 +6,11 @@
 
 package cn.edu.nju.starfish.ilibrary.action;
 
+
 import org.eclipse.jface.action.IAction;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The base class for check box actions.
@@ -20,14 +22,16 @@ public class BaseCheckBoxAction extends BaseAction {
   /**
    * Constructs an action.
    *
+   * @param id
+   *          the ID of the new action.
    * @param application
    *          the application the new action belongs to.
-   * @param key
-   *          the key of the new action, which will be used as the ID of the
-   *          new action.
+   * @param actionManager
+   *          the action manager, which is a map from the action's ID to the action.
    */
-  public BaseCheckBoxAction(Application application, String key) {
-    super(application, key, IAction.AS_CHECK_BOX);
+  public BaseCheckBoxAction(String id, Application application,
+      IActionManager actionManager) {
+    super(id, application, actionManager, IAction.AS_CHECK_BOX);
   }
 
 }

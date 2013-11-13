@@ -6,12 +6,16 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.inspector;
 
+import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The content of the info tab.
@@ -20,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.Application;
  */
 public final class InfoTabContent extends Composite {
 
-  public static final String KEY = InfoTab.KEY + ".content";
+  public static final String KEY = NoteTab.KEY + ".content"; // "window.inspector.tab.info.content"
 
   private final Application application;
 
@@ -31,6 +35,10 @@ public final class InfoTabContent extends Composite {
   }
 
   private void createContents() {
+    final Configuration config = application.getConfig();
+    final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
+    final Color color = SWTUtils.parseRGB(rgb);
+    this.setBackground(color);
     // TODO Auto-generated method stub
     this.setLayout(new FillLayout());
     new Label(this, SWT.NONE).setText("InfoTabContent");

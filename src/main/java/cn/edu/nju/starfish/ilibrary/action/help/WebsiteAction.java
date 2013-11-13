@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.help;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to visit the website of the application.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class WebsiteAction extends BaseAction {
 
-  public static final String KEY = "action.help.website";
+  public static final String KEY = HelpAction.KEY + ".website";
 
-  public WebsiteAction(Application application) {
-    super(application, KEY);
+  public WebsiteAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

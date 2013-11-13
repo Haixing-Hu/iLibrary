@@ -22,7 +22,7 @@ import cn.edu.nju.starfish.ilibrary.KeySuffix;
  */
 public class LibraryPanelContent extends CheckboxTableViewer {
 
-  public static final String KEY = LibraryTab.KEY + ".content"; //  "window.main.tab.library.content"
+  public static final String KEY = LibraryPanel.KEY + ".content"; //  "window.main.tab.library.content"
 
   private final int minHeight;
   private final int maxHeight;
@@ -30,8 +30,8 @@ public class LibraryPanelContent extends CheckboxTableViewer {
   public LibraryPanelContent(Application application, Composite parent) {
     super(new Table(parent, SWT.CHECK | SWT.V_SCROLL | SWT.H_SCROLL));
     final Configuration config = application.getConfig();
-    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
-    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
+    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT); // "window.main.tab.library.content.min-height"
+    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT); // "window.main.tab.library.content.max-height"
     createContents();
   }
 

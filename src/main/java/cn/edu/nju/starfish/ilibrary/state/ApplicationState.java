@@ -25,6 +25,7 @@ public final class ApplicationState {
   private final Application application;
   private AnnotateMode annotateMode;
   private int viewMode;
+  private NavigatorVisibility navigatorVisibility;
   private FlagFilter flagFilter;
   private ReadFilter readFilter;
   private TypeFilter typeFilter;
@@ -41,6 +42,7 @@ public final class ApplicationState {
     this.application = application;
     annotateMode = AnnotateMode.SELECTION;
     viewMode = ViewMode.ALL;
+    navigatorVisibility = NavigatorVisibility.VISIBLE;
     flagFilter = FlagFilter.ALL;
     readFilter = ReadFilter.ALL;
     typeFilter = TypeFilter.ALL;
@@ -60,6 +62,7 @@ public final class ApplicationState {
   public void sync() {
     AnnotateMode.update(application, annotateMode);
     ViewMode.update(application, viewMode);
+    NavigatorVisibility.update(application, navigatorVisibility);
     FlagFilter.update(application, flagFilter);
     ReadFilter.update(application, readFilter);
     TypeFilter.update(application, typeFilter);
@@ -101,6 +104,25 @@ public final class ApplicationState {
    */
   public void setViewMode(int viewMode) {
     this.viewMode = viewMode;
+  }
+
+  /**
+   * Gets the navigator visibility.
+   *
+   * @return the navigator visibility.
+   */
+  public NavigatorVisibility getNavigatorVisibility() {
+    return navigatorVisibility;
+  }
+
+  /**
+   * Sets the navigator visibility.
+   *
+   * @param visibility
+   *          the new navigator visibility to set.
+   */
+  public void setNavigatorVisibility(NavigatorVisibility visibility) {
+    this.navigatorVisibility = visibility;
   }
 
   /**

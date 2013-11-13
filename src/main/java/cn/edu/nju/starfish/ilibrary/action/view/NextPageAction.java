@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to goto the next page of the current document.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class NextPageAction extends BaseAction {
 
-  public static final String KEY = "action.view.next-page";
+  public static final String KEY = ViewAction.KEY + ".next-page";
 
-  public NextPageAction(Application application) {
-    super(application, KEY);
+  public NextPageAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

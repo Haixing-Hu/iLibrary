@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to view as the thumbnails of the document.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsThumbnailsAction extends BaseAction {
 
-  public static final String KEY = "action.view.as-thumbnails";
+  public static final String KEY = ViewAction.KEY + ".as-thumbnails";
 
-  public AsThumbnailsAction(Application application) {
-    super(application, KEY);
+  public AsThumbnailsAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

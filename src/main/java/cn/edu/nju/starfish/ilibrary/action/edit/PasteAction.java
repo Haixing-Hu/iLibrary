@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.edit;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to paste the text in the clipboard.
@@ -15,9 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class PasteAction extends BaseAction {
-  public static final String KEY = "action.edit.paste";
+  public static final String KEY = EditAction.KEY + ".paste";
 
-  public PasteAction(Application application) {
-    super(application, KEY);
+  public PasteAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

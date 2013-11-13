@@ -6,145 +6,87 @@
 
 package cn.edu.nju.starfish.ilibrary.action;
 
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.ActionContributionItem;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuCreator;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.ToolItem;
-import org.slf4j.Logger;
+import javax.annotation.Nullable;
+
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.gui.widget.NoImageActionContributionItem;
+import cn.edu.nju.starfish.ilibrary.gui.widget.DropDownAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The base class for drop down actions.
  *
  * @author Haixing Hu
  */
-public class BaseDropDownAction extends BaseAction {
+public class BaseDropDownAction extends DropDownAction {
+
+  protected final Application application;
 
   /**
    * Constructs an action.
    *
+   * @param id
+   *          the id of the new action.
    * @param application
    *          the application the new action belongs to.
-   * @param key
-   *          the key of the new action, which will be used as the ID of the
-   *          new action.
-   * @param subActionKeys
-   *          the keys of the sub-actions in the drop-down menu
-   *          of the new action.
+   * @param actionManager
+   *          the action manager, which is a map from the action's ID to the action.
+   * @param subActionIds
+   *          the IDs of the sub-actions in the drop-down menu of the new
+   *          action.
    */
-  public BaseDropDownAction(Application application, String key,
-      String[] subActionKeys) {
-    super(application, key, IAction.AS_DROP_DOWN_MENU);
-    this.setMenuCreator(new SubMenuCreator(subActionKeys));
-  }
-
-  @Override
-  public void run() {
-    final Logger logger = application.getLogger();
-    logger.warn("Should call runWithEvent() for the action: {}", getId());
-  }
-
-  @Override
-  public void runWithEvent(Event event) {
-    final IMenuCreator mc = this.getMenuCreator();
-    if (mc == null) {
-      final Logger logger = application.getLogger();
-      logger.error("No menu creator for action: {}", getId());
-      return;
-    }
-    if (event.widget instanceof ToolItem) {
-      final ToolItem ti = (ToolItem) event.widget;
-      final Menu menu = mc.getMenu(ti.getParent());
-      //  calculate the position where to display the dropdown menu
-      Point point = new Point(event.x, event.y);
-      final Rectangle rect = ti.getBounds();
-      point.x += rect.x;
-      point.y += rect.y + rect.height;
-      point = ti.getParent().toDisplay(point);
-      // position the menu below the drop down item
-      menu.setLocation(point.x, point.y);
-      menu.setVisible(true);
+  public BaseDropDownAction(String id, Application application,
+      IActionManager actionManager, String[] subActionIds) {
+    super(id, actionManager, subActionIds);
+    this.application = application;
+    //  set the title and icon
+    final String title = application.getTitle(id);
+    final String shortcut = application.getShortcut(id);
+    if (shortcut == null) {
+      this.setText(title);
     } else {
-      final Logger logger = application.getLogger();
-      logger.error("Cannot create pop-menu for action: {}", getId());
+      this.setText(title + "@" + shortcut);
+    }
+    final String description = application.getDescription(id);
+    if (description != null) {
+      this.setToolTipText(description);
+    } else {
+      this.setToolTipText(title);
+    }
+    final String icon = application.getIcon(id);
+    if (icon != null) {
+      final Image img = SWTUtils.getImage(icon);
+      final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
+      this.setImageDescriptor(imgdes);
     }
   }
 
   /**
-   * A sub-menu creator used by this class.
+   * Gets the application this action belongs to.
    *
-   * @author Haixing Hu
+   * @return the application this action belongs to.
    */
-  final class SubMenuCreator implements IMenuCreator {
+  public Application getApplication() {
+    return application;
+  }
 
-    private final String[] actionKeys;
-    private Object parent;
-    private Menu menu;
-
-    public SubMenuCreator(String ... actionKeys) {
-      this.actionKeys = actionKeys;
-      this.parent = null;
-      this.menu = null;
-    }
-
-    @Override
-    public void dispose() {
-      if (menu != null) {
-        menu.dispose();
-        menu = null;
-      }
-    }
-
-    @Override
-    public Menu getMenu(Control parent) {
-      if (menu != null) {
-        if (this.parent == parent) {
-          return menu;
-        }
-        menu.dispose();
-        menu = null;
-      }
-      menu = new Menu(parent);
-      addActions(menu);
-      this.parent = parent;
-      return menu;
-    }
-
-    @Override
-    public Menu getMenu(Menu parent) {
-      if (menu != null) {
-        if (this.parent == parent) {
-          return menu;
-        }
-        menu.dispose();
-        menu = null;
-      }
-      menu = new Menu(parent);
-      addActions(menu);
-      this.parent = parent;
-      return menu;
-    }
-
-    private void addActions(Menu parent) {
-      if (actionKeys != null) {
-        final ActionManager am = application.getActionManager();
-        for (final String key : actionKeys) {
-          final Action action = am.getAction(key);
-          if (action != null) {
-            final ActionContributionItem aci =
-                new NoImageActionContributionItem(action);
-            final int index = parent.getItemCount();
-            aci.fill(parent, index);
-          }
-        }
+  /**
+   * Sets the image of this action.
+   *
+   * @param path
+   *    the resource path of the image to be set, which could be null.
+   */
+  public void setImage(@Nullable String path) {
+    if (path == null) {
+      this.setImageDescriptor(null);
+    } else {
+      final Image img = SWTUtils.getImage(path);
+      if (img != null) {
+        final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
+        this.setImageDescriptor(imgdes);
       }
     }
   }

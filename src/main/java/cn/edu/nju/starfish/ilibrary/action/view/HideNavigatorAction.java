@@ -8,9 +8,8 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
-import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
-import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
-import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
+import cn.edu.nju.starfish.ilibrary.state.NavigatorVisibility;
 
 /**
  * The action to hide the navigator panel.
@@ -19,23 +18,15 @@ import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
  */
 public class HideNavigatorAction extends BaseAction {
 
-  public static final String KEY = "action.view.hide-navigator";
+  public static final String KEY = ViewAction.KEY + ".hide-navigator";
 
-  public HideNavigatorAction(Application application) {
-    super(application, KEY);
+  public HideNavigatorAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override
   public void run() {
     logger.info("Hide the navigator.");
-    //  hide the navigator panel
-    final MainWindow mainWindow = application.getMainWindow();
-    mainWindow.hideNavigator();
-    //  hide this menu item and show the "show navigator" menu item
-    final MainMenuBar menuBar = mainWindow.getMenuBarManager();
-    final BaseMenu viewMenu = menuBar.getViewMenu();
-    viewMenu.hideItem(HideNavigatorAction.KEY);
-    viewMenu.showItem(ShowNavigatorAction.KEY);
-    viewMenu.update(true);
+    NavigatorVisibility.update(application, NavigatorVisibility.INVISIBLE);
   }
 }

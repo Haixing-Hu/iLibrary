@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to reveal the storage position of the files of the selected documents.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class RevealFilePositionAction extends BaseAction {
 
-  public static final String KEY = "action.library.reveal-file-position";
+  public static final String KEY = LibraryAction.KEY + ".reveal-file-position";
 
-  public RevealFilePositionAction(Application application) {
-    super(application, KEY);
+  public RevealFilePositionAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

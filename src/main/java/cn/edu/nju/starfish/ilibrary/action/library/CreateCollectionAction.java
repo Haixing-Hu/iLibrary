@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to create a new collection.
@@ -16,7 +17,7 @@ import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
  */
 public class CreateCollectionAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.library.create-collection";
+  public static final String KEY = LibraryAction.KEY + ".create-collection";
 
   private static final String SUB_ACTIONS[] = {
     CreateNormalCollectionAction.KEY,
@@ -24,7 +25,7 @@ public class CreateCollectionAction extends BaseDropDownAction {
     CreateCollectionFromSelectionAction.KEY,
   };
 
-  public CreateCollectionAction(Application application) {
-    super(application, KEY, SUB_ACTIONS);
+  public CreateCollectionAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager, SUB_ACTIONS);
   }
 }

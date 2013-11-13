@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.eclipse.jface.action.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +15,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.HideInspectorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.HidePreviewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowInspectorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowPreviewAction;
+import cn.edu.nju.starfish.ilibrary.action.view.ViewAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewModeInspectorAction;
@@ -24,8 +24,8 @@ import cn.edu.nju.starfish.ilibrary.action.view.ViewModePreviewAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanel;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.library.LibraryTab;
-import cn.edu.nju.starfish.ilibrary.gui.menu.BaseMenu;
-import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
+import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
+import cn.edu.nju.starfish.ilibrary.gui.widget.DropDownAction;
 
 /**
  * The enumeration of view mode states.
@@ -57,24 +57,23 @@ public final class ViewMode {
     final MainWindow mainWindow = application.getMainWindow();
     final MainPanel mainPanel = mainWindow.getMainPanel();
     final LibraryTab libraryTab = (LibraryTab) mainPanel.getItem(0);
-    final MainMenuBar menuBar = mainWindow.getMenuBarManager();
-    final BaseMenu viewMenu = menuBar.getViewMenu();
     final ActionManager am = application.getActionManager();
-    final Action viewModeAction = am.getAction(ViewModeAction.KEY);
-    final Action mode_all = am.getAction(ViewModeAllAction.KEY);
-    final Action mode_inspector = am.getAction(ViewModeInspectorAction.KEY);
-    final Action mode_preview = am.getAction(ViewModePreviewAction.KEY);
-    final Action mode_none = am.getAction(ViewModeNoneAction.KEY);
+    final DropDownAction viewAction = (DropDownAction) am.get(ViewAction.KEY);
+    final Action viewModeAction = am.get(ViewModeAction.KEY);
+    final Action mode_all = am.get(ViewModeAllAction.KEY);
+    final Action mode_inspector = am.get(ViewModeInspectorAction.KEY);
+    final Action mode_preview = am.get(ViewModePreviewAction.KEY);
+    final Action mode_none = am.get(ViewModeNoneAction.KEY);
     switch (mode) {
     case NONE:
       mainPanel.hideInspector();
       libraryTab.hidePreview();
       //  change the menu items
-      viewMenu.showItem(ShowInspectorAction.KEY);
-      viewMenu.showItem(ShowPreviewAction.KEY);
-      viewMenu.hideItem(HideInspectorAction.KEY);
-      viewMenu.hideItem(HidePreviewAction.KEY);
-      viewMenu.update(true);
+      viewAction.showSubAction(ShowInspectorAction.KEY);
+      viewAction.showSubAction(ShowPreviewAction.KEY);
+      viewAction.hideSubAction(HideInspectorAction.KEY);
+      viewAction.hideSubAction(HidePreviewAction.KEY);
+      viewAction.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_none.getImageDescriptor());
       //  change the action's checking state
@@ -89,11 +88,11 @@ public final class ViewMode {
       mainPanel.showInspector();
       libraryTab.hidePreview();
       // change the menu items
-      viewMenu.showItem(HideInspectorAction.KEY);
-      viewMenu.showItem(ShowPreviewAction.KEY);
-      viewMenu.hideItem(ShowInspectorAction.KEY);
-      viewMenu.hideItem(HidePreviewAction.KEY);
-      viewMenu.update(true);
+      viewAction.showSubAction(HideInspectorAction.KEY);
+      viewAction.showSubAction(ShowPreviewAction.KEY);
+      viewAction.hideSubAction(ShowInspectorAction.KEY);
+      viewAction.hideSubAction(HidePreviewAction.KEY);
+      viewAction.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_inspector.getImageDescriptor());
       //  change the action's checking state
@@ -108,11 +107,11 @@ public final class ViewMode {
       mainPanel.hideInspector();
       libraryTab.showPreview();
       // change the menu items
-      viewMenu.showItem(ShowInspectorAction.KEY);
-      viewMenu.showItem(HidePreviewAction.KEY);
-      viewMenu.hideItem(HideInspectorAction.KEY);
-      viewMenu.hideItem(ShowPreviewAction.KEY);
-      viewMenu.update(true);
+      viewAction.showSubAction(ShowInspectorAction.KEY);
+      viewAction.showSubAction(HidePreviewAction.KEY);
+      viewAction.hideSubAction(HideInspectorAction.KEY);
+      viewAction.hideSubAction(ShowPreviewAction.KEY);
+      viewAction.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_preview.getImageDescriptor());
       //  change the action's checking state
@@ -127,11 +126,11 @@ public final class ViewMode {
       mainPanel.showInspector();
       libraryTab.showPreview();
       // change the menu items
-      viewMenu.showItem(HideInspectorAction.KEY);
-      viewMenu.showItem(HidePreviewAction.KEY);
-      viewMenu.hideItem(ShowInspectorAction.KEY);
-      viewMenu.hideItem(ShowInspectorAction.KEY);
-      viewMenu.update(true);
+      viewAction.showSubAction(HideInspectorAction.KEY);
+      viewAction.showSubAction(HidePreviewAction.KEY);
+      viewAction.hideSubAction(ShowInspectorAction.KEY);
+      viewAction.hideSubAction(ShowPreviewAction.KEY);
+      viewAction.update(true);
       //  change the ViewModeAction icon
       viewModeAction.setImageDescriptor(mode_all.getImageDescriptor());
       //  change the action's checking state

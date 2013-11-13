@@ -9,9 +9,7 @@ package cn.edu.nju.starfish.ilibrary.gui;
 import java.awt.Window;
 
 import org.apache.commons.configuration.Configuration;
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
-import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -30,8 +28,9 @@ import org.eclipse.swt.widgets.Shell;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
-import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
+import cn.edu.nju.starfish.ilibrary.gui.widget.ApplicationWindow;
+import cn.edu.nju.starfish.ilibrary.gui.widget.MenuManager;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
@@ -64,8 +63,8 @@ public final class MainWindow extends ApplicationWindow {
     this.defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     this.minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
     this.minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    this.sashWidth = config.getInt("sash.width");
-    this.sashColor = SWTUtils.parseRGB(config.getString("sash.color"));
+    this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
+    this.sashColor = SWTUtils.parseRGB(config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR));
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
   }

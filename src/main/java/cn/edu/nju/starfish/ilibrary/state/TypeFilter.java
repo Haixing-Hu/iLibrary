@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.eclipse.jface.action.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,6 +17,7 @@ import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterBookAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterMediaAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterPatentAction;
 import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterReportAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 
 /**
  * The enumeration of type filters.
@@ -50,12 +50,12 @@ public enum TypeFilter {
   public static void update(Application application, TypeFilter filter) {
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.getAction(TypeFilterAllAction.KEY);
-    final Action article = am.getAction(TypeFilterArticleAction.KEY);
-    final Action book = am.getAction(TypeFilterBookAction.KEY);
-    final Action report = am.getAction(TypeFilterReportAction.KEY);
-    final Action patent = am.getAction(TypeFilterPatentAction.KEY);
-    final Action media = am.getAction(TypeFilterMediaAction.KEY);
+    final Action all = am.get(TypeFilterAllAction.KEY);
+    final Action article = am.get(TypeFilterArticleAction.KEY);
+    final Action book = am.get(TypeFilterBookAction.KEY);
+    final Action report = am.get(TypeFilterReportAction.KEY);
+    final Action patent = am.get(TypeFilterPatentAction.KEY);
+    final Action media = am.get(TypeFilterMediaAction.KEY);
     switch (filter) {
     case ALL:
       all.setChecked(true);

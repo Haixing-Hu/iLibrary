@@ -6,10 +6,9 @@
 
 package cn.edu.nju.starfish.ilibrary.action.ui;
 
-import org.eclipse.jface.action.IAction;
-
 import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.InspectorTab;
 
 /**
@@ -17,12 +16,12 @@ import cn.edu.nju.starfish.ilibrary.state.InspectorTab;
  *
  * @author Haixing Hu
  */
-public class InfoTabAction extends BaseAction {
+public class InfoTabAction extends BaseCheckBoxAction {
 
   public static final String KEY = "action.ui.info-tab";
 
-  public InfoTabAction(Application application) {
-    super(application, KEY, IAction.AS_CHECK_BOX);
+  public InfoTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override

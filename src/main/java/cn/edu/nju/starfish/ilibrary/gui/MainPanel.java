@@ -53,7 +53,7 @@ public final class MainPanel extends CTabFolder {
   private void configAppearance() {
     final Configuration config = application.getConfig();
     final String path = config.getString(KEY + KeySuffix.SELECTION + KeySuffix.BACKGROUND_IMAGE);
-    final Image img = SWTUtils.loadImage(path);
+    final Image img = SWTUtils.getImage(path);
     this.setSelectionBackground(img);
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
     final Color color = SWTUtils.parseRGB(rgb);

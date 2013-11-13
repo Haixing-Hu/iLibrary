@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to show only the duplicates documents.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ShowDuplicatesAction extends BaseAction {
 
-  public static final String KEY = "action.view.show-duplicates";
+  public static final String KEY = ViewAction.KEY + ".show-duplicates";
 
-  public ShowDuplicatesAction(Application application) {
-    super(application, KEY);
+  public ShowDuplicatesAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

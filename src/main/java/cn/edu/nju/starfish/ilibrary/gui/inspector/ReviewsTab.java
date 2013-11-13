@@ -21,7 +21,7 @@ import cn.edu.nju.starfish.ilibrary.Application;
  */
 public final class ReviewsTab extends Composite {
 
-  public static final String KEY = InspectorTabFolder.KEY + ".reviews";
+  public static final String KEY = InspectorTabFolder.KEY + ".reviews"; // "window.inspector.tab.reviews"
 
   private final Application application;
   private ReviewsTabContent content;

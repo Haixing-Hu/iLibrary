@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Listener;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to quit the application.
@@ -19,10 +20,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class QuitAction extends BaseAction implements Listener {
 
-  public static final String KEY = "action.file.quit";
+  public static final String KEY = FileAction.KEY + ".quit";
 
-  public QuitAction(Application application) {
-    super(application, KEY);
+  public QuitAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override

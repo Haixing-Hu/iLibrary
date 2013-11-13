@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.eclipse.jface.action.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +14,7 @@ import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterHasFileAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterNoFileAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 
 /**
  * The enumeration of attachment filters.
@@ -40,9 +40,9 @@ public enum AttachmentFilter {
   public static void update(Application application, AttachmentFilter filter) {
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.getAction(AttachmentFilterAllAction.KEY);
-    final Action has_file = am.getAction(AttachmentFilterHasFileAction.KEY);
-    final Action no_file = am.getAction(AttachmentFilterNoFileAction.KEY);
+    final Action all = am.get(AttachmentFilterAllAction.KEY);
+    final Action has_file = am.get(AttachmentFilterHasFileAction.KEY);
+    final Action no_file = am.get(AttachmentFilterNoFileAction.KEY);
     switch (filter) {
     case HAS_FILE:
       //  update action's checking status

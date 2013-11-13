@@ -23,9 +23,9 @@ public class CococaApplicationListener implements NsApplicationListener {
   private final QuitAction quit;
 
   public CococaApplicationListener(Application application) {
-    about = new AboutAction(application);
-    preferences = new PreferencesAction(application);
-    quit = new QuitAction(application);
+    about = new AboutAction(application, application.getActionManager());
+    preferences = new PreferencesAction(application, application.getActionManager());
+    quit = new QuitAction(application, application.getActionManager());
   }
 
   @Override

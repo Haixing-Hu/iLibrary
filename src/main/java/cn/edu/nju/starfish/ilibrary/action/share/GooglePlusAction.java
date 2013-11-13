@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.share;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to share the document on the Google+.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class GooglePlusAction extends BaseAction {
 
-  public static final String KEY = "action.share.google-plus";
+  public static final String KEY = ShareAction.KEY + ".google-plus";
 
-  public GooglePlusAction(Application application) {
-    super(application, KEY);
+  public GooglePlusAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

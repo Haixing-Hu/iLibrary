@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to cycle between tabs.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CycleTabsAction extends BaseAction {
 
-  public static final String KEY = "action.window.cycle-tabs";
+  public static final String KEY = WindowAction.KEY + ".cycle-tabs";
 
-  public CycleTabsAction(Application application) {
-    super(application, KEY);
+  public CycleTabsAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

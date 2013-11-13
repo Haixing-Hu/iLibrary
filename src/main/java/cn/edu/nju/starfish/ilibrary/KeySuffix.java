@@ -21,6 +21,8 @@ public interface KeySuffix {
 
   public static final String ICON = ".icon";
 
+  public static final String COLOR = ".color";
+
   public static final String BACKGROUND_IMAGE = ".background-image";
 
   public static final String BACKGROUND_COLOR = ".background-color";
@@ -58,6 +60,8 @@ public interface KeySuffix {
   public static final String SELECTION = ".selection";
 
   public static final String PANEL = ".panel";
+
+  public static final String SASH = ".sash";
 
   public static final String COLLECTION = ".collection";
 

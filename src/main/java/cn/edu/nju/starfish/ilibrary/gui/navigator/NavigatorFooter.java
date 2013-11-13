@@ -69,24 +69,24 @@ public class NavigatorFooter extends Composite {
     this.setLayout(layout);
 
     final String background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
-    final Image img = SWTUtils.loadImage(background);
+    final Image img = SWTUtils.getImage(background);
     this.setBackgroundImage(img);
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.getAction(CreateCollectionAction.KEY));
-    toolBarManager.add(am.getAction(ManageCollectionAction.KEY));
+    toolBarManager.add(am.get(CreateCollectionAction.KEY));
+    toolBarManager.add(am.get(ManageCollectionAction.KEY));
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 
     final String toolbar_background = config.getString(KEY + KeySuffix.TOOLBAR + KeySuffix.BACKGROUND_IMAGE);
-    final Image toolbar_img = SWTUtils.loadImage(toolbar_background);
+    final Image toolbar_img = SWTUtils.getImage(toolbar_background);
     toolBar.setBackgroundImage(toolbar_img);
 
     corner = new Composite(this, SWT.NONE);
 
     final String cornerBackground = config.getString(KEY + KeySuffix.CORNER + KeySuffix.BACKGROUND_IMAGE);
-    final Image cornerBackgroundImg = SWTUtils.loadImage(cornerBackground);
+    final Image cornerBackgroundImg = SWTUtils.getImage(cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
     final int toolbarTop = config.getInt(KEY + KeySuffix.TOOLBAR + KeySuffix.TOP);

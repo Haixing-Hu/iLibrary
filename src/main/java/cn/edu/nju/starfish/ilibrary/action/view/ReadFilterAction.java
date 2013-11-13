@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to filter documents by their read status.
@@ -16,7 +17,7 @@ import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
  */
 public class ReadFilterAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.view.filter.read";
+  public static final String KEY = ViewAction.KEY + ".filter.read";
 
   private static final String SUB_ACTIONS[] = {
     ReadFilterAllAction.KEY,
@@ -25,7 +26,7 @@ public class ReadFilterAction extends BaseDropDownAction {
     ReadFilterHasReadAction.KEY,
   };
 
-  public ReadFilterAction(Application application) {
-    super(application, KEY, SUB_ACTIONS);
+  public ReadFilterAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager, SUB_ACTIONS);
   }
 }

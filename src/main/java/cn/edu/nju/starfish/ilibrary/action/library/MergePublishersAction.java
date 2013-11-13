@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to merge the selected publishers.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MergePublishersAction extends BaseAction {
 
-  public static final String KEY = "action.library.merge-publishers";
+  public static final String KEY = LibraryAction.KEY + ".merge-publishers";
 
-  public MergePublishersAction(Application application) {
-    super(application, KEY);
+  public MergePublishersAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

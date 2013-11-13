@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.help;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to display the about dialog.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AboutAction extends BaseAction {
 
-  public static final String KEY = "action.help.about";
+  public static final String KEY = HelpAction.KEY + ".about";
 
-  public AboutAction(Application application) {
-    super(application, KEY);
+  public AboutAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

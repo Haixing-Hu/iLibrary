@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.FlagFilter;
 
 /**
@@ -19,8 +20,8 @@ public class FlagFilterFlaggedAction extends BaseCheckBoxAction {
 
   public static final String KEY = FlagFilterAction.KEY + ".flagged";
 
-  public FlagFilterFlaggedAction(Application application) {
-    super(application, KEY);
+  public FlagFilterFlaggedAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override

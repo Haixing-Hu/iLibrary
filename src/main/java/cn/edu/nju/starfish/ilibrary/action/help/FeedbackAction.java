@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.help;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to send a feedback to the author.
@@ -15,9 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class FeedbackAction extends BaseAction {
-  public static final String KEY = "action.help.feedback";
 
-  public FeedbackAction(Application application) {
-    super(application, KEY);
+  public static final String KEY = HelpAction.KEY + ".feedback";
+
+  public FeedbackAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

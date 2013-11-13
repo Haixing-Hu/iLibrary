@@ -8,17 +8,19 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
- * The action to show the reviews of the current document.
+ * The action to show the notes of the current document.
  *
  * @author Haixing Hu
  */
-public class ReviewsAction extends BaseAction {
+public class ShowNotesTabAction extends BaseAction {
 
-  public static final String KEY = "action.window.reviews";
+  public static final String KEY = WindowAction.KEY + ".notes";
 
-  public ReviewsAction(Application application) {
-    super(application, KEY);
+  public ShowNotesTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
+
 }

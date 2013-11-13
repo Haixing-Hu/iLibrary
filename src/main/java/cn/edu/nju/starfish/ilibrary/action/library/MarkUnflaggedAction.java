@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to mark the selected documents as unflagged.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MarkUnflaggedAction extends BaseAction {
 
-  public static final String KEY = "action.library.mark-unflagged";
+  public static final String KEY = LibraryAction.KEY + ".mark-unflagged";
 
-  public MarkUnflaggedAction(Application application) {
-    super(application, KEY);
+  public MarkUnflaggedAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

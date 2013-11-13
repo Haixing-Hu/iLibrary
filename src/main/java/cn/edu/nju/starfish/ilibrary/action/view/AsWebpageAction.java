@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to view as the webpage associated with the document.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class AsWebpageAction extends BaseAction {
 
-  public static final String KEY = "action.view.as-webpage";
+  public static final String KEY = ViewAction.KEY + ".as-webpage";
 
-  public AsWebpageAction(Application application) {
-    super(application, KEY);
+  public AsWebpageAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

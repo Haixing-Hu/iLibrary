@@ -8,9 +8,11 @@ package cn.edu.nju.starfish.ilibrary.action.share;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
+import cn.edu.nju.starfish.ilibrary.action.file.ExportAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
- * The action to share the document via email.
+ * The action to show the drop down menu of sharing related actions.
  *
  * @author Haixing Hu
  */
@@ -24,11 +26,14 @@ public class ShareAction extends BaseDropDownAction {
     GooglePlusAction.KEY,
     SinaAction.KEY,
     TencentAction.KEY,
+    SEPARATOR_KEY,
     EmailAction.KEY,
+    SEPARATOR_KEY,
+    ExportAction.KEY,
   };
 
-  public ShareAction(Application application) {
-    super(application, KEY, SUB_ACTIONS);
+  public ShareAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager, SUB_ACTIONS);
   }
 
 }

@@ -17,13 +17,13 @@
         <publications />
     </my-works>
     <sources>
-        <authors />        
+        <authors />   
         <publishers />
         <conferences />
         <periodicals />
         <websites />
     </sources>
-    <collections>        
+    <collections>    
         <sample-collection/>
         <sample-smart-collection smart="true"/>
     </collections>

@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to select the previous document.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class PreviousDocumentAction extends BaseAction {
 
-  public static final String KEY = "action.view.previous-document";
+  public static final String KEY = ViewAction.KEY + ".previous-document";
 
-  public PreviousDocumentAction(Application application) {
-    super(application, KEY);
+  public PreviousDocumentAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to filter documents by their flag status.
@@ -16,7 +17,7 @@ import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
  */
 public class FlagFilterAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.view.filter.flag";
+  public static final String KEY = ViewAction.KEY + ".filter.flag";
 
   private static final String SUB_ACTIONS[] = {
     FlagFilterAllAction.KEY,
@@ -24,7 +25,7 @@ public class FlagFilterAction extends BaseDropDownAction {
     FlagFilterUnflaggedAction.KEY,
   };
 
-  public FlagFilterAction(Application application) {
-    super(application, KEY, SUB_ACTIONS);
+  public FlagFilterAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager, SUB_ACTIONS);
   }
 }

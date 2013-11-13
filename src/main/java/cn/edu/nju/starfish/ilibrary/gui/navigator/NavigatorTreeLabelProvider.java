@@ -43,7 +43,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     if (icon == null) {
       return null;
     } else {
-      return SWTUtils.loadImage(icon);
+      return SWTUtils.getImage(icon);
     }
   }
 

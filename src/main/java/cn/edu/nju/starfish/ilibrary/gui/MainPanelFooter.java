@@ -56,7 +56,7 @@ public class MainPanelFooter extends Composite {
   private final void createContents() {
     setLayout(new FillLayout());
     label = new CLabel(this, SWT.NONE);
-    final Image img = SWTUtils.loadImage(background);
+    final Image img = SWTUtils.getImage(background);
     this.setBackgroundImage(img);
     label.setBackground(img);
     label.setAlignment(SWT.CENTER);

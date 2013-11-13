@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to mark the selected documents as read.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MarkReadAction extends BaseAction {
 
-  public static final String KEY = "action.library.mark-read";
+  public static final String KEY = LibraryAction.KEY + ".mark-read";
 
-  public MarkReadAction(Application application) {
-    super(application, KEY);
+  public MarkReadAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

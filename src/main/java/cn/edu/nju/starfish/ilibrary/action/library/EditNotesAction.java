@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to edit the notes of the selected documents.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class EditNotesAction extends BaseAction {
 
-  public static final String KEY = "action.library.edit-notes";
+  public static final String KEY = LibraryAction.KEY + ".edit-notes";
 
-  public EditNotesAction(Application application) {
-    super(application, KEY);
+  public EditNotesAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

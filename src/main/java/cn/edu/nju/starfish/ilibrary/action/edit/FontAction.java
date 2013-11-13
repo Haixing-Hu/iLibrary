@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.edit;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to set the display font.
@@ -15,10 +16,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class FontAction extends BaseAction {
-  public static final String KEY = "action.edit.font";
+  public static final String KEY = EditAction.KEY + ".font";
 
-  public FontAction(Application application) {
-    super(application, KEY);
+  public FontAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

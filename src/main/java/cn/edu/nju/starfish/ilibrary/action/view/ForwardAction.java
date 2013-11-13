@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to go forward in the visiting history.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ForwardAction extends BaseAction {
 
-  public static final String KEY = "action.view.forward";
+  public static final String KEY = ViewAction.KEY + ".forward";
 
-  public ForwardAction(Application application) {
-    super(application, KEY);
+  public ForwardAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

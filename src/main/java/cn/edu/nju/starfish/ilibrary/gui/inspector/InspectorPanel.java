@@ -24,7 +24,7 @@ import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
  */
 public class InspectorPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".inspector";
+  public static final String KEY = MainWindow.KEY + ".inspector";  // "window.inspector"
 
   private final Application application;
   private final int defaultWidth;

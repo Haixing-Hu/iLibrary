@@ -66,8 +66,9 @@ public abstract class MainPanelTab extends CTabItem {
     final Configuration config = application.getConfig();
     this.minPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MIN_WIDTH);  // "window.main.tab.panel.min-width"
     this.maxPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MAX_WIDTH);  // "window.main.tab.panel.max-width"
-    this.sashWidth = config.getInt("sash.width");
-    this.sashColor = SWTUtils.parseRGB(config.getString("sash.color"));
+    this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);           // "window.main.tab.sash.width"
+    final String colorRgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR); // "window.main.tab.sash.color"
+    this.sashColor = SWTUtils.parseRGB(colorRgb);
 
     this.parent = parent;
     this.container = new Composite(parent, SWT.NONE);

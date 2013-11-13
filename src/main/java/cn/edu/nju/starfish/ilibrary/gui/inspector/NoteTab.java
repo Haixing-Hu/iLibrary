@@ -19,15 +19,15 @@ import cn.edu.nju.starfish.ilibrary.Application;
  *
  * @author Haixing Hu
  */
-public final class InfoTab extends Composite {
+public final class NoteTab extends Composite {
 
-  public static final String KEY = InspectorTabFolder.KEY + ".info";
+  public static final String KEY = InspectorTabFolder.KEY + ".info";  // "window.inspector.tab.info"
 
   private final Application application;
   private InfoTabContent content;
   private InfoTabFooter footer;
 
-  public InfoTab(Application application, Composite parent) {
+  public NoteTab(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
     createContents();

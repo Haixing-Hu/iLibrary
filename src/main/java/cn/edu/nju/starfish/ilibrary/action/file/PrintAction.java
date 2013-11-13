@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.file;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to print the current document.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class PrintAction extends BaseAction {
 
-  public static final String KEY = "action.file.print";
+  public static final String KEY = FileAction.KEY + ".print";
 
-  public PrintAction(Application application) {
-    super(application, KEY);
+  public PrintAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

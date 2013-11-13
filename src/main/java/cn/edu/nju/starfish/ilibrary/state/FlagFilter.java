@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.eclipse.jface.action.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,6 +14,7 @@ import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterAllAction;
 import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterFlaggedAction;
 import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterUnflaggedAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 
 /**
  * The enumeration of flag filters.
@@ -40,9 +40,9 @@ public enum FlagFilter {
   public static void update(Application application, FlagFilter filter) {
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.getAction(FlagFilterAllAction.KEY);
-    final Action flagged = am.getAction(FlagFilterFlaggedAction.KEY);
-    final Action unflagged = am.getAction(FlagFilterUnflaggedAction.KEY);
+    final Action all = am.get(FlagFilterAllAction.KEY);
+    final Action flagged = am.get(FlagFilterFlaggedAction.KEY);
+    final Action unflagged = am.get(FlagFilterUnflaggedAction.KEY);
     switch (filter) {
     case FLAGGED:
       //  update action's checking status

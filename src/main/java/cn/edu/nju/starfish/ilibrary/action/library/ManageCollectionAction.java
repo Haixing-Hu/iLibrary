@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.library;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to manage collections.
@@ -16,7 +17,7 @@ import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
  */
 public class ManageCollectionAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.library.manage-collection";
+  public static final String KEY = LibraryAction.KEY + ".manage-collection";
 
   private static final String SUB_ACTIONS[] = {
     EditCollectionAction.KEY,
@@ -25,7 +26,7 @@ public class ManageCollectionAction extends BaseDropDownAction {
     DeleteCollectionAction.KEY,
   };
 
-  public ManageCollectionAction(Application application) {
-    super(application, KEY, SUB_ACTIONS);
+  public ManageCollectionAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager, SUB_ACTIONS);
   }
 }

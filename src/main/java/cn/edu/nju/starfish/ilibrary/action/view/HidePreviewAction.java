@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 import cn.edu.nju.starfish.ilibrary.state.ViewMode;
 
@@ -18,10 +19,10 @@ import cn.edu.nju.starfish.ilibrary.state.ViewMode;
  */
 public class HidePreviewAction extends BaseAction {
 
-  public static final String KEY = "action.view.hide-preview";
+  public static final String KEY = ViewAction.KEY + ".hide-preview";
 
-  public HidePreviewAction(Application application) {
-    super(application, KEY);
+  public HidePreviewAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
   @Override

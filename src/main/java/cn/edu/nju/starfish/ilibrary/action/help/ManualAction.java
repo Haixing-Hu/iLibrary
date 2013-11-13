@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.help;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to display the manual of the application.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class ManualAction extends BaseAction {
 
-  public static final String KEY = "action.help.manual";
+  public static final String KEY = HelpAction.KEY + ".manual";
 
-  public ManualAction(Application application) {
-    super(application, KEY);
+  public ManualAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

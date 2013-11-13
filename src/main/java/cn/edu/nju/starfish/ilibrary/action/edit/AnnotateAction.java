@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.edit;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to switch to the highlight mode.
@@ -16,7 +17,7 @@ import cn.edu.nju.starfish.ilibrary.action.BaseDropDownAction;
  */
 public class AnnotateAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.edit.annotate";
+  public static final String KEY = EditAction.KEY + ".annotate";
 
   private static final String ACTIONS[] = {
     AnnotateSelectionAction.KEY,
@@ -25,7 +26,7 @@ public class AnnotateAction extends BaseDropDownAction {
     AnnotateStrikethroughAction.KEY,
   };
 
-  public AnnotateAction(Application application) {
-    super(application, KEY, ACTIONS);
+  public AnnotateAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager, ACTIONS);
   }
 }

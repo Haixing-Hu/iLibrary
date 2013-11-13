@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.edit;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to set the preferences.
@@ -15,9 +16,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  * @author Haixing Hu
  */
 public class PreferencesAction extends BaseAction {
-  public static final String KEY = "action.edit.preferences";
+  public static final String KEY = EditAction.KEY + ".preferences";
 
-  public PreferencesAction(Application application) {
-    super(application, KEY);
+  public PreferencesAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

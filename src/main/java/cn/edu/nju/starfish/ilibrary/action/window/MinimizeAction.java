@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to minimize the current window.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class MinimizeAction extends BaseAction {
 
-  public static final String KEY = "action.window.minimize";
+  public static final String KEY = WindowAction.KEY + ".minimize";
 
-  public MinimizeAction(Application application) {
-    super(application, KEY);
+  public MinimizeAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }

@@ -7,7 +7,7 @@
 package cn.edu.nju.starfish.ilibrary.gui;
 
 import org.apache.commons.configuration.Configuration;
-import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -72,7 +72,7 @@ public class MainPanelToolBar extends Composite {
         if (key.equals(Separator.class.getName())) {
           toolBarManager.add(new Separator());
         } else {
-          final Action action = am.getAction(key);
+          final IAction action = am.get(key);
           toolBarManager.add(action);
         }
       }
@@ -96,7 +96,7 @@ public class MainPanelToolBar extends Composite {
     final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
     toolBar.setLayoutData(gd_toolBar);
 
-    final Image img = SWTUtils.loadImage(background);
+    final Image img = SWTUtils.getImage(background);
     this.setBackgroundImage(img);
     //  in order to be compatible on multi-platforms, we must set the
     //  background image on both this composite and the tool bar.

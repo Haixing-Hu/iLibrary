@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.window;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to close all tabs.
@@ -16,10 +17,10 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class CloseAllTabsAction extends BaseAction {
 
-  public static final String KEY = "action.window.close-all-tabs";
+  public static final String KEY = WindowAction.KEY + ".close-all-tabs";
 
-  public CloseAllTabsAction(Application application) {
-    super(application, KEY);
+  public CloseAllTabsAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
 }

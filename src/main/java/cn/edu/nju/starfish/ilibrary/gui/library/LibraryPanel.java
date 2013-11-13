@@ -10,7 +10,7 @@ import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Sash;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
@@ -29,11 +30,11 @@ import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
  */
 public final class LibraryPanel extends Composite {
 
-  public static final String KEY = LibraryTab.KEY + ".panel"; //  "window.main.library.panel"
+  public static final String KEY = LibraryTab.KEY; //  "window.main.tab.library"
 
   private final Application application;
   private final int sashHeight;
-  private final Color sashColor;
+  private final String sashBg;
   private LibraryPanelHeader header;
   private LibraryPanelContent content;
   private Sash sash;
@@ -45,8 +46,8 @@ public final class LibraryPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
-    this.sashHeight = config.getInt("sash.height");
-    this.sashColor = SWTUtils.parseRGB(config.getString("sash.color"));
+    this.sashHeight = config.getInt(KEY + KeySuffix.SASH + KeySuffix.HEIGHT);   // "window.main.tab.library.sash.height"
+    this.sashBg = config.getString(KEY + KeySuffix.SASH + KeySuffix.BACKGROUND_IMAGE); // "window.main.tab.library.sash.background-image"
     createContents();
     layoutContents();
     configSash();
@@ -127,8 +128,8 @@ public final class LibraryPanel extends Composite {
   }
 
   private void configSash() {
-    sash.setForeground(sashColor);
-    sash.setBackground(sashColor);
+    final Image img = SWTUtils.getImage(sashBg);
+    sash.setBackgroundImage(img);
 
     final FormData fd_sash = (FormData) sash.getLayoutData();
     final Composite parent = sash.getParent();

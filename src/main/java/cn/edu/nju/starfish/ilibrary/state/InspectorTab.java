@@ -6,7 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.swt.custom.StackLayout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,11 +20,12 @@ import cn.edu.nju.starfish.ilibrary.gui.MainPanel;
 import cn.edu.nju.starfish.ilibrary.gui.MainPanelTab;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.FilesTab;
-import cn.edu.nju.starfish.ilibrary.gui.inspector.InfoTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorTabFolder;
+import cn.edu.nju.starfish.ilibrary.gui.inspector.NoteTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.NotesTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.ReviewsTab;
+import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 
 /**
  * The enumeration of tabs of the inspector panel.
@@ -59,15 +59,15 @@ public enum InspectorTab {
     final InspectorPanel inspector = tabItem.getInspector();
     final InspectorTabFolder tabFolder = inspector.getTabFolder();
     final StackLayout stackLayout = tabFolder.getStackLayout();
-    final InfoTab infoTab = tabFolder.getInfoTab();
+    final NoteTab infoTab = tabFolder.getInfoTab();
     final NotesTab notesTab = tabFolder.getNotesTab();
     final ReviewsTab reviewsTab = tabFolder.getReviewsTab();
     final FilesTab filesTab = tabFolder.getFilesTab();
     final ActionManager am = application.getActionManager();
-    final Action infoTabAction = am.getAction(InfoTabAction.KEY);
-    final Action notesTabAction = am.getAction(NotesTabAction.KEY);
-    final Action reviewsTabAction = am.getAction(ReviewsTabAction.KEY);
-    final Action filesTabAction = am.getAction(FilesTabAction.KEY);
+    final Action infoTabAction = am.get(InfoTabAction.KEY);
+    final Action notesTabAction = am.get(NotesTabAction.KEY);
+    final Action reviewsTabAction = am.get(ReviewsTabAction.KEY);
+    final Action filesTabAction = am.get(FilesTabAction.KEY);
     switch (tab) {
     case INFO:
       stackLayout.topControl = infoTab;

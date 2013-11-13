@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.share;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 
 /**
  * The action to share the document on the Tencent Weibo.
@@ -16,9 +17,9 @@ import cn.edu.nju.starfish.ilibrary.action.BaseAction;
  */
 public class TencentAction extends BaseAction {
 
-  public static final String KEY = "action.share.tencent";
+  public static final String KEY = ShareAction.KEY + ".tencent";
 
-  public TencentAction(Application application) {
-    super(application, KEY);
+  public TencentAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 }
