@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
@@ -55,9 +56,9 @@ public class MainPanelHeader extends Composite {
     this.application = application;
     this.actionKeys = actionKeys;
     final Configuration config = application.getConfig();
-    height = config.getInt(KEY + ".height");
-    marginWidth = config.getInt(KEY + ".margin-width");
-    background = config.getString(KEY + ".background");
+    height = config.getInt(KEY + KeySuffix.HEIGHT);
+    marginWidth = config.getInt(KEY + KeySuffix.MARGIN_WIDTH);
+    background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     createContents();
   }
 

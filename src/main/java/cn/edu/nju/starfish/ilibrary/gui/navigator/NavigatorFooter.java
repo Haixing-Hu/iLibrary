@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
@@ -50,7 +51,7 @@ public class NavigatorFooter extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
-    height = config.getInt(KEY + ".height");
+    height = config.getInt(KEY + KeySuffix.HEIGHT);
     createContents();
   }
 
@@ -67,7 +68,7 @@ public class NavigatorFooter extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final String background = config.getString(KEY + ".background");
+    final String background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     final Image img = SWTUtils.loadImage(background);
     this.setBackgroundImage(img);
 
@@ -78,24 +79,24 @@ public class NavigatorFooter extends Composite {
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 
-    final String toolbar_background = config.getString(KEY + ".toolbar.background");
+    final String toolbar_background = config.getString(KEY + KeySuffix.TOOLBAR + KeySuffix.BACKGROUND_IMAGE);
     final Image toolbar_img = SWTUtils.loadImage(toolbar_background);
     toolBar.setBackgroundImage(toolbar_img);
 
     corner = new Composite(this, SWT.NONE);
 
-    final String cornerBackground = config.getString(KEY + ".corner.background");
+    final String cornerBackground = config.getString(KEY + KeySuffix.CORNER + KeySuffix.BACKGROUND_IMAGE);
     final Image cornerBackgroundImg = SWTUtils.loadImage(cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
-    final int toolbarTop = config.getInt(KEY + ".toolbar.top");
+    final int toolbarTop = config.getInt(KEY + KeySuffix.TOOLBAR + KeySuffix.TOP);
     final FormData fd_toolBar = new FormData();
     fd_toolBar.left = new FormAttachment(0);
     fd_toolBar.right = new FormAttachment(corner);
     fd_toolBar.top = new FormAttachment(0, toolbarTop);
     toolBar.setLayoutData(fd_toolBar);
 
-    final int cornerWidth = config.getInt(KEY + ".corner.width");
+    final int cornerWidth = config.getInt(KEY + KeySuffix.CORNER + KeySuffix.WIDTH);
     final FormData fd_corner = new FormData();
     fd_corner.left = new FormAttachment(100, - cornerWidth);
     fd_corner.top = new FormAttachment(0);

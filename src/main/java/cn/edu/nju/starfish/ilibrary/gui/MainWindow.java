@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.menu.MainMenuBar;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
@@ -59,10 +60,10 @@ public final class MainWindow extends ApplicationWindow {
     super(null);
     this.application = application;
     final Configuration config = application.getConfig();
-    this.defaultHeight = config.getInt(KEY + ".height.default");
-    this.defaultWidth = config.getInt(KEY + ".width.default");
-    this.minHeight = config.getInt(KEY + ".height.min");
-    this.minWidth = config.getInt(KEY + ".width.min");
+    this.defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
+    this.defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
+    this.minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
+    this.minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     this.sashWidth = config.getInt("sash.width");
     this.sashColor = SWTUtils.parseRGB(config.getString("sash.color"));
     this.addMenuBar();

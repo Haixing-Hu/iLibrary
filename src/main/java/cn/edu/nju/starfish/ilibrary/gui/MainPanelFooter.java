@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
@@ -46,9 +47,9 @@ public class MainPanelFooter extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
-    height = config.getInt(KEY + ".height");
-    background = config.getString(KEY + ".background");
-    fontSize = config.getInt(KEY + ".font.size");
+    height = config.getInt(KEY + KeySuffix.HEIGHT);
+    background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
+    fontSize = config.getInt(KEY + KeySuffix.FONT_SIZE);
     createContents();
   }
 

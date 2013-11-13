@@ -169,7 +169,7 @@ public final class Application {
    * @return The title associated with the specified action.
    */
   public String getTitle(String key) {
-    final String title = messageSource.getMessage(key + ".title", null, locale);
+    final String title = messageSource.getMessage(key + KeySuffix.TITLE, null, locale);
     logger.debug("Find the title for {}: {}", key, title);
     return title;
   }
@@ -182,7 +182,7 @@ public final class Application {
    * @return The shortcut associated with the specified action.
    */
   public String getShortcut(String key) {
-    String shortcut = config.getString(key + ".shortcut");
+    String shortcut = config.getString(key + KeySuffix.SHORTCUT);
     if (! StringUtils.isEmpty(shortcut)) {
       //  substitute the META key according to the operating system
       final String meta = (SystemUtils.IS_OS_MAC ? "COMMAND" : "CTRL");
@@ -202,7 +202,8 @@ public final class Application {
    * @return the description the specified action, or null if it has no description.
    */
   public String getDescription(String key) {
-    String description = messageSource.getMessage(key + ".description", null, null, locale);
+    String description = messageSource.getMessage(key + KeySuffix.DESCRIPTION,
+        null, null, locale);
     if (StringUtils.isEmpty(description)) {
       description = null;
     }
@@ -218,7 +219,7 @@ public final class Application {
    * @return the URL of the icon the specified action, or null if it has no icon.
    */
   public String getIcon(String key) {
-    String icon = config.getString(key + ".icon");
+    String icon = config.getString(key + KeySuffix.ICON);
     if (StringUtils.isEmpty(icon)) {
       icon = null;
     }

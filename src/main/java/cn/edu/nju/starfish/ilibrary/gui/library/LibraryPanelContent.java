@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 
 /**
  * The content panel in the library panel.
@@ -29,8 +30,8 @@ public class LibraryPanelContent extends CheckboxTableViewer {
   public LibraryPanelContent(Application application, Composite parent) {
     super(new Table(parent, SWT.CHECK | SWT.V_SCROLL | SWT.H_SCROLL));
     final Configuration config = application.getConfig();
-    minHeight = config.getInt(KEY + ".height.min");
-    maxHeight = config.getInt(KEY + ".height.max");
+    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
+    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
     createContents();
   }
 

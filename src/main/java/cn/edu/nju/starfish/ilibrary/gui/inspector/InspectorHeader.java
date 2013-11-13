@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.ui.FilesTabAction;
 import cn.edu.nju.starfish.ilibrary.action.ui.InfoTabAction;
@@ -42,9 +43,9 @@ public final class InspectorHeader extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
-    height = config.getInt(KEY + ".height");
-    marginWidth = config.getInt(KEY + ".margin-width");
-    backgroundImage = config.getString(KEY + ".background");
+    height = config.getInt(KEY + KeySuffix.HEIGHT);
+    marginWidth = config.getInt(KEY + KeySuffix.MARGIN_WIDTH);
+    backgroundImage = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     createContents();
   }
 

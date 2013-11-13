@@ -9,6 +9,7 @@ package cn.edu.nju.starfish.ilibrary.state;
 import org.apache.commons.configuration.Configuration;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.library.LibraryPanelPreview;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorPanel;
@@ -44,11 +45,11 @@ public final class ApplicationState {
     readFilter = ReadFilter.ALL;
     typeFilter = TypeFilter.ALL;
     attachmentFilter = AttachmentFilter.ALL;
-    navigatorWidth = config.getInt(NavigatorPanel.KEY + ".width.default");
+    navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     navigatorHide = false;
-    inspectorWidth = config.getInt(InspectorPanel.KEY + ".width.default");
+    inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     inspectorHide = false;
-    previewHeight = config.getInt(LibraryPanelPreview.KEY + ".height.default");
+    previewHeight = config.getInt(LibraryPanelPreview.KEY + KeySuffix.DEFAULT_HEIGHT);
     previewHide = false;
     inspectorTab = InspectorTab.INFO;
   }

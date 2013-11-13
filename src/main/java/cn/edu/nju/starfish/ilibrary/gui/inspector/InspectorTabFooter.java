@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorFooter;
 
@@ -53,7 +54,7 @@ public class InspectorTabFooter extends Composite {
     this.application = application;
     this.actionKeys = actionKeys;
     final Configuration config = application.getConfig();
-    height = config.getInt(KEY + ".height");
+    height = config.getInt(KEY + KeySuffix.HEIGHT);
     createContents();
   }
 
@@ -70,7 +71,7 @@ public class InspectorTabFooter extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final String statuslineBg = config.getString(KEY + ".background");
+    final String statuslineBg = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     final Image statuslineBgImg = SWTResourceManager.getImage(NavigatorFooter.class, statuslineBg);
     this.setBackgroundImage(statuslineBgImg);
 
@@ -85,7 +86,7 @@ public class InspectorTabFooter extends Composite {
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 
-    final String toolbarBg = config.getString(KEY + ".toolbar.background");
+    final String toolbarBg = config.getString(KEY + KeySuffix.TOOLBAR + KeySuffix.BACKGROUND_IMAGE);
     final Image toolbarBgImg = SWTResourceManager.getImage(NavigatorFooter.class, toolbarBg);
     toolBar.setBackgroundImage(toolbarBgImg);
 
@@ -93,11 +94,11 @@ public class InspectorTabFooter extends Composite {
     fill.setBackgroundImage(statuslineBgImg);
 
     corner = new Composite(this, SWT.NONE);
-    final String cornerBackground = config.getString(KEY + ".corner.background");
+    final String cornerBackground = config.getString(KEY + KeySuffix.CORNER + KeySuffix.BACKGROUND_IMAGE);
     final Image cornerBackgroundImg = SWTResourceManager.getImage(InspectorTabFooter.class, cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
-    final int cornerWidth = config.getInt(KEY + ".corner.width");
+    final int cornerWidth = config.getInt(KEY + KeySuffix.CORNER + KeySuffix.WIDTH);
     final FormData fd_corner = new FormData();
     fd_corner.left = new FormAttachment(0);
     fd_corner.right = new FormAttachment(0, cornerWidth);
@@ -112,7 +113,7 @@ public class InspectorTabFooter extends Composite {
     fd_fill.bottom = new FormAttachment(100);
     fill.setLayoutData(fd_fill);
 
-    final int toolbarTop = config.getInt(KEY + ".toolbar.top");
+    final int toolbarTop = config.getInt(KEY + KeySuffix.TOOLBAR + KeySuffix.TOP);
     final FormData fd_toolBar = new FormData();
     //fd_toolBar.left = new FormAttachment(corner);
     fd_toolBar.right = new FormAttachment(100);

@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.document.DocumentTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.library.LibraryTab;
@@ -51,10 +52,11 @@ public final class MainPanel extends CTabFolder {
    */
   private void configAppearance() {
     final Configuration config = application.getConfig();
-    final String path = config.getString(KEY + ".selection-background");
+    final String path = config.getString(KEY + KeySuffix.SELECTION + KeySuffix.BACKGROUND_IMAGE);
     final Image img = SWTUtils.loadImage(path);
     this.setSelectionBackground(img);
-    final Color color = SWTUtils.parseRGB(config.getString(KEY + ".background.color"));
+    final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
+    final Color color = SWTUtils.parseRGB(rgb);
     this.setBackground(color);
     this.marginHeight = 0;
     this.marginWidth = 0;

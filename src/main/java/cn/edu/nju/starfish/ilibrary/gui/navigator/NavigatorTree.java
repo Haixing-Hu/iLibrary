@@ -6,22 +6,19 @@
 
 package cn.edu.nju.starfish.ilibrary.gui.navigator;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
+import cn.edu.nju.starfish.ilibrary.utils.XmlUtils;
 
 /**
  * The navigator tree panel.
@@ -32,8 +29,7 @@ public class NavigatorTree extends TreeViewer {
 
   public static final String KEY = NavigatorPanel.KEY + ".tree"; // window.navigator.tree
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(NavigatorTree.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTree.class);
 
   private final Application application;
 
@@ -46,32 +42,18 @@ public class NavigatorTree extends TreeViewer {
 
   private void createContents() {
     final Configuration config = application.getConfig();
-    final String inputFile = config.getString(KEY + ".input");
-    final URL inputUrl = this.getClass().getResource(inputFile);
-    if (inputUrl == null) {
-      LOGGER.error("Failed to load the resource: {}", inputFile);
-      return;
-    }
-    InputStream stream = null;
-    try {
-      final DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-      final DocumentBuilder builder = builderFactory.newDocumentBuilder();
-      stream = inputUrl.openStream();
-      final Document doc = builder.parse(stream);
+    final String input = config.getString(KEY + KeySuffix.INPUT);
+    final Document doc = XmlUtils.getDocument(input);
+    if (doc != null) {
       this.setContentProvider(new NavigatorTreeContentProvider());
       this.setLabelProvider(new NavigatorTreeLabelProvider(application));
       this.setInput(doc);
-    } catch (final Exception e) {
-      LOGGER.error("Failed to load the navigator tree definition file: {}", inputFile, e);
-      return;
-    } finally {
-      if (stream != null) {
-        try {
-          stream.close();
-        } catch (final IOException e) {
-          LOGGER.error("Closing stream filed: {}", e);
-        }
-      }
+    }
+    //  set the background color
+    final String bgcolor = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
+    final Color color = SWTUtils.parseRGB(bgcolor);
+    if (color != null) {
+      this.getControl().setBackground(color);
     }
   }
 

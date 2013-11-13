@@ -14,6 +14,7 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 
 /**
@@ -36,9 +37,9 @@ public class InspectorPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
-    defaultWidth = config.getInt(KEY + ".width.default");
-    minWidth = config.getInt(KEY + ".width.min");
-    maxWidth = config.getInt(KEY + ".width.max");
+    defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
+    minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
+    maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
     createContents();
     layoutContents();
   }

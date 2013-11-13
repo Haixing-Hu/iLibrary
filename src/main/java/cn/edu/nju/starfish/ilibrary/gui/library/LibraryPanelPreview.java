@@ -11,6 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 
 /**
  * The preview panel.
@@ -30,9 +31,9 @@ public class LibraryPanelPreview extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final Configuration config = application.getConfig();
-    defaultHeight = config.getInt(KEY + ".height.default");
-    minHeight = config.getInt(KEY + ".height.min");
-    maxHeight = config.getInt(KEY + ".height.max");
+    defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
+    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
+    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
   }
 
   /**

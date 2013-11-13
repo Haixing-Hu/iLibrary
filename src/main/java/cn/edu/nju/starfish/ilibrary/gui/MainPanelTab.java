@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Sash;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
@@ -63,8 +64,8 @@ public abstract class MainPanelTab extends CTabItem {
     super(parent, style);
     this.application = application;
     final Configuration config = application.getConfig();
-    this.minPanelWidth = config.getInt(KEY + ".panel.width.min");  // "window.main.tab.panel.width.min"
-    this.maxPanelWidth = config.getInt(KEY + ".panel.width.max");  // "window.main.tab.panel.width.max"
+    this.minPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MIN_WIDTH);  // "window.main.tab.panel.min-width"
+    this.maxPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MAX_WIDTH);  // "window.main.tab.panel.max-width"
     this.sashWidth = config.getInt("sash.width");
     this.sashColor = SWTUtils.parseRGB(config.getString("sash.color"));
 

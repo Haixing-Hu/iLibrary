@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import cn.edu.nju.starfish.ilibrary.Application;
+import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.gui.widget.ForceTextToolBarManager;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
@@ -54,8 +55,8 @@ public class MainPanelToolBar extends Composite {
     this.application = application;
     this.actionKeys = actionKeys;
     final Configuration config = application.getConfig();
-    this.height = config.getInt(KEY + ".height");
-    this.background = config.getString(KEY + ".background");
+    this.height = config.getInt(KEY + KeySuffix.HEIGHT);
+    this.background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     createContents();
     layoutContents();
   }
