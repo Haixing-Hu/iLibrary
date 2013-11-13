@@ -12,11 +12,13 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
 import cn.edu.nju.starfish.ilibrary.action.library.AddReviewAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AddToCollectionAction;
+import cn.edu.nju.starfish.ilibrary.action.library.ArchiveAction;
 import cn.edu.nju.starfish.ilibrary.action.library.AttachFileAction;
 import cn.edu.nju.starfish.ilibrary.action.library.CreateCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditInformationAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditKeywordsAction;
 import cn.edu.nju.starfish.ilibrary.action.library.EditNotesAction;
+import cn.edu.nju.starfish.ilibrary.action.library.EmptyTrashAction;
 import cn.edu.nju.starfish.ilibrary.action.library.ManageCollectionAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkFlaggedAction;
 import cn.edu.nju.starfish.ilibrary.action.library.MarkPrintedAction;
@@ -63,8 +65,10 @@ public final class LibraryMenu extends BaseMenu {
     this.add(am.getAction(MarkPrintedAction.KEY));
     this.add(am.getAction(MarkUnprintedAction.KEY));
     this.add(new Separator());
+    this.add(am.getAction(ArchiveAction.KEY));
     this.add(am.getAction(MoveToTrashAction.KEY));
     this.add(am.getAction(RestoreFromTrashAction.KEY));
+    this.add(am.getAction(EmptyTrashAction.KEY));
     this.add(new Separator());
     this.add(am.getAction(EditKeywordsAction.KEY));
     this.add(am.getAction(EditNotesAction.KEY));
@@ -105,7 +109,9 @@ public final class LibraryMenu extends BaseMenu {
         MarkFlaggedAction.KEY,
         MarkReadAction.KEY,
         MarkPrintedAction.KEY,
+        ArchiveAction.KEY,
         MoveToTrashAction.KEY,
+        EmptyTrashAction.KEY,
         EditKeywordsAction.KEY,
         EditNotesAction.KEY,
         AddReviewAction.KEY,
