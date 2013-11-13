@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.gui.navigator;
 
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -16,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 
 /**
  * The panel display the navigation tree.
@@ -30,6 +32,8 @@ public final class NavigatorPanel extends Composite {
   private final int defaultWidth;
   private final int minWidth;
   private final int maxWidth;
+  private final int marginTop;
+  private final String backgroundColor;
   private NavigatorTree navigatorTree;
   private NavigatorFooter footer;
 
@@ -48,6 +52,8 @@ public final class NavigatorPanel extends Composite {
     defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
+    marginTop = config.getInt(KEY + KeySuffix.MARGIN_TOP);
+    backgroundColor = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
     createContents();
   }
 
@@ -57,7 +63,7 @@ public final class NavigatorPanel extends Composite {
    */
   private void createContents() {
     final FormLayout layout = new FormLayout();
-    layout.marginTop = 0;
+    layout.marginTop = this.marginTop;
     layout.marginBottom = 0;
     layout.marginLeft = 0;
     layout.marginRight = 0;
@@ -65,6 +71,9 @@ public final class NavigatorPanel extends Composite {
     layout.marginWidth = 0;
     layout.spacing = 0;
     this.setLayout(layout);
+
+    final Color color = SWTUtils.parseRGB(backgroundColor);
+    this.setBackground(color);
 
     navigatorTree = new NavigatorTree(application, this);
     footer = new NavigatorFooter(application, this);

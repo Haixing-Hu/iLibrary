@@ -41,6 +41,8 @@ public interface KeySuffix {
 
   public static final String MAX_WIDTH = ".max-width";
 
+  public static final String MARGIN_TOP = ".margin-top";
+
   public static final String MARGIN_WIDTH = ".margin-width";
 
   public static final String FONT_SIZE = ".font-size";
