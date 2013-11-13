@@ -5,3 +5,7 @@ target
 .DS_Store
 Thumbs.db
 desktop.ini
+*.class
+*.jar
+*.war
+*.ear
