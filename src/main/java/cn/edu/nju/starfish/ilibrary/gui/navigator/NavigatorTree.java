@@ -38,9 +38,10 @@ public class NavigatorTree extends TreeViewer {
   private final Application application;
 
   public NavigatorTree(Application application, Composite parent) {
-    super(parent, SWT.SINGLE);
+    super(parent, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL);
     this.application = application;
     createContents();
+    //fixNodeIndent();
   }
 
   private void createContents() {
@@ -73,5 +74,28 @@ public class NavigatorTree extends TreeViewer {
       }
     }
   }
+
+//  /**
+//   * Fixes the indent of some nodes.
+//   * <p>
+//   * See the line 32-44 of the codes in the "Example 5: Enhancing the native content"
+//   * of the article
+//   * <a href="http://www.eclipse.org/articles/article.php?file=Article-CustomDrawingTableAndTreeItems/index.html">"Custom
+//   * Drawing Table and Tree Items"</a>.
+//   */
+//  private void fixNodeIndent() {
+//    final Tree tree = (Tree) this.getControl();
+//    final int offset = -40;
+//    tree.addListener(SWT.PaintItem, new Listener() {
+//      @Override
+//      public void handleEvent(Event event) {
+//        final TreeItem item = (TreeItem)event.item;
+//        final NavigatorTreeNode node = (NavigatorTreeNode) item.getData();
+//        LOGGER.debug("handle PaintItem event for node: {}", node.getKey());
+//        LOGGER.debug("The event object for the node is: {}", event);
+//        event.x -= 40;
+//      }
+//    });
+//  }
 
 }

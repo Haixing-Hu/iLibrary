@@ -86,7 +86,15 @@ public class NavigatorTreeContentProvider implements ITreeContentProvider {
   @Override
   public boolean hasChildren(Object element) {
     final NavigatorTreeNode node = (NavigatorTreeNode) element;
-    return node.getChildren().size() > 0;
+    final NodeList children = node.getDomElement().getChildNodes();
+    final int n = children.getLength();
+    for (int i = 0; i < n; ++i) {
+      final Node child = children.item(i);
+      if (child instanceof Element) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

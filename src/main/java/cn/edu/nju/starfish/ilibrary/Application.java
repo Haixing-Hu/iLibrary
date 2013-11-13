@@ -9,6 +9,7 @@ package cn.edu.nju.starfish.ilibrary;
 import java.util.Locale;
 
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
@@ -182,10 +183,12 @@ public final class Application {
    */
   public String getShortcut(String key) {
     String shortcut = config.getString(key + ".shortcut");
-    if (shortcut != null) {
+    if (! StringUtils.isEmpty(shortcut)) {
       //  substitute the META key according to the operating system
       final String meta = (SystemUtils.IS_OS_MAC ? "COMMAND" : "CTRL");
       shortcut = shortcut.replace("META", meta);
+    } else {
+      shortcut = null;
     }
     logger.debug("Find the shortcut for {}: {}", key, shortcut);
     return shortcut;
@@ -199,7 +202,10 @@ public final class Application {
    * @return the description the specified action, or null if it has no description.
    */
   public String getDescription(String key) {
-    final String description = messageSource.getMessage(key + ".description", null, null, locale);
+    String description = messageSource.getMessage(key + ".description", null, null, locale);
+    if (StringUtils.isEmpty(description)) {
+      description = null;
+    }
     logger.debug("Find the description for {}: {}", key, description);
     return description;
   }
@@ -212,7 +218,10 @@ public final class Application {
    * @return the URL of the icon the specified action, or null if it has no icon.
    */
   public String getIcon(String key) {
-    final String icon = config.getString(key + ".icon");
+    String icon = config.getString(key + ".icon");
+    if (StringUtils.isEmpty(icon)) {
+      icon = null;
+    }
     logger.debug("Find the icon for {}: {}", key, icon);
     return icon;
   }

@@ -22,7 +22,11 @@ import org.w3c.dom.Element;
  */
 public final class NavigatorTreeNode {
 
+  public static final String KEY = NavigatorTree.KEY + ".node"; //  "window.navigator.tree.node"
+
   public static final String ROOT_NAME = "navigator";
+
+  public static final String COLLECTIONS_KEY = ROOT_NAME + ".collections";
 
   private static final Logger LOGGER =
       LoggerFactory.getLogger(NavigatorTreeNode.class);
