@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.controller.MainPanelController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.ViewMode;
 
@@ -26,7 +27,7 @@ public class ViewModeNoneAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    logger.info("Set the view mode to NONE");
-    ViewMode.update(application, ViewMode.NONE);
+    final MainPanelController controller = application.getMainPanelController();
+    controller.setViewMode(ViewMode.NONE);
   }
 }

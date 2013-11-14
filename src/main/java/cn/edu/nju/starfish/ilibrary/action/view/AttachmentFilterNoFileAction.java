@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.controller.LibraryTabController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.AttachmentFilter;
 
@@ -26,7 +27,7 @@ public class AttachmentFilterNoFileAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    logger.info("Set the attachment filter to {}", AttachmentFilter.NO_FILE);
-    AttachmentFilter.update(application, AttachmentFilter.NO_FILE);
+    final LibraryTabController controller = application.getLibraryTabController();
+    controller.setAttachmentFilter(AttachmentFilter.NO_FILE);
   }
 }

@@ -8,25 +8,27 @@ package cn.edu.nju.starfish.ilibrary.action.ui;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.controller.InspectorController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.InspectorTab;
 
 /**
- * The action to switch to the review tab.
+ * The action to switch to the files tab.
  *
  * @author Haixing Hu
  */
-public class ReviewsTabAction extends BaseCheckBoxAction {
+public class SwitchToFilesTabAction extends BaseCheckBoxAction {
 
-  public static final String KEY = "action.ui.reviews-tab";
+  public static final String KEY = "action.ui.files-tab";
 
-  public ReviewsTabAction(Application application, IActionManager actionManager) {
+  public SwitchToFilesTabAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 
   @Override
   public void run() {
-    logger.info("Switch inspector tab to {}", InspectorTab.REVIEWS);
-    InspectorTab.update(application, InspectorTab.REVIEWS);
+    final InspectorController controller = application.getInspectorController();
+    controller.switchToTab(InspectorTab.FILES);
   }
+
 }

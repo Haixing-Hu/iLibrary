@@ -8,8 +8,8 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseAction;
+import cn.edu.nju.starfish.ilibrary.controller.NavigatorController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
-import cn.edu.nju.starfish.ilibrary.state.NavigatorVisibility;
 
 /**
  * The action to hide the navigator panel.
@@ -27,6 +27,7 @@ public class HideNavigatorAction extends BaseAction {
   @Override
   public void run() {
     logger.info("Hide the navigator.");
-    NavigatorVisibility.update(application, NavigatorVisibility.INVISIBLE);
+    final NavigatorController controller = application.getNavigatorController();
+    controller.setVisible(false);
   }
 }

@@ -12,13 +12,18 @@ import java.util.List;
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabFolder2Adapter;
+import org.eclipse.swt.custom.CTabFolderEvent;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.KeySuffix;
+import cn.edu.nju.starfish.ilibrary.controller.MainPanelController;
 import cn.edu.nju.starfish.ilibrary.gui.document.DocumentTab;
 import cn.edu.nju.starfish.ilibrary.gui.inspector.InspectorPanel;
 import cn.edu.nju.starfish.ilibrary.gui.library.LibraryTab;
@@ -67,6 +72,25 @@ public final class MainPanel extends CTabFolder {
    * Creates the contents of this tab folder.
    */
   private void createContents() {
+    //  register event listener
+    final MainPanelController controller = application.getMainPanelController();
+    this.addSelectionListener(new SelectionListener() {
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        controller.onSwithTab(event);
+      }
+      @Override
+      public void widgetDefaultSelected(SelectionEvent event) {
+        controller.onSwithTab(event);
+      }
+    });
+    this.addCTabFolder2Listener(new CTabFolder2Adapter() {
+      @Override
+      public void close(CTabFolderEvent event) {
+        controller.onCloseTab(event);
+      }
+    });
+    //  create tab
     libraryTab = new LibraryTab(application, this);
     documentTabs = new LinkedList<DocumentTab>();
     this.setSelection(libraryTab);

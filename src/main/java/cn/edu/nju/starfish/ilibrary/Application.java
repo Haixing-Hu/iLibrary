@@ -20,6 +20,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
+import cn.edu.nju.starfish.ilibrary.controller.DocumentTabController;
+import cn.edu.nju.starfish.ilibrary.controller.InspectorController;
+import cn.edu.nju.starfish.ilibrary.controller.LibraryTabController;
+import cn.edu.nju.starfish.ilibrary.controller.MainPanelController;
+import cn.edu.nju.starfish.ilibrary.controller.NavigatorController;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
@@ -42,6 +47,11 @@ public final class Application {
   private final ApplicationState state;
   private final ActionManager actionManager;
   private final MainWindow mainWindow;
+  private final NavigatorController navigatorController;
+  private final MainPanelController mainPanelController;
+  private final InspectorController inspectorController;
+  private final LibraryTabController libraryTabController;
+  private final DocumentTabController documentTabController;
 
   /**
    * Constructs an application.
@@ -57,6 +67,11 @@ public final class Application {
     state = new ApplicationState(this, config);
     actionManager = new ActionManager(this);
     mainWindow = new MainWindow(this);
+    navigatorController = new NavigatorController(this);
+    mainPanelController = new MainPanelController(this);
+    inspectorController = new InspectorController(this);
+    libraryTabController = new LibraryTabController(this);
+    documentTabController = new DocumentTabController(this);
 //    //  adjust the Mac OS X Cococa UI
 //    if (SystemUtils.IS_OS_MAC) {
 //      NsApplication nsApp = new DefaultNsApplication();
@@ -67,11 +82,25 @@ public final class Application {
   }
 
   /**
+   * Synchronize the application states and the application UI.
+   */
+  private void syncState() {
+    navigatorController.setVisible(state.isNavigatorVisible());
+    mainPanelController.setViewMode(state.getViewMode());
+    inspectorController.switchToTab(state.getInspectorTab());
+    libraryTabController.setFlagFilter(state.getFlagFilter());
+    libraryTabController.setReadFilter(state.getReadFilter());
+    libraryTabController.setTypeFilter(state.getTypeFilter());
+    libraryTabController.setAttachmentFilter(state.getAttachmentFilter());
+    documentTabController.setAnnotateMode(state.getAnnotateMode());
+  }
+
+  /**
    * Runs this application.
    */
   public void run() {
     mainWindow.create();
-    state.sync();
+    this.syncState();
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
     final Display display = Display.getCurrent();
@@ -169,7 +198,8 @@ public final class Application {
    * @return The title associated with the specified action.
    */
   public String getTitle(String key) {
-    final String title = messageSource.getMessage(key + KeySuffix.TITLE, null, locale);
+    key += KeySuffix.TITLE;
+    final String title = messageSource.getMessage(key, null, "", locale);
     logger.debug("Find the title for {}: {}", key, title);
     return title;
   }
@@ -264,6 +294,51 @@ public final class Application {
    */
   public MainWindow getMainWindow() {
     return mainWindow;
+  }
+
+  /**
+   * Gets the navigator controller.
+   *
+   * @return the navigator controller.
+   */
+  public NavigatorController getNavigatorController() {
+    return navigatorController;
+  }
+
+  /**
+   * Gets the main panel controller.
+   *
+   * @return the main panel controller.
+   */
+  public MainPanelController getMainPanelController() {
+    return mainPanelController;
+  }
+
+  /**
+   * Gets the inspector panel controller.
+   *
+   * @return the inspector panel controller.
+   */
+  public InspectorController getInspectorController() {
+    return inspectorController;
+  }
+
+  /**
+   * Gets the library tab controller.
+   *
+   * @return the library tab controller.
+   */
+  public LibraryTabController getLibraryTabController() {
+    return libraryTabController;
+  }
+
+  /**
+   * Gets the document tab controller.
+   *
+   * @return the document tab controller.
+   */
+  public DocumentTabController getDocumentTabController() {
+    return documentTabController;
   }
 
   /**

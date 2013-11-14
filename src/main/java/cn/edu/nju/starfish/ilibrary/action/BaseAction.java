@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,5 +118,10 @@ public class BaseAction extends Action {
   public void run() {
     //  default implementation is to display an error message.
     application.displayUnimplementedError(this.getId());
+  }
+
+  @Override
+  public void runWithEvent(Event event) {
+    run();
   }
 }

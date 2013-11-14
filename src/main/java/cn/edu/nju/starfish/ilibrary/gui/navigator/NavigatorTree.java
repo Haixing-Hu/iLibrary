@@ -9,14 +9,18 @@ package cn.edu.nju.starfish.ilibrary.gui.navigator;
 import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Tree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.KeySuffix;
+import cn.edu.nju.starfish.ilibrary.controller.NavigatorController;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
 import cn.edu.nju.starfish.ilibrary.utils.XmlUtils;
 
@@ -49,12 +53,25 @@ public class NavigatorTree extends TreeViewer {
       this.setLabelProvider(new NavigatorTreeLabelProvider(application));
       this.setInput(doc);
     }
+    final Tree tree = this.getTree();
     //  set the background color
     final String bgcolor = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
     final Color color = SWTUtils.parseRGB(bgcolor);
     if (color != null) {
-      this.getControl().setBackground(color);
+      tree.setBackground(color);
     }
+    //  set the selection event handle
+    final NavigatorController controller = application.getNavigatorController();
+    tree.addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        controller.onSelectNode(event);
+      }
+      @Override
+      public void widgetDefaultSelected(SelectionEvent event) {
+        controller.onSelectNode(event);
+      }
+    });
   }
 
 //  /**

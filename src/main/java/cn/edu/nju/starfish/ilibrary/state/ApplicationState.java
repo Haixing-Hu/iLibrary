@@ -25,7 +25,7 @@ public final class ApplicationState {
   private final Application application;
   private AnnotateMode annotateMode;
   private int viewMode;
-  private NavigatorVisibility navigatorVisibility;
+  private boolean navigatorVisible;
   private FlagFilter flagFilter;
   private ReadFilter readFilter;
   private TypeFilter typeFilter;
@@ -42,7 +42,7 @@ public final class ApplicationState {
     this.application = application;
     annotateMode = AnnotateMode.SELECTION;
     viewMode = ViewMode.ALL;
-    navigatorVisibility = NavigatorVisibility.VISIBLE;
+    navigatorVisible = true;
     flagFilter = FlagFilter.ALL;
     readFilter = ReadFilter.ALL;
     typeFilter = TypeFilter.ALL;
@@ -54,20 +54,6 @@ public final class ApplicationState {
     previewHeight = config.getInt(LibraryPanelPreview.KEY + KeySuffix.DEFAULT_HEIGHT);
     previewHide = false;
     inspectorTab = InspectorTab.INFO;
-  }
-
-  /**
-   * Synchronize the state with the application.
-   */
-  public void sync() {
-    AnnotateMode.update(application, annotateMode);
-    ViewMode.update(application, viewMode);
-    NavigatorVisibility.update(application, navigatorVisibility);
-    FlagFilter.update(application, flagFilter);
-    ReadFilter.update(application, readFilter);
-    TypeFilter.update(application, typeFilter);
-    AttachmentFilter.update(application, attachmentFilter);
-    InspectorTab.update(application, inspectorTab);
   }
 
   /**
@@ -107,22 +93,24 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the navigator visibility.
+   * Tests whether the navigator is visible.
    *
-   * @return the navigator visibility.
+   * @return <code>true</code> if the navigator is visible; <code>false</code>
+   *         otherwise.
    */
-  public NavigatorVisibility getNavigatorVisibility() {
-    return navigatorVisibility;
+  public boolean isNavigatorVisible() {
+    return navigatorVisible;
   }
 
   /**
    * Sets the navigator visibility.
    *
    * @param visibility
-   *          the new navigator visibility to set.
+   *         <code>true</code> if the navigator is visible; <code>false</code>
+   *         otherwise.
    */
-  public void setNavigatorVisibility(NavigatorVisibility visibility) {
-    this.navigatorVisibility = visibility;
+  public void setNavigatorVisible(boolean visible) {
+    this.navigatorVisible = visible;
   }
 
   /**

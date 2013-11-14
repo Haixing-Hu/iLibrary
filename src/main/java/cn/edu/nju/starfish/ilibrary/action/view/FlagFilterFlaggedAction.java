@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.controller.LibraryTabController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.FlagFilter;
 
@@ -26,8 +27,8 @@ public class FlagFilterFlaggedAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    logger.info("Set the flag filter to {}", FlagFilter.FLAGGED);
-    FlagFilter.update(application, FlagFilter.FLAGGED);
+    final LibraryTabController controller = application.getLibraryTabController();
+    controller.setFlagFilter(FlagFilter.FLAGGED);
   }
 
 }

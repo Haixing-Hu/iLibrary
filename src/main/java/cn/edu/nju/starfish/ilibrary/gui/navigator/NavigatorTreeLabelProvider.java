@@ -39,7 +39,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     final String key = node.getKey();
     LOGGER.debug("Getting the image for navigator tree node: {}", key);
     final String icon = getNodeIcon(node);
-    LOGGER.debug("The image for navigator tree node {} is set to: {}", key, icon);
+    LOGGER.debug("The image for navigator tree node '{}' is set to: {}", key, icon);
     if (icon == null) {
       return null;
     } else {
@@ -56,7 +56,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     if (getNodeIcon(node) == null) {
       title = fixNoIconNodeTitle(title);
     }
-    LOGGER.debug("The text for navigator tree node {} is set to: '{}'", key, title);
+    LOGGER.debug("The text for navigator tree node '{}' is set to: '{}'", key, title);
     return title;
   }
 

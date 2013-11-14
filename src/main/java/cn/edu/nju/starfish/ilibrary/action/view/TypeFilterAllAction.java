@@ -8,6 +8,7 @@ package cn.edu.nju.starfish.ilibrary.action.view;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.controller.LibraryTabController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.TypeFilter;
 
@@ -26,7 +27,7 @@ public class TypeFilterAllAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    logger.info("Set the type filter to {}", TypeFilter.ALL);
-    TypeFilter.update(application, TypeFilter.ALL);
+    final LibraryTabController controller = application.getLibraryTabController();
+    controller.setTypeFilter(TypeFilter.ALL);
   }
 }

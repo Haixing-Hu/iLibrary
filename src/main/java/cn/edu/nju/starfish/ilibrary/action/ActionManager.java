@@ -91,10 +91,10 @@ import cn.edu.nju.starfish.ilibrary.action.share.ShareAction;
 import cn.edu.nju.starfish.ilibrary.action.share.SinaAction;
 import cn.edu.nju.starfish.ilibrary.action.share.TencentAction;
 import cn.edu.nju.starfish.ilibrary.action.share.TwitterAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.FilesTabAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.InfoTabAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.NotesTabAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.ReviewsTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToFilesTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToInfoTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToNotesTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToReviewsTabAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ActualSizeAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsCoverFlowAction;
 import cn.edu.nju.starfish.ilibrary.action.view.AsDocumentAction;
@@ -331,10 +331,10 @@ public final class ActionManager implements IActionManager {
     this.add(new FeedbackAction(application, this));
     this.add(new AboutAction(application, this));
     //  UI actions
-    this.add(new InfoTabAction(application, this));
-    this.add(new NotesTabAction(application, this));
-    this.add(new ReviewsTabAction(application, this));
-    this.add(new FilesTabAction(application, this));
+    this.add(new SwitchToInfoTabAction(application, this));
+    this.add(new SwitchToNotesTabAction(application, this));
+    this.add(new SwitchToReviewsTabAction(application, this));
+    this.add(new SwitchToFilesTabAction(application, this));
   }
 
   @Override

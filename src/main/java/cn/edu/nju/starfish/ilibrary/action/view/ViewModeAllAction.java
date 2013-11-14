@@ -6,10 +6,9 @@
 
 package cn.edu.nju.starfish.ilibrary.action.view;
 
-import org.eclipse.jface.action.IAction;
-
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
+import cn.edu.nju.starfish.ilibrary.controller.MainPanelController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.ViewMode;
 
@@ -28,7 +27,7 @@ public class ViewModeAllAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    logger.info("Set the view mode to ALL");
-    ViewMode.update(application, ViewMode.ALL);
+    final MainPanelController controller = application.getMainPanelController();
+    controller.setViewMode(ViewMode.ALL);
   }
 }

@@ -34,7 +34,7 @@ public final class NavigatorPanel extends Composite {
   private final int maxWidth;
   private final int marginTop;
   private final String backgroundColor;
-  private NavigatorTree navigatorTree;
+  private NavigatorTree tree;
   private NavigatorFooter footer;
 
   /**
@@ -75,7 +75,7 @@ public final class NavigatorPanel extends Composite {
     final Color color = SWTUtils.parseRGB(backgroundColor);
     this.setBackground(color);
 
-    navigatorTree = new NavigatorTree(application, this);
+    tree = new NavigatorTree(application, this);
     footer = new NavigatorFooter(application, this);
 
     final FormData fd_navigatorTree = new FormData();
@@ -83,7 +83,7 @@ public final class NavigatorPanel extends Composite {
     fd_navigatorTree.top = new FormAttachment(0);
     fd_navigatorTree.right = new FormAttachment(100);
     fd_navigatorTree.bottom = new FormAttachment(footer);
-    navigatorTree.getControl().setLayoutData(fd_navigatorTree);
+    tree.getControl().setLayoutData(fd_navigatorTree);
 
     final FormData fd_statusLine = new FormData();
     fd_statusLine.left = new FormAttachment(0);
@@ -125,8 +125,8 @@ public final class NavigatorPanel extends Composite {
    *
    * @return the navigator tree.
    */
-  public NavigatorTree getNavigatorTree() {
-    return navigatorTree;
+  public NavigatorTree getTree() {
+    return tree;
   }
 
   /**

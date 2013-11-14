@@ -35,6 +35,7 @@ public abstract class MainPanelTab extends CTabItem {
   public static final String KEY = MainPanel.KEY + ".tab";  //  "window.main.tab"
 
   protected final Application application;
+  protected final String id;
   protected final int minPanelWidth;
   protected final int maxPanelWidth;
   private final int sashWidth;
@@ -50,8 +51,8 @@ public abstract class MainPanelTab extends CTabItem {
    *
    * @param application
    *          the application.
-   * @param key
-   *          the key of the new tab item.
+   * @param id
+   *          the ID of the new tab item.
    * @param parent
    *          the parent of the new tab item.
    * @param style
@@ -59,10 +60,11 @@ public abstract class MainPanelTab extends CTabItem {
    * @param panelCreator
    *          the creator used to create a panel.
    */
-  public MainPanelTab(Application application, String key, CTabFolder parent,
+  public MainPanelTab(Application application, String id, CTabFolder parent,
       int style, PanelCreator panelCreator) {
     super(parent, style);
     this.application = application;
+    this.id = id;
     final Configuration config = application.getConfig();
     this.minPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MIN_WIDTH);  // "window.main.tab.panel.min-width"
     this.maxPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MAX_WIDTH);  // "window.main.tab.panel.max-width"
@@ -76,7 +78,7 @@ public abstract class MainPanelTab extends CTabItem {
     this.sash = new Sash(container, SWT.VERTICAL | SWT.BORDER | SWT.SMOOTH);
     this.inspector = new InspectorPanel(application, container);
     this.setControl(container);
-    this.setText("   " + application.getTitle(key) + "   ");
+    this.setText("   " + application.getTitle(id) + "   ");
     this.layoutContents();
     this.configSash();
   }
@@ -195,6 +197,15 @@ public abstract class MainPanelTab extends CTabItem {
     fd.left = new FormAttachment(100, - width - sashWidth);
     fd.right = new FormAttachment(100, - width);
     sash.getParent().layout();
+  }
+
+  /**
+   * Gets the ID.
+   *
+   * @return the ID.
+   */
+  public String getId() {
+    return id;
   }
 
   /**

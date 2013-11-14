@@ -4,10 +4,10 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.state;
+package cn.edu.nju.starfish.ilibrary.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.TreeItem;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
@@ -15,61 +15,60 @@ import cn.edu.nju.starfish.ilibrary.action.view.HideNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ShowNavigatorAction;
 import cn.edu.nju.starfish.ilibrary.action.view.ViewAction;
 import cn.edu.nju.starfish.ilibrary.gui.MainWindow;
+import cn.edu.nju.starfish.ilibrary.gui.navigator.NavigatorTreeNode;
 import cn.edu.nju.starfish.ilibrary.gui.widget.DropDownAction;
-
+import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
 
 /**
- * The enumeration of visibility of the navigator panel.
+ * The controller of the navigator panel.
  *
  * @author Haixing Hu
  */
-public enum NavigatorVisibility {
+public class NavigatorController  extends BaseController {
 
   /**
-   * Indicates the navigator panel is visible.
-   */
-  VISIBLE,
-
-  /**
-   * Indicates the navigator panel is invisible.
-   */
-  INVISIBLE;
-
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorVisibility.class);
-
-  /**
-   * Updates the navigator visibility
+   * Constructs a {@link NavigatorController}.
    *
    * @param application
    *          the application.
-   * @param visibility
-   *          the new visibility.
    */
-  public static void update(Application application,
-      NavigatorVisibility visibility) {
+  public NavigatorController(Application application) {
+    super(application);
+  }
+
+  /**
+   * Sets the navigator's visibility
+   *
+   * @param visible
+   *          <code>true</code> to set the navigator visible; <code>false</code>
+   *          otherwise.
+   */
+  public void setVisible(boolean visible) {
+    logger.info("Sets the visible of navigator to: {}", visible);
     final ActionManager am = application.getActionManager();
     final MainWindow win = application.getMainWindow();
     final DropDownAction viewAction = (DropDownAction) am.get(ViewAction.KEY);
-    switch (visibility) {
-    case VISIBLE:
+    if (visible) {
       viewAction.showSubAction(HideNavigatorAction.KEY);
       viewAction.hideSubAction(ShowNavigatorAction.KEY);
       viewAction.update(true);
       win.showNavigator();
-      break;
-    case INVISIBLE:
+    } else {
       viewAction.hideSubAction(HideNavigatorAction.KEY);
       viewAction.showSubAction(ShowNavigatorAction.KEY);
       viewAction.update(true);
       win.hideNavigator();
-      break;
-    default:
-      LOGGER.error("Unknown navigator visibility: ", visibility);
-      return;
     }
     // set the state
     final ApplicationState state = application.getState();
-    state.setNavigatorVisibility(visibility);
+    state.setNavigatorVisible(visible);
   }
+
+  public void onSelectNode(SelectionEvent event) {
+    final TreeItem item = (TreeItem) event.item;
+    final NavigatorTreeNode node = (NavigatorTreeNode) item.getData();
+    logger.info("Select the navigator node: {}", node.getKey());
+    //  TODO
+  }
+
 }

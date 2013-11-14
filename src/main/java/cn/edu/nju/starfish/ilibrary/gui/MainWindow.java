@@ -287,7 +287,7 @@ public final class MainWindow extends ApplicationWindow {
    *
    * @return the navigator panel.
    */
-  public NavigatorPanel getNavigatorPanel() {
+  public NavigatorPanel getNavigator() {
     return navigator;
   }
 

@@ -19,10 +19,10 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
-import cn.edu.nju.starfish.ilibrary.action.ui.FilesTabAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.InfoTabAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.NotesTabAction;
-import cn.edu.nju.starfish.ilibrary.action.ui.ReviewsTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToFilesTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToInfoTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToNotesTabAction;
+import cn.edu.nju.starfish.ilibrary.action.ui.SwitchToReviewsTabAction;
 
 /**
  * The header of the inspector tab folder.
@@ -66,10 +66,10 @@ public final class InspectorHeader extends Composite {
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.get(InfoTabAction.KEY));
-    toolBarManager.add(am.get(NotesTabAction.KEY));
-    toolBarManager.add(am.get(ReviewsTabAction.KEY));
-    toolBarManager.add(am.get(FilesTabAction.KEY));
+    toolBarManager.add(am.get(SwitchToInfoTabAction.KEY));
+    toolBarManager.add(am.get(SwitchToNotesTabAction.KEY));
+    toolBarManager.add(am.get(SwitchToReviewsTabAction.KEY));
+    toolBarManager.add(am.get(SwitchToFilesTabAction.KEY));
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 

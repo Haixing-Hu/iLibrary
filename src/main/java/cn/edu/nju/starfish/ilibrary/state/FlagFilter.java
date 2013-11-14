@@ -6,15 +6,6 @@
 
 package cn.edu.nju.starfish.ilibrary.state;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import cn.edu.nju.starfish.ilibrary.Application;
-import cn.edu.nju.starfish.ilibrary.action.ActionManager;
-import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterAllAction;
-import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterFlaggedAction;
-import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterUnflaggedAction;
-import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 
 /**
  * The enumeration of flag filters.
@@ -27,47 +18,5 @@ public enum FlagFilter {
 
   UNFLAGGED,
 
-  ALL;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(FlagFilter.class);
-
-  /**
-   * Updates the flag filter.
-   *
-   * @param application the application.
-   * @param filter the new flag filter.
-   */
-  public static void update(Application application, FlagFilter filter) {
-    //  TODO: set the filter in the document list table
-    final ActionManager am = application.getActionManager();
-    final Action all = am.get(FlagFilterAllAction.KEY);
-    final Action flagged = am.get(FlagFilterFlaggedAction.KEY);
-    final Action unflagged = am.get(FlagFilterUnflaggedAction.KEY);
-    switch (filter) {
-    case FLAGGED:
-      //  update action's checking status
-      all.setChecked(false);
-      flagged.setChecked(true);
-      unflagged.setChecked(false);
-      break;
-    case UNFLAGGED:
-      //  update action's checking status
-      all.setChecked(false);
-      flagged.setChecked(false);
-      unflagged.setChecked(true);
-      break;
-    case ALL:
-      //  update action's checking status
-      all.setChecked(true);
-      flagged.setChecked(false);
-      unflagged.setChecked(false);
-      break;
-    default:
-      LOGGER.error("Unknown flag filter: ", filter);
-      return;
-    }
-    //  set the state
-    final ApplicationState state = application.getState();
-    state.setFlagFilter(filter);
-  }
+  ALL,
 }
