@@ -21,5 +21,6 @@ public class AttachFileAction extends BaseAction {
 
   public AttachFileAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

@@ -21,5 +21,6 @@ public class EditInformationAction extends BaseAction {
 
   public EditInformationAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

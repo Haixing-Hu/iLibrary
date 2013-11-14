@@ -21,5 +21,6 @@ public class MergeAuthorsAction extends BaseAction {
 
   public MergeAuthorsAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

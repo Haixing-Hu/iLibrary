@@ -21,6 +21,7 @@ public class FacebookAction extends BaseAction {
 
   public FacebookAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

@@ -21,6 +21,7 @@ public class GooglePlusAction extends BaseAction {
 
   public GooglePlusAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

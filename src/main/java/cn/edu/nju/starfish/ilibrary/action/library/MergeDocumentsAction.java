@@ -21,6 +21,7 @@ public class MergeDocumentsAction extends BaseAction {
 
   public MergeDocumentsAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

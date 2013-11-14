@@ -9,14 +9,20 @@ package cn.edu.nju.starfish.ilibrary.gui.widget;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 /**
- * An extension to {@link org.eclipse.jface.action.Action} which adds the
- * visibility of actions.
+ * An extension to {@link org.eclipse.jface.action.Action}, providing the
+ * following enhancements:
+ * <ul>
+ * <li>add the visibility control</li>
+ * <li>add a property which indicate whether this action will display a dialog.</li>
+ * </ul>
  *
  * @author Haixing Hu
  */
 public abstract class Action extends org.eclipse.jface.action.Action {
 
   private boolean visible = true;
+  private final boolean showImage = true;
+  private boolean showDialog = false;
 
   /**
    * Creates a new action with no text and no image.
@@ -90,4 +96,25 @@ public abstract class Action extends org.eclipse.jface.action.Action {
   public void setVisible(boolean visible) {
     this.visible = visible;
   }
+
+  /**
+   * Tests whether this action will show a dialog.
+   *
+   * @return <code>true</code> if this action will show a dialog;
+   *         <code>false</code> otherwise.
+   */
+  public boolean isShowDialog() {
+    return showDialog;
+  }
+
+  /**
+   * Sets whether this action will show a dialog.
+   *
+   * @return <code>true</code> if this action will show a dialog;
+   *         <code>false</code> otherwise.
+   */
+  public void setShowDialog(boolean showDialog) {
+    this.showDialog = showDialog;
+  }
+
 }

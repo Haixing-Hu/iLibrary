@@ -21,5 +21,6 @@ public class TencentAction extends BaseAction {
 
   public TencentAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

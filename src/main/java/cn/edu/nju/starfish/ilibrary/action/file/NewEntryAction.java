@@ -21,6 +21,7 @@ public class NewEntryAction extends BaseAction {
 
   public NewEntryAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

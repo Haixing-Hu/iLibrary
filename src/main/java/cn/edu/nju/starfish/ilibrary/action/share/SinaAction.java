@@ -21,6 +21,7 @@ public class SinaAction extends BaseAction {
 
   public SinaAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

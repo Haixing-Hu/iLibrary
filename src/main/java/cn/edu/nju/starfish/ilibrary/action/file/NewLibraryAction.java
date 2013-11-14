@@ -21,5 +21,6 @@ public class NewLibraryAction extends BaseAction {
 
   public NewLibraryAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

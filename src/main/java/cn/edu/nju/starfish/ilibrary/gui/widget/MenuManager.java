@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.action.ExternalActionManager;
 import org.eclipse.jface.action.IAction;
@@ -45,8 +44,14 @@ import org.eclipse.swt.widgets.ToolBar;
  * </p>
  * <p>
  * This class is a modified version of the {@link org.eclipse.jface.action.MenuManager},
- * and it provides a function to create a sub-menu for a parent menu.
- * </p>
+ * providing the following enhancements:
+ * <ul>
+ * <li>It provides a function to create a sub-menu for a parent menu.</li>
+ * <li>Controls whether to show the image on the menu items
+ * depending on the modified version of action's "showImage" property.</li>
+ * <li>Append "..." to the title of the menu item if the modified
+ * version of action's "showDialog" property is true.
+ * </ul>
  *
  * @author Haixing Hu
  */
@@ -476,8 +481,8 @@ public class MenuManager extends ContributionManager implements IMenuManager {
     if (definitionId == null) {
       return menuText;
     }
-    final ExternalActionManager.ICallback callback = ExternalActionManager
-        .getInstance().getCallback();
+    final ExternalActionManager.ICallback callback =
+        ExternalActionManager.getInstance().getCallback();
     if (callback != null) {
       final String shortCut = callback.getAcceleratorText(definitionId);
       if (shortCut == null) {
@@ -1168,29 +1173,8 @@ public class MenuManager extends ContributionManager implements IMenuManager {
    */
   public void add(Action action) {
     Assert.isNotNull(action, "Action must not be null"); //$NON-NLS-1$
-    final IContributionItem item;
-    if (showImage) {
-      item = new ActionContributionItem(action);
-    } else {
-      item = new ActionContributionItem(action) {
-        @Override
-        public void update(String propertyName) {
-          if (propertyName == null) {
-            // we must split the updating requests and ignore the IMAGE
-            super.update(IAction.TEXT);
-            // super.update(IAction.IMAGE); // ignore the IMAGE
-            super.update(IAction.TOOL_TIP_TEXT);
-            super.update(IAction.ENABLED);
-            super.update(IAction.CHECKED);
-          } else if (propertyName.equals(IAction.IMAGE)) {
-            // ignore the update of IMAGE
-            return;
-          } else {
-            super.update(propertyName);
-          }
-        }
-      };
-    }
+    final ActionContributionItem item = new ActionContributionItem(action);
+    item.setShowImage(showImage);
     //  set the visibility of the item according to the visibility of the action.
     if (! action.isVisible()) {
       item.setVisible(false);

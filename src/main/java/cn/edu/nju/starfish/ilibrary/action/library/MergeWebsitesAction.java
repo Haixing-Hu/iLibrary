@@ -21,6 +21,7 @@ public class MergeWebsitesAction extends BaseAction {
 
   public MergeWebsitesAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

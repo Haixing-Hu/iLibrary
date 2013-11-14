@@ -21,6 +21,7 @@ public class TwitterAction extends BaseAction {
 
   public TwitterAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

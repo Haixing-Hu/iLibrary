@@ -21,5 +21,6 @@ public class EditCollectionAction extends BaseAction {
 
   public EditCollectionAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

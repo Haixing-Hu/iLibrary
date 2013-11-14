@@ -20,5 +20,6 @@ public class PreferencesAction extends BaseAction {
 
   public PreferencesAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

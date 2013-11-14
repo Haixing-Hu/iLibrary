@@ -20,6 +20,7 @@ public class FindAction extends BaseAction {
 
   public FindAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

@@ -21,6 +21,7 @@ public class OpenFileWithAction extends BaseAction {
 
   public OpenFileWithAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 
 }

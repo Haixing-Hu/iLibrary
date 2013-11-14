@@ -21,5 +21,6 @@ public class EditNotesAction extends BaseAction {
 
   public EditNotesAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

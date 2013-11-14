@@ -21,5 +21,6 @@ public class ExportAction extends BaseAction {
 
   public ExportAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }

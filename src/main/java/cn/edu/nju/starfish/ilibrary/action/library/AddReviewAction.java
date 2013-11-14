@@ -21,5 +21,6 @@ public class AddReviewAction extends BaseAction {
 
   public AddReviewAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowDialog(true);
   }
 }
