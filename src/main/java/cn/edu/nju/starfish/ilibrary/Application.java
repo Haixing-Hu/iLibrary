@@ -89,9 +89,9 @@ public final class Application {
     mainPanelController.setViewMode(state.getViewMode());
     inspectorController.switchToTab(state.getInspectorTab());
     libraryTabController.setFlagFilter(state.getFlagFilter());
-    libraryTabController.setReadFilter(state.getReadFilter());
+    libraryTabController.setReadFilter(state.getReadStatusFilter());
     libraryTabController.setTypeFilter(state.getTypeFilter());
-    libraryTabController.setAttachmentFilter(state.getAttachmentFilter());
+    libraryTabController.setAttachmentFilter(state.getFileStatusFilter());
     documentTabController.setAnnotateMode(state.getAnnotateMode());
   }
 

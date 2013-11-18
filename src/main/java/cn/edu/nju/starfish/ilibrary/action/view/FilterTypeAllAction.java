@@ -13,15 +13,15 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
 import cn.edu.nju.starfish.ilibrary.state.TypeFilter;
 
 /**
- * The action to filter documents in all types.
+ * The action to filter documents in all categories.
  *
  * @author Haixing Hu
  */
-public class TypeFilterAllAction extends BaseCheckBoxAction {
+public class FilterTypeAllAction extends BaseCheckBoxAction {
 
-  public static final String KEY = TypeFilterAction.KEY + ".all";
+  public static final String KEY = FilterTypeAction.KEY + ".all";
 
-  public TypeFilterAllAction(Application application, IActionManager actionManager) {
+  public FilterTypeAllAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 

@@ -8,11 +8,11 @@ package cn.edu.nju.starfish.ilibrary.state;
 
 
 /**
- * The enumeration of attachment filters.
+ * The enumeration of file status filters.
  *
  * @author Haixing Hu
  */
-public enum AttachmentFilter {
+public enum FileStatusFilter {
 
   HAS_FILE,
 

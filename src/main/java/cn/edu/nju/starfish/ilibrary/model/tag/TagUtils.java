@@ -4,7 +4,7 @@
  *
  ******************************************************************************/
 
-package cn.edu.nju.starfish.ilibrary.utils;
+package cn.edu.nju.starfish.ilibrary.model.tag;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.ListIterator;
 
 import javax.annotation.Nullable;
 
-import cn.edu.nju.starfish.ilibrary.model.tag.Tag;
+import cn.edu.nju.starfish.ilibrary.utils.Argument;
 
 /**
  * Provides functions to manipulate the tag lists.

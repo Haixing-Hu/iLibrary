@@ -176,7 +176,6 @@ public class Edition {
    */
   @Override
   public String toString() {
-    return new ToStringBuilder(this).append("number", number)
-        .append("description", description).toString();
+    return ToStringBuilder.reflectionToString(this);
   }
 }

@@ -11,7 +11,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import cn.edu.nju.starfish.ilibrary.utils.Argument;
-import cn.edu.nju.starfish.ilibrary.utils.TagUtils;
 
 /**
  * The tag representing a keyword.

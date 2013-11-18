@@ -26,10 +26,10 @@ public final class ApplicationState {
   private AnnotateMode annotateMode;
   private int viewMode;
   private boolean navigatorVisible;
-  private FlagFilter flagFilter;
-  private ReadFilter readFilter;
+  private FlagStatusFilter flagStatusFilter;
+  private ReadStatusFilter readStatusFilter;
   private TypeFilter typeFilter;
-  private AttachmentFilter attachmentFilter;
+  private FileStatusFilter fileStatusFilter;
   private int navigatorWidth;
   private boolean navigatorHide;
   private int inspectorWidth;
@@ -43,10 +43,10 @@ public final class ApplicationState {
     annotateMode = AnnotateMode.SELECTION;
     viewMode = ViewMode.ALL;
     navigatorVisible = true;
-    flagFilter = FlagFilter.ALL;
-    readFilter = ReadFilter.ALL;
+    flagStatusFilter = FlagStatusFilter.ALL;
+    readStatusFilter = ReadStatusFilter.ALL;
     typeFilter = TypeFilter.ALL;
-    attachmentFilter = AttachmentFilter.ALL;
+    fileStatusFilter = FileStatusFilter.ALL;
     navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     navigatorHide = false;
     inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
@@ -114,39 +114,39 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the flag filter.
+   * Gets the flag status filter.
    *
-   * @return the flag filter.
+   * @return the flag status filter.
    */
-  public FlagFilter getFlagFilter() {
-    return flagFilter;
+  public FlagStatusFilter getFlagFilter() {
+    return flagStatusFilter;
   }
 
   /**
-   * Sets the flag filter.
+   * Sets the flag status filter.
    *
-   * @param flagFilter the new flag filter to set.
+   * @param flagStatusFilter the new flag status filter to set.
    */
-  public void setFlagFilter(FlagFilter flagFilter) {
-    this.flagFilter = flagFilter;
+  public void setFlagStatusFilter(FlagStatusFilter flagStatusFilter) {
+    this.flagStatusFilter = flagStatusFilter;
   }
 
   /**
-   * Gets the read filter.
+   * Gets the read status filter.
    *
-   * @return the read filter.
+   * @return the read status filter.
    */
-  public ReadFilter getReadFilter() {
-    return readFilter;
+  public ReadStatusFilter getReadStatusFilter() {
+    return readStatusFilter;
   }
 
   /**
-   * Sets the read filter.
+   * Sets the read status filter.
    *
-   * @param readFilter the new read filter to set.
+   * @param readStatusFilter the new read status filter to set.
    */
-  public void setReadFilter(ReadFilter readFilter) {
-    this.readFilter = readFilter;
+  public void setReadStatusFilter(ReadStatusFilter readStatusFilter) {
+    this.readStatusFilter = readStatusFilter;
   }
 
   /**
@@ -168,21 +168,21 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the attachment filter.
+   * Gets the file status filter.
    *
-   * @return the attachment filter.
+   * @return the file status filter.
    */
-  public AttachmentFilter getAttachmentFilter() {
-    return attachmentFilter;
+  public FileStatusFilter getFileStatusFilter() {
+    return fileStatusFilter;
   }
 
   /**
-   * Sets the attachment filter.
+   * Sets the file status filter.
    *
-   * @param attachmentFilter the new attachment filter to set.
+   * @param fileStatusFilter the new file status filter to set.
    */
-  public void setAttachmentFilter(AttachmentFilter attachmentFilter) {
-    this.attachmentFilter = attachmentFilter;
+  public void setFileStatusFilter(FileStatusFilter fileStatusFilter) {
+    this.fileStatusFilter = fileStatusFilter;
   }
 
   /**

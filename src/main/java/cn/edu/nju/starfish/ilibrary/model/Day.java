@@ -13,11 +13,11 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import cn.edu.nju.starfish.ilibrary.utils.Argument;
 
 /**
- * Represents a date.
+ * Represents a day.
  *
  * @author Haixing Hu
  */
-public class Date {
+public class Day {
 
   public enum Type {
     EXACT_DATE,
@@ -32,9 +32,9 @@ public class Date {
   private boolean circa;
 
   /**
-   * Default constructs a {@link Date} which does not represent any valid date.
+   * Default constructs a {@link Day} which does not represent any valid date.
    */
-  public Date() {
+  public Day() {
     year = -1;
     month = -1;
     day = -1;
@@ -42,7 +42,7 @@ public class Date {
   }
 
   /**
-   * Constructs a {@link Date} represents an exact date.
+   * Constructs a {@link Day} represents an exact date.
    *
    * @param year
    *          the year of the new date.
@@ -51,7 +51,7 @@ public class Date {
    * @param day
    *          the day of the new date.
    */
-  public Date(short year, byte month, byte day) {
+  public Day(short year, byte month, byte day) {
     this.year = year;
     this.month = Argument.requireInCloseRange("month", month, (byte)1, (byte)12);
     this.day = Argument.requireInCloseRange("day", day, (byte)1, (byte)31);
@@ -59,14 +59,14 @@ public class Date {
   }
 
   /**
-   * Constructs a {@link Date} represents a year-month date.
+   * Constructs a {@link Day} represents a year-month date.
    *
    * @param year
    *          the year of the new date.
    * @param month
    *          the month of the new date.
    */
-  public Date(short year, byte month) {
+  public Day(short year, byte month) {
     this.year = year;
     this.month = Argument.requireInCloseRange("month", month, (byte)1, (byte)12);
     this.day = -1;
@@ -74,14 +74,14 @@ public class Date {
   }
 
   /**
-   * Constructs a {@link Date} represents a circa date.
+   * Constructs a {@link Day} represents a circa date.
    *
    * @param year
    *          the year of the new date.
    * @param circa
    *          indicate whether the new date is circa.
    */
-  public Date(short year, boolean circa) {
+  public Day(short year, boolean circa) {
     this.year = year;
     this.month = -1;
     this.day = -1;

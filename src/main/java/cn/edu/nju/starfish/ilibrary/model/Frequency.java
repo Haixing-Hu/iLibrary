@@ -11,7 +11,7 @@ package cn.edu.nju.starfish.ilibrary.model;
  *
  * @author Haixing Hu
  */
-public enum PublishFrequency {
+public enum Frequency {
 
   /**
    * Indicates the periodical is published once per year.

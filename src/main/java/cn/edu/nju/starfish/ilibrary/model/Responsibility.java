@@ -21,11 +21,6 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  */
 public class Responsibility {
 
-  public enum Type {
-    PERSON,
-    INSTITUTE,
-  }
-
   private Person person;
   private Institute institute;
 
@@ -60,17 +55,23 @@ public class Responsibility {
   }
 
   /**
-   * Gets the type of this responsibility.
-   * <p>
-   * If the <code>institute</code> field of this {@link Responsibility} object
-   * is <code>null</code>, the type of this {@link Responsibility} object is
-   * {@link Type#PERSON}; otherwise, the type of this {@link Responsibility}
-   * object is {@link Type#INSTITUTE}.
+   * Tests whether this responsibility is a person.
    *
-   * @return the type of the responsibility.
+   * @return <code>true</code> if this responsibility is a person;
+   *         <code>false</code> otherwise.
    */
-  public Type getType() {
-    return (institute == null ? Type.PERSON : Type.INSTITUTE);
+  public boolean isPerson() {
+    return (person != null);
+  }
+
+  /**
+   * Tests whether this responsibility is an institute.
+   *
+   * @return <code>true</code> if this responsibility is an institute;
+   *         <code>false</code> otherwise.
+   */
+  public boolean isInstitute() {
+    return (institute != null);
   }
 
   /**
@@ -95,6 +96,7 @@ public class Responsibility {
    */
   public void setPerson(Person person) {
     this.person = requireNonNull("person", person);
+    this.institute = null;
   }
 
   /**
@@ -122,25 +124,16 @@ public class Responsibility {
     this.person = null;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this);
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return ReflectionToStringBuilder.toString(this);

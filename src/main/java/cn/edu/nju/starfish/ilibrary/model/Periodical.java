@@ -36,9 +36,9 @@ public class Periodical extends Taggable {
   private City city;
   private long circulation;
   private double factor;
-  private Date startDate;
-  private Date endDate;
-  private PublishFrequency frequency;
+  private Day startDate;
+  private Day endDate;
+  private Frequency frequency;
   private String url;
   private String rss;
   private String doi;
@@ -272,7 +272,7 @@ public class Periodical extends Taggable {
    *
    * @return the startDate.
    */
-  public Date getStartDate() {
+  public Day getStartDate() {
     return startDate;
   }
 
@@ -282,7 +282,7 @@ public class Periodical extends Taggable {
    * @param startDate
    *          the new startDate to set.
    */
-  public void setStartDate(@Nullable Date startDate) {
+  public void setStartDate(@Nullable Day startDate) {
     this.startDate = startDate;
   }
 
@@ -291,7 +291,7 @@ public class Periodical extends Taggable {
    *
    * @return the endDate.
    */
-  public Date getEndDate() {
+  public Day getEndDate() {
     return endDate;
   }
 
@@ -301,7 +301,7 @@ public class Periodical extends Taggable {
    * @param endDate
    *          the new endDate to set.
    */
-  public void setEndDate(@Nullable Date endDate) {
+  public void setEndDate(@Nullable Day endDate) {
     this.endDate = endDate;
   }
 
@@ -310,7 +310,7 @@ public class Periodical extends Taggable {
    *
    * @return the frequency.
    */
-  public PublishFrequency getFrequency() {
+  public Frequency getFrequency() {
     return frequency;
   }
 
@@ -320,7 +320,7 @@ public class Periodical extends Taggable {
    * @param frequency
    *          the new frequency to set.
    */
-  public void setFrequency(@Nullable PublishFrequency frequency) {
+  public void setFrequency(@Nullable Frequency frequency) {
     this.frequency = frequency;
   }
 

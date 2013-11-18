@@ -10,25 +10,25 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
 import cn.edu.nju.starfish.ilibrary.controller.LibraryTabController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
-import cn.edu.nju.starfish.ilibrary.state.FlagFilter;
+import cn.edu.nju.starfish.ilibrary.state.FlagStatusFilter;
 
 /**
  * The action to filter documents with all flag status.
  *
  * @author Haixing Hu
  */
-public class FlagFilterAllAction extends BaseCheckBoxAction {
+public class FilterFlagStatusAllAction extends BaseCheckBoxAction {
 
-  public static final String KEY = FlagFilterAction.KEY + ".all";
+  public static final String KEY = FilterFlagStatusAction.KEY + ".all";
 
-  public FlagFilterAllAction(Application application, IActionManager actionManager) {
+  public FilterFlagStatusAllAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 
   @Override
   public void run() {
     final LibraryTabController controller = application.getLibraryTabController();
-    controller.setFlagFilter(FlagFilter.ALL);
+    controller.setFlagFilter(FlagStatusFilter.ALL);
   }
 
 }

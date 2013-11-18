@@ -8,27 +8,27 @@ package cn.edu.nju.starfish.ilibrary.controller;
 
 import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.ActionManager;
-import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterAllAction;
-import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterHasFileAction;
-import cn.edu.nju.starfish.ilibrary.action.view.AttachmentFilterNoFileAction;
-import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterAllAction;
-import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterFlaggedAction;
-import cn.edu.nju.starfish.ilibrary.action.view.FlagFilterUnflaggedAction;
-import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterAllAction;
-import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterHasReadAction;
-import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterReadingAction;
-import cn.edu.nju.starfish.ilibrary.action.view.ReadFilterUnreadAction;
-import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterAllAction;
-import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterArticleAction;
-import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterBookAction;
-import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterMediaAction;
-import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterPatentAction;
-import cn.edu.nju.starfish.ilibrary.action.view.TypeFilterReportAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterTypeAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterTypeArticleAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterTypeBookAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterTypeMediaAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterTypePatentAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterTypeReportAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterFileStatusAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterFileStatusHasFileAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterFileStatusNoFileAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterFlagStatusAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterFlagStatusFlaggedAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterFlagStatusUnflaggedAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterReadStatusAllAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterReadStatusHasReadAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterReadStatusReadingAction;
+import cn.edu.nju.starfish.ilibrary.action.view.FilterReadStatusUnreadAction;
 import cn.edu.nju.starfish.ilibrary.gui.widget.Action;
 import cn.edu.nju.starfish.ilibrary.state.ApplicationState;
-import cn.edu.nju.starfish.ilibrary.state.AttachmentFilter;
-import cn.edu.nju.starfish.ilibrary.state.FlagFilter;
-import cn.edu.nju.starfish.ilibrary.state.ReadFilter;
+import cn.edu.nju.starfish.ilibrary.state.FileStatusFilter;
+import cn.edu.nju.starfish.ilibrary.state.FlagStatusFilter;
+import cn.edu.nju.starfish.ilibrary.state.ReadStatusFilter;
 import cn.edu.nju.starfish.ilibrary.state.TypeFilter;
 
 /**
@@ -54,13 +54,13 @@ public class LibraryTabController  extends BaseController {
    * @param filter
    *          the new flag filter.
    */
-  public void setFlagFilter(FlagFilter filter) {
+  public void setFlagFilter(FlagStatusFilter filter) {
     logger.info("Set the flag filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(FlagFilterAllAction.KEY);
-    final Action flagged = am.get(FlagFilterFlaggedAction.KEY);
-    final Action unflagged = am.get(FlagFilterUnflaggedAction.KEY);
+    final Action all = am.get(FilterFlagStatusAllAction.KEY);
+    final Action flagged = am.get(FilterFlagStatusFlaggedAction.KEY);
+    final Action unflagged = am.get(FilterFlagStatusUnflaggedAction.KEY);
     switch (filter) {
     case FLAGGED:
       //  update action's checking status
@@ -86,7 +86,7 @@ public class LibraryTabController  extends BaseController {
     }
     //  set the state
     final ApplicationState state = application.getState();
-    state.setFlagFilter(filter);
+    state.setFlagStatusFilter(filter);
   }
 
   /**
@@ -95,14 +95,14 @@ public class LibraryTabController  extends BaseController {
    * @param filter
    *          the new read filter.
    */
-  public void setReadFilter(ReadFilter filter) {
+  public void setReadFilter(ReadStatusFilter filter) {
     logger.info("Set the read filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(ReadFilterAllAction.KEY);
-    final Action unread = am.get(ReadFilterUnreadAction.KEY);
-    final Action reading = am.get(ReadFilterReadingAction.KEY);
-    final Action hasRead = am.get(ReadFilterHasReadAction.KEY);
+    final Action all = am.get(FilterReadStatusAllAction.KEY);
+    final Action unread = am.get(FilterReadStatusUnreadAction.KEY);
+    final Action reading = am.get(FilterReadStatusReadingAction.KEY);
+    final Action hasRead = am.get(FilterReadStatusHasReadAction.KEY);
     switch (filter) {
     case UNREAD:
       //  update action's checking status
@@ -138,7 +138,7 @@ public class LibraryTabController  extends BaseController {
     }
     //  set the state
     final ApplicationState state = application.getState();
-    state.setReadFilter(filter);
+    state.setReadStatusFilter(filter);
   }
 
   /**
@@ -150,12 +150,12 @@ public class LibraryTabController  extends BaseController {
     logger.info("Set the type filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(TypeFilterAllAction.KEY);
-    final Action article = am.get(TypeFilterArticleAction.KEY);
-    final Action book = am.get(TypeFilterBookAction.KEY);
-    final Action report = am.get(TypeFilterReportAction.KEY);
-    final Action patent = am.get(TypeFilterPatentAction.KEY);
-    final Action media = am.get(TypeFilterMediaAction.KEY);
+    final Action all = am.get(FilterTypeAllAction.KEY);
+    final Action article = am.get(FilterTypeArticleAction.KEY);
+    final Action book = am.get(FilterTypeBookAction.KEY);
+    final Action report = am.get(FilterTypeReportAction.KEY);
+    final Action patent = am.get(FilterTypePatentAction.KEY);
+    final Action media = am.get(FilterTypeMediaAction.KEY);
     switch (filter) {
     case ALL:
       all.setChecked(true);
@@ -221,13 +221,13 @@ public class LibraryTabController  extends BaseController {
    * @param filter
    *          the new attachment filter.
    */
-  public void setAttachmentFilter(AttachmentFilter filter) {
+  public void setAttachmentFilter(FileStatusFilter filter) {
     logger.info("Set the attachment filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(AttachmentFilterAllAction.KEY);
-    final Action has_file = am.get(AttachmentFilterHasFileAction.KEY);
-    final Action no_file = am.get(AttachmentFilterNoFileAction.KEY);
+    final Action all = am.get(FilterFileStatusAllAction.KEY);
+    final Action has_file = am.get(FilterFileStatusHasFileAction.KEY);
+    final Action no_file = am.get(FilterFileStatusNoFileAction.KEY);
     switch (filter) {
     case HAS_FILE:
       //  update action's checking status
@@ -253,6 +253,6 @@ public class LibraryTabController  extends BaseController {
     }
     //  set the state
     final ApplicationState state = application.getState();
-    state.setAttachmentFilter(filter);
+    state.setFileStatusFilter(filter);
   }
 }

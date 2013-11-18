@@ -15,17 +15,17 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
  *
  * @author Haixing Hu
  */
-public class FlagFilterAction extends BaseDropDownAction {
+public class FilterFlagStatusAction extends BaseDropDownAction {
 
   public static final String KEY = ViewAction.KEY + ".filter.flag";
 
   private static final String SUB_ACTIONS[] = {
-    FlagFilterAllAction.KEY,
-    FlagFilterFlaggedAction.KEY,
-    FlagFilterUnflaggedAction.KEY,
+    FilterFlagStatusAllAction.KEY,
+    FilterFlagStatusFlaggedAction.KEY,
+    FilterFlagStatusUnflaggedAction.KEY,
   };
 
-  public FlagFilterAction(Application application, IActionManager actionManager) {
+  public FilterFlagStatusAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager, SUB_ACTIONS);
   }
 }

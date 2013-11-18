@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import cn.edu.nju.starfish.ilibrary.model.Label;
 import cn.edu.nju.starfish.ilibrary.utils.Argument;
-import cn.edu.nju.starfish.ilibrary.utils.TagUtils;
 
 /**
  * The tag representing a label.

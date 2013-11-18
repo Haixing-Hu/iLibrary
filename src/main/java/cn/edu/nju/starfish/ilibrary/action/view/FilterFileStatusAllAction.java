@@ -10,25 +10,25 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.action.BaseCheckBoxAction;
 import cn.edu.nju.starfish.ilibrary.controller.LibraryTabController;
 import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
-import cn.edu.nju.starfish.ilibrary.state.AttachmentFilter;
+import cn.edu.nju.starfish.ilibrary.state.FileStatusFilter;
 
 /**
  * The action to filter documents with attachment status.
  *
  * @author Haixing Hu
  */
-public class AttachmentFilterAllAction extends BaseCheckBoxAction {
+public class FilterFileStatusAllAction extends BaseCheckBoxAction {
 
-  public static final String KEY = AttachmentFilterAction.KEY + ".all";
+  public static final String KEY = FilterFileStatusAction.KEY + ".all";
 
-  public AttachmentFilterAllAction(Application application, IActionManager actionManager) {
+  public FilterFileStatusAllAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 
   @Override
   public void run() {
     final LibraryTabController controller = application.getLibraryTabController();
-    controller.setAttachmentFilter(AttachmentFilter.ALL);
+    controller.setAttachmentFilter(FileStatusFilter.ALL);
   }
 
 }

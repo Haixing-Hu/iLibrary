@@ -15,18 +15,18 @@ import cn.edu.nju.starfish.ilibrary.gui.widget.IActionManager;
  *
  * @author Haixing Hu
  */
-public class ReadFilterAction extends BaseDropDownAction {
+public class FilterReadStatusAction extends BaseDropDownAction {
 
   public static final String KEY = ViewAction.KEY + ".filter.read";
 
   private static final String SUB_ACTIONS[] = {
-    ReadFilterAllAction.KEY,
-    ReadFilterUnreadAction.KEY,
-    ReadFilterReadingAction.KEY,
-    ReadFilterHasReadAction.KEY,
+    FilterReadStatusAllAction.KEY,
+    FilterReadStatusUnreadAction.KEY,
+    FilterReadStatusReadingAction.KEY,
+    FilterReadStatusHasReadAction.KEY,
   };
 
-  public ReadFilterAction(Application application, IActionManager actionManager) {
+  public FilterReadStatusAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager, SUB_ACTIONS);
   }
 }

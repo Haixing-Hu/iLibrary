@@ -17,11 +17,11 @@ import cn.edu.nju.starfish.ilibrary.state.TypeFilter;
  *
  * @author Haixing Hu
  */
-public class TypeFilterBookAction extends BaseCheckBoxAction {
+public class FilterTypeBookAction extends BaseCheckBoxAction {
 
-  public static final String KEY = TypeFilterAction.KEY + ".book";
+  public static final String KEY = FilterTypeAction.KEY + ".book";
 
-  public TypeFilterBookAction(Application application, IActionManager actionManager) {
+  public FilterTypeBookAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 

@@ -12,7 +12,6 @@ import javax.annotation.Nullable;
 
 import cn.edu.nju.starfish.ilibrary.model.AccessMode;
 import cn.edu.nju.starfish.ilibrary.utils.Argument;
-import cn.edu.nju.starfish.ilibrary.utils.TagUtils;
 
 /**
  * The tag representing an access mode.

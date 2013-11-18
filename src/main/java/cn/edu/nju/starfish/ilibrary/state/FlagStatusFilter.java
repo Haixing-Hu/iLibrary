@@ -12,7 +12,7 @@ package cn.edu.nju.starfish.ilibrary.state;
  *
  * @author Haixing Hu
  */
-public enum FlagFilter {
+public enum FlagStatusFilter {
 
   FLAGGED,
 

@@ -11,7 +11,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import cn.edu.nju.starfish.ilibrary.model.Label;
-import cn.edu.nju.starfish.ilibrary.utils.TagUtils;
 
 /**
  * The base class for all objects with a tag list.

@@ -36,10 +36,10 @@ public class Conference extends Taggable {
   private String abbreviation;
   private City city;
   private int attendees;
-  private Date announcedDate;
-  private Date deadlineDate;
-  private Date startDate;
-  private Date endDate;
+  private Day announcedDate;
+  private Day deadlineDate;
+  private Day startDate;
+  private Day endDate;
   private String url;
   private String rss;
   private String isbn;
@@ -331,7 +331,7 @@ public class Conference extends Taggable {
    *
    * @return the announcedDate.
    */
-  public Date getAnnouncedDate() {
+  public Day getAnnouncedDate() {
     return announcedDate;
   }
 
@@ -341,7 +341,7 @@ public class Conference extends Taggable {
    * @param announcedDate
    *          the new announcedDate to set.
    */
-  public void setAnnouncedDate(@Nullable Date announcedDate) {
+  public void setAnnouncedDate(@Nullable Day announcedDate) {
     this.announcedDate = announcedDate;
   }
 
@@ -350,7 +350,7 @@ public class Conference extends Taggable {
    *
    * @return the deadlineDate.
    */
-  public Date getDeadlineDate() {
+  public Day getDeadlineDate() {
     return deadlineDate;
   }
 
@@ -360,7 +360,7 @@ public class Conference extends Taggable {
    * @param deadlineDate
    *          the new deadlineDate to set.
    */
-  public void setDeadlineDate(@Nullable Date deadlineDate) {
+  public void setDeadlineDate(@Nullable Day deadlineDate) {
     this.deadlineDate = deadlineDate;
   }
 
@@ -369,7 +369,7 @@ public class Conference extends Taggable {
    *
    * @return the startDate.
    */
-  public Date getStartDate() {
+  public Day getStartDate() {
     return startDate;
   }
 
@@ -379,7 +379,7 @@ public class Conference extends Taggable {
    * @param startDate
    *          the new startDate to set.
    */
-  public void setStartDate(@Nullable Date startDate) {
+  public void setStartDate(@Nullable Day startDate) {
     this.startDate = startDate;
   }
 
@@ -388,7 +388,7 @@ public class Conference extends Taggable {
    *
    * @return the endDate.
    */
-  public Date getEndDate() {
+  public Day getEndDate() {
     return endDate;
   }
 
@@ -398,7 +398,7 @@ public class Conference extends Taggable {
    * @param endDate
    *          the new endDate to set.
    */
-  public void setEndDate(@Nullable Date endDate) {
+  public void setEndDate(@Nullable Day endDate) {
     this.endDate = endDate;
   }
 
