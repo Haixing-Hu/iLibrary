@@ -42,6 +42,10 @@ public class ResourceUtils {
     if (url == null) {
       LOGGER.debug(GETTING_SYSTEM_RESOURCE, resource);
       url = ClassLoader.getSystemResource(resource);
+      if (url == null) {
+        LOGGER.error("Failed to get the resource: {}", resource);
+        return null;
+      }
     }
     LOGGER.debug(RESOURCE_URL_IS, resource, url);
     return url;

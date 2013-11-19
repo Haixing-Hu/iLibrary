@@ -22,7 +22,7 @@ import cn.edu.nju.starfish.ilibrary.Application;
 import cn.edu.nju.starfish.ilibrary.KeySuffix;
 import cn.edu.nju.starfish.ilibrary.controller.NavigatorController;
 import cn.edu.nju.starfish.ilibrary.utils.SWTUtils;
-import cn.edu.nju.starfish.ilibrary.utils.xml.XmlUtils;
+import cn.edu.nju.starfish.ilibrary.utils.XmlUtils;
 
 /**
  * The navigator tree panel.
