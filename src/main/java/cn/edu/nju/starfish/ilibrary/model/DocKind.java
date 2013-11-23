@@ -6,33 +6,44 @@
 
 package cn.edu.nju.starfish.ilibrary.model;
 
-import java.util.Locale;
+import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Nullable;
-
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementMap;
+import org.simpleframework.xml.Root;
+
+import static cn.edu.nju.starfish.ilibrary.utils.Argument.requireNonNull;
 
 /**
  * The model of kinds of a document type.
  *
  * @author Haixing Hu
  */
-public class DocumentKind {
+@Root(name = "kind")
+public class DocKind {
 
-  private int id;
+  @Element(name = "name",
+           required = false)
   private String name;
-  private Map<Locale, String> displayNames;
+
+  @ElementMap(entry = "display-name",
+              key = "locale",
+              attribute = true,
+              inline = true,
+              required = false)
+  private Map<String, String> displayNames;
 
   /**
    * Default constructs a document kind.
    */
-  public DocumentKind() {
-    id = - 1;
-    name = null;
-    displayNames = null;
+  public DocKind() {
+    name = StringUtils.EMPTY;
+    displayNames = new HashMap<String, String>();
   }
 
   /**
@@ -41,10 +52,9 @@ public class DocumentKind {
    * @param name
    *          the name of the new document kind.
    */
-  public DocumentKind(@Nullable String name) {
-    this.id = - 1;
-    this.name = name;
-    this.displayNames = null;
+  public DocKind(String name) {
+    this.name = requireNonNull("name", name);
+    this.displayNames = new HashMap<String, String>();
   }
 
   /**
@@ -56,30 +66,9 @@ public class DocumentKind {
    *          the display names of the new document kind, represented as a map
    *          from the locale to the corresponding display name.
    */
-  public DocumentKind(@Nullable String name,
-      @Nullable Map<Locale, String> displayNames) {
-    this.id = - 1;
-    this.name = name;
-    this.displayNames = displayNames;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * @return the id.
-   */
-  public int getId() {
-    return id;
-  }
-
-  /**
-   * Sets the id.
-   *
-   * @param id
-   *          the new id to set.
-   */
-  public void setId(int id) {
-    this.id = id;
+  public DocKind(String name, Map<String, String> displayNames) {
+    this.name = requireNonNull("name", name);
+    this.displayNames = requireNonNull("displayNames", displayNames);
   }
 
   /**
@@ -98,7 +87,7 @@ public class DocumentKind {
    *          the new name to set.
    */
   public void setName(String name) {
-    this.name = name;
+    this.name = requireNonNull("name", name);
   }
 
   /**
@@ -108,7 +97,7 @@ public class DocumentKind {
    * @return the display names of the new document kind, represented as a map
    *         from the locale to the corresponding display name.
    */
-  public Map<Locale, String> getDisplayNames() {
+  public Map<String, String> getDisplayNames() {
     return displayNames;
   }
 
@@ -119,8 +108,8 @@ public class DocumentKind {
    * @param displayNames
    *          the new display names to set.
    */
-  public void setDisplayNames(Map<Locale, String> displayNames) {
-    this.displayNames = displayNames;
+  public void setDisplayNames(Map<String, String> displayNames) {
+    this.displayNames = requireNonNull("displayNames", displayNames);
   }
 
   @Override

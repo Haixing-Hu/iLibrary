@@ -9,15 +9,21 @@ package cn.edu.nju.starfish.ilibrary.model.csl;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * The model of links of a CSL.
  *
  * @author Haixing Hu
  */
+@Root
 public class Link {
 
+  @Element
   private String href;
+
+  @Element
   private String rel;
 
   /**

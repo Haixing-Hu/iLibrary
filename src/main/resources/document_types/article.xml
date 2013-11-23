@@ -1,74 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document-type name="journal-article">
 	<default-locale>en-US</default-locale>
-	<display-name>
-		<en-US>Journal Article</en-US>
-		<zh-CN>期刊论文</zh-CN>		
-	</display-name>
+	<display-name locale="en_US">Journal Article</display-name>
+	<display-name locale="zh_CN">期刊论文</display-name>
 	<classification>article</classification>
 	<kinds default="article">
 		<kind>
 			<name>abstract</name>
-			<display-name>
-				<en-US>Abstract</en-US>
-				<zh-CN>摘要</zh-CN>
-			</display-name>
+			<display-name locale="en_US">Abstract</display-name>
+			<display-name locale="zh_CN">摘要</display-name>
 		</kind>
 		<kind>
 			<name>article</name>
-			<display-name>
-				<en-US>Article</en-US>
-				<zh-CN>论文</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Article</display-name>
+			<display-name locale="zh_CN">论文</display-name>	
 		</kind>
 		<kind>
 			<name>commentary</name>
-			<display-name>
-				<en-US>Commentary</en-US>
-				<zh-CN>解说</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Commentary</display-name>
+			<display-name locale="zh_CN">解说</display-name>
 		</kind>
 		<kind>
 			<name>editorial</name>
-			<display-name>
-				<en-US>Editorial</en-US>
-				<zh-CN>社论</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Editorial</display-name>
+			<display-name locale="zh_CN">社论</display-name>
 		</kind>
 		<kind>
 			<name>electronic-article</name>
-			<display-name>
-				<en-US>Electronic Article</en-US>
-				<zh-CN>电子文献</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Electronic Article</display-name>
+			<display-name locale="zh_CN">电子文献</display-name>
 		</kind>
 		<kind>
 			<name>letter</name>
-			<display-name>
-				<en-US>Letter</en-US>
-				<zh-CN>信件</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Letter</display-name>
+			<display-name locale="zh_CN">信件</display-name>
 		</kind>
 		<kind>
 			<name>news-and-views</name>
-			<display-name>
-				<en-US>News &amp; Views</en-US>
-				<zh-CN>新闻观点</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">News &amp; Views</display-name>
+			<display-name locale="zh_CN">新闻观点</display-name>
 		</kind>
 		<kind>
 			<name>rebuttal</name>
-			<display-name>
-				<en-US>Rebuttal</en-US>
-				<zh-CN>辩驳</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Rebuttal</display-name>
+			<display-name locale="zh_CN">辩驳</display-name>
 		</kind>		
 		<kind>
 			<name>review</name>
-			<display-name>
-				<en-US>Review</en-US>
-				<zh-CN>评论</zh-CN>
-			</display-name>			
+			<display-name locale="en_US">Review</display-name>
+			<display-name locale="zh_CN">评论</display-name>
 		</kind>
 	</kinds>
 	<fields>

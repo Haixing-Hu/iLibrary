@@ -20,7 +20,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  *
  * @author Haixing Hu
  */
-public class DocumentType {
+public class DocType {
 
   private int id;
   private String name;
@@ -30,7 +30,7 @@ public class DocumentType {
   private Person author;
   private Locale defaultLocale;
   private Map<Locale, String> displayNames;
-  private List<DocumentKind> kinds;
+  private List<DocKind> kinds;
   private List<FieldTemplate> fields;
 
   @Override

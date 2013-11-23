@@ -7,12 +7,15 @@
 package cn.edu.nju.starfish.ilibrary.model;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementMap;
+import org.simpleframework.xml.Root;
 
 import static cn.edu.nju.starfish.ilibrary.utils.Argument.requireNonNull;
 
@@ -21,14 +24,30 @@ import static cn.edu.nju.starfish.ilibrary.utils.Argument.requireNonNull;
  *
  * @author Haixing Hu
  */
+@Root(name="field")
 public class FieldTemplate {
 
+  @Attribute(required = false)
   private int id;
+
+  @Element
   private String name;
+
+  @Element
   private DataType type;
+
+  @Attribute
   private boolean list;
+
+  @Attribute
   private boolean required;
-  private Map<Locale, String> displayNames;
+
+  @ElementMap(entry = "display-name",
+              key = "locale",
+              attribute = true,
+              inline = true,
+              required = false)
+  private Map<String, String> displayNames;
 
   /**
    * Default Constructs a {@link FieldTemplate}.
@@ -39,7 +58,7 @@ public class FieldTemplate {
     type = DataType.STRING;
     list = false;
     required = false;
-    displayNames = new HashMap<Locale, String>();
+    displayNames = new HashMap<String, String>();
   }
 
   /**
@@ -146,7 +165,7 @@ public class FieldTemplate {
    * @return the map from the locale to the corresponding display name, which
    *         will never be <code>null</code>.
    */
-  public Map<Locale, String> getDisplayNames() {
+  public Map<String, String> getDisplayNames() {
     return displayNames;
   }
 
@@ -157,7 +176,7 @@ public class FieldTemplate {
    *          the new map from the locale to the corresponding display name to
    *          set, which cannot be <code>null</code>.
    */
-  public void setDisplayNames(Map<Locale, String> displayNames) {
+  public void setDisplayNames(Map<String, String> displayNames) {
     this.displayNames = requireNonNull("displayNames", displayNames);
   }
 

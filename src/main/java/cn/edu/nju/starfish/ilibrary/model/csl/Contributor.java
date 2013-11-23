@@ -13,12 +13,12 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * The model of authors of a CSL.
+ * The model of contributors of a CSL.
  *
  * @author Haixing Hu
  */
 @Root
-public class Author {
+public class Contributor {
 
   @Element
   private String name;
@@ -30,9 +30,9 @@ public class Author {
   private String uri;
 
   /**
-   * Default constructs an {@link Author}.
+   * Default constructs an {@link Contributor}.
    */
-  public Author() {
+  public Contributor() {
     name = "anonymous";
     email = null;
     uri = null;

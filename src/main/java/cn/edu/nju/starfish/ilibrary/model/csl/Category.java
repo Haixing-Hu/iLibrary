@@ -64,7 +64,5 @@ public enum Category {
 
   THEOLOGY,
 
-  ZOOLOGY;
-
-
+  ZOOLOGY,
 }
