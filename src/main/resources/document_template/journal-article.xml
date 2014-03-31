@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document-type name="journal-article">
+<document-template name="journal-article" type="article">
 	<default-locale>en-US</default-locale>
 	<display-name locale="en_US">Journal Article</display-name>
-	<display-name locale="zh_CN">期刊论文</display-name>
-	<classification>article</classification>
+	<display-name locale="zh_CN">期刊论文</display-name>	
 	<kinds default="article">
 		<kind>
 			<name>abstract</name>
@@ -141,4 +140,4 @@
 			</display-name>	
 		</field>										
 	</fields>
-</document-type>
+</document-template>

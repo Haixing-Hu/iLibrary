@@ -33,7 +33,7 @@ import com.github.haixing_hu.ilibrary.model.tag.Taggable;
  *
  * @author Haixing Hu
  */
-public class Conference extends Taggable {
+public final class Conference extends Taggable {
 
   private int id;
   private String title;

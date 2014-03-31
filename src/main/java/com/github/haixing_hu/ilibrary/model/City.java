@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  *
  * @author Haixing Hu
  */
-public class City {
+public final class City {
 
   private int id;
   private String name;

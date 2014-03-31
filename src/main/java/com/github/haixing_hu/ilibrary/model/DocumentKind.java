@@ -21,13 +21,19 @@ package com.github.haixing_hu.ilibrary.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementMap;
-import org.simpleframework.xml.Root;
+
+import com.github.haixing_hu.ilibrary.utils.jaxb.DisplayNamesAdaptor;
 
 import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
 
@@ -36,24 +42,21 @@ import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
  *
  * @author Haixing Hu
  */
-@Root(name = "kind")
-public class DocKind {
+@XmlRootElement(name = "kind")
+@XmlAccessorType(XmlAccessType.FIELD)
+public final class DocumentKind {
 
-  @Element(name = "name",
-           required = false)
+  @XmlAttribute(name = "name", required = true)
   private String name;
 
-  @ElementMap(entry = "display-name",
-              key = "locale",
-              attribute = true,
-              inline = true,
-              required = false)
+  @XmlElement(name="display-names", required=false)
+  @XmlJavaTypeAdapter(value=DisplayNamesAdaptor.class)
   private Map<String, String> displayNames;
 
   /**
    * Default constructs a document kind.
    */
-  public DocKind() {
+  public DocumentKind() {
     name = StringUtils.EMPTY;
     displayNames = new HashMap<String, String>();
   }
@@ -64,7 +67,7 @@ public class DocKind {
    * @param name
    *          the name of the new document kind.
    */
-  public DocKind(String name) {
+  public DocumentKind(String name) {
     this.name = requireNonNull("name", name);
     this.displayNames = new HashMap<String, String>();
   }
@@ -78,7 +81,7 @@ public class DocKind {
    *          the display names of the new document kind, represented as a map
    *          from the locale to the corresponding display name.
    */
-  public DocKind(String name, Map<String, String> displayNames) {
+  public DocumentKind(String name, Map<String, String> displayNames) {
     this.name = requireNonNull("name", name);
     this.displayNames = requireNonNull("displayNames", displayNames);
   }

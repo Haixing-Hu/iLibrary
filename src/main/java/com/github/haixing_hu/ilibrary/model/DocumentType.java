@@ -23,7 +23,7 @@ package com.github.haixing_hu.ilibrary.model;
  *
  * @author Haixing Hu
  */
-public enum Type {
+public enum DocumentType {
 
   ARTICLE,
 

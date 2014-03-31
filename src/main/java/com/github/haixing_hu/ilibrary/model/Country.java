@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  *
  * @author Haixing Hu
  */
-public class Country {
+public final class Country {
 
   private int id;
   private String code;

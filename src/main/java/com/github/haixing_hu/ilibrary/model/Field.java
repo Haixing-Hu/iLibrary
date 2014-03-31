@@ -31,7 +31,7 @@ import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
  *
  * @author Haixing Hu
  */
-public class Field {
+public final class Field {
 
   private int id;
   private String name;

@@ -30,41 +30,42 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.github.haixing_hu.ilibrary.model.tag.Taggable;
 
-import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
-
 /**
  * The model of documents.
  *
  * @author Haixing Hu
  */
-public class Document extends Taggable {
+public final class Document extends Taggable {
 
-  protected int id;
-  protected Type type;
-  protected String subType;
-  protected String kind;
-  protected String category;
-  protected String subCategory;
-  protected List<Field> fields;
-  protected String url;
-  protected Map<DigitIdentifier, String> digitIds;
-  protected Language language;
-  protected String copyright;
-  protected String citeKey;
-  protected Date importDate;
-  protected Date lastReadDate;
-  protected Date lastPrintDate;
-  protected List<File> files;
-  protected byte rating;
-  protected ReadStatus readStatus;
+  /**
+   *  The name of the default template of documents.
+   */
+  public static final String DEFAULT_TEMPLATE = "journal-article";
+
+  private int id;
+  private String template;
+  private String kind;
+  private String category;
+  private String subCategory;
+  private List<Field> fields;
+  private String url;
+  private Map<DigitIdentifier, String> digitIds;
+  private Language language;
+  private String copyright;
+  private String citeKey;
+  private Date importDate;
+  private Date lastReadDate;
+  private Date lastPrintDate;
+  private List<File> files;
+  private byte rating;
+  private ReadStatus readStatus;
 
   /**
    * Construct a {@link Document}.
    */
   public Document() {
     id = - 1;
-    type = Type.ARTICLE;
-    subType = null;
+    template = DEFAULT_TEMPLATE;
     fields = null;
     category = null;
     subCategory = null;
@@ -101,42 +102,24 @@ public class Document extends Taggable {
   }
 
   /**
-   * Gets the type of the document.
+   * Gets the name of the template of this document.
    *
-   * @return the type of the document, which will never be
-   *         <code>null</code>.
+   * @return the name of the template of this document, which will never be
+   *         null.
    */
-  public Type getType() {
-    return type;
+  public String getTemplate() {
+    return template;
   }
 
   /**
-   * Sets the type of the document.
+   * Sets the name of the template of this document.
    *
-   * @param type
-   *          the new type to set, which cannot be <code>null</code>.
+   * @param template
+   *          the name of the new template of this document, which cannot be
+   *          null.
    */
-  public void setType(Type type) {
-    this.type = requireNonNull("type", type);
-  }
-
-  /**
-   * Gets the sub-type of the document.
-   *
-   * @return the sub-type of the document.
-   */
-  public String getSubType() {
-    return subType;
-  }
-
-  /**
-   * Sets the sub-type of the document.
-   *
-   * @param subType
-   *          the new sub-type to set.
-   */
-  public void setSubType(@Nullable String subType) {
-    this.subType = subType;
+  public void setTemplate(String template) {
+    this.template = template;
   }
 
   /**

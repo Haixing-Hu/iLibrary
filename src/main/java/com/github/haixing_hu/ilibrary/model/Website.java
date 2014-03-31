@@ -26,6 +26,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.github.haixing_hu.ilibrary.dao.WebsiteDao;
 import com.github.haixing_hu.ilibrary.model.tag.Taggable;
+import com.github.haixing_hu.ilibrary.service.WebsiteService;
 
 /**
  * The model of web sites.
@@ -34,7 +35,7 @@ import com.github.haixing_hu.ilibrary.model.tag.Taggable;
  * @see WebsiteService
  * @author Haixing Hu
  */
-public class Website extends Taggable {
+public final class Website extends Taggable {
 
   private int id;
   private String title;

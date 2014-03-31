@@ -39,7 +39,7 @@ import com.github.haixing_hu.ilibrary.utils.Argument;
  *
  * @author Haixing Hu
  */
-public class Edition {
+public final class Edition {
 
   public enum Type {
     /**
@@ -134,7 +134,7 @@ public class Edition {
   }
 
   /**
-   * Sets the edition as the type {@link Type#AS_NUMBER}.
+   * Sets the edition as the type {@link DocumentType#AS_NUMBER}.
    * <p>
    * <b>NOTE:</b> This function will clear the <code>description<code> field
    * of this {@link Edition} object.
@@ -148,7 +148,7 @@ public class Edition {
   }
 
   /**
-   * Sets the edition as the type {@link Type#AS_DESCRIPTION}.
+   * Sets the edition as the type {@link DocumentType#AS_DESCRIPTION}.
    * <p>
    * <b>NOTE:</b> This function will clear the <code>number<code> field
    * of this {@link Edition} object.

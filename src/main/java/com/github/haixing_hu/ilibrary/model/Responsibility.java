@@ -31,7 +31,7 @@ import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
  *
  * @author Haixing Hu
  */
-public class Responsibility {
+public final class Responsibility {
 
   private Person person;
   private Institute institute;

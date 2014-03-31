@@ -31,7 +31,7 @@ import com.github.haixing_hu.ilibrary.model.tag.Taggable;
  *
  * @author Haixing Hu
  */
-public class Institute extends Taggable {
+public final class Institute extends Taggable {
 
   private int id;
   private String name;

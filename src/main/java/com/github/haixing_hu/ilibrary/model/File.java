@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  *
  * @author Haixing Hu
  */
-public class File {
+public final class File {
 
   private int id;
   private String name;

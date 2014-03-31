@@ -32,7 +32,7 @@ import com.github.haixing_hu.ilibrary.model.tag.Taggable;
  *
  * @author Haixing Hu
  */
-public class Person extends Taggable {
+public final class Person extends Taggable {
 
   private int id;
   private String firstName;

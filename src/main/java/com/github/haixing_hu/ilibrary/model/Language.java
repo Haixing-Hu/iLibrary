@@ -29,7 +29,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  *
  * @author Haixing Hu
  */
-public class Language {
+public final class Language {
 
   private int id;
   private String code;

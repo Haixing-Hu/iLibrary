@@ -26,73 +26,72 @@ package com.github.haixing_hu.ilibrary.model;
 public enum DataType {
 
   /**
-   * A value in this type is a string.
+   * A value in this type represents a {@link String} object.
    */
   STRING,
 
   /**
-   * A value in this type is a boolean value.
+   * A value in this type represents a {@link Boolean} object.
    */
   BOOLEAN,
 
   /**
-   * A value in this type is an integer.
+   * A value in this type represents an {@link Integer} object.
    */
   INTEGER,
 
   /**
-   * A value in this type is a real number.
+   * A value in this type represents a {@link Double} object.
    */
-  REAL,
+  DOUBLE,
 
   /**
-   * A value in this type is a date, accurate to day.
+   * A value in this type represents a {@link Day} object.
    */
-  DATE,
+  DAY,
 
   /**
-   * A value in this type is a enumerator in a user-defined enumeration.
+   * A value in this type represents an {@link Edition} object.
    */
-  ENUMERATION,
+  EDITION,
 
   /**
-   * A value in this type represents a person.
+   * A value in this type represents a {@link Person} object.
    */
   PERSON,
 
   /**
-   * A value in this type represents an institute.
+   * A value in this type represents an {@link Institute} object.
    */
   INSTITUTE,
 
   /**
-   * A value in this type represents a responsibility, which is either a person
-   * or a institute.
+   * A value in this type represents a {@link Responsibility} object.
    */
   RESPONSIBILITY,
 
   /**
-   * A value in this type represents a country.
+   * A value in this type represents a {@link Country} object.
    */
   COUNTRY,
 
   /**
-   * A value in this type represents a city.
+   * A value in this type represents a {@link City} object.
    */
   CITY,
 
   /**
-   * A value in this type represents a periodical.
+   * A value in this type represents a {@link Periodical} object.
    */
   PERIODICAL,
 
   /**
-   * A value in this type represents a publisher.
+   * A value in this type represents a {@link Publisher} object.
    */
   PUBLISHER,
 
   /**
-   * A value in this type represents a website.
+   * A value in this type represents a {@link Website} object.
    */
   WEBSITE,
 }

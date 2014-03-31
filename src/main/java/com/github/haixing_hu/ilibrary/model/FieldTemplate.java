@@ -21,6 +21,8 @@ package com.github.haixing_hu.ilibrary.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -36,11 +38,8 @@ import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
  *
  * @author Haixing Hu
  */
-@Root(name="field")
-public class FieldTemplate {
-
-  @Attribute(required = false)
-  private int id;
+@Root(name = "field")
+public final class FieldTemplate {
 
   @Element
   private String name;
@@ -65,31 +64,11 @@ public class FieldTemplate {
    * Default Constructs a {@link FieldTemplate}.
    */
   public FieldTemplate() {
-    id = - 1;
     name = null;
     type = DataType.STRING;
     list = false;
     required = false;
     displayNames = new HashMap<String, String>();
-  }
-
-  /**
-   * Gets the id.
-   *
-   * @return the id.
-   */
-  public int getId() {
-    return id;
-  }
-
-  /**
-   * Sets the id.
-   *
-   * @param id
-   *          the new id to set.
-   */
-  public void setId(int id) {
-    this.id = id;
   }
 
   /**
@@ -172,23 +151,23 @@ public class FieldTemplate {
   }
 
   /**
-   * Gets the map from the locale to the corresponding display name.
+   * Gets the display names.
    *
-   * @return the map from the locale to the corresponding display name, which
-   *         will never be <code>null</code>.
+   * @return the display names, which is a map from the name of a locale to the
+   *         corresponding display name for the locale.
    */
   public Map<String, String> getDisplayNames() {
     return displayNames;
   }
 
   /**
-   * Sets the map from the locale to the corresponding display name.
+   * Sets the display names.
    *
    * @param displayNames
-   *          the new map from the locale to the corresponding display name to
-   *          set, which cannot be <code>null</code>.
+   *          the new display names to be set, which is a map from the name of a
+   *          locale to the corresponding display name for the locale.
    */
-  public void setDisplayNames(Map<String, String> displayNames) {
+  public void setDisplayNames(@Nullable Map<String, String> displayNames) {
     this.displayNames = requireNonNull("displayNames", displayNames);
   }
 

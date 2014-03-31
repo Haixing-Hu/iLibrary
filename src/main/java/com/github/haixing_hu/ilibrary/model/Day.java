@@ -29,7 +29,7 @@ import com.github.haixing_hu.ilibrary.utils.Argument;
  *
  * @author Haixing Hu
  */
-public class Day {
+public final class Day {
 
   public enum Type {
     EXACT_DATE,
