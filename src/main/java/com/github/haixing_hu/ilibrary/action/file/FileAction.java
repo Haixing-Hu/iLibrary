@@ -32,7 +32,8 @@ public class FileAction extends BaseDropDownAction {
   public static final String KEY = "action.file";
 
   private static final String SUB_ACTIONS[] = {
-    NewEntryAction.KEY,
+    NewAction.KEY,
+    NewCollectionAction.KEY,
     NewLibraryAction.KEY,
     OpenLibraryAction.KEY,
     CloseLibraryAction.KEY,

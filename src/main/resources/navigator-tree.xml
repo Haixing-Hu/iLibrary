@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <navigator>
     <library>
-        <articles />
-        <books />
+        <article />
+        <book />
+        <reference />
+        <law />        
         <media />
-        <patents-law />
-        <reports-references />
     </library>
     <search />
     <recent-import />
@@ -18,9 +18,9 @@
     </my-works>
     <sources>
         <authors />   
-        <publishers />
+        <periodicals />        
         <conferences />
-        <periodicals />
+        <institutes />        
         <websites />
     </sources>
     <collections>    

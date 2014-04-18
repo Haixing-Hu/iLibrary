@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.SWT;
@@ -29,6 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.gui.widget.ForceTextToolBarManager;
@@ -66,7 +66,7 @@ public class MainPanelToolBar extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     this.actionKeys = actionKeys;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     this.height = config.getInt(KEY + KeySuffix.HEIGHT);
     this.background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     createContents();

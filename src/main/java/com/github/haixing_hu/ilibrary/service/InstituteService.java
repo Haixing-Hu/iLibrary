@@ -22,10 +22,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.github.haixing_hu.ilibrary.model.Institute;
+import com.github.haixing_hu.ilibrary.model.Organization;
 
 /**
- * The interface of the service for managing {@link Institute} objects.
+ * The interface of the service for managing {@link Organization} objects.
  *
  * @author Haixing Hu
  */
@@ -40,7 +40,7 @@ public interface InstituteService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public Institute get(int id) throws DataAccessException;
+  public Organization get(int id) throws DataAccessException;
 
   /**
    * Gets all the institutes.
@@ -49,7 +49,7 @@ public interface InstituteService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public List<Institute> getAll() throws DataAccessException;
+  public List<Organization> getAll() throws DataAccessException;
 
   /**
    * Adds a new institute.
@@ -62,7 +62,7 @@ public interface InstituteService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public int add(Institute institute) throws DataAccessException;
+  public int add(Organization institute) throws DataAccessException;
 
   /**
    * Updates an existing institute.
@@ -72,7 +72,7 @@ public interface InstituteService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public void update(Institute institute) throws DataAccessException;
+  public void update(Organization institute) throws DataAccessException;
 
   /**
    * Deletes the specified institute.
@@ -107,7 +107,7 @@ public interface InstituteService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public int merge(List<Institute> oldInstitutes, Institute newInstitute)
+  public int merge(List<Organization> oldInstitutes, Organization newInstitute)
       throws DataAccessException;
 
 }

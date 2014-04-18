@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.gui;
 
 import java.awt.Window;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -38,6 +37,7 @@ import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
@@ -70,7 +70,7 @@ public final class MainWindow extends ApplicationWindow {
   public MainWindow(Application application) {
     super(null);
     this.application = application;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     this.defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
     this.defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     this.minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
@@ -174,7 +174,8 @@ public final class MainWindow extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
-    shell.setText(application.getName());
+    final ApplicationConfig config = ApplicationConfig.getInstance();
+    shell.setText(config.getAppName());
     shell.setMinimumSize(minWidth, minHeight);
     //  NOTE: Mac OS X may automatically resize the startup windows,
     //  therefore, the getInitialSize() will not be called by the

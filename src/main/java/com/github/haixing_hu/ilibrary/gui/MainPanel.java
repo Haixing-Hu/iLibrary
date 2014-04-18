@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.gui;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolder2Adapter;
@@ -34,6 +33,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.controller.MainPanelController;
 import com.github.haixing_hu.ilibrary.gui.document.DocumentTab;
@@ -68,7 +68,7 @@ public final class MainPanel extends CTabFolder {
    * Configures the appearance of this tab folder.
    */
   private void configAppearance() {
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     final String path = config.getString(KEY + KeySuffix.SELECTION + KeySuffix.BACKGROUND_IMAGE);
     final Image img = SWTUtils.getImage(path);
     this.setSelectionBackground(img);

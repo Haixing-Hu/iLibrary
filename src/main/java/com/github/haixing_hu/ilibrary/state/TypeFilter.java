@@ -30,9 +30,9 @@ public enum TypeFilter {
 
   BOOK,
 
-  REPORT,
+  REFERENCE,
 
-  PATENT,
+  LAW,
 
   MEDIA,
 

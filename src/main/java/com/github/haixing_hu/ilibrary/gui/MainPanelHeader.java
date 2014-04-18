@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
@@ -30,6 +29,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
@@ -67,7 +67,7 @@ public class MainPanelHeader extends Composite {
     super(parent, SWT.FLAT);
     this.application = application;
     this.actionKeys = actionKeys;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     marginWidth = config.getInt(KEY + KeySuffix.MARGIN_WIDTH);
     background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);

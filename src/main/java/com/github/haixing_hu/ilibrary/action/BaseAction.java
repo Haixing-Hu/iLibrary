@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.gui.widget.Action;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
@@ -78,20 +79,21 @@ public class BaseAction extends Action {
     this.actionManager = requireNonNull("actionManager", actionManager);
     this.logger = LoggerFactory.getLogger(this.getClass());
     this.setId(id);
-    final String title = application.getTitle(id);
-    final String shortcut = application.getShortcut(id);
+    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final String title = config.getTitle(id);
+    final String shortcut = config.getShortcut(id);
     if (shortcut == null) {
       this.setText(title);
     } else {
       this.setText(title + "@" + shortcut);
     }
-    final String description = application.getDescription(id);
+    final String description = config.getDescription(id);
     if (description != null) {
       this.setToolTipText(description);
     } else {
       this.setToolTipText(title);
     }
-    final String icon = application.getIcon(id);
+    final String icon = config.getIcon(id);
     if (icon != null) {
       final Image img = SWTUtils.getImage(icon);
       final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);

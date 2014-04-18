@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>article-manuscript</name>
+	<type>article</type>
+	<default-kind>article</default-kind>
+	<kinds>
+		<kind>abstract</kind>
+		<kind>article</kind>		
+		<kind>commentary</kind>
+		<kind>editorial</kind>
+		<kind>electronic-article</kind>
+		<kind>erratum</kind>
+		<kind>letter</kind>
+		<kind>news-and-views</kind>
+		<kind>rebuttal</kind>
+		<kind>retraction</kind>
+		<kind>review</kind>		
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>authors</field>
+		<field>abstract</field>
+		<field>version</field>
+		<field>created-date</field>
+		<field>updated-date</field>
+		<field>accessed-date</field>
+	</fields>	
+</document>

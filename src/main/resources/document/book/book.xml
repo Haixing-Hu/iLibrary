@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>book</name>
+	<type>book</type>
+	<default-kind>monograph</default-kind>
+	<kinds>
+		<kind>ancient-text</kind>
+		<kind>classical-work</kind>		
+		<kind>dictionary</kind>
+		<kind>edited-book</kind>
+		<kind>encyclopedia</kind>
+		<kind>fiction</kind>
+		<kind>folio</kind>
+		<kind>handbook</kind>
+		<kind>letter</kind>
+		<kind>monograph</kind>
+		<kind>non-fiction</kind>
+		<kind>novel</kind>
+		<kind>poetry</kind>	
+		<kind>textbook</kind>
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>series</field>
+		<field>authors</field>
+		<field>editors</field>
+		<field>illustrators</field>
+		<field>translators</field>
+		<field>synopsis</field>
+		<field>publisher</field>
+		<field>edition</field>
+		<field>number</field>		
+		<field>volume</field>
+		<field>issue</field>
+		<field>pages</field>		
+		<field>submitted-date</field>
+		<field>reviewed-date</field>
+		<field>first-edition-date</field>
+		<field>published-date</field>
+	</fields>	
+</document>

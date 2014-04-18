@@ -34,9 +34,9 @@ import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeArticleAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypePatentAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeReportAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.gui.MainPanelHeader;
 
 /**
@@ -59,9 +59,9 @@ public final class LibraryPanelHeader extends MainPanelHeader {
     FilterTypeAllAction.KEY,
     FilterTypeArticleAction.KEY,
     FilterTypeBookAction.KEY,
+    FilterTypeReferenceAction.KEY,
+    FilterTypeLawAction.KEY,
     FilterTypeMediaAction.KEY,
-    FilterTypePatentAction.KEY,
-    FilterTypeReportAction.KEY,
     Separator.class.getName(),
     FilterFileStatusAllAction.KEY,
     FilterFileStatusHasFileAction.KEY,

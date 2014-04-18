@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.navigator;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FormAttachment;
@@ -27,6 +26,7 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
@@ -60,7 +60,7 @@ public final class NavigatorPanel extends Composite {
   public NavigatorPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);

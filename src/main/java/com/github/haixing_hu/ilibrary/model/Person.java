@@ -44,7 +44,7 @@ public final class Person extends Taggable {
   private String nickname;
   private String email;
   private Website homepage;
-  private Institute institute;
+  private Organization institute;
   private Country nationality;
   private String description;
   private int documentCount;
@@ -315,7 +315,7 @@ public final class Person extends Taggable {
    *
    * @return the institute.
    */
-  public Institute getInstitute() {
+  public Organization getInstitute() {
     return institute;
   }
 
@@ -325,7 +325,7 @@ public final class Person extends Taggable {
    * @param institute
    *          the new institute to set.
    */
-  public void setInstitute(@Nullable Institute institute) {
+  public void setInstitute(@Nullable Organization institute) {
     this.institute = institute;
   }
 

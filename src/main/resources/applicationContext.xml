@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-  <!-- Message Source -->
-  <bean id="messageSource"
-    class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-    scope="singleton">
-    <property name="defaultEncoding">
-      <value>UTF-8</value>
-    </property>
-    <property name="basename">
-      <value>classpath:messages</value>
-    </property>
-  </bean>
-
-  <!-- The global configuration -->
-  <bean id="config" class="org.apache.commons.configuration.PropertiesConfiguration">
-    <constructor-arg type="java.lang.String" value="iLibrary.properties" />    
-  </bean>
-
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans"	
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd     
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    
+  <context:annotation-config/>
+  
+  <import resource="configuration.xml"/>
+  <!-- <import resource="database.xml"/> -->
+  <import resource="services.xml"/>
+  
 </beans>

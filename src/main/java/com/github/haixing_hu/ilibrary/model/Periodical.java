@@ -42,7 +42,7 @@ public final class Periodical extends Taggable {
   private String title;
   private String subtitle;
   private List<Responsibility> editors;
-  private Publisher publisher;
+  private Organization publisher;
   private String synopsis;
   private String abbreviation;
   private String city;
@@ -170,7 +170,7 @@ public final class Periodical extends Taggable {
    *
    * @return the publisher.
    */
-  public Publisher getPublisher() {
+  public Organization getPublisher() {
     return publisher;
   }
 
@@ -180,7 +180,7 @@ public final class Periodical extends Taggable {
    * @param publisher
    *          the new publisher to set.
    */
-  public void setPublisher(@Nullable Publisher publisher) {
+  public void setPublisher(@Nullable Organization publisher) {
     this.publisher = publisher;
   }
 

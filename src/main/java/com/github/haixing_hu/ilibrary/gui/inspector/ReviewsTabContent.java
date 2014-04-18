@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.FillLayout;
@@ -26,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
 
@@ -47,7 +47,7 @@ public class ReviewsTabContent extends Composite {
   }
 
   private void createContents() {
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
     final Color color = SWTUtils.parseRGB(rgb);
     this.setBackground(color);

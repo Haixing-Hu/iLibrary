@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>conference-proceeding</name>
+	<type>article</type>
+	<default-kind>article</default-kind>
+	<kinds>
+		<kind>abstract</kind>
+		<kind>article</kind>		
+		<kind>commentary</kind>
+		<kind>editorial</kind>
+		<kind>electronic-article</kind>
+		<kind>extended-abstract</kind>
+		<kind>letter</kind>
+		<kind>news-and-views</kind>
+		<kind>review</kind>		
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>authors</field>
+		<field>editors</field>		
+		<field>abstract</field>
+		<field>conference</field>
+		<field>city</field>
+		<field>publisher</field>
+		<field>pages</field>
+		<field>submitted-date</field>
+		<field>revised-date</field>
+		<field>accepted-date</field>
+		<field>published-date</field>
+	</fields>	
+</document>

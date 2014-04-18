@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>artwork</name>
+	<type>media</type>
+	<default-kind>contemporary-art</default-kind>
+	<kinds>
+		<kind>abstract-art</kind>
+		<kind>contemporary-art</kind>		
+		<kind>digital-fine-art</kind>
+		<kind>expressionistic-art</kind>
+		<kind>fantasy-art</kind>
+		<kind>figurative-art</kind>
+		<kind>freestanding-art</kind>
+		<kind>impressionistic-art</kind>
+		<kind>modern-art</kind>
+		<kind>representational-art</kind>
+		<kind>surrealistic-art</kind>
+		<kind>symbolistic-art</kind>
+		<kind>traditional-art</kind>	
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>artists</field>
+		<field>designers</field>		
+		<field>critics</field>		
+		<field>reviewers</field>	
+		<field>synopsis</field>		
+		<field>exhibition</field>		
+		<field>edition</field>
+		<field>number</field>
+		<field>location</field>
+		<field>dimensions</field>
+		<field>material</field>
+		<field>technique</field>
+		<field>value</field>					
+		<field>designed-date</field>
+		<field>created-date</field>
+		<field>sold-date</field>
+		<field>restored-date</field>
+	</fields>	
+</document>

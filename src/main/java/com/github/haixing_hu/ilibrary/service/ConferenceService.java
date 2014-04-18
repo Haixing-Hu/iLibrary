@@ -22,10 +22,10 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.github.haixing_hu.ilibrary.model.Conference;
+import com.github.haixing_hu.ilibrary.model.Event;
 
 /**
- * The interface of the service for managing {@link Conference} objects.
+ * The interface of the service for managing {@link Event} objects.
  *
  * @author Haixing Hu
  */
@@ -40,7 +40,7 @@ public interface ConferenceService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public Conference get(int id) throws DataAccessException;
+  public Event get(int id) throws DataAccessException;
 
   /**
    * Gets all the conferences.
@@ -49,7 +49,7 @@ public interface ConferenceService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public List<Conference> getAll() throws DataAccessException;
+  public List<Event> getAll() throws DataAccessException;
 
   /**
    * Adds a new conference.
@@ -62,7 +62,7 @@ public interface ConferenceService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public int add(Conference conference) throws DataAccessException;
+  public int add(Event conference) throws DataAccessException;
 
   /**
    * Updates an existing conference.
@@ -72,7 +72,7 @@ public interface ConferenceService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public void update(Conference conference) throws DataAccessException;
+  public void update(Event conference) throws DataAccessException;
 
   /**
    * Deletes the specified conference.
@@ -107,7 +107,7 @@ public interface ConferenceService {
    * @throws DataAccessException
    *           If any error occurs.
    */
-  public int merge(List<Conference> oldConferences, Conference newConference)
+  public int merge(List<Event> oldConferences, Event newConference)
       throws DataAccessException;
 
 }

@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.navigator;
 
-import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -26,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
 
@@ -64,7 +64,8 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     final NavigatorTreeNode node = (NavigatorTreeNode) element;
     final String key = node.getKey();
     LOGGER.debug("Getting the text for navigator tree node: {}", key);
-    String title = application.getTitle(key);
+    final ApplicationConfig config = ApplicationConfig.getInstance();
+    String title = config.getTitle(key);
     if (getNodeIcon(node) == null) {
       title = fixNoIconNodeTitle(title);
     }
@@ -74,14 +75,15 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
 
   private String getNodeIcon(NavigatorTreeNode node) {
     final String key = node.getKey();
-    final String icon = application.getIcon(key);
+    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final String icon = config.getIcon(key);
     if (icon != null) {
       return icon;
     }
     if (isCollectionNode(node)) {
       final String suffix = (node.isSmart() ? KeySuffix.SMART_COLLECTION : KeySuffix.COLLECTION);
       final String col_key = NavigatorTreeNode.KEY + suffix;
-      return application.getIcon(col_key);
+      return config.getIcon(col_key);
     } else {  //  otherwise
       return null;
     }
@@ -99,7 +101,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
   private String fixNoIconNodeTitle(String title) {
     // add some space at the front if there is no icon for this node
     final String prefix_key = NavigatorTreeNode.KEY + ".no-icon-prefix";
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     final int prefix_count = config.getInt(prefix_key);
     return StringUtils.leftPad(title, title.length() + prefix_count);
   }

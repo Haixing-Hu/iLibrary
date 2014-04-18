@@ -18,20 +18,23 @@
 
 package com.github.haixing_hu.ilibrary.model;
 
+import javax.xml.bind.annotation.XmlEnum;
+
 /**
  * The enumeration of types of documents.
  *
  * @author Haixing Hu
  */
+@XmlEnum
 public enum DocumentType {
 
   ARTICLE,
 
   BOOK,
 
-  REPORT,
+  REFERENCE,
 
-  PATENT,
+  LAW,
 
   MEDIA,
 }

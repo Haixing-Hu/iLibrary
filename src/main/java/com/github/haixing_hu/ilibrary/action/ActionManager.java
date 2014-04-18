@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.action.edit.AnnotateAction;
 import com.github.haixing_hu.ilibrary.action.edit.AnnotateHighlightAction;
 import com.github.haixing_hu.ilibrary.action.edit.AnnotateSelectionAction;
@@ -47,8 +48,23 @@ import com.github.haixing_hu.ilibrary.action.file.CloseLibraryAction;
 import com.github.haixing_hu.ilibrary.action.file.ExportAction;
 import com.github.haixing_hu.ilibrary.action.file.FileAction;
 import com.github.haixing_hu.ilibrary.action.file.ImportAction;
-import com.github.haixing_hu.ilibrary.action.file.NewEntryAction;
+import com.github.haixing_hu.ilibrary.action.file.NewAction;
+import com.github.haixing_hu.ilibrary.action.file.NewArticleDocumentAction;
+import com.github.haixing_hu.ilibrary.action.file.NewAuthorAction;
+import com.github.haixing_hu.ilibrary.action.file.NewBookDocumentAction;
+import com.github.haixing_hu.ilibrary.action.file.NewCollectionAction;
+import com.github.haixing_hu.ilibrary.action.file.NewCollectionFromSelectionAction;
+import com.github.haixing_hu.ilibrary.action.file.NewConferenceAction;
+import com.github.haixing_hu.ilibrary.action.file.NewDocumentFormTemplateAction;
+import com.github.haixing_hu.ilibrary.action.file.NewInstituteAction;
+import com.github.haixing_hu.ilibrary.action.file.NewLawDocumentAction;
 import com.github.haixing_hu.ilibrary.action.file.NewLibraryAction;
+import com.github.haixing_hu.ilibrary.action.file.NewMediaDocumentAction;
+import com.github.haixing_hu.ilibrary.action.file.NewNormalCollectionAction;
+import com.github.haixing_hu.ilibrary.action.file.NewPeriodicalAction;
+import com.github.haixing_hu.ilibrary.action.file.NewReferenceDocumentAction;
+import com.github.haixing_hu.ilibrary.action.file.NewSmartCollectionAction;
+import com.github.haixing_hu.ilibrary.action.file.NewWebsiteAction;
 import com.github.haixing_hu.ilibrary.action.file.OpenLibraryAction;
 import com.github.haixing_hu.ilibrary.action.file.PageSetupAction;
 import com.github.haixing_hu.ilibrary.action.file.PrintAction;
@@ -63,10 +79,6 @@ import com.github.haixing_hu.ilibrary.action.library.AddReviewAction;
 import com.github.haixing_hu.ilibrary.action.library.AddToCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.ArchiveAction;
 import com.github.haixing_hu.ilibrary.action.library.AttachFileAction;
-import com.github.haixing_hu.ilibrary.action.library.CreateCollectionAction;
-import com.github.haixing_hu.ilibrary.action.library.CreateCollectionFromSelectionAction;
-import com.github.haixing_hu.ilibrary.action.library.CreateNormalCollectionAction;
-import com.github.haixing_hu.ilibrary.action.library.CreateSmartCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.DeleteCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.DuplicateCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.EditCollectionAction;
@@ -85,8 +97,8 @@ import com.github.haixing_hu.ilibrary.action.library.MarkUnreadAction;
 import com.github.haixing_hu.ilibrary.action.library.MergeAuthorsAction;
 import com.github.haixing_hu.ilibrary.action.library.MergeConferencesAction;
 import com.github.haixing_hu.ilibrary.action.library.MergeDocumentsAction;
+import com.github.haixing_hu.ilibrary.action.library.MergeInstitutesAction;
 import com.github.haixing_hu.ilibrary.action.library.MergePeriodicalsAction;
-import com.github.haixing_hu.ilibrary.action.library.MergePublishersAction;
 import com.github.haixing_hu.ilibrary.action.library.MergeWebsitesAction;
 import com.github.haixing_hu.ilibrary.action.library.MoveToTrashAction;
 import com.github.haixing_hu.ilibrary.action.library.OpenFileAction;
@@ -132,9 +144,9 @@ import com.github.haixing_hu.ilibrary.action.view.FilterTypeAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeArticleAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypePatentAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeReportAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.action.view.ForwardAction;
 import com.github.haixing_hu.ilibrary.action.view.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.HideNavigatorAction;
@@ -176,6 +188,8 @@ import com.github.haixing_hu.ilibrary.action.window.ShowReviewsTabAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
 import com.github.haixing_hu.ilibrary.gui.widget.Action;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
+import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
 
 /**
  * A class used to manage all the actions in this application.
@@ -190,7 +204,21 @@ public final class ActionManager implements IActionManager {
     this.map = new HashMap<String, Action>();
     //  file actions
     this.add(new FileAction(application, this));
-    this.add(new NewEntryAction(application, this));
+    this.add(new NewAction(application, this));
+    this.add(new NewArticleDocumentAction(application, this));
+    this.add(new NewBookDocumentAction(application, this));
+    this.add(new NewReferenceDocumentAction(application, this));
+    this.add(new NewLawDocumentAction(application, this));
+    this.add(new NewMediaDocumentAction(application, this));
+    this.add(new NewAuthorAction(application, this));
+    this.add(new NewPeriodicalAction(application, this));
+    this.add(new NewConferenceAction(application, this));
+    this.add(new NewInstituteAction(application, this));
+    this.add(new NewWebsiteAction(application, this));
+    this.add(new NewCollectionAction(application, this));
+    this.add(new NewNormalCollectionAction(application, this));
+    this.add(new NewSmartCollectionAction(application, this));
+    this.add(new NewCollectionFromSelectionAction(application, this));
     this.add(new NewLibraryAction(application, this));
     this.add(new OpenLibraryAction(application, this));
     this.add(new CloseLibraryAction(application, this));
@@ -242,8 +270,8 @@ public final class ActionManager implements IActionManager {
     this.add(new FilterTypeAllAction(application, this));
     this.add(new FilterTypeArticleAction(application, this));
     this.add(new FilterTypeBookAction(application, this));
-    this.add(new FilterTypeReportAction(application, this));
-    this.add(new FilterTypePatentAction(application, this));
+    this.add(new FilterTypeReferenceAction(application, this));
+    this.add(new FilterTypeLawAction(application, this));
     this.add(new FilterTypeMediaAction(application, this));
     this.add(new FilterFileStatusAction(application, this));
     this.add(new FilterFileStatusAllAction(application, this));
@@ -295,10 +323,6 @@ public final class ActionManager implements IActionManager {
     this.add(new AttachFileAction(application, this));
     this.add(new OpenUrlAction(application, this));
     this.add(new OpenUrlInBrowserAction(application, this));
-    this.add(new CreateCollectionAction(application, this));
-    this.add(new CreateNormalCollectionAction(application, this));
-    this.add(new CreateSmartCollectionAction(application, this));
-    this.add(new CreateCollectionFromSelectionAction(application, this));
     this.add(new ManageCollectionAction(application, this));
     this.add(new EditCollectionAction(application, this));
     this.add(new RefreshCollectionAction(application, this));
@@ -308,7 +332,7 @@ public final class ActionManager implements IActionManager {
     this.add(new EditInformationAction(application, this));
     this.add(new MergeDocumentsAction(application, this));
     this.add(new MergeAuthorsAction(application, this));
-    this.add(new MergePublishersAction(application, this));
+    this.add(new MergeInstitutesAction(application, this));
     this.add(new MergeConferencesAction(application, this));
     this.add(new MergePeriodicalsAction(application, this));
     this.add(new MergeWebsitesAction(application, this));
@@ -347,6 +371,16 @@ public final class ActionManager implements IActionManager {
     this.add(new SwitchToNotesTabAction(application, this));
     this.add(new SwitchToReviewsTabAction(application, this));
     this.add(new SwitchToFilesTabAction(application, this));
+
+    // add the new document action for every supported document template
+    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
+    final Collection<DocumentTemplate> templates = service.getAll();
+    for (final DocumentTemplate template : templates) {
+      final NewDocumentFormTemplateAction action = new NewDocumentFormTemplateAction(
+            application, this, template);
+      this.add(action);
+    }
   }
 
   @Override

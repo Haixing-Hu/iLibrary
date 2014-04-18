@@ -24,6 +24,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.gui.widget.DropDownAction;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
@@ -55,20 +56,21 @@ public class BaseDropDownAction extends DropDownAction {
     super(id, actionManager, subActionIds);
     this.application = application;
     //  set the title and icon
-    final String title = application.getTitle(id);
-    final String shortcut = application.getShortcut(id);
+    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final String title = config.getTitle(id);
+    final String shortcut = config.getShortcut(id);
     if (shortcut == null) {
       this.setText(title);
     } else {
       this.setText(title + "@" + shortcut);
     }
-    final String description = application.getDescription(id);
+    final String description = config.getDescription(id);
     if (description != null) {
       this.setToolTipText(description);
     } else {
       this.setToolTipText(title);
     }
-    final String icon = application.getIcon(id);
+    final String icon = config.getIcon(id);
     if (icon != null) {
       final Image img = SWTUtils.getImage(icon);
       final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);

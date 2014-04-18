@@ -19,25 +19,43 @@
 package com.github.haixing_hu.ilibrary.model;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.annotation.Nullable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 /**
- * The model of types of documents.
+ * The model of templates of documents.
  *
  * @author Haixing Hu
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="document")
 public final class DocumentTemplate {
 
+  @XmlElement(name="name", required=true)
   private String name;
+
+  @XmlElement(name="type", required=true)
   private DocumentType type;
-  private String defaultLocale;
-  private Map<String, String> displayNames;
-  private List<DocumentKind> kinds;
-  private List<FieldTemplate> fields;
+
+  @XmlElement(name="default-kind", required=true)
+  private String defaultKind;
+
+  @XmlElementWrapper(name="kinds")
+  @XmlElement(name="kind")
+  private List<String> kinds;
+
+  @XmlElementWrapper(name="fields")
+  @XmlElement(name="field")
+  private List<String> fields;
 
   /**
    * Constructs a {@link DocumentTemplate}.
@@ -45,8 +63,7 @@ public final class DocumentTemplate {
   public DocumentTemplate() {
     name = null;
     type = DocumentType.ARTICLE;
-    defaultLocale = null;
-    displayNames = null;
+    defaultKind = null;
     kinds = null;
     fields = null;
   }
@@ -90,43 +107,21 @@ public final class DocumentTemplate {
   }
 
   /**
-   * Gets the default locale.
+   * Gets the defaultKind.
    *
-   * @return the default locale.
+   * @return the defaultKind.
    */
-  public String getDefaultLocale() {
-    return defaultLocale;
+  public String getDefaultKind() {
+    return defaultKind;
   }
 
   /**
-   * Sets the default locale.
+   * Sets the defaultKind.
    *
-   * @param defaultLocale
-   *          the new default locale to set.
+   * @param defaultKind the new defaultKind to set.
    */
-  public void setDefaultLocale(String defaultLocale) {
-    this.defaultLocale = defaultLocale;
-  }
-
-  /**
-   * Gets the display names.
-   *
-   * @return the display names, which is a map from the name of a locale to the
-   *         corresponding display name for the locale.
-   */
-  public Map<String, String> getDisplayNames() {
-    return displayNames;
-  }
-
-  /**
-   * Sets the display names.
-   *
-   * @param displayNames
-   *          the new display names to set, which is a map from the name of a
-   *          locale to the corresponding display name for the locale.
-   */
-  public void setDisplayNames(Map<String, String> displayNames) {
-    this.displayNames = displayNames;
+  public void setDefaultKind(String defaultKind) {
+    this.defaultKind = defaultKind;
   }
 
   /**
@@ -134,7 +129,7 @@ public final class DocumentTemplate {
    *
    * @return the kinds.
    */
-  public List<DocumentKind> getKinds() {
+  public List<String> getKinds() {
     return kinds;
   }
 
@@ -144,7 +139,7 @@ public final class DocumentTemplate {
    * @param kinds
    *          the new kinds to set.
    */
-  public void setKinds(List<DocumentKind> kinds) {
+  public void setKinds(@Nullable List<String> kinds) {
     this.kinds = kinds;
   }
 
@@ -153,7 +148,7 @@ public final class DocumentTemplate {
    *
    * @return the fields.
    */
-  public List<FieldTemplate> getFields() {
+  public List<String> getFields() {
     return fields;
   }
 
@@ -163,7 +158,7 @@ public final class DocumentTemplate {
    * @param fields
    *          the new fields to set.
    */
-  public void setFields(List<FieldTemplate> fields) {
+  public void setFields(@Nullable List<String> fields) {
     this.fields = fields;
   }
 

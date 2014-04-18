@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -29,6 +28,7 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToFilesTabAction;
@@ -54,7 +54,7 @@ public final class InspectorHeader extends Composite {
   public InspectorHeader(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     marginWidth = config.getInt(KEY + KeySuffix.MARGIN_WIDTH);
     backgroundImage = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);

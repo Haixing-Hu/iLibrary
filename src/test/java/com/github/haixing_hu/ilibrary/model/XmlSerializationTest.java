@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.model;
 
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
@@ -40,23 +39,21 @@ import static org.junit.Assert.assertEquals;
  * The base class for testing the XML serialization of a CSL domain object.
  *
  * @param T
- *      the class under test.
+ *          the class under test.
  * @author Haixing Hu
  */
 public abstract class XmlSerializationTest<T> {
 
   protected final Class<T> cls;
-  protected final Map<T, String> testData;
-  protected final List<T> failObject;
-  protected final List<String> failXml;
+  protected final Map<T, String> marshalTestData;
+  protected final Map<String, T> unmarshalTestData;
   protected Logger logger;
 
-  protected XmlSerializationTest(Class<T> cls, Map<T, String> testData,
-      List<T> failObject, List<String> failXml) {
+  protected XmlSerializationTest(Class<T> cls, Map<T, String> marshalTestData,
+      Map<String, T> unmarshalTestData) {
     this.cls = cls;
-    this.testData = testData;
-    this.failObject = failObject;
-    this.failXml = failXml;
+    this.marshalTestData = marshalTestData;
+    this.unmarshalTestData = unmarshalTestData;
     this.logger = LoggerFactory.getLogger(this.getClass());
   }
 
@@ -65,7 +62,7 @@ public abstract class XmlSerializationTest<T> {
     final JAXBContext context = JAXBContext.newInstance(cls);
     final Marshaller mr = context.createMarshaller();
     mr.setProperty("jaxb.fragment", Boolean.TRUE);
-    for (final Map.Entry<T, String> entry : testData.entrySet()) {
+    for (final Map.Entry<T, String> entry : marshalTestData.entrySet()) {
       final T obj = entry.getKey();
       final String xml = entry.getValue();
       final StringWriter writer = new StringWriter();
@@ -85,9 +82,9 @@ public abstract class XmlSerializationTest<T> {
   public void testXmlUnmarshal() throws Exception {
     final JAXBContext context = JAXBContext.newInstance(cls);
     final Unmarshaller umr = context.createUnmarshaller();
-    for (final Map.Entry<T, String> entry : testData.entrySet()) {
-      final T obj = entry.getKey();
-      final String xml = entry.getValue();
+    for (final Map.Entry<String, T> entry : unmarshalTestData.entrySet()) {
+      final String xml = entry.getKey();
+      final T obj = entry.getValue();
       final StringReader reader = new StringReader(xml);
       @SuppressWarnings("unchecked")
       final T actual = (T) umr.unmarshal(reader);

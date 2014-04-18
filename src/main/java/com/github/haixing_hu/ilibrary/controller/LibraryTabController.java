@@ -34,8 +34,8 @@ import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeArticleAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypePatentAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeReportAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.gui.widget.Action;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.FileStatusFilter;
@@ -165,8 +165,8 @@ public class LibraryTabController  extends BaseController {
     final Action all = am.get(FilterTypeAllAction.KEY);
     final Action article = am.get(FilterTypeArticleAction.KEY);
     final Action book = am.get(FilterTypeBookAction.KEY);
-    final Action report = am.get(FilterTypeReportAction.KEY);
-    final Action patent = am.get(FilterTypePatentAction.KEY);
+    final Action report = am.get(FilterTypeReferenceAction.KEY);
+    final Action patent = am.get(FilterTypeLawAction.KEY);
     final Action media = am.get(FilterTypeMediaAction.KEY);
     switch (filter) {
     case ALL:
@@ -193,7 +193,7 @@ public class LibraryTabController  extends BaseController {
       patent.setChecked(false);
       media.setChecked(false);
       break;
-    case REPORT:
+    case REFERENCE:
       all.setChecked(false);
       article.setChecked(false);
       book.setChecked(false);
@@ -201,7 +201,7 @@ public class LibraryTabController  extends BaseController {
       patent.setChecked(false);
       media.setChecked(false);
       break;
-    case PATENT:
+    case LAW:
       all.setChecked(false);
       article.setChecked(false);
       book.setChecked(false);

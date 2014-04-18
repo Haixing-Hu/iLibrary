@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>magazine-article</name>
+	<type>article</type>
+	<default-kind>article</default-kind>
+	<kinds>
+		<kind>article</kind>
+		<kind>column</kind>
+		<kind>commentary</kind>
+		<kind>editorial</kind>
+		<kind>electronic-article</kind>
+		<kind>erratum</kind>
+		<kind>letter</kind>
+		<kind>news-and-views</kind>
+		<kind>rebuttal</kind>				
+		<kind>retraction</kind>
+		<kind>review</kind>
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>authors</field>
+		<field>editors</field>		
+		<field>photographers</field>
+		<field>translators</field>
+		<field>abstract</field>
+		<field>magazine</field>
+		<field>number</field>
+		<field>volume</field>
+		<field>issue</field>
+		<field>pages</field>
+		<field>submitted-date</field>
+		<field>revised-date</field>
+		<field>accepted-date</field>
+		<field>published-date</field>
+	</fields>
+</document>

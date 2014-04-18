@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -33,6 +32,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Sash;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
@@ -77,7 +77,7 @@ public abstract class MainPanelTab extends CTabItem {
     super(parent, style);
     this.application = application;
     this.id = id;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     this.minPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MIN_WIDTH);  // "window.main.tab.panel.min-width"
     this.maxPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MAX_WIDTH);  // "window.main.tab.panel.max-width"
     this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);           // "window.main.tab.sash.width"
@@ -90,7 +90,7 @@ public abstract class MainPanelTab extends CTabItem {
     this.sash = new Sash(container, SWT.VERTICAL | SWT.BORDER | SWT.SMOOTH);
     this.inspector = new InspectorPanel(application, container);
     this.setControl(container);
-    this.setText("   " + application.getTitle(id) + "   ");
+    this.setText("   " + config.getTitle(id) + "   ");
     this.layoutContents();
     this.configSash();
   }

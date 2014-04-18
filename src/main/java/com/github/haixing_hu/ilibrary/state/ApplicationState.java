@@ -18,9 +18,7 @@
 
 package com.github.haixing_hu.ilibrary.state;
 
-import org.apache.commons.configuration.Configuration;
-
-import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.library.LibraryPanelPreview;
@@ -34,7 +32,6 @@ import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
  */
 public final class ApplicationState {
 
-  private final Application application;
   private AnnotateMode annotateMode;
   private int viewMode;
   private boolean navigatorVisible;
@@ -50,8 +47,7 @@ public final class ApplicationState {
   private boolean previewHide;
   private InspectorTab inspectorTab;
 
-  public ApplicationState(Application application, Configuration config) {
-    this.application = application;
+  public ApplicationState() {
     annotateMode = AnnotateMode.SELECTION;
     viewMode = ViewMode.ALL;
     navigatorVisible = true;
@@ -59,6 +55,7 @@ public final class ApplicationState {
     readStatusFilter = ReadStatusFilter.ALL;
     typeFilter = TypeFilter.ALL;
     fileStatusFilter = FileStatusFilter.ALL;
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     navigatorHide = false;
     inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);

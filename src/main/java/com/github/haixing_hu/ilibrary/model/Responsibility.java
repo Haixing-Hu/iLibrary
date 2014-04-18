@@ -34,7 +34,7 @@ import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
 public final class Responsibility {
 
   private Person person;
-  private Institute institute;
+  private Organization institute;
 
   /**
    * Default constructs a {@link Responsibility} representing a person.
@@ -61,7 +61,7 @@ public final class Responsibility {
    * @param institute
    *    the institute to be represented.
    */
-  public Responsibility(Institute institute) {
+  public Responsibility(Organization institute) {
     this.person = null;
     this.institute = requireNonNull("institute", institute);
   }
@@ -118,7 +118,7 @@ public final class Responsibility {
    *         responsibility represents a person, this function will returns
    *         <code>null</code>.
    */
-  public Institute getInstitute() {
+  public Organization getInstitute() {
     return institute;
   }
 
@@ -131,7 +131,7 @@ public final class Responsibility {
    * @param institute
    *          the new institute represented by this responsibility.
    */
-  public void setInstitute(Institute institute) {
+  public void setInstitute(Organization institute) {
     this.institute = requireNonNull("institute", institute);
     this.person = null;
   }

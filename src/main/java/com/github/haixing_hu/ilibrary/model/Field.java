@@ -35,9 +35,10 @@ public final class Field {
 
   private int id;
   private String name;
-  private DataType type;
+  private FieldDataType type;
   private boolean list;
   private Object value;
+  private String rawValue;
 
   /**
    * Default constructs a {@link Field}.
@@ -45,9 +46,10 @@ public final class Field {
   public Field() {
     this.id = - 1;
     this.name = "";
-    this.type = DataType.STRING;
+    this.type = FieldDataType.STRING;
     this.list = false;
     this.value = null;
+    this.rawValue = null;
   }
 
   /**
@@ -58,7 +60,7 @@ public final class Field {
    * @param type
    *          the type of the new field.
    */
-  public Field(String name, DataType type) {
+  public Field(String name, FieldDataType type) {
     this.id = - 1;
     this.name = requireNonNull("name", name);
     this.type = requireNonNull("type", type);
@@ -75,7 +77,7 @@ public final class Field {
    * @param list
    *          indicates whether this field has a list of values.
    */
-  public Field(String name, DataType type, boolean list) {
+  public Field(String name, FieldDataType type, boolean list) {
     this.id = - 1;
     this.name = requireNonNull("name", name);
     this.type = requireNonNull("type", type);
@@ -125,7 +127,7 @@ public final class Field {
    *
    * @return the type.
    */
-  public DataType getType() {
+  public FieldDataType getType() {
     return type;
   }
 
@@ -135,7 +137,7 @@ public final class Field {
    * @param type
    *          the new type to set, which cannot be <code>null</code>.
    */
-  public void setType(DataType type) {
+  public void setType(FieldDataType type) {
     this.type = requireNonNull("type", type);
   }
 
@@ -177,6 +179,25 @@ public final class Field {
    */
   public void setValue(@Nullable Object value) {
     this.value = value;
+  }
+
+
+  /**
+   * Gets the rawValue.
+   *
+   * @return the rawValue.
+   */
+  public String getRawValue() {
+    return rawValue;
+  }
+
+  /**
+   * Sets the rawValue.
+   *
+   * @param rawValue the new rawValue to set.
+   */
+  public void setRawValue(@Nullable String rawValue) {
+    this.rawValue = rawValue;
   }
 
   @Override

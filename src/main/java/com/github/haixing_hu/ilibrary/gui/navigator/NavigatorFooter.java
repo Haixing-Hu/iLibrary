@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.navigator;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -29,9 +28,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.action.library.CreateCollectionAction;
+import com.github.haixing_hu.ilibrary.action.file.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.ManageCollectionAction;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
 
@@ -62,13 +62,13 @@ public class NavigatorFooter extends Composite {
   public NavigatorFooter(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     createContents();
   }
 
   private void createContents() {
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     final FormLayout layout = new FormLayout();
     layout.spacing = 0;
     layout.marginTop = 0;
@@ -86,7 +86,7 @@ public class NavigatorFooter extends Composite {
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.get(CreateCollectionAction.KEY));
+    toolBarManager.add(am.get(NewCollectionAction.KEY));
     toolBarManager.add(am.get(ManageCollectionAction.KEY));
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();

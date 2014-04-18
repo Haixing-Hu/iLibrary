@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.navigator;
 
-import org.apache.commons.configuration.Configuration;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -31,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.controller.NavigatorController;
 import com.github.haixing_hu.ilibrary.utils.SWTUtils;
@@ -57,7 +57,7 @@ public class NavigatorTree extends TreeViewer {
   }
 
   private void createContents() {
-    final Configuration config = application.getConfig();
+    final ApplicationConfig config = ApplicationConfig.getInstance();
     final String input = config.getString(KEY + KeySuffix.INPUT);
     final Document doc = XmlUtils.getDocument(input);
     if (doc != null) {

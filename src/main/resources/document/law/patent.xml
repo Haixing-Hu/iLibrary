@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>patent</name>
+	<type>law</type>
+	<default-kind>utility-patent</default-kind>
+	<kinds>
+		<kind>biological-patent</kind>
+		<kind>business-method-patent</kind>
+		<kind>chemical-patent</kind>
+		<kind>design-patent</kind>
+		<kind>invention-patent</kind>
+		<kind>plant-patent</kind>		
+		<kind>reissue-patent</kind>
+		<kind>software-patent</kind>
+		<kind>utility-model</kind>
+		<kind>utility-patent</kind>		
+		<kind>-</kind>
+		<kind>defensive-publication</kind>
+		<kind>statutory-invention-registration</kind>
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>inventors</field>
+		<field>applicants</field>
+		<field>examiners</field>
+		<field>translators</field>
+		<field>abstract</field>
+		<field>patent-office</field>
+		<field>patent-number</field>
+		<field>version</field>
+		<field>application-number</field>
+		<field>classification</field>
+		<field>international-classification</field>		
+		<field>designated-states</field>		
+		<field>filed-date</field>
+		<field>issued-date</field>
+		<field>expired-date</field>
+	</fields>	
+</document>

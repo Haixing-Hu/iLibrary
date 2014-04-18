@@ -18,57 +18,47 @@
 
 package com.github.haixing_hu.ilibrary.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Nullable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementMap;
-import org.simpleframework.xml.Root;
 
 import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
 
 /**
- * The template of a field.
+ * The model of templates of fields.
  *
  * @author Haixing Hu
  */
-@Root(name = "field")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="field")
 public final class FieldTemplate {
 
-  @Element
+  @XmlElement(required=true)
   private String name;
 
-  @Element
-  private DataType type;
+  @XmlElement(required=true)
+  private FieldDataType type;
 
-  @Attribute
-  private boolean list;
-
-  @Attribute
+  @XmlAttribute
   private boolean required;
 
-  @ElementMap(entry = "display-name",
-              key = "locale",
-              attribute = true,
-              inline = true,
-              required = false)
-  private Map<String, String> displayNames;
+  @XmlAttribute
+  private boolean list;
 
   /**
    * Default Constructs a {@link FieldTemplate}.
    */
   public FieldTemplate() {
     name = null;
-    type = DataType.STRING;
-    list = false;
+    type = FieldDataType.STRING;
     required = false;
-    displayNames = new HashMap<String, String>();
+    list = false;
   }
 
   /**
@@ -96,7 +86,7 @@ public final class FieldTemplate {
    * @return the type of the value of this field, which will never be
    *         <code>null</code>.
    */
-  public DataType getType() {
+  public FieldDataType getType() {
     return type;
   }
 
@@ -106,7 +96,7 @@ public final class FieldTemplate {
    * @param type
    *          the new type to set, which cannot be <code>null</code>.
    */
-  public void setType(DataType type) {
+  public void setType(FieldDataType type) {
     this.type = requireNonNull("type", type);
   }
 
@@ -148,27 +138,6 @@ public final class FieldTemplate {
    */
   public void setRequired(boolean required) {
     this.required = required;
-  }
-
-  /**
-   * Gets the display names.
-   *
-   * @return the display names, which is a map from the name of a locale to the
-   *         corresponding display name for the locale.
-   */
-  public Map<String, String> getDisplayNames() {
-    return displayNames;
-  }
-
-  /**
-   * Sets the display names.
-   *
-   * @param displayNames
-   *          the new display names to be set, which is a map from the name of a
-   *          locale to the corresponding display name for the locale.
-   */
-  public void setDisplayNames(@Nullable Map<String, String> displayNames) {
-    this.displayNames = requireNonNull("displayNames", displayNames);
   }
 
   /**

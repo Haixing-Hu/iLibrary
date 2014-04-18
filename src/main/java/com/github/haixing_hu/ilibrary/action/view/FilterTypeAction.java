@@ -35,8 +35,8 @@ public class FilterTypeAction extends BaseDropDownAction {
     FilterTypeAllAction.KEY,
     FilterTypeArticleAction.KEY,
     FilterTypeBookAction.KEY,
-    FilterTypeReportAction.KEY,
-    FilterTypePatentAction.KEY,
+    FilterTypeReferenceAction.KEY,
+    FilterTypeLawAction.KEY,
     FilterTypeMediaAction.KEY,
   };
 

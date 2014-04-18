@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>technical-report</name>
+	<type>reference</type>
+	<default-kind>scientific-report</default-kind>
+	<kinds>
+		<kind>annual-report</kind>
+		<kind>appraisal-report</kind>		
+		<kind>auditor-report</kind>
+		<kind>bound-report</kind>
+		<kind>budget-report</kind>
+		<kind>census-report</kind>
+		<kind>credit-report</kind>
+		<kind>demographic-report</kind>
+		<kind>inspection-report</kind>
+		<kind>investigative-report</kind>
+		<kind>military-report</kind>
+		<kind>policy-report</kind>
+		<kind>progress-report</kind>
+		<kind>recommendation-report</kind>
+		<kind>scientific-report</kind>
+		<kind>trip-report</kind>
+		<kind>white-paper</kind>
+		<kind>workplace-report</kind>
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>authors</field>
+		<field>editors</field>
+		<field>illustrators</field>
+		<field>translators</field>
+		<field>summary</field>
+		<field>institute</field>
+		<field>number</field>		
+		<field>volume</field>
+		<field>issue</field>
+		<field>pages</field>		
+		<field>submitted-date</field>
+		<field>revised-date</field>
+		<field>accepted-date</field>
+		<field>published-date</field>
+	</fields>	
+</document>

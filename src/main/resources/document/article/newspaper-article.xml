@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<document>
+	<name>newspaper-article</name>
+	<type>article</type>
+	<default-kind>article</default-kind>
+	<kinds>
+		<kind>advertisement</kind>
+		<kind>article</kind>
+		<kind>column</kind>
+		<kind>commentary</kind>
+		<kind>editorial</kind>
+		<kind>erratum</kind>
+		<kind>feature-article</kind>
+		<kind>letter</kind>
+		<kind>news-and-views</kind>
+		<kind>online-article</kind>
+		<kind>opinion</kind>		
+		<kind>retraction</kind>
+		<kind>review</kind>
+	</kinds>
+	<fields>
+		<field>title</field>
+		<field>subtitle</field>
+		<field>reporters</field>
+		<field>editors</field>		
+		<field>photographers</field>
+		<field>abstract</field>
+		<field>newspaper</field>
+		<field>number</field>
+		<field>section</field>
+		<field>volume</field>
+		<field>issue</field>
+		<field>pages</field>
+		<field>submitted-date</field>
+		<field>redacted-date</field>
+		<field>accepted-date</field>
+		<field>published-date</field>
+	</fields>
+</document>
