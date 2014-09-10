@@ -31,6 +31,7 @@ import com.github.haixing_hu.ilibrary.controller.MainPanelController;
 import com.github.haixing_hu.ilibrary.controller.NavigatorController;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The main class of the application.
@@ -99,6 +100,7 @@ public final class Application {
     if (display != null) {
       //  if the program is terminated by external command (i.e., press CMD+Q in Mac),
       //  the display could be null.
+      SWTResourceManager.dispose();
       display.dispose();
     }
   }

@@ -31,9 +31,9 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.gui.widget.Action;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
-import com.github.haixing_hu.ilibrary.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTUtils;
 
-import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
+import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
  * The base class for all actions.

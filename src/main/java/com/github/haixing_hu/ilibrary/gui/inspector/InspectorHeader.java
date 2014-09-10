@@ -25,7 +25,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
@@ -35,6 +34,7 @@ import com.github.haixing_hu.ilibrary.action.ui.SwitchToFilesTabAction;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToInfoTabAction;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToNotesTabAction;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToReviewsTabAction;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The header of the inspector tab folder.

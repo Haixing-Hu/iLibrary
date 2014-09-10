@@ -22,7 +22,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
+import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
  * The model of responsibilities.

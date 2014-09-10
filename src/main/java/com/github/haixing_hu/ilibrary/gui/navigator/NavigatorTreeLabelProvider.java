@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTUtils;
 
 /**
  * The label provider of the navigator tree viewer.

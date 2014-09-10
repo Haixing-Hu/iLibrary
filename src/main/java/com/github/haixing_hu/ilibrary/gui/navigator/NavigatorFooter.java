@@ -33,7 +33,7 @@ import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.file.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.ManageCollectionAction;
-import com.github.haixing_hu.ilibrary.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTUtils;
 
 /**
  * The footer of the navigator panel.

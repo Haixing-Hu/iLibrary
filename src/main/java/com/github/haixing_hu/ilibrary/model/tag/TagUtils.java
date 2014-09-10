@@ -24,7 +24,7 @@ import java.util.ListIterator;
 
 import javax.annotation.Nullable;
 
-import com.github.haixing_hu.ilibrary.utils.Argument;
+import com.github.haixing_hu.lang.Argument;
 
 /**
  * Provides functions to manipulate the tag lists.

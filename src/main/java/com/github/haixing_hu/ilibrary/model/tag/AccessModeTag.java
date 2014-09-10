@@ -23,7 +23,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.github.haixing_hu.ilibrary.model.AccessMode;
-import com.github.haixing_hu.ilibrary.utils.Argument;
+import com.github.haixing_hu.lang.Argument;
 
 /**
  * The tag representing an access mode.

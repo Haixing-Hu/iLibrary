@@ -27,7 +27,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.gui.widget.DropDownAction;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
-import com.github.haixing_hu.ilibrary.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTUtils;
 
 /**
  * The base class for drop down actions.

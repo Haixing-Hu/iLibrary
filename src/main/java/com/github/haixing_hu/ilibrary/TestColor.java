@@ -10,7 +10,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.wb.swt.SWTResourceManager;
+
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 public class TestColor extends ApplicationWindow {
 

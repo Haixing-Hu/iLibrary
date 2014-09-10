@@ -44,7 +44,7 @@ import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.widget.ApplicationWindow;
 import com.github.haixing_hu.ilibrary.gui.widget.MenuManager;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.ilibrary.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTUtils;
 
 /**
  * The main window of the application.

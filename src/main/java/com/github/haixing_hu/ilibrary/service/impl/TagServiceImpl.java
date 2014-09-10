@@ -23,9 +23,9 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.github.haixing_hu.collection.tree.Tree;
 import com.github.haixing_hu.ilibrary.model.tag.Tag;
 import com.github.haixing_hu.ilibrary.service.TagService;
-import com.github.haixing_hu.ilibrary.utils.tree.Tree;
 
 /**
  * The implementation of the {@link TagService}.

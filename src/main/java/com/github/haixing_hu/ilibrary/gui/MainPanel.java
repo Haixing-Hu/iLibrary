@@ -40,7 +40,7 @@ import com.github.haixing_hu.ilibrary.gui.document.DocumentTab;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.library.LibraryTab;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.ilibrary.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTUtils;
 
 /**
  * The main panel, which is a tab folder.

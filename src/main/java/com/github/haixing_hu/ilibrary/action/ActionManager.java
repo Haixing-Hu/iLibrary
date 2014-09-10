@@ -139,6 +139,7 @@ import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusHasReadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusToReadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
@@ -264,6 +265,7 @@ public final class ActionManager implements IActionManager {
     this.add(new FilterReadStatusAction(application, this));
     this.add(new FilterReadStatusAllAction(application, this));
     this.add(new FilterReadStatusUnreadAction(application, this));
+    this.add(new FilterReadStatusToReadAction(application, this));
     this.add(new FilterReadStatusReadingAction(application, this));
     this.add(new FilterReadStatusHasReadAction(application, this));
     this.add(new FilterTypeAction(application, this));

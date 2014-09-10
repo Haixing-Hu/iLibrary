@@ -30,6 +30,7 @@ import com.github.haixing_hu.ilibrary.action.view.FilterFlagStatusFlaggedAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusHasReadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusToReadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeArticleAction;
@@ -53,6 +54,7 @@ public final class LibraryPanelHeader extends MainPanelHeader {
     Separator.class.getName(),
     FilterReadStatusAllAction.KEY,
     FilterReadStatusUnreadAction.KEY,
+    FilterReadStatusToReadAction.KEY,
     FilterReadStatusReadingAction.KEY,
     FilterReadStatusHasReadAction.KEY,
     Separator.class.getName(),

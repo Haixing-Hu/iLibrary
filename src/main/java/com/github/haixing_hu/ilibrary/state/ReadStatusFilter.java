@@ -28,6 +28,8 @@ public enum ReadStatusFilter {
 
   UNREAD,
 
+  TO_READ,
+
   READING,
 
   HAS_READ,

@@ -29,12 +29,13 @@ import com.github.haixing_hu.ilibrary.action.view.FilterFlagStatusUnflaggedActio
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusHasReadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusToReadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeArticleAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
+import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.gui.widget.Action;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
@@ -113,6 +114,7 @@ public class LibraryTabController  extends BaseController {
     final ActionManager am = application.getActionManager();
     final Action all = am.get(FilterReadStatusAllAction.KEY);
     final Action unread = am.get(FilterReadStatusUnreadAction.KEY);
+    final Action toread = am.get(FilterReadStatusToReadAction.KEY);
     final Action reading = am.get(FilterReadStatusReadingAction.KEY);
     final Action hasRead = am.get(FilterReadStatusHasReadAction.KEY);
     switch (filter) {
@@ -123,6 +125,13 @@ public class LibraryTabController  extends BaseController {
       reading.setChecked(false);
       hasRead.setChecked(false);
       break;
+    case TO_READ:
+      //  update action's checking status
+      all.setChecked(false);
+      unread.setChecked(false);
+      toread.setChecked(true);
+      reading.setChecked(false);
+      hasRead.setChecked(false);
     case READING:
       //  update action's checking status
       all.setChecked(false);

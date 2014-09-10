@@ -24,7 +24,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import static com.github.haixing_hu.ilibrary.utils.Argument.requireNonNull;
+import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
  * The field of a document.

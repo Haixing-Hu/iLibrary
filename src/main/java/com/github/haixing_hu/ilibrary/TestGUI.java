@@ -21,7 +21,8 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.wb.swt.SWTResourceManager;
+
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 public class TestGUI extends Composite {
   private class TableLabelProvider extends LabelProvider implements ITableLabelProvider {

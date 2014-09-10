@@ -22,7 +22,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.github.haixing_hu.ilibrary.utils.Argument;
+import com.github.haixing_hu.lang.Argument;
 
 /**
  * The tag representing a domain.

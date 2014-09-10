@@ -24,7 +24,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import com.github.haixing_hu.ilibrary.utils.Argument;
+import com.github.haixing_hu.lang.Argument;
 
 /**
  * The modes of editions of publications.

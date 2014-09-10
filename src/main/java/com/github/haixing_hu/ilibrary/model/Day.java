@@ -22,7 +22,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-import com.github.haixing_hu.ilibrary.utils.Argument;
+import com.github.haixing_hu.lang.Argument;
 
 /**
  * Represents a day.
