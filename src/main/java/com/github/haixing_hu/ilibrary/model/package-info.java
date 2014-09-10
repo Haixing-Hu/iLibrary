@@ -28,5 +28,5 @@ import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters;
 
-import com.github.haixing_hu.ilibrary.utils.jaxb.DateXmlAdaptor;
+import com.github.haixing_hu.util.jaxb.DateXmlAdaptor;
 

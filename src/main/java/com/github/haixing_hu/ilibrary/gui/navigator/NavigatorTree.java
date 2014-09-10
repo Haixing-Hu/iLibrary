@@ -59,11 +59,13 @@ public class NavigatorTree extends TreeViewer {
   private void createContents() {
     final ApplicationConfig config = ApplicationConfig.getInstance();
     final String input = config.getString(KEY + KeySuffix.INPUT);
-    final Document doc = XmlUtils.getDocument(input);
-    if (doc != null) {
+    try {
+      final Document doc = XmlUtils.parse(input, this.getClass());
       this.setContentProvider(new NavigatorTreeContentProvider());
       this.setLabelProvider(new NavigatorTreeLabelProvider(application));
       this.setInput(doc);
+    } catch (final Exception e) {
+      LOGGER.error("Failed to parse the XML file: {}", input);
     }
     final Tree tree = this.getTree();
     //  set the background color
