@@ -37,7 +37,6 @@ public final class Language {
   private String abbreviation;
   private String description;
 
-
   public static Language ENGLIST = new Language("English");
 
   /**
