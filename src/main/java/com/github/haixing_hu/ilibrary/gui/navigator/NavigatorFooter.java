@@ -33,7 +33,7 @@ import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.file.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.ManageCollectionAction;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The footer of the navigator panel.
@@ -81,7 +81,7 @@ public class NavigatorFooter extends Composite {
     this.setLayout(layout);
 
     final String background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
-    final Image img = SWTUtils.getImage(background);
+    final Image img = SWTResourceManager.getImage(this.getClass(), background);
     this.setBackgroundImage(img);
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
@@ -92,13 +92,13 @@ public class NavigatorFooter extends Composite {
     final ToolBar toolBar = toolBarManager.getControl();
 
     final String toolbar_background = config.getString(KEY + KeySuffix.TOOLBAR + KeySuffix.BACKGROUND_IMAGE);
-    final Image toolbar_img = SWTUtils.getImage(toolbar_background);
+    final Image toolbar_img = SWTResourceManager.getImage(this.getClass(), toolbar_background);
     toolBar.setBackgroundImage(toolbar_img);
 
     corner = new Composite(this, SWT.NONE);
 
     final String cornerBackground = config.getString(KEY + KeySuffix.CORNER + KeySuffix.BACKGROUND_IMAGE);
-    final Image cornerBackgroundImg = SWTUtils.getImage(cornerBackground);
+    final Image cornerBackgroundImg = SWTResourceManager.getImage(this.getClass(), cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
     final int toolbarTop = config.getInt(KEY + KeySuffix.TOOLBAR + KeySuffix.TOP);

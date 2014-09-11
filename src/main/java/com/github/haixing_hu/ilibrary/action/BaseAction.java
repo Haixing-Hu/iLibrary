@@ -31,7 +31,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.gui.widget.Action;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
@@ -95,7 +95,7 @@ public class BaseAction extends Action {
     }
     final String icon = config.getIcon(id);
     if (icon != null) {
-      final Image img = SWTUtils.getImage(icon);
+      final Image img = SWTResourceManager.getImage(this.getClass(), icon);
       final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
       this.setImageDescriptor(imgdes);
     }
@@ -120,7 +120,7 @@ public class BaseAction extends Action {
     if (path == null) {
       this.setImageDescriptor(null);
     } else {
-      final Image img = SWTUtils.getImage(path);
+      final Image img = SWTResourceManager.getImage(this.getClass(), path);
       if (img != null) {
         final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
         this.setImageDescriptor(imgdes);

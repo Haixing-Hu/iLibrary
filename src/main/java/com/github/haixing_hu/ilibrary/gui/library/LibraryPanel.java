@@ -33,7 +33,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The library panel.
@@ -140,7 +140,7 @@ public final class LibraryPanel extends Composite {
   }
 
   private void configSash() {
-    final Image img = SWTUtils.getImage(sashBg);
+    final Image img = SWTResourceManager.getImage(this.getClass(), sashBg);
     sash.setBackgroundImage(img);
 
     final FormData fd_sash = (FormData) sash.getLayoutData();

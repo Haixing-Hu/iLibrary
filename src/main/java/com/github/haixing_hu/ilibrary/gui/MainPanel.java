@@ -40,7 +40,7 @@ import com.github.haixing_hu.ilibrary.gui.document.DocumentTab;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.library.LibraryTab;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The main panel, which is a tab folder.
@@ -70,10 +70,10 @@ public final class MainPanel extends CTabFolder {
   private void configAppearance() {
     final ApplicationConfig config = ApplicationConfig.getInstance();
     final String path = config.getString(KEY + KeySuffix.SELECTION + KeySuffix.BACKGROUND_IMAGE);
-    final Image img = SWTUtils.getImage(path);
+    final Image img = SWTResourceManager.getImage(this.getClass(), path);
     this.setSelectionBackground(img);
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
-    final Color color = SWTUtils.parseRGB(rgb);
+    final Color color = SWTResourceManager.parseRGB(rgb);
     this.setBackground(color);
     this.marginHeight = 0;
     this.marginWidth = 0;

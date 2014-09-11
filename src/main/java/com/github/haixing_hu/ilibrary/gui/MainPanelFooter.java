@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The base class for the footers in the tabs of the main panel.
@@ -68,11 +68,11 @@ public class MainPanelFooter extends Composite {
   private final void createContents() {
     setLayout(new FillLayout());
     label = new CLabel(this, SWT.NONE);
-    final Image img = SWTUtils.getImage(background);
+    final Image img = SWTResourceManager.getImage(this.getClass(), background);
     this.setBackgroundImage(img);
     label.setBackground(img);
     label.setAlignment(SWT.CENTER);
-    final Font font = SWTUtils.setFontHeight(label.getFont(), fontSize);
+    final Font font = SWTResourceManager.changeFontSize(label.getFont(), fontSize);
     label.setFont(font);
   }
 

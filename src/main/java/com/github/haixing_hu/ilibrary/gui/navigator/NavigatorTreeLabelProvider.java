@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The label provider of the navigator tree viewer.
@@ -55,7 +55,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     if (icon == null) {
       return null;
     } else {
-      return SWTUtils.getImage(icon);
+      return SWTResourceManager.getImage(this.getClass(), icon);
     }
   }
 

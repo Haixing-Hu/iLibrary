@@ -35,7 +35,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The base class for the tabs of the main panel.
@@ -82,7 +82,7 @@ public abstract class MainPanelTab extends CTabItem {
     this.maxPanelWidth = config.getInt(KEY + KeySuffix.PANEL + KeySuffix.MAX_WIDTH);  // "window.main.tab.panel.max-width"
     this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);           // "window.main.tab.sash.width"
     final String colorRgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR); // "window.main.tab.sash.color"
-    this.sashColor = SWTUtils.parseRGB(colorRgb);
+    this.sashColor = SWTResourceManager.parseRGB(colorRgb);
 
     this.parent = parent;
     this.container = new Composite(parent, SWT.NONE);

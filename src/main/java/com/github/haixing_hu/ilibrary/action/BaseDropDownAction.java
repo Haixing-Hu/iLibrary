@@ -27,7 +27,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.gui.widget.DropDownAction;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The base class for drop down actions.
@@ -72,7 +72,7 @@ public class BaseDropDownAction extends DropDownAction {
     }
     final String icon = config.getIcon(id);
     if (icon != null) {
-      final Image img = SWTUtils.getImage(icon);
+      final Image img = SWTResourceManager.getImage(this.getClass(), icon);
       final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
       this.setImageDescriptor(imgdes);
     }
@@ -97,7 +97,7 @@ public class BaseDropDownAction extends DropDownAction {
     if (path == null) {
       this.setImageDescriptor(null);
     } else {
-      final Image img = SWTUtils.getImage(path);
+      final Image img = SWTResourceManager.getImage(this.getClass(), path);
       if (img != null) {
         final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
         this.setImageDescriptor(imgdes);

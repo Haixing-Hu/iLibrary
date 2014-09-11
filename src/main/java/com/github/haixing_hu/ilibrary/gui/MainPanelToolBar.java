@@ -32,7 +32,7 @@ import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.gui.widget.ForceTextToolBarManager;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The base class for the tool bars in the tabs of the main panel.
@@ -108,7 +108,7 @@ public class MainPanelToolBar extends Composite {
     final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
     toolBar.setLayoutData(gd_toolBar);
 
-    final Image img = SWTUtils.getImage(background);
+    final Image img = SWTResourceManager.getImage(this.getClass(), background);
     this.setBackgroundImage(img);
     //  in order to be compatible on multi-platforms, we must set the
     //  background image on both this composite and the tool bar.

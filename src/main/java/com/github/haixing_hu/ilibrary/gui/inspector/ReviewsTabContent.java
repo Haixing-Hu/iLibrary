@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Label;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The content of the info tab.
@@ -49,7 +49,7 @@ public class ReviewsTabContent extends Composite {
   private void createContents() {
     final ApplicationConfig config = ApplicationConfig.getInstance();
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
-    final Color color = SWTUtils.parseRGB(rgb);
+    final Color color = SWTResourceManager.parseRGB(rgb);
     this.setBackground(color);
     // TODO Auto-generated method stub
     this.setLayout(new FillLayout());

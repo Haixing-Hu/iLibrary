@@ -44,7 +44,7 @@ import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.widget.ApplicationWindow;
 import com.github.haixing_hu.ilibrary.gui.widget.MenuManager;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The main window of the application.
@@ -76,7 +76,8 @@ public final class MainWindow extends ApplicationWindow {
     this.minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
     this.minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
-    this.sashColor = SWTUtils.parseRGB(config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR));
+    final String rgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR);
+    this.sashColor = SWTResourceManager.parseRGB(rgb);
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
   }

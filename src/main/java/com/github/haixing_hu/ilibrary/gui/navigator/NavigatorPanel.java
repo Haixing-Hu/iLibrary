@@ -29,7 +29,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
-import com.github.haixing_hu.swt.utils.SWTUtils;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The panel display the navigation tree.
@@ -84,7 +84,7 @@ public final class NavigatorPanel extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final Color color = SWTUtils.parseRGB(backgroundColor);
+    final Color color = SWTResourceManager.parseRGB(backgroundColor);
     this.setBackground(color);
 
     tree = new NavigatorTree(application, this);
