@@ -84,7 +84,7 @@ public final class NavigatorPanel extends Composite {
     layout.spacing = 0;
     this.setLayout(layout);
 
-    final Color color = SWTResourceManager.parseRGB(backgroundColor);
+    final Color color = SWTResourceManager.getColor(backgroundColor);
     this.setBackground(color);
 
     tree = new NavigatorTree(application, this);

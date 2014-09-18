@@ -49,7 +49,7 @@ public enum FieldDataType {
   DOUBLE,
 
   /**
-   * A value in this type represents a {@link Day} object.
+   * A value in this type represents a {@link DatePoint} object.
    */
   DAY,
 

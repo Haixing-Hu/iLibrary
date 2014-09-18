@@ -23,7 +23,7 @@ import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
 
 /**
- * The action to minimize all the windows.
+ * The action to minimize all the WINDOWS.
  *
  * @author Haixing Hu
  */

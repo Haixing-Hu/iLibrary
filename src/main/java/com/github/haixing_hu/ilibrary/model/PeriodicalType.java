@@ -25,11 +25,23 @@ package com.github.haixing_hu.ilibrary.model;
  */
 public enum PeriodicalType {
 
+  /**
+   * Represents a journal.
+   */
   JOURNAL,
 
-  LAW_REPORT,
-
+  /**
+   * Represents a magazine.
+   */
   MAGAZINE,
 
+  /**
+   * Represents a newspaper.
+   */
   NEWSPAPER,
+
+  /**
+   * Represents a law report.
+   */
+  LAW_REPORT,
 }

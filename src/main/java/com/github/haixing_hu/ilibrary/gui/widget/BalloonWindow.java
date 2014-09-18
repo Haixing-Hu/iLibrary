@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.Widget;
 
 /**
- * A Shell wrapper which creates balloon popup windows.
+ * A Shell wrapper which creates balloon popup WINDOWS.
  * 
  * <p>
  * By default, a balloon window has no title bar or system controls. The
@@ -43,7 +43,7 @@ import org.eclipse.swt.widgets.Widget;
  * </p>
  * 
  * <ul>
- * <li>SWT.ON_TOP - Keep the window on top of other windows</li>
+ * <li>SWT.ON_TOP - Keep the window on top of other WINDOWS</li>
  * <li>SWT.TOOL - Add a drop shadow to the window (on supported platforms)</li>
  * <li>SWT.CLOSE - Show a "close" control on the title bar (implies SWT.TITLE)</li>
  * <li>SWT.TITLE - Show a title bar</li>

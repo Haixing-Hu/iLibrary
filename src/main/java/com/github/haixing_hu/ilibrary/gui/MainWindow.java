@@ -77,7 +77,7 @@ public final class MainWindow extends ApplicationWindow {
     this.minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
     final String rgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR);
-    this.sashColor = SWTResourceManager.parseRGB(rgb);
+    this.sashColor = SWTResourceManager.getColor(rgb);
     this.addMenuBar();
     this.addToolBar(SWT.FLAT |SWT.WRAP);
   }
@@ -178,7 +178,7 @@ public final class MainWindow extends ApplicationWindow {
     final ApplicationConfig config = ApplicationConfig.getInstance();
     shell.setText(config.getAppName());
     shell.setMinimumSize(minWidth, minHeight);
-    //  NOTE: Mac OS X may automatically resize the startup windows,
+    //  NOTE: Mac OS X may automatically resize the startup WINDOWS,
     //  therefore, the getInitialSize() will not be called by the
     //  framework. So we call it manually
     final Point initialSize = getInitialSize();

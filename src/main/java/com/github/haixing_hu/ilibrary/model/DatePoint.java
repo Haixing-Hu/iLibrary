@@ -29,12 +29,27 @@ import com.github.haixing_hu.lang.Argument;
  *
  * @author Haixing Hu
  */
-public final class Day {
+public final class DatePoint {
 
   public enum Type {
+    /**
+     * Represents an exact date.
+     */
     EXACT_DATE,
+
+    /**
+     * Represents a date with only year and month.
+     */
     YEAR_MONTH,
+
+    /**
+     * Represents a date with only year.
+     */
     YEAR_ONLY,
+
+    /**
+     * Represents a circa year.
+     */
     CIRCA,
   }
 
@@ -44,9 +59,9 @@ public final class Day {
   private boolean circa;
 
   /**
-   * Default constructs a {@link Day} which does not represent any valid date.
+   * Default constructs a {@link DatePoint} which does not represent any valid date.
    */
-  public Day() {
+  public DatePoint() {
     year = -1;
     month = -1;
     day = -1;
@@ -54,7 +69,7 @@ public final class Day {
   }
 
   /**
-   * Constructs a {@link Day} represents an exact date.
+   * Constructs a {@link DatePoint} represents an exact date.
    *
    * @param year
    *          the year of the new date.
@@ -63,40 +78,40 @@ public final class Day {
    * @param day
    *          the day of the new date.
    */
-  public Day(short year, byte month, byte day) {
+  public DatePoint(short year, byte month, byte day) {
     this.year = year;
     this.month = Argument.requireInCloseRange("month", month, (byte)1, (byte)12);
     this.day = Argument.requireInCloseRange("day", day, (byte)1, (byte)31);
-    this.circa = false;
+    circa = false;
   }
 
   /**
-   * Constructs a {@link Day} represents a year-month date.
+   * Constructs a {@link DatePoint} represents a year-month date.
    *
    * @param year
    *          the year of the new date.
    * @param month
    *          the month of the new date.
    */
-  public Day(short year, byte month) {
+  public DatePoint(short year, byte month) {
     this.year = year;
     this.month = Argument.requireInCloseRange("month", month, (byte)1, (byte)12);
-    this.day = -1;
-    this.circa = false;
+    day = -1;
+    circa = false;
   }
 
   /**
-   * Constructs a {@link Day} represents a circa date.
+   * Constructs a {@link DatePoint} represents a circa date.
    *
    * @param year
    *          the year of the new date.
    * @param circa
    *          indicate whether the new date is circa.
    */
-  public Day(short year, boolean circa) {
+  public DatePoint(short year, boolean circa) {
     this.year = year;
-    this.month = -1;
-    this.day = -1;
+    month = -1;
+    day = -1;
     this.circa = circa;
   }
 
@@ -219,7 +234,7 @@ public final class Day {
     this.year = year;
     this.month = month;
     this.day = day;
-    this.circa = false;
+    circa = false;
   }
 
   /**
@@ -242,8 +257,8 @@ public final class Day {
     }
     this.year = year;
     this.month = month;
-    this.day = -1;
-    this.circa = false;
+    day = -1;
+    circa = false;
   }
 
   /**
@@ -257,9 +272,9 @@ public final class Day {
    */
   public void setYearOnlyDate(short year) {
     this.year = year;
-    this.month = -1;
-    this.day = -1;
-    this.circa = false;
+    month = -1;
+    day = -1;
+    circa = false;
   }
 
   /**
@@ -273,9 +288,9 @@ public final class Day {
    */
   public void setCircaDate(short year) {
     this.year = year;
-    this.month = -1;
-    this.day = -1;
-    this.circa = true;
+    month = -1;
+    day = -1;
+    circa = true;
   }
 
   /* (non-Javadoc)

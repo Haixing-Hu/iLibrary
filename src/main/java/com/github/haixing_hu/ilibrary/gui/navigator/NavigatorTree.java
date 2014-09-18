@@ -70,7 +70,7 @@ public class NavigatorTree extends TreeViewer {
     final Tree tree = this.getTree();
     //  set the background color
     final String bgcolor = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
-    final Color color = SWTResourceManager.parseRGB(bgcolor);
+    final Color color = SWTResourceManager.getColor(bgcolor);
     if (color != null) {
       tree.setBackground(color);
     }

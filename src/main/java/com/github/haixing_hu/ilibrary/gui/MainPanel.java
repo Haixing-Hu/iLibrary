@@ -73,7 +73,7 @@ public final class MainPanel extends CTabFolder {
     final Image img = SWTResourceManager.getImage(this.getClass(), path);
     this.setSelectionBackground(img);
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
-    final Color color = SWTResourceManager.parseRGB(rgb);
+    final Color color = SWTResourceManager.getColor(rgb);
     this.setBackground(color);
     this.marginHeight = 0;
     this.marginWidth = 0;

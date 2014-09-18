@@ -49,7 +49,7 @@ public class ReviewsTabContent extends Composite {
   private void createContents() {
     final ApplicationConfig config = ApplicationConfig.getInstance();
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
-    final Color color = SWTResourceManager.parseRGB(rgb);
+    final Color color = SWTResourceManager.getColor(rgb);
     this.setBackground(color);
     // TODO Auto-generated method stub
     this.setLayout(new FillLayout());

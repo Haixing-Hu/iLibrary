@@ -48,10 +48,10 @@ public final class Event extends Taggable {
   private String synopsis;
   private City city;
   private int attendees;
-  private Day announcedDate;
-  private Day deadlineDate;
-  private Day startDate;
-  private Day endDate;
+  private DatePoint announcedDate;
+  private DatePoint deadlineDate;
+  private DatePoint startDate;
+  private DatePoint endDate;
   private String url;
   private String rss;
   private String isbn;
@@ -343,7 +343,7 @@ public final class Event extends Taggable {
    *
    * @return the announcedDate.
    */
-  public Day getAnnouncedDate() {
+  public DatePoint getAnnouncedDate() {
     return announcedDate;
   }
 
@@ -353,7 +353,7 @@ public final class Event extends Taggable {
    * @param announcedDate
    *          the new announcedDate to set.
    */
-  public void setAnnouncedDate(@Nullable Day announcedDate) {
+  public void setAnnouncedDate(@Nullable DatePoint announcedDate) {
     this.announcedDate = announcedDate;
   }
 
@@ -362,7 +362,7 @@ public final class Event extends Taggable {
    *
    * @return the deadlineDate.
    */
-  public Day getDeadlineDate() {
+  public DatePoint getDeadlineDate() {
     return deadlineDate;
   }
 
@@ -372,7 +372,7 @@ public final class Event extends Taggable {
    * @param deadlineDate
    *          the new deadlineDate to set.
    */
-  public void setDeadlineDate(@Nullable Day deadlineDate) {
+  public void setDeadlineDate(@Nullable DatePoint deadlineDate) {
     this.deadlineDate = deadlineDate;
   }
 
@@ -381,7 +381,7 @@ public final class Event extends Taggable {
    *
    * @return the startDate.
    */
-  public Day getStartDate() {
+  public DatePoint getStartDate() {
     return startDate;
   }
 
@@ -391,7 +391,7 @@ public final class Event extends Taggable {
    * @param startDate
    *          the new startDate to set.
    */
-  public void setStartDate(@Nullable Day startDate) {
+  public void setStartDate(@Nullable DatePoint startDate) {
     this.startDate = startDate;
   }
 
@@ -400,7 +400,7 @@ public final class Event extends Taggable {
    *
    * @return the endDate.
    */
-  public Day getEndDate() {
+  public DatePoint getEndDate() {
     return endDate;
   }
 
@@ -410,7 +410,7 @@ public final class Event extends Taggable {
    * @param endDate
    *          the new endDate to set.
    */
-  public void setEndDate(@Nullable Day endDate) {
+  public void setEndDate(@Nullable DatePoint endDate) {
     this.endDate = endDate;
   }
 

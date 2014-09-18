@@ -48,8 +48,8 @@ public final class Periodical extends Taggable {
   private String city;
   private long circulation;
   private double factor;
-  private Day startDate;
-  private Day endDate;
+  private DatePoint startDate;
+  private DatePoint endDate;
   private Frequency frequency;
   private String url;
   private String rss;
@@ -284,7 +284,7 @@ public final class Periodical extends Taggable {
    *
    * @return the startDate.
    */
-  public Day getStartDate() {
+  public DatePoint getStartDate() {
     return startDate;
   }
 
@@ -294,7 +294,7 @@ public final class Periodical extends Taggable {
    * @param startDate
    *          the new startDate to set.
    */
-  public void setStartDate(@Nullable Day startDate) {
+  public void setStartDate(@Nullable DatePoint startDate) {
     this.startDate = startDate;
   }
 
@@ -303,7 +303,7 @@ public final class Periodical extends Taggable {
    *
    * @return the endDate.
    */
-  public Day getEndDate() {
+  public DatePoint getEndDate() {
     return endDate;
   }
 
@@ -313,7 +313,7 @@ public final class Periodical extends Taggable {
    * @param endDate
    *          the new endDate to set.
    */
-  public void setEndDate(@Nullable Day endDate) {
+  public void setEndDate(@Nullable DatePoint endDate) {
     this.endDate = endDate;
   }
 

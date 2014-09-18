@@ -24,6 +24,8 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import static com.github.haixing_hu.lang.Argument.requireNonNull;
+
 /**
  * The model of languages.
  *
@@ -31,72 +33,33 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  */
 public final class Language {
 
-  private int id;
   private String code;
   private String name;
   private String abbreviation;
-  private String description;
-
-  public static Language ENGLIST = new Language("English");
 
   /**
    * Constructs a language.
    */
   public Language() {
-    id = -1;
     code = null;
     name = null;
     abbreviation = null;
-    description = null;
   }
 
   /**
    * Constructs a language.
    *
-   * @param name
-   *          the name of the new language.
-   */
-  public Language(@Nullable String name) {
-    this.id = - 1;
-    this.code = null;
-    this.name = name;
-    this.abbreviation = null;
-    this.description = null;
-  }
-
-  /**
-   * Constructs a language.
-   *
+   * @param code
+   *          the ISO code of the new language.
    * @param name
    *          the name of the new language.
    * @param abbreviation
    *          the abbreviation of the new language.
    */
-  public Language(@Nullable String name, @Nullable String abbreviation) {
-    this.id = - 1;
-    this.code = null;
-    this.name = name;
-    this.abbreviation = abbreviation;
-    this.description = null;
-  }
-
-  /**
-   * Gets the id.
-   *
-   * @return the id.
-   */
-  public int getId() {
-    return id;
-  }
-
-  /**
-   * Sets the id.
-   *
-   * @param id
-   *          the new id to set.
-   */
-  public void setId(int id) {
-    this.id = id;
+  public Language(String code, String name, String abbreviation) {
+    this.code = requireNonNull("code", code);
+    this.name = requireNonNull("name", name);
+    this.abbreviation = requireNonNull("abbreviation", abbreviation);
   }
 
   /**
@@ -156,24 +119,6 @@ public final class Language {
     this.abbreviation = abbreviation;
   }
 
-  /**
-   * Gets the description.
-   *
-   * @return the description.
-   */
-  public String getDescription() {
-    return description;
-  }
-
-  /**
-   * Sets the description.
-   *
-   * @param description the new description to set.
-   */
-  public void setDescription(@Nullable String description) {
-    this.description = description;
-  }
-
   /* (non-Javadoc)
    * @see java.lang.Object#hashCode()
    */
@@ -196,7 +141,6 @@ public final class Language {
   @Override
   public String toString() {
     return new ToStringBuilder(this)
-              .append("id", id)
               .append("code", code)
               .append("name", name)
               .append("abbreviation", abbreviation)

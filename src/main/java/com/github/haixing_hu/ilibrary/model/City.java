@@ -57,11 +57,11 @@ public final class City {
    *          the name of the new city.
    */
   public City(@Nullable String name) {
-    this.id = - 1;
+    id = - 1;
     this.name = name;
-    this.abbreviation = null;
-    this.country = null;
-    this.description = null;
+    abbreviation = null;
+    country = null;
+    description = null;
   }
 
   /**
@@ -73,11 +73,11 @@ public final class City {
    *          the country of the new city.
    */
   public City(@Nullable String name, @Nullable Country country) {
-    this.id = - 1;
+    id = - 1;
     this.name = name;
-    this.abbreviation = null;
+    abbreviation = null;
     this.country = country;
-    this.description = null;
+    description = null;
   }
 
   /**
@@ -89,11 +89,11 @@ public final class City {
    *          the abbreviation of the new city.
    */
   public City(@Nullable String name, @Nullable String abbreviation) {
-    this.id = - 1;
+    id = - 1;
     this.name = name;
     this.abbreviation = abbreviation;
-    this.country = null;
-    this.description = null;
+    country = null;
+    description = null;
   }
 
   /**
@@ -108,11 +108,11 @@ public final class City {
    */
   public City(@Nullable String name, @Nullable String abbreviation,
       @Nullable Country country) {
-    this.id = - 1;
+    id = - 1;
     this.name = name;
     this.abbreviation = abbreviation;
     this.country = country;
-    this.description = null;
+    description = null;
   }
 
   /**
@@ -228,31 +228,16 @@ public final class City {
     this.description = description;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     return HashCodeBuilder.reflectionHashCode(this);
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return ReflectionToStringBuilder.toString(this);

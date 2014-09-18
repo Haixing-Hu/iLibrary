@@ -61,7 +61,7 @@ import org.eclipse.swt.widgets.ToolBar;
  * the window's shell and widget tree created. When the window is
  * closed, the shell and widget tree are disposed of and are no longer
  * referenced, and the window is automatically removed from its window
- * manager. Like all windows, an application window may be reopened.
+ * manager. Like all WINDOWS, an application window may be reopened.
  * </p>
  * <p>
  * An application window is also a suitable context in which to perform

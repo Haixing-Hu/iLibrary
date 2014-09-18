@@ -26,7 +26,7 @@ package com.github.haixing_hu.ilibrary.model.tag;
 public enum TagScope {
 
   /**
-   * Represents an unknown tag scope.
+   * Represents an UNKNOWN tag scope.
    */
   UNKNOWN,
 
