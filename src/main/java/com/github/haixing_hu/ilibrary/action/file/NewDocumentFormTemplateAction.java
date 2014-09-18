@@ -19,9 +19,9 @@
 package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 
 /**
@@ -51,7 +51,7 @@ public class NewDocumentFormTemplateAction extends BaseAction {
           application, actionManager);
     this.template = template;
     //  set the title
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String key = "document."
                + template.getType().name().toLowerCase()
                + "." + template.getName();

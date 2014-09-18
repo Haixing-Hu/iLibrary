@@ -28,9 +28,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
-import com.github.haixing_hu.ilibrary.gui.widget.Action;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.swt.action.ActionEx;
+import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
@@ -40,7 +40,7 @@ import static com.github.haixing_hu.lang.Argument.requireNonNull;
  *
  * @author Haixing Hu
  */
-public class BaseAction extends Action {
+public class BaseAction extends ActionEx {
 
   protected final Application application;
   protected final IActionManager actionManager;
@@ -79,7 +79,7 @@ public class BaseAction extends Action {
     this.actionManager = requireNonNull("actionManager", actionManager);
     this.logger = LoggerFactory.getLogger(this.getClass());
     this.setId(id);
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String title = config.getTitle(id);
     final String shortcut = config.getShortcut(id);
     if (shortcut == null) {

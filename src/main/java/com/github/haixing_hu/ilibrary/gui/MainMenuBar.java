@@ -27,14 +27,14 @@ import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
-import com.github.haixing_hu.ilibrary.gui.widget.MenuManager;
+import com.github.haixing_hu.swt.menu.MenuManagerEx;
 
 /**
  * The main menu bar of the application.
  *
  * @author Haixing Hu
  */
-public final class MainMenuBar extends MenuManager {
+public final class MainMenuBar extends MenuManagerEx {
 
   private final Application application;
 

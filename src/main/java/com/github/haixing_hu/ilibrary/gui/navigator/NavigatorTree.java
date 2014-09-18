@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.controller.NavigatorController;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -57,7 +57,7 @@ public class NavigatorTree extends TreeViewer {
   }
 
   private void createContents() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String input = config.getString(KEY + KeySuffix.INPUT);
     try {
       final Document doc = XmlUtils.parse(input, this.getClass());

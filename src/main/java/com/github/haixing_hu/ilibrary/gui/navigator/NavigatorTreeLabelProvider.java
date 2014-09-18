@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -64,7 +64,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     final NavigatorTreeNode node = (NavigatorTreeNode) element;
     final String key = node.getKey();
     LOGGER.debug("Getting the text for navigator tree node: {}", key);
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     String title = config.getTitle(key);
     if (getNodeIcon(node) == null) {
       title = fixNoIconNodeTitle(title);
@@ -75,7 +75,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
 
   private String getNodeIcon(NavigatorTreeNode node) {
     final String key = node.getKey();
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String icon = config.getIcon(key);
     if (icon != null) {
       return icon;
@@ -101,7 +101,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
   private String fixNoIconNodeTitle(String title) {
     // add some space at the front if there is no icon for this node
     final String prefix_key = NavigatorTreeNode.KEY + ".no-icon-prefix";
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final int prefix_count = config.getInt(prefix_key);
     return StringUtils.leftPad(title, title.length() + prefix_count);
   }

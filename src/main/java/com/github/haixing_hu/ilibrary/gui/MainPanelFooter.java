@@ -26,7 +26,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -58,7 +58,7 @@ public class MainPanelFooter extends Composite {
   public MainPanelFooter(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     fontSize = config.getInt(KEY + KeySuffix.FONT_SIZE);

@@ -37,8 +37,8 @@ import com.github.haixing_hu.ilibrary.gui.MainPanel;
 import com.github.haixing_hu.ilibrary.gui.MainPanelTab;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.gui.library.LibraryTab;
-import com.github.haixing_hu.ilibrary.gui.widget.Action;
-import com.github.haixing_hu.ilibrary.gui.widget.DropDownAction;
+import com.github.haixing_hu.swt.action.ActionEx;
+import com.github.haixing_hu.swt.action.DropDownAction;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.ViewMode;
 
@@ -72,11 +72,11 @@ public class MainPanelController extends BaseController {
     final LibraryTab libraryTab = (LibraryTab) mainPanel.getItem(0);
     final ActionManager am = application.getActionManager();
     final DropDownAction viewAction = (DropDownAction) am.get(ViewAction.KEY);
-    final Action viewModeAction = am.get(ViewModeAction.KEY);
-    final Action mode_all = am.get(ViewModeAllAction.KEY);
-    final Action mode_inspector = am.get(ViewModeInspectorAction.KEY);
-    final Action mode_preview = am.get(ViewModePreviewAction.KEY);
-    final Action mode_none = am.get(ViewModeNoneAction.KEY);
+    final ActionEx viewModeAction = am.get(ViewModeAction.KEY);
+    final ActionEx mode_all = am.get(ViewModeAllAction.KEY);
+    final ActionEx mode_inspector = am.get(ViewModeInspectorAction.KEY);
+    final ActionEx mode_preview = am.get(ViewModePreviewAction.KEY);
+    final ActionEx mode_none = am.get(ViewModeNoneAction.KEY);
     switch (mode) {
     case ViewMode.NONE:
       logger.info("Set the view mode to: {}", ViewMode.NONE);

@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 
 /**
@@ -41,7 +41,7 @@ public class LibraryPanelContent extends CheckboxTableViewer {
 
   public LibraryPanelContent(Application application, Composite parent) {
     super(new Table(parent, SWT.CHECK | SWT.V_SCROLL | SWT.H_SCROLL));
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT); // "window.main.tab.library.content.min-height"
     maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT); // "window.main.tab.library.content.max-height"
     createContents();

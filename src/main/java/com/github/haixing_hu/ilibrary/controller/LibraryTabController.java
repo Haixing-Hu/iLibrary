@@ -37,7 +37,7 @@ import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
-import com.github.haixing_hu.ilibrary.gui.widget.Action;
+import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.FileStatusFilter;
 import com.github.haixing_hu.ilibrary.state.FlagStatusFilter;
@@ -71,9 +71,9 @@ public class LibraryTabController  extends BaseController {
     logger.info("Set the flag filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(FilterFlagStatusAllAction.KEY);
-    final Action flagged = am.get(FilterFlagStatusFlaggedAction.KEY);
-    final Action unflagged = am.get(FilterFlagStatusUnflaggedAction.KEY);
+    final ActionEx all = am.get(FilterFlagStatusAllAction.KEY);
+    final ActionEx flagged = am.get(FilterFlagStatusFlaggedAction.KEY);
+    final ActionEx unflagged = am.get(FilterFlagStatusUnflaggedAction.KEY);
     switch (filter) {
     case FLAGGED:
       //  update action's checking status
@@ -112,11 +112,11 @@ public class LibraryTabController  extends BaseController {
     logger.info("Set the read filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(FilterReadStatusAllAction.KEY);
-    final Action unread = am.get(FilterReadStatusUnreadAction.KEY);
-    final Action toread = am.get(FilterReadStatusToReadAction.KEY);
-    final Action reading = am.get(FilterReadStatusReadingAction.KEY);
-    final Action hasRead = am.get(FilterReadStatusHasReadAction.KEY);
+    final ActionEx all = am.get(FilterReadStatusAllAction.KEY);
+    final ActionEx unread = am.get(FilterReadStatusUnreadAction.KEY);
+    final ActionEx toread = am.get(FilterReadStatusToReadAction.KEY);
+    final ActionEx reading = am.get(FilterReadStatusReadingAction.KEY);
+    final ActionEx hasRead = am.get(FilterReadStatusHasReadAction.KEY);
     switch (filter) {
     case UNREAD:
       //  update action's checking status
@@ -171,12 +171,12 @@ public class LibraryTabController  extends BaseController {
     logger.info("Set the type filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(FilterTypeAllAction.KEY);
-    final Action article = am.get(FilterTypeArticleAction.KEY);
-    final Action book = am.get(FilterTypeBookAction.KEY);
-    final Action report = am.get(FilterTypeReferenceAction.KEY);
-    final Action patent = am.get(FilterTypeLawAction.KEY);
-    final Action media = am.get(FilterTypeMediaAction.KEY);
+    final ActionEx all = am.get(FilterTypeAllAction.KEY);
+    final ActionEx article = am.get(FilterTypeArticleAction.KEY);
+    final ActionEx book = am.get(FilterTypeBookAction.KEY);
+    final ActionEx report = am.get(FilterTypeReferenceAction.KEY);
+    final ActionEx patent = am.get(FilterTypeLawAction.KEY);
+    final ActionEx media = am.get(FilterTypeMediaAction.KEY);
     switch (filter) {
     case ALL:
       all.setChecked(true);
@@ -246,9 +246,9 @@ public class LibraryTabController  extends BaseController {
     logger.info("Set the attachment filter to: {}", filter);
     //  TODO: set the filter in the document list table
     final ActionManager am = application.getActionManager();
-    final Action all = am.get(FilterFileStatusAllAction.KEY);
-    final Action has_file = am.get(FilterFileStatusHasFileAction.KEY);
-    final Action no_file = am.get(FilterFileStatusNoFileAction.KEY);
+    final ActionEx all = am.get(FilterFileStatusAllAction.KEY);
+    final ActionEx has_file = am.get(FilterFileStatusHasFileAction.KEY);
+    final ActionEx no_file = am.get(FilterFileStatusNoFileAction.KEY);
     switch (filter) {
     case HAS_FILE:
       //  update action's checking status

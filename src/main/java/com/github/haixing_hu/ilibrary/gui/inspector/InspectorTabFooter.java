@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorFooter;
@@ -65,13 +65,13 @@ public class InspectorTabFooter extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     this.actionKeys = actionKeys;
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     createContents();
   }
 
   private void createContents() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final FormLayout layout = new FormLayout();
     layout.spacing = 0;
     layout.marginTop = 0;

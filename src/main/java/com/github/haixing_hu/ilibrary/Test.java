@@ -27,7 +27,7 @@ public class Test extends ApplicationWindow {
 
   @Override
   protected Control createContents(Composite parent) {
-    getShell().setText("Action/Contribution Example");
+    getShell().setText("ActionEx/Contribution Example");
     parent.setSize(290, 150);
     return parent;
   }
@@ -68,7 +68,7 @@ class Ch4_StatusAction extends Action {
   public Ch4_StatusAction(StatusLineManager sm) {
     super("&Trigger@Ctrl+T", AS_PUSH_BUTTON);
     statman = sm;
-    setToolTipText("Trigger the Action");
+    setToolTipText("Trigger the ActionEx");
   }
 
   @Override

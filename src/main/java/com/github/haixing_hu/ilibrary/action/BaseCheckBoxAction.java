@@ -22,7 +22,7 @@ package com.github.haixing_hu.ilibrary.action;
 import org.eclipse.jface.action.IAction;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The base class for check box actions.

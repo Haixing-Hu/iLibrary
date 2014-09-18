@@ -25,7 +25,7 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 
@@ -48,7 +48,7 @@ public class InspectorPanel extends Composite {
   public InspectorPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);

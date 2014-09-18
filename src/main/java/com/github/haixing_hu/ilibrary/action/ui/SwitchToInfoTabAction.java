@@ -21,7 +21,7 @@ package com.github.haixing_hu.ilibrary.action.ui;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
 import com.github.haixing_hu.ilibrary.controller.InspectorController;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**

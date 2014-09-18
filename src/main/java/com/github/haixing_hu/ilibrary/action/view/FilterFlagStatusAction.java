@@ -20,7 +20,7 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to filter documents by their flag status.

@@ -28,10 +28,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.gui.widget.ForceTextToolBarManager;
+import com.github.haixing_hu.swt.toolbar.ForceTextToolBarManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -66,9 +66,9 @@ public class MainPanelToolBar extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     this.actionKeys = actionKeys;
-    final ApplicationConfig config = ApplicationConfig.getInstance();
-    this.height = config.getInt(KEY + KeySuffix.HEIGHT);
-    this.background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
+    final AppConfig config = application.getConfig();
+    height = config.getInt(KEY + KeySuffix.HEIGHT);
+    background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     createContents();
     layoutContents();
   }
@@ -102,14 +102,14 @@ public class MainPanelToolBar extends Composite {
     layout.marginBottom = 0;
     layout.marginHeight = 0;
     layout.marginWidth = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
     final ToolBar toolBar = toolBarManager.getControl();
     final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
     toolBar.setLayoutData(gd_toolBar);
 
     final Image img = SWTResourceManager.getImage(this.getClass(), background);
-    this.setBackgroundImage(img);
+    setBackgroundImage(img);
     //  in order to be compatible on multi-platforms, we must set the
     //  background image on both this composite and the tool bar.
     toolBar.setBackgroundImage(img);

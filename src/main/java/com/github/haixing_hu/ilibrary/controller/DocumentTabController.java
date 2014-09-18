@@ -25,7 +25,7 @@ import com.github.haixing_hu.ilibrary.action.edit.AnnotateHighlightAction;
 import com.github.haixing_hu.ilibrary.action.edit.AnnotateSelectionAction;
 import com.github.haixing_hu.ilibrary.action.edit.AnnotateStrikethroughAction;
 import com.github.haixing_hu.ilibrary.action.edit.AnnotateUnderlineAction;
-import com.github.haixing_hu.ilibrary.gui.widget.Action;
+import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.ilibrary.state.AnnotateMode;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 
@@ -56,11 +56,11 @@ public class DocumentTabController  extends BaseController {
     logger.info("Set the annotate mode to: {}", mode);
     //  TODO: set the annotate mode
     final ActionManager am = application.getActionManager();
-    final Action annotate = am.get(AnnotateAction.KEY);
-    final Action selection = am.get(AnnotateSelectionAction.KEY);
-    final Action highlight = am.get(AnnotateHighlightAction.KEY);
-    final Action underline = am.get(AnnotateUnderlineAction.KEY);
-    final Action strikethrough = am.get(AnnotateStrikethroughAction.KEY);
+    final ActionEx annotate = am.get(AnnotateAction.KEY);
+    final ActionEx selection = am.get(AnnotateSelectionAction.KEY);
+    final ActionEx highlight = am.get(AnnotateHighlightAction.KEY);
+    final ActionEx underline = am.get(AnnotateUnderlineAction.KEY);
+    final ActionEx strikethrough = am.get(AnnotateStrikethroughAction.KEY);
     switch (mode) {
     case SELECTION:
       //  update action's checking status

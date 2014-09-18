@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -47,7 +47,7 @@ public class ReviewsTabContent extends Composite {
   }
 
   private void createContents() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
     final Color color = SWTResourceManager.getColor(rgb);
     this.setBackground(color);

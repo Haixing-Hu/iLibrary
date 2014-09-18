@@ -22,13 +22,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new document of a specified type.
@@ -52,11 +52,10 @@ public class NewDocumentOfTypeAction extends BaseDropDownAction {
   public NewDocumentOfTypeAction(String key, Application application,
           IActionManager actionManager, DocumentType type) {
     super(key, application, actionManager,
-         getSubActionIds(key, type));
+         getSubActionIds(application.getConfig(), key, type));
   }
 
-  private static String[] getSubActionIds(String key, DocumentType type) {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+  private static String[] getSubActionIds(AppConfig config, String key, DocumentType type) {
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
     final Collection<DocumentTemplate> templates = service.getAll(type);
     final List<String> ids = new ArrayList<String>();

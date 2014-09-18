@@ -3,6 +3,8 @@ iLibrary
 
 iLibrary is a multi-platform personal digit library software.
 
+**NOTE:** This project is still under construction. The current version is **NOT** useable.
+
 # Introduction
 
 This project is intended to be an open source clone of the [Papers for Mac](http://www.papersapp.com/mac/). Papers is a beautiful and useful reference management software on the Mac OS X, but it's too expensive (cost $79) and does not fulfill my requirements to manage electronic documents. Moreover, Papers 2 is buggy on the newest Mac OS X 10.9, and Papers 3 is still in the alpha version. Therefore, I decided to make a knockoff of Papers.

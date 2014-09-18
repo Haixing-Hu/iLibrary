@@ -20,8 +20,6 @@ package com.github.haixing_hu.ilibrary;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.controller.DocumentTabController;
@@ -42,7 +40,7 @@ public final class Application {
 
   public static final String CONTEXT_FILE = "applicationContext.xml";
 
-  private final Logger logger;
+  private final AppConfig config;
   private final ApplicationState state;
   private final ActionManager actionManager;
   private final MainWindow mainWindow;
@@ -56,8 +54,8 @@ public final class Application {
    * Constructs an application.
    */
   public Application() {
-    logger = LoggerFactory.getLogger(Application.class);
-    state = new ApplicationState();
+    config = new AppConfig(CONTEXT_FILE);
+    state = new ApplicationState(config);
     actionManager = new ActionManager(this);
     mainWindow = new MainWindow(this);
     navigatorController = new NavigatorController(this);
@@ -93,7 +91,7 @@ public final class Application {
    */
   public void run() {
     mainWindow.create();
-    this.syncState();
+    syncState();
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
     final Display display = Display.getCurrent();
@@ -105,15 +103,6 @@ public final class Application {
     }
   }
 
-  /**
-   * Gets the logger of this application.
-   *
-   * @return the logger of this application.
-   */
-  public Logger getLogger() {
-    return logger;
-  }
-
 
   /**
    * Displays an error message dialog indicating that the specified function has
@@ -122,9 +111,9 @@ public final class Application {
    * @param key the key of the action.
    */
   public void displayUnimplementedError(String key) {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
     final String title = config.getMessage("message.error");
-    final String message = config.getMessage("message.error.unimplemented-function") + ": " + key;
+    final String message = config.getMessage("message.error.unimplemented-function")
+        + ": " + key;
     MessageDialog.openError(mainWindow.getShell(), title, message);
   }
 
@@ -135,6 +124,15 @@ public final class Application {
    */
   public ActionManager getActionManager() {
     return actionManager;
+  }
+
+  /**
+   * Gets the configuration of this application.
+   *
+   * @return the configuration of this application.
+   */
+  public AppConfig getConfig() {
+    return config;
   }
 
   /**

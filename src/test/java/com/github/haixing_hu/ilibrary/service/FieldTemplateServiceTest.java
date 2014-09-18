@@ -22,7 +22,8 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.model.FieldDataType;
 import com.github.haixing_hu.ilibrary.model.FieldTemplate;
 
@@ -38,7 +39,7 @@ public class FieldTemplateServiceTest {
 
   @Test
   public void testGetAll() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = new AppConfig(Application.CONTEXT_FILE);
     final FieldTemplateService service = config.getBean(FieldTemplateService.class);
     final Collection<FieldTemplate> templates = service.getAll();
     assertTrue(templates.size() > 0);
@@ -50,7 +51,7 @@ public class FieldTemplateServiceTest {
 
   @Test
   public void testGet() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = new AppConfig(Application.CONTEXT_FILE);
     final FieldTemplateService service = config.getBean(FieldTemplateService.class);
 
     final FieldTemplate title = service.get("title");

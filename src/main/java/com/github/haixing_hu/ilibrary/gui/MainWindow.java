@@ -36,22 +36,22 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
-import com.github.haixing_hu.ilibrary.gui.widget.ApplicationWindow;
-import com.github.haixing_hu.ilibrary.gui.widget.MenuManager;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
+import com.github.haixing_hu.swt.menu.MenuManagerEx;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
+import com.github.haixing_hu.swt.window.ApplicationWindowEx;
 
 /**
  * The main window of the application.
  *
  * @author Haixing Hu
  */
-public final class MainWindow extends ApplicationWindow {
+public final class MainWindow extends ApplicationWindowEx {
 
   public static final String KEY = "window";
 
@@ -70,16 +70,16 @@ public final class MainWindow extends ApplicationWindow {
   public MainWindow(Application application) {
     super(null);
     this.application = application;
-    final ApplicationConfig config = ApplicationConfig.getInstance();
-    this.defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
-    this.defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
-    this.minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
-    this.minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    this.sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
+    final AppConfig config = application.getConfig();
+    defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
+    defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
+    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
+    minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
+    sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
     final String rgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR);
-    this.sashColor = SWTResourceManager.getColor(rgb);
-    this.addMenuBar();
-    this.addToolBar(SWT.FLAT |SWT.WRAP);
+    sashColor = SWTResourceManager.getColor(rgb);
+    addMenuBar();
+    addToolBar(SWT.FLAT |SWT.WRAP);
   }
 
   @Override
@@ -162,7 +162,7 @@ public final class MainWindow extends ApplicationWindow {
   }
 
   @Override
-  protected MenuManager createMenuManager() {
+  protected MenuManagerEx createMenuManager() {
     menuBar = new MainMenuBar(application);
     return menuBar;
   }
@@ -175,7 +175,7 @@ public final class MainWindow extends ApplicationWindow {
   @Override
   protected void configureShell(Shell shell) {
     super.configureShell(shell);
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     shell.setText(config.getAppName());
     shell.setMinimumSize(minWidth, minHeight);
     //  NOTE: Mac OS X may automatically resize the startup WINDOWS,

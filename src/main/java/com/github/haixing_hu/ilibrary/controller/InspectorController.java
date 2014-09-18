@@ -35,7 +35,7 @@ import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorTabFolder;
 import com.github.haixing_hu.ilibrary.gui.inspector.NotesTab;
 import com.github.haixing_hu.ilibrary.gui.inspector.ReviewsTab;
-import com.github.haixing_hu.ilibrary.gui.widget.Action;
+import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
@@ -76,10 +76,10 @@ public class InspectorController extends BaseController {
     final ReviewsTab reviewsTab = tabFolder.getReviewsTab();
     final FilesTab filesTab = tabFolder.getFilesTab();
     final ActionManager am = application.getActionManager();
-    final Action infoTabAction = am.get(SwitchToInfoTabAction.KEY);
-    final Action notesTabAction = am.get(SwitchToNotesTabAction.KEY);
-    final Action reviewsTabAction = am.get(SwitchToReviewsTabAction.KEY);
-    final Action filesTabAction = am.get(SwitchToFilesTabAction.KEY);
+    final ActionEx infoTabAction = am.get(SwitchToInfoTabAction.KEY);
+    final ActionEx notesTabAction = am.get(SwitchToNotesTabAction.KEY);
+    final ActionEx reviewsTabAction = am.get(SwitchToReviewsTabAction.KEY);
+    final ActionEx filesTabAction = am.get(SwitchToFilesTabAction.KEY);
     switch (tab) {
     case INFO:
       stackLayout.topControl = infoTab;

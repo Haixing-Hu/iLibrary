@@ -50,23 +50,7 @@ import org.springframework.core.io.Resource;
  *
  * @author Haixing Hu
  */
-public final class ApplicationConfig implements ApplicationContext, Configuration {
-
-  public static final String CONTEXT_FILE = "applicationContext.xml";
-
-  private static ApplicationConfig singleton = null;
-
-  /**
-   * Gets the singleton instance of the {@link ApplicationConfig} class.
-   *
-   * @return the singleton instance of the {@link ApplicationConfig} class.
-   */
-  public static synchronized ApplicationConfig getInstance() {
-    if (singleton == null) {
-      singleton = new ApplicationConfig();
-    }
-    return singleton;
-  }
+public final class AppConfig implements ApplicationContext, Configuration {
 
   private final Logger logger;
   private final ApplicationContext context;
@@ -76,11 +60,11 @@ public final class ApplicationConfig implements ApplicationContext, Configuratio
   private final String version;
 
   /**
-   * Constructs a {@link ApplicationConfig}.
+   * Constructs a {@link AppConfig}.
    */
-  private ApplicationConfig() {
-    logger = LoggerFactory.getLogger(ApplicationConfig.class);
-    context = new ClassPathXmlApplicationContext(CONTEXT_FILE);
+  public AppConfig(String contexFile) {
+    logger = LoggerFactory.getLogger(AppConfig.class);
+    context = new ClassPathXmlApplicationContext(contexFile);
     config = context.getBean(Configuration.class);
     if (config.containsKey("app.locale")) {
       locale = new Locale(config.getString("app.locale"));

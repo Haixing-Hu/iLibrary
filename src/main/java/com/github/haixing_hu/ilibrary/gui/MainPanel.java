@@ -33,7 +33,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.controller.MainPanelController;
 import com.github.haixing_hu.ilibrary.gui.document.DocumentTab;
@@ -68,7 +68,7 @@ public final class MainPanel extends CTabFolder {
    * Configures the appearance of this tab folder.
    */
   private void configAppearance() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String path = config.getString(KEY + KeySuffix.SELECTION + KeySuffix.BACKGROUND_IMAGE);
     final Image img = SWTResourceManager.getImage(this.getClass(), path);
     this.setSelectionBackground(img);

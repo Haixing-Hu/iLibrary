@@ -20,7 +20,7 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to open the URL of the selected document in the external browser.

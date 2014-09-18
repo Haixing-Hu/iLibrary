@@ -24,9 +24,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
-import com.github.haixing_hu.ilibrary.gui.widget.DropDownAction;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
+import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.swt.action.DropDownAction;
+import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -56,7 +56,7 @@ public class BaseDropDownAction extends DropDownAction {
     super(id, actionManager, subActionIds);
     this.application = application;
     //  set the title and icon
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     final String title = config.getTitle(id);
     final String shortcut = config.getShortcut(id);
     if (shortcut == null) {

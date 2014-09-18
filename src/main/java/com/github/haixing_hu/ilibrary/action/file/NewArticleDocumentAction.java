@@ -19,8 +19,8 @@
 package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.gui.widget.IActionManager;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new article document.

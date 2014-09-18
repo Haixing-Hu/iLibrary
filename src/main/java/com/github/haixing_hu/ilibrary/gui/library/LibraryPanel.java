@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Sash;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -57,7 +57,7 @@ public final class LibraryPanel extends Composite {
   public LibraryPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = application.getConfig();
     this.sashHeight = config.getInt(KEY + KeySuffix.SASH + KeySuffix.HEIGHT);   // "window.main.tab.library.sash.height"
     this.sashBg = config.getString(KEY + KeySuffix.SASH + KeySuffix.BACKGROUND_IMAGE); // "window.main.tab.library.sash.background-image"
     createContents();

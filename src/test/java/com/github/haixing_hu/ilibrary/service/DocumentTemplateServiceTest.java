@@ -22,7 +22,8 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import com.github.haixing_hu.ilibrary.ApplicationConfig;
+import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 
@@ -38,7 +39,7 @@ public class DocumentTemplateServiceTest {
 
   @Test
   public void testGetAll() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = new AppConfig(Application.CONTEXT_FILE);
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
     final Collection<DocumentTemplate> templates = service.getAll();
     assertTrue(templates.size() > 0);
@@ -49,7 +50,7 @@ public class DocumentTemplateServiceTest {
 
   @Test
   public void testGetAllType() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = new AppConfig(Application.CONTEXT_FILE);
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
 
     final Collection<DocumentTemplate> articles = service.getAll(DocumentType.ARTICLE);
@@ -90,7 +91,7 @@ public class DocumentTemplateServiceTest {
 
   @Test
   public void testGet() {
-    final ApplicationConfig config = ApplicationConfig.getInstance();
+    final AppConfig config = new AppConfig(Application.CONTEXT_FILE);
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
 
     final DocumentTemplate journalArticle = service.get("journal-article");
