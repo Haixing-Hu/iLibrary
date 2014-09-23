@@ -16,7 +16,7 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.inspector;
+package com.github.haixing_hu.ilibrary.gui2.inspector;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;

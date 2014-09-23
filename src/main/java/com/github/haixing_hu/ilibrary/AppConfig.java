@@ -220,15 +220,17 @@ public final class AppConfig implements ApplicationContext, Configuration {
   }
 
   @Override
-  public String getMessage(String code, Object[] args, String defaultMessage,
+  public String getMessage(String key, Object[] args, String defaultMessage,
       Locale locale) {
-    return context.getMessage(code, args, defaultMessage, locale);
+    logger.debug("Getting message: {}", key);
+    return context.getMessage(key, args, defaultMessage, locale);
   }
 
   @Override
-  public String getMessage(String code, Object[] args, Locale locale)
+  public String getMessage(String key, Object[] args, Locale locale)
       throws NoSuchMessageException {
-    return context.getMessage(code, args, locale);
+    logger.debug("Getting message: {}", key);
+    return context.getMessage(key, args, locale);
   }
 
   @Override
@@ -245,6 +247,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    * @return the localized message for the specified key.
    */
   public String getMessage(String key) {
+    logger.debug("Getting message: {}", key);
     return context.getMessage(key, null, locale);
   }
 
@@ -259,6 +262,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    * @return the localized message formatted with the specified arguments.
    */
   public String getMessage(String key, Object... args) {
+    logger.debug("Getting message: {}", key);
     return context.getMessage(key, args, locale);
   }
 
@@ -270,6 +274,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    * @return The title associated with the specified action.
    */
   public String getTitle(String key) {
+    logger.debug("Getting title: {}", key);
     key += KeySuffix.TITLE;
     final String title = context.getMessage(key, null, "", locale);
     logger.debug("Find the title for {}: {}", key, title);
@@ -284,6 +289,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    * @return The shortcut associated with the specified action.
    */
   public String getShortcut(String key) {
+    logger.debug("Getting shortcut: {}", key);
     String shortcut = config.getString(key + KeySuffix.SHORTCUT);
     if (! StringUtils.isEmpty(shortcut)) {
       //  substitute the META key according to the operating system
@@ -304,6 +310,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    * @return the description the specified action, or null if it has no description.
    */
   public String getDescription(String key) {
+    logger.debug("Getting description: {}", key);
     String description = context.getMessage(key + KeySuffix.DESCRIPTION,
         null, null, locale);
     if (StringUtils.isEmpty(description)) {
@@ -321,6 +328,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    * @return the URL of the icon the specified action, or null if it has no icon.
    */
   public String getIcon(String key) {
+    logger.debug("Getting icon: {}", key);
     String icon = config.getString(key + KeySuffix.ICON);
     if (StringUtils.isEmpty(icon)) {
       icon = null;
@@ -427,156 +435,187 @@ public final class AppConfig implements ApplicationContext, Configuration {
 
   @Override
   public Properties getProperties(String key) {
+    logger.debug("Getting properties: {}", key);
     return config.getProperties(key);
   }
 
   @Override
   public boolean getBoolean(String key) {
+    logger.debug("Getting boolean: {}", key);
     return config.getBoolean(key);
   }
 
   @Override
   public boolean getBoolean(String key, boolean defaultValue) {
+    logger.debug("Getting boolean: {}", key);
     return config.getBoolean(key, defaultValue);
   }
 
   @Override
   public Boolean getBoolean(String key, Boolean defaultValue) {
+    logger.debug("Getting boolean: {}", key);
     return config.getBoolean(key, defaultValue);
   }
 
   @Override
   public byte getByte(String key) {
+    logger.debug("Getting byte: {}", key);
     return config.getByte(key);
   }
 
   @Override
   public byte getByte(String key, byte defaultValue) {
+    logger.debug("Getting byte: {}", key);
     return config.getByte(key, defaultValue);
   }
 
   @Override
   public Byte getByte(String key, Byte defaultValue) {
+    logger.debug("Getting byte: {}", key);
     return config.getByte(key, defaultValue);
   }
 
   @Override
   public double getDouble(String key) {
+    logger.debug("Getting double: {}", key);
     return config.getDouble(key);
   }
 
   @Override
   public double getDouble(String key, double defaultValue) {
+    logger.debug("Getting double: {}", key);
     return config.getDouble(key, defaultValue);
   }
 
   @Override
   public Double getDouble(String key, Double defaultValue) {
+    logger.debug("Getting double: {}", key);
     return config.getDouble(key, defaultValue);
   }
 
   @Override
   public float getFloat(String key) {
+    logger.debug("Getting float: {}", key);
     return config.getFloat(key);
   }
 
   @Override
   public float getFloat(String key, float defaultValue) {
+    logger.debug("Getting float: {}", key);
     return config.getFloat(key, defaultValue);
   }
 
   @Override
   public Float getFloat(String key, Float defaultValue) {
+    logger.debug("Getting float: {}", key);
     return config.getFloat(key, defaultValue);
   }
 
   @Override
   public int getInt(String key) {
+    logger.debug("Getting int: {}", key);
     return config.getInt(key);
   }
 
   @Override
   public int getInt(String key, int defaultValue) {
+    logger.debug("Getting int: {}", key);
     return config.getInt(key, defaultValue);
   }
 
   @Override
   public Integer getInteger(String key, Integer defaultValue) {
+    logger.debug("Getting integer: {}", key);
     return config.getInteger(key, defaultValue);
   }
 
   @Override
   public long getLong(String key) {
+    logger.debug("Getting long: {}", key);
     return config.getLong(key);
   }
 
   @Override
   public long getLong(String key, long defaultValue) {
+    logger.debug("Getting long: {}", key);
     return config.getLong(key, defaultValue);
   }
 
   @Override
   public Long getLong(String key, Long defaultValue) {
+    logger.debug("Getting long: {}", key);
     return config.getLong(key, defaultValue);
   }
 
   @Override
   public short getShort(String key) {
+    logger.debug("Getting short: {}", key);
     return config.getShort(key);
   }
 
   @Override
   public short getShort(String key, short defaultValue) {
+    logger.debug("Getting short: {}", key);
     return config.getShort(key, defaultValue);
   }
 
   @Override
   public Short getShort(String key, Short defaultValue) {
+    logger.debug("Getting short: {}", key);
     return config.getShort(key, defaultValue);
   }
 
   @Override
   public BigDecimal getBigDecimal(String key) {
+    logger.debug("Getting big decimal: {}", key);
     return config.getBigDecimal(key);
   }
 
   @Override
   public BigDecimal getBigDecimal(String key, BigDecimal defaultValue) {
+    logger.debug("Getting big decimal: {}", key);
     return config.getBigDecimal(key, defaultValue);
   }
 
   @Override
   public BigInteger getBigInteger(String key) {
+    logger.debug("Getting big integer: {}", key);
     return config.getBigInteger(key);
   }
 
   @Override
   public BigInteger getBigInteger(String key, BigInteger defaultValue) {
+    logger.debug("Getting big integer: {}", key);
     return config.getBigInteger(key, defaultValue);
   }
 
   @Override
   public String getString(String key) {
+    logger.debug("Getting string: {}", key);
     return config.getString(key);
   }
 
   @Override
   public String getString(String key, String defaultValue) {
+    logger.debug("Getting string: {}", key);
     return config.getString(key, defaultValue);
   }
 
   @Override
   public String[] getStringArray(String key) {
+    logger.debug("Getting string array: {}", key);
     return config.getStringArray(key);
   }
 
   @Override
   public List<Object> getList(String key) {
+    logger.debug("Getting list: {}", key);
     return config.getList(key);
   }
 
   @Override
   public List<Object> getList(String key, List<?> defaultValue) {
+    logger.debug("Getting list: {}", key);
     return config.getList(key, defaultValue);
   }
 

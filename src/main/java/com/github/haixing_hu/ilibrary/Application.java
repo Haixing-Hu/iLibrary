@@ -22,12 +22,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 
 import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.controller.DocumentTabController;
 import com.github.haixing_hu.ilibrary.controller.InspectorController;
-import com.github.haixing_hu.ilibrary.controller.LibraryTabController;
 import com.github.haixing_hu.ilibrary.controller.MainPanelController;
 import com.github.haixing_hu.ilibrary.controller.NavigatorController;
-import com.github.haixing_hu.ilibrary.gui.MainWindow;
+import com.github.haixing_hu.ilibrary.gui2.MainWindow;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -47,8 +45,8 @@ public final class Application {
   private final NavigatorController navigatorController;
   private final MainPanelController mainPanelController;
   private final InspectorController inspectorController;
-  private final LibraryTabController libraryTabController;
-  private final DocumentTabController documentTabController;
+//  private final LibraryTabController libraryTabController;
+//  private final DocumentTabController documentTabController;
 
   /**
    * Constructs an application.
@@ -61,8 +59,9 @@ public final class Application {
     navigatorController = new NavigatorController(this);
     mainPanelController = new MainPanelController(this);
     inspectorController = new InspectorController(this);
-    libraryTabController = new LibraryTabController(this);
-    documentTabController = new DocumentTabController(this);
+//    libraryTabController = new LibraryTabController(this);
+//    documentTabController = new DocumentTabController(this);
+
 //    //  adjust the Mac OS X Cococa UI
 //    if (SystemUtils.IS_OS_MAC) {
 //      NsApplication nsApp = new DefaultNsApplication();
@@ -75,23 +74,23 @@ public final class Application {
   /**
    * Synchronize the application states and the application UI.
    */
-  private void syncState() {
-    navigatorController.setVisible(state.isNavigatorVisible());
-    mainPanelController.setViewMode(state.getViewMode());
-    inspectorController.switchToTab(state.getInspectorTab());
-    libraryTabController.setFlagFilter(state.getFlagFilter());
-    libraryTabController.setReadFilter(state.getReadStatusFilter());
-    libraryTabController.setTypeFilter(state.getTypeFilter());
-    libraryTabController.setAttachmentFilter(state.getFileStatusFilter());
-    documentTabController.setAnnotateMode(state.getAnnotateMode());
-  }
+//  private void syncState() {
+//    navigatorController.setVisible(state.isNavigatorVisible());
+//    mainPanelController.setViewMode(state.getViewMode());
+//    inspectorController.switchToTab(state.getInspectorTab());
+//    libraryTabController.setFlagFilter(state.getFlagFilter());
+//    libraryTabController.setReadFilter(state.getReadStatusFilter());
+//    libraryTabController.setTypeFilter(state.getTypeFilter());
+//    libraryTabController.setAttachmentFilter(state.getFileStatusFilter());
+//    documentTabController.setAnnotateMode(state.getAnnotateMode());
+//  }
 
   /**
    * Runs this application.
    */
   public void run() {
     mainWindow.create();
-    syncState();
+    //syncState();
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
     final Display display = Display.getCurrent();
@@ -185,18 +184,18 @@ public final class Application {
    *
    * @return the library tab controller.
    */
-  public LibraryTabController getLibraryTabController() {
-    return libraryTabController;
-  }
+//  public LibraryTabController getLibraryTabController() {
+//    return libraryTabController;
+//  }
 
   /**
    * Gets the document tab controller.
    *
    * @return the document tab controller.
    */
-  public DocumentTabController getDocumentTabController() {
-    return documentTabController;
-  }
+//  public DocumentTabController getDocumentTabController() {
+//    return documentTabController;
+//  }
 
   /**
    * Launch the application.
@@ -209,8 +208,9 @@ public final class Application {
     final Application app = new Application();
     try {
       app.run();
-    } catch (final Throwable t) {
-      t.printStackTrace();
+    } catch (final Exception e) {
+      e.printStackTrace();
+      throw e;
     }
   }
 }

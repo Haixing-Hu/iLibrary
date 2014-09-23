@@ -23,7 +23,7 @@
     </encoder>
   </appender>
 
-  <logger name="cn.edu.nju.starfish" level="INFO" />
+  <logger name="com.github.haixing_hu" level="DEBUG" />
   <logger name="org.springframework" level="WARN" />
   <root level="INFO">
     <appender-ref ref="STDOUT" />
