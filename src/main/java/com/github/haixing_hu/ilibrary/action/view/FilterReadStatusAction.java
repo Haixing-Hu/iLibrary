@@ -34,6 +34,7 @@ public class FilterReadStatusAction extends BaseDropDownAction {
   private static final String SUB_ACTIONS[] = {
     FilterReadStatusAllAction.KEY,
     FilterReadStatusUnreadAction.KEY,
+    FilterReadStatusToReadAction.KEY,
     FilterReadStatusReadingAction.KEY,
     FilterReadStatusHasReadAction.KEY,
   };

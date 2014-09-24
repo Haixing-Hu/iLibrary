@@ -44,9 +44,9 @@ public class PreviewPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
-    defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT); // "window.main.tab.library.preview.default-height"
-    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);         // "window.main.tab.library.preview.min-height"
-    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);         // "window.main.tab.library.preview.max-height"
+    defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
+    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
+    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
   }
 
   /**

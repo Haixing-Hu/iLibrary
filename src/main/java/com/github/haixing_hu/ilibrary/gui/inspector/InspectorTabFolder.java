@@ -23,6 +23,7 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**
  * The tab folder in the inspector panel.
@@ -34,23 +35,19 @@ public final class InspectorTabFolder extends Composite {
   public static final String KEY = InspectorPanel.KEY + ".tab"; // "window.inspector.tab"
 
   private final Application application;
-  private StackLayout stackLayout;
-  private InfoTab infoTab;
-  private NotesTab notesTab;
-  private ReviewsTab reviewsTab;
-  private FilesTab filesTab;
+  private final StackLayout stackLayout;
+  private final InfoTab infoTab;
+  private final NotesTab notesTab;
+  private final ReviewsTab reviewsTab;
+  private final FilesTab filesTab;
 
   public InspectorTabFolder(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    createContents();
-  }
-
-  private void createContents() {
     stackLayout = new StackLayout();
     stackLayout.marginHeight = 0;
     stackLayout.marginWidth = 0;
-    setLayout(stackLayout);
+    this.setLayout(stackLayout);
 
     infoTab = new InfoTab(application, this);
     notesTab = new NotesTab(application, this);
@@ -60,6 +57,16 @@ public final class InspectorTabFolder extends Composite {
     stackLayout.topControl = infoTab;
     this.layout();
   }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
+  }
+
 
   /**
    * Gets the stack layout.
@@ -106,4 +113,29 @@ public final class InspectorTabFolder extends Composite {
     return filesTab;
   }
 
+  /**
+   * Switches this tab folder to the specified tab.
+   *
+   * @param tab
+   *          a specified tab to be switched to.
+   */
+  public void switchToTab(InspectorTab tab) {
+    switch (tab) {
+    case INFO:
+      stackLayout.topControl = infoTab;
+      break;
+    case NOTES:
+      stackLayout.topControl = notesTab;
+      break;
+    case REVIEWS:
+      stackLayout.topControl = reviewsTab;
+      break;
+    case FILES:
+      stackLayout.topControl = filesTab;
+      break;
+    default:
+      break;
+    }
+    this.layout();
+  }
 }

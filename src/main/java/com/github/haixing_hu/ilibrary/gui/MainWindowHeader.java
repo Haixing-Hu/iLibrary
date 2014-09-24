@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- * Copyright (c) 2014  Haixing Hu
+ * Copyright (c) 2013  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,47 +16,37 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.action.window;
+package com.github.haixing_hu.ilibrary.gui;
+
+import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.window.PageAuthorsAction;
+import com.github.haixing_hu.ilibrary.action.window.PageLibraryAction;
+import com.github.haixing_hu.ilibrary.action.window.PageReaderAction;
+import com.github.haixing_hu.ilibrary.action.window.PageSearchAction;
+import com.github.haixing_hu.ilibrary.action.window.PageSourcesAction;
+import com.github.haixing_hu.ilibrary.action.window.PageTagsAction;
 
 /**
- * The action to show the drop down menu of window related actions.
+ * The header of main window.
  *
  * @author Haixing Hu
  */
-public class WindowAction extends BaseDropDownAction {
+public class MainWindowHeader extends BasicHeader {
 
-  public static final String KEY = "action.window";
+  public static final String KEY = MainWindow.KEY + ".header";
 
-  private static final String SUB_ACTIONS[] = {
-    MinimizeAction.KEY,
-    MinimizeAllAction.KEY,
-    MaximizeAction.KEY,
-    SEPARATOR_KEY,
+  private static final String[] ACTION_KEYS = {
     PageSearchAction.KEY,
     PageLibraryAction.KEY,
     PageTagsAction.KEY,
     PageAuthorsAction.KEY,
     PageSourcesAction.KEY,
     PageReaderAction.KEY,
-    SEPARATOR_KEY,
-    InspectorInfoTabAction.KEY,
-    InspectorNotesTabAction.KEY,
-    InspectorReviewsTabAction.KEY,
-    InspectorFilesTabAction.KEY,
-    SEPARATOR_KEY,
-    CycleTabsAction.KEY,
-    PreviousTabAction.KEY,
-    NextTabAction.KEY,
-    SEPARATOR_KEY,
-    CloseTabAction.KEY,
-    CloseAllTabsAction.KEY,
   };
 
-  public WindowAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+  public MainWindowHeader(Application application, Composite parent) {
+    super(application, parent, ACTION_KEYS);
   }
 }

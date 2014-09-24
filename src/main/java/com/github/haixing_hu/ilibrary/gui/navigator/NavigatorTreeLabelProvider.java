@@ -24,8 +24,8 @@ import org.eclipse.swt.graphics.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -36,8 +36,7 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  */
 public final class NavigatorTreeLabelProvider extends LabelProvider {
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(NavigatorTreeLabelProvider.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTreeLabelProvider.class);
 
   private final Application application;
 

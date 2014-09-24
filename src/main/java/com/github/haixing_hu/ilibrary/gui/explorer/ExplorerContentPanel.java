@@ -132,8 +132,6 @@ public class ExplorerContentPanel extends Composite {
   private void configSash() {
     final Image img = SWTResourceManager.getImage(this.getClass(), sashBackground);
     sash.setBackgroundImage(img);
-
-    final MainWindow mainWindow = application.getMainWindow();
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event) {
@@ -150,7 +148,7 @@ public class ExplorerContentPanel extends Composite {
         // it's important to modify the event.y
         event.y = delta - height;
         if (event.detail != SWT.DRAG) {
-          mainWindow.setPreviewHeight(height);
+          application.setPreviewHeight(height);
         }
       }
     });

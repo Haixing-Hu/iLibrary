@@ -16,31 +16,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.action.ui;
+package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.controller.InspectorController;
+import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**
- * The action to switch to the info tab.
+ * The action to switch to the reader page.
  *
  * @author Haixing Hu
  */
-public class SwitchToInfoTabAction extends BaseCheckBoxAction {
+public class PageReaderAction extends BaseCheckBoxAction {
 
-  public static final String KEY = "action.ui.info-tab";
+  public static final String KEY = WindowAction.KEY + ".reader";
 
-  public SwitchToInfoTabAction(Application application, IActionManager actionManager) {
+  public PageReaderAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 
   @Override
   public void run() {
-    final InspectorController controller = application.getInspectorController();
-    controller.switchToTab(InspectorTab.INFO);
+    application.setPage(Page.READER);
   }
-
 }

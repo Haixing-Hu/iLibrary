@@ -20,6 +20,7 @@ package com.github.haixing_hu.ilibrary.state;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
+import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
@@ -32,36 +33,50 @@ import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
  */
 public final class ApplicationState {
 
+  private int page;
   private AnnotateMode annotateMode;
-  private int viewMode;
-  private boolean navigatorVisible;
   private FlagStatusFilter flagStatusFilter;
   private ReadStatusFilter readStatusFilter;
   private TypeFilter typeFilter;
   private FileStatusFilter fileStatusFilter;
   private int navigatorWidth;
-  private boolean navigatorHide;
+  private boolean navigatorVisible;
   private int inspectorWidth;
-  private boolean inspectorHide;
   private int previewHeight;
-  private boolean previewHide;
   private InspectorTab inspectorTab;
+  private int viewMode;
 
   public ApplicationState(AppConfig config) {
+    page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
-    viewMode = ViewMode.ALL;
-    navigatorVisible = true;
     flagStatusFilter = FlagStatusFilter.ALL;
     readStatusFilter = ReadStatusFilter.ALL;
     typeFilter = TypeFilter.ALL;
     fileStatusFilter = FileStatusFilter.ALL;
     navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
-    navigatorHide = false;
+    navigatorVisible = true;
     inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
-    inspectorHide = false;
     previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
-    previewHide = false;
     inspectorTab = InspectorTab.INFO;
+    viewMode = ViewMode.ALL;
+  }
+
+  /**
+   * Gets the page.
+   *
+   * @return the page.
+   */
+  public int getPage() {
+    return page;
+  }
+
+  /**
+   * Sets the page.
+   *
+   * @param page the new page to set.
+   */
+  public void setPage(int page) {
+    this.page = page;
   }
 
   /**
@@ -80,45 +95,6 @@ public final class ApplicationState {
    */
   public void setAnnotateMode(AnnotateMode annotateMode) {
     this.annotateMode = annotateMode;
-  }
-
-  /**
-   * Gets the view mode.
-   *
-   * @return the view mode.
-   */
-  public int getViewMode() {
-    return viewMode;
-  }
-
-  /**
-   * Sets the view mode.
-   *
-   * @param viewMode the new view mode to set.
-   */
-  public void setViewMode(int viewMode) {
-    this.viewMode = viewMode;
-  }
-
-  /**
-   * Tests whether the navigator is visible.
-   *
-   * @return <code>true</code> if the navigator is visible; <code>false</code>
-   *         otherwise.
-   */
-  public boolean isNavigatorVisible() {
-    return navigatorVisible;
-  }
-
-  /**
-   * Sets the navigator visibility.
-   *
-   * @param visibility
-   *         <code>true</code> if the navigator is visible; <code>false</code>
-   *         otherwise.
-   */
-  public void setNavigatorVisible(boolean visible) {
-    navigatorVisible = visible;
   }
 
   /**
@@ -212,21 +188,23 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the navigatorHide.
+   * Gets the visibility of the navigator panel.
    *
-   * @return the navigatorHide.
+   * @return <code>true</code> if the navigator panel is visible;
+   *         <code>false</code> otherwise.
    */
-  public boolean isNavigatorHide() {
-    return navigatorHide;
+  public boolean isNavigatorVisible() {
+    return navigatorVisible;
   }
 
   /**
-   * Sets the navigatorHide.
+   * Sets the visibility of the navigator panel.
    *
-   * @param hide the new navigatorHide to set.
+   * @return <code>true</code> if the navigator panel is set to visible;
+   *         <code>false</code> otherwise.
    */
-  public void setNavigatorHide(boolean hide) {
-    this.navigatorHide = hide;
+  public void setNavigatorVisible(boolean visible) {
+    this.navigatorVisible = visible;
   }
 
   /**
@@ -248,21 +226,13 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the inspectorHide.
+   * Gets the visibility of the inspector panel.
    *
-   * @return the inspectorHide.
+   * @return <code>true</code> if the inspector panel is visible;
+   *         <code>false</code> otherwise.
    */
-  public boolean isInspectorHide() {
-    return inspectorHide;
-  }
-
-  /**
-   * Sets the inspectorHide.
-   *
-   * @param hide the new inspectorHide to set.
-   */
-  public void setInspectorHide(boolean hide) {
-    this.inspectorHide = hide;
+  public boolean isInspectorVisible() {
+    return (viewMode & ViewMode.INSPECTOR) != 0;
   }
 
   /**
@@ -284,21 +254,13 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the previewHide.
+   * Gets the visibility of the preview panel.
    *
-   * @return the previewHide.
+   * @return <code>true</code> if the preview panel is visible;
+   *         <code>false</code> otherwise.
    */
-  public boolean isPreviewHide() {
-    return previewHide;
-  }
-
-  /**
-   * Sets the previewHide.
-   *
-   * @param hide the new previewHide to set.
-   */
-  public void setPreviewHide(boolean hide) {
-    this.previewHide = hide;
+  public boolean isPreviewVisible() {
+    return (viewMode & ViewMode.PREVIEW) != 0;
   }
 
   /**
@@ -313,10 +275,28 @@ public final class ApplicationState {
   /**
    * Sets the inspector tab.
    *
-   * @param inspectorTab the new inspector tab to set.
+   * @param tab the new inspector tab to set.
    */
-  public void setInspectorTab(InspectorTab inspectorTab) {
-    this.inspectorTab = inspectorTab;
+  public void setInspectorTab(InspectorTab tab) {
+    this.inspectorTab = tab;
+  }
+
+  /**
+   * Gets the view mode.
+   *
+   * @return the view mode.
+   */
+  public int getViewMode() {
+    return viewMode;
+  }
+
+  /**
+   * Sets the view mode.
+   *
+   * @param viewMode the new view mode to set.
+   */
+  public void setViewMode(int viewMode) {
+    this.viewMode = viewMode;
   }
 
 }

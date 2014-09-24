@@ -16,32 +16,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.controller;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The base class for all controllers.
+ * The action to show the notes of the current document.
  *
  * @author Haixing Hu
  */
-public class BaseController {
+public class InspectorNotesTabAction extends BaseCheckBoxAction {
 
-  protected final Application application;
-  protected final Logger logger;
+  public static final String KEY = WindowAction.KEY + ".notes";
 
-  /**
-   * Constructs a {@link BaseController}.
-   *
-   * @param application
-   *          the application.
-   */
-  public BaseController(Application application) {
-    this.application = application;
-    this.logger = LoggerFactory.getLogger(this.getClass());
+  public InspectorNotesTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
+  @Override
+  public void run() {
+    application.setInspectorTab(InspectorTab.NOTES);
+  }
 }

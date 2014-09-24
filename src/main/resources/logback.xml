@@ -23,7 +23,8 @@
     </encoder>
   </appender>
 
-  <logger name="com.github.haixing_hu" level="DEBUG" />
+  <logger name="com.github.haixing_hu" level="INFO" />
+  <!--  <logger name="com.github.haixing_hu.swt.menu" level="DEBUG"/>  -->
   <logger name="org.springframework" level="WARN" />
   <root level="INFO">
     <appender-ref ref="STDOUT" />

@@ -27,8 +27,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.swt.toolbar.ForceTextToolBarManager;
@@ -39,9 +39,9 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  *
  * @author Haixing Hu
  */
-public class MainPanelToolBar extends Composite {
+public class BasicToolBar extends Composite {
 
-  public static final String KEY = "toolbar";
+  public static final String KEY = MainWindow.KEY + ".toolbar";
 
   protected final Application application;
   protected final String[] actionKeys;
@@ -62,7 +62,7 @@ public class MainPanelToolBar extends Composite {
    *          <code>Separator.class.getName()</code>), a {@link Separator()}
    *          will be added at that position.
    */
-  public MainPanelToolBar(Application application, Composite parent, String[] actionKeys) {
+  public BasicToolBar(Application application, Composite parent, String[] actionKeys) {
     super(parent, SWT.NONE);
     this.application = application;
     this.actionKeys = actionKeys;

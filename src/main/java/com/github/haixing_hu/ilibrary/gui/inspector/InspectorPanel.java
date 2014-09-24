@@ -28,6 +28,7 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**
  * The inspector panel.
@@ -42,8 +43,8 @@ public class InspectorPanel extends Composite {
   private final int defaultWidth;
   private final int minWidth;
   private final int maxWidth;
-  private InspectorHeader header;
-  private InspectorTabFolder tabFolder;
+  private final InspectorHeader header;
+  private final InspectorTabFolder tabFolder;
 
   public InspectorPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
@@ -52,16 +53,9 @@ public class InspectorPanel extends Composite {
     defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
-    createContents();
-    layoutContents();
-  }
-
-  /**
-   * Creates the contents of this panel.
-   */
-  private void createContents() {
     header = new InspectorHeader(application, this);
     tabFolder = new InspectorTabFolder(application, this);
+    layoutContents();
   }
 
   private void layoutContents() {
@@ -144,5 +138,13 @@ public class InspectorPanel extends Composite {
     return tabFolder;
   }
 
-
+  /**
+   * Switches the tab folder of this panel to the specified tab.
+   *
+   * @param tab
+   *          a specified tab to be switched to.
+   */
+  public void switchToTab(InspectorTab tab) {
+    tabFolder.switchToTab(tab);
+  }
 }

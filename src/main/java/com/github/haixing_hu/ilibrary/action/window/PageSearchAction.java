@@ -19,19 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to show files associated with the current document.
+ * The action to switch to the search page.
  *
  * @author Haixing Hu
  */
-public class ShowFilesTabAction extends BaseAction {
+public class PageSearchAction extends BaseCheckBoxAction {
 
-  public static final String KEY = WindowAction.KEY + ".files";
+  public static final String KEY = WindowAction.KEY + ".search";
 
-  public ShowFilesTabAction(Application application, IActionManager actionManager) {
+  public PageSearchAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+  }
+
+  @Override
+  public void run() {
+    application.setPage(Page.SEARCH);
   }
 }

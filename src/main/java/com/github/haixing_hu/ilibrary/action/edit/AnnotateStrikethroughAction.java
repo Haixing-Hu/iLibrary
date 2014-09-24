@@ -20,9 +20,8 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.controller.DocumentTabController;
-import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.state.AnnotateMode;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to switch to the strikethrough mode.
@@ -39,7 +38,6 @@ public class AnnotateStrikethroughAction extends BaseAction {
 
   @Override
   public void run() {
-    final DocumentTabController controller = application.getDocumentTabController();
-    controller.setAnnotateMode(AnnotateMode.STRIKETHORUGH);
+    application.setAnnotateMode(AnnotateMode.STRIKETHORUGH);
   }
 }

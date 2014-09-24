@@ -36,6 +36,8 @@ import com.github.haixing_hu.swt.menu.MenuManagerEx;
  */
 public final class MainMenuBar extends MenuManagerEx {
 
+  public static final String KEY = MainWindow.KEY + ".menubar";
+
   private final Application application;
 
   /**

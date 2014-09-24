@@ -16,25 +16,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.document;
-
-import org.eclipse.swt.widgets.Composite;
+package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.gui.MainPanelHeader;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.gui.Page;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The header in the document panel.
+ * The action to switch to the authors page.
  *
  * @author Haixing Hu
  */
-public final class DocumentPanelHeader extends MainPanelHeader {
+public class PageAuthorsAction extends BaseCheckBoxAction {
 
-  private static final String ACTIONS[] = {
-    //  TODO
-  };
+  public static final String KEY = WindowAction.KEY + ".authors";
 
-  public DocumentPanelHeader(Application application, Composite parent) {
-    super(application, parent, ACTIONS);
+  public PageAuthorsAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
+  }
+
+  @Override
+  public void run() {
+    application.setPage(Page.AUTHORS);
   }
 }

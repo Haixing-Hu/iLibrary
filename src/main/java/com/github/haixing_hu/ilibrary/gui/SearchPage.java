@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**
  * The searching tab page.
@@ -58,6 +59,12 @@ public class SearchPage extends Page {
 
   @Override
   public void setPreviewHeight(int height) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void setInspectorTab(InspectorTab tab) {
     // TODO Auto-generated method stub
 
   }

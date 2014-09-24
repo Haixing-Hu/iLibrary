@@ -21,14 +21,14 @@ package com.github.haixing_hu.ilibrary.gui.explorer;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.gui.MainPanelFooter;
+import com.github.haixing_hu.ilibrary.gui.BasicFooter;
 
 /**
  * The footer in the explorer panel.
  *
  * @author Haixing Hu
  */
-public class ExplorerFooter extends MainPanelFooter {
+public class ExplorerFooter extends BasicFooter {
 
   public static final String KEY = ExplorerPanel.KEY + ".footer";
 

@@ -20,10 +20,7 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.controller.MainPanelController;
 import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.ilibrary.state.ViewMode;
 
 /**
  * The action to hide the preview panel.
@@ -40,10 +37,6 @@ public class HidePreviewAction extends BaseAction {
 
   @Override
   public void run() {
-    final ApplicationState state = application.getState();
-    int mode = state.getViewMode();
-    mode &= (~ ViewMode.PREVIEW);
-    final MainPanelController controller = application.getMainPanelController();
-    controller.setViewMode(mode);
+    application.setPreviewVisible(false);
   }
 }

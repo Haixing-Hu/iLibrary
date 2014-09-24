@@ -16,30 +16,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.action.ui;
+package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.controller.InspectorController;
+import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**
- * The action to switch to the notes tab.
+ * The action to switch to the sources page.
  *
  * @author Haixing Hu
  */
-public class SwitchToNotesTabAction extends BaseCheckBoxAction {
+public class PageSourcesAction extends BaseCheckBoxAction {
 
-  public static final String KEY = "action.ui.notes-tab";
+  public static final String KEY = WindowAction.KEY + ".sources";
 
-  public SwitchToNotesTabAction(Application application, IActionManager actionManager) {
+  public PageSourcesAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 
   @Override
   public void run() {
-    final InspectorController controller = application.getInspectorController();
-    controller.switchToTab(InspectorTab.NOTES);
+    application.setPage(Page.SOURCES);
   }
 }

@@ -19,20 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to show the notes of the current document.
+ * The action to switch to the library page.
  *
  * @author Haixing Hu
  */
-public class ShowNotesTabAction extends BaseAction {
+public class PageLibraryAction extends BaseCheckBoxAction {
 
-  public static final String KEY = WindowAction.KEY + ".notes";
+  public static final String KEY = WindowAction.KEY + ".library";
 
-  public ShowNotesTabAction(Application application, IActionManager actionManager) {
+  public PageLibraryAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
   }
 
+  @Override
+  public void run() {
+    application.setPage(Page.LIBRARY);
+  }
 }

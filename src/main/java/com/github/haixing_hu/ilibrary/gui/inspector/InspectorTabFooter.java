@@ -32,6 +32,7 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
+import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -41,14 +42,14 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  */
 public class InspectorTabFooter extends Composite {
 
-  public static final String KEY = "footer";
+  public static final String KEY = MainWindow.KEY + ".footer";
 
   protected final Application application;
   protected final String[] actionKeys;
+  protected final int height;
   protected Composite corner;
   protected Composite fill;
   protected ToolBarManager toolBarManager;
-  protected final int height;
 
   /**
    * Creates a status line.
@@ -116,8 +117,7 @@ public class InspectorTabFooter extends Composite {
         InspectorTabFooter.class, cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
-    final int cornerWidth = config.getInt(KEY + KeySuffix.CORNER
-        + KeySuffix.WIDTH);
+    final int cornerWidth = config.getInt(KEY + KeySuffix.CORNER + KeySuffix.WIDTH);
     final FormData fd_corner = new FormData();
     fd_corner.left = new FormAttachment(0);
     fd_corner.right = new FormAttachment(0, cornerWidth);

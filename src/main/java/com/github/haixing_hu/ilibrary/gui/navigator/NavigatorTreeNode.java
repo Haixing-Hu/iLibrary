@@ -34,7 +34,7 @@ import org.w3c.dom.Element;
  */
 public final class NavigatorTreeNode {
 
-  public static final String KEY = NavigatorTree.KEY + ".node"; //  "window.navigator.tree.node"
+  public static final String KEY = NavigatorTree.KEY + ".node";
 
   public static final String ROOT_NAME = "navigator";
 
@@ -42,8 +42,7 @@ public final class NavigatorTreeNode {
 
   public static final String SMART_ATTRIBUTE = "smart";
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(NavigatorTreeNode.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTreeNode.class);
 
   private final String key;
   private final boolean smart;

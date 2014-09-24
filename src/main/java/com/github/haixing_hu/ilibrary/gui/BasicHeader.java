@@ -28,8 +28,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -39,9 +39,9 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  *
  * @author Haixing Hu
  */
-public class MainPanelHeader extends Composite {
+public class BasicHeader extends Composite {
 
-  public static final String KEY = "header";
+  public static final String KEY = MainWindow.KEY + ".header";
 
   protected final Application application;
   protected final String[] actionKeys;
@@ -63,7 +63,7 @@ public class MainPanelHeader extends Composite {
    *          <code>Separator.class.getName()</code>), a {@link Separator()}
    *          will be added at that position.
    */
-  public MainPanelHeader(Application application, Composite parent, String[] actionKeys) {
+  public BasicHeader(Application application, Composite parent, String[] actionKeys) {
     super(parent, SWT.FLAT);
     this.application = application;
     this.actionKeys = actionKeys;

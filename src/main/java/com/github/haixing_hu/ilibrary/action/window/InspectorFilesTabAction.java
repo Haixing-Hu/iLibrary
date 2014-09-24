@@ -19,19 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to switch to the library tab.
+ * The action to show files associated with the current document.
  *
  * @author Haixing Hu
  */
-public class ShowLibraryTabAction extends BaseAction {
+public class InspectorFilesTabAction extends BaseCheckBoxAction {
 
-  public static final String KEY = WindowAction.KEY + ".library";
+  public static final String KEY = WindowAction.KEY + ".files";
 
-  public ShowLibraryTabAction(Application application, IActionManager actionManager) {
+  public InspectorFilesTabAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+  }
+
+  @Override
+  public void run() {
+    application.setInspectorTab(InspectorTab.FILES);
   }
 }

@@ -36,16 +36,18 @@ public final class ReviewsTab extends Composite {
   public static final String KEY = InspectorTabFolder.KEY + ".reviews"; // "window.inspector.tab.reviews"
 
   private final Application application;
-  private ReviewsTabContent content;
-  private ReviewsTabFooter footer;
+  private final ReviewsTabContent content;
+  private final ReviewsTabFooter footer;
 
   public ReviewsTab(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    createContents();
+    content = new ReviewsTabContent(application, this);
+    footer = new ReviewsTabFooter(application, this);
+    layoutContents();
   }
 
-  private void createContents() {
+  private void layoutContents() {
     final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
     layout.marginBottom = 0;
@@ -54,10 +56,7 @@ public final class ReviewsTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    setLayout(layout);
-
-    content = new ReviewsTabContent(application, this);
-    footer = new ReviewsTabFooter(application, this);
+    this.setLayout(layout);
 
     final FormData fd_content = new FormData();
     fd_content.left = new FormAttachment(0);
@@ -72,6 +71,33 @@ public final class ReviewsTab extends Composite {
     fd_footer.top = new FormAttachment(100, - footer.getHeight());
     fd_footer.bottom = new FormAttachment(100);
     footer.setLayoutData(fd_footer);
+  }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
+  }
+
+  /**
+   * Gets the content panel.
+   *
+   * @return the content panel.
+   */
+  public ReviewsTabContent getContent() {
+    return content;
+  }
+
+  /**
+   * Gets the footer panel.
+   *
+   * @return the footer panel.
+   */
+  public ReviewsTabFooter getFooter() {
+    return footer;
   }
 
 }

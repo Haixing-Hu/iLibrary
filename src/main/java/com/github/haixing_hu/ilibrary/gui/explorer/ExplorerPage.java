@@ -37,6 +37,7 @@ import com.github.haixing_hu.ilibrary.gui.TagsPage;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -112,8 +113,6 @@ public abstract class ExplorerPage extends Page  {
   private void configSash() {
     sash.setForeground(sashColor);
     sash.setBackground(sashColor);
-
-    final MainWindow mainWindow = application.getMainWindow();
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event) {
@@ -130,7 +129,7 @@ public abstract class ExplorerPage extends Page  {
         // it's important to modify the event
         event.x = width;
         if (event.detail != SWT.DRAG) {
-          mainWindow.setNavigatorWidth(width);
+          application.setNavigatorWidth(width);
         }
       }
     });
@@ -195,4 +194,8 @@ public abstract class ExplorerPage extends Page  {
     explorer.setPreviewHeight(height);
   }
 
+  @Override
+  public void setInspectorTab(InspectorTab tab) {
+    explorer.setInspectorTab(tab);
+  }
 }

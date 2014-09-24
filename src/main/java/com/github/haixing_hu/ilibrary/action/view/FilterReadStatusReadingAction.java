@@ -20,9 +20,8 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.controller.LibraryTabController;
-import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.state.ReadStatusFilter;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to filter documents which are under reading.
@@ -39,8 +38,7 @@ public class FilterReadStatusReadingAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    final LibraryTabController controller = application.getLibraryTabController();
-    controller.setReadFilter(ReadStatusFilter.READING);
+    application.setReadStatusFilter(ReadStatusFilter.READING);
   }
 
 }

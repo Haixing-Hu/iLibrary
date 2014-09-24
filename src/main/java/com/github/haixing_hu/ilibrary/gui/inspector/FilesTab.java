@@ -36,16 +36,18 @@ public final class FilesTab extends Composite {
   public static final String KEY = InspectorTabFolder.KEY + ".files"; // "window.inspector.tab.files"
 
   private final Application application;
-  private FilesTabContent content;
-  private FilesTabFooter footer;
+  private final FilesTabContent content;
+  private final FilesTabFooter footer;
 
   public FilesTab(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    createContents();
+    content = new FilesTabContent(application, this);
+    footer = new FilesTabFooter(application, this);
+    layoutContents();
   }
 
-  private void createContents() {
+  private void layoutContents() {
     final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
     layout.marginBottom = 0;
@@ -54,10 +56,7 @@ public final class FilesTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    setLayout(layout);
-
-    content = new FilesTabContent(application, this);
-    footer = new FilesTabFooter(application, this);
+    this.setLayout(layout);
 
     final FormData fd_content = new FormData();
     fd_content.left = new FormAttachment(0);
@@ -72,5 +71,32 @@ public final class FilesTab extends Composite {
     fd_footer.top = new FormAttachment(100, - footer.getHeight());
     fd_footer.bottom = new FormAttachment(100);
     footer.setLayoutData(fd_footer);
+  }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
+  }
+
+  /**
+   * Gets the content panel.
+   *
+   * @return the content panel.
+   */
+  public FilesTabContent getContent() {
+    return content;
+  }
+
+  /**
+   * Gets the footer panel.
+   *
+   * @return the footer panel.
+   */
+  public FilesTabFooter getFooter() {
+    return footer;
   }
 }

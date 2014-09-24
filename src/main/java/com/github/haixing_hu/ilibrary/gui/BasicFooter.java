@@ -25,8 +25,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -35,15 +35,15 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  *
  * @author Haixing Hu
  */
-public class MainPanelFooter extends Composite {
+public class BasicFooter extends Composite {
 
-  public static final String KEY = "footer";
+  public static final String KEY = MainWindow.KEY + ".footer";
 
   protected final Application application;
   protected final int height;
   protected final String background;
   protected final int fontSize;
-  protected CLabel label;
+  protected final CLabel label;
 
   /**
    * Creates a status line.
@@ -55,18 +55,14 @@ public class MainPanelFooter extends Composite {
    * @param style
    *    the style of the new status line.
    */
-  public MainPanelFooter(Application application, Composite parent) {
+  public BasicFooter(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
     fontSize = config.getInt(KEY + KeySuffix.FONT_SIZE);
-    createContents();
-  }
-
-  private final void createContents() {
-    setLayout(new FillLayout());
+    this.setLayout(new FillLayout());
     label = new CLabel(this, SWT.NONE);
     final Image img = SWTResourceManager.getImage(this.getClass(), background);
     this.setBackgroundImage(img);

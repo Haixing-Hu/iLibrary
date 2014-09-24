@@ -36,16 +36,18 @@ public final class InfoTab extends Composite {
   public static final String KEY = InspectorTabFolder.KEY + ".info";  // "window.inspector.tab.info"
 
   private final Application application;
-  private InfoTabContent content;
-  private InfoTabFooter footer;
+  private final InfoTabContent content;
+  private final InfoTabFooter footer;
 
   public InfoTab(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    createContents();
+    content = new InfoTabContent(application, this);
+    footer = new InfoTabFooter(application, this);
+    layoutContents();
   }
 
-  private void createContents() {
+  private void layoutContents() {
     final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
     layout.marginBottom = 0;
@@ -54,10 +56,7 @@ public final class InfoTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    setLayout(layout);
-
-    content = new InfoTabContent(application, this);
-    footer = new InfoTabFooter(application, this);
+    this.setLayout(layout);
 
     final FormData fd_content = new FormData();
     fd_content.left = new FormAttachment(0);
@@ -72,5 +71,32 @@ public final class InfoTab extends Composite {
     fd_footer.top = new FormAttachment(100, - footer.getHeight());
     fd_footer.bottom = new FormAttachment(100);
     footer.setLayoutData(fd_footer);
+  }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
+  }
+
+  /**
+   * Gets the content panel.
+   *
+   * @return the content panel.
+   */
+  public InfoTabContent getContent() {
+    return content;
+  }
+
+  /**
+   * Gets the footer panel.
+   *
+   * @return the footer panel.
+   */
+  public InfoTabFooter getFooter() {
+    return footer;
   }
 }

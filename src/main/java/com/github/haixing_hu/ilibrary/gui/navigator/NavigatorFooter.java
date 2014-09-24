@@ -27,12 +27,13 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.file.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.ManageCollectionAction;
+import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -42,7 +43,7 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  */
 public class NavigatorFooter extends Composite {
 
-  public static final String KEY = "footer";
+  public static final String KEY = MainWindow.KEY + ".footer";
 
   private final Application application;
   private ToolBarManager toolBarManager;

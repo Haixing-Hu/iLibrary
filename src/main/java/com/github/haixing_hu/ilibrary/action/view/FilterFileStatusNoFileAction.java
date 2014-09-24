@@ -20,9 +20,8 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.controller.LibraryTabController;
-import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.state.FileStatusFilter;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to filter documents with no file.
@@ -39,7 +38,6 @@ public class FilterFileStatusNoFileAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    final LibraryTabController controller = application.getLibraryTabController();
-    controller.setAttachmentFilter(FileStatusFilter.NO_FILE);
+    application.setFileStatusFilter(FileStatusFilter.NO_FILE);
   }
 }

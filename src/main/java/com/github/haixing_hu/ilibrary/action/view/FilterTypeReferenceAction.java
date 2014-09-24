@@ -20,9 +20,8 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.controller.LibraryTabController;
-import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.state.TypeFilter;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to filter reference documents.
@@ -39,7 +38,6 @@ public class FilterTypeReferenceAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    final LibraryTabController controller = application.getLibraryTabController();
-    controller.setTypeFilter(TypeFilter.REFERENCE);
+    application.setTypeFilter(TypeFilter.REFERENCE);
   }
 }

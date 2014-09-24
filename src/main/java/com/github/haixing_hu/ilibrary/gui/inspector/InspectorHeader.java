@@ -30,10 +30,11 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.action.ui.SwitchToFilesTabAction;
-import com.github.haixing_hu.ilibrary.action.ui.SwitchToInfoTabAction;
-import com.github.haixing_hu.ilibrary.action.ui.SwitchToNotesTabAction;
-import com.github.haixing_hu.ilibrary.action.ui.SwitchToReviewsTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorFilesTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorInfoTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorNotesTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorReviewsTabAction;
+import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -43,13 +44,13 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  */
 public final class InspectorHeader extends Composite {
 
-  public static final String KEY = "header";
+  public static final String KEY = MainWindow.KEY + ".header";
 
   private final Application application;
-  private ToolBarManager toolBarManager;
   private final int height;
   private final int marginWidth;
   private final String backgroundImage;
+  private final ToolBarManager toolBarManager;
 
   public InspectorHeader(Application application, Composite parent) {
     super(parent, SWT.NONE);
@@ -58,10 +59,18 @@ public final class InspectorHeader extends Composite {
     height = config.getInt(KEY + KeySuffix.HEIGHT);
     marginWidth = config.getInt(KEY + KeySuffix.MARGIN_WIDTH);
     backgroundImage = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
-    createContents();
+
+    toolBarManager = new ToolBarManager(SWT.FLAT);
+    final ActionManager am = application.getActionManager();
+    toolBarManager.add(am.get(InspectorInfoTabAction.KEY));
+    toolBarManager.add(am.get(InspectorNotesTabAction.KEY));
+    toolBarManager.add(am.get(InspectorReviewsTabAction.KEY));
+    toolBarManager.add(am.get(InspectorFilesTabAction.KEY));
+    toolBarManager.createControl(this);
+    layoutContents();
   }
 
-  private void createContents() {
+  private void layoutContents() {
     final GridLayout layout = new GridLayout(1, true);
     layout.horizontalSpacing = 0;
     layout.verticalSpacing = 0;
@@ -71,26 +80,17 @@ public final class InspectorHeader extends Composite {
     layout.marginBottom = 0;
     layout.marginHeight = 0;
     layout.marginWidth = marginWidth;
-    setLayout(layout);
+    this.setLayout(layout);
 
-    final Image bg_img = SWTResourceManager.getImage(InspectorHeader.class, backgroundImage);
-    setBackgroundImage(bg_img);
+    final Image bgImg = SWTResourceManager.getImage(InspectorHeader.class, backgroundImage);
+    this.setBackgroundImage(bgImg);
 
-    toolBarManager = new ToolBarManager(SWT.FLAT);
-    final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.get(SwitchToInfoTabAction.KEY));
-    toolBarManager.add(am.get(SwitchToNotesTabAction.KEY));
-    toolBarManager.add(am.get(SwitchToReviewsTabAction.KEY));
-    toolBarManager.add(am.get(SwitchToFilesTabAction.KEY));
-    toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
-
     final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
     toolBar.setLayoutData(gd_toolBar);
-
     //  in order to be compatible on multi-platforms, we must set the
     //  background image on both this composite and the tool bar.
-    toolBar.setBackgroundImage(bg_img);
+    toolBar.setBackgroundImage(bgImg);
   }
 
   /**

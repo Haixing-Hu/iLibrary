@@ -18,6 +18,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 
 /**
  * The searching tab page.
@@ -25,6 +26,41 @@ import com.github.haixing_hu.ilibrary.Application;
  * @author Haixing Hu
  */
 public abstract class Page extends Composite {
+
+  /**
+   * Represents the search page.
+   */
+  public static final int SEARCH = 0;
+
+  /**
+   * Represents the library page.
+   */
+  public static final int LIBRARY = 1;
+
+  /**
+   * Represents the tags page.
+   */
+  public static final int TAGS = 2;
+
+  /**
+   * Represents the authors page.
+   */
+  public static final int AUTHORS = 3;
+
+  /**
+   * Represents the sources page.
+   */
+  public static final int SOURCES = 4;
+
+  /**
+   * Represents the reader page.
+   */
+  public static final int READER = 5;
+
+  /**
+   * The total number of pages.
+   */
+  public static final int TOTAL_COUNT = 6;
 
   protected final Application application;
 
@@ -83,4 +119,12 @@ public abstract class Page extends Composite {
    *          function will hide the preview panel.
    */
   public abstract void setPreviewHeight(int height);
+
+  /**
+   * Sets the tab folder of the inspector panel to the specified tab.
+   *
+   * @param tab
+   *          the tab to be switched to.
+   */
+  public abstract void setInspectorTab(InspectorTab tab);
 }

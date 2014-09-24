@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.controller.NavigatorController;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -38,9 +37,7 @@ public class ShowNavigatorAction extends BaseAction {
 
   @Override
   public void run() {
-    logger.info("Show the navigator.");
-    final NavigatorController controller = application.getNavigatorController();
-    controller.setVisible(true);
+    application.setNavigatorVisible(true);
   }
 
 }

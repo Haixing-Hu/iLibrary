@@ -31,6 +31,7 @@ import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -106,9 +107,6 @@ public class ExplorerPanel extends Composite {
   private void configSash() {
     sash.setForeground(sashColor);
     sash.setBackground(sashColor);
-
-    //  configures the inspector sash
-    final MainWindow mainWindow = application.getMainWindow();
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event) {
@@ -121,7 +119,7 @@ public class ExplorerPanel extends Composite {
         // it's important to modify the event
         event.x = delta - width;
         if (event.detail != SWT.DRAG) {
-          mainWindow.setInspectorWidth(width);
+          application.setInspectorWidth(width);
         }
       }
     });
@@ -200,5 +198,15 @@ public class ExplorerPanel extends Composite {
    */
   public void setPreviewHeight(int height) {
     content.setPreviewHeight(height);
+  }
+
+  /**
+   * Sets the tab folder of the inspector panel to the specified tab.
+   *
+   * @param tab
+   *          the tab to be switched to.
+   */
+  public void setInspectorTab(InspectorTab tab) {
+    inspector.switchToTab(tab);
   }
 }

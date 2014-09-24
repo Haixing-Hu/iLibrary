@@ -16,39 +16,29 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.document;
-
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.state.InspectorTab;
+import com.github.haixing_hu.swt.action.IActionManager;
+
 
 /**
- * The content panel in the document panel.
+ * The action to show the information of the current document.
  *
  * @author Haixing Hu
  */
-public final class DocumentPanelContent extends Composite {
+public class InspectorInfoTabAction extends BaseCheckBoxAction {
 
-  private final Application application;
+  public static final String KEY = WindowAction.KEY + ".info";
 
-  public DocumentPanelContent(Application application, Composite parent) {
-    super(parent, SWT.NONE);
-    this.application = application;
-    this.createContents();
-    this.layoutContents();
+  public InspectorInfoTabAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
   }
 
-  private void createContents() {
-    //  TODO
-    new Label(this, SWT.NONE).setText("DocumentPanelContent");
+  @Override
+  public void run() {
+    application.setInspectorTab(InspectorTab.INFO);
   }
-
-  private void layoutContents() {
-    //  TODO
-    setLayout(new FillLayout());
-  }
-
 }

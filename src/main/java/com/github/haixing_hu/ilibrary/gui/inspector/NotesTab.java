@@ -36,16 +36,18 @@ public final class NotesTab extends Composite {
   public static final String KEY = InspectorTabFolder.KEY + ".notes"; // "window.inspector.tab.notes"
 
   private final Application application;
-  private NotesTabContent content;
-  private NotesTabFooter footer;
+  private final NotesTabContent content;
+  private final NotesTabFooter footer;
 
   public NotesTab(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
-    createContents();
+    content = new NotesTabContent(application, this);
+    footer = new NotesTabFooter(application, this);
+    layoutContents();
   }
 
-  private void createContents() {
+  private void layoutContents() {
     final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
     layout.marginBottom = 0;
@@ -54,10 +56,7 @@ public final class NotesTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    setLayout(layout);
-
-    content = new NotesTabContent(application, this);
-    footer = new NotesTabFooter(application, this);
+    this.setLayout(layout);
 
     final FormData fd_content = new FormData();
     fd_content.left = new FormAttachment(0);
@@ -72,6 +71,33 @@ public final class NotesTab extends Composite {
     fd_footer.top = new FormAttachment(100, - footer.getHeight());
     fd_footer.bottom = new FormAttachment(100);
     footer.setLayoutData(fd_footer);
+  }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
+  }
+
+  /**
+   * Gets the content panel.
+   *
+   * @return the content panel.
+   */
+  public NotesTabContent getContent() {
+    return content;
+  }
+
+  /**
+   * Gets the footer panel.
+   *
+   * @return the footer panel.
+   */
+  public NotesTabFooter getFooter() {
+    return footer;
   }
 
 }

@@ -38,8 +38,7 @@ import org.w3c.dom.NodeList;
  */
 public class NavigatorTreeContentProvider implements ITreeContentProvider {
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(NavigatorTreeContentProvider.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTreeContentProvider.class);
 
   @Override
   public void dispose() {

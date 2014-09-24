@@ -20,9 +20,8 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.controller.MainPanelController;
-import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.state.ViewMode;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to show only the inspector panel.
@@ -39,7 +38,6 @@ public class ViewModeInspectorAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    final MainPanelController controller = application.getMainPanelController();
-    controller.setViewMode(ViewMode.INSPECTOR);
+    application.setViewMode(ViewMode.INSPECTOR);
   }
 }

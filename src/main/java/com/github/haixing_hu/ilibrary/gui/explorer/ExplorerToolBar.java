@@ -31,14 +31,14 @@ import com.github.haixing_hu.ilibrary.action.library.OpenUrlAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
 import com.github.haixing_hu.ilibrary.action.view.ReadFullScreenAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewModeAction;
-import com.github.haixing_hu.ilibrary.gui.MainPanelToolBar;
+import com.github.haixing_hu.ilibrary.gui.BasicToolBar;
 
 /**
  * The tool bar in the library panel.
  *
  * @author Haixing Hu
  */
-public final class ExplorerToolBar extends MainPanelToolBar {
+public final class ExplorerToolBar extends BasicToolBar {
 
   public static final String KEY = ExplorerPanel.KEY + ".toolbar";
 

@@ -38,14 +38,14 @@ import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
-import com.github.haixing_hu.ilibrary.gui.MainPanelHeader;
+import com.github.haixing_hu.ilibrary.gui.BasicHeader;
 
 /**
  * The header in the library panel.
  *
  * @author Haixing Hu
  */
-public final class ExplorerHeader extends MainPanelHeader {
+public final class ExplorerHeader extends BasicHeader {
 
   public static final String KEY = ExplorerPanel.KEY + ".header";
 

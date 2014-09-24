@@ -20,8 +20,6 @@ package com.github.haixing_hu.ilibrary.gui.navigator;
 
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
@@ -29,10 +27,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.controller.NavigatorController;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 import com.github.haixing_hu.text.xml.XmlUtils;
 
@@ -43,7 +40,7 @@ import com.github.haixing_hu.text.xml.XmlUtils;
  */
 public class NavigatorTree extends TreeViewer {
 
-  public static final String KEY = NavigatorPanel.KEY + ".tree"; // window.navigator.tree
+  public static final String KEY = NavigatorPanel.KEY + ".tree";
 
   private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTree.class);
 
@@ -75,17 +72,17 @@ public class NavigatorTree extends TreeViewer {
       tree.setBackground(color);
     }
     //  set the selection event handle
-    final NavigatorController controller = application.getNavigatorController();
-    tree.addSelectionListener(new SelectionAdapter() {
-      @Override
-      public void widgetSelected(SelectionEvent event) {
-        controller.onSelectNode(event);
-      }
-      @Override
-      public void widgetDefaultSelected(SelectionEvent event) {
-        controller.onSelectNode(event);
-      }
-    });
+//    final NavigatorController controller = application.getNavigatorController();
+//    tree.addSelectionListener(new SelectionAdapter() {
+//      @Override
+//      public void widgetSelected(SelectionEvent event) {
+//        controller.onSelectNode(event);
+//      }
+//      @Override
+//      public void widgetDefaultSelected(SelectionEvent event) {
+//        controller.onSelectNode(event);
+//      }
+//    });
   }
 
 //  /**
