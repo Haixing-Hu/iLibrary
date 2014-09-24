@@ -12,7 +12,7 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui2;
+package com.github.haixing_hu.ilibrary.gui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -21,24 +21,44 @@ import org.eclipse.swt.widgets.Label;
 import com.github.haixing_hu.ilibrary.Application;
 
 /**
- * The reader tab page.
+ * The searching tab page.
  *
  * @author Haixing Hu
  */
-public class ReaderPage extends Composite {
+public class SearchPage extends Page {
 
-  public static final String KEY = "reader";
+  public static final String KEY = MainWindow.KEY + ".search";
 
-  private final Application application;
-
-  public ReaderPage(Application application, Composite parent) {
-    super(parent, SWT.NONE);
-    this.application = application;
+  public SearchPage(Application application, Composite parent) {
+    super(application, parent);
     createContents();
   }
 
   private void createContents() {
     //  TODO
     new Label(this, SWT.NONE).setText(this.getClass().getName());
+  }
+
+  @Override
+  public String getKey() {
+    return KEY;
+  }
+
+  @Override
+  public void setNavigatorWidth(int width) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void setInspectorWidth(int width) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void setPreviewHeight(int height) {
+    // TODO Auto-generated method stub
+
   }
 }

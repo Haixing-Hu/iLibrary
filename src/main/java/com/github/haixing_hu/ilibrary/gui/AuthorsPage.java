@@ -12,22 +12,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui2;
+package com.github.haixing_hu.ilibrary.gui;
 
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.gui.explorer.ExplorerPage;
 
 /**
- * The sources tab page.
+ * The authors tab page.
  *
  * @author Haixing Hu
  */
-public class SourcesPage extends BrowserPage {
+public class AuthorsPage extends ExplorerPage {
 
-  public static final String KEY = "sources";
+  public static final String KEY = MainWindow.KEY + ".authors";
 
-  public SourcesPage(Application application, Composite parent) {
+  public AuthorsPage(Application application, Composite parent) {
     super(application, parent);
+  }
+
+  @Override
+  public String getKey() {
+    return KEY;
   }
 }

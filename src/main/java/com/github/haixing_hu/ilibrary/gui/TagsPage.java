@@ -12,22 +12,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui2;
+package com.github.haixing_hu.ilibrary.gui;
 
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.gui.explorer.ExplorerPage;
 
 /**
- * The library tab page.
+ * The tags tab page.
  *
  * @author Haixing Hu
  */
-public class LibraryPage extends BrowserPage {
+public class TagsPage extends ExplorerPage {
 
-  public static final String KEY = "library";
+  public static final String KEY = MainWindow.KEY + ".tags";
 
-  public LibraryPage(Application application, Composite parent) {
+  public TagsPage(Application application, Composite parent) {
     super(application, parent);
+  }
+
+  @Override
+  public String getKey() {
+    return KEY;
   }
 }

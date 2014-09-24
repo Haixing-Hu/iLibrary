@@ -28,8 +28,8 @@ import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorTreeNode;
-import com.github.haixing_hu.swt.action.DropDownAction;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
+import com.github.haixing_hu.swt.action.DropDownAction;
 
 /**
  * The controller of the navigator panel.

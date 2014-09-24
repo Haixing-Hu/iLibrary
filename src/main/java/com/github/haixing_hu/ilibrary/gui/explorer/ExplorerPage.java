@@ -12,7 +12,7 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui2;
+package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -28,16 +28,20 @@ import org.eclipse.swt.widgets.Sash;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.gui.MainPanelTab;
+import com.github.haixing_hu.ilibrary.gui.AuthorsPage;
+import com.github.haixing_hu.ilibrary.gui.LibraryPage;
+import com.github.haixing_hu.ilibrary.gui.MainWindow;
+import com.github.haixing_hu.ilibrary.gui.Page;
+import com.github.haixing_hu.ilibrary.gui.SourcesPage;
+import com.github.haixing_hu.ilibrary.gui.TagsPage;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui2.browser.BrowserPanel;
-import com.github.haixing_hu.ilibrary.gui2.navigator.NavigatorPanel;
-import com.github.haixing_hu.ilibrary.state.ApplicationState;
+import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
- * The {@link BrowserPage} class is the base class for all pages in which
- * the user browser the documents in some way.
+ * The {@link ExplorerPage} class is the base class for all pages in which
+ * the user explores the documents in some way.
  *
  * @author Haixing Hu
  * @see {@link LibraryPage}
@@ -45,27 +49,26 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  * @see {@link AuthorsPage}
  * @see {@link SourcesPage}
  */
-public class BrowserPage extends Composite  {
-
-  private static final String KEY = "browser";
+public abstract class ExplorerPage extends Page  {
 
   protected final Application application;
   private final int sashWidth;
   private final Color sashColor;
-  private final NavigatorPanel navigatorPanel;
+  private final NavigatorPanel navigator;
   private final Sash sash;
-  private final BrowserPanel browserPanel;
+  private final ExplorerPanel explorer;
 
-  public BrowserPage(Application application, Composite parent) {
-    super(parent, SWT.NONE);
+  public ExplorerPage(Application application, Composite parent) {
+    super(application, parent);
     this.application = application;
     final AppConfig config = application.getConfig();
-    sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
-    final String rgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR);
+    final String sashKey = MainWindow.KEY + KeySuffix.SASH + KeySuffix.VERTICAL;
+    sashWidth = config.getInt(sashKey + KeySuffix.WIDTH);
+    final String rgb = config.getString(sashKey + KeySuffix.COLOR);
     sashColor = SWTResourceManager.getColor(rgb);
-    navigatorPanel = new NavigatorPanel(application, this);
+    navigator = new NavigatorPanel(application, this);
     sash = new Sash(this, SWT.VERTICAL | SWT.BORDER);
-    browserPanel  = new BrowserPanel(application, this);
+    explorer  = new ExplorerPanel(application, this);
     layoutContents();
     configSash();
   }
@@ -87,9 +90,9 @@ public class BrowserPage extends Composite  {
     fd_navigator.bottom = new FormAttachment(100);
     fd_navigator.left = new FormAttachment(0);
     fd_navigator.right = new FormAttachment(sash);
-    navigatorPanel.setLayoutData(fd_navigator);
+    navigator.setLayoutData(fd_navigator);
 
-    final int navigatorWidth = navigatorPanel.getDefaultWidth();
+    final int navigatorWidth = navigator.getDefaultWidth();
 
     final FormData fd_sash = new FormData();
     fd_sash.top = new FormAttachment(0);
@@ -103,36 +106,31 @@ public class BrowserPage extends Composite  {
     fd_browser.bottom = new FormAttachment(100);
     fd_browser.left = new FormAttachment(sash);
     fd_browser.right = new FormAttachment(100);
-    browserPanel.setLayoutData(fd_browser);
+    explorer.setLayoutData(fd_browser);
   }
 
   private void configSash() {
     sash.setForeground(sashColor);
     sash.setBackground(sashColor);
 
-    final ApplicationState state = application.getState();
-    final FormData fd_sash = (FormData) sash.getLayoutData();
+    final MainWindow mainWindow = application.getMainWindow();
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event) {
-        int newWidth = event.x;
-        newWidth = Math.max(newWidth, navigatorPanel.getMinWidth());
-        newWidth = Math.min(newWidth, navigatorPanel.getMaxWidth());
+        int width = event.x;
+        width = Math.max(width, navigator.getMinWidth());
+        width = Math.min(width, navigator.getMaxWidth());
         final Rectangle rect = sash.getParent().getClientArea();
-        final MainPanelTab tab = mainPanel.getSelection();
-        final InspectorPanel inspector = tab.getInspector();
-        final int minPanelWidth = tab.getMinPanelWidth();
-        final int maxPanelWidth = tab.getMaxPanelWidth();
+        final InspectorPanel inspector = explorer.getInspector();
+        final int minBrowserWidth = explorer.getMinWidth();
+        final int maxBrowserWidth = explorer.getMaxWidth();
         final int inspectorWidth = inspector.getBounds().width;
-        newWidth = Math.min(newWidth, rect.width - minPanelWidth - inspectorWidth);
-        newWidth = Math.max(newWidth, rect.width - maxPanelWidth - inspectorWidth);
+        width = Math.min(width, rect.width - minBrowserWidth - inspectorWidth);
+        width = Math.max(width, rect.width - maxBrowserWidth - inspectorWidth);
         // it's important to modify the event
-        event.x = newWidth;
+        event.x = width;
         if (event.detail != SWT.DRAG) {
-          fd_sash.left = new FormAttachment(0, newWidth);
-          fd_sash.right = new FormAttachment(0, newWidth + sashWidth);
-          sash.getParent().layout();
-          state.setNavigatorWidth(newWidth);
+          mainWindow.setNavigatorWidth(width);
         }
       }
     });
@@ -143,27 +141,58 @@ public class BrowserPage extends Composite  {
    *
    * @return the navigator panel.
    */
-  public NavigatorPanel getNavigatorPanel() {
-    return navigatorPanel;
+  public NavigatorPanel getNavigator() {
+    return navigator;
   }
 
   /**
-   * Gets the sash.
+   * Gets the explorer panel.
    *
-   * @return the sash.
+   * @return the explorer panel.
    */
-  public Sash getSash() {
-    return sash;
+  public ExplorerPanel getExplorer() {
+    return explorer;
   }
 
   /**
-   * Gets the browser panel.
+   * Gets the inspector panel.
    *
-   * @return the browser panel.
+   * @return the inspector panel.
    */
-  public BrowserPanel getBrowserPanel() {
-    return browserPanel;
+  public InspectorPanel getInspector() {
+    return explorer.getInspector();
   }
 
+  /**
+   * Gets the preview panel.
+   *
+   * @return the preview panel.
+   */
+  public PreviewPanel getPreview() {
+    return explorer.getPreview();
+  }
+
+  @Override
+  public void setNavigatorWidth(int width) {
+    final FormData fd_sash = (FormData) sash.getLayoutData();
+    if (width <= 0) {
+      fd_sash.left = new FormAttachment(0);
+      fd_sash.right = new FormAttachment(0);
+    } else {
+      fd_sash.left = new FormAttachment(0, width);
+      fd_sash.right = new FormAttachment(0, width + sashWidth);
+    }
+    this.layout();
+  }
+
+  @Override
+  public void setInspectorWidth(int width) {
+    explorer.setInspectorWidth(width);
+  }
+
+  @Override
+  public void setPreviewHeight(int height) {
+    explorer.setPreviewHeight(height);
+  }
 
 }

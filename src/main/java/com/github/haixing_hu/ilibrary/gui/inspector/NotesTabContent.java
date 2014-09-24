@@ -24,8 +24,8 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -50,9 +50,9 @@ public class NotesTabContent extends Composite {
     final AppConfig config = application.getConfig();
     final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
     final Color color = SWTResourceManager.getColor(rgb);
-    this.setBackground(color);
+    setBackground(color);
     // TODO Auto-generated method stub
-    this.setLayout(new FillLayout());
+    setLayout(new FillLayout());
     new Label(this, SWT.NONE).setText("NotesTabContent");
   }
 }

@@ -16,7 +16,7 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.library;
+package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.widgets.Composite;
@@ -38,7 +38,9 @@ import com.github.haixing_hu.ilibrary.gui.MainPanelToolBar;
  *
  * @author Haixing Hu
  */
-public final class LibraryPanelToolBar extends MainPanelToolBar {
+public final class ExplorerToolBar extends MainPanelToolBar {
+
+  public static final String KEY = ExplorerPanel.KEY + ".toolbar";
 
   private static final String ACTIONS[] = {
     ReadFullScreenAction.KEY,
@@ -54,7 +56,7 @@ public final class LibraryPanelToolBar extends MainPanelToolBar {
     ViewModeAction.KEY,
   };
 
-  public LibraryPanelToolBar(Application application, Composite parent) {
+  public ExplorerToolBar(Application application, Composite parent) {
     super(application, parent, ACTIONS);
   }
 }

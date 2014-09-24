@@ -21,8 +21,8 @@ package com.github.haixing_hu.ilibrary.state;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui.library.LibraryPanelPreview;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 
 
 /**
@@ -59,7 +59,7 @@ public final class ApplicationState {
     navigatorHide = false;
     inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     inspectorHide = false;
-    previewHeight = config.getInt(LibraryPanelPreview.KEY + KeySuffix.DEFAULT_HEIGHT);
+    previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
     previewHide = false;
     inspectorTab = InspectorTab.INFO;
   }
@@ -205,10 +205,10 @@ public final class ApplicationState {
   /**
    * Sets the navigatorWidth.
    *
-   * @param navigatorWidth the new navigatorWidth to set.
+   * @param width the new navigatorWidth to set.
    */
-  public void setNavigatorWidth(int navigatorWidth) {
-    this.navigatorWidth = navigatorWidth;
+  public void setNavigatorWidth(int width) {
+    this.navigatorWidth = width;
   }
 
   /**
@@ -223,10 +223,10 @@ public final class ApplicationState {
   /**
    * Sets the navigatorHide.
    *
-   * @param navigatorHide the new navigatorHide to set.
+   * @param hide the new navigatorHide to set.
    */
-  public void setNavigatorHide(boolean navigatorHide) {
-    this.navigatorHide = navigatorHide;
+  public void setNavigatorHide(boolean hide) {
+    this.navigatorHide = hide;
   }
 
   /**
@@ -241,10 +241,10 @@ public final class ApplicationState {
   /**
    * Sets the inspectorWidth.
    *
-   * @param inspectorWidth the new inspectorWidth to set.
+   * @param width the new inspectorWidth to set.
    */
-  public void setInspectorWidth(int inspectorWidth) {
-    this.inspectorWidth = inspectorWidth;
+  public void setInspectorWidth(int width) {
+    this.inspectorWidth = width;
   }
 
   /**
@@ -259,10 +259,10 @@ public final class ApplicationState {
   /**
    * Sets the inspectorHide.
    *
-   * @param inspectorHide the new inspectorHide to set.
+   * @param hide the new inspectorHide to set.
    */
-  public void setInspectorHide(boolean inspectorHide) {
-    this.inspectorHide = inspectorHide;
+  public void setInspectorHide(boolean hide) {
+    this.inspectorHide = hide;
   }
 
   /**
@@ -277,10 +277,10 @@ public final class ApplicationState {
   /**
    * Sets the previewHeight.
    *
-   * @param previewHeight the new previewHeight to set.
+   * @param height the new previewHeight to set.
    */
-  public void setPreviewHeight(int previewHeight) {
-    this.previewHeight = previewHeight;
+  public void setPreviewHeight(int height) {
+    this.previewHeight = height;
   }
 
   /**
@@ -295,10 +295,10 @@ public final class ApplicationState {
   /**
    * Sets the previewHide.
    *
-   * @param previewHide the new previewHide to set.
+   * @param hide the new previewHide to set.
    */
-  public void setPreviewHide(boolean previewHide) {
-    this.previewHide = previewHide;
+  public void setPreviewHide(boolean hide) {
+    this.previewHide = hide;
   }
 
   /**

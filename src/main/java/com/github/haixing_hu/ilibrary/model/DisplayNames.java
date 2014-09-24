@@ -71,7 +71,8 @@ public final class DisplayNames implements Iterable<DisplayName> {
   }
 
   public String get(Locale locale) {
-
+    //  TODO
+    return null;
   }
 
   @Override

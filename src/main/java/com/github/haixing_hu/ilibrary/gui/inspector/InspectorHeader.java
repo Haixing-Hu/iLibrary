@@ -26,8 +26,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToFilesTabAction;
@@ -71,10 +71,10 @@ public final class InspectorHeader extends Composite {
     layout.marginBottom = 0;
     layout.marginHeight = 0;
     layout.marginWidth = marginWidth;
-    this.setLayout(layout);
+    setLayout(layout);
 
     final Image bg_img = SWTResourceManager.getImage(InspectorHeader.class, backgroundImage);
-    this.setBackgroundImage(bg_img);
+    setBackgroundImage(bg_img);
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();

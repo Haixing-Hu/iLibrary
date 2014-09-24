@@ -54,7 +54,7 @@ public final class FilesTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
     content = new FilesTabContent(application, this);
     footer = new FilesTabFooter(application, this);

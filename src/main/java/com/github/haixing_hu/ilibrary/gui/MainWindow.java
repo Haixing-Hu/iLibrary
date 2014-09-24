@@ -22,25 +22,23 @@ import java.awt.Window;
 
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Monitor;
-import org.eclipse.swt.widgets.Sash;
 import org.eclipse.swt.widgets.Shell;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui.MainMenuBar;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.swt.menu.MenuManagerEx;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -55,17 +53,29 @@ public final class MainWindow extends ApplicationWindowEx {
 
   public static final String KEY = "window";
 
+  public static final int LIBRARY_PAGE_INDEX = 0;
+
+  public static final int SEARCH_PAGE_INDEX  = 1;
+
+  public static final int TAGS_PAGE_INDEX    = 2;
+
+  public static final int AUTHORS_PAGE_INDEX = 3;
+
+  public static final int SOURCES_PAGE_INDEX = 4;
+
+  public static final int READER_PAGE_INDEX  = 5;
+
+  public static final int TOTAL_PAGES = 6;
+
   private final Application application;
   private final int defaultHeight;
   private final int defaultWidth;
   private final int minHeight;
   private final int minWidth;
-  private final int sashWidth;
-  private final Color sashColor;
+  private final Page pages[];
+  private CTabFolder tabFolder;
   private MainMenuBar menuBar;
-  private NavigatorPanel navigator;
-  private Sash sash;
-  private MainPanel mainPanel;
+
 
   public MainWindow(Application application) {
     super(null);
@@ -75,90 +85,51 @@ public final class MainWindow extends ApplicationWindowEx {
     defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    sashWidth = config.getInt(KEY + KeySuffix.SASH + KeySuffix.WIDTH);
-    final String rgb = config.getString(KEY + KeySuffix.SASH + KeySuffix.COLOR);
-    sashColor = SWTResourceManager.getColor(rgb);
+    pages = new Page[TOTAL_PAGES];
     addMenuBar();
     addToolBar(SWT.FLAT |SWT.WRAP);
   }
 
   @Override
   protected Control createContents(Composite parent) {
-    navigator = new NavigatorPanel(application, parent);
-    sash = new Sash(parent, SWT.VERTICAL | SWT.BORDER);
-    mainPanel  = new MainPanel(application, parent);
-    layoutContents(parent);
-    configSash();
-    return parent;
-  }
-
-  private void layoutContents(Composite parent) {
-    final FormLayout layout = new FormLayout();
-    layout.marginTop = 0;
-    layout.marginBottom = 0;
-    layout.marginLeft = 0;
-    layout.marginRight = 0;
+    final GridLayout layout = new GridLayout();
     layout.marginHeight = 0;
     layout.marginWidth = 0;
-    layout.spacing = 0;
     parent.setLayout(layout);
 
-    //  configure the layout data
-    final FormData fd_navigator = new FormData();
-    fd_navigator.top = new FormAttachment(0);
-    fd_navigator.bottom = new FormAttachment(100);
-    fd_navigator.left = new FormAttachment(0);
-    fd_navigator.right = new FormAttachment(sash);
-    navigator.setLayoutData(fd_navigator);
+    tabFolder = new CTabFolder(parent, SWT.BORDER);
+    tabFolder.marginHeight = 0;
+    tabFolder.marginWidth = 0;
+    tabFolder.setLayoutData( new GridData( GridData.FILL_BOTH ));
+    tabFolder.setSimple(false);
 
-    final int navigatorWidth = navigator.getDefaultWidth();
+    final AppConfig config = application.getConfig();
+    final String path = config.getString(KEY + KeySuffix.SELECTION + KeySuffix.BACKGROUND_IMAGE);
+    final Image img = SWTResourceManager.getImage(this.getClass(), path);
+    tabFolder.setSelectionBackground(img);
+    final String rgb = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
+    final Color color = SWTResourceManager.getColor(rgb);
+    tabFolder.setBackground(color);
+    tabFolder.marginHeight = 0;
+    tabFolder.marginWidth = 0;
 
-    final FormData fd_sash = new FormData();
-    fd_sash.top = new FormAttachment(0);
-    fd_sash.bottom = new FormAttachment(100);
-    fd_sash.left = new FormAttachment(0, navigatorWidth);
-    fd_sash.right = new FormAttachment(0, navigatorWidth + sashWidth);
-    sash.setLayoutData(fd_sash);
+    parent.setBackground(color);
 
-    final FormData fd_mainPanel = new FormData();
-    fd_mainPanel.top = new FormAttachment(0);
-    fd_mainPanel.bottom = new FormAttachment(100);
-    fd_mainPanel.left = new FormAttachment(sash);
-    fd_mainPanel.right = new FormAttachment(100);
-    mainPanel.setLayoutData(fd_mainPanel);
+    pages[LIBRARY_PAGE_INDEX] = new LibraryPage(application, tabFolder);
+    pages[SEARCH_PAGE_INDEX] = new SearchPage(application, tabFolder);
+    pages[TAGS_PAGE_INDEX] = new TagsPage(application, tabFolder);
+    pages[AUTHORS_PAGE_INDEX] = new AuthorsPage(application, tabFolder);
+    pages[SOURCES_PAGE_INDEX] = new SourcesPage(application, tabFolder);
+    pages[READER_PAGE_INDEX] = new ReaderPage(application, tabFolder);
 
-  }
-
-  private void configSash() {
-    sash.setForeground(sashColor);
-    sash.setBackground(sashColor);
-
-    final ApplicationState state = application.getState();
-    final FormData fd_sash = (FormData) sash.getLayoutData();
-    sash.addSelectionListener(new SelectionAdapter() {
-      @Override
-      public void widgetSelected(SelectionEvent event) {
-        int newWidth = event.x;
-        newWidth = Math.max(newWidth, navigator.getMinWidth());
-        newWidth = Math.min(newWidth, navigator.getMaxWidth());
-        final Rectangle rect = sash.getParent().getClientArea();
-        final MainPanelTab tab = mainPanel.getSelection();
-        final InspectorPanel inspector = tab.getInspector();
-        final int minPanelWidth = tab.getMinPanelWidth();
-        final int maxPanelWidth = tab.getMaxPanelWidth();
-        final int inspectorWidth = inspector.getBounds().width;
-        newWidth = Math.min(newWidth, rect.width - minPanelWidth - inspectorWidth);
-        newWidth = Math.max(newWidth, rect.width - maxPanelWidth - inspectorWidth);
-        // it's important to modify the event
-        event.x = newWidth;
-        if (event.detail != SWT.DRAG) {
-          fd_sash.left = new FormAttachment(0, newWidth);
-          fd_sash.right = new FormAttachment(0, newWidth + sashWidth);
-          sash.getParent().layout();
-          state.setNavigatorWidth(newWidth);
-        }
-      }
-    });
+    for (int i = 0; i < TOTAL_PAGES; ++i) {
+      final Page page = pages[i];
+      final CTabItem item = new CTabItem(tabFolder, SWT.NO_FOCUS);
+      final String title = config.getTitle(page.getKey());
+      item.setText("   " + title + "   ");
+      item.setControl(page);
+    }
+    return parent;
   }
 
   @Override
@@ -225,10 +196,10 @@ public final class MainWindow extends ApplicationWindowEx {
       centerPoint = Geometry.centerPoint(monitorBounds);
     }
 
-    return new Point(centerPoint.x - (initialSize.x / 2), Math.max(
-        monitorBounds.y, Math.min(centerPoint.y
-            - ((initialSize.y * 2) / 3), (monitorBounds.y
-            + monitorBounds.height) - initialSize.y)));
+    return new Point(centerPoint.x - (initialSize.x / 2),
+        Math.max(monitorBounds.y,
+            Math.min(centerPoint.y - ((initialSize.y * 2) / 3),
+                (monitorBounds.y + monitorBounds.height) - initialSize.y)));
   }
 
   /**
@@ -297,49 +268,194 @@ public final class MainWindow extends ApplicationWindowEx {
   }
 
   /**
-   * Gets the navigator panel.
+   * Gets the menu bar.
    *
-   * @return the navigator panel.
+   * @return the menu bar.
    */
-  public NavigatorPanel getNavigator() {
-    return navigator;
+  public MainMenuBar getMenuBar() {
+    return menuBar;
   }
 
   /**
-   * Gets the main panel.
+   * Gets the search page.
    *
-   * @return the main panel.
+   * @return the search page.
    */
-  public MainPanel getMainPanel() {
-    return mainPanel;
+  public SearchPage getSearchPage() {
+    final CTabItem item = tabFolder.getItem(SEARCH_PAGE_INDEX);
+    return (SearchPage) item.getControl();
   }
 
   /**
-   * Hides the navigator panel.
+   * Gets the library page.
+   *
+   * @return the library page.
+   */
+  public LibraryPage getLibraryPage() {
+    final CTabItem item = tabFolder.getItem(LIBRARY_PAGE_INDEX);
+    return (LibraryPage) item.getControl();
+  }
+
+  /**
+   * Gets the tags page.
+   *
+   * @return the tags page.
+   */
+  public TagsPage getTagsPage() {
+    final CTabItem item = tabFolder.getItem(LIBRARY_PAGE_INDEX);
+    return (TagsPage) item.getControl();
+  }
+
+  /**
+   * Gets the authors page.
+   *
+   * @return the authors page.
+   */
+  public AuthorsPage getAuthorsPage() {
+    final CTabItem item = tabFolder.getItem(LIBRARY_PAGE_INDEX);
+    return (AuthorsPage) item.getControl();
+  }
+
+  /**
+   * Gets the sources page.
+   *
+   * @return the sources page.
+   */
+  public SourcesPage getSourcesPage() {
+    final CTabItem item = tabFolder.getItem(LIBRARY_PAGE_INDEX);
+    return (SourcesPage) item.getControl();
+  }
+
+  /**
+   * Gets the reader page.
+   *
+   * @return the reader page.
+   */
+  public ReaderPage getReaderPage() {
+    final CTabItem item = tabFolder.getItem(READER_PAGE_INDEX);
+    return (ReaderPage) item.getControl();
+  }
+
+  /**
+   * Sets the width of the navigator panels on all pages.
+   *
+   * @param width
+   *          the new width to be set.
+   */
+  public void setNavigatorWidth(int width) {
+    for (int i = 0; i < TOTAL_PAGES; ++i) {
+      pages[i].setNavigatorWidth(width);
+    }
+    final ApplicationState state = application.getState();
+    state.setNavigatorWidth(width);
+  }
+
+  /**
+   * Hides the navigator panels on all pages.
    */
   public void hideNavigator() {
     final ApplicationState state = application.getState();
     if (! state.isNavigatorHide()) {
-      final FormData data = (FormData) sash.getLayoutData();
-      data.left = new FormAttachment(0);
-      data.right = new FormAttachment(0);
-      sash.getParent().layout();
+      for (int i = 0; i < TOTAL_PAGES; ++i) {
+        pages[i].setNavigatorWidth(0);
+      }
       state.setNavigatorHide(true);
     }
   }
 
   /**
-   * Shows the navigator panel.
+   * Shows the navigator panels on all pages.
    */
   public void showNavigator() {
     final ApplicationState state = application.getState();
     if (state.isNavigatorHide()) {
-      final int oldWidth = state.getNavigatorWidth();
-      final FormData data = (FormData) sash.getLayoutData();
-      data.left = new FormAttachment(0, oldWidth);
-      data.right = new FormAttachment(0, oldWidth + sashWidth);
-      sash.getParent().layout();
+      final int width = state.getNavigatorWidth();
+      for (int i = 0; i < TOTAL_PAGES; ++i) {
+        pages[i].setNavigatorWidth(width);
+      }
       state.setNavigatorHide(false);
+    }
+  }
+
+  /**
+   * Sets the width of the inspector panels on all pages.
+   *
+   * @param width
+   *          the new width to be set.
+   */
+  public void setInspectorWidth(int width) {
+    for (int i = 0; i < TOTAL_PAGES; ++i) {
+      pages[i].setInspectorWidth(width);
+    }
+    final ApplicationState state = application.getState();
+    state.setInspectorWidth(width);
+  }
+
+  /**
+   * Hides the inspector panels on all pages.
+   */
+  public void hideInspector() {
+    final ApplicationState state = application.getState();
+    if (! state.isInspectorHide()) {
+      for (int i = 0; i < TOTAL_PAGES; ++i) {
+        pages[i].setInspectorWidth(0);
+      }
+      state.setInspectorHide(true);
+    }
+  }
+
+  /**
+   * Shows the inspector panels on all pages.
+   */
+  public void showInspector() {
+    final ApplicationState state = application.getState();
+    if (state.isInspectorHide()) {
+      final int width = state.getInspectorWidth();
+      for (int i = 0; i < TOTAL_PAGES; ++i) {
+        pages[i].setInspectorWidth(width);
+      }
+      state.setInspectorHide(false);
+    }
+  }
+
+  /**
+   * Sets the height of the preview panels on all pages.
+   *
+   * @param height
+   *          the new height to be set.
+   */
+  public void setPreviewHeight(int height) {
+    for (int i = 0; i < TOTAL_PAGES; ++i) {
+      pages[i].setPreviewHeight(height);
+    }
+    final ApplicationState state = application.getState();
+    state.setPreviewHeight(height);
+  }
+
+  /**
+   * Hides the preview panels on all pages.
+   */
+  public void hidePreview() {
+    final ApplicationState state = application.getState();
+    if (! state.isPreviewHide()) {
+      for (int i = 0; i < TOTAL_PAGES; ++i) {
+        pages[i].setPreviewHeight(0);
+      }
+      state.setPreviewHide(true);
+    }
+  }
+
+  /**
+   * Shows the preview panels on all pages.
+   */
+  public void showPreview() {
+    final ApplicationState state = application.getState();
+    if (state.isPreviewHide()) {
+      final int height = state.getPreviewHeight();
+      for (int i = 0; i < TOTAL_PAGES; ++i) {
+        pages[i].setPreviewHeight(height);
+      }
+      state.setPreviewHide(false);
     }
   }
 }

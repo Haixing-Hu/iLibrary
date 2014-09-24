@@ -24,8 +24,8 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 
@@ -36,7 +36,7 @@ import com.github.haixing_hu.ilibrary.gui.MainWindow;
  */
 public class InspectorPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".inspector";  // "window.inspector"
+  public static final String KEY = MainWindow.KEY + ".inspector";
 
   private final Application application;
   private final int defaultWidth;
@@ -73,7 +73,7 @@ public class InspectorPanel extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
     final FormData fd_header = new FormData();
     fd_header.top = new FormAttachment(0);

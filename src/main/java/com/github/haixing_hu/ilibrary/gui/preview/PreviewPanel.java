@@ -16,36 +16,46 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.library;
+package com.github.haixing_hu.ilibrary.gui.preview;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
+import com.github.haixing_hu.ilibrary.gui.MainWindow;
 
 /**
  * The preview panel.
  *
  * @author Haixing Hu
  */
-public class LibraryPanelPreview extends Composite {
+public class PreviewPanel extends Composite {
 
-  public static final String KEY = LibraryPanel.KEY + ".preview"; //  "window.main.tab.library.preview"
+  public static final String KEY = MainWindow.KEY + ".preview";
 
   private final Application application;
   private final int defaultHeight;
   private final int minHeight;
   private final int maxHeight;
 
-  public LibraryPanelPreview(Application application, Composite parent) {
+  public PreviewPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
     defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT); // "window.main.tab.library.preview.default-height"
     minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);         // "window.main.tab.library.preview.min-height"
     maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);         // "window.main.tab.library.preview.max-height"
+  }
+
+  /**
+   * Gets the application.
+   *
+   * @return the application.
+   */
+  public Application getApplication() {
+    return application;
   }
 
   /**

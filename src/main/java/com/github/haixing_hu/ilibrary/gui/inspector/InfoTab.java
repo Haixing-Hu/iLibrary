@@ -54,7 +54,7 @@ public final class InfoTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
     content = new InfoTabContent(application, this);
     footer = new InfoTabFooter(application, this);

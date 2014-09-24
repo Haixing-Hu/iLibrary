@@ -54,7 +54,7 @@ public final class NotesTab extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
     content = new NotesTabContent(application, this);
     footer = new NotesTabFooter(application, this);

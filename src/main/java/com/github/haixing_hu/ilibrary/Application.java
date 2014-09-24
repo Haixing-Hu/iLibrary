@@ -25,7 +25,7 @@ import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.controller.InspectorController;
 import com.github.haixing_hu.ilibrary.controller.MainPanelController;
 import com.github.haixing_hu.ilibrary.controller.NavigatorController;
-import com.github.haixing_hu.ilibrary.gui2.MainWindow;
+import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 

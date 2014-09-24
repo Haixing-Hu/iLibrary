@@ -16,34 +16,34 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.library;
+package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 
 /**
- * The content panel in the library panel.
+ * The table viewer in the explorer panel.
  *
  * @author Haixing Hu
  */
-public class LibraryPanelContent extends CheckboxTableViewer {
+public class ExplorerTableViewer extends CheckboxTableViewer {
 
-  public static final String KEY = LibraryPanel.KEY + ".content"; //  "window.main.tab.library.content"
+  public static final String KEY = ExplorerPanel.KEY + ".viewer";
 
   private final int minHeight;
   private final int maxHeight;
 
-  public LibraryPanelContent(Application application, Composite parent) {
+  public ExplorerTableViewer(Application application, Composite parent) {
     super(new Table(parent, SWT.CHECK | SWT.V_SCROLL | SWT.H_SCROLL));
     final AppConfig config = application.getConfig();
-    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT); // "window.main.tab.library.content.min-height"
-    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT); // "window.main.tab.library.content.max-height"
+    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
+    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
     createContents();
   }
 

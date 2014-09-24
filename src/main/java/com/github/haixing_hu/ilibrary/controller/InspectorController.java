@@ -26,8 +26,6 @@ import com.github.haixing_hu.ilibrary.action.ui.SwitchToFilesTabAction;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToInfoTabAction;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToNotesTabAction;
 import com.github.haixing_hu.ilibrary.action.ui.SwitchToReviewsTabAction;
-import com.github.haixing_hu.ilibrary.gui.MainPanel;
-import com.github.haixing_hu.ilibrary.gui.MainPanelTab;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.gui.inspector.FilesTab;
 import com.github.haixing_hu.ilibrary.gui.inspector.InfoTab;
@@ -35,9 +33,9 @@ import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorTabFolder;
 import com.github.haixing_hu.ilibrary.gui.inspector.NotesTab;
 import com.github.haixing_hu.ilibrary.gui.inspector.ReviewsTab;
-import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
+import com.github.haixing_hu.swt.action.ActionEx;
 
 /**
  * The controller of the inspector panel.

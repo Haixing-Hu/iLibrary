@@ -16,7 +16,7 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.library;
+package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.widgets.Composite;
@@ -45,7 +45,9 @@ import com.github.haixing_hu.ilibrary.gui.MainPanelHeader;
  *
  * @author Haixing Hu
  */
-public final class LibraryPanelHeader extends MainPanelHeader {
+public final class ExplorerHeader extends MainPanelHeader {
+
+  public static final String KEY = ExplorerPanel.KEY + ".header";
 
   private static final String ACTIONS[] = {
     FilterFlagStatusAllAction.KEY,
@@ -70,7 +72,7 @@ public final class LibraryPanelHeader extends MainPanelHeader {
     FilterFileStatusNoFileAction.KEY,
   };
 
-  public LibraryPanelHeader(Application application, Composite parent) {
+  public ExplorerHeader(Application application, Composite parent) {
     super(application, parent, ACTIONS);
   }
 }

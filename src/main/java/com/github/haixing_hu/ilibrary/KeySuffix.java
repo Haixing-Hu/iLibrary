@@ -75,6 +75,10 @@ public interface KeySuffix {
 
   public static final String SASH = ".sash";
 
+  public static final String VERTICAL = ".vertical";
+
+  public static final String HORIZON = ".horizon";
+
   public static final String COLLECTION = ".collection";
 
   public static final String SMART_COLLECTION = ".smart-collection";

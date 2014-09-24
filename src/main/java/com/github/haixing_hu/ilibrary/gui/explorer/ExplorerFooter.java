@@ -16,24 +16,31 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui2.inspector;
+package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.gui.MainPanelFooter;
 
 /**
- * The footer of the info tab.
+ * The footer in the explorer panel.
  *
  * @author Haixing Hu
  */
-public class NotesTabFooter extends InspectorTabFooter {
+public class ExplorerFooter extends MainPanelFooter {
 
-  private static final String ACTIONS[] = {
-   // EditNotesAction.KEY,
-  };
+  public static final String KEY = ExplorerPanel.KEY + ".footer";
 
-  public NotesTabFooter(Application application, Composite parent) {
-    super(application, parent, ACTIONS);
+  /**
+   * Creates a footer.
+   *
+   * @param application
+   *    the application.
+   * @param parent
+   *    the parent of the new footer.
+   */
+  public ExplorerFooter(Application application, Composite parent) {
+    super(application, parent);
   }
 }

@@ -28,11 +28,10 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorFooter;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
@@ -55,13 +54,14 @@ public class InspectorTabFooter extends Composite {
    * Creates a status line.
    *
    * @param application
-   *    the application.
+   *          the application.
    * @param parent
-   *    the parent of the new status line.
+   *          the parent of the new status line.
    * @param actionKeys
-   *    the array of keys of the action to be placed in the tool bar.
+   *          the array of keys of the action to be placed in the tool bar.
    */
-  public InspectorTabFooter(Application application, Composite parent, String[] actionKeys) {
+  public InspectorTabFooter(Application application, Composite parent,
+      String[] actionKeys) {
     super(parent, SWT.NONE);
     this.application = application;
     this.actionKeys = actionKeys;
@@ -81,11 +81,13 @@ public class InspectorTabFooter extends Composite {
     layout.marginHeight = 0;
     layout.marginWidth = 0;
     layout.spacing = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
-    final String statuslineBg = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
-    final Image statuslineBgImg = SWTResourceManager.getImage(NavigatorFooter.class, statuslineBg);
-    this.setBackgroundImage(statuslineBgImg);
+    final String statuslineBg = config.getString(KEY
+        + KeySuffix.BACKGROUND_IMAGE);
+    final Image statuslineBgImg = SWTResourceManager.getImage(
+        InspectorTabFooter.class, statuslineBg);
+    setBackgroundImage(statuslineBgImg);
 
     toolBarManager = new ToolBarManager(SWT.FLAT);
     final ActionManager am = application.getActionManager();
@@ -98,19 +100,24 @@ public class InspectorTabFooter extends Composite {
     toolBarManager.createControl(this);
     final ToolBar toolBar = toolBarManager.getControl();
 
-    final String toolbarBg = config.getString(KEY + KeySuffix.TOOLBAR + KeySuffix.BACKGROUND_IMAGE);
-    final Image toolbarBgImg = SWTResourceManager.getImage(NavigatorFooter.class, toolbarBg);
+    final String toolbarBg = config.getString(KEY + KeySuffix.TOOLBAR
+        + KeySuffix.BACKGROUND_IMAGE);
+    final Image toolbarBgImg = SWTResourceManager.getImage(
+        InspectorTabFooter.class, toolbarBg);
     toolBar.setBackgroundImage(toolbarBgImg);
 
     fill = new Composite(this, SWT.NONE);
     fill.setBackgroundImage(statuslineBgImg);
 
     corner = new Composite(this, SWT.NONE);
-    final String cornerBackground = config.getString(KEY + KeySuffix.CORNER + KeySuffix.BACKGROUND_IMAGE);
-    final Image cornerBackgroundImg = SWTResourceManager.getImage(InspectorTabFooter.class, cornerBackground);
+    final String cornerBackground = config.getString(KEY + KeySuffix.CORNER
+        + KeySuffix.BACKGROUND_IMAGE);
+    final Image cornerBackgroundImg = SWTResourceManager.getImage(
+        InspectorTabFooter.class, cornerBackground);
     corner.setBackgroundImage(cornerBackgroundImg);
 
-    final int cornerWidth = config.getInt(KEY + KeySuffix.CORNER + KeySuffix.WIDTH);
+    final int cornerWidth = config.getInt(KEY + KeySuffix.CORNER
+        + KeySuffix.WIDTH);
     final FormData fd_corner = new FormData();
     fd_corner.left = new FormAttachment(0);
     fd_corner.right = new FormAttachment(0, cornerWidth);
@@ -125,14 +132,14 @@ public class InspectorTabFooter extends Composite {
     fd_fill.bottom = new FormAttachment(100);
     fill.setLayoutData(fd_fill);
 
-    final int toolbarTop = config.getInt(KEY + KeySuffix.TOOLBAR + KeySuffix.TOP);
+    final int toolbarTop = config.getInt(KEY + KeySuffix.TOOLBAR
+        + KeySuffix.TOP);
     final FormData fd_toolBar = new FormData();
-    //fd_toolBar.left = new FormAttachment(corner);
+    // fd_toolBar.left = new FormAttachment(corner);
     fd_toolBar.right = new FormAttachment(100);
     fd_toolBar.top = new FormAttachment(0, toolbarTop);
     toolBar.setLayoutData(fd_toolBar);
   }
-
 
   /**
    * Gets the height of this status line.
