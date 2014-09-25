@@ -57,7 +57,7 @@ public final class ApplicationState {
     navigatorVisible = true;
     inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
-    inspectorTab = InspectorTab.INFO;
+    inspectorTab = InspectorTab.OVERVIEW;
     viewMode = ViewMode.ALL;
   }
 

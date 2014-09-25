@@ -62,9 +62,9 @@ import com.github.haixing_hu.ilibrary.action.view.ViewModeAllAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewModeInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewModeNoneAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewModePreviewAction;
-import com.github.haixing_hu.ilibrary.action.window.InspectorFilesTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorInfoTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorNotesTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorOverviewTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorReviewsTabAction;
 import com.github.haixing_hu.ilibrary.action.window.PageAuthorsAction;
 import com.github.haixing_hu.ilibrary.action.window.PageLibraryAction;
@@ -216,7 +216,7 @@ public final class Application {
     if (width <= 0) {
       setNavigatorVisible(false);
     } else {
-      logger.info("Sets the navigator panel width to: {}", width);
+      logger.debug("Sets the navigator panel width to: {}", width);
       mainWindow.setNavigatorWidth(width);
       state.setNavigatorWidth(width);
       if (! state.isNavigatorVisible()) {
@@ -251,6 +251,9 @@ public final class Application {
       viewAction.update(true);
       mainWindow.setNavigatorWidth(0);
     }
+    mainWindow.setToolBarActionVisibility(HideNavigatorAction.KEY, visible);
+    mainWindow.setToolBarActionVisibility(ShowNavigatorAction.KEY, (! visible));
+    mainWindow.updateToolBar(true);
     state.setNavigatorVisible(visible);
   }
 
@@ -265,7 +268,7 @@ public final class Application {
     if (width <= 0) {
       setInspectorVisible(false);
     } else {
-      logger.info("Sets the inspector panel width to: {}", width);
+      logger.debug("Sets the inspector panel width to: {}", width);
       mainWindow.setInspectorWidth(width);
       state.setInspectorWidth(width);
       final int mode = state.getViewMode();
@@ -308,7 +311,7 @@ public final class Application {
     final ActionEx infoTabAction = actionManager.get(InspectorInfoTabAction.KEY);
     final ActionEx notesTabAction = actionManager.get(InspectorNotesTabAction.KEY);
     final ActionEx reviewsTabAction = actionManager.get(InspectorReviewsTabAction.KEY);
-    final ActionEx filesTabAction = actionManager.get(InspectorFilesTabAction.KEY);
+    final ActionEx filesTabAction = actionManager.get(InspectorOverviewTabAction.KEY);
     switch (tab) {
     case INFO:
       infoTabAction.setChecked(true);
@@ -328,7 +331,7 @@ public final class Application {
       reviewsTabAction.setChecked(true);
       filesTabAction.setChecked(false);
       break;
-    case FILES:
+    case OVERVIEW:
       infoTabAction.setChecked(false);
       notesTabAction.setChecked(false);
       reviewsTabAction.setChecked(false);
@@ -355,7 +358,7 @@ public final class Application {
     if (height <= 0) {
       setPreviewVisible(false);
     } else {
-      logger.info("Sets the preview panel height to: {}", height);
+      logger.debug("Sets the preview panel height to: {}", height);
       mainWindow.setPreviewHeight(height);
       state.setPreviewHeight(height);
       final int mode = state.getViewMode();
@@ -438,9 +441,14 @@ public final class Application {
     case ViewMode.NONE:
       //  change the menu items
       viewAction.showSubAction(ShowInspectorAction.KEY);
-      viewAction.showSubAction(ShowPreviewAction.KEY);
       viewAction.hideSubAction(HideInspectorAction.KEY);
+      viewAction.showSubAction(ShowPreviewAction.KEY);
       viewAction.hideSubAction(HidePreviewAction.KEY);
+      //  change the tool bar items
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, false);
       //  change the action's checking state
       modeAll.setChecked(false);
       modeInspector.setChecked(false);
@@ -449,11 +457,16 @@ public final class Application {
       viewModeAction.setImageDescriptor(modeNone.getImageDescriptor());
       break;
     case ViewMode.INSPECTOR:
-      // change the menu items
+      //  change the menu items
+      viewAction.hideSubAction(ShowInspectorAction.KEY);
       viewAction.showSubAction(HideInspectorAction.KEY);
       viewAction.showSubAction(ShowPreviewAction.KEY);
-      viewAction.hideSubAction(ShowInspectorAction.KEY);
       viewAction.hideSubAction(HidePreviewAction.KEY);
+      //  change the tool bar items
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, false);
       //  change the action's checking state
       modeAll.setChecked(false);
       modeInspector.setChecked(true);
@@ -462,11 +475,16 @@ public final class Application {
       viewModeAction.setImageDescriptor(modeInspector.getImageDescriptor());
       break;
     case ViewMode.PREVIEW:
-      // change the menu items
+      //  change the menu items
       viewAction.showSubAction(ShowInspectorAction.KEY);
-      viewAction.showSubAction(HidePreviewAction.KEY);
       viewAction.hideSubAction(HideInspectorAction.KEY);
       viewAction.hideSubAction(ShowPreviewAction.KEY);
+      viewAction.showSubAction(HidePreviewAction.KEY);
+      //  change the tool bar items
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, true);
       //  change the action's checking state
       modeAll.setChecked(false);
       modeInspector.setChecked(false);
@@ -475,11 +493,16 @@ public final class Application {
       viewModeAction.setImageDescriptor(modePreview.getImageDescriptor());
       break;
     case ViewMode.ALL:
-      // change the menu items
-      viewAction.showSubAction(HideInspectorAction.KEY);
-      viewAction.showSubAction(HidePreviewAction.KEY);
+      //  change the menu items
       viewAction.hideSubAction(ShowInspectorAction.KEY);
+      viewAction.showSubAction(HideInspectorAction.KEY);
       viewAction.hideSubAction(ShowPreviewAction.KEY);
+      viewAction.showSubAction(HidePreviewAction.KEY);
+      //  change the tool bar items
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, true);
       //  change the action's checking state
       modeAll.setChecked(true);
       modeInspector.setChecked(false);
@@ -493,6 +516,7 @@ public final class Application {
     }
     viewModeAction.update(true);
     viewAction.update(true);
+    mainWindow.updateToolBar(true);
     state.setViewMode(mode);
   }
 

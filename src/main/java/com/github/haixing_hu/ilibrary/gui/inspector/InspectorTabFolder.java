@@ -130,7 +130,7 @@ public final class InspectorTabFolder extends Composite {
     case REVIEWS:
       stackLayout.topControl = reviewsTab;
       break;
-    case FILES:
+    case OVERVIEW:
       stackLayout.topControl = filesTab;
       break;
     default:

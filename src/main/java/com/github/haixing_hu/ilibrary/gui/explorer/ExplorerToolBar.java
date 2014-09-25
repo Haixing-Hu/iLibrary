@@ -31,7 +31,7 @@ import com.github.haixing_hu.ilibrary.action.library.OpenUrlAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
 import com.github.haixing_hu.ilibrary.action.view.ReadFullScreenAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewModeAction;
-import com.github.haixing_hu.ilibrary.gui.BasicToolBar;
+import com.github.haixing_hu.ilibrary.gui.util.BasicToolBar;
 
 /**
  * The tool bar in the library panel.

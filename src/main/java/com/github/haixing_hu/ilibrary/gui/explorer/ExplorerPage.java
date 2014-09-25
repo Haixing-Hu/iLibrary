@@ -38,7 +38,6 @@ import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The {@link ExplorerPage} class is the base class for all pages in which
@@ -59,15 +58,14 @@ public abstract class ExplorerPage extends Page  {
   private final Sash sash;
   private final ExplorerPanel explorer;
 
-  public ExplorerPage(Application application, Composite parent) {
+  public ExplorerPage(Application application, Composite parent, String title) {
     super(application, parent);
     this.application = application;
     final AppConfig config = application.getConfig();
     final String sashKey = MainWindow.KEY + KeySuffix.SASH + KeySuffix.VERTICAL;
     sashWidth = config.getInt(sashKey + KeySuffix.WIDTH);
-    final String rgb = config.getString(sashKey + KeySuffix.COLOR);
-    sashColor = SWTResourceManager.getColor(rgb);
-    navigator = new NavigatorPanel(application, this);
+    sashColor = config.getColor(sashKey + KeySuffix.COLOR);
+    navigator = new NavigatorPanel(application, this, title);
     sash = new Sash(this, SWT.VERTICAL | SWT.BORDER);
     explorer  = new ExplorerPanel(application, this);
     layoutContents();
@@ -111,8 +109,10 @@ public abstract class ExplorerPage extends Page  {
   }
 
   private void configSash() {
-    sash.setForeground(sashColor);
-    sash.setBackground(sashColor);
+    if (sashColor != null) {
+      sash.setForeground(sashColor);
+      sash.setBackground(sashColor);
+    }
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event) {
@@ -171,6 +171,15 @@ public abstract class ExplorerPage extends Page  {
     return explorer.getPreview();
   }
 
+  /**
+   * Gets the tool bar on the footer.
+   *
+   * @return the tool bar on the footer.
+   */
+  public ExplorerFooterToolBar getFooterToolBar() {
+    return explorer.getFooterToolBar();
+  }
+
   @Override
   public void setNavigatorWidth(int width) {
     final FormData fd_sash = (FormData) sash.getLayoutData();
@@ -197,5 +206,35 @@ public abstract class ExplorerPage extends Page  {
   @Override
   public void setInspectorTab(InspectorTab tab) {
     explorer.setInspectorTab(tab);
+  }
+
+  /**
+   * Set the visibility of an action on the tool bar of this page.
+   *
+   * <b>NOTE:</b> After calling this function, the {@link #update(true)}
+   * or {@link #updateAll(true)} must be called in order to rebuild all
+   * the tool items created by the tool bar.
+   *
+   * @param id
+   *          the ID of the action whose visibility is to be set.
+   * @param visible
+   *          the visibility to be set.
+   */
+  @Override
+  public void setToolBarActionVisibility(String id, boolean visible) {
+    final ExplorerFooterToolBar toolBar = this.getFooterToolBar();
+    toolBar.setActionVisibility(id, visible);
+  }
+
+  /**
+   * Updates the tool bar.
+   *
+   * @param force
+   *    true means update even if not dirty, and false for normal incremental updating.
+   */
+  @Override
+  public void updateToolBar(boolean force) {
+    final ExplorerFooterToolBar toolBar = this.getFooterToolBar();
+    toolBar.updateToolBar(force);
   }
 }

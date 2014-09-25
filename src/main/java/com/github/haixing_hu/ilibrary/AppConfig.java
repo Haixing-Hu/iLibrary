@@ -31,6 +31,8 @@ import java.util.Properties;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -44,6 +46,8 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
+
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The global configuration of the application.
@@ -325,7 +329,7 @@ public final class AppConfig implements ApplicationContext, Configuration {
    *
    * @param key
    *          the key of a specified action.
-   * @return the URL of the icon the specified action, or null if it has no icon.
+   * @return the URL of the icon the specified action, or null if it has none.
    */
   public String getIcon(String key) {
     logger.debug("Getting icon: {}", key);
@@ -334,6 +338,23 @@ public final class AppConfig implements ApplicationContext, Configuration {
       icon = null;
     }
     logger.debug("Find the icon for {}: {}", key, icon);
+    return icon;
+  }
+
+  /**
+   * Gets the URL of the active icon of an action.
+   *
+   * @param key
+   *          the key of a specified action.
+   * @return the URL of the active icon the specified action, or null if it has none.
+   */
+  public String getActiveIcon(String key) {
+    logger.debug("Getting active icon: {}", key);
+    String icon = config.getString(key + KeySuffix.ICON + KeySuffix.ACTIVE);
+    if (StringUtils.isEmpty(icon)) {
+      icon = null;
+    }
+    logger.debug("Find the active icon for {}: {}", key, icon);
     return icon;
   }
 
@@ -619,4 +640,39 @@ public final class AppConfig implements ApplicationContext, Configuration {
     return config.getList(key, defaultValue);
   }
 
+  /**
+   * Gets the color specified by a key.
+   *
+   * @param key
+   *          the key.
+   * @return the color specified by the key. The color must be specified in the
+   *         RGB form "#aabbcc". If there is no value corresponding to the
+   *         specified key, returns null.
+   */
+  public Color getColor(String key) {
+    final String rgb = getString(key, null);
+    if (rgb == null) {
+      return null;
+    } else {
+      return SWTResourceManager.getColor(rgb);
+    }
+  }
+
+  /**
+   * Gets the image specified by a key.
+   *
+   * @param key
+   *          the key.
+   * @return the image specified by the key. The image must be specified as
+   *         the path of a resource. If there is no value corresponding to the
+   *         specified key, returns null.
+   */
+  public Image getImage(Class<?> cls, String key) {
+    final String url = getString(key, null);
+    if (url == null) {
+      return null;
+    } else {
+      return SWTResourceManager.getImage(cls, url);
+    }
+  }
 }

@@ -19,16 +19,16 @@
 package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to show the reviews of the current document.
+ * The action to show the reviews tab of the inspector panel.
  *
  * @author Haixing Hu
  */
-public class InspectorReviewsTabAction extends BaseCheckBoxAction {
+public class InspectorReviewsTabAction extends BaseAction {
 
   public static final String KEY = WindowAction.KEY + ".reviews";
 

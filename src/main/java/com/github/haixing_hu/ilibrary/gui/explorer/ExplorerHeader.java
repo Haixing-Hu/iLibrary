@@ -39,6 +39,7 @@ import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
 import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.gui.BasicHeader;
+import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
 
 /**
  * The header in the library panel.
@@ -73,6 +74,7 @@ public final class ExplorerHeader extends BasicHeader {
   };
 
   public ExplorerHeader(Application application, Composite parent) {
-    super(application, parent, ACTIONS);
+    super(application, parent, KEY,
+        new ActionListToolBarCreator(application, ACTIONS));
   }
 }

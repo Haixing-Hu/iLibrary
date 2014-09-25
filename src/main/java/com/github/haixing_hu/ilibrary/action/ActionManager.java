@@ -172,7 +172,7 @@ import com.github.haixing_hu.ilibrary.action.view.ZoomToFitAction;
 import com.github.haixing_hu.ilibrary.action.window.CloseAllTabsAction;
 import com.github.haixing_hu.ilibrary.action.window.CloseTabAction;
 import com.github.haixing_hu.ilibrary.action.window.CycleTabsAction;
-import com.github.haixing_hu.ilibrary.action.window.InspectorFilesTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorOverviewTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorInfoTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorNotesTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorReviewsTabAction;
@@ -361,7 +361,7 @@ public final class ActionManager implements IActionManager {
     add(new InspectorInfoTabAction(application, this));
     add(new InspectorNotesTabAction(application, this));
     add(new InspectorReviewsTabAction(application, this));
-    add(new InspectorFilesTabAction(application, this));
+    add(new InspectorOverviewTabAction(application, this));
     add(new CycleTabsAction(application, this));
     add(new PreviousTabAction(application, this));
     add(new NextTabAction(application, this));

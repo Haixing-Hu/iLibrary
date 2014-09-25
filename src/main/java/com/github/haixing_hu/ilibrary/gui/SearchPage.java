@@ -68,4 +68,16 @@ public class SearchPage extends Page {
     // TODO Auto-generated method stub
 
   }
+
+  @Override
+  public void setToolBarActionVisibility(String id, boolean visible) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void updateToolBar(boolean force) {
+    // TODO Auto-generated method stub
+
+  }
 }

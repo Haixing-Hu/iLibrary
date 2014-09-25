@@ -18,8 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.action;
 
-import javax.annotation.Nullable;
-
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -27,8 +25,8 @@ import org.eclipse.swt.widgets.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -45,6 +43,10 @@ public class BaseAction extends ActionEx {
   protected final Application application;
   protected final IActionManager actionManager;
   protected final Logger logger;
+  protected final String title;
+  protected final String shortcut;
+  protected final ImageDescriptor icon;
+  protected final ImageDescriptor activeIcon;
 
   /**
    * Constructs an action.
@@ -80,8 +82,8 @@ public class BaseAction extends ActionEx {
     this.logger = LoggerFactory.getLogger(this.getClass());
     this.setId(id);
     final AppConfig config = application.getConfig();
-    final String title = config.getTitle(id);
-    final String shortcut = config.getShortcut(id);
+    title = config.getTitle(id);
+    shortcut = config.getShortcut(id);
     if (shortcut == null) {
       this.setText(title);
     } else {
@@ -89,15 +91,26 @@ public class BaseAction extends ActionEx {
     }
     final String description = config.getDescription(id);
     if (description != null) {
+      this.setDescription(description);
       this.setToolTipText(description);
     } else {
       this.setToolTipText(title);
     }
-    final String icon = config.getIcon(id);
-    if (icon != null) {
-      final Image img = SWTResourceManager.getImage(this.getClass(), icon);
-      final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
-      this.setImageDescriptor(imgdes);
+    final String iconPath = config.getIcon(id);
+    if (iconPath != null) {
+      final Image img = SWTResourceManager.getImage(this.getClass(), iconPath);
+      icon = ImageDescriptor.createFromImage(img);
+      this.setImageDescriptor(icon);
+    } else {
+      icon = null;
+    }
+    final String activeIconPath = config.getActiveIcon(id);
+    if (activeIconPath != null) {
+      final Image img = SWTResourceManager.getImage(this.getClass(), activeIconPath);
+      activeIcon = ImageDescriptor.createFromImage(img);
+      //this.setHoverImageDescriptor(activeIcon);
+    } else {
+      activeIcon = null;
     }
   }
 
@@ -111,19 +124,51 @@ public class BaseAction extends ActionEx {
   }
 
   /**
-   * Sets the image of this action.
+   * Gets the title.
    *
-   * @param path
-   *    the resource path of the image to be set, which could be null.
+   * @return the title.
    */
-  public void setImage(@Nullable String path) {
-    if (path == null) {
-      this.setImageDescriptor(null);
+  public String getTitle() {
+    return title;
+  }
+
+  /**
+   * Gets the shortcut.
+   *
+   * @return the shortcut.
+   */
+  public String getShortcut() {
+    return shortcut;
+  }
+
+  /**
+   * Gets the icon.
+   *
+   * @return the icon.
+   */
+  public ImageDescriptor getIcon() {
+    return icon;
+  }
+
+  /**
+   * Gets the active icon.
+   *
+   * @return the active icon.
+   */
+  public ImageDescriptor getActiveIcon() {
+    return activeIcon;
+  }
+
+  @Override
+  public void setChecked(boolean checked) {
+    super.setChecked(checked);
+    if (checked) {
+      if (activeIcon != null) {
+        this.setImageDescriptor(activeIcon);
+      }
     } else {
-      final Image img = SWTResourceManager.getImage(this.getClass(), path);
-      if (img != null) {
-        final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
-        this.setImageDescriptor(imgdes);
+      if (icon != null) {
+        this.setImageDescriptor(icon);
       }
     }
   }

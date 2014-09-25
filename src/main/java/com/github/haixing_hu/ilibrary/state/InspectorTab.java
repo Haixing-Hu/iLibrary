@@ -26,11 +26,11 @@ package com.github.haixing_hu.ilibrary.state;
  */
 public enum InspectorTab {
 
+  OVERVIEW,
+
   INFO,
 
   NOTES,
 
   REVIEWS,
-
-  FILES,
 }

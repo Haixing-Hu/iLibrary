@@ -30,7 +30,6 @@ import org.w3c.dom.Document;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
 import com.github.haixing_hu.text.xml.XmlUtils;
 
 /**
@@ -64,10 +63,10 @@ public class NavigatorTree extends TreeViewer {
     } catch (final Exception e) {
       LOGGER.error("Failed to parse the XML file: {}", input);
     }
+
     final Tree tree = this.getTree();
-    //  set the background color
-    final String bgcolor = config.getString(KEY + KeySuffix.BACKGROUND_COLOR);
-    final Color color = SWTResourceManager.getColor(bgcolor);
+    //   set the background color
+    final Color color = config.getColor(KEY + KeySuffix.BACKGROUND_COLOR);
     if (color != null) {
       tree.setBackground(color);
     }

@@ -32,7 +32,6 @@ import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The main panel of explorer pages.
@@ -60,8 +59,7 @@ public class ExplorerPanel extends Composite {
     this.maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
     final String sashKey = MainWindow.KEY + KeySuffix.SASH + KeySuffix.VERTICAL;
     this.sashWidth = config.getInt(sashKey + KeySuffix.WIDTH);
-    final String rgb = config.getString(sashKey + KeySuffix.COLOR);
-    this.sashColor = SWTResourceManager.getColor(rgb);
+    this.sashColor = config.getColor(sashKey + KeySuffix.COLOR);
     this.content = new ExplorerContentPanel(application, this);
     this.sash = new Sash(this, SWT.VERTICAL | SWT.BORDER | SWT.SMOOTH);
     this.inspector = new InspectorPanel(application, this);
@@ -105,8 +103,10 @@ public class ExplorerPanel extends Composite {
   }
 
   private void configSash() {
-    sash.setForeground(sashColor);
-    sash.setBackground(sashColor);
+    if (sashColor != null) {
+      sash.setForeground(sashColor);
+      sash.setBackground(sashColor);
+    }
     sash.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event) {
@@ -162,6 +162,15 @@ public class ExplorerPanel extends Composite {
    */
   public PreviewPanel getPreview() {
     return content.getPreview();
+  }
+
+  /**
+   * Gets the tool bar on the footer.
+   *
+   * @return the tool bar on the footer.
+   */
+  public ExplorerFooterToolBar getFooterToolBar() {
+    return content.getFooterToolBar();
   }
 
   /**

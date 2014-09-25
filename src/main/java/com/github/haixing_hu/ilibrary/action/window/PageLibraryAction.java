@@ -19,7 +19,7 @@
 package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.swt.action.IActionManager;
 
@@ -28,7 +28,7 @@ import com.github.haixing_hu.swt.action.IActionManager;
  *
  * @author Haixing Hu
  */
-public class PageLibraryAction extends BaseCheckBoxAction {
+public class PageLibraryAction extends BaseAction {
 
   public static final String KEY = WindowAction.KEY + ".library";
 

@@ -18,6 +18,7 @@
 
 package com.github.haixing_hu.ilibrary.gui;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
@@ -27,6 +28,7 @@ import com.github.haixing_hu.ilibrary.action.window.PageReaderAction;
 import com.github.haixing_hu.ilibrary.action.window.PageSearchAction;
 import com.github.haixing_hu.ilibrary.action.window.PageSourcesAction;
 import com.github.haixing_hu.ilibrary.action.window.PageTagsAction;
+import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
 
 /**
  * The header of main window.
@@ -37,7 +39,7 @@ public class MainWindowHeader extends BasicHeader {
 
   public static final String KEY = MainWindow.KEY + ".header";
 
-  private static final String[] ACTION_KEYS = {
+  private static final String ACTION_KEYS[] = {
     PageSearchAction.KEY,
     PageLibraryAction.KEY,
     PageTagsAction.KEY,
@@ -47,6 +49,7 @@ public class MainWindowHeader extends BasicHeader {
   };
 
   public MainWindowHeader(Application application, Composite parent) {
-    super(application, parent, ACTION_KEYS);
+    super(application, parent, KEY,
+        new ActionListToolBarCreator(application, ACTION_KEYS), SWT.CENTER);
   }
 }

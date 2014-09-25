@@ -33,6 +33,8 @@ public interface KeySuffix {
 
   public static final String ICON = ".icon";
 
+  public static final String ACTIVE = ".active";
+
   public static final String COLOR = ".color";
 
   public static final String BACKGROUND_IMAGE = ".background-image";

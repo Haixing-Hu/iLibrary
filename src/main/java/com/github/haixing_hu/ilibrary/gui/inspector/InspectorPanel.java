@@ -45,6 +45,7 @@ public class InspectorPanel extends Composite {
   private final int maxWidth;
   private final InspectorHeader header;
   private final InspectorTabFolder tabFolder;
+  private final InspectorFooter footer;
 
   public InspectorPanel(Application application, Composite parent) {
     super(parent, SWT.NONE);
@@ -55,6 +56,7 @@ public class InspectorPanel extends Composite {
     maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
     header = new InspectorHeader(application, this);
     tabFolder = new InspectorTabFolder(application, this);
+    footer = new InspectorFooter(application, this);
     layoutContents();
   }
 
@@ -78,10 +80,17 @@ public class InspectorPanel extends Composite {
 
     final FormData fd_tabFolder = new FormData();
     fd_tabFolder.top = new FormAttachment(header);
-    fd_tabFolder.bottom = new FormAttachment(100);
+    fd_tabFolder.bottom = new FormAttachment(footer);
     fd_tabFolder.left = new FormAttachment(0);
     fd_tabFolder.right = new FormAttachment(100);
     tabFolder.setLayoutData(fd_tabFolder);
+
+    final FormData fd_footer = new FormData();
+    fd_footer.top = new FormAttachment(100, - footer.getHeight());
+    fd_footer.bottom = new FormAttachment(100);
+    fd_footer.left = new FormAttachment(0);
+    fd_footer.right = new FormAttachment(100);
+    footer.setLayoutData(fd_footer);
   }
 
   /**

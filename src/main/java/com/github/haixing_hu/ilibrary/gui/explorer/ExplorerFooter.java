@@ -19,9 +19,11 @@
 package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.gui.BasicFooter;
+import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The footer in the explorer panel.
@@ -40,7 +42,16 @@ public class ExplorerFooter extends BasicFooter {
    * @param parent
    *    the parent of the new footer.
    */
-  public ExplorerFooter(Application application, Composite parent) {
-    super(application, parent);
+  public ExplorerFooter(final Application application, final Composite parent) {
+    super(application, parent, KEY, new ControlCreator() {
+      @Override
+      public Control create(Composite parent) {
+        return new ExplorerFooterToolBar(application, parent);
+      }
+    });
+  }
+
+  public ExplorerFooterToolBar getToolBar() {
+    return (ExplorerFooterToolBar) control;
   }
 }

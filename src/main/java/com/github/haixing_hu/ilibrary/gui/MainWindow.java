@@ -30,6 +30,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
@@ -38,6 +39,7 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
+import com.github.haixing_hu.lang.SystemUtils;
 import com.github.haixing_hu.swt.menu.MenuManagerEx;
 import com.github.haixing_hu.swt.window.ApplicationWindowEx;
 
@@ -57,6 +59,7 @@ public final class MainWindow extends ApplicationWindowEx {
   private final int minWidth;
   private final Page pages[];
   private MainMenuBar menuBar;
+  private Label topSeparator;
   private MainWindowHeader header;
   private Composite tabFolder;
   private StackLayout stackLayout;
@@ -75,6 +78,12 @@ public final class MainWindow extends ApplicationWindowEx {
   }
 
   @Override
+  protected MenuManagerEx createMenuManager() {
+    menuBar = new MainMenuBar(application);
+    return menuBar;
+  }
+
+  @Override
   protected Layout getLayout() {
     final FormLayout layout = new FormLayout();
     layout.marginTop = 0;
@@ -89,10 +98,27 @@ public final class MainWindow extends ApplicationWindowEx {
 
   @Override
   protected Control createContents(Composite parent) {
+    final int offset;
+    if (SystemUtils.IS_OS_WINDOWS) {
+      //  fix a UI bug in Windows
+      topSeparator = new Label(parent, SWT.HORIZONTAL | SWT.SEPARATOR);
+      topSeparator.pack();
+      offset = topSeparator.getSize().y;
+      final FormData fd_top = new FormData();
+      fd_top.top = new FormAttachment(0);
+      fd_top.bottom = new FormAttachment(0, offset);
+      fd_top.left = new FormAttachment(0);
+      fd_top.right = new FormAttachment(100);
+      topSeparator.setLayoutData(fd_top);
+    } else {
+      topSeparator = null;
+      offset = 0;
+    }
+
     header = new MainWindowHeader(application, parent);
     final FormData fd_header = new FormData();
     fd_header.top = new FormAttachment(0);
-    fd_header.bottom = new FormAttachment(0, header.getHeight());
+    fd_header.bottom = new FormAttachment(0, header.getHeight() + offset);
     fd_header.left = new FormAttachment(0);
     fd_header.right = new FormAttachment(100);
     header.setLayoutData(fd_header);
@@ -119,12 +145,6 @@ public final class MainWindow extends ApplicationWindowEx {
 
     stackLayout.topControl = pages[Page.LIBRARY];
     return parent;
-  }
-
-  @Override
-  protected MenuManagerEx createMenuManager() {
-    menuBar = new MainMenuBar(application);
-    return menuBar;
   }
 
   /**
@@ -383,5 +403,36 @@ public final class MainWindow extends ApplicationWindowEx {
     }
     stackLayout.topControl = pages[page];
     tabFolder.layout();
+  }
+
+
+  /**
+   * Set the visibility of an action on the tool bar of all pages.
+   *
+   * <b>NOTE:</b> After calling this function, the {@link #update(true)}
+   * or {@link #updateAll(true)} must be called in order to rebuild all
+   * the tool items created by the tool bar.
+   *
+   * @param id
+   *          the ID of the action whose visibility is to be set.
+   * @param visible
+   *          the visibility to be set.
+   */
+  public void setToolBarActionVisibility(String id, boolean visible) {
+    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+      pages[i].setToolBarActionVisibility(id, visible);
+    }
+  }
+
+  /**
+   * Updates the tool bar on all pages.
+   *
+   * @param force
+   *    true means update even if not dirty, and false for normal incremental updating.
+   */
+  public void updateToolBar(boolean force) {
+    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+      pages[i].updateToolBar(force);
+    }
   }
 }

@@ -19,73 +19,190 @@
 package com.github.haixing_hu.ilibrary.gui;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
+import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
- * The base class for the footers in the tabs of the main panel.
+ * The base class for the footers.
  *
  * @author Haixing Hu
  */
 public class BasicFooter extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".footer";
+  /**
+   * The default style of the footer.
+   */
+  public static final int DEFAULT_STYLE = SWT.LEFT | SWT.SEPARATOR;
 
   protected final Application application;
+  protected final int style;
+  protected final Label separator;
+  protected final Control control;
   protected final int height;
-  protected final String background;
-  protected final int fontSize;
-  protected final CLabel label;
+  protected final int marginWidth;
+  protected final Color backgroundColor;
+  protected final Image backgroundImage;
 
   /**
-   * Creates a status line.
+   * Creates a footer with the default style.
    *
    * @param application
    *    the application.
    * @param parent
-   *    the parent of the new status line.
-   * @param style
-   *    the style of the new status line.
+   *    the parent of the footer.
+   * @param key
+   *    the key of the footer.
+   * @param creator
+   *    the creator of a control.
+   * @see {@link #DEFAULT_STYLE}
    */
-  public BasicFooter(Application application, Composite parent) {
+  public BasicFooter(Application application, Composite parent,
+      String key, ControlCreator creator) {
+    this(application, parent, key, creator, DEFAULT_STYLE);
+  }
+
+  /**
+   * Creates a footer.
+   *
+   * @param application
+   *          the application.
+   * @param parent
+   *          the parent of the footer.
+   * @param key
+   *          the key of the footer.
+   * @param creator
+   *          the creator of a control.
+   * @param style
+   *          the style of the control, specifying the alignment of the control
+   *          in the footer, which should be the combination of the following
+   *          values:
+   *          <ul>
+   *          <li>SWT.LEFT: indicates that the control will be left aligned.</li>
+   *          <li>SWT.CENTER: indicates that the control will be center aligned.</li>
+   *          <li>SWT.RIGHT: indicates that the control will be right aligned.</li>
+   *          <li>SWT.SEPARATOR: indicates that the header will have a horizontal
+   *          separator at the top.</li>
+   *          </ul>
+   */
+  public BasicFooter(Application application, Composite parent,
+      String key, ControlCreator creator, int style) {
     super(parent, SWT.NONE);
     this.application = application;
+    this.style = style;
+    if ((style & SWT.SEPARATOR) != 0) {
+      separator = new Label(this, SWT.HORIZONTAL | SWT.SEPARATOR);
+    } else {
+      separator = null;
+    }
+    control = creator.create(this);
     final AppConfig config = application.getConfig();
-    height = config.getInt(KEY + KeySuffix.HEIGHT);
-    background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
-    fontSize = config.getInt(KEY + KeySuffix.FONT_SIZE);
-    this.setLayout(new FillLayout());
-    label = new CLabel(this, SWT.NONE);
-    final Image img = SWTResourceManager.getImage(this.getClass(), background);
-    this.setBackgroundImage(img);
-    label.setBackground(img);
-    label.setAlignment(SWT.CENTER);
-    final Font font = SWTResourceManager.changeFontSize(label.getFont(), fontSize);
-    label.setFont(font);
+    height = config.getInt(key + KeySuffix.HEIGHT);
+    marginWidth = config.getInt(key + KeySuffix.MARGIN_WIDTH);
+    backgroundColor = config.getColor(key + KeySuffix.BACKGROUND_COLOR);
+    backgroundImage = config.getImage(this.getClass(), key + KeySuffix.BACKGROUND_IMAGE);
+    layoutContents();
   }
 
+  protected void layoutContents() {
+    final int alignment = (style & (SWT.LEFT | SWT.CENTER | SWT.RIGHT));
+    if (alignment == SWT.CENTER) {
+      final GridLayout layout = new GridLayout(1, true);
+      layout.horizontalSpacing = 0;
+      layout.verticalSpacing = 0;
+      layout.marginLeft = 0;
+      layout.marginTop = 0;
+      layout.marginRight = 0;
+      layout.marginBottom = 0;
+      layout.marginHeight = 0;
+      layout.marginWidth = 0;
+      this.setLayout(layout);
+      if (separator != null) {
+        final GridData gd_separator = new GridData(GridData.FILL_HORIZONTAL);
+        separator.setLayoutData(gd_separator);
+      }
+      final GridData gd_control = new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1);
+      control.setLayoutData(gd_control);
+    } else {
+      final FormLayout layout = new FormLayout();
+      layout.marginTop = 0;
+      layout.marginBottom = 0;
+      layout.marginLeft = 0;
+      layout.marginRight = 0;
+      layout.marginHeight = 0;
+      layout.marginWidth = 0;
+      layout.spacing = 0;
+      this.setLayout(layout);
+      final int separatorHeight;
+      if (separator == null) {
+        separatorHeight = 0;
+      } else {
+        separator.pack();
+        separatorHeight = separator.getSize().y;
+        final FormData fd_separator = new FormData();
+        fd_separator.left = new FormAttachment(0);
+        fd_separator.right = new FormAttachment(100);
+        fd_separator.top = new FormAttachment(0);
+        fd_separator.bottom = new FormAttachment(0, separatorHeight);
+        separator.setLayoutData(fd_separator);
+      }
+      control.pack();
+      final Point controlSize = control.getSize();
+      final int marginHeight = (height - separatorHeight - controlSize.y) / 2;
+      final FormData fd_control = new FormData();
+
+      switch (alignment) {
+      case SWT.RIGHT:
+        fd_control.left = new FormAttachment(100, - controlSize.x - marginWidth);
+        fd_control.right = new FormAttachment(100, - marginWidth);
+        break;
+      case SWT.LEFT:
+      default:
+        fd_control.left = new FormAttachment(0, marginWidth);
+        fd_control.right = new FormAttachment(100, - marginWidth);
+        break;
+      }
+      fd_control.top = new FormAttachment(0, separatorHeight + marginHeight);
+      fd_control.bottom = new FormAttachment(0, height - marginHeight);
+      control.setLayoutData(fd_control);
+    }
+    if (backgroundColor != null) {
+      this.setBackground(backgroundColor);
+      control.setBackground(backgroundColor);
+    }
+    if (backgroundImage != null) {
+      this.setBackgroundImage(backgroundImage);
+      control.setBackgroundImage(backgroundImage);
+    }
+  }
+
+
   /**
-   * Sets the message of the status line.
+   * Gets the control on this footer.
    *
-   * @param message
-   *    the message to be set.
+   * @return the control on this footer.
    */
-  public final void setMessage(String message) {
-    label.setText(message);
+  public Control getControl() {
+    return control;
   }
 
   /**
-   * Gets the height of this status line.
+   * Gets the height of this footer.
    *
-   * @return the height of this status line.
+   * @return the height of this footer.
    */
   public final int getHeight() {
     return height;

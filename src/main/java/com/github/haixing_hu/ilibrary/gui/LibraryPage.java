@@ -17,6 +17,8 @@ package com.github.haixing_hu.ilibrary.gui;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.action.window.PageLibraryAction;
 import com.github.haixing_hu.ilibrary.gui.explorer.ExplorerPage;
 
 /**
@@ -29,7 +31,8 @@ public class LibraryPage extends ExplorerPage {
   public static final String KEY = MainWindow.KEY + ".library";
 
   public LibraryPage(Application application, Composite parent) {
-    super(application, parent);
+    super(application, parent,
+        ((BaseAction) application.getActionManager().get(PageLibraryAction.KEY)).getTitle());
   }
 
   @Override

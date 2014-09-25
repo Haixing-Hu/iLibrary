@@ -18,106 +18,34 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
-import org.eclipse.jface.action.ToolBarManager;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.ToolBar;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.action.window.InspectorFilesTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorInfoTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorNotesTabAction;
+import com.github.haixing_hu.ilibrary.action.window.InspectorOverviewTabAction;
 import com.github.haixing_hu.ilibrary.action.window.InspectorReviewsTabAction;
-import com.github.haixing_hu.ilibrary.gui.MainWindow;
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
+import com.github.haixing_hu.ilibrary.gui.BasicHeader;
+import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
 
 /**
  * The header of the inspector tab folder.
  *
  * @author Haixing Hu
  */
-public final class InspectorHeader extends Composite {
+public final class InspectorHeader extends BasicHeader {
 
-  public static final String KEY = MainWindow.KEY + ".header";
+  public static final String KEY = InspectorPanel.KEY + ".header";
 
-  private final Application application;
-  private final int height;
-  private final int marginWidth;
-  private final String backgroundImage;
-  private final ToolBarManager toolBarManager;
+  private static final String ACTION_KEYS[] = {
+    InspectorOverviewTabAction.KEY,
+    InspectorInfoTabAction.KEY,
+    InspectorNotesTabAction.KEY,
+    InspectorReviewsTabAction.KEY,
+  };
 
-  public InspectorHeader(Application application, Composite parent) {
-    super(parent, SWT.NONE);
-    this.application = application;
-    final AppConfig config = application.getConfig();
-    height = config.getInt(KEY + KeySuffix.HEIGHT);
-    marginWidth = config.getInt(KEY + KeySuffix.MARGIN_WIDTH);
-    backgroundImage = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
-
-    toolBarManager = new ToolBarManager(SWT.FLAT);
-    final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.get(InspectorInfoTabAction.KEY));
-    toolBarManager.add(am.get(InspectorNotesTabAction.KEY));
-    toolBarManager.add(am.get(InspectorReviewsTabAction.KEY));
-    toolBarManager.add(am.get(InspectorFilesTabAction.KEY));
-    toolBarManager.createControl(this);
-    layoutContents();
+  public InspectorHeader(final Application application, final Composite parent) {
+    super(application, parent, KEY,
+        new ActionListToolBarCreator(application, ACTION_KEYS));
   }
-
-  private void layoutContents() {
-    final GridLayout layout = new GridLayout(1, true);
-    layout.horizontalSpacing = 0;
-    layout.verticalSpacing = 0;
-    layout.marginLeft = 0;
-    layout.marginTop = 0;
-    layout.marginRight = 0;
-    layout.marginBottom = 0;
-    layout.marginHeight = 0;
-    layout.marginWidth = marginWidth;
-    this.setLayout(layout);
-
-    final Image bgImg = SWTResourceManager.getImage(InspectorHeader.class, backgroundImage);
-    this.setBackgroundImage(bgImg);
-
-    final ToolBar toolBar = toolBarManager.getControl();
-    final GridData gd_toolBar = new GridData(SWT.FILL, SWT.CENTER, true, true, 1, 1);
-    toolBar.setLayoutData(gd_toolBar);
-    //  in order to be compatible on multi-platforms, we must set the
-    //  background image on both this composite and the tool bar.
-    toolBar.setBackgroundImage(bgImg);
-  }
-
-  /**
-   * Gets the application.
-   *
-   * @return the application.
-   */
-  public Application getApplication() {
-    return application;
-  }
-
-  /**
-   * Gets the tool bar manager.
-   *
-   * @return the tool bar manager.
-   */
-  public ToolBarManager getToolBarManager() {
-    return toolBarManager;
-  }
-
-  /**
-   * Gets the height.
-   *
-   * @return the height.
-   */
-  public int getHeight() {
-    return height;
-  }
-
 }

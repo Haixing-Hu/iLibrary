@@ -50,7 +50,6 @@ public class ExplorerContentPanel extends Composite {
   private final ExplorerTableViewer tableViewer;
   private final Sash sash;
   private final PreviewPanel preview;
-  private final ExplorerToolBar toolBar;
   private final ExplorerFooter footer;
 
   public ExplorerContentPanel(Application application, Composite parent) {
@@ -64,7 +63,6 @@ public class ExplorerContentPanel extends Composite {
     this.tableViewer = new ExplorerTableViewer(application, this);
     this.sash = new Sash(this, SWT.HORIZONTAL | SWT.BORDER | SWT.SMOOTH);
     this.preview = new PreviewPanel(application, this);
-    this.toolBar = new ExplorerToolBar(application, this);
     this.footer = new ExplorerFooter(application, this);
     layoutContents();
     configSash();
@@ -97,29 +95,21 @@ public class ExplorerContentPanel extends Composite {
     tableViewer.getTable().setLayoutData(fd_viewer);
 
     final int previewHeight = preview.getDefaultHeight();
-    final int toolBarHeight = toolBar.getHeight();
     final int footerHeight = footer.getHeight();
 
     final FormData fd_sash = new FormData();
     fd_sash.left = new FormAttachment(0);
     fd_sash.right = new FormAttachment(100);
-    fd_sash.top = new FormAttachment(100, - footerHeight - toolBarHeight - previewHeight - sashHeight);
-    fd_sash.bottom = new FormAttachment(100, - footerHeight - toolBarHeight - previewHeight);
+    fd_sash.top = new FormAttachment(100, - footerHeight - previewHeight - sashHeight);
+    fd_sash.bottom = new FormAttachment(100, - footerHeight - previewHeight);
     sash.setLayoutData(fd_sash);
 
     final FormData fd_preview = new FormData();
     fd_preview.left = new FormAttachment(0);
     fd_preview.right = new FormAttachment(100);
     fd_preview.top = new FormAttachment(sash);
-    fd_preview.bottom = new FormAttachment(100, - footerHeight - toolBarHeight);
+    fd_preview.bottom = new FormAttachment(100, - footerHeight);
     preview.setLayoutData(fd_preview);
-
-    final FormData fd_toolBar = new FormData();
-    fd_toolBar.left = new FormAttachment(0);
-    fd_toolBar.right = new FormAttachment(100);
-    fd_toolBar.top = new FormAttachment(100, - footerHeight - toolBarHeight);
-    fd_toolBar.bottom = new FormAttachment(100, - footerHeight);
-    toolBar.setLayoutData(fd_toolBar);
 
     final FormData fd_footer = new FormData();
     fd_footer.left = new FormAttachment(0);
@@ -138,13 +128,12 @@ public class ExplorerContentPanel extends Composite {
         final Rectangle rect = sash.getParent().getClientArea();
         final int headerHeight = header.getHeight();
         final int footerHeight = footer.getHeight();
-        final int toolBarHeight = toolBar.getHeight();
-        final int delta = rect.height - sashHeight - footerHeight - toolBarHeight;
+        final int delta = rect.height - sashHeight - footerHeight;
         int height = delta - event.y;
         height = Math.max(height, preview.getMinHeight());
         height = Math.min(height, preview.getMaxHeight());
         height = Math.min(height, rect.height - headerHeight
-            - tableViewer.getMinHeight() - sashHeight - footerHeight - toolBarHeight);
+            - tableViewer.getMinHeight() - sashHeight - footerHeight);
         // it's important to modify the event.y
         event.y = delta - height;
         if (event.detail != SWT.DRAG) {
@@ -166,12 +155,17 @@ public class ExplorerContentPanel extends Composite {
     return preview;
   }
 
-  public ExplorerToolBar getToolBar() {
-    return toolBar;
-  }
-
   public ExplorerFooter getFooter() {
     return footer;
+  }
+
+  /**
+   * Gets the tool bar on the footer.
+   *
+   * @return the tool bar on the footer.
+   */
+  public ExplorerFooterToolBar getFooterToolBar() {
+    return footer.getToolBar();
   }
 
   /**
@@ -186,7 +180,7 @@ public class ExplorerContentPanel extends Composite {
    */
   public void setPreviewHeight(int height) {
     final FormData fd_sash = (FormData) sash.getLayoutData();
-    final int offset = - toolBar.getHeight() - footer.getHeight();
+    final int offset = - footer.getHeight();
     if (height <= 0) {
       fd_sash.top = new FormAttachment(100, offset);
       fd_sash.bottom = new FormAttachment(100, offset);

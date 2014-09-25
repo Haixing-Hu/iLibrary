@@ -127,4 +127,28 @@ public abstract class Page extends Composite {
    *          the tab to be switched to.
    */
   public abstract void setInspectorTab(InspectorTab tab);
+
+  /**
+   * Set the visibility of an action on the tool bar of this page.
+   *
+   * <b>NOTE:</b> After calling this function, the {@link #update(true)}
+   * or {@link #updateAll(true)} must be called in order to rebuild all
+   * the tool items created by the tool bar.
+   *
+   * @param id
+   *          the ID of the action whose visibility is to be set.
+   * @param visible
+   *          the visibility to be set.
+   */
+  public abstract void setToolBarActionVisibility(String id, boolean visible);
+
+  /**
+   * Updates the tool bar.
+   *
+   * @param force
+   *          true means update even if not dirty, and false for normal
+   *          incremental updating.
+   */
+  public abstract void updateToolBar(boolean force);
+
 }
