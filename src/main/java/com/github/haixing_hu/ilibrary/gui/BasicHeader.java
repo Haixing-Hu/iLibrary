@@ -129,8 +129,8 @@ public class BasicHeader extends Composite {
       layout.marginBottom = 0;
       layout.marginHeight = 0;
       layout.marginWidth = 0;
-      this.setLayout(layout);
-      final GridData gd_control = new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1);
+      setLayout(layout);
+      final GridData gd_control = new GridData(SWT.CENTER, SWT.CENTER, true, true);
       control.setLayoutData(gd_control);
       if (separator != null) {
         final GridData gd_separator = new GridData(GridData.FILL_HORIZONTAL);
@@ -145,7 +145,7 @@ public class BasicHeader extends Composite {
       layout.marginHeight = 0;
       layout.marginWidth = 0;
       layout.spacing = 0;
-      this.setLayout(layout);
+      setLayout(layout);
 
       final int separatorHeight;
       if (separator == null) {
@@ -182,11 +182,11 @@ public class BasicHeader extends Composite {
       }
     }
     if (backgroundColor != null) {
-      this.setBackground(backgroundColor);
+      setBackground(backgroundColor);
       control.setBackground(backgroundColor);
     }
     if (backgroundImage != null) {
-      this.setBackgroundImage(backgroundImage);
+      setBackgroundImage(backgroundImage);
       control.setBackgroundImage(backgroundImage);
     }
   }

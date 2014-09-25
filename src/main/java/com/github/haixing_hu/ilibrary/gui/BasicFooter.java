@@ -129,12 +129,12 @@ public class BasicFooter extends Composite {
       layout.marginBottom = 0;
       layout.marginHeight = 0;
       layout.marginWidth = 0;
-      this.setLayout(layout);
+      setLayout(layout);
       if (separator != null) {
         final GridData gd_separator = new GridData(GridData.FILL_HORIZONTAL);
         separator.setLayoutData(gd_separator);
       }
-      final GridData gd_control = new GridData(SWT.CENTER, SWT.CENTER, true, false, 1, 1);
+      final GridData gd_control = new GridData(SWT.CENTER, SWT.CENTER, true, false);
       control.setLayoutData(gd_control);
     } else {
       final FormLayout layout = new FormLayout();
@@ -145,7 +145,7 @@ public class BasicFooter extends Composite {
       layout.marginHeight = 0;
       layout.marginWidth = 0;
       layout.spacing = 0;
-      this.setLayout(layout);
+      setLayout(layout);
       final int separatorHeight;
       if (separator == null) {
         separatorHeight = 0;
@@ -180,11 +180,11 @@ public class BasicFooter extends Composite {
       control.setLayoutData(fd_control);
     }
     if (backgroundColor != null) {
-      this.setBackground(backgroundColor);
+      setBackground(backgroundColor);
       control.setBackground(backgroundColor);
     }
     if (backgroundImage != null) {
-      this.setBackgroundImage(backgroundImage);
+      setBackgroundImage(backgroundImage);
       control.setBackgroundImage(backgroundImage);
     }
   }
