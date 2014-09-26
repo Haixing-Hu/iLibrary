@@ -15,13 +15,13 @@
       <value>utf-8</value>
     </property>
     <property name="basename">
-      <value>classpath:messages</value>
+      <value>classpath:i18n/messages</value>
     </property>
   </bean>      
   
   <!-- The global configuration -->
   <bean id="config" class="org.apache.commons.configuration.PropertiesConfiguration">
-    <constructor-arg type="java.lang.String" value="iLibrary.properties" />    
+    <constructor-arg type="java.lang.String" value="conf/iLibrary.properties" />    
   </bean>
     
 </beans>

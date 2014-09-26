@@ -63,17 +63,13 @@ import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionFromSe
 import com.github.haixing_hu.ilibrary.action.file.collection.NewNormalCollectionAction;
 import com.github.haixing_hu.ilibrary.action.file.collection.NewSmartCollectionAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewArticleDocumentAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewAuthorAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewBookDocumentAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewConferenceAction;
+import com.github.haixing_hu.ilibrary.action.file.document.NewDocumentAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewDocumentFormTemplateAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewInstituteAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewLegalDocumentAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewMediaDocumentAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewPeriodicalAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewReferenceDocumentAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewWebsiteAction;
+import com.github.haixing_hu.ilibrary.action.file.document.NewWebSiteAction;
 import com.github.haixing_hu.ilibrary.action.help.AboutAction;
 import com.github.haixing_hu.ilibrary.action.help.FaqAction;
 import com.github.haixing_hu.ilibrary.action.help.FeedbackAction;
@@ -198,6 +194,7 @@ import com.github.haixing_hu.ilibrary.action.window.tab.CycleTabsAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.NextTabAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.PreviousTabAction;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
+import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
 import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.swt.action.IActionManager;
@@ -226,16 +223,25 @@ public final class ActionManager implements IActionManager {
     add(new QuitAction(application, this));
     //  file -> new
     add(new NewAction(application, this));
-    add(new NewArticleDocumentAction(application, this));
-    add(new NewBookDocumentAction(application, this));
-    add(new NewReferenceDocumentAction(application, this));
-    add(new NewLegalDocumentAction(application, this));
-    add(new NewMediaDocumentAction(application, this));
+    //  add the new document action for every supported document type
+    for (final DocumentType type : DocumentType.values()) {
+      final NewDocumentAction action = new NewDocumentAction(type, application, this);
+      add(action);
+    }
+    // add the new document action for every supported document template
+    final AppConfig config = application.getConfig();
+    final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
+    final Collection<DocumentTemplate> templates = service.getAll();
+    for (final DocumentTemplate template : templates) {
+      final NewDocumentFormTemplateAction action =
+          new NewDocumentFormTemplateAction(template, application, this);
+      add(action);
+    }
     add(new NewAuthorAction(application, this));
     add(new NewPeriodicalAction(application, this));
     add(new NewConferenceAction(application, this));
     add(new NewInstituteAction(application, this));
-    add(new NewWebsiteAction(application, this));
+    add(new NewWebSiteAction(application, this));
     //  file -> new collection
     add(new NewCollectionAction(application, this));
     add(new NewNormalCollectionAction(application, this));
@@ -413,16 +419,6 @@ public final class ActionManager implements IActionManager {
     add(new WebsiteAction(application, this));
     add(new FeedbackAction(application, this));
     add(new AboutAction(application, this));
-
-    // add the new document action for every supported document template
-    final AppConfig config = application.getConfig();
-    final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
-    final Collection<DocumentTemplate> templates = service.getAll();
-    for (final DocumentTemplate template : templates) {
-      final NewDocumentFormTemplateAction action = new NewDocumentFormTemplateAction(
-            application, this, template);
-      add(action);
-    }
   }
 
   @Override

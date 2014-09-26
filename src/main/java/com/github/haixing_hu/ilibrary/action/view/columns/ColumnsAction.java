@@ -18,22 +18,38 @@
 
 package com.github.haixing_hu.ilibrary.action.view.columns;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
+import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.IActionManager;
+
 
 /**
  * The action to select the columns to display in the grid table.
  *
  * @author Haixing Hu
  */
-public class ColumnsAction extends BaseAction {
+public class ColumnsAction extends BaseDropDownAction {
 
   public static final String KEY = ViewAction.KEY + ".columns";
 
   public ColumnsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(KEY, application, actionManager, getSubactionIds());
+  }
+
+  private static String[] getSubactionIds() {
+    final List<String> ids = new ArrayList<String>();
+    final String prefix = KEY + ".";
+    for (final FieldType col : FieldType.values()) {
+      final String id = prefix + EnumUtils.getShortName(col);
+      ids.add(id);
+    }
+    return ids.toArray(new String[0]);
   }
 
 }

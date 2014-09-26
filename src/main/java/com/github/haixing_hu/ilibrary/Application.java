@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary;
 
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -90,6 +89,7 @@ import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
+import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
@@ -174,6 +174,7 @@ public final class Application {
     updateReadStatusFilters();
     updateTypeFilters();
     updateFileStatusFilters();
+    updateColumns();
     filterDocuments();
   }
 
@@ -197,7 +198,7 @@ public final class Application {
     state.setLayoutMode(layoutMode);
     //  load the display columns from the configuration
     final String[] defaultColumns = config.getStringArray(ColumnsAction.KEY + KeySuffix.DEFAULT);
-    final List<FieldType> columns = state.getColumns();
+    final Set<FieldType> columns = state.getColumns();
     for (final String col : defaultColumns) {
       final FieldType ft = EnumUtils.forName(col, false, true, FieldType.class);
       columns.add(ft);
@@ -251,6 +252,63 @@ public final class Application {
    */
   public MainWindow getMainWindow() {
     return mainWindow;
+  }
+
+  /**
+   * Sets the current page of the application.
+   *
+   * @param page
+   *    the id of the page.
+   */
+  public void setPage(int page) {
+    if (state.getPage() == page) {
+      return;
+    }
+    logger.info("Set the page to: {}", page);
+    state.setPage(page);
+    updatePage();
+  }
+
+  private void updatePage() {
+    final DropDownAction windowAction = (DropDownAction) actionManager.get(WindowAction.KEY);
+    final ActionEx searchPageAction = actionManager.get(PageSearchAction.KEY);
+    final ActionEx libraryPageAction = actionManager.get(PageLibraryAction.KEY);
+    final ActionEx tagsPageAction = actionManager.get(PageTagsAction.KEY);
+    final ActionEx authorsPageAction = actionManager.get(PageAuthorsAction.KEY);
+    final ActionEx sourcesPageAction = actionManager.get(PageSourcesAction.KEY);
+    final ActionEx readerPageAction = actionManager.get(PageReaderAction.KEY);
+    searchPageAction.setChecked(false);
+    libraryPageAction.setChecked(false);
+    tagsPageAction.setChecked(false);
+    authorsPageAction.setChecked(false);
+    sourcesPageAction.setChecked(false);
+    readerPageAction.setChecked(false);
+    final int page = state.getPage();
+    switch (page) {
+    case Page.SEARCH:
+      searchPageAction.setChecked(true);
+      break;
+    case Page.LIBRARY:
+      libraryPageAction.setChecked(true);
+      break;
+    case Page.TAGS:
+      tagsPageAction.setChecked(true);
+      break;
+    case Page.AUTHORS:
+      authorsPageAction.setChecked(true);
+      break;
+    case Page.SOURCES:
+      sourcesPageAction.setChecked(true);
+      break;
+    case Page.READER:
+      readerPageAction.setChecked(true);
+      break;
+    default:
+      logger.error("Unknown page: ", page);
+      return;
+    }
+    windowAction.update(true);
+    mainWindow.setPage(page);
   }
 
   /**
@@ -631,6 +689,72 @@ public final class Application {
   }
 
   /**
+   * Sets the annotate mode.
+   *
+   * @param mode
+   *          the mode to be set.
+   */
+  public void setAnnotateMode(AnnotateMode mode) {
+    if (state.getAnnotateMode() == mode) {
+      return;
+    }
+    logger.info("Set the annotate mode to: {}", mode);
+    state.setAnnotateMode(mode);
+    updateAnnotateMode();
+  }
+
+  private void updateAnnotateMode() {
+    final DropDownAction annotate = (DropDownAction) actionManager.get(AnnotateAction.KEY);
+    final ActionEx selection = actionManager.get(AnnotateSelectionAction.KEY);
+    final ActionEx highlight = actionManager.get(AnnotateHighlightAction.KEY);
+    final ActionEx underline = actionManager.get(AnnotateUnderlineAction.KEY);
+    final ActionEx strikethrough = actionManager.get(AnnotateStrikethroughAction.KEY);
+    final AnnotateMode mode = state.getAnnotateMode();
+    switch (mode) {
+    case SELECTION:
+      //  update action's checking status
+      selection.setChecked(true);
+      highlight.setChecked(false);
+      underline.setChecked(false);
+      strikethrough.setChecked(false);
+      //  change the icon of the AnnotateAction
+      annotate.setImageDescriptor(selection.getImageDescriptor());
+      break;
+    case HIGHLIGHT:
+      //  update action's checking status
+      selection.setChecked(false);
+      highlight.setChecked(true);
+      underline.setChecked(false);
+      strikethrough.setChecked(false);
+      //  change the icon of the AnnotateAction
+      annotate.setImageDescriptor(highlight.getImageDescriptor());
+      break;
+    case UNDERLINE:
+      //  update action's checking status
+      selection.setChecked(false);
+      highlight.setChecked(false);
+      underline.setChecked(true);
+      strikethrough.setChecked(false);
+      //  change the icon of the AnnotateAction
+      annotate.setImageDescriptor(underline.getImageDescriptor());
+      break;
+    case STRIKETHORUGH:
+      selection.setChecked(false);
+      highlight.setChecked(false);
+      underline.setChecked(false);
+      strikethrough.setChecked(true);
+      //  change the icon of the AnnotateAction
+      annotate.setImageDescriptor(strikethrough.getImageDescriptor());
+      break;
+    default:
+      logger.error("Unknown annotate mode: ", mode);
+      return;
+    }
+    annotate.update(true);
+    //  TODO
+  }
+
+  /**
    * Clears the flag status filters, in order to display documents with all
    * possible flag status.
    */
@@ -858,7 +982,6 @@ public final class Application {
     filterAction.update(true);
   }
 
-
   /**
    * Clears the file status filters, in order to display documents with all
    * possible file status.
@@ -924,126 +1047,99 @@ public final class Application {
   }
 
   /**
-   * Sets the annotate mode.
+   * Adds a column of table viewer on the document explorer.
    *
-   * @param mode
-   *          the mode to be set.
+   * @param column
+   *    the column to be added.
    */
-  public void setAnnotateMode(AnnotateMode mode) {
-    if (state.getAnnotateMode() == mode) {
-      return;
-    }
-    logger.info("Set the annotate mode to: {}", mode);
-    state.setAnnotateMode(mode);
-    updateAnnotateMode();
+  public void addColumn(FieldType column) {
+    logger.info("Adds a column {}.", column);
+    final Set<FieldType> columns = state.getColumns();
+    columns.add(column);
+    //  note that even if the column has already been contained, we should still
+    //  update the columns, in order to make the GUI components consistent.
+    updateColumns();
   }
 
-  private void updateAnnotateMode() {
-    final DropDownAction annotate = (DropDownAction) actionManager.get(AnnotateAction.KEY);
-    final ActionEx selection = actionManager.get(AnnotateSelectionAction.KEY);
-    final ActionEx highlight = actionManager.get(AnnotateHighlightAction.KEY);
-    final ActionEx underline = actionManager.get(AnnotateUnderlineAction.KEY);
-    final ActionEx strikethrough = actionManager.get(AnnotateStrikethroughAction.KEY);
-    final AnnotateMode mode = state.getAnnotateMode();
-    switch (mode) {
-    case SELECTION:
-      //  update action's checking status
-      selection.setChecked(true);
-      highlight.setChecked(false);
-      underline.setChecked(false);
-      strikethrough.setChecked(false);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(selection.getImageDescriptor());
-      break;
-    case HIGHLIGHT:
-      //  update action's checking status
-      selection.setChecked(false);
-      highlight.setChecked(true);
-      underline.setChecked(false);
-      strikethrough.setChecked(false);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(highlight.getImageDescriptor());
-      break;
-    case UNDERLINE:
-      //  update action's checking status
-      selection.setChecked(false);
-      highlight.setChecked(false);
-      underline.setChecked(true);
-      strikethrough.setChecked(false);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(underline.getImageDescriptor());
-      break;
-    case STRIKETHORUGH:
-      selection.setChecked(false);
-      highlight.setChecked(false);
-      underline.setChecked(false);
-      strikethrough.setChecked(true);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(strikethrough.getImageDescriptor());
-      break;
-    default:
-      logger.error("Unknown annotate mode: ", mode);
-      return;
-    }
-    annotate.update(true);
+  /**
+   * Removes a column of table viewer on the document explorer.
+   *
+   * @param column
+   *    the column to be added.
+   */
+  public void removeColumn(FieldType column) {
+    logger.info("Removes a column {}.", column);
+    final Set<FieldType> columns = state.getColumns();
+    columns.remove(column);
+    //  note that even if the column has not been contained, we should still
+    //  update the columns, in order to make the GUI components consistent.
+    updateColumns();
+  }
+
+  /**
+   * Updates the columns of table viewer on the document explorer.
+   */
+  private void updateColumns() {
     //  TODO
   }
 
   /**
-   * Sets the current page of the application.
+   * Creates a new document.
    *
-   * @param page
-   *    the id of the page.
+   * @param template
+   *    the document template.
    */
-  public void setPage(int page) {
-    if (state.getPage() == page) {
-      return;
-    }
-    logger.info("Set the page to: {}", page);
-    state.setPage(page);
-    updatePage();
+  public void newDocument(DocumentTemplate template) {
+    logger.info("Creating a new document from template '{}'.", template.getName());
+    //  TODO
   }
 
-  private void updatePage() {
-    final DropDownAction windowAction = (DropDownAction) actionManager.get(WindowAction.KEY);
-    final ActionEx searchPageAction = actionManager.get(PageSearchAction.KEY);
-    final ActionEx libraryPageAction = actionManager.get(PageLibraryAction.KEY);
-    final ActionEx tagsPageAction = actionManager.get(PageTagsAction.KEY);
-    final ActionEx authorsPageAction = actionManager.get(PageAuthorsAction.KEY);
-    final ActionEx sourcesPageAction = actionManager.get(PageSourcesAction.KEY);
-    final ActionEx readerPageAction = actionManager.get(PageReaderAction.KEY);
-    searchPageAction.setChecked(false);
-    libraryPageAction.setChecked(false);
-    tagsPageAction.setChecked(false);
-    authorsPageAction.setChecked(false);
-    sourcesPageAction.setChecked(false);
-    readerPageAction.setChecked(false);
-    final int page = state.getPage();
-    switch (page) {
-    case Page.SEARCH:
-      searchPageAction.setChecked(true);
-      break;
-    case Page.LIBRARY:
-      libraryPageAction.setChecked(true);
-      break;
-    case Page.TAGS:
-      tagsPageAction.setChecked(true);
-      break;
-    case Page.AUTHORS:
-      authorsPageAction.setChecked(true);
-      break;
-    case Page.SOURCES:
-      sourcesPageAction.setChecked(true);
-      break;
-    case Page.READER:
-      readerPageAction.setChecked(true);
-      break;
-    default:
-      logger.error("Unknown page: ", page);
-      return;
-    }
-    windowAction.update(true);
-    mainWindow.setPage(page);
+  /**
+   * Creates a new author.
+   */
+  public void newAuthor() {
+    logger.info("Creating a new author.");
+    //  TODO
+  }
+
+  /**
+   * Creates a new conference.
+   */
+  public void newConference() {
+    logger.info("Creating a new conference.");
+    //  TODO
+  }
+
+  /**
+   * Creates a new institute.
+   */
+  public void newInstitute() {
+    logger.info("Creating a new institute.");
+    //  TODO
+  }
+
+  /**
+   * Creates a new periodical.
+   */
+  public void newPeriodical() {
+    logger.info("Creating a new periodical");
+    //  TODO
+  }
+
+  /**
+   * Creates a new publisher.
+   */
+  public void newPublisher() {
+    logger.info("Creating a new publisher");
+    //  TODO
+  }
+
+  /**
+   * Creates a new web site.
+   */
+  public void newWebSite() {
+    logger.info("Creating a new  web site");
+    //  TODO
   }
 
   /**

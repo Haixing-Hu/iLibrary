@@ -18,9 +18,14 @@
 
 package com.github.haixing_hu.ilibrary.action.file.document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.file.FileAction;
+import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -33,21 +38,29 @@ public class NewAction extends BaseDropDownAction {
   public static final String KEY = FileAction.KEY + ".new";
 
   private static final String SUB_ACTIONS[] = {
-    NewArticleDocumentAction.KEY,
-    NewBookDocumentAction.KEY,
-    NewReferenceDocumentAction.KEY,
-    NewLegalDocumentAction.KEY,
-    NewMediaDocumentAction.KEY,
     SEPARATOR_KEY,
     NewAuthorAction.KEY,
     NewPeriodicalAction.KEY,
     NewConferenceAction.KEY,
     NewInstituteAction.KEY,
-    NewWebsiteAction.KEY,
+    NewWebSiteAction.KEY,
   };
 
   public NewAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(KEY, application, actionManager, getSubactionIds());
+  }
+
+  private static String[] getSubactionIds() {
+    final List<String> ids = new ArrayList<String>();
+    final String prefix = KEY + ".";
+    for (final DocumentType type : DocumentType.values()) {
+      final String id = prefix + EnumUtils.getShortName(type);
+      ids.add(id);
+    }
+    for (final String id : SUB_ACTIONS) {
+      ids.add(id);
+    }
+    return ids.toArray(new String[0]);
   }
 
 }

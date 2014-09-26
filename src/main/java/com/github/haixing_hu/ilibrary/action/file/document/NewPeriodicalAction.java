@@ -36,4 +36,8 @@ public class NewPeriodicalAction extends BaseAction {
     this.setShowDialog(true);
   }
 
+  @Override
+  public void run() {
+    application.newPeriodical();
+  }
 }

@@ -18,9 +18,7 @@
 
 package com.github.haixing_hu.ilibrary.state;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.github.haixing_hu.ilibrary.gui.Page;
@@ -52,7 +50,7 @@ public final class ApplicationState {
   private final Set<ReadStatus> readStatusFilters;
   private final Set<DocumentType> typeFilters;
   private final Set<FileStatus> fileStatusFilters;
-  private final List<FieldType> columns;
+  private final Set<FieldType> columns;
 
   public ApplicationState() {
     page = Page.LIBRARY;
@@ -68,7 +66,7 @@ public final class ApplicationState {
     readStatusFilters = new HashSet<ReadStatus>();
     typeFilters = new HashSet<DocumentType>();
     fileStatusFilters = new HashSet<FileStatus>();
-    columns = new ArrayList<FieldType>();
+    columns = new HashSet<FieldType>();
   }
 
   /**
@@ -308,7 +306,7 @@ public final class ApplicationState {
    *
    * @return the columns.
    */
-  public List<FieldType> getColumns() {
+  public Set<FieldType> getColumns() {
     return columns;
   }
 

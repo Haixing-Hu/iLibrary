@@ -18,11 +18,12 @@
 
 package com.github.haixing_hu.ilibrary.action.file.document;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
+import com.github.haixing_hu.lang.EnumUtils;
+import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new document from a document template.
@@ -36,27 +37,42 @@ public class NewDocumentFormTemplateAction extends BaseAction {
   /**
    * Creates a {@link NewDocumentFormTemplateAction}.
    *
+   * @param template
+   *          a document template.
    * @param application
    *          the application.
    * @param actionManager
    *          the action manager.
-   * @param template
-   *          a document template.
    */
-  public NewDocumentFormTemplateAction(Application application,
-      IActionManager actionManager, DocumentTemplate template) {
-    super(NewAction.KEY
-          + "." + template.getType().name().toLowerCase()
-          + "." + template.getName(),
-          application, actionManager);
+  public NewDocumentFormTemplateAction(DocumentTemplate template,
+      Application application, IActionManager actionManager) {
+    super(buildActionId(template), application, actionManager);
+    logger.info("Creates an NewFromTemplate action '{}' for document template '{}'.",
+        this.getId(), template.getName());
     this.template = template;
-    //  set the title
+    //  FIXME: we should gets the name of the document type from its template
     final AppConfig config = application.getConfig();
-    final String key = "document."
-               + template.getType().name().toLowerCase()
-               + "." + template.getName();
-    final String title = config.getMessage(key);
+    final String title = config.getMessage(buildTitleKey(template));
     this.setText(title);
+  }
+
+  private static String buildActionId(DocumentTemplate template) {
+    final StringBuilder builder = new StringBuilder();
+    builder.append(NewAction.KEY)
+           .append('.')
+           .append(EnumUtils.getShortName(template.getType()))
+           .append('.')
+           .append(template.getName());
+    return builder.toString();
+  }
+
+  private static String buildTitleKey(DocumentTemplate template) {
+    final StringBuilder builder = new StringBuilder();
+    builder.append("document.")
+           .append(EnumUtils.getShortName(template.getType()))
+           .append('.')
+           .append(template.getName());
+    return builder.toString();
   }
 
   /**
@@ -67,5 +83,10 @@ public class NewDocumentFormTemplateAction extends BaseAction {
    */
   public DocumentTemplate getTemplate() {
     return template;
+  }
+
+  @Override
+  public void run() {
+    application.newDocument(template);
   }
 }

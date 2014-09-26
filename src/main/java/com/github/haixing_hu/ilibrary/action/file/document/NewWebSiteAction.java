@@ -19,20 +19,24 @@
 package com.github.haixing_hu.ilibrary.action.file.document;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to create a new legal document.
+ * The action to create a new web site.
  *
  * @author Haixing Hu
  */
-public class NewLegalDocumentAction extends NewDocumentOfTypeAction {
+public class NewWebSiteAction extends BaseAction {
 
-  public static final String KEY = NewAction.KEY + ".legal";
+  public static final String KEY = NewAction.KEY + ".website";
 
-  public NewLegalDocumentAction(Application application,
-      IActionManager actionManager) {
-    super(KEY, application, actionManager, DocumentType.LEGAL);
+  public NewWebSiteAction(Application application, IActionManager actionManager) {
+    super(KEY, application, actionManager);
+  }
+
+  @Override
+  public void run() {
+    application.newWebSite();
   }
 }

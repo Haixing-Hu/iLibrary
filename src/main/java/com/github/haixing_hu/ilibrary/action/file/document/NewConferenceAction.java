@@ -36,4 +36,8 @@ public class NewConferenceAction extends BaseAction {
     this.setShowDialog(true);
   }
 
+  @Override
+  public void run() {
+    application.newConference();
+  }
 }

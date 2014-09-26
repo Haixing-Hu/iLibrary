@@ -28,6 +28,7 @@ import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
+import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -35,34 +36,48 @@ import com.github.haixing_hu.swt.action.IActionManager;
  *
  * @author Haixing Hu
  */
-public class NewDocumentOfTypeAction extends BaseDropDownAction {
+public class NewDocumentAction extends BaseDropDownAction {
+
+  private final DocumentType type;
 
   /**
-   * Construct a {@link NewDocumentOfTypeAction} object.
+   * Construct a {@link NewDocumentAction} object.
    *
-   * @param key
-   *    The key of the action.
+   * @param type
+   *    A document type.
    * @param application
    *    The application.
    * @param actionManager
    *    The action manager.
-   * @param type
-   *    A document type.
    */
-  public NewDocumentOfTypeAction(String key, Application application,
-          IActionManager actionManager, DocumentType type) {
-    super(key, application, actionManager,
-         getSubActionIds(application.getConfig(), key, type));
+  public NewDocumentAction(DocumentType type, Application application,
+          IActionManager actionManager) {
+    super(NewAction.KEY + "." + EnumUtils.getShortName(type),
+          application, actionManager,
+          getSubActionIds(application.getConfig(), type));
+    this.type = type;
+    logger.info("Creates an NewDocument action '{}' for document type '{}'.",
+        this.getId(), type);
   }
 
-  private static String[] getSubActionIds(AppConfig config, String key, DocumentType type) {
+  private static String[] getSubActionIds(AppConfig config, DocumentType type) {
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
     final Collection<DocumentTemplate> templates = service.getAll(type);
     final List<String> ids = new ArrayList<String>();
-    final String prefix = key + ".";
+    final String prefix = NewAction.KEY + "." + EnumUtils.getShortName(type) + ".";
     for (final DocumentTemplate template : templates) {
       ids.add(prefix + template.getName());
     }
     return ids.toArray(new String[0]);
   }
+
+  /**
+   * Gets the document type.
+   *
+   * @return the document type.
+   */
+  public DocumentType getType() {
+    return type;
+  }
+
 }

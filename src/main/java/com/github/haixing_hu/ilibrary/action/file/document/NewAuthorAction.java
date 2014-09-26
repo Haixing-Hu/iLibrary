@@ -35,4 +35,8 @@ public class NewAuthorAction extends BaseAction {
     super(KEY, application, actionManager);
   }
 
+  @Override
+  public void run() {
+    application.newAuthor();
+  }
 }
