@@ -22,6 +22,14 @@ package com.github.haixing_hu.ilibrary.model;
 public enum FieldType {
 
   /**
+ * The flag status of the document.
+ */FLAG_STATUS, /**
+ * Indicates whether the document has attached files.
+ */FILE_STATUS, /**
+   * The print status of the document.
+   */PRINT_STATUS, /**
+ * The reading status of the document.
+ */READ_STATUS, /**
    * The authors of the document, which could be one or more persons or
    * institutes.
    */
@@ -67,11 +75,6 @@ public enum FieldType {
   PUBLISHER,
 
   /**
-   * Indicates whether the document has an electronic version.
-   */
-  PDF,
-
-  /**
    * The city of whether the document was published. For journal papers, this is
    * the city of the publisher of the journal; For conference papers, this is
    * the cite of the publisher of the proceedings of the conference; For books,
@@ -81,12 +84,51 @@ public enum FieldType {
   CITY,
 
   /**
+   * ??
+   */PUBLICATION, /**
+   * The date when the document was published.
+   */PUBLISHED_DATE, /**
    * The version of the document. For books, this is the edition of the book.
    * Note that the version may be a number or a string.
    */
   VERSION,
 
   /**
+   * The volume of the document. For journal papers, this is the volume of the
+   * journal in which the document was published; for book, this is the volume
+   * of the book. Note that the volume may be a number or a string.
+   */VOLUME, /**
+   * The issue of the document. For journal papers, this is the issue of the
+   * journal in which the document was published; for book chapters, this is the
+   * chapter in which the document occurs. Note that the volume may be a number
+   * or a string.
+   */ISSUE, /**
+   * The number of the document. For journal papers, this is the number of
+   * journal where the paper was published. For technical reporters, this is the
+   * number of the report. For preprinted articles, this is the number of the
+   * article in the preprint website.
+   */NUMBER, /**
+   * The pages of the document. For journal papers or conference papers, this is
+   * the range of pages where the document appeared in the journal or
+   * proceedings. For books, this is the number of pages of the book.
+   */PAGES, /**
+   * The ISBN of the document. For journal papers, this is the ISBN of the
+   * journal where the paper was published; for conference papers, this is the
+   * ISBN of the proceedings where the paper was published. For books, this is
+   * the ISBN of the book.
+   */ISBN, /**
+   * The language of the document.
+   */LANGUAGE, /**
+   * The kind of the document.
+   */KIND, /**
+   * The URL of the document.
+   */URL, /**
+   * The path of the file of the document.
+   */PATH, /**
+   * The citation key of the document.
+   */CITE_KEY, /**
+   * The status of the document.
+   */STATUS, /**
    * The rating of the document.
    */
   RATING,
@@ -94,19 +136,23 @@ public enum FieldType {
   /**
    * The last time when the document was read.
    */
-  LAST_READ,
+  LAST_READ_TIME,
 
   /**
    * The last time when the document was printed.
    */
-  PRINTED,
+  PRINTED_TIME,
 
   /**
    * The time when the document was imported.
    */
-  IMPORTED,
+  IMPORTED_TIME,
 
   /**
+   * The number of times the document was cited (in this application).
+   */CITED_COUNT, /**
+   * The number of times the document was read (in this application).
+   */READ_COUNT, /**
    * The keywords of the document.
    */
   KEYWORDS,
@@ -120,90 +166,5 @@ public enum FieldType {
    * The notes for the document.
    */
   NOTES,
-
-  /**
-   * The number of times the document was cited (in this application).
-   */
-  CITED,
-
-  /**
-   * The number of times the document was read (in this application).
-   */
-  READ,
-
-  PUBLICATION,
-
-  /**
-   * The date when the document was published.
-   */
-  PUBLISHED,
-
-  /**
-   * The volume of the document. For journal papers, this is the volume of the
-   * journal in which the document was published; for book, this is the volume
-   * of the book. Note that the volume may be a number or a string.
-   */
-  VOLUME,
-
-  /**
-   * The issue of the document. For journal papers, this is the issue of the
-   * journal in which the document was published; for book chapters, this is the
-   * chapter in which the document occurs. Note that the volume may be a number
-   * or a string.
-   */
-  ISSUE,
-
-  /**
-   * The pages of the document. For journal papers or conference papers, this is
-   * the range of pages where the document appeared in the journal or
-   * proceedings. For books, this is the number of pages of the book.
-   */
-  PAGES,
-
-  /**
-   * The language of the document.
-   */
-  LANGUAGE,
-
-  /**
-   * The status of the document.
-   */
-  STATUS,
-
-  /**
-   * The kind of the document.
-   */
-  KIND,
-
-  /**
-   * The URL of the document.
-   */
-  URL,
-
-  /**
-   * The path of the file of the document.
-   */
-  PATH,
-
-  /**
-   * The ISBN of the document. For journal papers, this is the ISBN of the
-   * journal where the paper was published; for conference papers, this is the
-   * ISBN of the proceedings where the paper was published. For books, this is
-   * the ISBN of the book.
-   */
-  ISBN,
-
-  /**
-   * The citation key of the document.
-   */
-  CITE_KEY,
-
-  /**
-   * The number of the document. For journal papers, this is the number of
-   * journal where the paper was published. For technical reporters, this is the
-   * number of the report. For preprinted articles, this is the number of the
-   * article in the preprint website.
-   */
-  NUMBER,
 
 }

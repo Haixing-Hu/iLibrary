@@ -18,6 +18,7 @@
 
 package com.github.haixing_hu.ilibrary;
 
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -40,6 +41,7 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAllAction;
 import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusHasFileAction;
@@ -85,7 +87,11 @@ import com.github.haixing_hu.ilibrary.action.window.page.PageSourcesAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.ilibrary.gui.Page;
+import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
+import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
 import com.github.haixing_hu.ilibrary.model.FlagStatus;
 import com.github.haixing_hu.ilibrary.model.ReadStatus;
@@ -94,6 +100,7 @@ import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.BrowserMode;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.ilibrary.state.LayoutMode;
+import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.swt.action.DropDownAction;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -119,7 +126,7 @@ public final class Application {
   public Application() {
     logger = LoggerFactory.getLogger(Application.class);
     config = new AppConfig(CONTEXT_FILE);
-    state = new ApplicationState(config);
+    state = new ApplicationState();
     actionManager = new ActionManager(this);
     mainWindow = new MainWindow(this);
 //    //  adjust the Mac OS X Cococa UI
@@ -136,6 +143,7 @@ public final class Application {
    */
   public void run() {
     mainWindow.create();
+    loadInitialState();
     syncState();
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
@@ -167,6 +175,34 @@ public final class Application {
     updateTypeFilters();
     updateFileStatusFilters();
     filterDocuments();
+  }
+
+  /**
+   * Loads the initial state.
+   */
+  private void loadInitialState() {
+    final BrowserMode browserMode = BrowserMode.COLUMNS;
+    state.setBrowserMode(browserMode);
+    final int navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
+    state.setNavigatorWidth(navigatorWidth);
+    final boolean navigatorVisible = true;
+    state.setNavigatorVisible(navigatorVisible);
+    final int inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
+    state.setInspectorWidth(inspectorWidth);
+    final int previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
+    state.setPreviewHeight(previewHeight);
+    final InspectorTab inspectorTab = InspectorTab.OVERVIEW;
+    state.setInspectorTab(inspectorTab);
+    final int layoutMode = LayoutMode.ALL;
+    state.setLayoutMode(layoutMode);
+    //  load the display columns from the configuration
+    final String[] defaultColumns = config.getStringArray(ColumnsAction.KEY + KeySuffix.DEFAULT);
+    final List<FieldType> columns = state.getColumns();
+    for (final String col : defaultColumns) {
+      final FieldType ft = EnumUtils.forName(col, false, true, FieldType.class);
+      columns.add(ft);
+    }
+    //  TODO
   }
 
   /**

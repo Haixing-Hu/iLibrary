@@ -90,4 +90,6 @@ public interface KeySuffix {
   public static final String COLLECTION = ".collection";
 
   public static final String SMART_COLLECTION = ".smart-collection";
+
+  public static final String DEFAULT = ".default";
 }

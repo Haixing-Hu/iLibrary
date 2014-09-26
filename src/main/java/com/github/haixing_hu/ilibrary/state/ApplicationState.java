@@ -18,16 +18,14 @@
 
 package com.github.haixing_hu.ilibrary.state;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
-import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.Page;
-import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
-import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
 import com.github.haixing_hu.ilibrary.model.FlagStatus;
 import com.github.haixing_hu.ilibrary.model.ReadStatus;
@@ -42,10 +40,6 @@ public final class ApplicationState {
 
   private int page;
   private AnnotateMode annotateMode;
-  private Set<FlagStatus> flagStatusFilters;
-  private Set<ReadStatus> readStatusFilters;
-  private Set<DocumentType> typeFilters;
-  private Set<FileStatus> fileStatusFilters;
   private BrowserMode browserMode;
   private int navigatorWidth;
   private boolean navigatorVisible;
@@ -54,20 +48,27 @@ public final class ApplicationState {
   private InspectorTab inspectorTab;
   private int layoutMode;
 
-  public ApplicationState(AppConfig config) {
+  private final Set<FlagStatus> flagStatusFilters;
+  private final Set<ReadStatus> readStatusFilters;
+  private final Set<DocumentType> typeFilters;
+  private final Set<FileStatus> fileStatusFilters;
+  private final List<FieldType> columns;
+
+  public ApplicationState() {
     page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
+    browserMode = BrowserMode.COLUMNS;
+    navigatorWidth = 0;
+    navigatorVisible = true;
+    inspectorWidth = 0;
+    previewHeight =0;
+    inspectorTab = InspectorTab.OVERVIEW;
+    layoutMode = LayoutMode.ALL;
     flagStatusFilters = new HashSet<FlagStatus>();
     readStatusFilters = new HashSet<ReadStatus>();
     typeFilters = new HashSet<DocumentType>();
     fileStatusFilters = new HashSet<FileStatus>();
-    browserMode = BrowserMode.COLUMNS;
-    navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
-    navigatorVisible = true;
-    inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
-    previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
-    inspectorTab = InspectorTab.OVERVIEW;
-    layoutMode = LayoutMode.ALL;
+    columns = new ArrayList<FieldType>();
   }
 
   /**
@@ -104,102 +105,6 @@ public final class ApplicationState {
    */
   public void setAnnotateMode(AnnotateMode annotateMode) {
     this.annotateMode = annotateMode;
-  }
-
-  /**
-   * Gets the flagStatusFilters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible flag status.
-   *
-   * @return the flagStatusFilters.
-   */
-  public Set<FlagStatus> getFlagStatusFilters() {
-    return flagStatusFilters;
-  }
-
-  /**
-   * Sets the flag status filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible flag status.
-   *
-   * @param flagStatusFilters the new flag status filters to set.
-   */
-  public void setFlagStatusFilters(Set<FlagStatus> flagStatusFilters) {
-    this.flagStatusFilters = flagStatusFilters;
-  }
-
-  /**
-   * Gets the read status filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible read status.
-   *
-   * @return the read status filters.
-   */
-  public Set<ReadStatus> getReadStatusFilters() {
-    return readStatusFilters;
-  }
-
-  /**
-   * Sets the read status filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible read status.
-   *
-   * @param readStatusFilters the new read status filters to set.
-   */
-  public void setReadStatusFilters(Set<ReadStatus> readStatusFilters) {
-    this.readStatusFilters = readStatusFilters;
-  }
-
-  /**
-   * Gets the type filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible document types.
-   *
-   * @return the type filters.
-   */
-  public Set<DocumentType> getTypeFilters() {
-    return typeFilters;
-  }
-
-  /**
-   * Sets the type filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible document types.
-   *
-   * @param typeFilters the new type filters to set.
-   */
-  public void setTypeFilters(Set<DocumentType> typeFilters) {
-    this.typeFilters = typeFilters;
-  }
-
-  /**
-   * Gets the file status filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible file status.
-   *
-   * @return the file status filters.
-   */
-  public Set<FileStatus> getFileStatusFilters() {
-    return fileStatusFilters;
-  }
-
-  /**
-   * Sets the file status filters.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible file status.
-   *
-   * @param fileStatusFilters the new file status filters to set.
-   */
-  public void setFileStatusFilters(Set<FileStatus> fileStatusFilters) {
-    this.fileStatusFilters = fileStatusFilters;
   }
 
   /**
@@ -348,6 +253,63 @@ public final class ApplicationState {
    */
   public void setLayoutMode(int mode) {
     layoutMode = mode;
+  }
+
+  /**
+   * Gets the flagStatusFilters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible flag status.
+   *
+   * @return the flagStatusFilters.
+   */
+  public Set<FlagStatus> getFlagStatusFilters() {
+    return flagStatusFilters;
+  }
+
+  /**
+   * Gets the read status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible read status.
+   *
+   * @return the read status filters.
+   */
+  public Set<ReadStatus> getReadStatusFilters() {
+    return readStatusFilters;
+  }
+
+  /**
+   * Gets the type filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible document types.
+   *
+   * @return the type filters.
+   */
+  public Set<DocumentType> getTypeFilters() {
+    return typeFilters;
+  }
+
+  /**
+   * Gets the file status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible file status.
+   *
+   * @return the file status filters.
+   */
+  public Set<FileStatus> getFileStatusFilters() {
+    return fileStatusFilters;
+  }
+
+  /**
+   * Gets the columns.
+   *
+   * @return the columns.
+   */
+  public List<FieldType> getColumns() {
+    return columns;
   }
 
 }
