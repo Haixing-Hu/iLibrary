@@ -23,8 +23,8 @@ import javax.annotation.Nullable;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
-import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.swt.action.DropDownAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -60,22 +60,24 @@ public class BaseDropDownAction extends DropDownAction {
     final String title = config.getTitle(id);
     final String shortcut = config.getShortcut(id);
     if (shortcut == null) {
-      this.setText(title);
+      setText(title);
     } else {
-      this.setText(title + "@" + shortcut);
+      setText(title + "@" + shortcut);
     }
     final String description = config.getDescription(id);
     if (description != null) {
-      this.setToolTipText(description);
+      setToolTipText(description);
     } else {
-      this.setToolTipText(title);
+      setToolTipText(title);
     }
     final String icon = config.getIcon(id);
     if (icon != null) {
       final Image img = SWTResourceManager.getImage(this.getClass(), icon);
       final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
-      this.setImageDescriptor(imgdes);
+      setImageDescriptor(imgdes);
     }
+    //  do not show image by default
+    setShowImage(false);
   }
 
   /**
@@ -95,12 +97,12 @@ public class BaseDropDownAction extends DropDownAction {
    */
   public void setImage(@Nullable String path) {
     if (path == null) {
-      this.setImageDescriptor(null);
+      setImageDescriptor(null);
     } else {
       final Image img = SWTResourceManager.getImage(this.getClass(), path);
       if (img != null) {
         final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
-        this.setImageDescriptor(imgdes);
+        setImageDescriptor(imgdes);
       }
     }
   }

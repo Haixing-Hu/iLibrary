@@ -20,6 +20,8 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateAction;
+import com.github.haixing_hu.ilibrary.action.edit.copy.CopyAsAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -37,7 +39,7 @@ public class EditAction extends BaseDropDownAction {
     SEPARATOR_KEY,
     CutAction.KEY,
     CopyAction.KEY,
-    CopyReferenceAction.KEY,
+    CopyAsAction.KEY,
     PasteAction.KEY,
     DeleteAction.KEY,
     SelectAllAction.KEY,

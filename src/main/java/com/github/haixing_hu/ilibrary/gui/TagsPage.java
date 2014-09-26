@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.action.window.PageTagsAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
 import com.github.haixing_hu.ilibrary.gui.explorer.ExplorerPage;
 
 /**

@@ -65,6 +65,12 @@ public interface KeySuffix {
 
   public static final String TOP = ".top";
 
+  public static final String HEADER = ".header";
+
+  public static final String FOOTER = ".footer";
+
+  public static final String CONTROL = ".control";
+
   public static final String TOOLBAR = ".toolbar";
 
   public static final String CORNER = ".corner";

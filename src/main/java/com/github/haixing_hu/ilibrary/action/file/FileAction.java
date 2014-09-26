@@ -20,6 +20,8 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionAction;
+import com.github.haixing_hu.ilibrary.action.file.document.NewAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -32,11 +34,13 @@ public class FileAction extends BaseDropDownAction {
   public static final String KEY = "action.file";
 
   private static final String SUB_ACTIONS[] = {
-    NewAction.KEY,
-    NewCollectionAction.KEY,
     NewLibraryAction.KEY,
     OpenLibraryAction.KEY,
     CloseLibraryAction.KEY,
+    SEPARATOR_KEY,
+    NewAction.KEY,
+    NewCollectionAction.KEY,
+    OpenURLAction.KEY,
     SEPARATOR_KEY,
     ImportAction.KEY,
     ExportAction.KEY,

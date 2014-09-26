@@ -20,6 +20,27 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.view.browser.AsColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
+import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
+import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
+import com.github.haixing_hu.ilibrary.action.view.layout.LayoutModeAction;
+import com.github.haixing_hu.ilibrary.action.view.preview.PreviewAction;
+import com.github.haixing_hu.ilibrary.action.view.read.BackAction;
+import com.github.haixing_hu.ilibrary.action.view.read.ForwardAction;
+import com.github.haixing_hu.ilibrary.action.view.read.NextPageAction;
+import com.github.haixing_hu.ilibrary.action.view.read.PreviousPageAction;
+import com.github.haixing_hu.ilibrary.action.view.read.TableOfContentsAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortByAction;
+import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomInAction;
+import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomOutAction;
+import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomToFitAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -32,12 +53,10 @@ public class ViewAction extends BaseDropDownAction {
   public static final String KEY = "action.view";
 
   private static final String SUB_ACTIONS[] = {
+    AsListAction.KEY,
+    AsColumnsAction.KEY,
+    AsIconsAction.KEY,
     AsCoverFlowAction.KEY,
-    AsPreviewAction.KEY,
-    AsThumbnailsAction.KEY,
-    SEPARATOR_KEY,
-    AsDocumentAction.KEY,
-    AsWebpageAction.KEY,
     SEPARATOR_KEY,
     ColumnsAction.KEY,
     SortByAction.KEY,
@@ -48,11 +67,9 @@ public class ViewAction extends BaseDropDownAction {
     SEPARATOR_KEY,
     HideNavigatorAction.KEY,
     ShowNavigatorAction.KEY,
-    HideInspectorAction.KEY,
-    ShowInspectorAction.KEY,
-    HidePreviewAction.KEY,
-    ShowPreviewAction.KEY,
-    ViewModeAction.KEY,
+    InspectorAction.KEY,
+    PreviewAction.KEY,
+    LayoutModeAction.KEY,
     SEPARATOR_KEY,
     PreviousDocumentAction.KEY,
     NextDocumentAction.KEY,
@@ -60,7 +77,6 @@ public class ViewAction extends BaseDropDownAction {
     ShowDuplicatesAction.KEY,
     ShowAllAction.KEY,
     SEPARATOR_KEY,
-    ReadFullScreenAction.KEY,
     ActualSizeAction.KEY,
     ZoomToFitAction.KEY,
     ZoomInAction.KEY,

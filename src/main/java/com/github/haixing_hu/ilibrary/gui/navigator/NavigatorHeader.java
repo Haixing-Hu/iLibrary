@@ -18,6 +18,7 @@
 
 package com.github.haixing_hu.ilibrary.gui.navigator;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
@@ -36,7 +37,8 @@ public class NavigatorHeader extends BasicHeader {
 
   public NavigatorHeader(Application application, Composite parent, String title) {
     super(application, parent, KEY, new LabelCreator(title,
-        application.getConfig().getInt(KEY + KeySuffix.FONT_SIZE)));
+        application.getConfig().getInt(KEY + KeySuffix.FONT_SIZE),
+        SWT.BOLD), SWT.LEFT);
   }
 
 }

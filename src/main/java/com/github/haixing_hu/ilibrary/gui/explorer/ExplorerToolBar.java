@@ -23,14 +23,13 @@ import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.file.PrintAction;
-import com.github.haixing_hu.ilibrary.action.library.AddReviewAction;
-import com.github.haixing_hu.ilibrary.action.library.EditKeywordsAction;
-import com.github.haixing_hu.ilibrary.action.library.EditNotesAction;
-import com.github.haixing_hu.ilibrary.action.library.OpenFileAction;
-import com.github.haixing_hu.ilibrary.action.library.OpenUrlAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.AddReviewAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.EditKeywordsAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.EditNotesAction;
+import com.github.haixing_hu.ilibrary.action.library.open.OpenFileAction;
+import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
-import com.github.haixing_hu.ilibrary.action.view.ReadFullScreenAction;
-import com.github.haixing_hu.ilibrary.action.view.ViewModeAction;
+import com.github.haixing_hu.ilibrary.action.view.layout.LayoutModeAction;
 import com.github.haixing_hu.ilibrary.gui.util.BasicToolBar;
 
 /**
@@ -43,7 +42,6 @@ public final class ExplorerToolBar extends BasicToolBar {
   public static final String KEY = ExplorerPanel.KEY + ".toolbar";
 
   private static final String ACTIONS[] = {
-    ReadFullScreenAction.KEY,
     OpenFileAction.KEY,
     OpenUrlAction.KEY,
     ShareAction.KEY,
@@ -53,7 +51,7 @@ public final class ExplorerToolBar extends BasicToolBar {
     EditNotesAction.KEY,
     AddReviewAction.KEY,
     Separator.class.getName(),
-    ViewModeAction.KEY,
+    LayoutModeAction.KEY,
   };
 
   public ExplorerToolBar(Application application, Composite parent) {

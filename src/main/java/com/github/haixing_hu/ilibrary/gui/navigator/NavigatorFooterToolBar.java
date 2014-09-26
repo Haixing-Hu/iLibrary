@@ -29,8 +29,8 @@ import org.eclipse.swt.widgets.Label;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.action.file.NewCollectionAction;
-import com.github.haixing_hu.ilibrary.action.library.ManageCollectionAction;
+import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionAction;
+import com.github.haixing_hu.ilibrary.action.library.collection.ManageCollectionAction;
 import com.github.haixing_hu.ilibrary.action.view.HideNavigatorAction;
 import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarManager;
 
@@ -63,7 +63,8 @@ public class NavigatorFooterToolBar extends Composite {
     rightToolBar = new ActionListToolBarManager(application, RGIHT_ACTION_KEYS);
     rightToolBar.createControl(this);
     final AppConfig config = application.getConfig();
-    backgroundColor = config.getColor(NavigatorFooter.KEY + KeySuffix.BACKGROUND_COLOR);
+    backgroundColor = config.getColor(NavigatorFooter.KEY
+        + KeySuffix.CONTROL + KeySuffix.BACKGROUND_COLOR);
     layoutContents();
    }
 
@@ -71,7 +72,7 @@ public class NavigatorFooterToolBar extends Composite {
      final GridLayout layout = new GridLayout(3, false);
      layout.marginHeight = 0;
      layout.marginWidth = 0;
-     this.setLayout(layout);
+     setLayout(layout);
 
      final GridData gd_left = new GridData(SWT.LEFT, SWT.CENTER, false, false);
      leftToolBar.getControl().setLayoutData(gd_left);
@@ -83,7 +84,7 @@ public class NavigatorFooterToolBar extends Composite {
      rightToolBar.getControl().setLayoutData(gd_right);
 
      if (backgroundColor != null) {
-       this.setBackground(backgroundColor);
+       setBackground(backgroundColor);
        leftToolBar.getControl().setBackground(backgroundColor);
        centerSpace.setBackground(backgroundColor);
        rightToolBar.getControl().setBackground(backgroundColor);

@@ -28,13 +28,28 @@ import javax.xml.bind.annotation.XmlEnum;
 @XmlEnum
 public enum DocumentType {
 
+  /**
+   * Indicates the document is an article.
+   */
   ARTICLE,
 
+  /**
+   * Indicates the document is a book.
+   */
   BOOK,
 
+  /**
+   * Indicates the document is a reference.
+   */
   REFERENCE,
 
-  LAW,
+  /**
+   * Indicates the document is a legal document.
+   */
+  LEGAL,
 
+  /**
+   * Indicates the document is a media.
+   */
   MEDIA,
 }

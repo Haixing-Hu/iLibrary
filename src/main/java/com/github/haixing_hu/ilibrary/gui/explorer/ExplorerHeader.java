@@ -18,28 +18,13 @@
 
 package com.github.haixing_hu.ilibrary.gui.explorer;
 
-import org.eclipse.jface.action.Separator;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.view.FilterFileStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterFileStatusHasFileAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterFileStatusNoFileAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterFlagStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterFlagStatusFlaggedAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusHasReadAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusReadingAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusToReadAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterReadStatusUnreadAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeAllAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeArticleAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeBookAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeLawAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.gui.BasicHeader;
-import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
+import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The header in the library panel.
@@ -50,31 +35,12 @@ public final class ExplorerHeader extends BasicHeader {
 
   public static final String KEY = ExplorerPanel.KEY + ".header";
 
-  private static final String ACTIONS[] = {
-    FilterFlagStatusAllAction.KEY,
-    FilterFlagStatusFlaggedAction.KEY,
-    //FlagFilterUnflaggedAction.KEY,
-    Separator.class.getName(),
-    FilterReadStatusAllAction.KEY,
-    FilterReadStatusUnreadAction.KEY,
-    FilterReadStatusToReadAction.KEY,
-    FilterReadStatusReadingAction.KEY,
-    FilterReadStatusHasReadAction.KEY,
-    Separator.class.getName(),
-    FilterTypeAllAction.KEY,
-    FilterTypeArticleAction.KEY,
-    FilterTypeBookAction.KEY,
-    FilterTypeReferenceAction.KEY,
-    FilterTypeLawAction.KEY,
-    FilterTypeMediaAction.KEY,
-    Separator.class.getName(),
-    FilterFileStatusAllAction.KEY,
-    FilterFileStatusHasFileAction.KEY,
-    FilterFileStatusNoFileAction.KEY,
-  };
-
-  public ExplorerHeader(Application application, Composite parent) {
-    super(application, parent, KEY,
-        new ActionListToolBarCreator(application, ACTIONS));
+  public ExplorerHeader(final Application application, final Composite parent) {
+    super(application, parent, KEY, new ControlCreator() {
+      @Override
+      public Control create(Composite parent) {
+        return new ExplorerHeaderToolBar(application, parent);
+      }
+    }, SWT.LEFT);
   }
 }

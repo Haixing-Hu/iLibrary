@@ -19,7 +19,7 @@
 package com.github.haixing_hu.ilibrary.model;
 
 /**
- * The enumeration of read status of documents.
+ * The enumeration of reading status of documents.
  *
  * @author Haixing Hu
  */

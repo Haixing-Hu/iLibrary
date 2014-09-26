@@ -18,12 +18,19 @@
 
 package com.github.haixing_hu.ilibrary.state;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
+import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.ilibrary.model.FileStatus;
+import com.github.haixing_hu.ilibrary.model.FlagStatus;
+import com.github.haixing_hu.ilibrary.model.ReadStatus;
 
 
 /**
@@ -35,30 +42,32 @@ public final class ApplicationState {
 
   private int page;
   private AnnotateMode annotateMode;
-  private FlagStatusFilter flagStatusFilter;
-  private ReadStatusFilter readStatusFilter;
-  private TypeFilter typeFilter;
-  private FileStatusFilter fileStatusFilter;
+  private Set<FlagStatus> flagStatusFilters;
+  private Set<ReadStatus> readStatusFilters;
+  private Set<DocumentType> typeFilters;
+  private Set<FileStatus> fileStatusFilters;
+  private BrowserMode browserMode;
   private int navigatorWidth;
   private boolean navigatorVisible;
   private int inspectorWidth;
   private int previewHeight;
   private InspectorTab inspectorTab;
-  private int viewMode;
+  private int layoutMode;
 
   public ApplicationState(AppConfig config) {
     page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
-    flagStatusFilter = FlagStatusFilter.ALL;
-    readStatusFilter = ReadStatusFilter.ALL;
-    typeFilter = TypeFilter.ALL;
-    fileStatusFilter = FileStatusFilter.ALL;
+    flagStatusFilters = new HashSet<FlagStatus>();
+    readStatusFilters = new HashSet<ReadStatus>();
+    typeFilters = new HashSet<DocumentType>();
+    fileStatusFilters = new HashSet<FileStatus>();
+    browserMode = BrowserMode.COLUMNS;
     navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     navigatorVisible = true;
     inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
     previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
     inspectorTab = InspectorTab.OVERVIEW;
-    viewMode = ViewMode.ALL;
+    layoutMode = LayoutMode.ALL;
   }
 
   /**
@@ -98,75 +107,117 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the flag status filter.
+   * Gets the flagStatusFilters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible flag status.
    *
-   * @return the flag status filter.
+   * @return the flagStatusFilters.
    */
-  public FlagStatusFilter getFlagFilter() {
-    return flagStatusFilter;
+  public Set<FlagStatus> getFlagStatusFilters() {
+    return flagStatusFilters;
   }
 
   /**
-   * Sets the flag status filter.
+   * Sets the flag status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible flag status.
    *
-   * @param flagStatusFilter the new flag status filter to set.
+   * @param flagStatusFilters the new flag status filters to set.
    */
-  public void setFlagStatusFilter(FlagStatusFilter flagStatusFilter) {
-    this.flagStatusFilter = flagStatusFilter;
+  public void setFlagStatusFilters(Set<FlagStatus> flagStatusFilters) {
+    this.flagStatusFilters = flagStatusFilters;
   }
 
   /**
-   * Gets the read status filter.
+   * Gets the read status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible read status.
    *
-   * @return the read status filter.
+   * @return the read status filters.
    */
-  public ReadStatusFilter getReadStatusFilter() {
-    return readStatusFilter;
+  public Set<ReadStatus> getReadStatusFilters() {
+    return readStatusFilters;
   }
 
   /**
-   * Sets the read status filter.
+   * Sets the read status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible read status.
    *
-   * @param readStatusFilter the new read status filter to set.
+   * @param readStatusFilters the new read status filters to set.
    */
-  public void setReadStatusFilter(ReadStatusFilter readStatusFilter) {
-    this.readStatusFilter = readStatusFilter;
+  public void setReadStatusFilters(Set<ReadStatus> readStatusFilters) {
+    this.readStatusFilters = readStatusFilters;
   }
 
   /**
-   * Gets the type filter.
+   * Gets the type filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible document types.
    *
-   * @return the type filter.
+   * @return the type filters.
    */
-  public TypeFilter getTypeFilter() {
-    return typeFilter;
+  public Set<DocumentType> getTypeFilters() {
+    return typeFilters;
   }
 
   /**
-   * Sets the type filter.
+   * Sets the type filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible document types.
    *
-   * @param typeFilter the new type filter to set.
+   * @param typeFilters the new type filters to set.
    */
-  public void setTypeFilter(TypeFilter typeFilter) {
-    this.typeFilter = typeFilter;
+  public void setTypeFilters(Set<DocumentType> typeFilters) {
+    this.typeFilters = typeFilters;
   }
 
   /**
-   * Gets the file status filter.
+   * Gets the file status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible file status.
    *
-   * @return the file status filter.
+   * @return the file status filters.
    */
-  public FileStatusFilter getFileStatusFilter() {
-    return fileStatusFilter;
+  public Set<FileStatus> getFileStatusFilters() {
+    return fileStatusFilters;
   }
 
   /**
-   * Sets the file status filter.
+   * Sets the file status filters.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible file status.
    *
-   * @param fileStatusFilter the new file status filter to set.
+   * @param fileStatusFilters the new file status filters to set.
    */
-  public void setFileStatusFilter(FileStatusFilter fileStatusFilter) {
-    this.fileStatusFilter = fileStatusFilter;
+  public void setFileStatusFilters(Set<FileStatus> fileStatusFilters) {
+    this.fileStatusFilters = fileStatusFilters;
+  }
+
+  /**
+   * Gets the browser mode.
+   *
+   * @return the browser mode.
+   */
+  public BrowserMode getBrowserMode() {
+    return browserMode;
+  }
+
+  /**
+   * Sets the browser mode.
+   *
+   * @param browserMode the new browser mode to set.
+   */
+  public void setBrowserMode(BrowserMode browserMode) {
+    this.browserMode = browserMode;
   }
 
   /**
@@ -184,7 +235,7 @@ public final class ApplicationState {
    * @param width the new navigatorWidth to set.
    */
   public void setNavigatorWidth(int width) {
-    this.navigatorWidth = width;
+    navigatorWidth = width;
   }
 
   /**
@@ -204,7 +255,7 @@ public final class ApplicationState {
    *         <code>false</code> otherwise.
    */
   public void setNavigatorVisible(boolean visible) {
-    this.navigatorVisible = visible;
+    navigatorVisible = visible;
   }
 
   /**
@@ -222,7 +273,7 @@ public final class ApplicationState {
    * @param width the new inspectorWidth to set.
    */
   public void setInspectorWidth(int width) {
-    this.inspectorWidth = width;
+    inspectorWidth = width;
   }
 
   /**
@@ -232,7 +283,7 @@ public final class ApplicationState {
    *         <code>false</code> otherwise.
    */
   public boolean isInspectorVisible() {
-    return (viewMode & ViewMode.INSPECTOR) != 0;
+    return (layoutMode & LayoutMode.INSPECTOR) != 0;
   }
 
   /**
@@ -250,7 +301,7 @@ public final class ApplicationState {
    * @param height the new previewHeight to set.
    */
   public void setPreviewHeight(int height) {
-    this.previewHeight = height;
+    previewHeight = height;
   }
 
   /**
@@ -260,7 +311,7 @@ public final class ApplicationState {
    *         <code>false</code> otherwise.
    */
   public boolean isPreviewVisible() {
-    return (viewMode & ViewMode.PREVIEW) != 0;
+    return (layoutMode & LayoutMode.PREVIEW) != 0;
   }
 
   /**
@@ -278,25 +329,25 @@ public final class ApplicationState {
    * @param tab the new inspector tab to set.
    */
   public void setInspectorTab(InspectorTab tab) {
-    this.inspectorTab = tab;
+    inspectorTab = tab;
   }
 
   /**
-   * Gets the view mode.
+   * Gets the layout mode.
    *
-   * @return the view mode.
+   * @return the layout mode.
    */
-  public int getViewMode() {
-    return viewMode;
+  public int getLayoutMode() {
+    return layoutMode;
   }
 
   /**
-   * Sets the view mode.
+   * Sets the layout mode.
    *
-   * @param viewMode the new view mode to set.
+   * @param mode the new layout mode to set.
    */
-  public void setViewMode(int viewMode) {
-    this.viewMode = viewMode;
+  public void setLayoutMode(int mode) {
+    layoutMode = mode;
   }
 
 }

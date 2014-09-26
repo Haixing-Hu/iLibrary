@@ -79,28 +79,28 @@ public class BaseAction extends ActionEx {
     super(id, style);
     this.application = requireNonNull("application", application);
     this.actionManager = requireNonNull("actionManager", actionManager);
-    this.logger = LoggerFactory.getLogger(this.getClass());
-    this.setId(id);
+    logger = LoggerFactory.getLogger(this.getClass());
+    setId(id);
     final AppConfig config = application.getConfig();
     title = config.getTitle(id);
     shortcut = config.getShortcut(id);
     if (shortcut == null) {
-      this.setText(title);
+      setText(title);
     } else {
-      this.setText(title + "@" + shortcut);
+      setText(title + "@" + shortcut);
     }
     final String description = config.getDescription(id);
     if (description != null) {
-      this.setDescription(description);
-      this.setToolTipText(description);
+      setDescription(description);
+      setToolTipText(description);
     } else {
-      this.setToolTipText(title);
+      setToolTipText(title);
     }
     final String iconPath = config.getIcon(id);
     if (iconPath != null) {
       final Image img = SWTResourceManager.getImage(this.getClass(), iconPath);
       icon = ImageDescriptor.createFromImage(img);
-      this.setImageDescriptor(icon);
+      setImageDescriptor(icon);
     } else {
       icon = null;
     }
@@ -112,6 +112,8 @@ public class BaseAction extends ActionEx {
     } else {
       activeIcon = null;
     }
+    //  do not show image by default
+    setShowImage(false);
   }
 
   /**
@@ -164,11 +166,11 @@ public class BaseAction extends ActionEx {
     super.setChecked(checked);
     if (checked) {
       if (activeIcon != null) {
-        this.setImageDescriptor(activeIcon);
+        setImageDescriptor(activeIcon);
       }
     } else {
       if (icon != null) {
-        this.setImageDescriptor(icon);
+        setImageDescriptor(icon);
       }
     }
   }
@@ -176,7 +178,7 @@ public class BaseAction extends ActionEx {
   @Override
   public void run() {
     //  default implementation is to display an error message.
-    application.displayUnimplementedError(this.getId());
+    application.displayUnimplementedError(getId());
   }
 
   @Override

@@ -20,6 +20,30 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.library.collection.AddToCollectionAction;
+import com.github.haixing_hu.ilibrary.action.library.collection.ManageCollectionAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.AddReviewAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.AttachFileAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.EditInformationAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.EditKeywordsAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.EditNotesAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkFlaggedAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkPrintedAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkReadAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkUnflaggedAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkUnprintedAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkUnreadAction;
+import com.github.haixing_hu.ilibrary.action.library.merge.MergeAuthorsAction;
+import com.github.haixing_hu.ilibrary.action.library.merge.MergeConferencesAction;
+import com.github.haixing_hu.ilibrary.action.library.merge.MergeDocumentsAction;
+import com.github.haixing_hu.ilibrary.action.library.merge.MergeInstitutesAction;
+import com.github.haixing_hu.ilibrary.action.library.merge.MergePeriodicalsAction;
+import com.github.haixing_hu.ilibrary.action.library.merge.MergeWebsitesAction;
+import com.github.haixing_hu.ilibrary.action.library.open.OpenFileAction;
+import com.github.haixing_hu.ilibrary.action.library.open.OpenFileWithAction;
+import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlAction;
+import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlInBrowserAction;
+import com.github.haixing_hu.ilibrary.action.library.open.RevealFilePositionAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -44,21 +68,20 @@ public class LibraryAction extends BaseDropDownAction {
     RestoreFromTrashAction.KEY,
     EmptyTrashAction.KEY,
     SEPARATOR_KEY,
+    EditInformationAction.KEY,
     EditKeywordsAction.KEY,
     EditNotesAction.KEY,
     AddReviewAction.KEY,
+    AttachFileAction.KEY,
     SEPARATOR_KEY,
     OpenFileAction.KEY,
     OpenFileWithAction.KEY,
-    RevealFilePositionAction.KEY,
-    AttachFileAction.KEY,
-    SEPARATOR_KEY,
     OpenUrlAction.KEY,
     OpenUrlInBrowserAction.KEY,
+    RevealFilePositionAction.KEY,
     SEPARATOR_KEY,
     ManageCollectionAction.KEY,
     AddToCollectionAction.KEY,
-    EditInformationAction.KEY,
     SEPARATOR_KEY,
     MergeDocumentsAction.KEY,
     MergeAuthorsAction.KEY,

@@ -56,6 +56,8 @@ public class BasicHeader extends Composite {
   protected final int marginWidth;
   protected final Color backgroundColor;
   protected final Image backgroundImage;
+  protected final Color controlBackgroundColor;
+  protected final Image controlBackgroundImage;
 
   /**
    * Constructs a header with the default style.
@@ -114,80 +116,88 @@ public class BasicHeader extends Composite {
     marginWidth = config.getInt(key + KeySuffix.MARGIN_WIDTH);
     backgroundColor = config.getColor(key + KeySuffix.BACKGROUND_COLOR);
     backgroundImage = config.getImage(this.getClass(), key + KeySuffix.BACKGROUND_IMAGE);
-    layoutContents();
+    controlBackgroundColor = config.getColor(key + KeySuffix.CONTROL
+        + KeySuffix.BACKGROUND_COLOR);
+    controlBackgroundImage = config.getImage(this.getClass(),
+        key + KeySuffix.CONTROL + KeySuffix.BACKGROUND_IMAGE);
+    configContents();
   }
 
-  private final void layoutContents() {
+  private final void configContents() {
     final int alignment = (style & (SWT.LEFT | SWT.CENTER | SWT.RIGHT));
-    if (alignment == SWT.CENTER) {
-      final GridLayout layout = new GridLayout(1, true);
-      layout.horizontalSpacing = 0;
-      layout.verticalSpacing = 0;
-      layout.marginLeft = 0;
-      layout.marginTop = 0;
-      layout.marginRight = 0;
-      layout.marginBottom = 0;
-      layout.marginHeight = 0;
-      layout.marginWidth = 0;
-      setLayout(layout);
-      final GridData gd_control = new GridData(SWT.CENTER, SWT.CENTER, true, true);
-      control.setLayoutData(gd_control);
-      if (separator != null) {
-        final GridData gd_separator = new GridData(GridData.FILL_HORIZONTAL);
-        separator.setLayoutData(gd_separator);
-      }
+    if ((alignment == SWT.CENTER) || (marginWidth <= 0)) {
+      doGridLayout(alignment);
     } else {
-      final FormLayout layout = new FormLayout();
-      layout.marginTop = 0;
-      layout.marginBottom = 0;
-      layout.marginLeft = 0;
-      layout.marginRight = 0;
-      layout.marginHeight = 0;
-      layout.marginWidth = 0;
-      layout.spacing = 0;
-      setLayout(layout);
-
-      final int separatorHeight;
-      if (separator == null) {
-        separatorHeight = 0;
-      } else {
-        separator.pack();
-        separatorHeight = separator.getSize().y;
-      }
-      control.pack();
-      final Point controlSize = control.getSize();
-      final int marginHeight = (height - separatorHeight - controlSize.y) / 2;
-      final FormData fd_control = new FormData();
-      switch (alignment) {
-      case SWT.RIGHT:
-        fd_control.left = new FormAttachment(100, - controlSize.x - marginWidth);
-        fd_control.right = new FormAttachment(100, - marginWidth);
-        break;
-      case SWT.LEFT:
-      default:
-        fd_control.left = new FormAttachment(0, marginWidth);
-        fd_control.right = new FormAttachment(100, - marginWidth);
-        break;
-      }
-      fd_control.top = new FormAttachment(0, marginHeight);
-      fd_control.bottom = new FormAttachment(0, height - separatorHeight - marginHeight);
-      control.setLayoutData(fd_control);
-      if (separator != null) {
-        final FormData fd_separator = new FormData();
-        fd_separator.left = new FormAttachment(0);
-        fd_separator.right = new FormAttachment(100);
-        fd_separator.top = new FormAttachment(0, height - separatorHeight);
-        fd_separator.bottom = new FormAttachment(0, height);
-        separator.setLayoutData(fd_separator);
-      }
+      doFormLayout(alignment);
     }
     if (backgroundColor != null) {
       setBackground(backgroundColor);
-      control.setBackground(backgroundColor);
     }
     if (backgroundImage != null) {
       setBackgroundImage(backgroundImage);
-      control.setBackgroundImage(backgroundImage);
+    }
+    if (controlBackgroundColor != null) {
+      control.setBackground(controlBackgroundColor);
+    }
+    if (controlBackgroundImage != null) {
+      control.setBackgroundImage(controlBackgroundImage);
+    }
+  }
+
+  private void doGridLayout(final int alignment) {
+    final GridLayout layout = new GridLayout(1, true);
+    layout.horizontalSpacing = 0;
+    layout.verticalSpacing = 0;
+    layout.marginHeight = 0;
+    layout.marginWidth = 0;
+    setLayout(layout);
+    final GridData gd_control = new GridData(alignment, SWT.CENTER, true, true);
+    control.setLayoutData(gd_control);
+    if (separator != null) {
+      final GridData gd_separator = new GridData(GridData.FILL_HORIZONTAL);
+      separator.setLayoutData(gd_separator);
+    }
+  }
+
+  private void doFormLayout(final int alignment) {
+    final FormLayout layout = new FormLayout();
+    layout.spacing = 0;
+    layout.marginHeight = 0;
+    layout.marginWidth = 0;
+    setLayout(layout);
+
+    final int separatorHeight;
+    if (separator == null) {
+      separatorHeight = 0;
+    } else {
+      separator.pack();
+      separatorHeight = separator.getSize().y;
+    }
+    control.pack();
+    final Point controlSize = control.getSize();
+    final int marginHeight = (height - separatorHeight - controlSize.y) / 2;
+    final FormData fd_control = new FormData();
+    switch (alignment) {
+    case SWT.RIGHT:
+      fd_control.left = new FormAttachment(100, - controlSize.x - marginWidth);
+      fd_control.right = new FormAttachment(100, - marginWidth);
+      break;
+    case SWT.LEFT:
+    default:
+      fd_control.left = new FormAttachment(0, marginWidth);
+      fd_control.right = new FormAttachment(100, - marginWidth);
+      break;
+    }
+    fd_control.top = new FormAttachment(0, marginHeight);
+    fd_control.bottom = new FormAttachment(0, height - separatorHeight - marginHeight);
+    control.setLayoutData(fd_control);
+    if (separator != null) {
+      final FormData fd_separator = new FormData();
+      fd_separator.left = new FormAttachment(0);
+      fd_separator.right = new FormAttachment(100);
+      fd_separator.top = new FormAttachment(0, height - separatorHeight);
+      fd_separator.bottom = new FormAttachment(0, height);
+      separator.setLayoutData(fd_separator);
     }
   }
 

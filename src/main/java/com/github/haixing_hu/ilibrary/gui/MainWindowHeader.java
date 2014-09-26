@@ -22,12 +22,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.window.PageAuthorsAction;
-import com.github.haixing_hu.ilibrary.action.window.PageLibraryAction;
-import com.github.haixing_hu.ilibrary.action.window.PageReaderAction;
-import com.github.haixing_hu.ilibrary.action.window.PageSearchAction;
-import com.github.haixing_hu.ilibrary.action.window.PageSourcesAction;
-import com.github.haixing_hu.ilibrary.action.window.PageTagsAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageAuthorsAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageLibraryAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageReaderAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageSearchAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageSourcesAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
 import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
 
 /**

@@ -33,10 +33,10 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
-import com.github.haixing_hu.ilibrary.action.view.HidePreviewAction;
-import com.github.haixing_hu.ilibrary.action.view.ShowInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
-import com.github.haixing_hu.ilibrary.action.view.ShowPreviewAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.ShowInspectorAction;
+import com.github.haixing_hu.ilibrary.action.view.preview.HidePreviewAction;
+import com.github.haixing_hu.ilibrary.action.view.preview.ShowPreviewAction;
 import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarManager;
 import com.github.haixing_hu.swt.action.ActionEx;
 
@@ -67,7 +67,7 @@ public class ExplorerFooterToolBar extends Composite {
 
   public ExplorerFooterToolBar(Application application, Composite parent) {
     super(parent, SWT.NONE);
-    this.logger = LoggerFactory.getLogger(this.getClass());
+    logger = LoggerFactory.getLogger(this.getClass());
     this.application = application;
     leftToolBar = new ActionListToolBarManager(application, LEFT_ACTION_KEYS);
     leftToolBar.createControl(this);
@@ -75,7 +75,8 @@ public class ExplorerFooterToolBar extends Composite {
     rightToolBar = new ActionListToolBarManager(application, RGIHT_ACTION_KEYS);
     rightToolBar.createControl(this);
     final AppConfig config = application.getConfig();
-    backgroundColor = config.getColor(ExplorerFooter.KEY + KeySuffix.BACKGROUND_COLOR);
+    backgroundColor = config.getColor(ExplorerFooter.KEY
+        + KeySuffix.CONTROL + KeySuffix.BACKGROUND_COLOR);
     layoutContents();
   }
 
@@ -83,7 +84,7 @@ public class ExplorerFooterToolBar extends Composite {
     final GridLayout layout = new GridLayout(3, false);
     layout.marginHeight = 0;
     layout.marginWidth = 0;
-    this.setLayout(layout);
+    setLayout(layout);
 
     final GridData gd_left = new GridData(SWT.LEFT, SWT.CENTER, false, false);
     leftToolBar.getControl().setLayoutData(gd_left);
@@ -95,7 +96,7 @@ public class ExplorerFooterToolBar extends Composite {
     rightToolBar.getControl().setLayoutData(gd_right);
 
     if (backgroundColor != null) {
-      this.setBackground(backgroundColor);
+      setBackground(backgroundColor);
       leftToolBar.getControl().setBackground(backgroundColor);
       statusLine.setBackground(backgroundColor);
       rightToolBar.getControl().setBackground(backgroundColor);

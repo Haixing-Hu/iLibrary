@@ -35,6 +35,7 @@ public class LabelCreator implements ControlCreator {
 
   private String text;
   private int size;
+  private int style;
 
   /**
    * Constructs a {@link LabelCreator}.
@@ -44,7 +45,8 @@ public class LabelCreator implements ControlCreator {
    */
   public LabelCreator(String text) {
     this.text = text;
-    this.size = -1;
+    size = -1;
+    style = -1;
   }
 
   /**
@@ -58,6 +60,23 @@ public class LabelCreator implements ControlCreator {
   public LabelCreator(String text, int size) {
     this.text = text;
     this.size = size;
+    style = -1;
+  }
+
+  /**
+   * Constructs a {@link LabelCreator}.
+   *
+   * @param text
+   *    the text on the created label.
+   * @param size
+   *    the size of the font of the created label.
+   * @param style
+   *    the style of the font of the created label.
+   */
+  public LabelCreator(String text, int size, int style) {
+    this.text = text;
+    this.size = size;
+    this.style = style;
   }
 
   /**
@@ -79,29 +98,59 @@ public class LabelCreator implements ControlCreator {
   }
 
   /**
-   * Gets the size of font.
+   * Gets the size of the font.
    *
-   * @return the size of font.
+   * @return the size of the font.
    */
   public int getSize() {
     return size;
   }
 
   /**
-   * Sets the size of font.
+   * Sets the size of the font.
    *
-   * @param size the new size of font to set.
+   * @param size the new size of the font to set.
    */
   public void setSize(int size) {
     this.size = size;
+  }
+
+  /**
+   * Gets the style of the font.
+   *
+   * @return the style of the font.
+   */
+  public int getStyle() {
+    return style;
+  }
+
+  /**
+   * Sets the style of the font.
+   *
+   * @param style
+   *          the new style of the font to set.
+   */
+  public void setStyle(int style) {
+    this.style = style;
   }
 
   @Override
   public Control create(Composite parent) {
     final Label label = new Label(parent, SWT.NONE);
     label.setText(text);
+    final Font font;
     if (size > 0) {
-      final Font font = SWTResourceManager.changeFontSize(label.getFont(), size);
+      if (style > 0) {
+        font = SWTResourceManager.getFont(label.getFont(), size, style);
+      } else {
+        font = SWTResourceManager.changeFontSize(label.getFont(), size);
+      }
+    } else if (style > 0) {
+      font = SWTResourceManager.changeFontStyle(label.getFont(), style, false, false);
+    } else {
+      font = null;
+    }
+    if (font != null) {
       label.setFont(font);
     }
     return label;

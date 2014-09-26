@@ -20,6 +20,17 @@ package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageAuthorsAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageLibraryAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageReaderAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageSearchAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageSourcesAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
+import com.github.haixing_hu.ilibrary.action.window.tab.CloseAllTabsAction;
+import com.github.haixing_hu.ilibrary.action.window.tab.CloseTabAction;
+import com.github.haixing_hu.ilibrary.action.window.tab.CycleTabsAction;
+import com.github.haixing_hu.ilibrary.action.window.tab.NextTabAction;
+import com.github.haixing_hu.ilibrary.action.window.tab.PreviousTabAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -42,11 +53,6 @@ public class WindowAction extends BaseDropDownAction {
     PageAuthorsAction.KEY,
     PageSourcesAction.KEY,
     PageReaderAction.KEY,
-    SEPARATOR_KEY,
-    InspectorOverviewTabAction.KEY,
-    InspectorInfoTabAction.KEY,
-    InspectorNotesTabAction.KEY,
-    InspectorReviewsTabAction.KEY,
     SEPARATOR_KEY,
     CycleTabsAction.KEY,
     PreviousTabAction.KEY,

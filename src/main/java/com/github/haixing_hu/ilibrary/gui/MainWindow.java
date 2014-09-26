@@ -74,7 +74,6 @@ public final class MainWindow extends ApplicationWindowEx {
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
     pages = new Page[Page.TOTAL_COUNT];
     addMenuBar();
-    addToolBar(SWT.FLAT |SWT.WRAP);
   }
 
   @Override

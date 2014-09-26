@@ -18,13 +18,14 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.window.InspectorInfoTabAction;
-import com.github.haixing_hu.ilibrary.action.window.InspectorNotesTabAction;
-import com.github.haixing_hu.ilibrary.action.window.InspectorOverviewTabAction;
-import com.github.haixing_hu.ilibrary.action.window.InspectorReviewsTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorNotesTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorOverviewTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorReviewsTabAction;
 import com.github.haixing_hu.ilibrary.gui.BasicHeader;
 import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
 
@@ -46,6 +47,7 @@ public final class InspectorHeader extends BasicHeader {
 
   public InspectorHeader(final Application application, final Composite parent) {
     super(application, parent, KEY,
-        new ActionListToolBarCreator(application, ACTION_KEYS));
+        new ActionListToolBarCreator(application, ACTION_KEYS),
+        SWT.LEFT);
   }
 }

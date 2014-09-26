@@ -67,10 +67,10 @@ public class DocumentTemplateServiceTest {
       System.out.println(t);
     }
 
-    final Collection<DocumentTemplate> laws = service.getAll(DocumentType.LAW);
-    assertTrue(laws.size() > 0);
-    for (final DocumentTemplate t : laws) {
-      assertEquals(DocumentType.LAW, t.getType());
+    final Collection<DocumentTemplate> legals = service.getAll(DocumentType.LEGAL);
+    assertTrue(legals.size() > 0);
+    for (final DocumentTemplate t : legals) {
+      assertEquals(DocumentType.LEGAL, t.getType());
       System.out.println(t);
     }
 

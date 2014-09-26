@@ -47,7 +47,7 @@ public final class MainMenuBar extends MenuManagerEx {
    *    the application the new menu bar belongs.
    */
   public MainMenuBar(Application application) {
-    super(false);
+    super(true);
     this.application = application;
     final ActionManager am = application.getActionManager();
     this.add(am.get(FileAction.KEY));
