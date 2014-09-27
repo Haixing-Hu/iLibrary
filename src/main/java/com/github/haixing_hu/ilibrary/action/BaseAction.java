@@ -18,6 +18,9 @@
 
 package com.github.haixing_hu.ilibrary.action;
 
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -59,7 +62,8 @@ public class BaseAction extends ActionEx {
    *          the action manager, which is a map from the action's ID to the action.
    */
   public BaseAction(String id, Application application, IActionManager actionManager) {
-    this(id, application, actionManager, SWT.NONE);
+    this(id, null, application, actionManager, SWT.NONE);
+    setShowImage(true);
   }
 
   /**
@@ -67,22 +71,50 @@ public class BaseAction extends ActionEx {
    *
    * @param id
    *          the ID of the new action.
+   * @param title
+   *          the title of the new action.
    * @param application
    *          the application the new action belongs to.
    * @param actionManager
-   *          the action manager, which is a map from the action's ID to the action.
+   *          the action manager, which is a map from the action's ID to the
+   *          action.
+   */
+  public BaseAction(String id, String title, Application application,
+      IActionManager actionManager) {
+    this(id, title, application, actionManager, SWT.NONE);
+    setShowImage(true);
+  }
+
+  /**
+   * Constructs an action.
+   *
+   * @param id
+   *          the ID of the new action.
+   * @param title
+   *          the title of the new action, or null if none.
+   * @param application
+   *          the application the new action belongs to.
+   * @param actionManager
+   *          the action manager, which is a map from the action's ID to the
+   *          action.
    * @param style
    *          the style of the new action.
    */
-  protected BaseAction(String id, Application application,
-      IActionManager actionManager, int style) {
+  protected BaseAction(String id, @Nullable String title,
+      Application application, IActionManager actionManager, int style) {
     super(id, style);
     this.application = requireNonNull("application", application);
     this.actionManager = requireNonNull("actionManager", actionManager);
     logger = LoggerFactory.getLogger(this.getClass());
     setId(id);
     final AppConfig config = application.getConfig();
-    title = config.getTitle(id);
+    if (title == null) {
+      title = config.getTitle(id);
+    }
+    this.title = title;
+    if (StringUtils.isEmpty(title)) {
+      logger.error("Cannot get the title for action: {}", id);
+    }
     shortcut = config.getShortcut(id);
     if (shortcut == null) {
       setText(title);

@@ -37,6 +37,7 @@ public class AnnotateAction extends BaseDropDownAction {
     AnnotateHighlightAction.KEY,
     AnnotateUnderlineAction.KEY,
     AnnotateStrikethroughAction.KEY,
+    AnnotateNoteAction.KEY,
   };
 
   public AnnotateAction(Application application, IActionManager actionManager) {

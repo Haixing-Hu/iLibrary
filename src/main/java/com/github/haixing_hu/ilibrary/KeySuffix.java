@@ -92,4 +92,21 @@ public interface KeySuffix {
   public static final String SMART_COLLECTION = ".smart-collection";
 
   public static final String DEFAULT = ".default";
+
+  public static final String COLUMN = ".column";
+
+  public static final String ORDER = ".order";
+
+  public static final String LOCALE = ".locale";
+
+  public static final String NAME = ".name";
+
+  public static final String VERSION = ".version";
+
+  public static final String FONT = ".font";
+
+  public static final String HEAVY = ".heavy";
+
+  public static final String LIGHT = ".light";
+
 }

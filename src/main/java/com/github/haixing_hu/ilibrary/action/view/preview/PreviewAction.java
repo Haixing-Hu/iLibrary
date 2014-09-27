@@ -34,8 +34,8 @@ public class PreviewAction extends BaseDropDownAction {
 
   private static final String[] SUB_ACTIONS = {
     AsDocumentAction.KEY,
-    AsWebpageAction.KEY,
     AsThumbnailsAction.KEY,
+    AsWebpageAction.KEY,
     SEPARATOR_KEY,
     HidePreviewAction.KEY,
     ShowPreviewAction.KEY,

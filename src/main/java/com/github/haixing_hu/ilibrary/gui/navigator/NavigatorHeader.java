@@ -36,9 +36,12 @@ public class NavigatorHeader extends BasicHeader {
   public static final String KEY = NavigatorPanel.KEY + ".header";
 
   public NavigatorHeader(Application application, Composite parent, String title) {
-    super(application, parent, KEY, new LabelCreator(title,
-        application.getConfig().getInt(KEY + KeySuffix.FONT_SIZE),
-        SWT.BOLD), SWT.LEFT);
+    super(application, parent, KEY,
+        new LabelCreator(title,
+          application.getConfig().getInt(KEY + KeySuffix.FONT_SIZE),
+          SWT.BOLD,
+          application.getConfig().getHeavyFontColor()),
+    SWT.LEFT);
   }
 
 }

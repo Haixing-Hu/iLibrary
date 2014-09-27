@@ -33,4 +33,6 @@ public enum AnnotateMode {
   UNDERLINE,
 
   STRIKETHORUGH,
+
+  NOTE,
 }

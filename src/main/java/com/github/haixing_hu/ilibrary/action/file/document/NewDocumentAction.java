@@ -52,23 +52,26 @@ public class NewDocumentAction extends BaseDropDownAction {
    */
   public NewDocumentAction(DocumentType type, Application application,
           IActionManager actionManager) {
-    super(NewAction.KEY + "." + EnumUtils.getShortName(type),
-          application, actionManager,
+    super(getActionId(type), application, actionManager,
           getSubActionIds(application.getConfig(), type));
     this.type = type;
-    logger.info("Creates an NewDocument action '{}' for document type '{}'.",
-        this.getId(), type);
+    logger.info("Creates an NewDocumentAction '{}' for document type '{}'.",
+        getId(), type);
   }
 
   private static String[] getSubActionIds(AppConfig config, DocumentType type) {
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
     final Collection<DocumentTemplate> templates = service.getAll(type);
     final List<String> ids = new ArrayList<String>();
-    final String prefix = NewAction.KEY + "." + EnumUtils.getShortName(type) + ".";
     for (final DocumentTemplate template : templates) {
-      ids.add(prefix + template.getName());
+      final String id = NewDocumentFormTemplateAction.getActionId(template);
+      ids.add(id);
     }
     return ids.toArray(new String[0]);
+  }
+
+  public static String getActionId(DocumentType type) {
+    return NewAction.KEY + "." + EnumUtils.getShortName(type);
   }
 
   /**

@@ -19,6 +19,7 @@
 package com.github.haixing_hu.ilibrary.gui.util;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -36,6 +37,7 @@ public class LabelCreator implements ControlCreator {
   private String text;
   private int size;
   private int style;
+  private Color foregroundColor;
 
   /**
    * Constructs a {@link LabelCreator}.
@@ -47,6 +49,7 @@ public class LabelCreator implements ControlCreator {
     this.text = text;
     size = -1;
     style = -1;
+    foregroundColor = null;
   }
 
   /**
@@ -61,6 +64,7 @@ public class LabelCreator implements ControlCreator {
     this.text = text;
     this.size = size;
     style = -1;
+    foregroundColor = null;
   }
 
   /**
@@ -77,6 +81,26 @@ public class LabelCreator implements ControlCreator {
     this.text = text;
     this.size = size;
     this.style = style;
+    foregroundColor = null;
+  }
+
+  /**
+   * Constructs a {@link LabelCreator}.
+   *
+   * @param text
+   *    the text on the created label.
+   * @param size
+   *    the size of the font of the created label.
+   * @param style
+   *    the style of the font of the created label.
+   * @param foregroundColor
+   *    the foreground color of the font of the created label.
+   */
+  public LabelCreator(String text, int size, int style, Color foregroundColor) {
+    this.text = text;
+    this.size = size;
+    this.style = style;
+    this.foregroundColor = foregroundColor;
   }
 
   /**
@@ -134,6 +158,25 @@ public class LabelCreator implements ControlCreator {
     this.style = style;
   }
 
+  /**
+   * Gets the foreground color.
+   *
+   * @return the foreground color.
+   */
+  public Color getColor() {
+    return foregroundColor;
+  }
+
+  /**
+   * Sets the foreground color.
+   *
+   * @param foregroundColor
+   *          the new foreground color to set.
+   */
+  public void setForegroundColor(Color color) {
+    foregroundColor = color;
+  }
+
   @Override
   public Control create(Composite parent) {
     final Label label = new Label(parent, SWT.NONE);
@@ -152,6 +195,9 @@ public class LabelCreator implements ControlCreator {
     }
     if (font != null) {
       label.setFont(font);
+    }
+    if (foregroundColor != null) {
+      label.setForeground(foregroundColor);
     }
     return label;
   }

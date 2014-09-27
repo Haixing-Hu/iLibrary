@@ -21,7 +21,8 @@ package com.github.haixing_hu.ilibrary.state;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.haixing_hu.ilibrary.gui.Page;
+import javax.annotation.Nullable;
+
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
@@ -36,7 +37,7 @@ import com.github.haixing_hu.ilibrary.model.ReadStatus;
  */
 public final class ApplicationState {
 
-  private int page;
+  private Page page;
   private AnnotateMode annotateMode;
   private BrowserMode browserMode;
   private int navigatorWidth;
@@ -50,8 +51,11 @@ public final class ApplicationState {
   private final Set<ReadStatus> readStatusFilters;
   private final Set<DocumentType> typeFilters;
   private final Set<FileStatus> fileStatusFilters;
-  private final Set<FieldType> columns;
+  private final Set<FieldType> allColumns[];
+  private final FieldType allSortColumn[];
+  private final SortOrder allSortOrder[];
 
+  @SuppressWarnings("unchecked")
   public ApplicationState() {
     page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
@@ -66,7 +70,15 @@ public final class ApplicationState {
     readStatusFilters = new HashSet<ReadStatus>();
     typeFilters = new HashSet<DocumentType>();
     fileStatusFilters = new HashSet<FileStatus>();
-    columns = new HashSet<FieldType>();
+    allColumns = new Set[Page.TOTAL];
+    for (int i = 0; i < Page.TOTAL; ++i) {
+      allColumns[i] = new HashSet<FieldType>();
+    }
+    allSortColumn = new FieldType[Page.TOTAL];
+    allSortOrder = new SortOrder[Page.TOTAL];
+    for (int i = 0; i < Page.TOTAL; ++i) {
+      allSortOrder[i] = SortOrder.ASC;
+    }
   }
 
   /**
@@ -74,7 +86,7 @@ public final class ApplicationState {
    *
    * @return the page.
    */
-  public int getPage() {
+  public Page getPage() {
     return page;
   }
 
@@ -83,7 +95,7 @@ public final class ApplicationState {
    *
    * @param page the new page to set.
    */
-  public void setPage(int page) {
+  public void setPage(Page page) {
     this.page = page;
   }
 
@@ -302,12 +314,106 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the columns.
+   * Gets the allColumns for the current page.
    *
-   * @return the columns.
+   * @return the allColumns for the current page.
    */
   public Set<FieldType> getColumns() {
-    return columns;
+    return allColumns[page.ordinal()];
   }
 
+  /**
+   * Gets the all allColumns.
+   *
+   * @return all allColumns for all pages.
+   */
+  public Set<FieldType>[] getAllColumns() {
+    return allColumns;
+  }
+
+  /**
+   * Gets the sorting column for the current page.
+   *
+   * @return the sorting column for the current page. A null value indicates no
+   *         sorting column is specified and thus sorts in the default column.
+   */
+  public FieldType getSortColumn() {
+    return allSortColumn[page.ordinal()];
+  }
+
+  /**
+   * Sets the sorting column for the current page.
+   *
+   * @param column
+   *          the sorting column to be set for the current page. A null value
+   *          indicates no sorting column is specified and thus sorts in the
+   *          default column.
+   */
+  public void setSortColumn(@Nullable FieldType column) {
+    allSortColumn[page.ordinal()] = column;
+  }
+
+  /**
+   * Gets the all sorting column.
+   *
+   * @return all sorting column for all pages. A null value indicates no sorting
+   *         column is specified and thus sorts in the default column.
+   */
+  public FieldType[] getAllSortColumns() {
+    return allSortColumn;
+  }
+
+  /**
+   * Sets the all sorting column.
+   *
+   * @param column
+   *          the sorting column to be set for all pages. A null value indicates
+   *          no sorting column is specified and thus sorts in the default
+   *          column.
+   */
+  public void setAllSortColumns(@Nullable FieldType column) {
+    for (int i = 0; i < allSortColumn.length; ++i) {
+      allSortColumn[i] = column;
+    }
+  }
+
+  /**
+   * Gets the sorting order for the current page.
+   *
+   * @return the sorting order for the current page.
+   */
+  public SortOrder getSortOrder() {
+    return allSortOrder[page.ordinal()];
+  }
+
+  /**
+   * Sets the sorting order for the current page.
+   *
+   * @param order
+   *          the sorting order to be set for the current page.
+   */
+  public void setSortOrder(SortOrder order) {
+    allSortOrder[page.ordinal()] = order;
+  }
+
+  /**
+   * Gets the all sorting order.
+   *
+   * @return all sorting order for all pages.
+   */
+  public SortOrder[] getAllSortOrders() {
+    return allSortOrder;
+  }
+
+  /**
+   * Sets the all sorting order.
+   *
+   * @param order
+   *          the sorting order to be set for all pages.
+   */
+  public void setAllSortOrders(SortOrder order) {
+    for (int i = 0; i < allSortOrder.length; ++i) {
+      allSortOrder[i] = order;
+    }
+  }
 }

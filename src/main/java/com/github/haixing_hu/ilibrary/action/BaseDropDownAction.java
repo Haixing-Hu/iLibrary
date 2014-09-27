@@ -76,7 +76,6 @@ public class BaseDropDownAction extends DropDownAction {
       final ImageDescriptor imgdes = ImageDescriptor.createFromImage(img);
       setImageDescriptor(imgdes);
     }
-    //  do not show image by default
     setShowImage(false);
   }
 

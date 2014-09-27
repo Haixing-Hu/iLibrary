@@ -24,11 +24,11 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.layout.LayoutModeAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.PreviewAction;
@@ -37,7 +37,7 @@ import com.github.haixing_hu.ilibrary.action.view.read.ForwardAction;
 import com.github.haixing_hu.ilibrary.action.view.read.NextPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.PreviousPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.TableOfContentsAction;
-import com.github.haixing_hu.ilibrary.action.view.sort.SortByAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomInAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomOutAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomToFitAction;
@@ -58,8 +58,8 @@ public class ViewAction extends BaseDropDownAction {
     AsIconsAction.KEY,
     AsCoverFlowAction.KEY,
     SEPARATOR_KEY,
-    ColumnsAction.KEY,
-    SortByAction.KEY,
+    DisplayColumnsAction.KEY,
+    SortAction.KEY,
     FilterFlagStatusAction.KEY,
     FilterReadStatusAction.KEY,
     FilterTypeAction.KEY,
@@ -91,5 +91,6 @@ public class ViewAction extends BaseDropDownAction {
 
   public ViewAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager, SUB_ACTIONS);
+    setShowImage(true);
   }
 }

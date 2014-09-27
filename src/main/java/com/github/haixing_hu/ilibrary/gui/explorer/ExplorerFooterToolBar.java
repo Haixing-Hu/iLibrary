@@ -32,6 +32,10 @@ import org.slf4j.LoggerFactory;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
+import com.github.haixing_hu.ilibrary.action.file.PrintAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.AttachFileAction;
+import com.github.haixing_hu.ilibrary.action.library.edit.EditKeywordsAction;
+import com.github.haixing_hu.ilibrary.action.library.mark.MarkFlaggedAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
 import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.ShowInspectorAction;
@@ -51,9 +55,14 @@ public class ExplorerFooterToolBar extends Composite {
     ShowNavigatorAction.KEY,
     HidePreviewAction.KEY,
     ShowPreviewAction.KEY,
+    MarkFlaggedAction.KEY,
+    //MarkUnflaggedAction.KEY,
+    EditKeywordsAction.KEY,
+    AttachFileAction.KEY,
   };
 
   private static final String RGIHT_ACTION_KEYS[] = {
+    PrintAction.KEY,
     ShareAction.KEY,
     ShowInspectorAction.KEY,
   };

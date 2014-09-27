@@ -26,7 +26,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  *
  * @author Haixing Hu
  */
-public class ReaderPage extends Page {
+public class ReaderPage extends BasicPage {
 
   public static final String KEY = MainWindow.KEY + ".reader";
 

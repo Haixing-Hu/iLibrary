@@ -26,7 +26,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  *
  * @author Haixing Hu
  */
-public class SearchPage extends Page {
+public class SearchPage extends BasicPage {
 
   public static final String KEY = MainWindow.KEY + ".search";
 

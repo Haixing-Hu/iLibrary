@@ -49,6 +49,8 @@ import org.springframework.core.io.Resource;
 
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
+import static com.github.haixing_hu.ilibrary.KeySuffix.*;
+
 /**
  * The global configuration of the application.
  *
@@ -62,6 +64,8 @@ public final class AppConfig implements ApplicationContext, Configuration {
   private final Locale locale;
   private final String name;
   private final String version;
+  private final Color heavyFontColor;
+  private final Color lightFontColor;
 
   /**
    * Constructs a {@link AppConfig}.
@@ -70,13 +74,16 @@ public final class AppConfig implements ApplicationContext, Configuration {
     logger = LoggerFactory.getLogger(AppConfig.class);
     context = new ClassPathXmlApplicationContext(contexFile);
     config = context.getBean(Configuration.class);
-    if (config.containsKey("app.locale")) {
-      locale = new Locale(config.getString("app.locale"));
-    } else {
+    final String localeName = config.getString(Application.KEY + LOCALE);
+    if (StringUtils.isEmpty(localeName)) {
       locale = Locale.getDefault();
+    } else {
+      locale = new Locale(localeName);
     }
-    name = context.getMessage("app.name", null, locale);
-    version = config.getString("app.version");
+    name = context.getMessage(Application.KEY + NAME, null, locale);
+    version = config.getString(Application.KEY + VERSION);
+    heavyFontColor = getColor(Application.KEY + FONT + HEAVY + COLOR);
+    lightFontColor = getColor(Application.KEY + FONT + LIGHT + COLOR);
   }
 
   /**
@@ -104,6 +111,24 @@ public final class AppConfig implements ApplicationContext, Configuration {
    */
   public String getAppVersion() {
     return version;
+  }
+
+  /**
+   * Gets the heavyFontColor.
+   *
+   * @return the heavyFontColor.
+   */
+  public Color getHeavyFontColor() {
+    return heavyFontColor;
+  }
+
+  /**
+   * Gets the lightFontColor.
+   *
+   * @return the lightFontColor.
+   */
+  public Color getLightFontColor() {
+    return lightFontColor;
   }
 
   @Override

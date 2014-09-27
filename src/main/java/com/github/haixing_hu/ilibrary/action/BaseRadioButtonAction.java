@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.action;
 
-
 import org.eclipse.jface.action.IAction;
 
 import com.github.haixing_hu.ilibrary.Application;
@@ -39,11 +38,29 @@ public class BaseRadioButtonAction extends BaseAction {
    * @param application
    *          the application the new action belongs to.
    * @param actionManager
-   *          the action manager, which is a map from the action's ID to the action.
+   *          the action manager, which is a map from the action's ID to the
+   *          action.
    */
   public BaseRadioButtonAction(String id, Application application,
       IActionManager actionManager) {
-    super(id, application, actionManager, IAction.AS_RADIO_BUTTON);
+    super(id, null, application, actionManager, IAction.AS_RADIO_BUTTON);
   }
 
+  /**
+   * Constructs an action.
+   *
+   * @param id
+   *          the ID of the new action.
+   * @param title
+   *          the title of the new action.
+   * @param application
+   *          the application the new action belongs to.
+   * @param actionManager
+   *          the action manager, which is a map from the action's ID to the
+   *          action.
+   */
+  public BaseRadioButtonAction(String id, String title,
+      Application application, IActionManager actionManager) {
+    super(id, title, application, actionManager, IAction.AS_RADIO_BUTTON);
+  }
 }

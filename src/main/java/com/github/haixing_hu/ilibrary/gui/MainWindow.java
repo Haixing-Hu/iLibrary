@@ -39,6 +39,7 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
+import com.github.haixing_hu.ilibrary.state.Page;
 import com.github.haixing_hu.lang.SystemUtils;
 import com.github.haixing_hu.swt.menu.MenuManagerEx;
 import com.github.haixing_hu.swt.window.ApplicationWindowEx;
@@ -57,7 +58,7 @@ public final class MainWindow extends ApplicationWindowEx {
   private final int defaultWidth;
   private final int minHeight;
   private final int minWidth;
-  private final Page pages[];
+  private final BasicPage pages[];
   private MainMenuBar menuBar;
   private Label topSeparator;
   private MainWindowHeader header;
@@ -72,7 +73,7 @@ public final class MainWindow extends ApplicationWindowEx {
     defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
     minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
     minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    pages = new Page[Page.TOTAL_COUNT];
+    pages = new BasicPage[Page.TOTAL];
     addMenuBar();
   }
 
@@ -135,14 +136,13 @@ public final class MainWindow extends ApplicationWindowEx {
     stackLayout.marginWidth = 0;
     tabFolder.setLayout(stackLayout);
 
-    pages[Page.LIBRARY] = new LibraryPage(application, tabFolder);
-    pages[Page.SEARCH] = new SearchPage(application, tabFolder);
-    pages[Page.TAGS] = new TagsPage(application, tabFolder);
-    pages[Page.AUTHORS] = new AuthorsPage(application, tabFolder);
-    pages[Page.SOURCES] = new SourcesPage(application, tabFolder);
-    pages[Page.READER] = new ReaderPage(application, tabFolder);
-
-    stackLayout.topControl = pages[Page.LIBRARY];
+    pages[Page.LIBRARY.ordinal()] = new LibraryPage(application, tabFolder);
+    pages[Page.SEARCH.ordinal()] = new SearchPage(application, tabFolder);
+    pages[Page.TAGS.ordinal()] = new TagsPage(application, tabFolder);
+    pages[Page.AUTHORS.ordinal()] = new AuthorsPage(application, tabFolder);
+    pages[Page.SOURCES.ordinal()] = new SourcesPage(application, tabFolder);
+    pages[Page.READER.ordinal()] = new ReaderPage(application, tabFolder);
+    stackLayout.topControl = pages[Page.LIBRARY.ordinal()];
     return parent;
   }
 
@@ -290,7 +290,7 @@ public final class MainWindow extends ApplicationWindowEx {
    * @return the search page.
    */
   public SearchPage getSearchPage() {
-    return (SearchPage) pages[Page.SEARCH];
+    return (SearchPage) pages[Page.SEARCH.ordinal()];
   }
 
   /**
@@ -299,7 +299,7 @@ public final class MainWindow extends ApplicationWindowEx {
    * @return the library page.
    */
   public LibraryPage getLibraryPage() {
-    return (LibraryPage) pages[Page.LIBRARY];
+    return (LibraryPage) pages[Page.LIBRARY.ordinal()];
   }
 
   /**
@@ -308,7 +308,7 @@ public final class MainWindow extends ApplicationWindowEx {
    * @return the tags page.
    */
   public TagsPage getTagsPage() {
-    return (TagsPage) pages[Page.TAGS];
+    return (TagsPage) pages[Page.TAGS.ordinal()];
   }
 
   /**
@@ -317,7 +317,7 @@ public final class MainWindow extends ApplicationWindowEx {
    * @return the authors page.
    */
   public AuthorsPage getAuthorsPage() {
-    return (AuthorsPage) pages[Page.AUTHORS];
+    return (AuthorsPage) pages[Page.AUTHORS.ordinal()];
   }
 
   /**
@@ -326,7 +326,7 @@ public final class MainWindow extends ApplicationWindowEx {
    * @return the sources page.
    */
   public SourcesPage getSourcesPage() {
-    return (SourcesPage) pages[Page.SOURCES];
+    return (SourcesPage) pages[Page.SOURCES.ordinal()];
   }
 
   /**
@@ -335,7 +335,7 @@ public final class MainWindow extends ApplicationWindowEx {
    * @return the reader page.
    */
   public ReaderPage getReaderPage() {
-    return (ReaderPage) pages[Page.READER];
+    return (ReaderPage) pages[Page.READER.ordinal()];
   }
 
   /**
@@ -346,7 +346,7 @@ public final class MainWindow extends ApplicationWindowEx {
    *          function will hide the navigator panel.
    */
   public void setNavigatorWidth(int width) {
-    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+    for (int i = 0; i < Page.TOTAL; ++i) {
       pages[i].setNavigatorWidth(width);
     }
   }
@@ -359,7 +359,7 @@ public final class MainWindow extends ApplicationWindowEx {
    *          function will hide the inspector panel.
    */
   public void setInspectorWidth(int width) {
-    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+    for (int i = 0; i < Page.TOTAL; ++i) {
       pages[i].setInspectorWidth(width);
     }
   }
@@ -372,7 +372,7 @@ public final class MainWindow extends ApplicationWindowEx {
    *          function will hide the preview panel.
    */
   public void setPreviewHeight(int height) {
-    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+    for (int i = 0; i < Page.TOTAL; ++i) {
       pages[i].setPreviewHeight(height);
     }
   }
@@ -385,7 +385,7 @@ public final class MainWindow extends ApplicationWindowEx {
    *          the tab to be switched to.
    */
   public void setInspectorTab(InspectorTab tab) {
-    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+    for (int i = 0; i < Page.TOTAL; ++i) {
       pages[i].setInspectorTab(tab);
     }
   }
@@ -396,11 +396,8 @@ public final class MainWindow extends ApplicationWindowEx {
    * @param page
    *    the id of the page.
    */
-  public void setPage(int page) {
-    if ((page < 0) || (page >= Page.TOTAL_COUNT)) {
-      SWT.error(SWT.ERROR_INVALID_ARGUMENT);
-    }
-    stackLayout.topControl = pages[page];
+  public void setPage(Page page) {
+    stackLayout.topControl = pages[page.ordinal()];
     tabFolder.layout();
   }
 
@@ -418,7 +415,7 @@ public final class MainWindow extends ApplicationWindowEx {
    *          the visibility to be set.
    */
   public void setToolBarActionVisibility(String id, boolean visible) {
-    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+    for (int i = 0; i < Page.TOTAL; ++i) {
       pages[i].setToolBarActionVisibility(id, visible);
     }
   }
@@ -430,7 +427,7 @@ public final class MainWindow extends ApplicationWindowEx {
    *    true means update even if not dirty, and false for normal incremental updating.
    */
   public void updateToolBar(boolean force) {
-    for (int i = 0; i < Page.TOTAL_COUNT; ++i) {
+    for (int i = 0; i < Page.TOTAL; ++i) {
       pages[i].updateToolBar(force);
     }
   }

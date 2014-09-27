@@ -46,17 +46,14 @@ public class NewDocumentFormTemplateAction extends BaseAction {
    */
   public NewDocumentFormTemplateAction(DocumentTemplate template,
       Application application, IActionManager actionManager) {
-    super(buildActionId(template), application, actionManager);
-    logger.info("Creates an NewFromTemplate action '{}' for document template '{}'.",
-        this.getId(), template.getName());
+    super(getActionId(template), getTitleFor(application, template),
+        application, actionManager);
     this.template = template;
-    //  FIXME: we should gets the name of the document type from its template
-    final AppConfig config = application.getConfig();
-    final String title = config.getMessage(buildTitleKey(template));
-    this.setText(title);
+    logger.info("Creates an NewDocumentFormTemplateAction '{}' for document "
+        + "template '{}'.", getId(), template.getName());
   }
 
-  private static String buildActionId(DocumentTemplate template) {
+  public static String getActionId(DocumentTemplate template) {
     final StringBuilder builder = new StringBuilder();
     builder.append(NewAction.KEY)
            .append('.')
@@ -66,13 +63,17 @@ public class NewDocumentFormTemplateAction extends BaseAction {
     return builder.toString();
   }
 
-  private static String buildTitleKey(DocumentTemplate template) {
+  private static String getTitleFor(Application application,
+      DocumentTemplate template) {
+    //  FIXME: we should gets the name of the document type from its template
     final StringBuilder builder = new StringBuilder();
     builder.append("document.")
            .append(EnumUtils.getShortName(template.getType()))
            .append('.')
            .append(template.getName());
-    return builder.toString();
+    final String key = builder.toString();
+    final AppConfig config = application.getConfig();
+    return config.getMessage(key);
   }
 
   /**

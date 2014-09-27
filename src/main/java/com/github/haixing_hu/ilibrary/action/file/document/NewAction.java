@@ -25,7 +25,6 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.file.FileAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -52,9 +51,8 @@ public class NewAction extends BaseDropDownAction {
 
   private static String[] getSubactionIds() {
     final List<String> ids = new ArrayList<String>();
-    final String prefix = KEY + ".";
     for (final DocumentType type : DocumentType.values()) {
-      final String id = prefix + EnumUtils.getShortName(type);
+      final String id = NewDocumentAction.getActionId(type);
       ids.add(id);
     }
     for (final String id : SUB_ACTIONS) {

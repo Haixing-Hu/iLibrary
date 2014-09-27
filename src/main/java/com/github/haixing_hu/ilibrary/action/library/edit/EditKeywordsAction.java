@@ -34,6 +34,6 @@ public class EditKeywordsAction extends BaseAction {
 
   public EditKeywordsAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
-    this.setShowDialog(true);
+    setShowDialog(true);
   }
 }

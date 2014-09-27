@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.github.haixing_hu.ilibrary.Application;
@@ -41,7 +40,6 @@ public class InspectorFooter extends BasicFooter {
 
   public InspectorFooter(final Application application, final Composite parent) {
     super(application, parent, KEY,
-        new ActionListToolBarCreator(application, ACTION_KEYS),
-        (SWT.RIGHT | SWT.SEPARATOR));
+        new ActionListToolBarCreator(application, ACTION_KEYS));
   }
 }

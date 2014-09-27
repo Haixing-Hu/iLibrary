@@ -40,6 +40,7 @@ import com.github.haixing_hu.ilibrary.action.edit.StyleAction;
 import com.github.haixing_hu.ilibrary.action.edit.UndoAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateHighlightAction;
+import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateNoteAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateSelectionAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateStrikethroughAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateUnderlineAction;
@@ -129,28 +130,30 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusHasFileAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusNoFileAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusFlaggedAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusUnflaggedAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusHasReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusReadingAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusToReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusUnreadAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeArticleAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeBookAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeLegalAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeReferenceAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectDisplayColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusHasFileAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusNoFileAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusFlaggedAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusUnflaggedAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusHasReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusToReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusUnreadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeArticleAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeBookAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeLegalAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeMediaAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
@@ -174,7 +177,11 @@ import com.github.haixing_hu.ilibrary.action.view.read.ForwardAction;
 import com.github.haixing_hu.ilibrary.action.view.read.NextPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.PreviousPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.TableOfContentsAction;
-import com.github.haixing_hu.ilibrary.action.view.sort.SortByAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortByColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortByDefaultColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortOrderAscAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortOrderDescAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomInAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomOutAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomToFitAction;
@@ -195,6 +202,7 @@ import com.github.haixing_hu.ilibrary.action.window.tab.NextTabAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.PreviousTabAction;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
 import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.swt.action.IActionManager;
@@ -275,6 +283,7 @@ public final class ActionManager implements IActionManager {
     add(new AnnotateHighlightAction(application, this));
     add(new AnnotateUnderlineAction(application, this));
     add(new AnnotateStrikethroughAction(application, this));
+    add(new AnnotateNoteAction(application, this));
     //  view actions
     add(new ViewAction(application, this));
     //  view -> browser mode
@@ -284,9 +293,26 @@ public final class ActionManager implements IActionManager {
     add(new AsIconsAction(application, this));
     add(new AsCoverFlowAction(application, this));
     //  view -> columns
-    add(new ColumnsAction(application, this));
+    add(new DisplayColumnsAction(application, this));
+    //  add select column action for every possible columns
+    for (final FieldType col : FieldType.values()) {
+      final SelectDisplayColumnAction action = new SelectDisplayColumnAction(col,
+          application, this);
+      add(action);
+    }
     //  view -> sort by
-    add(new SortByAction(application, this));
+    add(new SortAction(application, this));
+    add(new SortByDefaultColumnAction(application, this));
+    //  add select sorting column action for every possible columns
+    for (final FieldType col : FieldType.values()) {
+      final SortByColumnAction action = new SortByColumnAction(col,
+          application, this);
+      add(action);
+    }
+    add(new SortOrderAscAction(application, this));
+    add(new SortOrderDescAction(application, this));
+    //  view -> filter
+    add(new FilterAction(application, this));
     //  view -> filter flag status
     add(new FilterFlagStatusAction(application, this));
     add(new FilterFlagStatusAllAction(application, this));

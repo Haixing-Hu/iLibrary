@@ -31,7 +31,7 @@ import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.AuthorsPage;
 import com.github.haixing_hu.ilibrary.gui.LibraryPage;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
-import com.github.haixing_hu.ilibrary.gui.Page;
+import com.github.haixing_hu.ilibrary.gui.BasicPage;
 import com.github.haixing_hu.ilibrary.gui.SourcesPage;
 import com.github.haixing_hu.ilibrary.gui.TagsPage;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
@@ -49,7 +49,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  * @see {@link AuthorsPage}
  * @see {@link SourcesPage}
  */
-public abstract class ExplorerPage extends Page  {
+public abstract class ExplorerPage extends BasicPage  {
 
   protected final Application application;
   private final int sashWidth;

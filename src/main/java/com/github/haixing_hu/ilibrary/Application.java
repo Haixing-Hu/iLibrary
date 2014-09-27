@@ -20,7 +20,9 @@ package com.github.haixing_hu.ilibrary;
 
 import java.util.Set;
 
-import org.eclipse.jface.dialogs.MessageDialog;
+import javax.annotation.Nullable;
+
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.swt.widgets.Display;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateHighlightAction;
+import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateNoteAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateSelectionAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateStrikethroughAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateUnderlineAction;
@@ -40,28 +43,29 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusHasFileAction;
-import com.github.haixing_hu.ilibrary.action.view.filterfile.FilterFileStatusNoFileAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusFlaggedAction;
-import com.github.haixing_hu.ilibrary.action.view.filterflag.FilterFlagStatusUnflaggedAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusHasReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusReadingAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusToReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filterread.FilterReadStatusUnreadAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeArticleAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeBookAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeLegalAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.filtertype.FilterTypeReferenceAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectDisplayColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusHasFileAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusNoFileAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusFlaggedAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusUnflaggedAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusHasReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusToReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusUnreadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeArticleAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeBookAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeLegalAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeMediaAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeReferenceAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
@@ -77,6 +81,11 @@ import com.github.haixing_hu.ilibrary.action.view.layout.LayoutModePreviewOnlyAc
 import com.github.haixing_hu.ilibrary.action.view.preview.HidePreviewAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.PreviewAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.ShowPreviewAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortByColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortByDefaultColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortOrderAscAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortOrderDescAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageAuthorsAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageLibraryAction;
@@ -85,7 +94,6 @@ import com.github.haixing_hu.ilibrary.action.window.page.PageSearchAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageSourcesAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
-import com.github.haixing_hu.ilibrary.gui.Page;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
@@ -100,10 +108,15 @@ import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.BrowserMode;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.ilibrary.state.LayoutMode;
+import com.github.haixing_hu.ilibrary.state.Page;
+import com.github.haixing_hu.ilibrary.state.SortOrder;
 import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.swt.action.DropDownAction;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
+import com.github.haixing_hu.swt.window.Dialog;
+
+import static com.github.haixing_hu.ilibrary.KeySuffix.*;
 
 /**
  * The main class of the application.
@@ -114,10 +127,12 @@ public final class Application {
 
   public static final String CONTEXT_FILE = "applicationContext.xml";
 
+  public static final String KEY = "app";
+
   private final Logger logger;
   private final AppConfig config;
   private final ApplicationState state;
-  private final ActionManager actionManager;
+  private final ActionManager am;
   private final MainWindow mainWindow;
 
   /**
@@ -127,7 +142,7 @@ public final class Application {
     logger = LoggerFactory.getLogger(Application.class);
     config = new AppConfig(CONTEXT_FILE);
     state = new ApplicationState();
-    actionManager = new ActionManager(this);
+    am = new ActionManager(this);
     mainWindow = new MainWindow(this);
 //    //  adjust the Mac OS X Cococa UI
 //    if (SystemUtils.IS_OS_MAC) {
@@ -143,7 +158,7 @@ public final class Application {
    */
   public void run() {
     mainWindow.create();
-    loadInitialState();
+    loadState();
     syncState();
     mainWindow.setBlockOnOpen(true);
     mainWindow.open();
@@ -175,35 +190,77 @@ public final class Application {
     updateTypeFilters();
     updateFileStatusFilters();
     updateColumns();
+    updateSortColumn();
+    updateSortOrder();
     filterDocuments();
   }
 
   /**
    * Loads the initial state.
    */
-  private void loadInitialState() {
+  private void loadState() {
     final BrowserMode browserMode = BrowserMode.COLUMNS;
     state.setBrowserMode(browserMode);
-    final int navigatorWidth = config.getInt(NavigatorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
+    final int navigatorWidth = config.getInt(NavigatorPanel.KEY + DEFAULT_WIDTH);
     state.setNavigatorWidth(navigatorWidth);
     final boolean navigatorVisible = true;
     state.setNavigatorVisible(navigatorVisible);
-    final int inspectorWidth = config.getInt(InspectorPanel.KEY + KeySuffix.DEFAULT_WIDTH);
+    final int inspectorWidth = config.getInt(InspectorPanel.KEY + DEFAULT_WIDTH);
     state.setInspectorWidth(inspectorWidth);
-    final int previewHeight = config.getInt(PreviewPanel.KEY + KeySuffix.DEFAULT_HEIGHT);
+    final int previewHeight = config.getInt(PreviewPanel.KEY + DEFAULT_HEIGHT);
     state.setPreviewHeight(previewHeight);
     final InspectorTab inspectorTab = InspectorTab.OVERVIEW;
     state.setInspectorTab(inspectorTab);
     final int layoutMode = LayoutMode.ALL;
     state.setLayoutMode(layoutMode);
-    //  load the display columns from the configuration
-    final String[] defaultColumns = config.getStringArray(ColumnsAction.KEY + KeySuffix.DEFAULT);
-    final Set<FieldType> columns = state.getColumns();
-    for (final String col : defaultColumns) {
-      final FieldType ft = EnumUtils.forName(col, false, true, FieldType.class);
-      columns.add(ft);
-    }
+    loadDisplayColumns();
+    loadSortingColumn();
+    loadSortOrder();
     //  TODO
+  }
+
+  private void loadDisplayColumns() {
+    final String key = DisplayColumnsAction.KEY + DEFAULT;
+    final String[] values = config.getStringArray(key);
+    final Set<FieldType>[] allColumns = state.getAllColumns();
+    for (final String value : values) {
+      final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
+      if (col == null) {
+        logger.error("Invalid column name: {}", value);
+      } else {
+        for (final Set<FieldType> cols : allColumns) {
+          cols.add(col);
+        }
+      }
+    }
+  }
+
+  private void loadSortingColumn() {
+    final String key = SortAction.KEY + COLUMN + DEFAULT;
+    final String value = config.getString(key);
+    if (StringUtils.isEmpty(value)) {
+      state.setAllSortColumns(null);
+    } else {
+      final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
+      if (col == null) {
+        logger.error("Invalid column name: {}", value);
+        state.setAllSortColumns(null);
+      } else {
+        state.setAllSortColumns(col);
+      }
+    }
+  }
+
+  private void loadSortOrder() {
+    final String key = SortAction.KEY + ORDER + DEFAULT;
+    final String value = config.getString(key);
+    if (StringUtils.isEmpty(value)) {
+      return;
+    }
+    final SortOrder order = EnumUtils.forName(value, true, true, SortOrder.class);
+    if (order != null) {
+      state.setAllSortOrders(order);
+    }
   }
 
   /**
@@ -214,8 +271,9 @@ public final class Application {
    */
   public void displayUnimplementedError(String key) {
     final String title = config.getMessage("message.error");
-    final String message = config.getMessage("message.error.unimplemented-function") + ": " + key;
-    MessageDialog.openError(mainWindow.getShell(), title, message);
+    final String message = config.getMessage("message.error.unimplemented-function")
+        + ": " + key;
+    Dialog.error(title, message);
   }
 
   /**
@@ -224,7 +282,7 @@ public final class Application {
    * @return the action manager of this application.
    */
   public ActionManager getActionManager() {
-    return actionManager;
+    return am;
   }
 
   /**
@@ -260,7 +318,7 @@ public final class Application {
    * @param page
    *    the id of the page.
    */
-  public void setPage(int page) {
+  public void setPage(Page page) {
     if (state.getPage() == page) {
       return;
     }
@@ -270,37 +328,37 @@ public final class Application {
   }
 
   private void updatePage() {
-    final DropDownAction windowAction = (DropDownAction) actionManager.get(WindowAction.KEY);
-    final ActionEx searchPageAction = actionManager.get(PageSearchAction.KEY);
-    final ActionEx libraryPageAction = actionManager.get(PageLibraryAction.KEY);
-    final ActionEx tagsPageAction = actionManager.get(PageTagsAction.KEY);
-    final ActionEx authorsPageAction = actionManager.get(PageAuthorsAction.KEY);
-    final ActionEx sourcesPageAction = actionManager.get(PageSourcesAction.KEY);
-    final ActionEx readerPageAction = actionManager.get(PageReaderAction.KEY);
+    final DropDownAction windowAction = (DropDownAction) am.get(WindowAction.KEY);
+    final ActionEx searchPageAction = am.get(PageSearchAction.KEY);
+    final ActionEx libraryPageAction = am.get(PageLibraryAction.KEY);
+    final ActionEx tagsPageAction = am.get(PageTagsAction.KEY);
+    final ActionEx authorsPageAction = am.get(PageAuthorsAction.KEY);
+    final ActionEx sourcesPageAction = am.get(PageSourcesAction.KEY);
+    final ActionEx readerPageAction = am.get(PageReaderAction.KEY);
     searchPageAction.setChecked(false);
     libraryPageAction.setChecked(false);
     tagsPageAction.setChecked(false);
     authorsPageAction.setChecked(false);
     sourcesPageAction.setChecked(false);
     readerPageAction.setChecked(false);
-    final int page = state.getPage();
+    final Page page = state.getPage();
     switch (page) {
-    case Page.SEARCH:
+    case SEARCH:
       searchPageAction.setChecked(true);
       break;
-    case Page.LIBRARY:
+    case LIBRARY:
       libraryPageAction.setChecked(true);
       break;
-    case Page.TAGS:
+    case TAGS:
       tagsPageAction.setChecked(true);
       break;
-    case Page.AUTHORS:
+    case AUTHORS:
       authorsPageAction.setChecked(true);
       break;
-    case Page.SOURCES:
+    case SOURCES:
       sourcesPageAction.setChecked(true);
       break;
-    case Page.READER:
+    case READER:
       readerPageAction.setChecked(true);
       break;
     default:
@@ -309,6 +367,10 @@ public final class Application {
     }
     windowAction.update(true);
     mainWindow.setPage(page);
+    //  update the columns for the current page
+    updateColumns();
+    updateSortColumn();
+    updateSortOrder();
   }
 
   /**
@@ -354,7 +416,7 @@ public final class Application {
   }
 
   private void updateNavigatorVisibility() {
-    final DropDownAction viewAction = (DropDownAction) actionManager.get(ViewAction.KEY);
+    final DropDownAction viewAction = (DropDownAction) am.get(ViewAction.KEY);
     final boolean visible = state.isNavigatorVisible();
     if (visible) {
       viewAction.showSubAction(HideNavigatorAction.KEY);
@@ -491,13 +553,13 @@ public final class Application {
   }
 
   private void updateLayoutMode() {
-    final DropDownAction previewAction = (DropDownAction) actionManager.get(PreviewAction.KEY);
-    final DropDownAction inspectorAction = (DropDownAction) actionManager.get(InspectorAction.KEY);
-    final DropDownAction viewModeAction = (DropDownAction) actionManager.get(LayoutModeAction.KEY);
-    final ActionEx modeAll = actionManager.get(LayoutModeAllAction.KEY);
-    final ActionEx modeInspector = actionManager.get(LayoutModeInspectorOnlyAction.KEY);
-    final ActionEx modePreview = actionManager.get(LayoutModePreviewOnlyAction.KEY);
-    final ActionEx modeNone = actionManager.get(LayoutModeNoneAction.KEY);
+    final DropDownAction previewAction = (DropDownAction) am.get(PreviewAction.KEY);
+    final DropDownAction inspectorAction = (DropDownAction) am.get(InspectorAction.KEY);
+    final DropDownAction viewModeAction = (DropDownAction) am.get(LayoutModeAction.KEY);
+    final ActionEx modeAll = am.get(LayoutModeAllAction.KEY);
+    final ActionEx modeInspector = am.get(LayoutModeInspectorOnlyAction.KEY);
+    final ActionEx modePreview = am.get(LayoutModePreviewOnlyAction.KEY);
+    final ActionEx modeNone = am.get(LayoutModeNoneAction.KEY);
 
     modeAll.setChecked(false);
     modeInspector.setChecked(false);
@@ -604,11 +666,11 @@ public final class Application {
   }
 
   private void updateInspectorTab() {
-    final DropDownAction windowAction = (DropDownAction) actionManager.get(WindowAction.KEY);
-    final ActionEx infoTabAction = actionManager.get(InspectorInfoTabAction.KEY);
-    final ActionEx notesTabAction = actionManager.get(InspectorNotesTabAction.KEY);
-    final ActionEx reviewsTabAction = actionManager.get(InspectorReviewsTabAction.KEY);
-    final ActionEx filesTabAction = actionManager.get(InspectorOverviewTabAction.KEY);
+    final DropDownAction windowAction = (DropDownAction) am.get(WindowAction.KEY);
+    final ActionEx infoTabAction = am.get(InspectorInfoTabAction.KEY);
+    final ActionEx notesTabAction = am.get(InspectorNotesTabAction.KEY);
+    final ActionEx reviewsTabAction = am.get(InspectorReviewsTabAction.KEY);
+    final ActionEx filesTabAction = am.get(InspectorOverviewTabAction.KEY);
     infoTabAction.setChecked(false);
     notesTabAction.setChecked(false);
     reviewsTabAction.setChecked(false);
@@ -651,12 +713,12 @@ public final class Application {
   }
 
   private void updateBrowserMode() {
-    final DropDownAction view = (DropDownAction) actionManager.get(ViewAction.KEY);
-    final DropDownAction browserMode = (DropDownAction) actionManager.get(BrowserModeAction.KEY);
-    final BaseAction asList = (BaseAction) actionManager.get(AsListAction.KEY);
-    final BaseAction asColumns = (BaseAction) actionManager.get(AsColumnsAction.KEY);
-    final BaseAction asIcons = (BaseAction) actionManager.get(AsIconsAction.KEY);
-    final BaseAction asCoverFlow = (BaseAction) actionManager.get(AsCoverFlowAction.KEY);
+    final DropDownAction view = (DropDownAction) am.get(ViewAction.KEY);
+    final DropDownAction browserMode = (DropDownAction) am.get(BrowserModeAction.KEY);
+    final BaseAction asList = (BaseAction) am.get(AsListAction.KEY);
+    final BaseAction asColumns = (BaseAction) am.get(AsColumnsAction.KEY);
+    final BaseAction asIcons = (BaseAction) am.get(AsIconsAction.KEY);
+    final BaseAction asCoverFlow = (BaseAction) am.get(AsCoverFlowAction.KEY);
     asList.setChecked(false);
     asColumns.setChecked(false);
     asIcons.setChecked(false);
@@ -704,47 +766,33 @@ public final class Application {
   }
 
   private void updateAnnotateMode() {
-    final DropDownAction annotate = (DropDownAction) actionManager.get(AnnotateAction.KEY);
-    final ActionEx selection = actionManager.get(AnnotateSelectionAction.KEY);
-    final ActionEx highlight = actionManager.get(AnnotateHighlightAction.KEY);
-    final ActionEx underline = actionManager.get(AnnotateUnderlineAction.KEY);
-    final ActionEx strikethrough = actionManager.get(AnnotateStrikethroughAction.KEY);
+    final DropDownAction annotate = (DropDownAction) am.get(AnnotateAction.KEY);
+    final BaseAction selection = (BaseAction) am.get(AnnotateSelectionAction.KEY);
+    final BaseAction highlight = (BaseAction) am.get(AnnotateHighlightAction.KEY);
+    final BaseAction underline = (BaseAction) am.get(AnnotateUnderlineAction.KEY);
+    final BaseAction strikethrough = (BaseAction) am.get(AnnotateStrikethroughAction.KEY);
+    final BaseAction note = (BaseAction) am.get(AnnotateNoteAction.KEY);
     final AnnotateMode mode = state.getAnnotateMode();
+    selection.setChecked(false);
+    highlight.setChecked(false);
+    underline.setChecked(false);
+    strikethrough.setChecked(false);
+    note.setChecked(false);
     switch (mode) {
     case SELECTION:
-      //  update action's checking status
       selection.setChecked(true);
-      highlight.setChecked(false);
-      underline.setChecked(false);
-      strikethrough.setChecked(false);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(selection.getImageDescriptor());
       break;
     case HIGHLIGHT:
-      //  update action's checking status
-      selection.setChecked(false);
       highlight.setChecked(true);
-      underline.setChecked(false);
-      strikethrough.setChecked(false);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(highlight.getImageDescriptor());
       break;
     case UNDERLINE:
-      //  update action's checking status
-      selection.setChecked(false);
-      highlight.setChecked(false);
       underline.setChecked(true);
-      strikethrough.setChecked(false);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(underline.getImageDescriptor());
       break;
     case STRIKETHORUGH:
-      selection.setChecked(false);
-      highlight.setChecked(false);
-      underline.setChecked(false);
       strikethrough.setChecked(true);
-      //  change the icon of the AnnotateAction
-      annotate.setImageDescriptor(strikethrough.getImageDescriptor());
+      break;
+    case NOTE:
+      note.setChecked(true);
       break;
     default:
       logger.error("Unknown annotate mode: ", mode);
@@ -783,10 +831,10 @@ public final class Application {
 
   private void updateFlagStatusFilters() {
     final DropDownAction flagFilter = (DropDownAction)
-        actionManager.get(FilterFlagStatusAction.KEY);
-    final ActionEx all = actionManager.get(FilterFlagStatusAllAction.KEY);
-    final ActionEx flagged = actionManager.get(FilterFlagStatusFlaggedAction.KEY);
-    final ActionEx unflagged = actionManager.get(FilterFlagStatusUnflaggedAction.KEY);
+        am.get(FilterFlagStatusAction.KEY);
+    final ActionEx all = am.get(FilterFlagStatusAllAction.KEY);
+    final ActionEx flagged = am.get(FilterFlagStatusFlaggedAction.KEY);
+    final ActionEx unflagged = am.get(FilterFlagStatusUnflaggedAction.KEY);
     all.setChecked(false);
     flagged.setChecked(false);
     unflagged.setChecked(false);
@@ -856,12 +904,12 @@ public final class Application {
   private void updateReadStatusFilters() {
     //  TODO: set the filter in the document list table
     final DropDownAction filterAction =
-        (DropDownAction) actionManager.get(FilterReadStatusAction.KEY);
-    final ActionEx all = actionManager.get(FilterReadStatusAllAction.KEY);
-    final ActionEx unread = actionManager.get(FilterReadStatusUnreadAction.KEY);
-    final ActionEx toread = actionManager.get(FilterReadStatusToReadAction.KEY);
-    final ActionEx reading = actionManager.get(FilterReadStatusReadingAction.KEY);
-    final ActionEx hasRead = actionManager.get(FilterReadStatusHasReadAction.KEY);
+        (DropDownAction) am.get(FilterReadStatusAction.KEY);
+    final ActionEx all = am.get(FilterReadStatusAllAction.KEY);
+    final ActionEx unread = am.get(FilterReadStatusUnreadAction.KEY);
+    final ActionEx toread = am.get(FilterReadStatusToReadAction.KEY);
+    final ActionEx reading = am.get(FilterReadStatusReadingAction.KEY);
+    final ActionEx hasRead = am.get(FilterReadStatusHasReadAction.KEY);
     all.setChecked(false);
     unread.setChecked(false);
     toread.setChecked(false);
@@ -937,13 +985,13 @@ public final class Application {
   }
 
   private void updateTypeFilters() {
-    final DropDownAction filterAction = (DropDownAction) actionManager.get(FilterTypeAction.KEY);
-    final ActionEx all = actionManager.get(FilterTypeAllAction.KEY);
-    final ActionEx article = actionManager.get(FilterTypeArticleAction.KEY);
-    final ActionEx book = actionManager.get(FilterTypeBookAction.KEY);
-    final ActionEx reference = actionManager.get(FilterTypeReferenceAction.KEY);
-    final ActionEx legal = actionManager.get(FilterTypeLegalAction.KEY);
-    final ActionEx media = actionManager.get(FilterTypeMediaAction.KEY);
+    final DropDownAction filterAction = (DropDownAction) am.get(FilterTypeAction.KEY);
+    final ActionEx all = am.get(FilterTypeAllAction.KEY);
+    final ActionEx article = am.get(FilterTypeArticleAction.KEY);
+    final ActionEx book = am.get(FilterTypeBookAction.KEY);
+    final ActionEx reference = am.get(FilterTypeReferenceAction.KEY);
+    final ActionEx legal = am.get(FilterTypeLegalAction.KEY);
+    final ActionEx media = am.get(FilterTypeMediaAction.KEY);
     all.setChecked(false);
     article.setChecked(false);
     book.setChecked(false);
@@ -1011,10 +1059,10 @@ public final class Application {
 
   private void updateFileStatusFilters() {
     final DropDownAction filterAction =
-        (DropDownAction) actionManager.get(FilterFileStatusAction.KEY);
-    final ActionEx all = actionManager.get(FilterFileStatusAllAction.KEY);
-    final ActionEx has_file = actionManager.get(FilterFileStatusHasFileAction.KEY);
-    final ActionEx no_file = actionManager.get(FilterFileStatusNoFileAction.KEY);
+        (DropDownAction) am.get(FilterFileStatusAction.KEY);
+    final ActionEx all = am.get(FilterFileStatusAllAction.KEY);
+    final ActionEx has_file = am.get(FilterFileStatusHasFileAction.KEY);
+    final ActionEx no_file = am.get(FilterFileStatusNoFileAction.KEY);
     all.setChecked(false);
     has_file.setChecked(false);
     no_file.setChecked(false);
@@ -1080,6 +1128,113 @@ public final class Application {
    * Updates the columns of table viewer on the document explorer.
    */
   private void updateColumns() {
+    final Set<FieldType> columns = state.getColumns();
+    final Page page = state.getPage();
+    logger.debug("Updating columns for page {}: {}", page, columns);
+    //  update the menu actions
+    final DropDownAction columnsAction = (DropDownAction) am.get(DisplayColumnsAction.KEY);
+    final DropDownAction sortByAction = (DropDownAction) am.get(SortAction.KEY);
+    for (final FieldType col : FieldType.values()) {
+      final String columnActionId = SelectDisplayColumnAction.getActionId(col);
+      final ActionEx columnAction = am.get(columnActionId);
+      columnAction.setChecked(false);
+      final String sortByColumnId = SortByColumnAction.getActionId(col);
+      sortByAction.hideSubAction(sortByColumnId);
+    }
+    for (final FieldType col : columns) {
+      final String columnActionId = SelectDisplayColumnAction.getActionId(col);
+      final ActionEx columnAction = am.get(columnActionId);
+      columnAction.setChecked(true);
+      final String sortByColumnId = SortByColumnAction.getActionId(col);
+      sortByAction.showSubAction(sortByColumnId);
+    }
+    final FieldType sortColumn = state.getSortColumn();
+    if (sortColumn != null) {
+      final String id = SortByColumnAction.getActionId(sortColumn);
+      sortByAction.showSubAction(id);
+    }
+    columnsAction.update(true);
+    sortByAction.update(true);
+    //  TODO: update the columns in the table viewer
+  }
+
+  /**
+   * Sets the sorting column for the current page.
+   *
+   * @param column
+   *          the sorting column to be set for the current page. A null value
+   *          indicates no sorting column is specified and thus sorts in the
+   *          default column.
+   */
+  public void setSortColumn(@Nullable FieldType column) {
+    logger.info("Sets sort column: {}", column);
+    state.setSortColumn(column);
+    updateSortColumn();
+  }
+
+  private void updateSortColumn() {
+    final Page page = state.getPage();
+    final FieldType column = state.getSortColumn();
+    logger.debug("Updating the sorting column for the page {}: {}", page, column);
+    final ActionEx sortByNone = am.get(SortByDefaultColumnAction.KEY);
+    sortByNone.setChecked(false);
+    for (final FieldType col : FieldType.values()) {
+      final String id = SortByColumnAction.getActionId(col);
+      final ActionEx action = am.get(id);
+      action.setChecked(false);
+    }
+    if (column == null) {
+      sortByNone.setChecked(true);
+    } else {
+      final String id = SortByColumnAction.getActionId(column);
+      final ActionEx action = am.get(id);
+      action.setChecked(true);
+    }
+    final DropDownAction sortBy = (DropDownAction) am.get(SortAction.KEY);
+    sortBy.update(true);
+    sortDocuments();
+  }
+
+  /**
+   * Sets the sorting order for the current page.
+   *
+   * @param order
+   *    the sorting order for the current page.
+   */
+  public void setSortOrder(SortOrder order) {
+    logger.info("Sets sort order: {}", order);
+    state.setSortOrder(order);
+    updateSortOrder();
+  }
+
+  private void updateSortOrder() {
+    final SortOrder order = state.getSortOrder();
+    logger.debug("Updating the sorting order {}.", order);
+    final ActionEx sortOrderAsc = am.get(SortOrderAscAction.KEY);
+    final ActionEx sortOrderDesc = am.get(SortOrderDescAction.KEY);
+    sortOrderAsc.setChecked(false);
+    sortOrderDesc.setChecked(false);
+    switch (order) {
+    case ASC:
+      sortOrderAsc.setChecked(true);
+      break;
+    case DESC:
+      sortOrderDesc.setChecked(true);
+      break;
+    default:
+      logger.error("Unknown sorting order: {}", order);
+      return;
+    }
+    final DropDownAction sortBy = (DropDownAction) am.get(SortAction.KEY);
+    sortBy.update(true);
+    sortDocuments();
+  }
+
+  /**
+   * Sorts the documents in the table viewer.
+   */
+  private void sortDocuments() {
+    logger.info("Sorting documents...");
     //  TODO
   }
 

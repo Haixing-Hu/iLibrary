@@ -21,7 +21,7 @@ package com.github.haixing_hu.ilibrary.action.window.page;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
-import com.github.haixing_hu.ilibrary.gui.Page;
+import com.github.haixing_hu.ilibrary.state.Page;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**

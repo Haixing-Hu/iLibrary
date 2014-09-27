@@ -19,7 +19,7 @@
 package com.github.haixing_hu.ilibrary.action.edit.annotate;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
 import com.github.haixing_hu.ilibrary.state.AnnotateMode;
 import com.github.haixing_hu.swt.action.IActionManager;
 
@@ -28,7 +28,7 @@ import com.github.haixing_hu.swt.action.IActionManager;
  *
  * @author Haixing Hu
  */
-public class AnnotateUnderlineAction extends BaseAction {
+public class AnnotateUnderlineAction extends BaseCheckBoxAction {
 
   public static final String KEY = AnnotateAction.KEY + ".underline";
 
