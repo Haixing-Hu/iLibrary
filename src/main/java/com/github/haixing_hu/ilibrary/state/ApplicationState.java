@@ -23,11 +23,24 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
+import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
+import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
 import com.github.haixing_hu.ilibrary.model.FlagStatus;
 import com.github.haixing_hu.ilibrary.model.ReadStatus;
+import com.github.haixing_hu.lang.EnumUtils;
+
+import static com.github.haixing_hu.ilibrary.KeySuffix.*;
 
 
 /**
@@ -37,6 +50,7 @@ import com.github.haixing_hu.ilibrary.model.ReadStatus;
  */
 public final class ApplicationState {
 
+  private final Logger logger;
   private Page page;
   private AnnotateMode annotateMode;
   private BrowserMode browserMode;
@@ -47,16 +61,17 @@ public final class ApplicationState {
   private InspectorTab inspectorTab;
   private int layoutMode;
 
-  private final Set<FlagStatus> flagStatusFilters;
-  private final Set<ReadStatus> readStatusFilters;
-  private final Set<DocumentType> typeFilters;
-  private final Set<FileStatus> fileStatusFilters;
+  private final Set<FlagStatus> allFlagStatusFilters[];
+  private final Set<ReadStatus> allReadStatusFilters[];
+  private final Set<DocumentType> allTypeFilters[];
+  private final Set<FileStatus> allFileStatusFilters[];
   private final Set<FieldType> allColumns[];
   private final FieldType allSortColumn[];
   private final SortOrder allSortOrder[];
 
   @SuppressWarnings("unchecked")
   public ApplicationState() {
+    logger = LoggerFactory.getLogger(ApplicationState.class);
     page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
     browserMode = BrowserMode.COLUMNS;
@@ -66,18 +81,147 @@ public final class ApplicationState {
     previewHeight =0;
     inspectorTab = InspectorTab.OVERVIEW;
     layoutMode = LayoutMode.ALL;
-    flagStatusFilters = new HashSet<FlagStatus>();
-    readStatusFilters = new HashSet<ReadStatus>();
-    typeFilters = new HashSet<DocumentType>();
-    fileStatusFilters = new HashSet<FileStatus>();
+    allFlagStatusFilters = new Set[Page.TOTAL];
+    allReadStatusFilters = new Set[Page.TOTAL];
+    allTypeFilters = new Set[Page.TOTAL];
+    allFileStatusFilters = new Set[Page.TOTAL];
     allColumns = new Set[Page.TOTAL];
-    for (int i = 0; i < Page.TOTAL; ++i) {
-      allColumns[i] = new HashSet<FieldType>();
-    }
     allSortColumn = new FieldType[Page.TOTAL];
     allSortOrder = new SortOrder[Page.TOTAL];
     for (int i = 0; i < Page.TOTAL; ++i) {
+      allFlagStatusFilters[i] = new HashSet<FlagStatus>();
+      allReadStatusFilters[i] = new HashSet<ReadStatus>();
+      allTypeFilters[i] = new HashSet<DocumentType>();
+      allFileStatusFilters[i] = new HashSet<FileStatus>();
+      allColumns[i] = new HashSet<FieldType>();
+      allSortColumn[i] = null;
       allSortOrder[i] = SortOrder.ASC;
+    }
+  }
+
+  /**
+   * Loads the application state from a configuration.
+   *
+   * @param config
+   *    an application configuration.
+   */
+  public void load(AppConfig config) {
+    loadNavigatorWidth(config);
+    loadNavigatorVisible(config);
+    loadInspectorWidth(config);
+    loadPreviewHeight(config);
+    loadInspectorTab(config);
+    loadLayoutMode(config);
+    loadBrowserMode(config);
+    loadFlagStatusFilters(config);
+    loadReadStatusFilters(config);
+    loadTypeFilters(config);
+    loadFileStatusFilters(config);
+    loadDisplayColumns(config);
+    loadSortingColumn(config);
+    loadSortOrder(config);
+  }
+
+  private void loadNavigatorWidth(AppConfig config) {
+    navigatorWidth = config.getInt(NavigatorPanel.KEY + DEFAULT_WIDTH);
+  }
+
+  private void loadNavigatorVisible(AppConfig config) {
+    //  FIXME
+    navigatorVisible = true;
+  }
+
+  private void loadInspectorWidth(AppConfig config) {
+    inspectorWidth = config.getInt(InspectorPanel.KEY + DEFAULT_WIDTH);
+  }
+
+  private void loadPreviewHeight(AppConfig config) {
+    previewHeight = config.getInt(PreviewPanel.KEY + DEFAULT_HEIGHT);
+  }
+
+  private void loadInspectorTab(AppConfig config) {
+    //  FIXME: load from configuration
+    this.inspectorTab = InspectorTab.OVERVIEW;
+  }
+
+  private void loadLayoutMode(AppConfig config) {
+    //  FIXME: load from configuration
+    this.layoutMode = LayoutMode.ALL;
+  }
+
+  private void loadBrowserMode(AppConfig config) {
+    //  FIXME
+    browserMode = BrowserMode.COLUMNS;
+  }
+
+  private void loadFlagStatusFilters(AppConfig config) {
+    //  TODO
+    for (int i = 0; i < allSortColumn.length; ++i) {
+      allFlagStatusFilters[i].clear();
+    }
+  }
+
+  private void loadReadStatusFilters(AppConfig config) {
+    //  TODO
+    for (int i = 0; i < allSortColumn.length; ++i) {
+      allReadStatusFilters[i].clear();
+    }
+  }
+
+  private void loadTypeFilters(AppConfig config) {
+    //  TODO
+    for (int i = 0; i < allSortColumn.length; ++i) {
+      allTypeFilters[i].clear();
+    }
+  }
+
+  private void loadFileStatusFilters(AppConfig config) {
+    //  TODO
+    for (int i = 0; i < allSortColumn.length; ++i) {
+      allFileStatusFilters[i].clear();
+    }
+  }
+
+  private void loadDisplayColumns(AppConfig config) {
+    final String key = DisplayColumnsAction.KEY + DEFAULT;
+    final String[] values = config.getStringArray(key);
+    for (final String value : values) {
+      final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
+      if (col == null) {
+        logger.error("Invalid column name: {}", value);
+      } else {
+        for (final Set<FieldType> cols : allColumns) {
+          cols.add(col);
+        }
+      }
+    }
+  }
+
+  private void loadSortingColumn(AppConfig config) {
+    final String key = SortAction.KEY + COLUMN + DEFAULT;
+    final String value = config.getString(key);
+    if (StringUtils.isEmpty(value)) {
+      setAllSortColumns(null);
+    } else {
+      final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
+      if (col == null) {
+        logger.error("Invalid column name: {}", value);
+        setAllSortColumns(null);
+      } else {
+        setAllSortColumns(col);
+      }
+    }
+  }
+
+  private void loadSortOrder(AppConfig config) {
+    final String key = SortAction.KEY + ORDER + DEFAULT;
+    final String value = config.getString(key);
+    if (StringUtils.isEmpty(value)) {
+      return;
+    }
+    final SortOrder order = EnumUtils.forName(value, true, true, SortOrder.class);
+    if (order != null) {
+      setAllSortOrders(order);
     }
   }
 
@@ -266,66 +410,114 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the flagStatusFilters.
+   * Gets the flag status filters for the current page.
    * <p>
    * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
    * all possible flag status.
    *
-   * @return the flagStatusFilters.
+   * @return the flag status filters for the current page.
    */
   public Set<FlagStatus> getFlagStatusFilters() {
-    return flagStatusFilters;
+    return allFlagStatusFilters[page.ordinal()];
   }
 
   /**
-   * Gets the read status filters.
+   * Gets the flag status filters for all pages.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible flag status.
+   *
+   * @return the flag status filters for all pages.
+   */
+  public Set<FlagStatus>[] getAllFlagStatusFilters() {
+    return allFlagStatusFilters;
+  }
+
+  /**
+   * Gets the read status filters for the current page.
    * <p>
    * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
    * all possible read status.
    *
-   * @return the read status filters.
+   * @return the read status filters for the current page.
    */
   public Set<ReadStatus> getReadStatusFilters() {
-    return readStatusFilters;
+    return allReadStatusFilters[page.ordinal()];
   }
 
   /**
-   * Gets the type filters.
+   * Gets the read status filters for all pages.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible read status.
+   *
+   * @return the read status filters for all pages.
+   */
+  public Set<ReadStatus>[] getAllReadStatusFilters() {
+    return allReadStatusFilters;
+  }
+
+  /**
+   * Gets the document type filters for the current page.
    * <p>
    * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
    * all possible document types.
    *
-   * @return the type filters.
+   * @return the document type filters for the current page.
    */
   public Set<DocumentType> getTypeFilters() {
-    return typeFilters;
+    return allTypeFilters[page.ordinal()];
   }
 
   /**
-   * Gets the file status filters.
+   * Gets the document type filters for all pages.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible document types.
+   *
+   * @return the document type filters for all pages.
+   */
+  public Set<DocumentType>[] getAllTypeFilters() {
+    return allTypeFilters;
+  }
+
+  /**
+   * Gets the file status filters for the current page.
    * <p>
    * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
    * all possible file status.
    *
-   * @return the file status filters.
+   * @return the file status filters for the current page.
    */
   public Set<FileStatus> getFileStatusFilters() {
-    return fileStatusFilters;
+    return allFileStatusFilters[page.ordinal()];
   }
 
   /**
-   * Gets the allColumns for the current page.
+   * Gets the file status filters for all pages.
+   * <p>
+   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+   * all possible file status.
    *
-   * @return the allColumns for the current page.
+   * @return the file status filters for all pages.
+   */
+  public Set<FileStatus>[] getAllFileStatusFilters() {
+    return allFileStatusFilters;
+  }
+
+  /**
+   * Gets the the display columns for the current page.
+   *
+   * @return the display columns for the current page.
    */
   public Set<FieldType> getColumns() {
     return allColumns[page.ordinal()];
   }
 
   /**
-   * Gets the all allColumns.
+   * Gets the display columns for all pages.
    *
-   * @return all allColumns for all pages.
+   * @return the display columns for all pages.
    */
   public Set<FieldType>[] getAllColumns() {
     return allColumns;

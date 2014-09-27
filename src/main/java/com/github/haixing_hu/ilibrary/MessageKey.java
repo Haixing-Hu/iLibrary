@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- * Copyright (c) 2014  Haixing Hu
+ * Copyright (c) 2013  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,41 +16,25 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.model;
-
-import javax.xml.bind.annotation.XmlEnum;
+package com.github.haixing_hu.ilibrary;
 
 /**
- * The enumeration of types of documents.
+ * Defines the constants of keys for messages.
  *
  * @author Haixing Hu
  */
-@XmlEnum
-public enum DocumentType {
+public interface MessageKey {
 
-  /**
-   * Indicates the document is an article.
-   */
-  ARTICLE,
+  public static final String ERROR = "message.error";
 
-  /**
-   * Indicates the document is a book.
-   */
-  BOOK,
+  public static final String INFO = "message.info";
 
-  /**
-   * Indicates the document is a reference.
-   */
-  REFERENCE,
+  public static final String WARN = "message.warn";
 
-  /**
-   * Indicates the document is a legal document.
-   */
-  LEGAL,
+  public static final String CONFIRM = "message.confirm";
 
-  /**
-   * Indicates the document is a media.
-   */
-  MEDIA,
+  public static final String ERROR_UNIMPLEMENTED = "message.error.unimplemented";
+
+  public static final String ERROR_NO_TITLE = "message.error.no-title";
 
 }

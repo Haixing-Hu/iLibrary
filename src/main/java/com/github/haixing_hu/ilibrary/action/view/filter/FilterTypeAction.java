@@ -18,9 +18,13 @@
 
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
+import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
@@ -32,17 +36,18 @@ public class FilterTypeAction extends BaseDropDownAction {
 
   public static final String KEY = ViewAction.KEY + ".filter.type";
 
-  private static final String SUB_ACTIONS[] = {
-    FilterTypeAllAction.KEY,
-    FilterTypeArticleAction.KEY,
-    FilterTypeBookAction.KEY,
-    FilterTypeReferenceAction.KEY,
-    FilterTypeLegalAction.KEY,
-    FilterTypeMediaAction.KEY,
-  };
-
   public FilterTypeAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(KEY, application, actionManager, getSubactionIds());
+  }
+
+  private static String[] getSubactionIds() {
+    final List<String> ids = new ArrayList<String>();
+    ids.add(FilterTypeAllAction.KEY);
+    for (final DocumentType type : DocumentType.values()) {
+      final String id = FilterTypeForAction.getActionId(type);
+      ids.add(id);
+    }
+    return ids.toArray(new String[0]);
   }
 }

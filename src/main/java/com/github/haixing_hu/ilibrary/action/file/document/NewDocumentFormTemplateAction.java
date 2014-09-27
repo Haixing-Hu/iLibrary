@@ -49,7 +49,7 @@ public class NewDocumentFormTemplateAction extends BaseAction {
     super(getActionId(template), getTitleFor(application, template),
         application, actionManager);
     this.template = template;
-    logger.info("Creates an NewDocumentFormTemplateAction '{}' for document "
+    logger.debug("Creates an NewDocumentFormTemplateAction '{}' for document "
         + "template '{}'.", getId(), template.getName());
   }
 

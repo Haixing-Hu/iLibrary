@@ -30,6 +30,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
 
@@ -57,7 +58,7 @@ public class ExplorerHeaderToolBar extends Composite {
     toolBarManager = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
     final ActionManager am = application.getActionManager();
     toolBarManager.add(am.get(BrowserModeAction.KEY));
-    //toolBarManager.add(am.get(DisplayColumnsAction.KEY));
+    toolBarManager.add(am.get(DisplayColumnsAction.KEY));
     toolBarManager.add(am.get(FilterAction.KEY));
     toolBarManager.add(am.get(SortAction.KEY));
     toolBarManager.createControl(this);

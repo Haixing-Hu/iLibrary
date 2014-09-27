@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.MessageKey;
 import com.github.haixing_hu.swt.action.ActionEx;
 import com.github.haixing_hu.swt.action.IActionManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
@@ -48,8 +49,8 @@ public class BaseAction extends ActionEx {
   protected final Logger logger;
   protected final String title;
   protected final String shortcut;
-  protected final ImageDescriptor icon;
-  protected final ImageDescriptor activeIcon;
+  protected ImageDescriptor icon;
+  protected ImageDescriptor activeIcon;
 
   /**
    * Constructs an action.
@@ -111,10 +112,11 @@ public class BaseAction extends ActionEx {
     if (title == null) {
       title = config.getTitle(id);
     }
-    this.title = title;
     if (StringUtils.isEmpty(title)) {
       logger.error("Cannot get the title for action: {}", id);
+      title = config.getMessage(MessageKey.ERROR_NO_TITLE);
     }
+    this.title = title;
     shortcut = config.getShortcut(id);
     if (shortcut == null) {
       setText(title);
@@ -185,12 +187,30 @@ public class BaseAction extends ActionEx {
   }
 
   /**
+   * Sets the icon.
+   *
+   * @param icon the icon.
+   */
+  public void setIcon(ImageDescriptor icon) {
+    this.icon = icon;
+  }
+
+  /**
    * Gets the active icon.
    *
    * @return the active icon.
    */
   public ImageDescriptor getActiveIcon() {
     return activeIcon;
+  }
+
+  /**
+   * Sets the active icon.
+   *
+   * @param icon the active icon.
+   */
+  public void setActiveIcon(ImageDescriptor activeIcon) {
+    this.activeIcon = activeIcon;
   }
 
   @Override

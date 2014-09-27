@@ -55,7 +55,7 @@ public class NewDocumentAction extends BaseDropDownAction {
     super(getActionId(type), application, actionManager,
           getSubActionIds(application.getConfig(), type));
     this.type = type;
-    logger.info("Creates an NewDocumentAction '{}' for document type '{}'.",
+    logger.debug("Creates an NewDocumentAction '{}' for document type '{}'.",
         getId(), type);
   }
 

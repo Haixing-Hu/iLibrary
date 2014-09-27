@@ -130,8 +130,8 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnForAction;
 import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.SelectDisplayColumnAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAllAction;
@@ -149,11 +149,7 @@ import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusToReadA
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeArticleAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeBookAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeLegalAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeMediaAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeReferenceAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeForAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
@@ -178,7 +174,7 @@ import com.github.haixing_hu.ilibrary.action.view.read.NextPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.PreviousPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.TableOfContentsAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
-import com.github.haixing_hu.ilibrary.action.view.sort.SortByColumnAction;
+import com.github.haixing_hu.ilibrary.action.view.sort.SortByColumnForAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortByDefaultColumnAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortOrderAscAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortOrderDescAction;
@@ -296,7 +292,7 @@ public final class ActionManager implements IActionManager {
     add(new DisplayColumnsAction(application, this));
     //  add select column action for every possible columns
     for (final FieldType col : FieldType.values()) {
-      final SelectDisplayColumnAction action = new SelectDisplayColumnAction(col,
+      final DisplayColumnForAction action = new DisplayColumnForAction(col,
           application, this);
       add(action);
     }
@@ -305,7 +301,7 @@ public final class ActionManager implements IActionManager {
     add(new SortByDefaultColumnAction(application, this));
     //  add select sorting column action for every possible columns
     for (final FieldType col : FieldType.values()) {
-      final SortByColumnAction action = new SortByColumnAction(col,
+      final SortByColumnForAction action = new SortByColumnForAction(col,
           application, this);
       add(action);
     }
@@ -328,11 +324,11 @@ public final class ActionManager implements IActionManager {
     //  view -> filter type
     add(new FilterTypeAction(application, this));
     add(new FilterTypeAllAction(application, this));
-    add(new FilterTypeArticleAction(application, this));
-    add(new FilterTypeBookAction(application, this));
-    add(new FilterTypeReferenceAction(application, this));
-    add(new FilterTypeLegalAction(application, this));
-    add(new FilterTypeMediaAction(application, this));
+    for (final DocumentType type : DocumentType.values()) {
+      final FilterTypeForAction action = new FilterTypeForAction(type,
+          application, this);
+      add(action);
+    }
     //  view -> filter file status
     add(new FilterFileStatusAction(application, this));
     add(new FilterFileStatusAllAction(application, this));

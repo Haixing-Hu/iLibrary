@@ -53,7 +53,7 @@ public class SortAction extends BaseDropDownAction {
       ids.add(id);
     }
     for (final FieldType col : FieldType.values()) {
-      final String id = SortByColumnAction.getActionId(col);
+      final String id = SortByColumnForAction.getActionId(col);
       ids.add(id);
     }
     return ids.toArray(new String[0]);

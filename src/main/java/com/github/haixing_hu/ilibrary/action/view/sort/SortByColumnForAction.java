@@ -31,12 +31,12 @@ import com.github.haixing_hu.swt.action.IActionManager;
  *
  * @author Haixing Hu
  */
-public class SortByColumnAction extends BaseCheckBoxAction {
+public class SortByColumnForAction extends BaseCheckBoxAction {
 
   private final FieldType column;
 
   /**
-   * Constructs a {@link SortByColumnAction}.
+   * Constructs a {@link SortByColumnForAction}.
    * <p>
    * <b>NOTE:</b> the ID of the new action is the ID of the
    * {@link DisplayColumnsAction} action concatenate to a dot and the short name of the
@@ -54,20 +54,20 @@ public class SortByColumnAction extends BaseCheckBoxAction {
    * @param actionManager
    *          the action manager.
    */
-  public SortByColumnAction( FieldType column, Application application,
+  public SortByColumnForAction( FieldType column, Application application,
       IActionManager actionManager) {
     super(getActionId(column), application, actionManager);
     this.column = column;
-    logger.info("Create a SortByColumnAction '{}' for column {}.",
+    logger.debug("Create a SortByColumnAction '{}' for column {}.",
         getId(), column);
   }
 
   /**
-   * Gets the ID of the {@link SortByColumnAction} for a column.
+   * Gets the ID of the {@link SortByColumnForAction} for a column.
    *
    * @param column
    *          a column.
-   * @return the ID of the {@link SortByColumnAction} for the column.
+   * @return the ID of the {@link SortByColumnForAction} for the column.
    */
   public static String getActionId(FieldType column) {
     final StringBuilder builder = new StringBuilder();

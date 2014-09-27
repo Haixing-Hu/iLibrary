@@ -45,7 +45,7 @@ public class DisplayColumnsAction extends BaseDropDownAction {
   private static String[] getSubactionIds() {
     final List<String> ids = new ArrayList<String>();
     for (final FieldType col : FieldType.values()) {
-      final String id = SelectDisplayColumnAction.getActionId(col);
+      final String id = DisplayColumnForAction.getActionId(col);
       ids.add(id);
     }
     return ids.toArray(new String[0]);

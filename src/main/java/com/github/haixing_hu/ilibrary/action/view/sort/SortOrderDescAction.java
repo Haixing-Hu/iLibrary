@@ -42,6 +42,7 @@ public class SortOrderDescAction extends BaseCheckBoxAction {
    */
   public SortOrderDescAction(Application application, IActionManager actionManager) {
     super(KEY, application, actionManager);
+    this.setShowImage(false);
   }
 
   @Override
