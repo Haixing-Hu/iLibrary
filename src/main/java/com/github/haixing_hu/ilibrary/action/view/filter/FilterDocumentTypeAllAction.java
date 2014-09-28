@@ -38,6 +38,6 @@ public class FilterDocumentTypeAllAction extends BaseCheckBoxAction {
 
   @Override
   public void run() {
-    application.clearTypeStatusFilters();
+    application.clearDocumentTypeFilters();
   }
 }

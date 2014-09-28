@@ -72,9 +72,9 @@ public class FilterDocumentTypeForAction extends BaseCheckBoxAction {
   @Override
   public void run() {
     if (isChecked()) {
-      application.addTypeStatusFilter(type);
+      application.addDocumentTypeFilter(type);
     } else {
-      application.removeTypeStatusFilter(type);
+      application.removeDocumentTypeFilter(type);
     }
   }
 

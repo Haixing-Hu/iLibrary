@@ -886,9 +886,9 @@ public final class Application implements MessageKey, KeySuffix {
    * Clears the document type filters, in order to display documents with all
    * possible document types.
    */
-  public void clearTypeStatusFilters() {
+  public void clearDocumentTypeFilters() {
     logger.info("Clears the document type filters.");
-    final Set<DocumentType> filters = state.getTypeFilters();
+    final Set<DocumentType> filters = state.getDocumentTypeFilters();
     filters.clear();
     updateTypeFilters();
     updateFilterActionIcon();
@@ -901,9 +901,9 @@ public final class Application implements MessageKey, KeySuffix {
    * @param value
    *          the value of document type to be added to the filters.
    */
-  public void addTypeStatusFilter(DocumentType value) {
+  public void addDocumentTypeFilter(DocumentType value) {
     logger.info("Adds {} to the document type filters.", value);
-    final Set<DocumentType> filters = state.getTypeFilters();
+    final Set<DocumentType> filters = state.getDocumentTypeFilters();
     filters.add(value);
     updateTypeFilters();
     updateFilterActionIcon();
@@ -916,9 +916,9 @@ public final class Application implements MessageKey, KeySuffix {
    * @param value
    *          the value of document type to be removed from the filters.
    */
-  public void removeTypeStatusFilter(DocumentType value) {
+  public void removeDocumentTypeFilter(DocumentType value) {
     logger.info("Removes {} from the document type filters.", value);
-    final Set<DocumentType> filters = state.getTypeFilters();
+    final Set<DocumentType> filters = state.getDocumentTypeFilters();
     filters.remove(value);
     updateTypeFilters();
     updateFilterActionIcon();
@@ -934,7 +934,7 @@ public final class Application implements MessageKey, KeySuffix {
       final ActionEx action = am.get(id);
       action.setChecked(false);
     }
-    final Set<DocumentType> filters = state.getTypeFilters();
+    final Set<DocumentType> filters = state.getDocumentTypeFilters();
     logger.info("Updating document type filters: {}", filters);
     if (filters.isEmpty() || (filters.size() == DocumentType.values().length)) {
       all.setChecked(true);
@@ -1024,7 +1024,7 @@ public final class Application implements MessageKey, KeySuffix {
       filterAction.setChecked(true);
       return;
     }
-    final Set<DocumentType> typeFilters = state.getTypeFilters();
+    final Set<DocumentType> typeFilters = state.getDocumentTypeFilters();
     if (! typeFilters.isEmpty()) {
       filterAction.setChecked(true);
       return;

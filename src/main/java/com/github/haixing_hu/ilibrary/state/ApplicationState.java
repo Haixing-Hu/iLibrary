@@ -63,7 +63,7 @@ public final class ApplicationState {
 
   private final Set<FlagStatus> allFlagStatusFilters[];
   private final Set<ReadStatus> allReadStatusFilters[];
-  private final Set<DocumentType> allTypeFilters[];
+  private final Set<DocumentType> allDocumentTypeFilters[];
   private final Set<FileStatus> allFileStatusFilters[];
   private final Set<FieldType> allColumns[];
   private final FieldType allSortColumn[];
@@ -83,7 +83,7 @@ public final class ApplicationState {
     layoutMode = LayoutMode.ALL;
     allFlagStatusFilters = new Set[Page.TOTAL];
     allReadStatusFilters = new Set[Page.TOTAL];
-    allTypeFilters = new Set[Page.TOTAL];
+    allDocumentTypeFilters = new Set[Page.TOTAL];
     allFileStatusFilters = new Set[Page.TOTAL];
     allColumns = new Set[Page.TOTAL];
     allSortColumn = new FieldType[Page.TOTAL];
@@ -91,7 +91,7 @@ public final class ApplicationState {
     for (int i = 0; i < Page.TOTAL; ++i) {
       allFlagStatusFilters[i] = new HashSet<FlagStatus>();
       allReadStatusFilters[i] = new HashSet<ReadStatus>();
-      allTypeFilters[i] = new HashSet<DocumentType>();
+      allDocumentTypeFilters[i] = new HashSet<DocumentType>();
       allFileStatusFilters[i] = new HashSet<FileStatus>();
       allColumns[i] = new HashSet<FieldType>();
       allSortColumn[i] = null;
@@ -171,7 +171,7 @@ public final class ApplicationState {
   private void loadTypeFilters(AppConfig config) {
     //  TODO
     for (int i = 0; i < allSortColumn.length; ++i) {
-      allTypeFilters[i].clear();
+      allDocumentTypeFilters[i].clear();
     }
   }
 
@@ -421,17 +421,17 @@ public final class ApplicationState {
     return allFlagStatusFilters[page.ordinal()];
   }
 
-  /**
-   * Gets the flag status filters for all pages.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible flag status.
-   *
-   * @return the flag status filters for all pages.
-   */
-  public Set<FlagStatus>[] getAllFlagStatusFilters() {
-    return allFlagStatusFilters;
-  }
+//  /**
+//   * Gets the flag status filters for all pages.
+//   * <p>
+//   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+//   * all possible flag status.
+//   *
+//   * @return the flag status filters for all pages.
+//   */
+//  public Set<FlagStatus>[] getAllFlagStatusFilters() {
+//    return allFlagStatusFilters;
+//  }
 
   /**
    * Gets the read status filters for the current page.
@@ -445,17 +445,17 @@ public final class ApplicationState {
     return allReadStatusFilters[page.ordinal()];
   }
 
-  /**
-   * Gets the read status filters for all pages.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible read status.
-   *
-   * @return the read status filters for all pages.
-   */
-  public Set<ReadStatus>[] getAllReadStatusFilters() {
-    return allReadStatusFilters;
-  }
+//  /**
+//   * Gets the read status filters for all pages.
+//   * <p>
+//   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+//   * all possible read status.
+//   *
+//   * @return the read status filters for all pages.
+//   */
+//  public Set<ReadStatus>[] getAllReadStatusFilters() {
+//    return allReadStatusFilters;
+//  }
 
   /**
    * Gets the document type filters for the current page.
@@ -465,21 +465,21 @@ public final class ApplicationState {
    *
    * @return the document type filters for the current page.
    */
-  public Set<DocumentType> getTypeFilters() {
-    return allTypeFilters[page.ordinal()];
+  public Set<DocumentType> getDocumentTypeFilters() {
+    return allDocumentTypeFilters[page.ordinal()];
   }
 
-  /**
-   * Gets the document type filters for all pages.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible document types.
-   *
-   * @return the document type filters for all pages.
-   */
-  public Set<DocumentType>[] getAllTypeFilters() {
-    return allTypeFilters;
-  }
+//  /**
+//   * Gets the document type filters for all pages.
+//   * <p>
+//   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+//   * all possible document types.
+//   *
+//   * @return the document type filters for all pages.
+//   */
+//  public Set<DocumentType>[] getAllDocumentTypeFilters() {
+//    return allDocumentTypeFilters;
+//  }
 
   /**
    * Gets the file status filters for the current page.
@@ -493,17 +493,17 @@ public final class ApplicationState {
     return allFileStatusFilters[page.ordinal()];
   }
 
-  /**
-   * Gets the file status filters for all pages.
-   * <p>
-   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
-   * all possible file status.
-   *
-   * @return the file status filters for all pages.
-   */
-  public Set<FileStatus>[] getAllFileStatusFilters() {
-    return allFileStatusFilters;
-  }
+//  /**
+//   * Gets the file status filters for all pages.
+//   * <p>
+//   * <b>NOTE:</b> the empty set means no filters, i.e., display documents with
+//   * all possible file status.
+//   *
+//   * @return the file status filters for all pages.
+//   */
+//  public Set<FileStatus>[] getAllFileStatusFilters() {
+//    return allFileStatusFilters;
+//  }
 
   /**
    * Gets the the display columns for the current page.
@@ -513,15 +513,15 @@ public final class ApplicationState {
   public Set<FieldType> getColumns() {
     return allColumns[page.ordinal()];
   }
-
-  /**
-   * Gets the display columns for all pages.
-   *
-   * @return the display columns for all pages.
-   */
-  public Set<FieldType>[] getAllColumns() {
-    return allColumns;
-  }
+//
+//  /**
+//   * Gets the display columns for all pages.
+//   *
+//   * @return the display columns for all pages.
+//   */
+//  public Set<FieldType>[] getAllColumns() {
+//    return allColumns;
+//  }
 
   /**
    * Gets the sorting column for the current page.
@@ -544,16 +544,16 @@ public final class ApplicationState {
   public void setSortColumn(@Nullable FieldType column) {
     allSortColumn[page.ordinal()] = column;
   }
-
-  /**
-   * Gets the all sorting column.
-   *
-   * @return all sorting column for all pages. A null value indicates no sorting
-   *         column is specified and thus sorts in the default column.
-   */
-  public FieldType[] getAllSortColumns() {
-    return allSortColumn;
-  }
+//
+//  /**
+//   * Gets the all sorting column.
+//   *
+//   * @return all sorting column for all pages. A null value indicates no sorting
+//   *         column is specified and thus sorts in the default column.
+//   */
+//  public FieldType[] getAllSortColumns() {
+//    return allSortColumn;
+//  }
 
   /**
    * Sets the all sorting column.
@@ -563,7 +563,7 @@ public final class ApplicationState {
    *          no sorting column is specified and thus sorts in the default
    *          column.
    */
-  public void setAllSortColumns(@Nullable FieldType column) {
+  private void setAllSortColumns(@Nullable FieldType column) {
     for (int i = 0; i < allSortColumn.length; ++i) {
       allSortColumn[i] = column;
     }
@@ -588,14 +588,14 @@ public final class ApplicationState {
     allSortOrder[page.ordinal()] = order;
   }
 
-  /**
-   * Gets the all sorting order.
-   *
-   * @return all sorting order for all pages.
-   */
-  public SortOrder[] getAllSortOrders() {
-    return allSortOrder;
-  }
+//  /**
+//   * Gets the all sorting order.
+//   *
+//   * @return all sorting order for all pages.
+//   */
+//  public SortOrder[] getAllSortOrders() {
+//    return allSortOrder;
+//  }
 
   /**
    * Sets the all sorting order.
@@ -603,7 +603,7 @@ public final class ApplicationState {
    * @param order
    *          the sorting order to be set for all pages.
    */
-  public void setAllSortOrders(SortOrder order) {
+  private void setAllSortOrders(SortOrder order) {
     for (int i = 0; i < allSortOrder.length; ++i) {
       allSortOrder[i] = order;
     }
