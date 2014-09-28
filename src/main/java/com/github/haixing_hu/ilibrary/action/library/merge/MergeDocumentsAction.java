@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MergeDocumentsAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".merge-documents";
+  public static final String ID = LibraryAction.ID + ".merge-documents";
 
   public MergeDocumentsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

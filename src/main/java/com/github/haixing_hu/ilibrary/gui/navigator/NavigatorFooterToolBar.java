@@ -29,10 +29,11 @@ import org.eclipse.swt.widgets.Label;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
+import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.collection.ManageCollectionAction;
 import com.github.haixing_hu.ilibrary.action.view.HideNavigatorAction;
-import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarManager;
+import com.github.haixing_hu.swt.action.ActionUtils;
 
 /**
  * The tool bar on the footer of the navigator panel.
@@ -42,12 +43,12 @@ import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarManager;
 public class NavigatorFooterToolBar extends Composite {
 
   private static final String LEFT_ACTION_KEYS[] = {
-    NewCollectionAction.KEY,
-    ManageCollectionAction.KEY,
+    NewCollectionAction.ID,
+    ManageCollectionAction.ID,
   };
 
   private static final String RGIHT_ACTION_KEYS[] = {
-    HideNavigatorAction.KEY,
+    HideNavigatorAction.ID,
   };
 
   private final ToolBarManager leftToolBar;
@@ -57,13 +58,16 @@ public class NavigatorFooterToolBar extends Composite {
 
   public NavigatorFooterToolBar(Application application, Composite parent) {
     super(parent, SWT.NONE);
-    leftToolBar = new ActionListToolBarManager(application, LEFT_ACTION_KEYS);
+    final ActionManager am = application.getActionManager();
+    leftToolBar = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    ActionUtils.addActions(leftToolBar, am, LEFT_ACTION_KEYS);
     leftToolBar.createControl(this);
     centerSpace = new Label(this, SWT.NONE);
-    rightToolBar = new ActionListToolBarManager(application, RGIHT_ACTION_KEYS);
+    rightToolBar = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    ActionUtils.addActions(rightToolBar, am, RGIHT_ACTION_KEYS);
     rightToolBar.createControl(this);
     final AppConfig config = application.getConfig();
-    backgroundColor = config.getColor(NavigatorFooter.KEY
+    backgroundColor = config.getColor(NavigatorFooter.ID
         + KeySuffix.CONTROL + KeySuffix.BACKGROUND_COLOR);
     layoutContents();
    }

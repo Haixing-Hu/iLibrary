@@ -30,17 +30,17 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AnnotateAction extends BaseDropDownAction {
 
-  public static final String KEY = EditAction.KEY + ".annotate";
+  public static final String ID = EditAction.ID + ".annotate";
 
   private static final String ACTIONS[] = {
-    AnnotateSelectionAction.KEY,
-    AnnotateHighlightAction.KEY,
-    AnnotateUnderlineAction.KEY,
-    AnnotateStrikethroughAction.KEY,
-    AnnotateNoteAction.KEY,
+    AnnotateSelectionAction.ID,
+    AnnotateHighlightAction.ID,
+    AnnotateUnderlineAction.ID,
+    AnnotateStrikethroughAction.ID,
+    AnnotateNoteAction.ID,
   };
 
   public AnnotateAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, ACTIONS);
+    super(ID, application, actionManager, ACTIONS);
   }
 }

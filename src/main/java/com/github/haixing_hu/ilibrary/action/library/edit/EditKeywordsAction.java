@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class EditKeywordsAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".edit-keywords";
+  public static final String ID = LibraryAction.ID + ".edit-keywords";
 
   public EditKeywordsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     setShowDialog(true);
   }
 }

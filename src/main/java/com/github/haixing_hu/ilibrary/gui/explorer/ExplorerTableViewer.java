@@ -34,7 +34,7 @@ import com.github.haixing_hu.ilibrary.KeySuffix;
  */
 public class ExplorerTableViewer extends CheckboxTableViewer {
 
-  public static final String KEY = ExplorerPanel.KEY + ".viewer";
+  public static final String ID = ExplorerPanel.ID + ".viewer";
 
   private final int minHeight;
   private final int maxHeight;
@@ -42,8 +42,8 @@ public class ExplorerTableViewer extends CheckboxTableViewer {
   public ExplorerTableViewer(Application application, Composite parent) {
     super(new Table(parent, SWT.CHECK | SWT.V_SCROLL | SWT.H_SCROLL));
     final AppConfig config = application.getConfig();
-    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
-    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
+    minHeight = config.getInt(ID + KeySuffix.MIN_HEIGHT);
+    maxHeight = config.getInt(ID + KeySuffix.MAX_HEIGHT);
     createContents();
   }
 

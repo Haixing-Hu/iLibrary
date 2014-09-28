@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MarkUnprintedAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".mark-unprinted";
+  public static final String ID = LibraryAction.ID + ".mark-unprinted";
 
   public MarkUnprintedAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

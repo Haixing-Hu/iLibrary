@@ -31,10 +31,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PageReaderAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".reader";
+  public static final String ID = WindowAction.ID + ".reader";
 
   public PageReaderAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

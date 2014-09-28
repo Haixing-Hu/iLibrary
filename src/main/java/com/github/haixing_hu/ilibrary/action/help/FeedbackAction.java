@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FeedbackAction extends BaseAction {
 
-  public static final String KEY = HelpAction.KEY + ".feedback";
+  public static final String ID = HelpAction.ID + ".feedback";
 
   public FeedbackAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -18,12 +18,16 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
+import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.gui.BasicFooter;
-import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
+import com.github.haixing_hu.swt.action.ActionUtils;
 
 /**
  * The footer of the inspector panel.
@@ -32,14 +36,23 @@ import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
  */
 public class InspectorFooter extends BasicFooter {
 
-  public static final String KEY = InspectorPanel.KEY + ".footer";
+  public static final String ID = InspectorPanel.ID + ".footer";
 
-  private static final String ACTION_KEYS[] = {
-    HideInspectorAction.KEY,
+  private static final String ACTION_IDS[] = {
+    HideInspectorAction.ID,
   };
 
   public InspectorFooter(final Application application, final Composite parent) {
-    super(application, parent, KEY,
-        new ActionListToolBarCreator(application, ACTION_KEYS));
+    super(application, parent, ID);
+    initialize();
+  }
+
+  @Override
+  protected Control createControl() {
+    final ToolBarManager tm = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    final ActionManager am = application.getActionManager();
+    ActionUtils.addActions(tm, am, ACTION_IDS);
+    tm.createControl(this);
+    return tm.getControl();
   }
 }

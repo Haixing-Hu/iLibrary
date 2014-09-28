@@ -62,7 +62,7 @@ public abstract class ExplorerPage extends BasicPage  {
     super(application, parent);
     this.application = application;
     final AppConfig config = application.getConfig();
-    final String sashKey = MainWindow.KEY + KeySuffix.SASH + KeySuffix.VERTICAL;
+    final String sashKey = MainWindow.ID + KeySuffix.SASH + KeySuffix.VERTICAL;
     sashWidth = config.getInt(sashKey + KeySuffix.WIDTH);
     sashColor = config.getColor(sashKey + KeySuffix.COLOR);
     navigator = new NavigatorPanel(application, this, title);

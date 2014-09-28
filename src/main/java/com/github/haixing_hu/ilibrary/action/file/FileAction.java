@@ -23,6 +23,7 @@ import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of file related actions.
@@ -31,28 +32,28 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FileAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.file";
+  public static final String ID = "action.file";
 
   private static final String SUB_ACTIONS[] = {
-    NewLibraryAction.KEY,
-    OpenLibraryAction.KEY,
-    CloseLibraryAction.KEY,
-    SEPARATOR_KEY,
-    NewAction.KEY,
-    NewCollectionAction.KEY,
-    OpenURLAction.KEY,
-    SEPARATOR_KEY,
-    ImportAction.KEY,
-    ExportAction.KEY,
-    SEPARATOR_KEY,
-    PageSetupAction.KEY,
-    PrintAction.KEY,
-    SEPARATOR_KEY,
-    QuitAction.KEY,
+    NewLibraryAction.ID,
+    OpenLibraryAction.ID,
+    CloseLibraryAction.ID,
+    Separator.ID,
+    NewAction.ID,
+    NewCollectionAction.ID,
+    OpenURLAction.ID,
+    Separator.ID,
+    ImportAction.ID,
+    ExportAction.ID,
+    Separator.ID,
+    PageSetupAction.ID,
+    PrintAction.ID,
+    Separator.ID,
+    QuitAction.ID,
   };
 
   public FileAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

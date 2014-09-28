@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsIconsAction extends BaseAction {
 
-  public static final String KEY = BrowserModeAction.KEY + ".as-icons";
+  public static final String ID = BrowserModeAction.ID + ".as-icons";
 
   public AsIconsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

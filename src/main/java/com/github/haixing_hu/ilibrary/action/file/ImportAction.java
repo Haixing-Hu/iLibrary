@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ImportAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".import";
+  public static final String ID = FileAction.ID + ".import";
 
   public ImportAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

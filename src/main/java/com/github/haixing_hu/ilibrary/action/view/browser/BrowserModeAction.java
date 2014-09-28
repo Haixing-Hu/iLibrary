@@ -26,17 +26,17 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class BrowserModeAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".browser-mode";
+  public static final String ID = ViewAction.ID + ".browser-mode";
 
   private static final String[] SUB_ACTIONS = {
-      AsListAction.KEY,
-      AsColumnsAction.KEY,
-      AsIconsAction.KEY,
-      AsCoverFlowAction.KEY,
+      AsListAction.ID,
+      AsColumnsAction.ID,
+      AsIconsAction.ID,
+      AsCoverFlowAction.ID,
   };
 
   public BrowserModeAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

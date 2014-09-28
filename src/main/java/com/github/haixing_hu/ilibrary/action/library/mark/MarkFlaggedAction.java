@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MarkFlaggedAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".mark-flagged";
+  public static final String ID = LibraryAction.ID + ".mark-flagged";
 
   public MarkFlaggedAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class FindPreviousAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".find-previous";
+  public static final String ID = EditAction.ID + ".find-previous";
 
   public FindPreviousAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

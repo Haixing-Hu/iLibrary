@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsCoverFlowAction extends BaseAction {
 
-  public static final String KEY = BrowserModeAction.KEY + ".as-cover-flow";
+  public static final String ID = BrowserModeAction.ID + ".as-cover-flow";
 
   public AsCoverFlowAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

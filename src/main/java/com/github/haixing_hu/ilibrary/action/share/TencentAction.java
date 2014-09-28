@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class TencentAction extends BaseAction {
 
-  public static final String KEY = ShareAction.KEY + ".tencent";
+  public static final String ID = ShareAction.ID + ".tencent";
 
   public TencentAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

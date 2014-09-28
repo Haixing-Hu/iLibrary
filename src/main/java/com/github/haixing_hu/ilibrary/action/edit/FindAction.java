@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class FindAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".find";
+  public static final String ID = EditAction.ID + ".find";
 
   public FindAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

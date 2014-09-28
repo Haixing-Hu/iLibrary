@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FacebookAction extends BaseAction {
 
-  public static final String KEY = ShareAction.KEY + ".facebook";
+  public static final String ID = ShareAction.ID + ".facebook";
 
   public FacebookAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

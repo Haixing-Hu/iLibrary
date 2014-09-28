@@ -30,17 +30,17 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class LayoutModeAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".layout";
+  public static final String ID = ViewAction.ID + ".layout";
 
   private static final String[] SUB_ACTIONS = {
-      LayoutModeAllAction.KEY,
-      LayoutModeInspectorOnlyAction.KEY,
-      LayoutModePreviewOnlyAction.KEY,
-      LayoutModeNoneAction.KEY,
+      LayoutModeAllAction.ID,
+      LayoutModeInspectorOnlyAction.ID,
+      LayoutModePreviewOnlyAction.ID,
+      LayoutModeNoneAction.ID,
   };
 
   public LayoutModeAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

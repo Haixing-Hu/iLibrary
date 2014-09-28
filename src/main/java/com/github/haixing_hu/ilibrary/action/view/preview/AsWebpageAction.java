@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsWebpageAction extends BaseAction {
 
-  public static final String KEY = PreviewAction.KEY + ".as-webpage";
+  public static final String ID = PreviewAction.ID + ".as-webpage";
 
   public AsWebpageAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

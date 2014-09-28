@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.gui.BasicFooter;
-import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The footer of the navigator panel.
@@ -32,7 +31,7 @@ import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
  */
 public class NavigatorFooter extends BasicFooter {
 
-  public static final String KEY = NavigatorPanel.KEY + ".footer";
+  public static final String ID = NavigatorPanel.ID + ".footer";
 
   /**
    * Creates a status line.
@@ -45,12 +44,13 @@ public class NavigatorFooter extends BasicFooter {
    *    the style of the new status line.
    */
   public NavigatorFooter(final Application application, final Composite parent) {
-    super(application, parent, KEY, new ControlCreator() {
-      @Override
-      public Control create(Composite parent) {
-        return new NavigatorFooterToolBar(application, parent);
-      }
-    });
+    super(application, parent, ID);
+    initialize();
+  }
+
+  @Override
+  protected Control createControl() {
+    return new NavigatorFooterToolBar(application, this);
   }
 
 

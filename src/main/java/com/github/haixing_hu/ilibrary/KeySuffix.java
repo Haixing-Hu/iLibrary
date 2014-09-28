@@ -41,6 +41,8 @@ public interface KeySuffix {
 
   public static final String BACKGROUND_COLOR = ".background-color";
 
+  public static final String FOREGROUND_COLOR = ".foreground-color";
+
   public static final String HEIGHT = ".height";
 
   public static final String DEFAULT_HEIGHT = ".default-height";
@@ -57,9 +59,17 @@ public interface KeySuffix {
 
   public static final String MAX_WIDTH = ".max-width";
 
+  public static final String MARGIN_LEFT = ".margin-left";
+
+  public static final String MARGIN_RIGHT = ".margin-right";
+
   public static final String MARGIN_TOP = ".margin-top";
 
+  public static final String MARGIN_BOTTOM = ".margin-bottom";
+
   public static final String MARGIN_WIDTH = ".margin-width";
+
+  public static final String MARGIN_HEIGHT = ".margin-height";
 
   public static final String FONT_SIZE = ".font-size";
 
@@ -95,6 +105,8 @@ public interface KeySuffix {
 
   public static final String COLUMN = ".column";
 
+  public static final String COLUMNS = ".columns";
+
   public static final String ORDER = ".order";
 
   public static final String LOCALE = ".locale";
@@ -108,5 +120,11 @@ public interface KeySuffix {
   public static final String HEAVY = ".heavy";
 
   public static final String LIGHT = ".light";
+
+  public static final String HORIZONTAL_SPACING = ".horizontal-spacing";
+
+  public static final String VERTICAL_SPACING = ".vertical-spacing";
+
+  public static final String TITLE_SPACING = ".title-spacing";
 
 }

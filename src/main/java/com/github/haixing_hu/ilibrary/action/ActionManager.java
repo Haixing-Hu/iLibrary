@@ -130,8 +130,8 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnForAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnForAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAllAction;
@@ -147,9 +147,9 @@ import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusHasRead
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusReadingAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusToReadAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusUnreadAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeForAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeForAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
@@ -289,10 +289,10 @@ public final class ActionManager implements IActionManager {
     add(new AsIconsAction(application, this));
     add(new AsCoverFlowAction(application, this));
     //  view -> columns
-    add(new DisplayColumnsAction(application, this));
+    add(new SelectColumnsAction(application, this));
     //  add select column action for every possible columns
     for (final FieldType col : FieldType.values()) {
-      final DisplayColumnForAction action = new DisplayColumnForAction(col,
+      final SelectColumnForAction action = new SelectColumnForAction(col,
           application, this);
       add(action);
     }
@@ -322,10 +322,10 @@ public final class ActionManager implements IActionManager {
     add(new FilterReadStatusReadingAction(application, this));
     add(new FilterReadStatusHasReadAction(application, this));
     //  view -> filter type
-    add(new FilterTypeAction(application, this));
-    add(new FilterTypeAllAction(application, this));
+    add(new FilterDocumentTypeAction(application, this));
+    add(new FilterDocumentTypeAllAction(application, this));
     for (final DocumentType type : DocumentType.values()) {
-      final FilterTypeForAction action = new FilterTypeForAction(type,
+      final FilterDocumentTypeForAction action = new FilterDocumentTypeForAction(type,
           application, this);
       add(action);
     }

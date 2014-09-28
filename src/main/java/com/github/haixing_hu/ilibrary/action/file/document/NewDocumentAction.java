@@ -71,7 +71,7 @@ public class NewDocumentAction extends BaseDropDownAction {
   }
 
   public static String getActionId(DocumentType type) {
-    return NewAction.KEY + "." + EnumUtils.getShortName(type);
+    return NewAction.ID + "." + EnumUtils.getShortName(type);
   }
 
   /**

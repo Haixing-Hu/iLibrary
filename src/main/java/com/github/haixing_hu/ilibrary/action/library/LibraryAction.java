@@ -45,6 +45,7 @@ import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlAction;
 import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlInBrowserAction;
 import com.github.haixing_hu.ilibrary.action.library.open.RevealFilePositionAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of library related actions.
@@ -53,46 +54,46 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class LibraryAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.library";
+  public static final String ID = "action.library";
 
   private static final String SUB_ACTIONS[] = {
-    MarkFlaggedAction.KEY,
-    MarkUnflaggedAction.KEY,
-    MarkReadAction.KEY,
-    MarkUnreadAction.KEY,
-    MarkPrintedAction.KEY,
-    MarkUnprintedAction.KEY,
-    SEPARATOR_KEY,
-    ArchiveAction.KEY,
-    MoveToTrashAction.KEY,
-    RestoreFromTrashAction.KEY,
-    EmptyTrashAction.KEY,
-    SEPARATOR_KEY,
-    EditInformationAction.KEY,
-    EditKeywordsAction.KEY,
-    EditNotesAction.KEY,
-    AddReviewAction.KEY,
-    AttachFileAction.KEY,
-    SEPARATOR_KEY,
-    OpenFileAction.KEY,
-    OpenFileWithAction.KEY,
-    OpenUrlAction.KEY,
-    OpenUrlInBrowserAction.KEY,
-    RevealFilePositionAction.KEY,
-    SEPARATOR_KEY,
-    ManageCollectionAction.KEY,
-    AddToCollectionAction.KEY,
-    SEPARATOR_KEY,
-    MergeDocumentsAction.KEY,
-    MergeAuthorsAction.KEY,
-    MergeInstitutesAction.KEY,
-    MergeConferencesAction.KEY,
-    MergePeriodicalsAction.KEY,
-    MergeWebsitesAction.KEY,
+    MarkFlaggedAction.ID,
+    MarkUnflaggedAction.ID,
+    MarkReadAction.ID,
+    MarkUnreadAction.ID,
+    MarkPrintedAction.ID,
+    MarkUnprintedAction.ID,
+    Separator.ID,
+    ArchiveAction.ID,
+    MoveToTrashAction.ID,
+    RestoreFromTrashAction.ID,
+    EmptyTrashAction.ID,
+    Separator.ID,
+    EditInformationAction.ID,
+    EditKeywordsAction.ID,
+    EditNotesAction.ID,
+    AddReviewAction.ID,
+    AttachFileAction.ID,
+    Separator.ID,
+    OpenFileAction.ID,
+    OpenFileWithAction.ID,
+    OpenUrlAction.ID,
+    OpenUrlInBrowserAction.ID,
+    RevealFilePositionAction.ID,
+    Separator.ID,
+    ManageCollectionAction.ID,
+    AddToCollectionAction.ID,
+    Separator.ID,
+    MergeDocumentsAction.ID,
+    MergeAuthorsAction.ID,
+    MergeInstitutesAction.ID,
+    MergeConferencesAction.ID,
+    MergePeriodicalsAction.ID,
+    MergeWebsitesAction.ID,
   };
 
   public LibraryAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

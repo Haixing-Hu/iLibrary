@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class GooglePlusAction extends BaseAction {
 
-  public static final String KEY = ShareAction.KEY + ".google-plus";
+  public static final String ID = ShareAction.ID + ".google-plus";
 
   public GooglePlusAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

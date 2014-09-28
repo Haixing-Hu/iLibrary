@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class GotoPageAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".goto-page";
+  public static final String ID = ViewAction.ID + ".goto-page";
 
   public GotoPageAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

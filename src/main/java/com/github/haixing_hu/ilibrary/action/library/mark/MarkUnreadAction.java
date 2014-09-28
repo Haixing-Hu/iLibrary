@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MarkUnreadAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".mark-unread";
+  public static final String ID = LibraryAction.ID + ".mark-unread";
 
   public MarkUnreadAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -24,7 +24,6 @@ import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.gui.BasicHeader;
-import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The header in the library panel.
@@ -33,14 +32,15 @@ import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
  */
 public final class ExplorerHeader extends BasicHeader {
 
-  public static final String KEY = ExplorerPanel.KEY + ".header";
+  public static final String ID = ExplorerPanel.ID + ".header";
 
   public ExplorerHeader(final Application application, final Composite parent) {
-    super(application, parent, KEY, new ControlCreator() {
-      @Override
-      public Control create(Composite parent) {
-        return new ExplorerHeaderToolBar(application, parent);
-      }
-    }, SWT.LEFT);
+    super(application, parent, ID, SWT.LEFT);
+    initialize();
+  }
+
+  @Override
+  protected Control createControl() {
+    return new ExplorerHeaderToolBar(application, this);
   }
 }

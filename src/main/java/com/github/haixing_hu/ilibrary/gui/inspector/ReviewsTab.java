@@ -31,7 +31,7 @@ import com.github.haixing_hu.ilibrary.Application;
  */
 public final class ReviewsTab extends Composite {
 
-  public static final String KEY = InspectorTabFolder.KEY + ".reviews"; // "window.inspector.tab.reviews"
+  public static final String ID = InspectorTabFolder.ID + ".reviews"; // "window.inspector.tab.reviews"
 
   private final Application application;
 

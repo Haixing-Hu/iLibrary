@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class RefreshCollectionAction extends BaseAction {
 
-  public static final String KEY = ManageCollectionAction.KEY + ".refresh";;
+  public static final String ID = ManageCollectionAction.ID + ".refresh";;
 
   public RefreshCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

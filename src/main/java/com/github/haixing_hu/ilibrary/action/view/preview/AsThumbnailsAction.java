@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsThumbnailsAction extends BaseAction {
 
-  public static final String KEY = PreviewAction.KEY + ".as-thumbnails";
+  public static final String ID = PreviewAction.ID + ".as-thumbnails";
 
   public AsThumbnailsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

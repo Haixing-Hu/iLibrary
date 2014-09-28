@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CutAction extends BaseAction {
 
-  public static final String KEY = EditAction.KEY + ".cut";
+  public static final String ID = EditAction.ID + ".cut";
 
   public CutAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

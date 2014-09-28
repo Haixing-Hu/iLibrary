@@ -30,16 +30,16 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterFileStatusAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".filter.file";
+  public static final String ID = ViewAction.ID + ".filter.file";
 
   private static final String SUB_ACTIONS[] = {
-    FilterFileStatusAllAction.KEY,
-    FilterFileStatusHasFileAction.KEY,
-    FilterFileStatusNoFileAction.KEY,
+    FilterFileStatusAllAction.ID,
+    FilterFileStatusHasFileAction.ID,
+    FilterFileStatusNoFileAction.ID,
   };
 
   public FilterFileStatusAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

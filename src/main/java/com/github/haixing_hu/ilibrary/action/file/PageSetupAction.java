@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PageSetupAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".page-setup";
+  public static final String ID = FileAction.ID + ".page-setup";
 
   public PageSetupAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

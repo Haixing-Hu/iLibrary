@@ -22,6 +22,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to switch the view modes.
@@ -30,19 +31,19 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class InspectorAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".inspector";
+  public static final String ID = ViewAction.ID + ".inspector";
 
   private static final String[] SUB_ACTIONS = {
-    InspectorOverviewTabAction.KEY,
-    InspectorInfoTabAction.KEY,
-    InspectorNotesTabAction.KEY,
-    InspectorReviewsTabAction.KEY,
-    SEPARATOR_KEY,
-    HideInspectorAction.KEY,
-    ShowInspectorAction.KEY,
+    InspectorOverviewTabAction.ID,
+    InspectorInfoTabAction.ID,
+    InspectorNotesTabAction.ID,
+    InspectorReviewsTabAction.ID,
+    Separator.ID,
+    HideInspectorAction.ID,
+    ShowInspectorAction.ID,
   };
 
   public InspectorAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

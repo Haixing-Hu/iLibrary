@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class BackAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".back";
+  public static final String ID = ViewAction.ID + ".back";
 
   public BackAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewAuthorAction extends BaseAction {
 
-  public static final String KEY = NewAction.KEY + ".author";
+  public static final String ID = NewAction.ID + ".author";
 
   public NewAuthorAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

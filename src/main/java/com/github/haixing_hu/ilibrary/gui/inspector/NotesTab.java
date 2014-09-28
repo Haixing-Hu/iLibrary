@@ -31,7 +31,7 @@ import com.github.haixing_hu.ilibrary.Application;
  */
 public final class NotesTab extends Composite {
 
-  public static final String KEY = InspectorTabFolder.KEY + ".notes"; // "window.inspector.tab.notes"
+  public static final String ID = InspectorTabFolder.ID + ".notes"; // "window.inspector.tab.notes"
 
   private final Application application;
 
@@ -39,6 +39,7 @@ public final class NotesTab extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     new Label(this, SWT.NONE).setText("NotesTabContent");
+    layoutContents();
   }
 
   private void layoutContents() {

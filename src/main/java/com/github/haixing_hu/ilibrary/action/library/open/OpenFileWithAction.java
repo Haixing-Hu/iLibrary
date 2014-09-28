@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class OpenFileWithAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".open-file-with";
+  public static final String ID = LibraryAction.ID + ".open-file-with";
 
   public OpenFileWithAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

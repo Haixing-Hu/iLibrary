@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- * Copyright (c) 2014  Haixing Hu
+ * Copyright (c) 2013  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,68 +16,66 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.action.view.columns;
+package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.action.view.sort.SortByColumnForAction;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to select or deselect a column.
+ * The action to filter the documents of a type.
  *
  * @author Haixing Hu
  */
-public class DisplayColumnForAction extends BaseCheckBoxAction {
+public class FilterDocumentTypeForAction extends BaseCheckBoxAction {
 
-  private final FieldType column;
+  private final DocumentType type;
 
   /**
-   * Constructs a {@link SortByColumnForAction}.
+   * Constructs a {@link FilterDocumentTypeForAction}.
    * <p>
    * <b>NOTE:</b> the ID of the new action is the ID of the
-   * {@link DisplayColumnsAction} action concatenate to a dot and the short name of the
-   * enumerator representing the column. For example, if the column is
-   * {@link FieldType#CITE_KEY}, the ID of the new action is
-   * <code>{@link DisplayColumnsAction#KEY} + ".cite-key"</code>.
+   * {@link FilterDocumentTypeAction} action concatenate to a dot and the short name of the
+   * enumerator representing the document type.
    * <p>
    * A short name of an {@link Enum} value comes from lowercase the enumeration
    * name of the {@link Enum} value and replacing all '_' with '-'.
    *
-   * @param column
-   *          the column.
+   * @param type
+   *          the document type.
    * @param application
    *          the application.
    * @param actionManager
    *          the action manager.
    */
-  public DisplayColumnForAction( FieldType column, Application application,
+  public FilterDocumentTypeForAction(DocumentType type, Application application,
       IActionManager actionManager) {
-    super(getActionId(column), application, actionManager);
-    this.column = column;
-    logger.debug("Create a SelectDisplayColumnAction '{}' for column {}.",
-        getId(), column);
+    super(getActionId(type), application, actionManager);
+    this.type = type;
+    logger.debug("Create a FilterDocumentTypeForAction '{}' for type {}.",
+        getId(), type);
   }
 
   /**
-   * Gets the ID of the {@link SortByColumnForAction} for a column.
+   * Gets the ID of the {@link FilterDocumentTypeForAction} for a document type.
    *
-   * @param column
-   *          a column.
-   * @return the ID of the {@link SortByColumnForAction} for the column.
+   * @param type
+   *          a document type.
+   * @return the ID of the {@link FilterDocumentTypeForAction} for the document type.
    */
-  public static String getActionId(FieldType column) {
-    return DisplayColumnsAction.KEY + "." + EnumUtils.getShortName(column);
+  public static String getActionId(DocumentType type) {
+    return FilterDocumentTypeAction.ID + "." + EnumUtils.getShortName(type);
   }
 
   @Override
   public void run() {
     if (isChecked()) {
-      application.addColumn(column);
+      application.addTypeStatusFilter(type);
     } else {
-      application.removeColumn(column);
+      application.removeTypeStatusFilter(type);
     }
   }
+
 }

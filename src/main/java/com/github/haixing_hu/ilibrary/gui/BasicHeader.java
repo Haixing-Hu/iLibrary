@@ -34,14 +34,17 @@ import org.eclipse.swt.widgets.Label;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The base class for the headers.
+ * <p>
+ * <b>NOTE:</b> Because the abstract function should not be called in the
+ * constructor, the subclass <b>must</b> call the {@link #initialize()}
+ * after calling the super's constructor and initialing its fields.
  *
  * @author Haixing Hu
  */
-public class BasicHeader extends Composite {
+public abstract class BasicHeader extends Composite {
 
   /**
    * The default style of the header.
@@ -50,14 +53,14 @@ public class BasicHeader extends Composite {
 
   protected final Application application;
   protected final int style;
-  protected final Control control;
-  protected final Label separator;
   protected final int height;
   protected final int marginWidth;
   protected final Color backgroundColor;
   protected final Image backgroundImage;
   protected final Color controlBackgroundColor;
   protected final Image controlBackgroundImage;
+  protected Control control;
+  protected Label separator;
 
   /**
    * Constructs a header with the default style.
@@ -66,15 +69,13 @@ public class BasicHeader extends Composite {
    *          the application.
    * @param parent
    *          the parent of the header.
-   * @param key
-   *          the key of the header.
-   * @param creator
-   *          the creator of a control.
+   * @param id
+   *          the ID of the header.
    * @see {@link #DEFAULT_STYLE}
    */
   public BasicHeader(Application application, Composite parent,
-      String key, ControlCreator creator) {
-    this(application, parent, key, creator, DEFAULT_STYLE);
+      String id) {
+    this(application, parent, id, DEFAULT_STYLE);
   }
 
   /**
@@ -84,10 +85,8 @@ public class BasicHeader extends Composite {
    *          the application.
    * @param parent
    *          the parent of the header.
-   * @param key
-   *          the key of the header.
-   * @param creator
-   *          the creator of a control.
+   * @param id
+   *          the ID of the header.
    * @param style
    *          the style of the control, specifying the alignment of the control
    *          in the footer, which should be the combination of the following
@@ -101,25 +100,28 @@ public class BasicHeader extends Composite {
    *          </ul>
    */
   public BasicHeader(Application application, Composite parent,
-      String key, ControlCreator creator, int style) {
+      String id, int style) {
     super(parent, SWT.FLAT);
     this.application = application;
     this.style = style;
-    control = creator.create(this);
+    final AppConfig config = application.getConfig();
+    height = config.getInt(id + KeySuffix.HEIGHT);
+    marginWidth = config.getInt(id + KeySuffix.MARGIN_WIDTH);
+    backgroundColor = config.getColor(id + KeySuffix.BACKGROUND_COLOR);
+    backgroundImage = config.getImage(this.getClass(), id + KeySuffix.BACKGROUND_IMAGE);
+    controlBackgroundColor = config.getColor(id + KeySuffix.CONTROL
+        + KeySuffix.BACKGROUND_COLOR);
+    controlBackgroundImage = config.getImage(this.getClass(),
+        id + KeySuffix.CONTROL + KeySuffix.BACKGROUND_IMAGE);
+  }
+
+  protected void initialize() {
+    control = createControl();
     if ((style & SWT.SEPARATOR) != 0) {
       separator = new Label(this, SWT.HORIZONTAL | SWT.SEPARATOR);
     } else {
       separator = null;
     }
-    final AppConfig config = application.getConfig();
-    height = config.getInt(key + KeySuffix.HEIGHT);
-    marginWidth = config.getInt(key + KeySuffix.MARGIN_WIDTH);
-    backgroundColor = config.getColor(key + KeySuffix.BACKGROUND_COLOR);
-    backgroundImage = config.getImage(this.getClass(), key + KeySuffix.BACKGROUND_IMAGE);
-    controlBackgroundColor = config.getColor(key + KeySuffix.CONTROL
-        + KeySuffix.BACKGROUND_COLOR);
-    controlBackgroundImage = config.getImage(this.getClass(),
-        key + KeySuffix.CONTROL + KeySuffix.BACKGROUND_IMAGE);
     configContents();
   }
 
@@ -200,6 +202,14 @@ public class BasicHeader extends Composite {
       separator.setLayoutData(fd_separator);
     }
   }
+
+  /**
+   * Creating the control placed on this footer.
+   *
+   * @return
+   *    the created control placed on this footer.
+   */
+  protected abstract Control createControl();
 
   /**
    * Gets the control on this header.

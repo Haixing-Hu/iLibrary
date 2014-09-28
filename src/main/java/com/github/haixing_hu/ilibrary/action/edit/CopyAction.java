@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CopyAction extends BaseAction {
 
-  public static final String KEY = EditAction.KEY + ".copy";
+  public static final String ID = EditAction.ID + ".copy";
 
   public CopyAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

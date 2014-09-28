@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class OpenLibraryAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".open-library";
+  public static final String ID = FileAction.ID + ".open-library";
 
   public OpenLibraryAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

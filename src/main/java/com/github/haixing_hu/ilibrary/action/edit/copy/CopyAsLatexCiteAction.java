@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CopyAsLatexCiteAction extends BaseAction {
 
-  public static final String KEY = CopyAsAction.KEY + ".latex";
+  public static final String ID = CopyAsAction.ID + ".latex";
 
   public CopyAsLatexCiteAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -30,16 +30,16 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CopyAsAction extends BaseDropDownAction {
 
-  public static final String KEY = EditAction.KEY + ".copy-as";
+  public static final String ID = EditAction.ID + ".copy-as";
 
   private static final String SUB_ACTIONS[] = {
-    CopyAsReferenceAction.KEY,
-    CopyAsLatexCiteAction.KEY,
-    CopyAsBibtexRecordAction.KEY,
-    CopyAsSummaryAction.KEY,
+    CopyAsReferenceAction.ID,
+    CopyAsLatexCiteAction.ID,
+    CopyAsBibtexRecordAction.ID,
+    CopyAsSummaryAction.ID,
   };
 
   public CopyAsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

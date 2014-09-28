@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class TableOfContentsAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".table-of-contents";
+  public static final String ID = ViewAction.ID + ".table-of-contents";
 
   public TableOfContentsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -29,11 +29,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterFlagStatusAllAction extends BaseCheckBoxAction {
 
-  public static final String KEY = FilterFlagStatusAction.KEY + ".all";
+  public static final String ID = FilterFlagStatusAction.ID + ".all";
 
   public FilterFlagStatusAllAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

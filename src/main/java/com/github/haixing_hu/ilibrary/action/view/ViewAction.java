@@ -24,11 +24,11 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFlagStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.layout.LayoutModeAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.PreviewAction;
@@ -42,6 +42,7 @@ import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomInAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomOutAction;
 import com.github.haixing_hu.ilibrary.action.view.zoom.ZoomToFitAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of view related actions.
@@ -50,47 +51,47 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ViewAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.view";
+  public static final String ID = "action.view";
 
   private static final String SUB_ACTIONS[] = {
-    AsListAction.KEY,
-    AsColumnsAction.KEY,
-    AsIconsAction.KEY,
-    AsCoverFlowAction.KEY,
-    SEPARATOR_KEY,
-    DisplayColumnsAction.KEY,
-    SortAction.KEY,
-    FilterFlagStatusAction.KEY,
-    FilterReadStatusAction.KEY,
-    FilterTypeAction.KEY,
-    FilterFileStatusAction.KEY,
-    SEPARATOR_KEY,
-    HideNavigatorAction.KEY,
-    ShowNavigatorAction.KEY,
-    InspectorAction.KEY,
-    PreviewAction.KEY,
-    LayoutModeAction.KEY,
-    SEPARATOR_KEY,
-    PreviousDocumentAction.KEY,
-    NextDocumentAction.KEY,
-    SEPARATOR_KEY,
-    ShowDuplicatesAction.KEY,
-    ShowAllAction.KEY,
-    SEPARATOR_KEY,
-    ActualSizeAction.KEY,
-    ZoomToFitAction.KEY,
-    ZoomInAction.KEY,
-    ZoomOutAction.KEY,
-    SEPARATOR_KEY,
-    TableOfContentsAction.KEY,
-    PreviousPageAction.KEY,
-    NextPageAction.KEY,
-    BackAction.KEY,
-    ForwardAction.KEY,
+    AsListAction.ID,
+    AsColumnsAction.ID,
+    AsIconsAction.ID,
+    AsCoverFlowAction.ID,
+    Separator.ID,
+    SelectColumnsAction.ID,
+    SortAction.ID,
+    FilterFlagStatusAction.ID,
+    FilterReadStatusAction.ID,
+    FilterDocumentTypeAction.ID,
+    FilterFileStatusAction.ID,
+    Separator.ID,
+    HideNavigatorAction.ID,
+    ShowNavigatorAction.ID,
+    InspectorAction.ID,
+    PreviewAction.ID,
+    LayoutModeAction.ID,
+    Separator.ID,
+    PreviousDocumentAction.ID,
+    NextDocumentAction.ID,
+    Separator.ID,
+    ShowDuplicatesAction.ID,
+    ShowAllAction.ID,
+    Separator.ID,
+    ActualSizeAction.ID,
+    ZoomToFitAction.ID,
+    ZoomInAction.ID,
+    ZoomOutAction.ID,
+    Separator.ID,
+    TableOfContentsAction.ID,
+    PreviousPageAction.ID,
+    NextPageAction.ID,
+    BackAction.ID,
+    ForwardAction.ID,
   };
 
   public ViewAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
     setShowImage(true);
   }
 }

@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CloseTabAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".close-tab";
+  public static final String ID = WindowAction.ID + ".close-tab";
 
   public CloseTabAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsDocumentAction extends BaseAction {
 
-  public static final String KEY = PreviewAction.KEY + ".as-document";
+  public static final String ID = PreviewAction.ID + ".as-document";
 
   public AsDocumentAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

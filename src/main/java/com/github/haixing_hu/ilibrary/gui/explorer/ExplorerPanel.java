@@ -40,7 +40,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  */
 public class ExplorerPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".explorer";
+  public static final String ID = MainWindow.ID + ".explorer";
 
   private final Application application;
   private final int minWidth;
@@ -55,9 +55,9 @@ public class ExplorerPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
-    this.minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    this.maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
-    final String sashKey = MainWindow.KEY + KeySuffix.SASH + KeySuffix.VERTICAL;
+    this.minWidth = config.getInt(ID + KeySuffix.MIN_WIDTH);
+    this.maxWidth = config.getInt(ID + KeySuffix.MAX_WIDTH);
+    final String sashKey = MainWindow.ID + KeySuffix.SASH + KeySuffix.VERTICAL;
     this.sashWidth = config.getInt(sashKey + KeySuffix.WIDTH);
     this.sashColor = config.getColor(sashKey + KeySuffix.COLOR);
     this.content = new ExplorerContentPanel(application, this);

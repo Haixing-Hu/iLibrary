@@ -22,6 +22,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.file.ExportAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of sharing related actions.
@@ -30,22 +31,22 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ShareAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.share";
+  public static final String ID = "action.share";
 
   private static final String SUB_ACTIONS[] = {
-    TwitterAction.KEY,
-    FacebookAction.KEY,
-    GooglePlusAction.KEY,
-    SinaAction.KEY,
-    TencentAction.KEY,
-    SEPARATOR_KEY,
-    EmailAction.KEY,
-    SEPARATOR_KEY,
-    ExportAction.KEY,
+    TwitterAction.ID,
+    FacebookAction.ID,
+    GooglePlusAction.ID,
+    SinaAction.ID,
+    TencentAction.ID,
+    Separator.ID,
+    EmailAction.ID,
+    Separator.ID,
+    ExportAction.ID,
   };
 
   public ShareAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

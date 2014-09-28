@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class EmailAction extends BaseAction {
 
-  public static final String KEY = ShareAction.KEY + ".email";
+  public static final String ID = ShareAction.ID + ".email";
 
   public EmailAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

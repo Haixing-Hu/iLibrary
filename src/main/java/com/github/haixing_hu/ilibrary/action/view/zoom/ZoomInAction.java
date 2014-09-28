@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ZoomInAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".zoom-in";
+  public static final String ID = ViewAction.ID + ".zoom-in";
 
   public ZoomInAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

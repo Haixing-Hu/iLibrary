@@ -43,7 +43,7 @@ import static com.github.haixing_hu.lang.Argument.requireNonNull;
 public class BaseDropDownAction extends DropDownAction {
 
   protected final Application application;
-  protected final IActionManager actionManager;
+  protected final String[] subActionIds;
   protected final Logger logger;
   protected final String title;
   protected final String shortcut;
@@ -91,7 +91,7 @@ public class BaseDropDownAction extends DropDownAction {
       String[] subActionIds) {
     super(id, actionManager, subActionIds);
     this.application = requireNonNull("application", application);
-    this.actionManager = requireNonNull("actionManager", actionManager);
+    this.subActionIds = requireNonNull("subActionIds", subActionIds);
     logger = LoggerFactory.getLogger(this.getClass());
     setId(id);
     final AppConfig config = application.getConfig();
@@ -142,6 +142,15 @@ public class BaseDropDownAction extends DropDownAction {
    */
   public Application getApplication() {
     return application;
+  }
+
+  /**
+   * Gets the the IDs of sub-actions.
+   *
+   * @return the IDs of sub-actions.
+   */
+  public String[] getSubActionIds() {
+    return subActionIds;
   }
 
   /**

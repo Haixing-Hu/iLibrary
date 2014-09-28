@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
+import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.file.PrintAction;
 import com.github.haixing_hu.ilibrary.action.library.edit.AttachFileAction;
 import com.github.haixing_hu.ilibrary.action.library.edit.EditKeywordsAction;
@@ -41,8 +42,8 @@ import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.ShowInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.HidePreviewAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.ShowPreviewAction;
-import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarManager;
 import com.github.haixing_hu.swt.action.ActionEx;
+import com.github.haixing_hu.swt.action.ActionUtils;
 
 /**
  * The tool bar in the footer of the explorer panel.
@@ -52,19 +53,19 @@ import com.github.haixing_hu.swt.action.ActionEx;
 public class ExplorerFooterToolBar extends Composite {
 
   private static final String LEFT_ACTION_KEYS[] = {
-    ShowNavigatorAction.KEY,
-    HidePreviewAction.KEY,
-    ShowPreviewAction.KEY,
-    MarkFlaggedAction.KEY,
-    //MarkUnflaggedAction.KEY,
-    EditKeywordsAction.KEY,
-    AttachFileAction.KEY,
+    ShowNavigatorAction.ID,
+    HidePreviewAction.ID,
+    ShowPreviewAction.ID,
+    MarkFlaggedAction.ID,
+    //MarkUnflaggedAction.ID,
+    EditKeywordsAction.ID,
+    AttachFileAction.ID,
   };
 
   private static final String RGIHT_ACTION_KEYS[] = {
-    PrintAction.KEY,
-    ShareAction.KEY,
-    ShowInspectorAction.KEY,
+    PrintAction.ID,
+    ShareAction.ID,
+    ShowInspectorAction.ID,
   };
 
   private final Logger logger;
@@ -78,13 +79,16 @@ public class ExplorerFooterToolBar extends Composite {
     super(parent, SWT.NONE);
     logger = LoggerFactory.getLogger(this.getClass());
     this.application = application;
-    leftToolBar = new ActionListToolBarManager(application, LEFT_ACTION_KEYS);
+    final ActionManager am = application.getActionManager();
+    leftToolBar = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    ActionUtils.addActions(leftToolBar, am, LEFT_ACTION_KEYS);
     leftToolBar.createControl(this);
     statusLine = new CLabel(this, SWT.NONE);
-    rightToolBar = new ActionListToolBarManager(application, RGIHT_ACTION_KEYS);
+    rightToolBar = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    ActionUtils.addActions(rightToolBar, am, RGIHT_ACTION_KEYS);
     rightToolBar.createControl(this);
     final AppConfig config = application.getConfig();
-    backgroundColor = config.getColor(ExplorerFooter.KEY
+    backgroundColor = config.getColor(ExplorerFooter.ID
         + KeySuffix.CONTROL + KeySuffix.BACKGROUND_COLOR);
     layoutContents();
   }

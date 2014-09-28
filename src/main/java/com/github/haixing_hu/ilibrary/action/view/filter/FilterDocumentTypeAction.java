@@ -18,26 +18,36 @@
 
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.view.ViewAction;
+import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to filter documents in all categories.
+ * The action to filter documents by their types.
  *
  * @author Haixing Hu
  */
-public class FilterTypeAllAction extends BaseCheckBoxAction {
+public class FilterDocumentTypeAction extends BaseDropDownAction {
 
-  public static final String KEY = FilterTypeAction.KEY + ".all";
+  public static final String ID = ViewAction.ID + ".filter.type";
 
-  public FilterTypeAllAction(Application application,
+  public FilterDocumentTypeAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager, getSubactionIds());
   }
 
-  @Override
-  public void run() {
-    application.clearTypeStatusFilters();
+  private static String[] getSubactionIds() {
+    final List<String> ids = new ArrayList<String>();
+    ids.add(FilterDocumentTypeAllAction.ID);
+    for (final DocumentType type : DocumentType.values()) {
+      final String id = FilterDocumentTypeForAction.getActionId(type);
+      ids.add(id);
+    }
+    return ids.toArray(new String[0]);
   }
 }

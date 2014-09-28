@@ -28,7 +28,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  */
 public class SearchPage extends BasicPage {
 
-  public static final String KEY = MainWindow.KEY + ".search";
+  public static final String ID = MainWindow.ID + ".search";
 
   public SearchPage(Application application, Composite parent) {
     super(application, parent);
@@ -41,8 +41,8 @@ public class SearchPage extends BasicPage {
   }
 
   @Override
-  public String getKey() {
-    return KEY;
+  public String getId() {
+    return ID;
   }
 
   @Override

@@ -28,9 +28,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class UndoAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".undo";
+  public static final String ID = EditAction.ID + ".undo";
 
   public UndoAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

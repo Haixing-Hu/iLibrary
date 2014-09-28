@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MarkPrintedAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".mark-printed";
+  public static final String ID = LibraryAction.ID + ".mark-printed";
 
   public MarkPrintedAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ActualSizeAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".actual-size";
+  public static final String ID = ViewAction.ID + ".actual-size";
 
   public ActualSizeAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

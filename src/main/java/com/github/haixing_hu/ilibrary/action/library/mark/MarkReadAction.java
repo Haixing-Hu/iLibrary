@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MarkReadAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".mark-read";
+  public static final String ID = LibraryAction.ID + ".mark-read";
 
   public MarkReadAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

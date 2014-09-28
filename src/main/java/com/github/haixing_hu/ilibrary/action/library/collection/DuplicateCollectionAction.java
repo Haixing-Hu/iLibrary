@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class DuplicateCollectionAction extends BaseAction {
 
-  public static final String KEY = ManageCollectionAction.KEY + ".duplicate";
+  public static final String ID = ManageCollectionAction.ID + ".duplicate";
 
   public DuplicateCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -30,16 +30,16 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterFlagStatusAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".filter.flag";
+  public static final String ID = ViewAction.ID + ".filter.flag";
 
   private static final String SUB_ACTIONS[] = {
-    FilterFlagStatusAllAction.KEY,
-    FilterFlagStatusFlaggedAction.KEY,
-    FilterFlagStatusUnflaggedAction.KEY,
+    FilterFlagStatusAllAction.ID,
+    FilterFlagStatusFlaggedAction.ID,
+    FilterFlagStatusUnflaggedAction.ID,
   };
 
   public FilterFlagStatusAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

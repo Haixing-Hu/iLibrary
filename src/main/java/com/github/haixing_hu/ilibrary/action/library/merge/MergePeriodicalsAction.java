@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MergePeriodicalsAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".merge-periodicals";
+  public static final String ID = LibraryAction.ID + ".merge-periodicals";
 
   public MergePeriodicalsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

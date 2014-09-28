@@ -22,6 +22,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to switch the preview modes.
@@ -30,18 +31,18 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PreviewAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".preview";
+  public static final String ID = ViewAction.ID + ".preview";
 
   private static final String[] SUB_ACTIONS = {
-    AsDocumentAction.KEY,
-    AsThumbnailsAction.KEY,
-    AsWebpageAction.KEY,
-    SEPARATOR_KEY,
-    HidePreviewAction.KEY,
-    ShowPreviewAction.KEY,
+    AsDocumentAction.ID,
+    AsThumbnailsAction.ID,
+    AsWebpageAction.ID,
+    Separator.ID,
+    HidePreviewAction.ID,
+    ShowPreviewAction.ID,
   };
 
   public PreviewAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

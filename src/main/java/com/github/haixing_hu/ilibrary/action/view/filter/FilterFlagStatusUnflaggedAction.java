@@ -30,11 +30,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterFlagStatusUnflaggedAction extends BaseCheckBoxAction {
 
-  public static final String KEY = FilterFlagStatusAction.KEY + ".unflagged";
+  public static final String ID = FilterFlagStatusAction.ID + ".unflagged";
 
   public FilterFlagStatusUnflaggedAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

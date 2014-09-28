@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewPublisherAction extends BaseAction {
 
-  public static final String KEY = NewAction.KEY + ".publisher";
+  public static final String ID = NewAction.ID + ".publisher";
 
   public NewPublisherAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

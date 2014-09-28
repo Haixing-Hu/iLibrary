@@ -32,6 +32,7 @@ import com.github.haixing_hu.ilibrary.action.window.tab.CycleTabsAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.NextTabAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.PreviousTabAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of window related actions.
@@ -40,29 +41,29 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class WindowAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.window";
+  public static final String ID = "action.window";
 
   private static final String SUB_ACTIONS[] = {
-    MinimizeAction.KEY,
-    MinimizeAllAction.KEY,
-    MaximizeAction.KEY,
-    SEPARATOR_KEY,
-    PageSearchAction.KEY,
-    PageLibraryAction.KEY,
-    PageTagsAction.KEY,
-    PageAuthorsAction.KEY,
-    PageSourcesAction.KEY,
-    PageReaderAction.KEY,
-    SEPARATOR_KEY,
-    CycleTabsAction.KEY,
-    PreviousTabAction.KEY,
-    NextTabAction.KEY,
-    SEPARATOR_KEY,
-    CloseTabAction.KEY,
-    CloseAllTabsAction.KEY,
+    MinimizeAction.ID,
+    MinimizeAllAction.ID,
+    MaximizeAction.ID,
+    Separator.ID,
+    PageSearchAction.ID,
+    PageLibraryAction.ID,
+    PageTagsAction.ID,
+    PageAuthorsAction.ID,
+    PageSourcesAction.ID,
+    PageReaderAction.ID,
+    Separator.ID,
+    CycleTabsAction.ID,
+    PreviousTabAction.ID,
+    NextTabAction.ID,
+    Separator.ID,
+    CloseTabAction.ID,
+    CloseAllTabsAction.ID,
   };
 
   public WindowAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

@@ -36,7 +36,7 @@ import com.github.haixing_hu.swt.menu.MenuManagerEx;
  */
 public final class MainMenuBar extends MenuManagerEx {
 
-  public static final String KEY = MainWindow.KEY + ".menubar";
+  public static final String ID = MainWindow.ID + ".menubar";
 
   private final Application application;
 
@@ -50,13 +50,13 @@ public final class MainMenuBar extends MenuManagerEx {
     super(true);
     this.application = application;
     final ActionManager am = application.getActionManager();
-    this.add(am.get(FileAction.KEY));
-    this.add(am.get(EditAction.KEY));
-    this.add(am.get(ViewAction.KEY));
-    this.add(am.get(LibraryAction.KEY));
-    this.add(am.get(ShareAction.KEY));
-    this.add(am.get(WindowAction.KEY));
-    this.add(am.get(HelpAction.KEY));
+    this.add(am.get(FileAction.ID));
+    this.add(am.get(EditAction.ID));
+    this.add(am.get(ViewAction.ID));
+    this.add(am.get(LibraryAction.ID));
+    this.add(am.get(ShareAction.ID));
+    this.add(am.get(WindowAction.ID));
+    this.add(am.get(HelpAction.ID));
   }
 
   /**

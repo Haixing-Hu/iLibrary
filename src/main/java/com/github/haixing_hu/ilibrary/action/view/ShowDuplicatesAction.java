@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ShowDuplicatesAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".show-duplicates";
+  public static final String ID = ViewAction.ID + ".show-duplicates";
 
   public ShowDuplicatesAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

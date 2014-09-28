@@ -30,16 +30,16 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ManageCollectionAction extends BaseDropDownAction {
 
-  public static final String KEY = LibraryAction.KEY + ".manage-collection";
+  public static final String ID = LibraryAction.ID + ".manage-collection";
 
   private static final String SUB_ACTIONS[] = {
-    EditCollectionAction.KEY,
-    RefreshCollectionAction.KEY,
-    DuplicateCollectionAction.KEY,
-    DeleteCollectionAction.KEY,
+    EditCollectionAction.ID,
+    RefreshCollectionAction.ID,
+    DuplicateCollectionAction.ID,
+    DeleteCollectionAction.ID,
   };
 
   public ManageCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

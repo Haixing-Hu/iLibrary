@@ -56,7 +56,7 @@ public class ExplorerContentPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
-    final String sashKey = MainWindow.KEY + KeySuffix.SASH + KeySuffix.HORIZON;
+    final String sashKey = MainWindow.ID + KeySuffix.SASH + KeySuffix.HORIZON;
     this.sashHeight = config.getInt(sashKey + KeySuffix.HEIGHT);
     this.sashBackground = config.getString(sashKey + KeySuffix.BACKGROUND_IMAGE);
     this.header = new ExplorerHeader(application, this);

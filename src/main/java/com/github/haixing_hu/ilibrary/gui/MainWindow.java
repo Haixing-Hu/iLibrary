@@ -51,7 +51,7 @@ import com.github.haixing_hu.swt.window.ApplicationWindowEx;
  */
 public final class MainWindow extends ApplicationWindowEx {
 
-  public static final String KEY = "window";
+  public static final String ID = "window";
 
   private final Application application;
   private final int defaultHeight;
@@ -69,10 +69,10 @@ public final class MainWindow extends ApplicationWindowEx {
     super(null);
     this.application = application;
     final AppConfig config = application.getConfig();
-    defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
-    defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
-    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
-    minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
+    defaultHeight = config.getInt(ID + KeySuffix.DEFAULT_HEIGHT);
+    defaultWidth = config.getInt(ID + KeySuffix.DEFAULT_WIDTH);
+    minHeight = config.getInt(ID + KeySuffix.MIN_HEIGHT);
+    minWidth = config.getInt(ID + KeySuffix.MIN_WIDTH);
     pages = new BasicPage[Page.TOTAL];
     addMenuBar();
   }
@@ -336,6 +336,15 @@ public final class MainWindow extends ApplicationWindowEx {
    */
   public ReaderPage getReaderPage() {
     return (ReaderPage) pages[Page.READER.ordinal()];
+  }
+
+  /**
+   * Gets the current page.
+   *
+   * @return the current page.
+   */
+  public BasicPage getCurrentPage() {
+    return (BasicPage) stackLayout.topControl;
   }
 
   /**

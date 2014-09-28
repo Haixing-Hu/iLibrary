@@ -49,14 +49,14 @@ import org.springframework.core.io.Resource;
 
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
-import static com.github.haixing_hu.ilibrary.KeySuffix.*;
 
 /**
  * The global configuration of the application.
  *
  * @author Haixing Hu
  */
-public final class AppConfig implements ApplicationContext, Configuration {
+public final class AppConfig implements ApplicationContext,
+      Configuration, KeySuffix {
 
   private final Logger logger;
   private final ApplicationContext context;
@@ -74,17 +74,17 @@ public final class AppConfig implements ApplicationContext, Configuration {
     logger = LoggerFactory.getLogger(AppConfig.class);
     context = new ClassPathXmlApplicationContext(contexFile);
     config = context.getBean(Configuration.class);
-    final String localeName = config.getString(Application.KEY + LOCALE);
+    final String localeName = config.getString(Application.ID + LOCALE);
     if (StringUtils.isEmpty(localeName)) {
       locale = Locale.getDefault();
     } else {
       locale = new Locale(localeName);
     }
 
-    name = context.getMessage(Application.KEY + NAME, null, locale);
-    version = config.getString(Application.KEY + VERSION);
-    heavyFontColor = getColor(Application.KEY + FONT + HEAVY + COLOR);
-    lightFontColor = getColor(Application.KEY + FONT + LIGHT + COLOR);
+    name = context.getMessage(Application.ID + NAME, null, locale);
+    version = config.getString(Application.ID + VERSION);
+    heavyFontColor = getColor(Application.ID + FONT + HEAVY + COLOR);
+    lightFontColor = getColor(Application.ID + FONT + LIGHT + COLOR);
 
     logger.info("{}, {}", name, version);
     logger.info("Sets the locale to {}.", locale);
@@ -316,13 +316,13 @@ public final class AppConfig implements ApplicationContext, Configuration {
   /**
    * Gets the shortcut associated with a specified action.
    *
-   * @param key
-   *          The key of the specified action.
+   * @param id
+   *          The ID of the specified action.
    * @return The shortcut associated with the specified action.
    */
-  public String getShortcut(String key) {
-    logger.trace("Getting shortcut: {}", key);
-    String shortcut = config.getString(key + KeySuffix.SHORTCUT);
+  public String getShortcut(String id) {
+    logger.trace("Getting shortcut: {}", id);
+    String shortcut = config.getString(id + KeySuffix.SHORTCUT);
     if (! StringUtils.isEmpty(shortcut)) {
       //  substitute the META key according to the operating system
       final String meta = (SystemUtils.IS_OS_MAC ? "COMMAND" : "CTRL");
@@ -330,59 +330,59 @@ public final class AppConfig implements ApplicationContext, Configuration {
     } else {
       shortcut = null;
     }
-    logger.trace("Find the shortcut for {}: {}", key, shortcut);
+    logger.trace("Find the shortcut for {}: {}", id, shortcut);
     return shortcut;
   }
 
   /**
    * Gets the description of an action.
    *
-   * @param key
-   *          the key of a specified action.
+   * @param id
+   *          the ID of a specified action.
    * @return the description the specified action, or null if it has no description.
    */
-  public String getDescription(String key) {
-    logger.trace("Getting description: {}", key);
-    String description = context.getMessage(key + KeySuffix.DESCRIPTION,
+  public String getDescription(String id) {
+    logger.trace("Getting description: {}", id);
+    String description = context.getMessage(id + KeySuffix.DESCRIPTION,
         null, null, locale);
     if (StringUtils.isEmpty(description)) {
       description = null;
     }
-    logger.trace("Find the description for {}: {}", key, description);
+    logger.trace("Find the description for {}: {}", id, description);
     return description;
   }
 
   /**
    * Gets the URL of the icon of an action.
    *
-   * @param key
-   *          the key of a specified action.
+   * @param id
+   *          the ID of a specified action.
    * @return the URL of the icon the specified action, or null if it has none.
    */
-  public String getIcon(String key) {
-    logger.trace("Getting icon: {}", key);
-    String icon = config.getString(key + KeySuffix.ICON);
+  public String getIcon(String id) {
+    logger.trace("Getting icon: {}", id);
+    String icon = config.getString(id + KeySuffix.ICON);
     if (StringUtils.isEmpty(icon)) {
       icon = null;
     }
-    logger.trace("Find the icon for {}: {}", key, icon);
+    logger.trace("Find the icon for {}: {}", id, icon);
     return icon;
   }
 
   /**
    * Gets the URL of the active icon of an action.
    *
-   * @param key
-   *          the key of a specified action.
+   * @param id
+   *          the ID of a specified action.
    * @return the URL of the active icon the specified action, or null if it has none.
    */
-  public String getActiveIcon(String key) {
-    logger.trace("Getting active icon: {}", key);
-    String icon = config.getString(key + KeySuffix.ICON + KeySuffix.ACTIVE);
+  public String getActiveIcon(String id) {
+    logger.trace("Getting active icon: {}", id);
+    String icon = config.getString(id + KeySuffix.ICON + KeySuffix.ACTIVE);
     if (StringUtils.isEmpty(icon)) {
       icon = null;
     }
-    logger.trace("Find the active icon for {}: {}", key, icon);
+    logger.trace("Find the active icon for {}: {}", id, icon);
     return icon;
   }
 

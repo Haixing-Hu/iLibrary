@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class OpenURLAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".open-url";
+  public static final String ID = FileAction.ID + ".open-url";
 
   public OpenURLAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     setShowDialog(true);
   }
 }

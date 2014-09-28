@@ -28,9 +28,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class PasteAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".paste";
+  public static final String ID = EditAction.ID + ".paste";
 
   public PasteAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

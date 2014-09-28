@@ -26,6 +26,7 @@ import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.file.FileAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to create a new item.
@@ -34,19 +35,19 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewAction extends BaseDropDownAction {
 
-  public static final String KEY = FileAction.KEY + ".new";
+  public static final String ID = FileAction.ID + ".new";
 
   private static final String SUB_ACTIONS[] = {
-    SEPARATOR_KEY,
-    NewAuthorAction.KEY,
-    NewPeriodicalAction.KEY,
-    NewConferenceAction.KEY,
-    NewInstituteAction.KEY,
-    NewWebSiteAction.KEY,
+    Separator.ID,
+    NewAuthorAction.ID,
+    NewPeriodicalAction.ID,
+    NewConferenceAction.ID,
+    NewInstituteAction.ID,
+    NewWebSiteAction.ID,
   };
 
   public NewAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, getSubactionIds());
+    super(ID, application, actionManager, getSubactionIds());
   }
 
   private static String[] getSubactionIds() {

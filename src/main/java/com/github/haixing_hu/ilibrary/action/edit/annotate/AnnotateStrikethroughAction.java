@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AnnotateStrikethroughAction extends BaseCheckBoxAction {
 
-  public static final String KEY = AnnotateAction.KEY + ".strikethrough";
+  public static final String ID = AnnotateAction.ID + ".strikethrough";
 
   public AnnotateStrikethroughAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

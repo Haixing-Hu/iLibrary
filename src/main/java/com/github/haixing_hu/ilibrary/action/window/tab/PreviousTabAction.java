@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PreviousTabAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".previous-tab";
+  public static final String ID = WindowAction.ID + ".previous-tab";
 
   public PreviousTabAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -28,15 +28,15 @@ import com.github.haixing_hu.ilibrary.gui.explorer.ExplorerPage;
  */
 public class TagsPage extends ExplorerPage {
 
-  public static final String KEY = MainWindow.KEY + ".tags";
+  public static final String ID = MainWindow.ID + ".tags";
 
   public TagsPage(Application application, Composite parent) {
     super(application, parent,
-        ((BaseAction) application.getActionManager().get(PageTagsAction.KEY)).getTitle());
+        ((BaseAction) application.getActionManager().get(PageTagsAction.ID)).getTitle());
   }
 
   @Override
-  public String getKey() {
-    return KEY;
+  public String getId() {
+    return ID;
   }
 }

@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class RedoAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".redo";
+  public static final String ID = EditAction.ID + ".redo";
 
   public RedoAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class EmptyTrashAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".empty-trash";
+  public static final String ID = LibraryAction.ID + ".empty-trash";
 
   public EmptyTrashAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

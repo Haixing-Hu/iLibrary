@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CopyAsSummaryAction extends BaseAction {
 
-  public static final String KEY = CopyAsAction.KEY + ".summary";
+  public static final String ID = CopyAsAction.ID + ".summary";
 
   public CopyAsSummaryAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

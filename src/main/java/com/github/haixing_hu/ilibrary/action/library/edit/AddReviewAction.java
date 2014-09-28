@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AddReviewAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".add-review";
+  public static final String ID = LibraryAction.ID + ".add-review";
 
   public AddReviewAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

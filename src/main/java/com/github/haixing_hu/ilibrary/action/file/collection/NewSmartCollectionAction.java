@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewSmartCollectionAction extends BaseAction {
 
-  public static final String KEY = NewCollectionAction.KEY + ".smart";
+  public static final String ID = NewCollectionAction.ID + ".smart";
 
   public NewSmartCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewPeriodicalAction extends BaseAction {
 
-  public static final String KEY = NewAction.KEY + ".periodical";
+  public static final String ID = NewAction.ID + ".periodical";
 
   public NewPeriodicalAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

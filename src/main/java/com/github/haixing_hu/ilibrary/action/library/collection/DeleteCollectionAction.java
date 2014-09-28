@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class DeleteCollectionAction extends BaseAction {
 
-  public static final String KEY = ManageCollectionAction.KEY + ".delete";
+  public static final String ID = ManageCollectionAction.ID + ".delete";
 
   public DeleteCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

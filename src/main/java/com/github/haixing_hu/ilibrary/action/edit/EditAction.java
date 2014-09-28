@@ -23,6 +23,7 @@ import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.edit.annotate.AnnotateAction;
 import com.github.haixing_hu.ilibrary.action.edit.copy.CopyAsAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of editing related actions.
@@ -31,33 +32,33 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class EditAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.edit";
+  public static final String ID = "action.edit";
 
   private static final String SUB_ACTIONS[] = {
-    UndoAction.KEY,
-    RedoAction.KEY,
-    SEPARATOR_KEY,
-    CutAction.KEY,
-    CopyAction.KEY,
-    CopyAsAction.KEY,
-    PasteAction.KEY,
-    DeleteAction.KEY,
-    SelectAllAction.KEY,
-    SEPARATOR_KEY,
-    AnnotateAction.KEY,
-    SEPARATOR_KEY,
-    FontAction.KEY,
-    StyleAction.KEY,
-    SEPARATOR_KEY,
-    FindAction.KEY,
-    FindPreviousAction.KEY,
-    FindNextAction.KEY,
-    SEPARATOR_KEY,
-    PreferencesAction.KEY,
+    UndoAction.ID,
+    RedoAction.ID,
+    Separator.ID,
+    CutAction.ID,
+    CopyAction.ID,
+    CopyAsAction.ID,
+    PasteAction.ID,
+    DeleteAction.ID,
+    SelectAllAction.ID,
+    Separator.ID,
+    AnnotateAction.ID,
+    Separator.ID,
+    FontAction.ID,
+    StyleAction.ID,
+    Separator.ID,
+    FindAction.ID,
+    FindPreviousAction.ID,
+    FindNextAction.ID,
+    Separator.ID,
+    PreferencesAction.ID,
   };
 
   public EditAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

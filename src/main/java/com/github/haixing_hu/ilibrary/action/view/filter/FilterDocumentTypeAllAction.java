@@ -16,39 +16,28 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.action.view.columns;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
-import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
 import com.github.haixing_hu.swt.action.IActionManager;
 
-
 /**
- * The action to select the columns to display in the grid table.
+ * The action to filter documents in all categories.
  *
  * @author Haixing Hu
  */
-public class DisplayColumnsAction extends BaseDropDownAction {
+public class FilterDocumentTypeAllAction extends BaseCheckBoxAction {
 
-  public static final String KEY = ViewAction.KEY + ".columns";
+  public static final String ID = FilterDocumentTypeAction.ID + ".all";
 
-  public DisplayColumnsAction(Application application,
+  public FilterDocumentTypeAllAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager, getSubactionIds());
+    super(ID, application, actionManager);
   }
 
-  private static String[] getSubactionIds() {
-    final List<String> ids = new ArrayList<String>();
-    for (final FieldType col : FieldType.values()) {
-      final String id = DisplayColumnForAction.getActionId(col);
-      ids.add(id);
-    }
-    return ids.toArray(new String[0]);
+  @Override
+  public void run() {
+    application.clearTypeStatusFilters();
   }
-
 }

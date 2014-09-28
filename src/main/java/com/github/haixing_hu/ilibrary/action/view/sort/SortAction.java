@@ -26,6 +26,7 @@ import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to set the sorting order of the documents.
@@ -34,17 +35,17 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class SortAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".sort";
+  public static final String ID = ViewAction.ID + ".sort";
 
   private static final String DEFAULT_SUBACTION_KEYS[] = {
-    SortOrderAscAction.KEY,
-    SortOrderDescAction.KEY,
-    SEPARATOR_KEY,
-    SortByDefaultColumnAction.KEY,
+    SortOrderAscAction.ID,
+    SortOrderDescAction.ID,
+    Separator.ID,
+    SortByDefaultColumnAction.ID,
   };
 
   public SortAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, getSubactionIds());
+    super(ID, application, actionManager, getSubactionIds());
   }
 
   private static String[] getSubactionIds() {

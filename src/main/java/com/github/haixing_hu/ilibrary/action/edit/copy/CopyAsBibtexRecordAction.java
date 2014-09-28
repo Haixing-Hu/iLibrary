@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CopyAsBibtexRecordAction extends BaseAction {
 
-  public static final String KEY = CopyAsAction.KEY + ".bibtex";
+  public static final String ID = CopyAsAction.ID + ".bibtex";
 
   public CopyAsBibtexRecordAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

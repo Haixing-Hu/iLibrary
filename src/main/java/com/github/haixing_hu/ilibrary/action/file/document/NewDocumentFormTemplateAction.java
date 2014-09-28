@@ -55,7 +55,7 @@ public class NewDocumentFormTemplateAction extends BaseAction {
 
   public static String getActionId(DocumentTemplate template) {
     final StringBuilder builder = new StringBuilder();
-    builder.append(NewAction.KEY)
+    builder.append(NewAction.ID)
            .append('.')
            .append(EnumUtils.getShortName(template.getType()))
            .append('.')

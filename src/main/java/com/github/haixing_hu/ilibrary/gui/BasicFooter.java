@@ -34,14 +34,17 @@ import org.eclipse.swt.widgets.Label;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The base class for the footers.
+ * <p>
+ * <b>NOTE:</b> Because the abstract function should not be called in the
+ * constructor, the subclass <b>must</b> call the {@link #initialize()}
+ * after calling the super's constructor and initialing its fields.
  *
  * @author Haixing Hu
  */
-public class BasicFooter extends Composite {
+public abstract class BasicFooter extends Composite implements KeySuffix {
 
   /**
    * The default style of the footer.
@@ -50,16 +53,16 @@ public class BasicFooter extends Composite {
 
   protected final Application application;
   protected final int style;
-  protected final Label separator;
-  protected final Label leftPadding;
-  protected final Control control;
-  protected final Label rightPadding;
   protected final int height;
   protected final int marginWidth;
   protected final Color backgroundColor;
   protected final Image backgroundImage;
   protected final Color controlBackgroundColor;
   protected final Image controlBackgroundImage;
+  protected Label separator;
+  protected Label leftPadding;
+  protected Control control;
+  protected Label rightPadding;
 
   /**
    * Creates a footer with the default style.
@@ -68,15 +71,12 @@ public class BasicFooter extends Composite {
    *    the application.
    * @param parent
    *    the parent of the footer.
-   * @param key
-   *    the key of the footer.
-   * @param creator
-   *    the creator of a control.
+   * @param id
+   *    the ID of the footer.
    * @see {@link #DEFAULT_STYLE}
    */
-  public BasicFooter(Application application, Composite parent,
-      String key, ControlCreator creator) {
-    this(application, parent, key, creator, DEFAULT_STYLE);
+  public BasicFooter(Application application, Composite parent, String key) {
+    this(application, parent, key, DEFAULT_STYLE);
   }
 
   /**
@@ -86,10 +86,8 @@ public class BasicFooter extends Composite {
    *          the application.
    * @param parent
    *          the parent of the footer.
-   * @param key
-   *          the key of the footer.
-   * @param creator
-   *          the creator of a control.
+   * @param id
+   *          the ID of the footer.
    * @param style
    *          the style of the control, specifying the alignment of the control
    *          in the footer, which should be the combination of the following
@@ -103,37 +101,39 @@ public class BasicFooter extends Composite {
    *          </ul>
    */
   public BasicFooter(Application application, Composite parent,
-      String key, ControlCreator creator, int style) {
+      String id, int style) {
     super(parent, SWT.NONE);
     this.application = application;
     this.style = style;
+    final AppConfig config = application.getConfig();
+    height = config.getInt(id + HEIGHT);
+    marginWidth = config.getInt(id + MARGIN_WIDTH);
+    backgroundColor = config.getColor(id + BACKGROUND_COLOR);
+    backgroundImage = config.getImage(this.getClass(), id + BACKGROUND_IMAGE);
+    controlBackgroundColor = config.getColor(id + CONTROL + BACKGROUND_COLOR);
+    controlBackgroundImage = config.getImage(this.getClass(),
+        id + CONTROL + BACKGROUND_IMAGE);
+  }
+
+  protected void initialize() {
     if ((style & SWT.SEPARATOR) != 0) {
       separator = new Label(this, SWT.HORIZONTAL | SWT.SEPARATOR);
     } else {
       separator = null;
     }
-    final AppConfig config = application.getConfig();
-    height = config.getInt(key + KeySuffix.HEIGHT);
-    marginWidth = config.getInt(key + KeySuffix.MARGIN_WIDTH);
-    backgroundColor = config.getColor(key + KeySuffix.BACKGROUND_COLOR);
-    backgroundImage = config.getImage(this.getClass(), key + KeySuffix.BACKGROUND_IMAGE);
-    controlBackgroundColor = config.getColor(key + KeySuffix.CONTROL
-        + KeySuffix.BACKGROUND_COLOR);
-    controlBackgroundImage = config.getImage(this.getClass(),
-        key + KeySuffix.CONTROL + KeySuffix.BACKGROUND_IMAGE);
     if (((style & SWT.CENTER) != 0) || (marginWidth <= 0)) {
       leftPadding = null;
-      control = creator.create(this);
+      control = createControl();
       rightPadding = null;
     } else {
       leftPadding = new Label(this, SWT.NONE);
-      control = creator.create(this);
+      control = createControl();
       rightPadding = new Label(this, SWT.NONE);
     }
-    layoutContents();
+    configContents();
   }
 
-  protected void layoutContents() {
+  private void configContents() {
     final int alignment = (style & (SWT.LEFT | SWT.CENTER | SWT.RIGHT));
     if ((alignment == SWT.CENTER) || (marginWidth <= 0)) {
       doGridLayout(alignment);
@@ -209,6 +209,13 @@ public class BasicFooter extends Composite {
     control.setLayoutData(fd_control);
   }
 
+  /**
+   * Creating the control placed on this footer.
+   *
+   * @return
+   *    the created control placed on this footer.
+   */
+  protected abstract Control createControl();
 
   /**
    * Gets the control on this footer.

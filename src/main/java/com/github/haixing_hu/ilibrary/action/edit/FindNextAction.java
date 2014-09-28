@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class FindNextAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".find-next";
+  public static final String ID = EditAction.ID + ".find-next";
 
   public FindNextAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class RestoreFromTrashAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".restore-from-trash";
+  public static final String ID = LibraryAction.ID + ".restore-from-trash";
 
   public RestoreFromTrashAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

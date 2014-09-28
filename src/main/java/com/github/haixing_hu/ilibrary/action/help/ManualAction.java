@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ManualAction extends BaseAction {
 
-  public static final String KEY = HelpAction.KEY + ".manual";
+  public static final String ID = HelpAction.ID + ".manual";
 
   public ManualAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

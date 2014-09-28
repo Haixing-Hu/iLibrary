@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class SinaAction extends BaseAction {
 
-  public static final String KEY = ShareAction.KEY + ".sina";
+  public static final String ID = ShareAction.ID + ".sina";
 
   public SinaAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

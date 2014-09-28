@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewCollectionFromSelectionAction extends BaseAction {
 
-  public static final String KEY = NewCollectionAction.KEY + ".selection";
+  public static final String ID = NewCollectionAction.ID + ".selection";
 
   public NewCollectionFromSelectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

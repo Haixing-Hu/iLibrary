@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PreviousDocumentAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".previous-document";
+  public static final String ID = ViewAction.ID + ".previous-document";
 
   public PreviousDocumentAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

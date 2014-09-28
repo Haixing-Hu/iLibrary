@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AnnotateNoteAction extends BaseCheckBoxAction {
 
-  public static final String KEY = AnnotateAction.KEY + ".note";
+  public static final String ID = AnnotateAction.ID + ".note";
 
   public AnnotateNoteAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

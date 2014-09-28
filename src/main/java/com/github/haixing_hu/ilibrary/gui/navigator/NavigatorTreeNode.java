@@ -34,7 +34,7 @@ import org.w3c.dom.Element;
  */
 public final class NavigatorTreeNode {
 
-  public static final String KEY = NavigatorTree.KEY + ".node";
+  public static final String ID = NavigatorTree.ID + ".node";
 
   public static final String ROOT_NAME = "navigator";
 
@@ -44,7 +44,7 @@ public final class NavigatorTreeNode {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTreeNode.class);
 
-  private final String key;
+  private final String id;
   private final boolean smart;
   private final Element domElement;
   private final NavigatorTreeNode parent;
@@ -53,25 +53,25 @@ public final class NavigatorTreeNode {
   public NavigatorTreeNode(Element domElement, @Nullable NavigatorTreeNode parent) {
     this.domElement = domElement;
     final String attr = domElement.getAttribute(SMART_ATTRIBUTE);
-    this.smart = Boolean.TRUE.toString().equalsIgnoreCase(attr);
+    smart = Boolean.TRUE.toString().equalsIgnoreCase(attr);
     this.parent = parent;
-    this.children = new LinkedList<NavigatorTreeNode>();
+    children = new LinkedList<NavigatorTreeNode>();
     if (parent == null) {
-      this.key = ROOT_NAME + "." + domElement.getNodeName();
+      id = ROOT_NAME + "." + domElement.getNodeName();
     } else {
-      this.key = parent.getKey() + "." + domElement.getNodeName();
+      id = parent.getKey() + "." + domElement.getNodeName();
       parent.getChildren().add(this);
     }
-    LOGGER.debug("Build a NavigatorTreeNode with key: {}", this.key);
+    LOGGER.debug("Build a NavigatorTreeNode with id: {}", ID);
   }
 
   /**
-   * Gets the key.
+   * Gets the id.
    *
-   * @return the key.
+   * @return the id.
    */
   public String getKey() {
-    return key;
+    return id;
   }
 
   /**

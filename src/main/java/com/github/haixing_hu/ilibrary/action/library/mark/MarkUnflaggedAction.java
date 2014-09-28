@@ -28,9 +28,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MarkUnflaggedAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".mark-unflagged";
+  public static final String ID = LibraryAction.ID + ".mark-unflagged";
 
   public MarkUnflaggedAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

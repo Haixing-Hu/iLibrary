@@ -31,10 +31,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PageAuthorsAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".authors";
+  public static final String ID = WindowAction.ID + ".authors";
 
   public PageAuthorsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

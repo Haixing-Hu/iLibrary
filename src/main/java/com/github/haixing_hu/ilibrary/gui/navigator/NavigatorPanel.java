@@ -37,7 +37,7 @@ import com.github.haixing_hu.ilibrary.gui.MainWindow;
  */
 public final class NavigatorPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".navigator";
+  public static final String ID = MainWindow.ID + ".navigator";
 
   private final Application application;
   private final int defaultWidth;
@@ -63,11 +63,11 @@ public final class NavigatorPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
-    defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
-    minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
-    marginTop = config.getInt(KEY + KeySuffix.MARGIN_TOP);
-    backgroundColor = config.getColor(KEY + KeySuffix.BACKGROUND_COLOR);
+    defaultWidth = config.getInt(ID + KeySuffix.DEFAULT_WIDTH);
+    minWidth = config.getInt(ID + KeySuffix.MIN_WIDTH);
+    maxWidth = config.getInt(ID + KeySuffix.MAX_WIDTH);
+    marginTop = config.getInt(ID + KeySuffix.MARGIN_TOP);
+    backgroundColor = config.getColor(ID + KeySuffix.BACKGROUND_COLOR);
     header = new NavigatorHeader(application, this, title);
     tree = new NavigatorTree(application, this);
     footer = new NavigatorFooter(application, this);

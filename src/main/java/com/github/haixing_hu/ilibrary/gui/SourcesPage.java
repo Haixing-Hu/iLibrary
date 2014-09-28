@@ -28,15 +28,15 @@ import com.github.haixing_hu.ilibrary.gui.explorer.ExplorerPage;
  */
 public class SourcesPage extends ExplorerPage {
 
-  public static final String KEY = MainWindow.KEY + ".sources";
+  public static final String ID = MainWindow.ID + ".sources";
 
   public SourcesPage(Application application, Composite parent) {
     super(application, parent,
-        ((BaseAction) application.getActionManager().get(PageSourcesAction.KEY)).getTitle());
+        ((BaseAction) application.getActionManager().get(PageSourcesAction.ID)).getTitle());
   }
 
   @Override
-  public String getKey() {
-    return KEY;
+  public String getId() {
+    return ID;
   }
 }

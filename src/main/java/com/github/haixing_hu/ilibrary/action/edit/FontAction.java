@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class FontAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".font";
+  public static final String ID = EditAction.ID + ".font";
 
   public FontAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

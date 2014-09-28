@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NextDocumentAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".next-document";
+  public static final String ID = ViewAction.ID + ".next-document";
 
   public NextDocumentAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

@@ -26,14 +26,16 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
 
+import static com.github.haixing_hu.ilibrary.KeySuffix.DEFAULT_HEIGHT;
+
 /**
  * The preview panel.
  *
  * @author Haixing Hu
  */
-public class PreviewPanel extends Composite {
+public class PreviewPanel extends Composite implements KeySuffix {
 
-  public static final String KEY = MainWindow.KEY + ".preview";
+  public static final String ID = MainWindow.ID + ".preview";
 
   private final Application application;
   private final int defaultHeight;
@@ -44,9 +46,10 @@ public class PreviewPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
-    defaultHeight = config.getInt(KEY + KeySuffix.DEFAULT_HEIGHT);
-    minHeight = config.getInt(KEY + KeySuffix.MIN_HEIGHT);
-    maxHeight = config.getInt(KEY + KeySuffix.MAX_HEIGHT);
+    defaultHeight = config.getInt(ID + DEFAULT_HEIGHT);
+    minHeight = config.getInt(ID + MIN_HEIGHT);
+    maxHeight = config.getInt(ID + MAX_HEIGHT);
+    setBackground(config.getColor(ID + BACKGROUND_COLOR));
   }
 
   /**

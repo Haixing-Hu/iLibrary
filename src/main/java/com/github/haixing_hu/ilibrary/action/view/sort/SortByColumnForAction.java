@@ -21,7 +21,7 @@ package com.github.haixing_hu.ilibrary.action.view.sort;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.lang.EnumUtils;
 import com.github.haixing_hu.swt.action.IActionManager;
@@ -39,10 +39,10 @@ public class SortByColumnForAction extends BaseCheckBoxAction {
    * Constructs a {@link SortByColumnForAction}.
    * <p>
    * <b>NOTE:</b> the ID of the new action is the ID of the
-   * {@link DisplayColumnsAction} action concatenate to a dot and the short name of the
+   * {@link SelectColumnsAction} action concatenate to a dot and the short name of the
    * enumerator representing the column. For example, if the column is
    * {@link FieldType#CITE_KEY}, the ID of the new action is
-   * <code>{@link DisplayColumnsAction#KEY} + ".cite-key"</code>.
+   * <code>{@link SelectColumnsAction#KEY} + ".cite-key"</code>.
    * <p>
    * A short name of an {@link Enum} value comes from lowercase the enumeration
    * name of the {@link Enum} value and replacing all '_' with '-'.
@@ -71,7 +71,7 @@ public class SortByColumnForAction extends BaseCheckBoxAction {
    */
   public static String getActionId(FieldType column) {
     final StringBuilder builder = new StringBuilder();
-    builder.append(SortAction.KEY)
+    builder.append(SortAction.ID)
            .append(KeySuffix.COLUMN)
            .append('.')
            .append(EnumUtils.getShortName(column));

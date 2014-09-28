@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ShowNavigatorAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".show-navigator";
+  public static final String ID = ViewAction.ID + ".show-navigator";
 
   public ShowNavigatorAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

@@ -37,7 +37,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  */
 public class InspectorPanel extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".inspector";
+  public static final String ID = MainWindow.ID + ".inspector";
 
   private final Application application;
   private final int defaultWidth;
@@ -51,9 +51,9 @@ public class InspectorPanel extends Composite {
     super(parent, SWT.NONE);
     this.application = application;
     final AppConfig config = application.getConfig();
-    defaultWidth = config.getInt(KEY + KeySuffix.DEFAULT_WIDTH);
-    minWidth = config.getInt(KEY + KeySuffix.MIN_WIDTH);
-    maxWidth = config.getInt(KEY + KeySuffix.MAX_WIDTH);
+    defaultWidth = config.getInt(ID + KeySuffix.DEFAULT_WIDTH);
+    minWidth = config.getInt(ID + KeySuffix.MIN_WIDTH);
+    maxWidth = config.getInt(ID + KeySuffix.MAX_WIDTH);
     header = new InspectorHeader(application, this);
     tabFolder = new InspectorTabFolder(application, this);
     footer = new InspectorFooter(application, this);

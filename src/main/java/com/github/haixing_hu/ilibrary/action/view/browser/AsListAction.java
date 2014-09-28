@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsListAction extends BaseAction {
 
-  public static final String KEY = BrowserModeAction.KEY + ".as-list";
+  public static final String ID = BrowserModeAction.ID + ".as-list";
 
   public AsListAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

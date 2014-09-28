@@ -32,10 +32,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class QuitAction extends BaseAction implements Listener {
 
-  public static final String KEY = FileAction.KEY + ".quit";
+  public static final String ID = FileAction.ID + ".quit";
 
   public QuitAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

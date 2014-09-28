@@ -30,7 +30,7 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
 
@@ -41,11 +41,11 @@ import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
  */
 public class ExplorerHeaderToolBar extends Composite {
 
-  public static final String KEY = ExplorerHeader.KEY + KeySuffix.CONTROL;
+  public static final String ID = ExplorerHeader.ID + KeySuffix.CONTROL;
 
-  public static final String FILTER_LABEL_KEY = ExplorerHeader.KEY + ".view";
+  public static final String FILTER_LABEL_KEY = ExplorerHeader.ID + ".view";
 
-  public static final String SORT_LABEL_KEY = ExplorerHeader.KEY +  ".sort.column";
+  public static final String SORT_LABEL_KEY = ExplorerHeader.ID +  ".sort.column";
 
   private final ToolBarManager toolBarManager;
   private final ToolBar toolBar;
@@ -57,16 +57,16 @@ public class ExplorerHeaderToolBar extends Composite {
     super(parent, SWT.NONE);
     toolBarManager = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
     final ActionManager am = application.getActionManager();
-    toolBarManager.add(am.get(BrowserModeAction.KEY));
-    toolBarManager.add(am.get(DisplayColumnsAction.KEY));
-    toolBarManager.add(am.get(FilterAction.KEY));
-    toolBarManager.add(am.get(SortAction.KEY));
+    toolBarManager.add(am.get(BrowserModeAction.ID));
+    toolBarManager.add(am.get(SelectColumnsAction.ID));
+    toolBarManager.add(am.get(FilterAction.ID));
+    toolBarManager.add(am.get(SortAction.ID));
     toolBarManager.createControl(this);
     toolBar = toolBarManager.getControl();
     final AppConfig config = application.getConfig();
     searchBox = new Text(this, SWT.SEARCH | SWT.ICON_CANCEL | SWT.ICON_SEARCH);       //  FIXME
-    backgroundColor = config.getColor(KEY + KeySuffix.BACKGROUND_COLOR);
-    backgroundImage = config.getImage(this.getClass(), KEY + KeySuffix.BACKGROUND_IMAGE);
+    backgroundColor = config.getColor(ID + KeySuffix.BACKGROUND_COLOR);
+    backgroundImage = config.getImage(this.getClass(), ID + KeySuffix.BACKGROUND_IMAGE);
     layoutContents();
   }
 
@@ -91,4 +91,33 @@ public class ExplorerHeaderToolBar extends Composite {
       toolBar.setBackgroundImage(backgroundImage);
     }
   }
+
+  /**
+   * Gets the tool bar manager.
+   *
+   * @return the tool bar manager.
+   */
+  public ToolBarManager getToolBarManager() {
+    return toolBarManager;
+  }
+
+  /**
+   * Gets the tool bar.
+   *
+   * @return the tool bar.
+   */
+  public ToolBar getToolBar() {
+    return toolBar;
+  }
+
+  /**
+   * Gets the search box.
+   *
+   * @return the search box.
+   */
+  public Text getSearchBox() {
+    return searchBox;
+  }
+
+
 }

@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ZoomToFitAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".zoom-to-fit";
+  public static final String ID = ViewAction.ID + ".zoom-to-fit";
 
   public ZoomToFitAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

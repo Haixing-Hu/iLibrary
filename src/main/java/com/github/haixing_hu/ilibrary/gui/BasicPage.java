@@ -43,11 +43,11 @@ public abstract class BasicPage extends Composite {
   }
 
   /**
-   * Gets the key of this page.
+   * Gets the ID of this page.
    *
-   * @return the key of this page.
+   * @return the ID of this page.
    */
-  public abstract String getKey();
+  public abstract String getId();
 
   /**
    * Sets the width of the navigator panel.

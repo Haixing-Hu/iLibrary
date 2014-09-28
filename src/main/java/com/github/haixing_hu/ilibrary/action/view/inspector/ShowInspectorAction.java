@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ShowInspectorAction extends BaseAction {
 
-  public static final String KEY = InspectorAction.KEY + ".show";
+  public static final String ID = InspectorAction.ID + ".show";
 
   public ShowInspectorAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

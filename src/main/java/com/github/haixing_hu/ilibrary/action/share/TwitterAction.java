@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class TwitterAction extends BaseAction {
 
-  public static final String KEY = ShareAction.KEY + ".twitter";
+  public static final String ID = ShareAction.ID + ".twitter";
 
   public TwitterAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 

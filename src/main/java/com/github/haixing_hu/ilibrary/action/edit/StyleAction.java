@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class StyleAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".style";
+  public static final String ID = EditAction.ID + ".style";
 
   public StyleAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

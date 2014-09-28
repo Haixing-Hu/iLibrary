@@ -18,62 +18,29 @@
 
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.ExplorerToolBarBalloonWindowAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.model.DocumentType;
+import com.github.haixing_hu.ilibrary.gui.explorer.SetFiltersWindow;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.window.BalloonWindow;
 
 /**
  * The action to filter documents
  *
  * @author Haixing Hu
  */
-public class FilterAction extends BaseDropDownAction {
+public class FilterAction extends ExplorerToolBarBalloonWindowAction {
 
-  public static final String KEY = ViewAction.KEY + ".filter";
-
-  private static final String SUB_ACTIONS_1[] = {
-    FilterFlagStatusAllAction.KEY,
-    FilterFlagStatusFlaggedAction.KEY,
-    FilterFlagStatusUnflaggedAction.KEY,
-    SEPARATOR_KEY,
-    FilterReadStatusAllAction.KEY,
-    FilterReadStatusUnreadAction.KEY,
-    FilterReadStatusToReadAction.KEY,
-    FilterReadStatusReadingAction.KEY,
-    FilterReadStatusHasReadAction.KEY,
-    SEPARATOR_KEY,
-    FilterTypeAllAction.KEY,
-  };
-
-  private static final String SUB_ACTIONS_2[] = {
-    SEPARATOR_KEY,
-    FilterFileStatusAllAction.KEY,
-    FilterFileStatusHasFileAction.KEY,
-    FilterFileStatusNoFileAction.KEY,
-  };
+  public static final String ID = ViewAction.ID + ".filter";
 
   public FilterAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager, getSubactionIds());
+    super(ID, application, actionManager);
   }
 
-  private static String[] getSubactionIds() {
-    final List<String> ids = new ArrayList<String>();
-    for (final String id : SUB_ACTIONS_1) {
-      ids.add(id);
-    }
-    for (final DocumentType type : DocumentType.values()) {
-      final String id = FilterTypeForAction.getActionId(type);
-      ids.add(id);
-    }
-    for (final String id : SUB_ACTIONS_2) {
-      ids.add(id);
-    }
-    return ids.toArray(new String[0]);
+  @Override
+  protected BalloonWindow createBalloonWindow() {
+    return new SetFiltersWindow(application);
   }
 }

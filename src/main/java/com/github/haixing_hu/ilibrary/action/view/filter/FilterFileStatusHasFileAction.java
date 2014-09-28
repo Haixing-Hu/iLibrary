@@ -30,11 +30,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterFileStatusHasFileAction extends BaseCheckBoxAction {
 
-  public static final String KEY = FilterFileStatusAction.KEY + ".has-file";
+  public static final String ID = FilterFileStatusAction.ID + ".has-file";
 
   public FilterFileStatusHasFileAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewNormalCollectionAction extends BaseAction {
 
-  public static final String KEY = NewCollectionAction.KEY + ".normal";
+  public static final String ID = NewCollectionAction.ID + ".normal";
 
   public NewNormalCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

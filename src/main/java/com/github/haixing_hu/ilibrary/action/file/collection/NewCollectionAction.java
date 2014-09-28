@@ -30,15 +30,15 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NewCollectionAction extends BaseDropDownAction {
 
-  public static final String KEY = FileAction.KEY + ".new-collection";
+  public static final String ID = FileAction.ID + ".new-collection";
 
   private static final String SUB_ACTIONS[] = {
-    NewNormalCollectionAction.KEY,
-    NewSmartCollectionAction.KEY,
-    NewCollectionFromSelectionAction.KEY,
+    NewNormalCollectionAction.ID,
+    NewSmartCollectionAction.ID,
+    NewCollectionFromSelectionAction.ID,
   };
 
   public NewCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

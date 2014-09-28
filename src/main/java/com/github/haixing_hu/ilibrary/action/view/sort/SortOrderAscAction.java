@@ -30,7 +30,7 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class SortOrderAscAction extends BaseCheckBoxAction {
 
-  public static final String KEY = SortAction.KEY + ".order.asc";
+  public static final String ID = SortAction.ID + ".order.asc";
 
   /**
    * Constructs a {@link SortOrderAscAction}.
@@ -41,7 +41,7 @@ public class SortOrderAscAction extends BaseCheckBoxAction {
    *          the action manager.
    */
   public SortOrderAscAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowImage(false);
   }
 

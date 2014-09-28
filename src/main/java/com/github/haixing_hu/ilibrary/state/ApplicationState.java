@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
 import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
 import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
@@ -123,7 +123,7 @@ public final class ApplicationState {
   }
 
   private void loadNavigatorWidth(AppConfig config) {
-    navigatorWidth = config.getInt(NavigatorPanel.KEY + DEFAULT_WIDTH);
+    navigatorWidth = config.getInt(NavigatorPanel.ID + DEFAULT_WIDTH);
   }
 
   private void loadNavigatorVisible(AppConfig config) {
@@ -132,21 +132,21 @@ public final class ApplicationState {
   }
 
   private void loadInspectorWidth(AppConfig config) {
-    inspectorWidth = config.getInt(InspectorPanel.KEY + DEFAULT_WIDTH);
+    inspectorWidth = config.getInt(InspectorPanel.ID + DEFAULT_WIDTH);
   }
 
   private void loadPreviewHeight(AppConfig config) {
-    previewHeight = config.getInt(PreviewPanel.KEY + DEFAULT_HEIGHT);
+    previewHeight = config.getInt(PreviewPanel.ID + DEFAULT_HEIGHT);
   }
 
   private void loadInspectorTab(AppConfig config) {
     //  FIXME: load from configuration
-    this.inspectorTab = InspectorTab.OVERVIEW;
+    inspectorTab = InspectorTab.OVERVIEW;
   }
 
   private void loadLayoutMode(AppConfig config) {
     //  FIXME: load from configuration
-    this.layoutMode = LayoutMode.ALL;
+    layoutMode = LayoutMode.ALL;
   }
 
   private void loadBrowserMode(AppConfig config) {
@@ -183,7 +183,7 @@ public final class ApplicationState {
   }
 
   private void loadDisplayColumns(AppConfig config) {
-    final String key = DisplayColumnsAction.KEY + DEFAULT;
+    final String key = SelectColumnsAction.ID + DEFAULT;
     final String[] values = config.getStringArray(key);
     for (final String value : values) {
       final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
@@ -198,7 +198,7 @@ public final class ApplicationState {
   }
 
   private void loadSortingColumn(AppConfig config) {
-    final String key = SortAction.KEY + COLUMN + DEFAULT;
+    final String key = SortAction.ID + COLUMN + DEFAULT;
     final String value = config.getString(key);
     if (StringUtils.isEmpty(value)) {
       setAllSortColumns(null);
@@ -214,7 +214,7 @@ public final class ApplicationState {
   }
 
   private void loadSortOrder(AppConfig config) {
-    final String key = SortAction.KEY + ORDER + DEFAULT;
+    final String key = SortAction.ID + ORDER + DEFAULT;
     final String value = config.getString(key);
     if (StringUtils.isEmpty(value)) {
       return;

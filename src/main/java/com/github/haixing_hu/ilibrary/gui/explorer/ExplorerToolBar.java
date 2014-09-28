@@ -30,7 +30,7 @@ import com.github.haixing_hu.ilibrary.action.library.open.OpenFileAction;
 import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
 import com.github.haixing_hu.ilibrary.action.view.layout.LayoutModeAction;
-import com.github.haixing_hu.ilibrary.gui.util.BasicToolBar;
+import com.github.haixing_hu.ilibrary.gui.BasicToolBar;
 
 /**
  * The tool bar in the library panel.
@@ -39,19 +39,19 @@ import com.github.haixing_hu.ilibrary.gui.util.BasicToolBar;
  */
 public final class ExplorerToolBar extends BasicToolBar {
 
-  public static final String KEY = ExplorerPanel.KEY + ".toolbar";
+  public static final String ID = ExplorerPanel.ID + ".toolbar";
 
   private static final String ACTIONS[] = {
-    OpenFileAction.KEY,
-    OpenUrlAction.KEY,
-    ShareAction.KEY,
-    PrintAction.KEY,
+    OpenFileAction.ID,
+    OpenUrlAction.ID,
+    ShareAction.ID,
+    PrintAction.ID,
     Separator.class.getName(),
-    EditKeywordsAction.KEY,
-    EditNotesAction.KEY,
-    AddReviewAction.KEY,
+    EditKeywordsAction.ID,
+    EditNotesAction.ID,
+    AddReviewAction.ID,
     Separator.class.getName(),
-    LayoutModeAction.KEY,
+    LayoutModeAction.ID,
   };
 
   public ExplorerToolBar(Application application, Composite parent) {

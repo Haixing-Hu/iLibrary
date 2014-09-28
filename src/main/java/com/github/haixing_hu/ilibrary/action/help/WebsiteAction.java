@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class WebsiteAction extends BaseAction {
 
-  public static final String KEY = HelpAction.KEY + ".website";
+  public static final String ID = HelpAction.ID + ".website";
 
   public WebsiteAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

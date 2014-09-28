@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PrintAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".print";
+  public static final String ID = FileAction.ID + ".print";
 
   public PrintAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

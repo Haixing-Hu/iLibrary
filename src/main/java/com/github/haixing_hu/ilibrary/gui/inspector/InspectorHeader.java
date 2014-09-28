@@ -18,16 +18,19 @@
 
 package com.github.haixing_hu.ilibrary.gui.inspector;
 
+import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorNotesTabAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorOverviewTabAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorReviewsTabAction;
 import com.github.haixing_hu.ilibrary.gui.BasicHeader;
-import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
+import com.github.haixing_hu.swt.action.ActionUtils;
 
 /**
  * The header of the inspector tab folder.
@@ -36,18 +39,26 @@ import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
  */
 public final class InspectorHeader extends BasicHeader {
 
-  public static final String KEY = InspectorPanel.KEY + ".header";
+  public static final String ID = InspectorPanel.ID + ".header";
 
-  private static final String ACTION_KEYS[] = {
-    InspectorOverviewTabAction.KEY,
-    InspectorInfoTabAction.KEY,
-    InspectorNotesTabAction.KEY,
-    InspectorReviewsTabAction.KEY,
+  private static final String ACTION_IDS[] = {
+    InspectorOverviewTabAction.ID,
+    InspectorInfoTabAction.ID,
+    InspectorNotesTabAction.ID,
+    InspectorReviewsTabAction.ID,
   };
 
   public InspectorHeader(final Application application, final Composite parent) {
-    super(application, parent, KEY,
-        new ActionListToolBarCreator(application, ACTION_KEYS),
-        SWT.LEFT);
+    super(application, parent, ID, SWT.LEFT);
+    initialize();
+  }
+
+  @Override
+  protected Control createControl() {
+    final ToolBarManager tm = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    final ActionManager am = application.getActionManager();
+    ActionUtils.addActions(tm, am, ACTION_IDS);
+    tm.createControl(this);
+    return tm.getControl();
   }
 }

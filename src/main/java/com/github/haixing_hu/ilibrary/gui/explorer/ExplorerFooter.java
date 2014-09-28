@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Control;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.gui.BasicFooter;
-import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
 
 /**
  * The footer in the explorer panel.
@@ -32,7 +31,7 @@ import com.github.haixing_hu.ilibrary.gui.util.ControlCreator;
  */
 public class ExplorerFooter extends BasicFooter {
 
-  public static final String KEY = ExplorerPanel.KEY + ".footer";
+  public static final String ID = ExplorerPanel.ID + ".footer";
 
   /**
    * Creates a footer.
@@ -43,15 +42,16 @@ public class ExplorerFooter extends BasicFooter {
    *    the parent of the new footer.
    */
   public ExplorerFooter(final Application application, final Composite parent) {
-    super(application, parent, KEY, new ControlCreator() {
-      @Override
-      public Control create(Composite parent) {
-        return new ExplorerFooterToolBar(application, parent);
-      }
-    });
+    super(application, parent, ID);
+    initialize();
   }
 
   public ExplorerFooterToolBar getToolBar() {
     return (ExplorerFooterToolBar) control;
+  }
+
+  @Override
+  protected Control createControl() {
+    return new ExplorerFooterToolBar(application, this);
   }
 }

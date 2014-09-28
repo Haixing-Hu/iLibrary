@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CloseLibraryAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".close-library";
+  public static final String ID = FileAction.ID + ".close-library";
 
   public CloseLibraryAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

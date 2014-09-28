@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class NextPageAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".next-page";
+  public static final String ID = ViewAction.ID + ".next-page";
 
   public NextPageAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

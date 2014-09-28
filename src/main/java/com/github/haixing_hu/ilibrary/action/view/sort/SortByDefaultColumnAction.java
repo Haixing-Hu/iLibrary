@@ -29,7 +29,7 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class SortByDefaultColumnAction extends BaseCheckBoxAction {
 
-  public static final String KEY = SortAction.KEY + ".column.default";
+  public static final String ID = SortAction.ID + ".column.default";
 
   /**
    * Constructs a {@link SortByDefaultColumnAction}.
@@ -40,7 +40,7 @@ public class SortByDefaultColumnAction extends BaseCheckBoxAction {
    *          the action manager.
    */
   public SortByDefaultColumnAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

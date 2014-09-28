@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AddToCollectionAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".add-to-collection";
+  public static final String ID = LibraryAction.ID + ".add-to-collection";
 
   public AddToCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

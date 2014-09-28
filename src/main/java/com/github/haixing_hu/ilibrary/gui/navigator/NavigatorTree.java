@@ -39,7 +39,7 @@ import com.github.haixing_hu.text.xml.XmlUtils;
  */
 public class NavigatorTree extends TreeViewer {
 
-  public static final String KEY = NavigatorPanel.KEY + ".tree";
+  public static final String ID = NavigatorPanel.ID + ".tree";
 
   private static final Logger LOGGER = LoggerFactory.getLogger(NavigatorTree.class);
 
@@ -54,7 +54,7 @@ public class NavigatorTree extends TreeViewer {
 
   private void createContents() {
     final AppConfig config = application.getConfig();
-    final String input = config.getString(KEY + KeySuffix.INPUT);
+    final String input = config.getString(ID + KeySuffix.INPUT);
     try {
       final Document doc = XmlUtils.parse(input, this.getClass());
       this.setContentProvider(new NavigatorTreeContentProvider());
@@ -66,7 +66,7 @@ public class NavigatorTree extends TreeViewer {
 
     final Tree tree = this.getTree();
     //   set the background color
-    final Color color = config.getColor(KEY + KeySuffix.BACKGROUND_COLOR);
+    final Color color = config.getColor(ID + KeySuffix.BACKGROUND_COLOR);
     if (color != null) {
       tree.setBackground(color);
     }

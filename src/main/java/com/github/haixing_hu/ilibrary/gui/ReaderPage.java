@@ -28,7 +28,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  */
 public class ReaderPage extends BasicPage {
 
-  public static final String KEY = MainWindow.KEY + ".reader";
+  public static final String ID = MainWindow.ID + ".reader";
 
   public ReaderPage(Application application, Composite parent) {
     super(application, parent);
@@ -41,8 +41,8 @@ public class ReaderPage extends BasicPage {
   }
 
   @Override
-  public String getKey() {
-    return KEY;
+  public String getId() {
+    return ID;
   }
 
   @Override

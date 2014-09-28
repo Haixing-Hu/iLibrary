@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MaximizeAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".maximize";
+  public static final String ID = WindowAction.ID + ".maximize";
 
   public MaximizeAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

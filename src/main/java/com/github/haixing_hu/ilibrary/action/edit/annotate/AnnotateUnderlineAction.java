@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AnnotateUnderlineAction extends BaseCheckBoxAction {
 
-  public static final String KEY = AnnotateAction.KEY + ".underline";
+  public static final String ID = AnnotateAction.ID + ".underline";
 
   public AnnotateUnderlineAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

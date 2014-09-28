@@ -30,11 +30,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterReadStatusUnreadAction extends BaseCheckBoxAction {
 
-  public static final String KEY = FilterReadStatusAction.KEY + ".unread";
+  public static final String ID = FilterReadStatusAction.ID + ".unread";
 
   public FilterReadStatusUnreadAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

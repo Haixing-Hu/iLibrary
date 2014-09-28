@@ -16,7 +16,7 @@
  *
  ******************************************************************************/
 
-package com.github.haixing_hu.ilibrary.gui.util;
+package com.github.haixing_hu.ilibrary.gui;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
@@ -31,7 +31,6 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.ActionManager;
-import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import com.github.haixing_hu.swt.toolbar.ForceTextToolBarManager;
 import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
@@ -42,7 +41,7 @@ import com.github.haixing_hu.swt.utils.SWTResourceManager;
  */
 public class BasicToolBar extends Composite {
 
-  public static final String KEY = MainWindow.KEY + ".toolbar";
+  public static final String ID = MainWindow.ID + ".toolbar";
 
   protected final Application application;
   protected final String[] actionKeys;
@@ -68,8 +67,8 @@ public class BasicToolBar extends Composite {
     this.application = application;
     this.actionKeys = actionKeys;
     final AppConfig config = application.getConfig();
-    height = config.getInt(KEY + KeySuffix.HEIGHT);
-    background = config.getString(KEY + KeySuffix.BACKGROUND_IMAGE);
+    height = config.getInt(ID + KeySuffix.HEIGHT);
+    background = config.getString(ID + KeySuffix.BACKGROUND_IMAGE);
     createContents();
     layoutContents();
   }

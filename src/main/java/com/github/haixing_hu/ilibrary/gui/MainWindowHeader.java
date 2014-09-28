@@ -18,38 +18,62 @@
 
 package com.github.haixing_hu.ilibrary.gui;
 
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.KeySuffix;
+import com.github.haixing_hu.ilibrary.action.ActionManager;
 import com.github.haixing_hu.ilibrary.action.window.page.PageAuthorsAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageLibraryAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageReaderAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageSearchAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageSourcesAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
-import com.github.haixing_hu.ilibrary.gui.util.ActionListToolBarCreator;
+import com.github.haixing_hu.swt.toolbar.Fill;
 
 /**
  * The header of main window.
  *
  * @author Haixing Hu
  */
-public class MainWindowHeader extends BasicHeader {
+public class MainWindowHeader extends BasicHeader implements KeySuffix {
 
-  public static final String KEY = MainWindow.KEY + ".header";
+  public static final String ID = MainWindow.ID + ".header";
 
-  private static final String ACTION_KEYS[] = {
-    PageSearchAction.KEY,
-    PageLibraryAction.KEY,
-    PageTagsAction.KEY,
-    PageAuthorsAction.KEY,
-    PageSourcesAction.KEY,
-    PageReaderAction.KEY,
+  private static final String ACTION_IDS[] = {
+    PageSearchAction.ID,
+    PageLibraryAction.ID,
+    PageTagsAction.ID,
+    PageAuthorsAction.ID,
+    PageSourcesAction.ID,
+    PageReaderAction.ID,
   };
 
   public MainWindowHeader(Application application, Composite parent) {
-    super(application, parent, KEY,
-        new ActionListToolBarCreator(application, ACTION_KEYS), SWT.CENTER);
+    super(application, parent, ID, SWT.CENTER);
+    initialize();
+  }
+
+  @Override
+  protected Control createControl() {
+    final AppConfig config = application.getConfig();
+    final int spacing = config .getInt(ID + CONTROL + HORIZONTAL_SPACING);
+    final ToolBarManager tm = new ToolBarManager(SWT.FLAT | SWT.NO_FOCUS);
+    final ActionManager am = application.getActionManager();
+    for (int i = 0; i < ACTION_IDS.length; ++i) {
+      if (i > 0) {
+        tm.add(new Fill(spacing));
+      }
+      final String id = ACTION_IDS[i];
+      final IAction action = am.get(id);
+      tm.add(action);
+    }
+    tm.createControl(this);
+    return tm.getControl();
   }
 }

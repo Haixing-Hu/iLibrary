@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ShowAllAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".show-all";
+  public static final String ID = ViewAction.ID + ".show-all";
 
   public ShowAllAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

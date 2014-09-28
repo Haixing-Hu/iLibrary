@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class InspectorReviewsTabAction extends BaseAction {
 
-  public static final String KEY = InspectorAction.KEY + ".reviews";
+  public static final String ID = InspectorAction.ID + ".reviews";
 
   public InspectorReviewsTabAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

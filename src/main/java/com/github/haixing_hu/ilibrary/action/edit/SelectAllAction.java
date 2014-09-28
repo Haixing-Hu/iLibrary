@@ -28,10 +28,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class SelectAllAction extends BaseAction {
-  public static final String KEY = EditAction.KEY + ".select-all";
+  public static final String ID = EditAction.ID + ".select-all";
 
   public SelectAllAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
 }

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ExportAction extends BaseAction {
 
-  public static final String KEY = FileAction.KEY + ".export";
+  public static final String ID = FileAction.ID + ".export";
 
   public ExportAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

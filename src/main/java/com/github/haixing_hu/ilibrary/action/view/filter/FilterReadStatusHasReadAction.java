@@ -30,11 +30,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterReadStatusHasReadAction extends BaseCheckBoxAction {
 
-  public static final String KEY = FilterReadStatusAction.KEY + ".has-read";
+  public static final String ID = FilterReadStatusAction.ID + ".has-read";
 
   public FilterReadStatusHasReadAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

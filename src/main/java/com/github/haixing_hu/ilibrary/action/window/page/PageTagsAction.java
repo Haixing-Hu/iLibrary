@@ -31,10 +31,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class PageTagsAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".tags";
+  public static final String ID = WindowAction.ID + ".tags";
 
   public PageTagsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

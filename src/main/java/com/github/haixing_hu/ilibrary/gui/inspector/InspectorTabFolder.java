@@ -32,7 +32,7 @@ import com.github.haixing_hu.ilibrary.state.InspectorTab;
  */
 public final class InspectorTabFolder extends Composite {
 
-  public static final String KEY = InspectorPanel.KEY + ".tab"; // "window.inspector.tab"
+  public static final String ID = InspectorPanel.ID + ".tab"; // "window.inspector.tab"
 
   private final Application application;
   private final StackLayout stackLayout;

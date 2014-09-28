@@ -30,9 +30,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ForwardAction extends BaseAction {
 
-  public static final String KEY = ViewAction.KEY + ".forward";
+  public static final String ID = ViewAction.ID + ".forward";
 
   public ForwardAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

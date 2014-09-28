@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FaqAction extends BaseAction {
 
-  public static final String KEY = HelpAction.KEY + ".faq";
+  public static final String ID = HelpAction.ID + ".faq";
 
   public FaqAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

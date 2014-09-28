@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class EditCollectionAction extends BaseAction {
 
-  public static final String KEY = ManageCollectionAction.KEY + ".edit";
+  public static final String ID = ManageCollectionAction.ID + ".edit";
 
   public EditCollectionAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

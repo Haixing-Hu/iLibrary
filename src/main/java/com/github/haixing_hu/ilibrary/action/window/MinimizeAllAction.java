@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class MinimizeAllAction extends BaseAction {
 
-  public static final String KEY = WindowAction.KEY + ".minimize-all";
+  public static final String ID = WindowAction.ID + ".minimize-all";
 
   public MinimizeAllAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

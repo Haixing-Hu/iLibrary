@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class AsColumnsAction extends BaseAction {
 
-  public static final String KEY = BrowserModeAction.KEY + ".as-columns";
+  public static final String ID = BrowserModeAction.ID + ".as-columns";
 
   public AsColumnsAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

@@ -29,10 +29,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class ShowPreviewAction extends BaseAction {
 
-  public static final String KEY = PreviewAction.KEY + ".show";
+  public static final String ID = PreviewAction.ID + ".show";
 
   public ShowPreviewAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

@@ -81,7 +81,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
     }
     if (isCollectionNode(node)) {
       final String suffix = (node.isSmart() ? KeySuffix.SMART_COLLECTION : KeySuffix.COLLECTION);
-      final String col_key = NavigatorTreeNode.KEY + suffix;
+      final String col_key = NavigatorTreeNode.ID + suffix;
       return config.getIcon(col_key);
     } else {  //  otherwise
       return null;
@@ -99,7 +99,7 @@ public final class NavigatorTreeLabelProvider extends LabelProvider {
 
   private String fixNoIconNodeTitle(String title) {
     // add some space at the front if there is no icon for this node
-    final String prefix_key = NavigatorTreeNode.KEY + ".no-icon-prefix";
+    final String prefix_key = NavigatorTreeNode.ID + ".no-icon-prefix";
     final AppConfig config = application.getConfig();
     final int prefix_count = config.getInt(prefix_key);
     return StringUtils.leftPad(title, title.length() + prefix_count);

@@ -19,29 +19,48 @@
 package com.github.haixing_hu.ilibrary.gui.navigator;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 
+import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.gui.BasicHeader;
-import com.github.haixing_hu.ilibrary.gui.util.LabelCreator;
+import com.github.haixing_hu.lang.Argument;
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 /**
  * The header of the navigator bar.
  *
  * @author Haixing Hu
  */
-public class NavigatorHeader extends BasicHeader {
+public class NavigatorHeader extends BasicHeader implements KeySuffix {
 
-  public static final String KEY = NavigatorPanel.KEY + ".header";
+  public static final String ID = NavigatorPanel.ID + ".header";
+
+  private final String title;
 
   public NavigatorHeader(Application application, Composite parent, String title) {
-    super(application, parent, KEY,
-        new LabelCreator(title,
-          application.getConfig().getInt(KEY + KeySuffix.FONT_SIZE),
-          SWT.BOLD,
-          application.getConfig().getHeavyFontColor()),
-    SWT.LEFT);
+    super(application, parent, ID, SWT.LEFT);
+    this.title = Argument.requireNonEmpty("title", title);
+    initialize();
+  }
+
+  @Override
+  protected Control createControl() {
+    final AppConfig config = application.getConfig();
+    final int fontSize = config.getInt(ID + FONT_SIZE);
+    final Color fontColor = config.getHeavyFontColor();
+    final Label label = new Label(this, SWT.NONE);
+    label.setText(title);
+    final Font font= SWTResourceManager.getFont(label.getFont(),
+        fontSize, SWT.BOLD);
+    label.setFont(font);
+    label.setForeground(fontColor);
+    return label;
   }
 
 }

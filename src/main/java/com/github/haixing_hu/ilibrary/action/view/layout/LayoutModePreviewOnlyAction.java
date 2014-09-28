@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class LayoutModePreviewOnlyAction extends BaseCheckBoxAction {
 
-  public static final String KEY = LayoutModeAction.KEY + ".preview";
+  public static final String ID = LayoutModeAction.ID + ".preview";
 
   public LayoutModePreviewOnlyAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

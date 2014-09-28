@@ -29,9 +29,9 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class CopyAsReferenceAction extends BaseAction {
 
-  public static final String KEY = CopyAsAction.KEY + ".reference";
+  public static final String ID = CopyAsAction.ID + ".reference";
 
   public CopyAsReferenceAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 }

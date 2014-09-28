@@ -21,6 +21,7 @@ package com.github.haixing_hu.ilibrary.action.help;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
 import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.swt.toolbar.Separator;
 
 /**
  * The action to show the drop down menu of helping related actions.
@@ -29,19 +30,19 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class HelpAction extends BaseDropDownAction {
 
-  public static final String KEY = "action.help";
+  public static final String ID = "action.help";
 
   private static final String SUB_ACTIONS[] = {
-    ManualAction.KEY,
-    FaqAction.KEY,
-    WebsiteAction.KEY,
-    FeedbackAction.KEY,
-    SEPARATOR_KEY,
-    AboutAction.KEY,
+    ManualAction.ID,
+    FaqAction.ID,
+    WebsiteAction.ID,
+    FeedbackAction.ID,
+    Separator.ID,
+    AboutAction.ID,
   };
 
   public HelpAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 
 }

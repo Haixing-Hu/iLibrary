@@ -30,18 +30,18 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class FilterReadStatusAction extends BaseDropDownAction {
 
-  public static final String KEY = ViewAction.KEY + ".filter.read";
+  public static final String ID = ViewAction.ID + ".filter.read";
 
   private static final String SUB_ACTIONS[] = {
-    FilterReadStatusAllAction.KEY,
-    FilterReadStatusUnreadAction.KEY,
-    FilterReadStatusToReadAction.KEY,
-    FilterReadStatusReadingAction.KEY,
-    FilterReadStatusHasReadAction.KEY,
+    FilterReadStatusAllAction.ID,
+    FilterReadStatusUnreadAction.ID,
+    FilterReadStatusToReadAction.ID,
+    FilterReadStatusReadingAction.ID,
+    FilterReadStatusHasReadAction.ID,
   };
 
   public FilterReadStatusAction(Application application,
       IActionManager actionManager) {
-    super(KEY, application, actionManager, SUB_ACTIONS);
+    super(ID, application, actionManager, SUB_ACTIONS);
   }
 }

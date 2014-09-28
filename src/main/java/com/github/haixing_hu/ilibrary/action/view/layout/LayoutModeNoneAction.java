@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class LayoutModeNoneAction extends BaseCheckBoxAction {
 
-  public static final String KEY = LayoutModeAction.KEY + ".none";
+  public static final String ID = LayoutModeAction.ID + ".none";
 
   public LayoutModeNoneAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
   }
 
   @Override

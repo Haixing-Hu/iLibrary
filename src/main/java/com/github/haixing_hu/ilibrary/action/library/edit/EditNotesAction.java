@@ -30,10 +30,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  */
 public class EditNotesAction extends BaseAction {
 
-  public static final String KEY = LibraryAction.KEY + ".edit-notes";
+  public static final String ID = LibraryAction.ID + ".edit-notes";
 
   public EditNotesAction(Application application, IActionManager actionManager) {
-    super(KEY, application, actionManager);
+    super(ID, application, actionManager);
     this.setShowDialog(true);
   }
 }

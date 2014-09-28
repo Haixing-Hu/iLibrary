@@ -23,6 +23,7 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,9 +44,11 @@ import com.github.haixing_hu.ilibrary.action.view.browser.AsCoverFlowAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsIconsAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.AsListAction;
 import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnForAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.DisplayColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnForAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeForAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusAllAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterFileStatusHasFileAction;
@@ -60,9 +63,6 @@ import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusHasRead
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusReadingAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusToReadAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterReadStatusUnreadAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterTypeForAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
@@ -118,7 +118,7 @@ public final class Application implements MessageKey, KeySuffix {
 
   public static final String CONTEXT_FILE = "applicationContext.xml";
 
-  public static final String KEY = "app";
+  public static final String ID = "app";
 
   private final Logger logger;
   private final AppConfig config;
@@ -219,6 +219,16 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   /**
+   * Gets the shell of the application.
+   *
+   * @return
+   *    the shell of the application.
+   */
+  public Shell getShell() {
+    return mainWindow.getShell();
+  }
+
+  /**
    * Gets the main window of this application.
    *
    * @return the main window of this application.
@@ -243,13 +253,13 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updatePage() {
-    final DropDownAction windowAction = (DropDownAction) am.get(WindowAction.KEY);
-    final ActionEx searchPageAction = am.get(PageSearchAction.KEY);
-    final ActionEx libraryPageAction = am.get(PageLibraryAction.KEY);
-    final ActionEx tagsPageAction = am.get(PageTagsAction.KEY);
-    final ActionEx authorsPageAction = am.get(PageAuthorsAction.KEY);
-    final ActionEx sourcesPageAction = am.get(PageSourcesAction.KEY);
-    final ActionEx readerPageAction = am.get(PageReaderAction.KEY);
+    final DropDownAction windowAction = (DropDownAction) am.get(WindowAction.ID);
+    final ActionEx searchPageAction = am.get(PageSearchAction.ID);
+    final ActionEx libraryPageAction = am.get(PageLibraryAction.ID);
+    final ActionEx tagsPageAction = am.get(PageTagsAction.ID);
+    final ActionEx authorsPageAction = am.get(PageAuthorsAction.ID);
+    final ActionEx sourcesPageAction = am.get(PageSourcesAction.ID);
+    final ActionEx readerPageAction = am.get(PageReaderAction.ID);
     searchPageAction.setChecked(false);
     libraryPageAction.setChecked(false);
     tagsPageAction.setChecked(false);
@@ -290,7 +300,6 @@ public final class Application implements MessageKey, KeySuffix {
     updateFileStatusFilters();
     updateFilterActionIcon();
     updateColumns();
-    updateColumnsActionIcon();
     updateSortColumn();
     updateSortOrder();
     updateSortActionIcon();
@@ -340,21 +349,21 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updateNavigatorVisibility() {
-    final DropDownAction viewAction = (DropDownAction) am.get(ViewAction.KEY);
+    final DropDownAction viewAction = (DropDownAction) am.get(ViewAction.ID);
     final boolean visible = state.isNavigatorVisible();
     if (visible) {
-      viewAction.showSubAction(HideNavigatorAction.KEY);
-      viewAction.hideSubAction(ShowNavigatorAction.KEY);
+      viewAction.showSubAction(HideNavigatorAction.ID);
+      viewAction.hideSubAction(ShowNavigatorAction.ID);
       viewAction.update(true);
       mainWindow.setNavigatorWidth(state.getNavigatorWidth());
     } else {
-      viewAction.hideSubAction(HideNavigatorAction.KEY);
-      viewAction.showSubAction(ShowNavigatorAction.KEY);
+      viewAction.hideSubAction(HideNavigatorAction.ID);
+      viewAction.showSubAction(ShowNavigatorAction.ID);
       viewAction.update(true);
       mainWindow.setNavigatorWidth(0);
     }
-    mainWindow.setToolBarActionVisibility(HideNavigatorAction.KEY, visible);
-    mainWindow.setToolBarActionVisibility(ShowNavigatorAction.KEY, (! visible));
+    mainWindow.setToolBarActionVisibility(HideNavigatorAction.ID, visible);
+    mainWindow.setToolBarActionVisibility(ShowNavigatorAction.ID, (! visible));
     mainWindow.updateToolBar(true);
   }
 
@@ -477,13 +486,13 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updateLayoutMode() {
-    final DropDownAction previewAction = (DropDownAction) am.get(PreviewAction.KEY);
-    final DropDownAction inspectorAction = (DropDownAction) am.get(InspectorAction.KEY);
-    final DropDownAction viewModeAction = (DropDownAction) am.get(LayoutModeAction.KEY);
-    final ActionEx modeAll = am.get(LayoutModeAllAction.KEY);
-    final ActionEx modeInspector = am.get(LayoutModeInspectorOnlyAction.KEY);
-    final ActionEx modePreview = am.get(LayoutModePreviewOnlyAction.KEY);
-    final ActionEx modeNone = am.get(LayoutModeNoneAction.KEY);
+    final DropDownAction previewAction = (DropDownAction) am.get(PreviewAction.ID);
+    final DropDownAction inspectorAction = (DropDownAction) am.get(InspectorAction.ID);
+    final DropDownAction viewModeAction = (DropDownAction) am.get(LayoutModeAction.ID);
+    final ActionEx modeAll = am.get(LayoutModeAllAction.ID);
+    final ActionEx modeInspector = am.get(LayoutModeInspectorOnlyAction.ID);
+    final ActionEx modePreview = am.get(LayoutModePreviewOnlyAction.ID);
+    final ActionEx modeNone = am.get(LayoutModeNoneAction.ID);
 
     modeAll.setChecked(false);
     modeInspector.setChecked(false);
@@ -493,15 +502,15 @@ public final class Application implements MessageKey, KeySuffix {
     switch (mode) {
     case LayoutMode.NONE:
       //  change the menu items
-      inspectorAction.showSubAction(ShowInspectorAction.KEY);
-      inspectorAction.hideSubAction(HideInspectorAction.KEY);
-      previewAction.showSubAction(ShowPreviewAction.KEY);
-      previewAction.hideSubAction(HidePreviewAction.KEY);
+      inspectorAction.showSubAction(ShowInspectorAction.ID);
+      inspectorAction.hideSubAction(HideInspectorAction.ID);
+      previewAction.showSubAction(ShowPreviewAction.ID);
+      previewAction.hideSubAction(HidePreviewAction.ID);
       //  change the tool bar items
-      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, true);
-      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, false);
-      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, true);
-      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.ID, true);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.ID, false);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.ID, true);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.ID, false);
       //  change the action's checking state
       modeNone.setChecked(true);
       viewModeAction.setImageDescriptor(modeNone.getImageDescriptor());
@@ -511,15 +520,15 @@ public final class Application implements MessageKey, KeySuffix {
       break;
     case LayoutMode.INSPECTOR:
       //  change the menu items
-      inspectorAction.hideSubAction(ShowInspectorAction.KEY);
-      inspectorAction.showSubAction(HideInspectorAction.KEY);
-      previewAction.showSubAction(ShowPreviewAction.KEY);
-      previewAction.hideSubAction(HidePreviewAction.KEY);
+      inspectorAction.hideSubAction(ShowInspectorAction.ID);
+      inspectorAction.showSubAction(HideInspectorAction.ID);
+      previewAction.showSubAction(ShowPreviewAction.ID);
+      previewAction.hideSubAction(HidePreviewAction.ID);
       //  change the tool bar items
-      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, false);
-      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, true);
-      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, true);
-      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, false);
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.ID, false);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.ID, true);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.ID, true);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.ID, false);
       //  change the action's checking state
       modeInspector.setChecked(true);
       viewModeAction.setImageDescriptor(modeInspector.getImageDescriptor());
@@ -529,15 +538,15 @@ public final class Application implements MessageKey, KeySuffix {
       break;
     case LayoutMode.PREVIEW:
       //  change the menu items
-      inspectorAction.showSubAction(ShowInspectorAction.KEY);
-      inspectorAction.hideSubAction(HideInspectorAction.KEY);
-      previewAction.hideSubAction(ShowPreviewAction.KEY);
-      previewAction.showSubAction(HidePreviewAction.KEY);
+      inspectorAction.showSubAction(ShowInspectorAction.ID);
+      inspectorAction.hideSubAction(HideInspectorAction.ID);
+      previewAction.hideSubAction(ShowPreviewAction.ID);
+      previewAction.showSubAction(HidePreviewAction.ID);
       //  change the tool bar items
-      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, true);
-      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, false);
-      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, false);
-      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.ID, true);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.ID, false);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.ID, false);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.ID, true);
       //  change the action's checking state
       modePreview.setChecked(true);
       viewModeAction.setImageDescriptor(modePreview.getImageDescriptor());
@@ -547,15 +556,15 @@ public final class Application implements MessageKey, KeySuffix {
       break;
     case LayoutMode.ALL:
       //  change the menu items
-      inspectorAction.hideSubAction(ShowInspectorAction.KEY);
-      inspectorAction.showSubAction(HideInspectorAction.KEY);
-      previewAction.hideSubAction(ShowPreviewAction.KEY);
-      previewAction.showSubAction(HidePreviewAction.KEY);
+      inspectorAction.hideSubAction(ShowInspectorAction.ID);
+      inspectorAction.showSubAction(HideInspectorAction.ID);
+      previewAction.hideSubAction(ShowPreviewAction.ID);
+      previewAction.showSubAction(HidePreviewAction.ID);
       //  change the tool bar items
-      mainWindow.setToolBarActionVisibility(ShowInspectorAction.KEY, false);
-      mainWindow.setToolBarActionVisibility(HideInspectorAction.KEY, true);
-      mainWindow.setToolBarActionVisibility(ShowPreviewAction.KEY, false);
-      mainWindow.setToolBarActionVisibility(HidePreviewAction.KEY, true);
+      mainWindow.setToolBarActionVisibility(ShowInspectorAction.ID, false);
+      mainWindow.setToolBarActionVisibility(HideInspectorAction.ID, true);
+      mainWindow.setToolBarActionVisibility(ShowPreviewAction.ID, false);
+      mainWindow.setToolBarActionVisibility(HidePreviewAction.ID, true);
       //  change the action's checking state
       modeAll.setChecked(true);
       viewModeAction.setImageDescriptor(modeAll.getImageDescriptor());
@@ -590,11 +599,11 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updateInspectorTab() {
-    final DropDownAction windowAction = (DropDownAction) am.get(WindowAction.KEY);
-    final ActionEx infoTabAction = am.get(InspectorInfoTabAction.KEY);
-    final ActionEx notesTabAction = am.get(InspectorNotesTabAction.KEY);
-    final ActionEx reviewsTabAction = am.get(InspectorReviewsTabAction.KEY);
-    final ActionEx filesTabAction = am.get(InspectorOverviewTabAction.KEY);
+    final DropDownAction windowAction = (DropDownAction) am.get(WindowAction.ID);
+    final ActionEx infoTabAction = am.get(InspectorInfoTabAction.ID);
+    final ActionEx notesTabAction = am.get(InspectorNotesTabAction.ID);
+    final ActionEx reviewsTabAction = am.get(InspectorReviewsTabAction.ID);
+    final ActionEx filesTabAction = am.get(InspectorOverviewTabAction.ID);
     infoTabAction.setChecked(false);
     notesTabAction.setChecked(false);
     reviewsTabAction.setChecked(false);
@@ -637,12 +646,12 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updateBrowserMode() {
-    final DropDownAction view = (DropDownAction) am.get(ViewAction.KEY);
-    final DropDownAction browserMode = (DropDownAction) am.get(BrowserModeAction.KEY);
-    final BaseAction asList = (BaseAction) am.get(AsListAction.KEY);
-    final BaseAction asColumns = (BaseAction) am.get(AsColumnsAction.KEY);
-    final BaseAction asIcons = (BaseAction) am.get(AsIconsAction.KEY);
-    final BaseAction asCoverFlow = (BaseAction) am.get(AsCoverFlowAction.KEY);
+    final DropDownAction view = (DropDownAction) am.get(ViewAction.ID);
+    final DropDownAction browserMode = (DropDownAction) am.get(BrowserModeAction.ID);
+    final BaseAction asList = (BaseAction) am.get(AsListAction.ID);
+    final BaseAction asColumns = (BaseAction) am.get(AsColumnsAction.ID);
+    final BaseAction asIcons = (BaseAction) am.get(AsIconsAction.ID);
+    final BaseAction asCoverFlow = (BaseAction) am.get(AsCoverFlowAction.ID);
     asList.setChecked(false);
     asColumns.setChecked(false);
     asIcons.setChecked(false);
@@ -690,12 +699,12 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updateAnnotateMode() {
-    final DropDownAction annotate = (DropDownAction) am.get(AnnotateAction.KEY);
-    final BaseAction selection = (BaseAction) am.get(AnnotateSelectionAction.KEY);
-    final BaseAction highlight = (BaseAction) am.get(AnnotateHighlightAction.KEY);
-    final BaseAction underline = (BaseAction) am.get(AnnotateUnderlineAction.KEY);
-    final BaseAction strikethrough = (BaseAction) am.get(AnnotateStrikethroughAction.KEY);
-    final BaseAction note = (BaseAction) am.get(AnnotateNoteAction.KEY);
+    final DropDownAction annotate = (DropDownAction) am.get(AnnotateAction.ID);
+    final BaseAction selection = (BaseAction) am.get(AnnotateSelectionAction.ID);
+    final BaseAction highlight = (BaseAction) am.get(AnnotateHighlightAction.ID);
+    final BaseAction underline = (BaseAction) am.get(AnnotateUnderlineAction.ID);
+    final BaseAction strikethrough = (BaseAction) am.get(AnnotateStrikethroughAction.ID);
+    final BaseAction note = (BaseAction) am.get(AnnotateNoteAction.ID);
     final AnnotateMode mode = state.getAnnotateMode();
     selection.setChecked(false);
     highlight.setChecked(false);
@@ -757,10 +766,10 @@ public final class Application implements MessageKey, KeySuffix {
 
   private void updateFlagStatusFilters() {
     final DropDownAction flagFilter = (DropDownAction)
-        am.get(FilterFlagStatusAction.KEY);
-    final ActionEx all = am.get(FilterFlagStatusAllAction.KEY);
-    final ActionEx flagged = am.get(FilterFlagStatusFlaggedAction.KEY);
-    final ActionEx unflagged = am.get(FilterFlagStatusUnflaggedAction.KEY);
+        am.get(FilterFlagStatusAction.ID);
+    final ActionEx all = am.get(FilterFlagStatusAllAction.ID);
+    final ActionEx flagged = am.get(FilterFlagStatusFlaggedAction.ID);
+    final ActionEx unflagged = am.get(FilterFlagStatusUnflaggedAction.ID);
     all.setChecked(false);
     flagged.setChecked(false);
     unflagged.setChecked(false);
@@ -833,12 +842,12 @@ public final class Application implements MessageKey, KeySuffix {
   private void updateReadStatusFilters() {
     //  TODO: set the filter in the document list table
     final DropDownAction filterAction =
-        (DropDownAction) am.get(FilterReadStatusAction.KEY);
-    final ActionEx all = am.get(FilterReadStatusAllAction.KEY);
-    final ActionEx unread = am.get(FilterReadStatusUnreadAction.KEY);
-    final ActionEx toread = am.get(FilterReadStatusToReadAction.KEY);
-    final ActionEx reading = am.get(FilterReadStatusReadingAction.KEY);
-    final ActionEx hasRead = am.get(FilterReadStatusHasReadAction.KEY);
+        (DropDownAction) am.get(FilterReadStatusAction.ID);
+    final ActionEx all = am.get(FilterReadStatusAllAction.ID);
+    final ActionEx unread = am.get(FilterReadStatusUnreadAction.ID);
+    final ActionEx toread = am.get(FilterReadStatusToReadAction.ID);
+    final ActionEx reading = am.get(FilterReadStatusReadingAction.ID);
+    final ActionEx hasRead = am.get(FilterReadStatusHasReadAction.ID);
     all.setChecked(false);
     unread.setChecked(false);
     toread.setChecked(false);
@@ -917,11 +926,11 @@ public final class Application implements MessageKey, KeySuffix {
   }
 
   private void updateTypeFilters() {
-    final DropDownAction filterAction = (DropDownAction) am.get(FilterTypeAction.KEY);
-    final ActionEx all = am.get(FilterTypeAllAction.KEY);
+    final DropDownAction filterAction = (DropDownAction) am.get(FilterDocumentTypeAction.ID);
+    final ActionEx all = am.get(FilterDocumentTypeAllAction.ID);
     all.setChecked(false);
     for (final DocumentType type : DocumentType.values()) {
-      final String id = FilterTypeForAction.getActionId(type);
+      final String id = FilterDocumentTypeForAction.getActionId(type);
       final ActionEx action = am.get(id);
       action.setChecked(false);
     }
@@ -932,7 +941,7 @@ public final class Application implements MessageKey, KeySuffix {
       filters.clear();
     } else {
       for (final DocumentType type : filters) {
-        final String id = FilterTypeForAction.getActionId(type);
+        final String id = FilterDocumentTypeForAction.getActionId(type);
         final ActionEx action = am.get(id);
         action.setChecked(true);
       }
@@ -971,10 +980,10 @@ public final class Application implements MessageKey, KeySuffix {
 
   private void updateFileStatusFilters() {
     final DropDownAction filterAction =
-        (DropDownAction) am.get(FilterFileStatusAction.KEY);
-    final ActionEx all = am.get(FilterFileStatusAllAction.KEY);
-    final ActionEx has_file = am.get(FilterFileStatusHasFileAction.KEY);
-    final ActionEx no_file = am.get(FilterFileStatusNoFileAction.KEY);
+        (DropDownAction) am.get(FilterFileStatusAction.ID);
+    final ActionEx all = am.get(FilterFileStatusAllAction.ID);
+    final ActionEx has_file = am.get(FilterFileStatusHasFileAction.ID);
+    final ActionEx no_file = am.get(FilterFileStatusNoFileAction.ID);
     all.setChecked(false);
     has_file.setChecked(false);
     no_file.setChecked(false);
@@ -1003,33 +1012,28 @@ public final class Application implements MessageKey, KeySuffix {
 
   private void updateFilterActionIcon() {
     logger.debug("Updating the icon of the FilterAction.");
-    final BaseDropDownAction filterAction = (BaseDropDownAction) am.get(FilterAction.KEY);
+    final BaseAction filterAction = (BaseAction) am.get(FilterAction.ID);
     filterAction.setChecked(false);
     final Set<FlagStatus> flagFilters = state.getFlagStatusFilters();
     if (! flagFilters.isEmpty()) {
       filterAction.setChecked(true);
-      filterAction.update(true);
       return;
     }
     final Set<ReadStatus> readFilters = state.getReadStatusFilters();
     if (! readFilters.isEmpty()) {
       filterAction.setChecked(true);
-      filterAction.update(true);
       return;
     }
     final Set<DocumentType> typeFilters = state.getTypeFilters();
     if (! typeFilters.isEmpty()) {
       filterAction.setChecked(true);
-      filterAction.update(true);
       return;
     }
     final Set<FileStatus> fileFilters = state.getFileStatusFilters();
     if (! fileFilters.isEmpty()) {
       filterAction.setChecked(true);
-      filterAction.update(true);
       return;
     }
-    filterAction.update(true);
   }
 
   private void filterDocuments() {
@@ -1050,7 +1054,6 @@ public final class Application implements MessageKey, KeySuffix {
     //  note that even if the column has already been contained, we should still
     //  update the columns, in order to make the GUI components consistent.
     updateColumns();
-    updateColumnsActionIcon();
   }
 
   /**
@@ -1066,7 +1069,6 @@ public final class Application implements MessageKey, KeySuffix {
     //  note that even if the column has not been contained, we should still
     //  update the columns, in order to make the GUI components consistent.
     updateColumns();
-    updateColumnsActionIcon();
   }
 
   /**
@@ -1077,17 +1079,16 @@ public final class Application implements MessageKey, KeySuffix {
     final Page page = state.getPage();
     logger.debug("Updating columns for page {}: {}", page, columns);
     //  update the menu actions
-    final DropDownAction columnsAction = (DropDownAction) am.get(DisplayColumnsAction.KEY);
-    final DropDownAction sortByAction = (DropDownAction) am.get(SortAction.KEY);
+    final DropDownAction sortByAction = (DropDownAction) am.get(SortAction.ID);
     for (final FieldType col : FieldType.values()) {
-      final String columnActionId = DisplayColumnForAction.getActionId(col);
+      final String columnActionId = SelectColumnForAction.getActionId(col);
       final ActionEx columnAction = am.get(columnActionId);
       columnAction.setChecked(false);
       final String sortByColumnId = SortByColumnForAction.getActionId(col);
       sortByAction.hideSubAction(sortByColumnId);
     }
     for (final FieldType col : columns) {
-      final String columnActionId = DisplayColumnForAction.getActionId(col);
+      final String columnActionId = SelectColumnForAction.getActionId(col);
       final ActionEx columnAction = am.get(columnActionId);
       columnAction.setChecked(true);
       final String sortByColumnId = SortByColumnForAction.getActionId(col);
@@ -1098,19 +1099,9 @@ public final class Application implements MessageKey, KeySuffix {
       final String id = SortByColumnForAction.getActionId(sortColumn);
       sortByAction.showSubAction(id);
     }
-    columnsAction.update(true);
     sortByAction.update(true);
     //  TODO: update the columns in the table viewer
   }
-
-
-  private void updateColumnsActionIcon() {
-    logger.debug("Updating the icon of the ColumnsAction.");
-    final BaseDropDownAction columnsAction = (BaseDropDownAction) am.get(DisplayColumnsAction.KEY);
-    final Set<FieldType> columns = state.getColumns();
-    columnsAction.setChecked(! columns.isEmpty());
-  }
-
 
   /**
    * Sets the sorting column for the current page.
@@ -1131,7 +1122,7 @@ public final class Application implements MessageKey, KeySuffix {
     final Page page = state.getPage();
     final FieldType column = state.getSortColumn();
     logger.debug("Updating the sorting column for the page {}: {}", page, column);
-    final ActionEx sortByNone = am.get(SortByDefaultColumnAction.KEY);
+    final ActionEx sortByNone = am.get(SortByDefaultColumnAction.ID);
     sortByNone.setChecked(false);
     for (final FieldType col : FieldType.values()) {
       final String id = SortByColumnForAction.getActionId(col);
@@ -1145,7 +1136,7 @@ public final class Application implements MessageKey, KeySuffix {
       final ActionEx action = am.get(id);
       action.setChecked(true);
     }
-    final DropDownAction sortBy = (DropDownAction) am.get(SortAction.KEY);
+    final DropDownAction sortBy = (DropDownAction) am.get(SortAction.ID);
     sortBy.update(true);
     sortDocuments();
   }
@@ -1166,8 +1157,8 @@ public final class Application implements MessageKey, KeySuffix {
   private void updateSortOrder() {
     final SortOrder order = state.getSortOrder();
     logger.debug("Updating the sorting order {}.", order);
-    final ActionEx sortOrderAsc = am.get(SortOrderAscAction.KEY);
-    final ActionEx sortOrderDesc = am.get(SortOrderDescAction.KEY);
+    final ActionEx sortOrderAsc = am.get(SortOrderAscAction.ID);
+    final ActionEx sortOrderDesc = am.get(SortOrderDescAction.ID);
     sortOrderAsc.setChecked(false);
     sortOrderDesc.setChecked(false);
     switch (order) {
@@ -1181,16 +1172,16 @@ public final class Application implements MessageKey, KeySuffix {
       logger.error("Unknown sorting order: {}", order);
       return;
     }
-    final DropDownAction sortBy = (DropDownAction) am.get(SortAction.KEY);
+    final DropDownAction sortBy = (DropDownAction) am.get(SortAction.ID);
     sortBy.update(true);
     sortDocuments();
   }
 
   private void updateSortActionIcon() {
     logger.debug("Updating the icon of the SortAction.");
-    final BaseDropDownAction sortAction = (BaseDropDownAction) am.get(SortAction.KEY);
-    final BaseAction sortAscAction = (BaseAction) am.get(SortOrderAscAction.KEY);
-    final BaseAction sortDescAction = (BaseAction) am.get(SortOrderDescAction.KEY);
+    final BaseDropDownAction sortAction = (BaseDropDownAction) am.get(SortAction.ID);
+    final BaseAction sortAscAction = (BaseAction) am.get(SortOrderAscAction.ID);
+    final BaseAction sortDescAction = (BaseAction) am.get(SortOrderDescAction.ID);
     final SortOrder order = state.getSortOrder();
     switch (order) {
     case ASC:
