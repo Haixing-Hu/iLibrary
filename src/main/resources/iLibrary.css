@@ -1,0 +1,128 @@
+/*
+ * Copyright (C) 2014 Haixing Hu
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+#main-window {
+    -fx-min-width: 700;
+    -fx-pref-width: 1000;
+    -fx-min-height: 500;
+    -fx-pref-height: 600;    
+    -fx-background-color: #E1E1E1;
+}
+
+#main-header {
+    -fx-min-height: 40;
+    -fx-max-height: 40;
+    -fx-pref-height: 40;
+}
+
+.button {
+    -fx-background-color: transparent, transparent, transparent, transparent;
+}
+
+/*
+.button:hover{
+    -fx-background-color: transparent, rgba(0,0,0,.1), rgba(0,0,0,.1), transparent;
+}
+*/
+/*
+.button:armed {
+    -fx-background-color: transparent, rgba(0,0,0,.1), rgba(0,0,0,.1), rgba(0,0,0,.2);
+}
+*/
+
+#library-tab-btn {
+    -fx-graphic: url(images/page-library.png);    
+}
+
+#library-tab-btn:hover {
+    -fx-graphic: url(images/page-library-a.png);    
+}
+
+#library-tab-btn:checked {
+    -fx-graphic: url(images/page-library-a.png);    
+}
+
+#search-tab-btn {
+    -fx-graphic: url(images/page-search.png);    
+}
+
+#search-tab-btn:hover {
+    -fx-graphic: url(images/page-search-a.png);    
+}
+
+#search-tab-btn:checked {
+    -fx-graphic: url(images/page-search-a.png);    
+}
+
+#tags-tab-btn {
+    -fx-graphic: url(images/page-tags.png);    
+}
+
+#tags-tab-btn:hover {
+    -fx-graphic: url(images/page-tags-a.png);    
+}
+
+#tags-tab-btn:checked {
+    -fx-graphic: url(images/page-tags-a.png);    
+}
+
+#authors-tab-btn {
+    -fx-graphic: url(images/page-authors.png);    
+}
+
+#authors-tab-btn:hover {
+    -fx-graphic: url(images/page-authors-a.png);    
+}
+
+#authors-tab-btn:checked {
+    -fx-graphic: url(images/page-authors-a.png);    
+}
+
+#sources-tab-btn {
+    -fx-graphic: url(images/page-sources.png);    
+}
+
+#sources-tab-btn:hover {
+    -fx-graphic: url(images/page-sources-a.png);    
+}
+
+#sources-tab-btn:checked {
+    -fx-graphic: url(images/page-sources-a.png);    
+}
+
+#reader-tab-btn {
+    -fx-graphic: url(images/page-reader.png);    
+}
+
+#reader-tab-btn:hover {
+    -fx-graphic: url(images/page-reader-a.png);    
+}
+
+#reader-tab-btn:checked {
+    -fx-graphic: url(images/page-reader-a.png);    
+}
+
+.navigator {
+    -fx-min-width: 100;
+    -fx-pref-width: 160;    
+}
+
+.inspector {
+    -fx-min-width: 170;  
+    -fx-pref-width: 200;      
+}
