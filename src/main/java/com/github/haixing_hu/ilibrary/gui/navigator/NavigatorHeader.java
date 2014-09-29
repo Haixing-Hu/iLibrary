@@ -53,7 +53,7 @@ public class NavigatorHeader extends BasicHeader implements KeySuffix {
   protected Control createControl() {
     final AppConfig config = application.getConfig();
     final int fontSize = config.getInt(ID + FONT_SIZE);
-    final Color fontColor = config.getHeavyFontColor();
+    final Color fontColor = config.getColor(Application.ID + FONT + HEAVY + COLOR);
     final Label label = new Label(this, SWT.NONE);
     label.setText(title);
     final Font font= SWTResourceManager.getFont(label.getFont(),

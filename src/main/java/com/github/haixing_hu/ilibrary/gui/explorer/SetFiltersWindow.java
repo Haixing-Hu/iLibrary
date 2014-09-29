@@ -16,6 +16,7 @@ package com.github.haixing_hu.ilibrary.gui.explorer;
 
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -89,7 +90,8 @@ public class SetFiltersWindow extends BasicBalloonWindow implements KeySuffix {
 
     final Label titleLabel = new Label(contents, SWT.LEFT);
     titleLabel.setText(parentAction.getTitle());
-    titleLabel.setForeground(config.getHeavyFontColor());
+    final Color color = config.getColor(Application.ID + FONT + HEAVY + COLOR);
+    titleLabel.setForeground(color);
     final GridData gd_title = new GridData(SWT.LEFT, SWT.CENTER,
         false, false, perLine, 1);
     titleLabel.setLayoutData(gd_title);

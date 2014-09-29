@@ -127,4 +127,5 @@ public interface KeySuffix {
 
   public static final String TITLE_SPACING = ".title-spacing";
 
+  public static final String STYLE = ".style";
 }

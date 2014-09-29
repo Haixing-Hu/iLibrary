@@ -18,6 +18,7 @@
 
 package com.github.haixing_hu.ilibrary;
 
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.math.BigDecimal;
@@ -27,7 +28,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
@@ -47,8 +47,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
-
 
 /**
  * The global configuration of the application.
@@ -64,8 +62,7 @@ public final class AppConfig implements ApplicationContext,
   private final Locale locale;
   private final String name;
   private final String version;
-  private final Color heavyFontColor;
-  private final Color lightFontColor;
+  private final String stylesheet;
 
   /**
    * Constructs a {@link AppConfig}.
@@ -80,11 +77,10 @@ public final class AppConfig implements ApplicationContext,
     } else {
       locale = new Locale(localeName);
     }
-
     name = context.getMessage(Application.ID + NAME, null, locale);
     version = config.getString(Application.ID + VERSION);
-    heavyFontColor = getColor(Application.ID + FONT + HEAVY + COLOR);
-    lightFontColor = getColor(Application.ID + FONT + LIGHT + COLOR);
+    String css = config.getString(Application.ID + STYLE);
+    stylesheet = this.getClass().getResource(css).toExternalForm();
 
     logger.info("{}, {}", name, version);
     logger.info("Sets the locale to {}.", locale);
@@ -118,21 +114,12 @@ public final class AppConfig implements ApplicationContext,
   }
 
   /**
-   * Gets the heavyFontColor.
+   * Gets the path of the stylesheet of this application.
    *
-   * @return the heavyFontColor.
+   * @return the path of the stylesheet of this application.
    */
-  public Color getHeavyFontColor() {
-    return heavyFontColor;
-  }
-
-  /**
-   * Gets the lightFontColor.
-   *
-   * @return the lightFontColor.
-   */
-  public Color getLightFontColor() {
-    return lightFontColor;
+  public String getStylesheet() {
+    return stylesheet;
   }
 
   @Override
