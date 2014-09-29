@@ -1,14 +1,13 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>com.github.haixing_hu</groupId>
 		<artifactId>pom-root</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<artifactId>iLibrary</artifactId>
 	<version>${ilibrary.version}</version>
 	<packaging>jar</packaging>
@@ -47,11 +46,11 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>		
+		</profile>
 	</profiles>
 
 	<build>
-		<plugins>			
+		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -85,14 +84,22 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>		
+			<plugin>
+				<groupId>com.zenjava</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<mainClass>com.github.haixing_hu.ilibrary.Application2</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<dependencies>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -104,7 +111,7 @@
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
-		</dependency>				
+		</dependency>
 		<dependency>
 			<groupId>org.eclipse.swt</groupId>
 			<artifactId>${swt.artifactId}</artifactId>
@@ -112,7 +119,7 @@
 		<dependency>
 			<groupId>org.eclipse.jface</groupId>
 			<artifactId>org.eclipse.jface</artifactId>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -121,17 +128,17 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 		</dependency>
-		<dependency>		
+		<dependency>
 			<groupId>com.github.haixing_hu</groupId>
 			<artifactId>java-commons</artifactId>
-		</dependency>		
-		<dependency>		
+		</dependency>
+		<dependency>
 			<groupId>com.github.haixing_hu</groupId>
 			<artifactId>csl-proc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.github.haixing_hu</groupId>
-			<artifactId>swt-widgets</artifactId>			
-		</dependency>		
+			<artifactId>swt-widgets</artifactId>
+		</dependency>
 	</dependencies>
 </project>
