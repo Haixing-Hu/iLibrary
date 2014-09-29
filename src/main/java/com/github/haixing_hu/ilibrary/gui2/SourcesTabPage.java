@@ -15,32 +15,31 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.github.haixing_hu.ilibrary.gui2.inspector;
+package com.github.haixing_hu.ilibrary.gui2;
 
-import javafx.scene.layout.VBox;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javafx.scene.control.TreeView;
 
 import com.github.haixing_hu.ilibrary.Application2;
+import com.github.haixing_hu.ilibrary.gui2.inspector.InspectorPanel;
+import com.github.haixing_hu.ilibrary.gui2.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui2.work.WorkingPanel;
+import com.github.haixing_hu.ilibrary.state.Page;
 
 /**
- * The inspector panel.
+ * The tab page for the sources module.
  *
- * @author Haixing Hu
+ * @author starfish
  */
-public class InspectorPanel extends VBox {
+public class SourcesTabPage extends TabPage {
 
-  public static final String STYLE_CLASS = "inspector-panel";
+  public static final String ID = "sources-tab-page";
 
-  private final Logger logger;
-
-  public InspectorPanel(final Application2 application) {
-    super();
-    logger = LoggerFactory.getLogger(InspectorPanel.class);
-    logger.trace("Craeting {}", InspectorPanel.class);
-    getStyleClass().add(STYLE_CLASS);
-
+  public SourcesTabPage(final Application2 application) {
+    super(application,
+          new NavigatorPanel(application, Page.SOURCES, new TreeView<String>()),
+          new WorkingPanel(application),
+          new InspectorPanel(application));
+    this.setId(ID);
     //  TODO
   }
 }

@@ -15,32 +15,21 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.github.haixing_hu.ilibrary.gui2.inspector;
-
-import javafx.scene.layout.VBox;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.github.haixing_hu.ilibrary.control;
 
 import com.github.haixing_hu.ilibrary.Application2;
 
 /**
- * The inspector panel.
+ * The controler used to control the reader related busyness logic.
  *
- * @author Haixing Hu
+ * @author starfish
  */
-public class InspectorPanel extends VBox {
+public class ReaderController {
 
-  public static final String STYLE_CLASS = "inspector-panel";
+  final Application2 application;
 
-  private final Logger logger;
-
-  public InspectorPanel(final Application2 application) {
-    super();
-    logger = LoggerFactory.getLogger(InspectorPanel.class);
-    logger.trace("Craeting {}", InspectorPanel.class);
-    getStyleClass().add(STYLE_CLASS);
-
+  public ReaderController(final Application2 application) {
+    this.application = application;
     //  TODO
   }
 }

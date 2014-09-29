@@ -17,48 +17,69 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.github.haixing_hu.ilibrary.AppConfig;
+import com.github.haixing_hu.ilibrary.Application2;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
+import com.github.haixing_hu.ilibrary.control.ExplorerController;
+import com.github.haixing_hu.ilibrary.state.Page;
+import com.github.haixing_hu.lang.EnumUtils;
 
 /**
  * The header of the main window. 
  *
  * @author Haixing Hu
  */
-public class MainHeader extends ToolBar implements KeySuffix {
+public class MainHeader extends HBox implements KeySuffix {
 
-  public static final String ID = MainWindow.ID + HEADER;
+  public static final String ID = "main-header";
 
-  public static final String STYLE_CLASS = "main-header";
+  public static final String TOOLBAR_ID = "main-toolbar";
 
-  private final Button searchTab;
-  private final Button libraryTab;
-  private final Button tagsTab;
-  private final Button authorsTab;
-  private final Button sourcesTab;
-  private final Button readerTab;
+  public static final String BUTTON_ID_SUFFIX = "-tab-button";
 
-  public MainHeader(final AppConfig config) {
+  private final Logger logger;
+  private final ToggleButton buttons[];
+
+  public MainHeader(final Application2 application) {
     super();
-    this.setId("main-header");
+    logger = LoggerFactory.getLogger(MainHeader.class);
+    logger.trace("Craeting {}", MainHeader.class);
+    setId(ID);
+    final ObservableList<Node> children = getChildren();
+    final Page[] pages = Page.values();
+    buttons = new ToggleButton[pages.length];
+    for (int i = 0; i < pages.length; ++i) {
+      buttons[i] = createButton(application, pages[i]);
+      children.add(buttons[i]);
+    }
+  }
 
-    libraryTab = new Button();
-    libraryTab.setId("library-tab-btn");
-    searchTab = new Button();
-    searchTab.setId("search-tab-btn");
-    tagsTab = new Button();
-    tagsTab.setId("tags-tab-btn");
-    authorsTab = new Button();
-    authorsTab.setId("authors-tab-btn");
-    sourcesTab = new Button();
-    sourcesTab.setId("sources-tab-btn");
-    readerTab = new Button();
-    readerTab.setId("reader-tab-btn");
-
-    this.getItems().addAll(searchTab, libraryTab, tagsTab, authorsTab,
-            sourcesTab, readerTab );
-
+  private ToggleButton createButton(final Application2 application, final Page page) {
+    logger.trace("Creating page tab button for page {}", page);
+    final ToggleButton button = new ToggleButton();
+    final String pageId = EnumUtils.getShortName(page);
+    button.setId(pageId + BUTTON_ID_SUFFIX);
+    final AppConfig config = application.getConfig();
+    final String pageTitle = config.getMessage(pageId + TITLE);
+    button.setTooltip(new Tooltip(pageTitle));
+    final ExplorerController controller = application.getExplorerControler();
+    button.setOnAction(new EventHandler<ActionEvent>(){
+      @Override
+      public void handle(ActionEvent actionEvent) {
+        controller.setPage(page);
+      }
+    });
+    return button;
   }
 }

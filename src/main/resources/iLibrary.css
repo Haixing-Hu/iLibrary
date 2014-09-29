@@ -15,114 +15,163 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+  
+/******************************************************************************
+ *
+ *  Modification for Styles of Default Controls
+ *
+ ******************************************************************************/ 
+ 
+ /* Makes the toggle button flat */
+.toggle-button {
+    -fx-background-color: transparent, transparent, transparent, transparent;
+    -fx-box-border: transparent;
+}
 
+/* Sets the width of split pane divider to be 1 */
+.split-pane > .split-pane-divider {  
+    -fx-padding: 0 1 0 1;  
+}
+  
+/******************************************************************************
+ *
+ *  Style for Application GUI Components
+ *
+ ******************************************************************************/ 
+ 
 #main-window {
     -fx-min-width: 700;
     -fx-pref-width: 1000;
     -fx-min-height: 500;
     -fx-pref-height: 600;    
-    -fx-background-color: #E1E1E1;
+    -fx-background-color: #E1E1E1;  
 }
 
 #main-header {
     -fx-min-height: 40;
     -fx-max-height: 40;
     -fx-pref-height: 40;
+    -fx-spacing: 10;
+	-fx-alignment: center;
+	-fx-background-images: url(images/bg_main_header.png);
 }
 
-.button {
-    -fx-background-color: transparent, transparent, transparent, transparent;
-}
-
-/*
-.button:hover{
-    -fx-background-color: transparent, rgba(0,0,0,.1), rgba(0,0,0,.1), transparent;
-}
-*/
-/*
-.button:armed {
-    -fx-background-color: transparent, rgba(0,0,0,.1), rgba(0,0,0,.1), rgba(0,0,0,.2);
-}
-*/
-
-#library-tab-btn {
+#library-tab-button {
     -fx-graphic: url(images/page-library.png);    
 }
 
-#library-tab-btn:hover {
+#library-tab-button:hover {
     -fx-graphic: url(images/page-library-a.png);    
 }
 
-#library-tab-btn:checked {
+#library-tab-button:selected {
     -fx-graphic: url(images/page-library-a.png);    
 }
 
-#search-tab-btn {
+#search-tab-button {
     -fx-graphic: url(images/page-search.png);    
 }
 
-#search-tab-btn:hover {
+#search-tab-button:hover {
     -fx-graphic: url(images/page-search-a.png);    
 }
 
-#search-tab-btn:checked {
+#search-tab-button:selected {
     -fx-graphic: url(images/page-search-a.png);    
 }
 
-#tags-tab-btn {
+#tags-tab-button {
     -fx-graphic: url(images/page-tags.png);    
 }
 
-#tags-tab-btn:hover {
+#tags-tab-button:hover {
     -fx-graphic: url(images/page-tags-a.png);    
 }
 
-#tags-tab-btn:checked {
+#tags-tab-button:selected {
     -fx-graphic: url(images/page-tags-a.png);    
 }
 
-#authors-tab-btn {
+#authors-tab-button {
     -fx-graphic: url(images/page-authors.png);    
 }
 
-#authors-tab-btn:hover {
+#authors-tab-button:hover {
     -fx-graphic: url(images/page-authors-a.png);    
 }
 
-#authors-tab-btn:checked {
+#authors-tab-button:selected {
     -fx-graphic: url(images/page-authors-a.png);    
 }
 
-#sources-tab-btn {
+#sources-tab-button {
     -fx-graphic: url(images/page-sources.png);    
 }
 
-#sources-tab-btn:hover {
+#sources-tab-button:hover {
     -fx-graphic: url(images/page-sources-a.png);    
 }
 
-#sources-tab-btn:checked {
+#sources-tab-button:selected {
     -fx-graphic: url(images/page-sources-a.png);    
 }
 
-#reader-tab-btn {
+#reader-tab-button {
     -fx-graphic: url(images/page-reader.png);    
 }
 
-#reader-tab-btn:hover {
+#reader-tab-button:hover {
     -fx-graphic: url(images/page-reader-a.png);    
 }
 
-#reader-tab-btn:checked {
+#reader-tab-button:selected {
     -fx-graphic: url(images/page-reader-a.png);    
 }
 
-.navigator {
-    -fx-min-width: 100;
-    -fx-pref-width: 160;    
+.navigator-panel {
+    -fx-min-width: 140;
+    -fx-pref-width: 160;
 }
 
-.inspector {
-    -fx-min-width: 170;  
-    -fx-pref-width: 200;      
+.working-panel {
+    -fx-min-width: 200;  
+    -fx-pref-width: 640;   
+}
+
+.inspector-panel {
+    -fx-min-width: 160;  
+    -fx-pref-width: 200;    
+}
+
+.header {
+	-fx-min-height: 33;
+	-fx-max-height: 33;
+	-fx-pref-height: 33;
+	-fx-alignment: center-left;
+	-fx-background-images: url(images/bg_page_header.png);
+}
+
+.footer {
+	-fx-min-height: 33;
+	-fx-max-height: 33;
+	-fx-pref-height: 33;
+	-fx-background-color: #ECECEC;
+}
+
+.toolbar {
+	-fx-padding: 0 10 0 10;
+	-fx-spacing: 10;
+}
+
+.title {
+	-fx-font-weight: bold;
+	-fx-font-color: #555555;
+}
+
+.page-title {
+	-fx-font-size: 14;
+}
+
+.tree-view {
+	-fx-box-border: transparent;
 }

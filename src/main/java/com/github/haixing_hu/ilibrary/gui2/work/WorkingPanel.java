@@ -17,30 +17,28 @@
  */
 package com.github.haixing_hu.ilibrary.gui2.work;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
-import com.github.haixing_hu.ilibrary.gui.MainWindow;
 import javafx.scene.layout.VBox;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.haixing_hu.ilibrary.Application2;
+
 /**
- * The library panel.
+ * The working panel.
  *
  * @author Haixing Hu
  */
-public class WorkPanel extends VBox {
+public class WorkingPanel extends VBox {
 
-  public static final String ID = MainWindow.ID + ".work";
+  public static final String STYLE_CLASS = "working-panel";
 
-  public static final String STYLE_CLASS = "work";
+  private final Logger logger;
 
-  public WorkPanel(final AppConfig config) {
+  public WorkingPanel(final Application2 application) {
     super();
-    this.getStyleClass().add("work-area");
-
-    /*
-    final int defaultWidth = config.getInt(ID + DEFAULT_WIDTH);
-    final int minWidth = config.getInt(ID + MIN_WIDTH);
-    this.setPrefWidth(defaultWidth);
-    this.setMinWidth(minWidth);
-    */
+    logger = LoggerFactory.getLogger(WorkingPanel.class);
+    logger.trace("Craeting {}", WorkingPanel.class);
+    getStyleClass().add(STYLE_CLASS);
   }
 }

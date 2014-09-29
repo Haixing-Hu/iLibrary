@@ -17,8 +17,13 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
 import javafx.scene.layout.StackPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.haixing_hu.ilibrary.Application2;
+import com.github.haixing_hu.ilibrary.state.Page;
 
 /**
  * The content eara of the main window.
@@ -27,7 +32,54 @@ import javafx.scene.layout.StackPane;
  */
 public class MainContent extends StackPane {
 
-  public MainContent(final AppConfig config) {
-    //  TODO
+  public static final String ID = "main-content";
+
+  private final Logger logger;
+  private final TabPage[] pages;
+
+  public MainContent(final Application2 application) {
+    super();
+    logger = LoggerFactory.getLogger(MainWindow.class);
+    logger.trace("Craeting {}", MainWindow.class);
+    setId(ID);
+    pages = new TabPage[Page.TOTAL];
+    pages[Page.SEARCH.ordinal()] = new SearchTabPage(application);
+    pages[Page.LIBRARY.ordinal()] = new LibraryTabPage(application);
+    pages[Page.TAGS.ordinal()] = new TagsTabPage(application);
+    pages[Page.AUTHORS.ordinal()] = new AuthorsTabPage(application);
+    pages[Page.SOURCES.ordinal()] = new SourcesTabPage(application);
+    pages[Page.READER.ordinal()] = new ReaderTabPage(application);
+    for (final TabPage page : pages) {
+      getChildren().add(page);
+    }
+  }
+
+  public SearchTabPage getSearchTabPage() {
+    return (SearchTabPage) pages[Page.SEARCH.ordinal()];
+  }
+
+  public LibraryTabPage getLibraryTabPage() {
+    return (LibraryTabPage) pages[Page.LIBRARY.ordinal()];
+  }
+
+  public TagsTabPage getTagsTabPage() {
+    return (TagsTabPage) pages[Page.TAGS.ordinal()];
+  }
+
+  public AuthorsTabPage getAuthorsTabPage() {
+    return (AuthorsTabPage) pages[Page.AUTHORS.ordinal()];
+  }
+
+  public SourcesTabPage getSourcesTabPage() {
+    return (SourcesTabPage) pages[Page.SOURCES.ordinal()];
+  }
+
+  public ReaderTabPage getReaderTabPage() {
+    return (ReaderTabPage) pages[Page.READER.ordinal()];
+  }
+
+  public void switchToPage(Page page) {
+    logger.trace("Swtich to page {}",page);
+    pages[page.ordinal()].toFront();
   }
 }

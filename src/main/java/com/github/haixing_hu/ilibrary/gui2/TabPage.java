@@ -17,12 +17,16 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
-import com.github.haixing_hu.ilibrary.gui2.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui2.navigator.NavigatorPanel;
-import com.github.haixing_hu.ilibrary.gui2.work.WorkPanel;
 import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.haixing_hu.ilibrary.Application2;
+import com.github.haixing_hu.ilibrary.gui2.inspector.InspectorPanel;
+import com.github.haixing_hu.ilibrary.gui2.navigator.NavigatorPanel;
+import com.github.haixing_hu.ilibrary.gui2.work.WorkingPanel;
 
 /**
  * The class of tab pages for each module.
@@ -31,17 +35,26 @@ import javafx.scene.control.SplitPane;
  */
 public class TabPage extends SplitPane {
 
-  private final NavigatorPanel navigator;
-  private final WorkPanel workArea;
-  private final InspectorPanel inspector;
+  public static final String STYLE_CLASS = "tab-page";
 
-  public TabPage(final AppConfig config, NavigatorPanel navigator,
-          WorkPanel workArea, InspectorPanel inspector) {
+  protected final Logger logger;
+  protected final NavigatorPanel navigator;
+  protected final WorkingPanel workArea;
+  protected final InspectorPanel inspector;
+
+  public TabPage(final Application2 application, NavigatorPanel navigator,
+          WorkingPanel workArea, InspectorPanel inspector) {
     super();
+    final Class<?> cls = getClass();
+    logger = LoggerFactory.getLogger(cls);
+    logger.trace("Creating {}", cls);
+    getStyleClass().add(STYLE_CLASS);
     this.navigator = navigator;
     this.workArea = workArea;
     this.inspector = inspector;
-    this.getItems().addAll(navigator, workArea, inspector);
+    getItems().addAll(navigator, workArea, inspector);
+    //  FIXME: How to set the divider positions in CSS?
+    setDividerPositions(0.2, 0.8);
   }
 
   public NavigatorPanel getNavigator() {
@@ -62,7 +75,7 @@ public class TabPage extends SplitPane {
    * @param width the new width to be set. If it is non-positive, the function
    * will hide the navigator panel.
    */
-  public void setNavigatorWidth(int width) {
+  public void hideNavigator(int width) {
     //  do nothing
   }
 

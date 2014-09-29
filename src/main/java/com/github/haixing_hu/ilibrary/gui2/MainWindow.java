@@ -17,9 +17,13 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.haixing_hu.ilibrary.Application2;
 
 /**
  * The scene representing the main window of the application.
@@ -28,30 +32,17 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends VBox {
 
-  public static final String ID = "window";
+  public static final String ID = "main-window";
 
-  public static final String STYLE_CLASS = "main-window";
-
-  private final MainHeader header;
-  private final MainContent content;
-
-  public MainWindow(final AppConfig config) {
+  public MainWindow(final Application2 application) {
     super();
-    this.setId("main-window");
-
-    header = new MainHeader(config);
-    content = new MainContent(config);
+    final Logger logger = LoggerFactory.getLogger(MainWindow.class);
+    logger.trace("Craeting {}", MainWindow.class);
+    setId(ID);
+    final MainHeader header = new MainHeader(application);
+    final MainContent content = new MainContent(application);
     VBox.setVgrow(header, Priority.NEVER);
     VBox.setVgrow(content, Priority.ALWAYS);
-    this.getChildren().addAll(header, content);
+    getChildren().addAll(header, content);
   }
-
-  public MainHeader getHeader() {
-    return header;
-  }
-
-  public MainContent getContent() {
-    return content;
-  }
-
 }

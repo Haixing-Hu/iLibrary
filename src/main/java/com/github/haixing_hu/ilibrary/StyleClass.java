@@ -15,32 +15,30 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.github.haixing_hu.ilibrary.gui2.inspector;
-
-import javafx.scene.layout.VBox;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.github.haixing_hu.ilibrary.Application2;
+package com.github.haixing_hu.ilibrary;
 
 /**
- * The inspector panel.
+ * Defines the constants of style classes.
  *
- * @author Haixing Hu
+ * @author starfish
  */
-public class InspectorPanel extends VBox {
+public interface StyleClass {
 
-  public static final String STYLE_CLASS = "inspector-panel";
+  public static final String HEADER = "header";
 
-  private final Logger logger;
+  public static final String FOOTER = "footer";
 
-  public InspectorPanel(final Application2 application) {
-    super();
-    logger = LoggerFactory.getLogger(InspectorPanel.class);
-    logger.trace("Craeting {}", InspectorPanel.class);
-    getStyleClass().add(STYLE_CLASS);
+  public static final String TOOLBAR = "toolbar";
 
-    //  TODO
-  }
+  public static final String TITLE = "title";
+
+  public static final String PAGE_TITLE = "page-title";
+
+  public static final String TREE_VIEW = "tree-view";
+
+  public static final String HEAD_1 = "head-1";
+
+  public static final String HEAD_2 = "head-2";
+
+  public static final String HEAD_3 = "head-3";
 }

@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary;
 
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.math.BigDecimal;
@@ -28,6 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
@@ -46,6 +46,8 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
+
+import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 
 /**
@@ -79,10 +81,10 @@ public final class AppConfig implements ApplicationContext,
     }
     name = context.getMessage(Application.ID + NAME, null, locale);
     version = config.getString(Application.ID + VERSION);
-    String css = config.getString(Application.ID + STYLE);
+    final String css = config.getString(Application.ID + STYLE);
     stylesheet = this.getClass().getResource(css).toExternalForm();
 
-    logger.info("{}, {}", name, version);
+    logger.info("{} {}", name, version);
     logger.info("Sets the locale to {}.", locale);
   }
 
