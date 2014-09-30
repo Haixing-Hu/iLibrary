@@ -18,10 +18,8 @@
 package com.github.haixing_hu.ilibrary.gui2.navigator;
 
 import javafx.collections.ObservableList;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -54,7 +52,7 @@ public class NavigatorPanel extends VBox implements KeySuffix {
 
     final AppConfig config = application.getConfig();
     final String pageId = EnumUtils.getShortName(page);
-    final ObservableList<Node> children = this.getChildren();
+    final ObservableList<Node> children = getChildren();
 
     logger.trace("Creating navigator header.");
     final HBox header = new HBox();
@@ -64,9 +62,9 @@ public class NavigatorPanel extends VBox implements KeySuffix {
     header.getChildren().add(pageTitle);
     VBox.setVgrow(header, Priority.NEVER);
     children.add(header);
-    final Separator sep1 = new Separator(Orientation.HORIZONTAL);
-    sep1.setPrefHeight(1);
-    children.add(sep1);
+//    final Separator sep1 = new Separator(Orientation.HORIZONTAL);
+//    sep1.setPrefHeight(1);
+//    children.add(sep1);
 
 
     logger.trace("Setting navigator footer.");
@@ -74,9 +72,9 @@ public class NavigatorPanel extends VBox implements KeySuffix {
     VBox.setVgrow(tree, Priority.ALWAYS);
     children.add(tree);
 
-    final Separator sep2 = new Separator(Orientation.HORIZONTAL);
-    sep2.setPrefHeight(1);
-    children.add(sep2);
+//    final Separator sep2 = new Separator(Orientation.HORIZONTAL);
+//    sep2.setPrefHeight(1);
+//    children.add(sep2);
     logger.trace("Creating navigator footer.");
     final HBox footer = new HBox();
     footer.getStyleClass().addAll(StyleClass.FOOTER, StyleClass.TOOLBAR);

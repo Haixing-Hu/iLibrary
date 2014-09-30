@@ -53,7 +53,12 @@
     -fx-pref-height: 40;
     -fx-spacing: 10;
 	-fx-alignment: center;
-	-fx-background-images: url(images/bg_main_header.png);
+	-fx-background: derive(-fx-base,-30%);
+    -fx-background-color:
+        linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
+        linear-gradient(to bottom, derive(-fx-base,65%) 2%, derive(-fx-base,-20%) 95%);
+    -fx-background-insets: 0, 1 0 1 0;
+    -fx-background-radius: 0, 0;	
 }
 
 #library-tab-button {
@@ -148,14 +153,22 @@
 	-fx-max-height: 33;
 	-fx-pref-height: 33;
 	-fx-alignment: center-left;
-	-fx-background-images: url(images/bg_page_header.png);
+    -fx-background-color:
+    	linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
+    	-fx-base;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0, 0 ;	
 }
 
 .footer {
 	-fx-min-height: 33;
 	-fx-max-height: 33;
 	-fx-pref-height: 33;
-	-fx-background-color: #ECECEC;
+    -fx-background-color:
+    	linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
+    	-fx-base;
+    -fx-background-insets: 0, 1 0 0 0;
+    -fx-background-radius: 0, 0 ;
 }
 
 .toolbar {
@@ -165,7 +178,8 @@
 
 .title {
 	-fx-font-weight: bold;
-	-fx-font-color: #555555;
+	/* -fx-font-color: #555555; */
+	-fx-font-color: -fx-mid-text-color;
 }
 
 .page-title {
