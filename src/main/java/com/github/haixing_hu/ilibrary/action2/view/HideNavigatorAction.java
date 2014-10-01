@@ -15,32 +15,32 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.github.haixing_hu.ilibrary.gui2.inspector;
+package com.github.haixing_hu.ilibrary.action2.view;
 
-import javafx.scene.layout.VBox;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javafx.event.ActionEvent;
 
 import com.github.haixing_hu.ilibrary.Application2;
+import com.github.haixing_hu.ilibrary.action2.BaseAction;
+import com.github.haixing_hu.ilibrary.control.LayoutController;
+import com.github.haixing_hu.javafx.action.ActionOption;
 
 /**
- * The inspector panel.
+ * The action to hide the navigator panel.
  *
  * @author Haixing Hu
  */
-public class InspectorPanel extends VBox {
+public class HideNavigatorAction extends BaseAction {
 
-  public static final String STYLE_CLASS = "inspector-panel";
+  public static final String ID = ViewAction.ID + ".hide-navigator";
 
-  private final Logger logger;
-
-  public InspectorPanel(final Application2 application) {
-    super();
-    logger = LoggerFactory.getLogger(InspectorPanel.class);
-    logger.trace("Craeting {}", InspectorPanel.class);
-    getStyleClass().add(STYLE_CLASS);
-
-    //  TODO
+  public HideNavigatorAction(Application2 application) {
+    super(ID, application, ActionOption.DEFAULT | ActionOption.HIDE_MENU_ITEM_GRAPHIC);
   }
+
+  @Override
+  public void handle(ActionEvent event) {
+    final LayoutController controller = application.getLayoutController();
+    controller.setNavigatorVisible(false);
+  }
+
 }

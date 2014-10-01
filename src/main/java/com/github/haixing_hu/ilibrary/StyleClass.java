@@ -20,7 +20,7 @@ package com.github.haixing_hu.ilibrary;
 /**
  * Defines the constants of style classes.
  *
- * @author starfish
+ * @author Haixing Hu
  */
 public interface StyleClass {
 
@@ -30,11 +30,19 @@ public interface StyleClass {
 
   public static final String TOOLBAR = "toolbar";
 
+  public static final String ALIGN_CENTER_LEFT = "align-center-left";
+
+  public static final String ALIGN_CENTER = "align-center";
+
+  public static final String ALIGN_CENTER_RIGHT = "align-center-right";
+
   public static final String TITLE = "title";
 
   public static final String PAGE_TITLE = "page-title";
 
   public static final String TREE_VIEW = "tree-view";
+
+  public static final String TAB_PAGE = "tab-page";
 
   public static final String HEAD_1 = "head-1";
 

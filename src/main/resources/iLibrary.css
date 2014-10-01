@@ -22,10 +22,18 @@
  *
  ******************************************************************************/ 
  
- /* Makes the toggle button flat */
-.toggle-button {
+/* Makes the button flat */
+.button {
     -fx-background-color: transparent, transparent, transparent, transparent;
+    -fx-box-border: transparent; 
+    -fx-padding: 0;
+}
+
+/* Makes the toggle button flat */
+.toggle-button {
+     -fx-background-color: transparent, transparent, transparent, transparent;
     -fx-box-border: transparent;
+    -fx-padding: 0;
 }
 
 /* Sets the width of split pane divider to be 1 */
@@ -33,6 +41,34 @@
     -fx-padding: 0 1 0 1;  
 }
   
+/******************************************************************************
+ *
+ *  Style for global class
+ *
+ ******************************************************************************/ 
+ 
+.align-center-left {
+	-fx-alignment: center-left;
+}  
+
+.align-center {
+	-fx-alignment: center;
+}
+
+.align-center-right {
+	-fx-alignment: center-right;
+}
+
+.title {
+	-fx-font-weight: bold;
+	-fx-font-color: -fx-mid-text-color;
+}
+
+.toolbar {
+	-fx-padding: 0 0 0 0;
+	-fx-spacing: 5 !important;
+}
+
 /******************************************************************************
  *
  *  Style for Application GUI Components
@@ -61,78 +97,6 @@
     -fx-background-radius: 0, 0;	
 }
 
-#library-tab-button {
-    -fx-graphic: url(images/page-library.png);    
-}
-
-#library-tab-button:hover {
-    -fx-graphic: url(images/page-library-a.png);    
-}
-
-#library-tab-button:selected {
-    -fx-graphic: url(images/page-library-a.png);    
-}
-
-#search-tab-button {
-    -fx-graphic: url(images/page-search.png);    
-}
-
-#search-tab-button:hover {
-    -fx-graphic: url(images/page-search-a.png);    
-}
-
-#search-tab-button:selected {
-    -fx-graphic: url(images/page-search-a.png);    
-}
-
-#tags-tab-button {
-    -fx-graphic: url(images/page-tags.png);    
-}
-
-#tags-tab-button:hover {
-    -fx-graphic: url(images/page-tags-a.png);    
-}
-
-#tags-tab-button:selected {
-    -fx-graphic: url(images/page-tags-a.png);    
-}
-
-#authors-tab-button {
-    -fx-graphic: url(images/page-authors.png);    
-}
-
-#authors-tab-button:hover {
-    -fx-graphic: url(images/page-authors-a.png);    
-}
-
-#authors-tab-button:selected {
-    -fx-graphic: url(images/page-authors-a.png);    
-}
-
-#sources-tab-button {
-    -fx-graphic: url(images/page-sources.png);    
-}
-
-#sources-tab-button:hover {
-    -fx-graphic: url(images/page-sources-a.png);    
-}
-
-#sources-tab-button:selected {
-    -fx-graphic: url(images/page-sources-a.png);    
-}
-
-#reader-tab-button {
-    -fx-graphic: url(images/page-reader.png);    
-}
-
-#reader-tab-button:hover {
-    -fx-graphic: url(images/page-reader-a.png);    
-}
-
-#reader-tab-button:selected {
-    -fx-graphic: url(images/page-reader-a.png);    
-}
-
 .navigator-panel {
     -fx-min-width: 140;
     -fx-pref-width: 160;
@@ -157,29 +121,22 @@
     	linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
     	-fx-base;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-background-radius: 0, 0 ;	
+    -fx-background-radius: 0, 0;	
+    -fx-padding: 0 5 0 5;
+    -fx-spacing: 0;
 }
 
 .footer {
-	-fx-min-height: 33;
-	-fx-max-height: 33;
-	-fx-pref-height: 33;
+	-fx-min-height: 28;
+	-fx-max-height: 28;
+	-fx-pref-height: 28;
     -fx-background-color:
     	linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
     	-fx-base;
     -fx-background-insets: 0, 1 0 0 0;
-    -fx-background-radius: 0, 0 ;
-}
-
-.toolbar {
-	-fx-padding: 0 10 0 10;
-	-fx-spacing: 10;
-}
-
-.title {
-	-fx-font-weight: bold;
-	/* -fx-font-color: #555555; */
-	-fx-font-color: -fx-mid-text-color;
+    -fx-background-radius: 0, 0;
+    -fx-padding: 0 5 0 5;
+    -fx-spacing: 0;
 }
 
 .page-title {
@@ -188,4 +145,188 @@
 
 .tree-view {
 	-fx-box-border: transparent;
+}
+
+#button-library {
+    -fx-graphic: url(images/page-library.png);    
+}
+
+#button-library:hover {
+    -fx-graphic: url(images/page-library-a.png);    
+}
+
+#button-library:selected {
+    -fx-graphic: url(images/page-library-a.png);    
+}
+
+#button-search {
+    -fx-graphic: url(images/page-search.png);    
+}
+
+#button-search:hover {
+    -fx-graphic: url(images/page-search-a.png);    
+}
+
+#button-search:selected {
+    -fx-graphic: url(images/page-search-a.png);    
+}
+
+#button-tags {
+    -fx-graphic: url(images/page-tags.png);    
+}
+
+#button-tags:hover {
+    -fx-graphic: url(images/page-tags-a.png);    
+}
+
+#button-tags:selected {
+    -fx-graphic: url(images/page-tags-a.png);    
+}
+
+#button-authors {
+    -fx-graphic: url(images/page-authors.png);    
+}
+
+#button-authors:hover {
+    -fx-graphic: url(images/page-authors-a.png);    
+}
+
+#button-authors:selected {
+    -fx-graphic: url(images/page-authors-a.png);    
+}
+
+#button-sources {
+    -fx-graphic: url(images/page-sources.png);    
+}
+
+#button-sources:hover {
+    -fx-graphic: url(images/page-sources-a.png);    
+}
+
+#button-sources:selected {
+    -fx-graphic: url(images/page-sources-a.png);    
+}
+
+#button-reader {
+    -fx-graphic: url(images/page-reader.png);    
+}
+
+#button-reader:hover {
+    -fx-graphic: url(images/page-reader-a.png);    
+}
+
+#button-reader:selected {
+    -fx-graphic: url(images/page-reader-a.png);    
+}
+
+#button-overview {
+	-fx-graphic: url(images/inspector-overview.png);    
+}
+
+#button-overview:hover {
+	-fx-graphic: url(images/inspector-overview-a.png);    
+}
+
+#button-overview:selected {
+	-fx-graphic: url(images/inspector-overview-a.png);    
+}
+
+#button-info {
+	-fx-graphic: url(images/inspector-info.png);    
+}
+
+#button-info:hover {
+	-fx-graphic: url(images/inspector-info-a.png);    
+}
+
+#button-info:selected {
+	-fx-graphic: url(images/inspector-info-a.png);    
+}
+
+#button-notes {
+	-fx-graphic: url(images/inspector-notes.png);    
+}
+
+#button-notes:hover {
+	-fx-graphic: url(images/inspector-notes-a.png);    
+}
+
+#button-notes:selected {
+	-fx-graphic: url(images/inspector-notes-a.png);    
+}
+
+#button-reviews {
+	-fx-graphic: url(images/inspector-reviews.png);    
+}
+
+#button-reviews:hover {
+	-fx-graphic: url(images/inspector-reviews-a.png);    
+}
+
+#button-reviews:selected {
+	-fx-graphic: url(images/inspector-reviews-a.png);    
+}
+
+#button-hide-navigator {
+	-fx-graphic: url(images/left-arrow.png);    
+}
+
+#button-hide-navigator:hover {
+	-fx-graphic: url(images/left-arrow-a.png);    
+}
+
+#button-show-navigator {
+	-fx-graphic: url(images/right-arrow.png);    
+}
+
+#button-show-navigator:hover {
+	-fx-graphic: url(images/right-arrow-a.png);    
+}
+
+#button-hide-inspector {
+	-fx-graphic: url(images/right-arrow.png);    
+}
+
+#button-hide-inspector:hover {
+	-fx-graphic: url(images/right-arrow-a.png);    
+}
+
+#button-show-inspector {
+	-fx-graphic: url(images/left-arrow.png);    
+}
+
+#button-show-inspector:hover {
+	-fx-graphic: url(images/left-arrow-a.png);    
+}
+
+#button-hide-preview {
+	-fx-graphic: url(images/preview-a.png);    
+}
+
+#button-hide-preview:hover {
+	-fx-graphic: url(images/preview.png);    
+}
+
+#button-show-preview {
+	-fx-graphic: url(images/preview.png);    
+}
+
+#button-show-preview:hover {
+	-fx-graphic: url(images/preview-a.png);    
+}
+
+#button-add {
+	-fx-graphic: url(images/add.png);    
+}
+
+#button-add:hover {
+	-fx-graphic: url(images/add-a.png);    
+}
+
+#button-manage {
+	-fx-graphic: url(images/manage.png);    
+}
+
+#button-manage:hover {
+	-fx-graphic: url(images/manage-a.png);    
 }

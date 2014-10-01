@@ -20,9 +20,9 @@ package com.github.haixing_hu.ilibrary.control;
 import com.github.haixing_hu.ilibrary.Application2;
 
 /**
- * The controler used to control the reader related busyness logic.
+ * The controller used to control the reader related business logic.
  *
- * @author starfish
+ * @author Haixing Hu
  */
 public class ReaderController {
 

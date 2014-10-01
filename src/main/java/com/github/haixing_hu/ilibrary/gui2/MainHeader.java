@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application2;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.control.ExplorerController;
+import com.github.haixing_hu.ilibrary.control.LayoutController;
 import com.github.haixing_hu.ilibrary.state.Page;
 import com.github.haixing_hu.lang.EnumUtils;
 
@@ -46,7 +46,7 @@ public class MainHeader extends HBox implements KeySuffix {
 
   public static final String TOOLBAR_ID = "main-toolbar";
 
-  public static final String BUTTON_ID_SUFFIX = "-tab-button";
+  public static final String BUTTON_ID_PREFIX = "button-";
 
   private final Logger logger;
   private final ToggleButton buttons[];
@@ -69,11 +69,11 @@ public class MainHeader extends HBox implements KeySuffix {
     logger.trace("Creating page tab button for page {}", page);
     final ToggleButton button = new ToggleButton();
     final String pageId = EnumUtils.getShortName(page);
-    button.setId(pageId + BUTTON_ID_SUFFIX);
+    button.setId(BUTTON_ID_PREFIX + pageId);
     final AppConfig config = application.getConfig();
     final String pageTitle = config.getMessage(pageId + TITLE);
     button.setTooltip(new Tooltip(pageTitle));
-    final ExplorerController controller = application.getExplorerControler();
+    final LayoutController controller = application.getLayoutController();
     button.setOnAction(new EventHandler<ActionEvent>(){
       @Override
       public void handle(ActionEvent actionEvent) {

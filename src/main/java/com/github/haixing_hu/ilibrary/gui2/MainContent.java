@@ -17,12 +17,19 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
+import javafx.scene.control.Control;
 import javafx.scene.layout.StackPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application2;
+import com.github.haixing_hu.ilibrary.gui2.page.AuthorsTabPage;
+import com.github.haixing_hu.ilibrary.gui2.page.LibraryTabPage;
+import com.github.haixing_hu.ilibrary.gui2.page.ReaderTabPage;
+import com.github.haixing_hu.ilibrary.gui2.page.SearchTabPage;
+import com.github.haixing_hu.ilibrary.gui2.page.SourcesTabPage;
+import com.github.haixing_hu.ilibrary.gui2.page.TagsTabPage;
 import com.github.haixing_hu.ilibrary.state.Page;
 
 /**
@@ -35,47 +42,23 @@ public class MainContent extends StackPane {
   public static final String ID = "main-content";
 
   private final Logger logger;
-  private final TabPage[] pages;
+  private final Control[] pages;
 
   public MainContent(final Application2 application) {
     super();
     logger = LoggerFactory.getLogger(MainWindow.class);
     logger.trace("Craeting {}", MainWindow.class);
     setId(ID);
-    pages = new TabPage[Page.TOTAL];
+    pages = new Control[Page.TOTAL];
     pages[Page.SEARCH.ordinal()] = new SearchTabPage(application);
     pages[Page.LIBRARY.ordinal()] = new LibraryTabPage(application);
     pages[Page.TAGS.ordinal()] = new TagsTabPage(application);
     pages[Page.AUTHORS.ordinal()] = new AuthorsTabPage(application);
     pages[Page.SOURCES.ordinal()] = new SourcesTabPage(application);
     pages[Page.READER.ordinal()] = new ReaderTabPage(application);
-    for (final TabPage page : pages) {
+    for (final Control page : pages) {
       getChildren().add(page);
     }
-  }
-
-  public SearchTabPage getSearchTabPage() {
-    return (SearchTabPage) pages[Page.SEARCH.ordinal()];
-  }
-
-  public LibraryTabPage getLibraryTabPage() {
-    return (LibraryTabPage) pages[Page.LIBRARY.ordinal()];
-  }
-
-  public TagsTabPage getTagsTabPage() {
-    return (TagsTabPage) pages[Page.TAGS.ordinal()];
-  }
-
-  public AuthorsTabPage getAuthorsTabPage() {
-    return (AuthorsTabPage) pages[Page.AUTHORS.ordinal()];
-  }
-
-  public SourcesTabPage getSourcesTabPage() {
-    return (SourcesTabPage) pages[Page.SOURCES.ordinal()];
-  }
-
-  public ReaderTabPage getReaderTabPage() {
-    return (ReaderTabPage) pages[Page.READER.ordinal()];
   }
 
   public void switchToPage(Page page) {

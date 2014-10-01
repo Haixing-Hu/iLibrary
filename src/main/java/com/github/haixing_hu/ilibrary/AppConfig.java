@@ -314,7 +314,7 @@ public final class AppConfig implements ApplicationContext,
     String shortcut = config.getString(id + KeySuffix.SHORTCUT);
     if (! StringUtils.isEmpty(shortcut)) {
       //  substitute the META key according to the operating system
-      final String meta = (SystemUtils.IS_OS_MAC ? "COMMAND" : "CTRL");
+      final String meta = (SystemUtils.IS_OS_MAC ? "META" : "CTRL");
       shortcut = shortcut.replace("META", meta);
     } else {
       shortcut = null;

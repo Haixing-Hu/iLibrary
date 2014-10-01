@@ -99,8 +99,13 @@
 			<artifactId>swt-widgets</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.controlsfx</groupId>
-			<artifactId>controlsfx</artifactId>
+			<groupId>com.github.haixing_hu</groupId>
+			<artifactId>javafx-widgets</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.aquafx-project</groupId>
+			<artifactId>aquafx</artifactId>
+			<version>0.1</version>
 		</dependency>
 	</dependencies>
 </project>

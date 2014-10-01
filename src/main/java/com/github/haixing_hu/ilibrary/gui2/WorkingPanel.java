@@ -17,29 +17,28 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
-import javafx.scene.control.TreeView;
+import javafx.scene.layout.VBox;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application2;
-import com.github.haixing_hu.ilibrary.gui2.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui2.navigator.NavigatorPanel;
-import com.github.haixing_hu.ilibrary.gui2.work.WorkingPanel;
-import com.github.haixing_hu.ilibrary.state.Page;
 
 /**
- * The tab page for the tags module.
+ * The working panel.
  *
- * @author starfish
+ * @author Haixing Hu
  */
-public class TagsTabPage extends TabPage {
+public class WorkingPanel extends VBox {
 
-  public static final String ID = "tags-tab-page";
+  public static final String STYLE_CLASS = "working-panel";
 
-  public TagsTabPage(final Application2 application) {
-    super(application,
-          new NavigatorPanel(application, Page.TAGS, new TreeView<String>()),
-          new WorkingPanel(application),
-          new InspectorPanel(application));
-    this.setId(ID);
-    //  TODO
+  private final Logger logger;
+
+  public WorkingPanel(final Application2 application) {
+    super();
+    logger = LoggerFactory.getLogger(WorkingPanel.class);
+    logger.trace("Craeting {}", WorkingPanel.class);
+    getStyleClass().add(STYLE_CLASS);
   }
 }

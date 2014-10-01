@@ -15,30 +15,31 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.github.haixing_hu.ilibrary.gui2.work;
+package com.github.haixing_hu.ilibrary.action2.view;
 
-import javafx.scene.layout.VBox;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javafx.event.ActionEvent;
 
 import com.github.haixing_hu.ilibrary.Application2;
+import com.github.haixing_hu.ilibrary.action2.BaseAction;
+import com.github.haixing_hu.ilibrary.control.LayoutController;
+import com.github.haixing_hu.javafx.action.ActionOption;
 
 /**
- * The working panel.
+ * The action to show the navigator panel.
  *
  * @author Haixing Hu
  */
-public class WorkingPanel extends VBox {
+public class ShowNavigatorAction extends BaseAction {
 
-  public static final String STYLE_CLASS = "working-panel";
+  public static final String ID = ViewAction.ID + ".show-navigator";
 
-  private final Logger logger;
+  public ShowNavigatorAction(Application2 application) {
+    super(ID, application, ActionOption.DEFAULT | ActionOption.HIDE_MENU_ITEM_GRAPHIC);
+  }
 
-  public WorkingPanel(final Application2 application) {
-    super();
-    logger = LoggerFactory.getLogger(WorkingPanel.class);
-    logger.trace("Craeting {}", WorkingPanel.class);
-    getStyleClass().add(STYLE_CLASS);
+  @Override
+  public void handle(ActionEvent event) {
+    final LayoutController controller = application.getLayoutController();
+    controller.setNavigatorVisible(true);
   }
 }

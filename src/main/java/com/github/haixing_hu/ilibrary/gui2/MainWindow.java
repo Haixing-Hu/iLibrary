@@ -17,6 +17,7 @@
  */
 package com.github.haixing_hu.ilibrary.gui2;
 
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
@@ -34,7 +35,7 @@ public class MainWindow extends VBox {
 
   public static final String ID = "main-window";
 
-  public MainWindow(final Application2 application) {
+  public MainWindow(final Application2 application, MenuBar menuBar) {
     super();
     final Logger logger = LoggerFactory.getLogger(MainWindow.class);
     logger.trace("Craeting {}", MainWindow.class);
@@ -43,6 +44,6 @@ public class MainWindow extends VBox {
     final MainContent content = new MainContent(application);
     VBox.setVgrow(header, Priority.NEVER);
     VBox.setVgrow(content, Priority.ALWAYS);
-    getChildren().addAll(header, content);
+    getChildren().addAll(menuBar, header, content);
   }
 }

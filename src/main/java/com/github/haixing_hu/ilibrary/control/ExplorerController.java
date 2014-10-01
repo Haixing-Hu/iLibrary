@@ -16,22 +16,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package com.github.haixing_hu.ilibrary.control;
-import javafx.scene.control.ToggleButton;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application2;
-import com.github.haixing_hu.ilibrary.gui2.MainContent;
-import com.github.haixing_hu.ilibrary.gui2.MainHeader;
-import com.github.haixing_hu.ilibrary.state.ApplicationState;
-import com.github.haixing_hu.ilibrary.state.Page;
-import com.github.haixing_hu.lang.EnumUtils;
 
 /**
- * The controler used to control the document exploring related busyness logic.
+ * The controller used to control the document exploring related business logic.
  *
- * @author starfish
+ * @author Haixing Hu
  */
 public class ExplorerController {
 
@@ -42,31 +35,5 @@ public class ExplorerController {
   public ExplorerController(final Application2 application) {
     this.application = application;
     logger = LoggerFactory.getLogger(ExplorerController.class);
-  }
-
-  public void setPage(Page page) {
-    final ApplicationState state = application.getState();
-    if (state.getPage() == page) {
-      return;
-    }
-    logger.info("Switch to page: {}", page);
-    state.setPage(page);
-    updatePage();
-  }
-
-  public void updatePage() {
-    final ToggleButton[] buttons = new ToggleButton[Page.TOTAL];
-    final Page[] pages = Page.values();
-    for (int i = 0; i < Page.TOTAL; ++i) {
-      final String pageId = EnumUtils.getShortName(pages[i]);
-      final String buttonId = pageId + MainHeader.BUTTON_ID_SUFFIX;
-      buttons[i] = application.findNode(buttonId);
-      buttons[i].setSelected(false);
-    }
-    final ApplicationState state = application.getState();
-    final Page page = state.getPage();
-    buttons[page.ordinal()].setSelected(true);
-    final MainContent mainContent = application.findNode(MainContent.ID);
-    mainContent.switchToPage(page);
   }
 }
