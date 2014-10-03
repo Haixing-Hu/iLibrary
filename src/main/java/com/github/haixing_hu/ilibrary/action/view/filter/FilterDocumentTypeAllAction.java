@@ -19,25 +19,19 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents in all categories.
  *
  * @author Haixing Hu
  */
-public class FilterDocumentTypeAllAction extends BaseCheckBoxAction {
+public class FilterDocumentTypeAllAction extends BaseAction {
 
   public static final String ID = FilterDocumentTypeAction.ID + ".all";
 
-  public FilterDocumentTypeAllAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public FilterDocumentTypeAllAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 
-  @Override
-  public void run() {
-    application.clearDocumentTypeFilters();
-  }
 }

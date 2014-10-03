@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.share;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to share the document on the Google+.
@@ -31,9 +30,8 @@ public class GooglePlusAction extends BaseAction {
 
   public static final String ID = ShareAction.ID + ".google-plus";
 
-  public GooglePlusAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public GooglePlusAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 
 }

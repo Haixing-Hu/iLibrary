@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to empty the trash.
@@ -31,7 +30,7 @@ public class EmptyTrashAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".empty-trash";
 
-  public EmptyTrashAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public EmptyTrashAction(Application application) {
+    super(ID, application);
   }
 }

@@ -19,31 +19,19 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.model.ReadStatus;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents which are under reading.
  *
  * @author Haixing Hu
  */
-public class FilterReadStatusReadingAction extends BaseCheckBoxAction {
+public class FilterReadStatusReadingAction extends BaseAction {
 
   public static final String ID = FilterReadStatusAction.ID + ".reading";
 
-  public FilterReadStatusReadingAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    if (isChecked()) {
-      application.addReadStatusFilter(ReadStatus.READING);
-    } else {
-      application.removeReadStatusFilter(ReadStatus.READING);
-    }
+  public FilterReadStatusReadingAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 
 }

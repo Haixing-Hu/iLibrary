@@ -19,25 +19,18 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.model.FileStatus;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents with no file.
  *
  * @author Haixing Hu
  */
-public class FilterFileStatusNoFileAction extends BaseCheckBoxAction {
+public class FilterFileStatusNoFileAction extends BaseAction {
 
   public static final String ID = FilterFileStatusAction.ID + ".no-file";
 
-  public FilterFileStatusNoFileAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setFileStatusFilter(FileStatus.NO_FILE);
+  public FilterFileStatusNoFileAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 }

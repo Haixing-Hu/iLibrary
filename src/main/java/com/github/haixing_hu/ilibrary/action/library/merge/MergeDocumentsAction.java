@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.merge;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to merge the selected documents.
@@ -32,9 +31,8 @@ public class MergeDocumentsAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".merge-documents";
 
-  public MergeDocumentsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public MergeDocumentsAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 
 }

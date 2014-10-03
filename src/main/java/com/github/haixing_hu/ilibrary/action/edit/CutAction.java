@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to cut the selected text.
@@ -31,7 +30,7 @@ public class CutAction extends BaseAction {
 
   public static final String ID = EditAction.ID + ".cut";
 
-  public CutAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CutAction(Application application) {
+    super(ID, application);
   }
 }

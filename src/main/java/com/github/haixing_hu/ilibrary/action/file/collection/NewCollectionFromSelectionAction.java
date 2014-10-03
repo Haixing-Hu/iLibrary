@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file.collection;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a normal collection from the selection.
@@ -31,7 +30,7 @@ public class NewCollectionFromSelectionAction extends BaseAction {
 
   public static final String ID = NewCollectionAction.ID + ".selection";
 
-  public NewCollectionFromSelectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public NewCollectionFromSelectionAction(Application application) {
+    super(ID, application);
   }
 }

@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.share;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to share the document on the Tencent Weibo.
@@ -31,8 +30,7 @@ public class TencentAction extends BaseAction {
 
   public static final String ID = ShareAction.ID + ".tencent";
 
-  public TencentAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public TencentAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 }

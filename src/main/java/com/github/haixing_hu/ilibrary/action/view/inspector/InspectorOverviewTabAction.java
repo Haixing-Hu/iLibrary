@@ -18,10 +18,11 @@
 
 package com.github.haixing_hu.ilibrary.action.view.inspector;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to show the overview tab of the inspector panel.
@@ -32,12 +33,15 @@ public class InspectorOverviewTabAction extends BaseAction {
 
   public static final String ID = InspectorAction.ID + ".overview";
 
-  public InspectorOverviewTabAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-overview";
+
+  public InspectorOverviewTabAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  public void run() {
-    application.setInspectorTab(InspectorTab.OVERVIEW);
+  public void handle(ActionEvent event) {
+    application.getLayoutController().setInspectorTab(InspectorTab.OVERVIEW);
   }
 }

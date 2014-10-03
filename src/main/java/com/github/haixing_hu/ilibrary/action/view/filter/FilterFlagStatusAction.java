@@ -19,27 +19,24 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to filter documents by their flag status.
  *
  * @author Haixing Hu
  */
-public class FilterFlagStatusAction extends BaseDropDownAction {
+public class FilterFlagStatusAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".filter.flag";
 
-  private static final String SUB_ACTIONS[] = {
-    FilterFlagStatusAllAction.ID,
-    FilterFlagStatusFlaggedAction.ID,
-    FilterFlagStatusUnflaggedAction.ID,
-  };
-
-  public FilterFlagStatusAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public FilterFlagStatusAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new FilterFlagStatusAllAction(application));
+    addSubAction(am, new FilterFlagStatusFlaggedAction(application));
+    addSubAction(am, new FilterFlagStatusUnflaggedAction(application));
   }
 }

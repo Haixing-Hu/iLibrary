@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.library.collection;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to duplicate a collection.
@@ -31,7 +30,7 @@ public class DuplicateCollectionAction extends BaseAction {
 
   public static final String ID = ManageCollectionAction.ID + ".duplicate";
 
-  public DuplicateCollectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public DuplicateCollectionAction(Application application) {
+    super(ID, application);
   }
 }

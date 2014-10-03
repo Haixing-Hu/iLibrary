@@ -31,8 +31,6 @@ import java.util.Properties;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -46,8 +44,6 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
-
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
 
 
 /**
@@ -655,41 +651,5 @@ public final class AppConfig implements ApplicationContext,
   public List<Object> getList(String key, List<?> defaultValue) {
     logger.trace("Getting list: {}", key);
     return config.getList(key, defaultValue);
-  }
-
-  /**
-   * Gets the color specified by a key.
-   *
-   * @param key
-   *          the key.
-   * @return the color specified by the key. The color must be specified in the
-   *         RGB form "#aabbcc". If there is no value corresponding to the
-   *         specified key, returns null.
-   */
-  public Color getColor(String key) {
-    final String rgb = getString(key, null);
-    if (rgb == null) {
-      return null;
-    } else {
-      return SWTResourceManager.getColor(rgb);
-    }
-  }
-
-  /**
-   * Gets the image specified by a key.
-   *
-   * @param key
-   *          the key.
-   * @return the image specified by the key. The image must be specified as
-   *         the path of a resource. If there is no value corresponding to the
-   *         specified key, returns null.
-   */
-  public Image getImage(Class<?> cls, String key) {
-    final String url = getString(key, null);
-    if (url == null) {
-      return null;
-    } else {
-      return SWTResourceManager.getImage(cls, url);
-    }
   }
 }

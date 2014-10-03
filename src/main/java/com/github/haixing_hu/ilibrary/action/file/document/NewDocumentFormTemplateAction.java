@@ -23,7 +23,6 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.lang.EnumUtils;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new document from a document template.
@@ -45,14 +44,24 @@ public class NewDocumentFormTemplateAction extends BaseAction {
    *          the action manager.
    */
   public NewDocumentFormTemplateAction(DocumentTemplate template,
-      Application application, IActionManager actionManager) {
-    super(getActionId(template), getTitleFor(application, template),
-        application, actionManager);
+      Application application) {
+    super(getActionId(template),
+          getActionTitle(application, template),
+          application, BaseAction.DEFAULT);
     this.template = template;
     logger.debug("Creates an NewDocumentFormTemplateAction '{}' for document "
         + "template '{}'.", getId(), template.getName());
   }
 
+  /**
+   * Gets the id of the action for creating a document from the specified
+   * template.
+   *
+   * @param template
+   *          a document template.
+   * @return the id of the action for creating a document from the specified
+   *         template.
+   */
   public static String getActionId(DocumentTemplate template) {
     final StringBuilder builder = new StringBuilder();
     builder.append(NewAction.ID)
@@ -63,7 +72,16 @@ public class NewDocumentFormTemplateAction extends BaseAction {
     return builder.toString();
   }
 
-  private static String getTitleFor(Application application,
+  /**
+   * Gets the title of the action for creating a document from the specified
+   * template.
+   *
+   * @param template
+   *          a document template.
+   * @return the title of the action for creating a document from the specified
+   *         template.
+   */
+  private static String getActionTitle(Application application,
       DocumentTemplate template) {
     //  FIXME: we should gets the name of the document type from its template
     final StringBuilder builder = new StringBuilder();
@@ -84,10 +102,5 @@ public class NewDocumentFormTemplateAction extends BaseAction {
    */
   public DocumentTemplate getTemplate() {
     return template;
-  }
-
-  @Override
-  public void run() {
-    application.newDocument(template);
   }
 }

@@ -19,26 +19,19 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents with attachment status.
  *
  * @author Haixing Hu
  */
-public class FilterFileStatusAllAction extends BaseCheckBoxAction {
+public class FilterFileStatusAllAction extends BaseAction {
 
   public static final String ID = FilterFileStatusAction.ID + ".all";
 
-  public FilterFileStatusAllAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.clearFileStatusFilters();
+  public FilterFileStatusAllAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 
 }

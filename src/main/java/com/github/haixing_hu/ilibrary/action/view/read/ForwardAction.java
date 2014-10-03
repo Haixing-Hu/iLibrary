@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.view.read;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to go forward in the visiting history.
@@ -32,7 +31,7 @@ public class ForwardAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".forward";
 
-  public ForwardAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public ForwardAction(Application application) {
+    super(ID, application);
   }
 }

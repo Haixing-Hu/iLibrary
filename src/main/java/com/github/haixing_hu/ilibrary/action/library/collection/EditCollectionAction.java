@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.library.collection;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to edit a collection.
@@ -31,8 +30,7 @@ public class EditCollectionAction extends BaseAction {
 
   public static final String ID = ManageCollectionAction.ID + ".edit";
 
-  public EditCollectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public EditCollectionAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 }

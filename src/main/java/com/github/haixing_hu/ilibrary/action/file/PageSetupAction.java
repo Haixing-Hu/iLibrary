@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to open the page setup dialog.
@@ -31,9 +30,8 @@ public class PageSetupAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".page-setup";
 
-  public PageSetupAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public PageSetupAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 
 }

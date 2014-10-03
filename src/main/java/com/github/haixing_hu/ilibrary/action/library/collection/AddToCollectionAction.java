@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.collection;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to add the selected documents to a specified collection.
@@ -32,8 +31,8 @@ public class AddToCollectionAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".add-to-collection";
 
-  public AddToCollectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public AddToCollectionAction(Application application) {
+    super(ID, application);
   }
 
 }

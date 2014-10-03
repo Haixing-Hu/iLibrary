@@ -18,48 +18,35 @@
 
 package com.github.haixing_hu.ilibrary.action.file.document;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.file.FileAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.IAction;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to create a new item.
  *
  * @author Haixing Hu
  */
-public class NewAction extends BaseDropDownAction {
+public class NewAction extends BaseActionGroup {
 
   public static final String ID = FileAction.ID + ".new";
 
-  private static final String SUB_ACTIONS[] = {
-    Separator.ID,
-    NewAuthorAction.ID,
-    NewPeriodicalAction.ID,
-    NewConferenceAction.ID,
-    NewInstituteAction.ID,
-    NewWebSiteAction.ID,
-  };
-
-  public NewAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, getSubactionIds());
-  }
-
-  private static String[] getSubactionIds() {
-    final List<String> ids = new ArrayList<String>();
+  public NewAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
     for (final DocumentType type : DocumentType.values()) {
-      final String id = NewDocumentAction.getActionId(type);
-      ids.add(id);
+      final IAction action = new NewDocumentAction(type, application);
+      addSubAction(am, action);
     }
-    for (final String id : SUB_ACTIONS) {
-      ids.add(id);
-    }
-    return ids.toArray(new String[0]);
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new NewAuthorAction(application));
+    addSubAction(am, new NewPeriodicalAction(application));
+    addSubAction(am, new NewConferenceAction(application));
+    addSubAction(am, new NewInstituteAction(application));
+    addSubAction(am, new NewWebSiteAction(application));
   }
-
 }

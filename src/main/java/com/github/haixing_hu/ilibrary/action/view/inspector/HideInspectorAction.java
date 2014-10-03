@@ -18,9 +18,10 @@
 
 package com.github.haixing_hu.ilibrary.action.view.inspector;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to hide the inspector panel.
@@ -31,12 +32,15 @@ public class HideInspectorAction extends BaseAction {
 
   public static final String ID = InspectorAction.ID + ".hide";
 
-  public HideInspectorAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-hide-inspector";
+
+  public HideInspectorAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  public void run() {
-    application.setInspectorVisible(false);
+  public void handle(ActionEvent event) {
+    application.getLayoutController().setInspectorVisible(false);
   }
 }

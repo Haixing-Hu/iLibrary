@@ -19,18 +19,17 @@
 package com.github.haixing_hu.ilibrary.action.view.columns;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortByColumnForAction;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.lang.EnumUtils;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to select or deselect a column.
  *
  * @author Haixing Hu
  */
-public class SelectColumnForAction extends BaseCheckBoxAction {
+public class SelectColumnForAction extends BaseAction {
 
   private final FieldType column;
 
@@ -50,12 +49,9 @@ public class SelectColumnForAction extends BaseCheckBoxAction {
    *          the column.
    * @param application
    *          the application.
-   * @param actionManager
-   *          the action manager.
    */
-  public SelectColumnForAction( FieldType column, Application application,
-      IActionManager actionManager) {
-    super(getActionId(column), application, actionManager);
+  public SelectColumnForAction( FieldType column, Application application) {
+    super(getActionId(column), application);
     this.column = column;
     logger.debug("Create a SelectDisplayColumnAction '{}' for column {}.",
         getId(), column);
@@ -72,12 +68,13 @@ public class SelectColumnForAction extends BaseCheckBoxAction {
     return SelectColumnsAction.ID + "." + EnumUtils.getShortName(column);
   }
 
-  @Override
-  public void run() {
-    if (isChecked()) {
-      application.addColumn(column);
-    } else {
-      application.removeColumn(column);
-    }
+  /**
+   * Gets the column.
+   *
+   * @return the column.
+   */
+  public FieldType getColumn() {
+    return column;
   }
+
 }

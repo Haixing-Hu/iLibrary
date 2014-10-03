@@ -19,26 +19,18 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.model.FileStatus;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents which have files.
  *
  * @author Haixing Hu
  */
-public class FilterFileStatusHasFileAction extends BaseCheckBoxAction {
+public class FilterFileStatusHasFileAction extends BaseAction {
 
   public static final String ID = FilterFileStatusAction.ID + ".has-file";
 
-  public FilterFileStatusHasFileAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setFileStatusFilter(FileStatus.HAS_FILE);
+  public FilterFileStatusHasFileAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 }

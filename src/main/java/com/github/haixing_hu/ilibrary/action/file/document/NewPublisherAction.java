@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file.document;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new publisher.
@@ -31,14 +30,8 @@ public class NewPublisherAction extends BaseAction {
 
   public static final String ID = NewAction.ID + ".publisher";
 
-  public NewPublisherAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
-  }
-
-  @Override
-  public void run() {
-    application.newPublisher();
+  public NewPublisherAction(Application application) {
+    super(ID, application);
   }
 
 }

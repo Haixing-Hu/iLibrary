@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file.document;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new conference.
@@ -31,13 +30,7 @@ public class NewConferenceAction extends BaseAction {
 
   public static final String ID = NewAction.ID + ".conference";
 
-  public NewConferenceAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
-  }
-
-  @Override
-  public void run() {
-    application.newConference();
+  public NewConferenceAction(Application application) {
+    super(ID, application);
   }
 }

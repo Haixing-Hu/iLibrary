@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.view.zoom;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to zoom out the current document.
@@ -32,7 +31,7 @@ public class ZoomOutAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".zoom-out";
 
-  public ZoomOutAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public ZoomOutAction(Application application) {
+    super(ID, application);
   }
 }

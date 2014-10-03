@@ -19,27 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.edit.copy;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.edit.EditAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to copy the reference of the selected document.
  *
  * @author Haixing Hu
  */
-public class CopyAsAction extends BaseDropDownAction {
+public class CopyAsAction extends BaseActionGroup {
 
   public static final String ID = EditAction.ID + ".copy-as";
 
-  private static final String SUB_ACTIONS[] = {
-    CopyAsReferenceAction.ID,
-    CopyAsLatexCiteAction.ID,
-    CopyAsBibtexRecordAction.ID,
-    CopyAsSummaryAction.ID,
-  };
-
-  public CopyAsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public CopyAsAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new CopyAsReferenceAction(application));
+    addSubAction(am, new CopyAsLatexCiteAction(application));
+    addSubAction(am, new CopyAsBibtexRecordAction(application));
+    addSubAction(am, new CopyAsSummaryAction(application));
   }
 }

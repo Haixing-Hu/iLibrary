@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file.collection;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a smart collection.
@@ -31,8 +30,7 @@ public class NewSmartCollectionAction extends BaseAction {
 
   public static final String ID = NewCollectionAction.ID + ".smart";
 
-  public NewSmartCollectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public NewSmartCollectionAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 }

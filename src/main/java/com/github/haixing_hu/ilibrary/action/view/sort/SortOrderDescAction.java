@@ -19,16 +19,14 @@
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.state.SortOrder;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to set the sorting order to "desc".
  *
  * @author Haixing Hu
  */
-public class SortOrderDescAction extends BaseCheckBoxAction {
+public class SortOrderDescAction extends BaseAction {
 
   public static final String ID = SortAction.ID + ".order.desc";
 
@@ -40,13 +38,7 @@ public class SortOrderDescAction extends BaseCheckBoxAction {
    * @param actionManager
    *          the action manager.
    */
-  public SortOrderDescAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowImage(false);
-  }
-
-  @Override
-  public void run() {
-    application.setSortOrder(SortOrder.DESC);
+  public SortOrderDescAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 }

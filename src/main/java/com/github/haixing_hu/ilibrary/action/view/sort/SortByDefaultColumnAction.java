@@ -19,15 +19,14 @@
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to clear the sorting column.
  *
  * @author Haixing Hu
  */
-public class SortByDefaultColumnAction extends BaseCheckBoxAction {
+public class SortByDefaultColumnAction extends BaseAction {
 
   public static final String ID = SortAction.ID + ".column.default";
 
@@ -39,12 +38,7 @@ public class SortByDefaultColumnAction extends BaseCheckBoxAction {
    * @param actionManager
    *          the action manager.
    */
-  public SortByDefaultColumnAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setSortColumn(null);
+  public SortByDefaultColumnAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 }

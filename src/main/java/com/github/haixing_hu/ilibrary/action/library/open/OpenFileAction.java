@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.open;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to open the file of the selected document.
@@ -32,8 +31,8 @@ public class OpenFileAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".open-file";
 
-  public OpenFileAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public OpenFileAction(Application application) {
+    super(ID, application);
   }
 
 }

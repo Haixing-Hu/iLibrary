@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.edit;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to attach a file or files to the current document.
@@ -32,8 +31,7 @@ public class AttachFileAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".attach-file";
 
-  public AttachFileAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public AttachFileAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 }

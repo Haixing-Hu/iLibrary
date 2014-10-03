@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.edit;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to edit the notes of the selected documents.
@@ -32,8 +31,7 @@ public class EditNotesAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".edit-notes";
 
-  public EditNotesAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public EditNotesAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 }

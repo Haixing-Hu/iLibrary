@@ -19,28 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.ExplorerToolBarBalloonWindowAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.gui.explorer.SetFiltersWindow;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.window.BalloonWindow;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to filter documents
  *
  * @author Haixing Hu
  */
-public class FilterAction extends ExplorerToolBarBalloonWindowAction {
+public class FilterAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".filter";
 
-  public FilterAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  protected BalloonWindow createBalloonWindow() {
-    return new SetFiltersWindow(application);
+  public FilterAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new FilterFlagStatusAction(application));
+    addSubAction(am, new FilterReadStatusAction(application));
+    addSubAction(am, new FilterFileStatusAction(application));
+    addSubAction(am, new FilterDocumentTypeAction(application));
   }
 }

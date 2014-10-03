@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.help;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to display the manual of the application.
@@ -31,8 +30,8 @@ public class ManualAction extends BaseAction {
 
   public static final String ID = HelpAction.ID + ".manual";
 
-  public ManualAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public ManualAction(Application application) {
+    super(ID, application);
   }
 
 }

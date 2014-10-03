@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit.copy;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to copy the BibTeX record of the selected document.
@@ -31,7 +30,7 @@ public class CopyAsBibtexRecordAction extends BaseAction {
 
   public static final String ID = CopyAsAction.ID + ".bibtex";
 
-  public CopyAsBibtexRecordAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CopyAsBibtexRecordAction(Application application) {
+    super(ID, application);
   }
 }

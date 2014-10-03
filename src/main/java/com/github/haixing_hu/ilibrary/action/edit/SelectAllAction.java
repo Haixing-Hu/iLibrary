@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to select all the text or all the documents.
@@ -30,8 +29,8 @@ import com.github.haixing_hu.swt.action.IActionManager;
 public class SelectAllAction extends BaseAction {
   public static final String ID = EditAction.ID + ".select-all";
 
-  public SelectAllAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public SelectAllAction(Application application) {
+    super(ID, application);
   }
 
 }

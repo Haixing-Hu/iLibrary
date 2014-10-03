@@ -15,28 +15,27 @@
 package com.github.haixing_hu.ilibrary.action.view.columns;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.ExplorerToolBarBalloonWindowAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.gui.explorer.SelectColumnsWindow;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.window.BalloonWindow;
+import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.IAction;
 
 /**
  * The action for selecting displayed columns.
  *
  * @author Haixing Hu
  */
-public class SelectColumnsAction extends ExplorerToolBarBalloonWindowAction {
+public class SelectColumnsAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".columns";
 
-  public SelectColumnsAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  protected BalloonWindow createBalloonWindow() {
-    return new SelectColumnsWindow(application);
+  public SelectColumnsAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    for (final FieldType col : FieldType.values()) {
+      final IAction action = new SelectColumnForAction(col, application);
+      addSubAction(am, action);
+    }
   }
 }

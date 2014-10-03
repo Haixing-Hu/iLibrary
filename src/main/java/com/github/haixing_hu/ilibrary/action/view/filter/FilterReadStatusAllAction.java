@@ -19,25 +19,18 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents with all read status.
  *
  * @author Haixing Hu
  */
-public class FilterReadStatusAllAction extends BaseCheckBoxAction {
+public class FilterReadStatusAllAction extends BaseAction {
 
   public static final String ID = FilterReadStatusAction.ID + ".all";
 
-  public FilterReadStatusAllAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.clearReadStatusFilters();
+  public FilterReadStatusAllAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 }

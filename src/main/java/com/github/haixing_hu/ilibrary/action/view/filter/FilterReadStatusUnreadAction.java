@@ -19,30 +19,18 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.model.ReadStatus;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents which have not been read.
  *
  * @author Haixing Hu
  */
-public class FilterReadStatusUnreadAction extends BaseCheckBoxAction {
+public class FilterReadStatusUnreadAction extends BaseAction {
 
   public static final String ID = FilterReadStatusAction.ID + ".unread";
 
-  public FilterReadStatusUnreadAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    if (isChecked()) {
-      application.addReadStatusFilter(ReadStatus.UNREAD);
-    } else {
-      application.removeReadStatusFilter(ReadStatus.UNREAD);
-    }
+  public FilterReadStatusUnreadAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 }

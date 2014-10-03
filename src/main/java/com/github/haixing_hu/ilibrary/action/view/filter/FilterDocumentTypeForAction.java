@@ -19,17 +19,16 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.lang.EnumUtils;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to filter the documents of a type.
  *
  * @author Haixing Hu
  */
-public class FilterDocumentTypeForAction extends BaseCheckBoxAction {
+public class FilterDocumentTypeForAction extends BaseAction {
 
   private final DocumentType type;
 
@@ -50,9 +49,8 @@ public class FilterDocumentTypeForAction extends BaseCheckBoxAction {
    * @param actionManager
    *          the action manager.
    */
-  public FilterDocumentTypeForAction(DocumentType type, Application application,
-      IActionManager actionManager) {
-    super(getActionId(type), application, actionManager);
+  public FilterDocumentTypeForAction(DocumentType type, Application application) {
+    super(getActionId(type), application, BaseAction.CHECK);
     this.type = type;
     logger.debug("Create a FilterDocumentTypeForAction '{}' for type {}.",
         getId(), type);
@@ -69,13 +67,13 @@ public class FilterDocumentTypeForAction extends BaseCheckBoxAction {
     return FilterDocumentTypeAction.ID + "." + EnumUtils.getShortName(type);
   }
 
-  @Override
-  public void run() {
-    if (isChecked()) {
-      application.addDocumentTypeFilter(type);
-    } else {
-      application.removeDocumentTypeFilter(type);
-    }
+  /**
+   * Gets the document type.
+   *
+   * @return the document type.
+   */
+  public DocumentType getType() {
+    return type;
   }
 
 }

@@ -19,26 +19,19 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents with all flag status.
  *
  * @author Haixing Hu
  */
-public class FilterFlagStatusAllAction extends BaseCheckBoxAction {
+public class FilterFlagStatusAllAction extends BaseAction {
 
   public static final String ID = FilterFlagStatusAction.ID + ".all";
 
-  public FilterFlagStatusAllAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.clearFlagStatusFilters();
+  public FilterFlagStatusAllAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 
 }

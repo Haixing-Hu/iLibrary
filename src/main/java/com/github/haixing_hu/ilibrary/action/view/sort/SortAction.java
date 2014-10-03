@@ -18,45 +18,33 @@
 
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.ilibrary.model.FieldType;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.IAction;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to set the sorting order of the documents.
  *
  * @author Haixing Hu
  */
-public class SortAction extends BaseDropDownAction {
+public class SortAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".sort";
 
-  private static final String DEFAULT_SUBACTION_KEYS[] = {
-    SortOrderAscAction.ID,
-    SortOrderDescAction.ID,
-    Separator.ID,
-    SortByDefaultColumnAction.ID,
-  };
-
-  public SortAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, getSubactionIds());
-  }
-
-  private static String[] getSubactionIds() {
-    final List<String> ids = new ArrayList<String>();
-    for (final String id : DEFAULT_SUBACTION_KEYS) {
-      ids.add(id);
-    }
+  public SortAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new SortOrderAscAction(application));
+    addSubAction(am, new SortOrderDescAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new SortByDefaultColumnAction(application));
     for (final FieldType col : FieldType.values()) {
-      final String id = SortByColumnForAction.getActionId(col);
-      ids.add(id);
+      final IAction action = new  SortByColumnForAction(col, application);
+      addSubAction(am, action);
     }
-    return ids.toArray(new String[0]);
   }
 }

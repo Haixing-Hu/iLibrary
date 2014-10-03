@@ -20,8 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view.browser;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.state.BrowserMode;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to view the documents as columns.
@@ -32,13 +30,8 @@ public class AsColumnsAction extends BaseAction {
 
   public static final String ID = BrowserModeAction.ID + ".as-columns";
 
-  public AsColumnsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setBrowserMode(BrowserMode.COLUMNS);
+  public AsColumnsAction(Application application) {
+    super(ID, application);
   }
 
 }

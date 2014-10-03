@@ -18,9 +18,10 @@
 
 package com.github.haixing_hu.ilibrary.action.view.inspector;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to show the inspector panel.
@@ -31,12 +32,15 @@ public class ShowInspectorAction extends BaseAction {
 
   public static final String ID = InspectorAction.ID + ".show";
 
-  public ShowInspectorAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-show-inspector";
+
+  public ShowInspectorAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  public void run() {
-    application.setInspectorVisible(true);
+  public void handle(ActionEvent event) {
+    application.getLayoutController().setInspectorVisible(true);
   }
 }

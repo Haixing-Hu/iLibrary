@@ -19,27 +19,19 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.model.FlagStatus;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents which are flagged.
  *
  * @author Haixing Hu
  */
-public class FilterFlagStatusFlaggedAction extends BaseCheckBoxAction {
+public class FilterFlagStatusFlaggedAction extends BaseAction {
 
   public static final String ID = FilterFlagStatusAction.ID + ".flagged";
 
-  public FilterFlagStatusFlaggedAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setFlagStatusFilter(FlagStatus.FLAGGED);
+  public FilterFlagStatusFlaggedAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 
 }

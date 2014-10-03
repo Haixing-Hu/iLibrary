@@ -20,8 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view.browser;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.state.BrowserMode;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to view the documents as icons.
@@ -32,13 +30,8 @@ public class AsIconsAction extends BaseAction {
 
   public static final String ID = BrowserModeAction.ID + ".as-icons";
 
-  public AsIconsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setBrowserMode(BrowserMode.ICONS);
+  public AsIconsAction(Application application) {
+    super(ID, application);
   }
 
 }

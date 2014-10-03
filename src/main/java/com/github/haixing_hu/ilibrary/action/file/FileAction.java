@@ -19,41 +19,39 @@
 package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionAction;
 import com.github.haixing_hu.ilibrary.action.file.document.NewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to show the drop down menu of file related actions.
  *
  * @author Haixing Hu
  */
-public class FileAction extends BaseDropDownAction {
+public class FileAction extends BaseActionGroup {
 
   public static final String ID = "action.file";
 
-  private static final String SUB_ACTIONS[] = {
-    NewLibraryAction.ID,
-    OpenLibraryAction.ID,
-    CloseLibraryAction.ID,
-    Separator.ID,
-    NewAction.ID,
-    NewCollectionAction.ID,
-    OpenURLAction.ID,
-    Separator.ID,
-    ImportAction.ID,
-    ExportAction.ID,
-    Separator.ID,
-    PageSetupAction.ID,
-    PrintAction.ID,
-    Separator.ID,
-    QuitAction.ID,
-  };
-
-  public FileAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public FileAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new NewLibraryAction(application));
+    addSubAction(am, new OpenLibraryAction(application));
+    addSubAction(am, new CloseLibraryAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new NewAction(application));
+    addSubAction(am, new NewCollectionAction(application));
+    addSubAction(am, new OpenURLAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new ImportAction(application));
+    addSubAction(am, new ExportAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new PageSetupAction(application));
+    addSubAction(am, new PrintAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new QuitAction(application));
   }
 
 }

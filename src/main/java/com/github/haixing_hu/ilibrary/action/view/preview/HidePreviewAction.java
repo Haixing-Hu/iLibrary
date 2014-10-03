@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view.preview;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to hide the preview panel.
@@ -31,12 +30,10 @@ public class HidePreviewAction extends BaseAction {
 
   public static final String ID = PreviewAction.ID + ".hide";
 
-  public HidePreviewAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
+  public static final String BUTTON_CLASS = "button-hide-preview";
 
-  @Override
-  public void run() {
-    application.setPreviewVisible(false);
+  public HidePreviewAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 }

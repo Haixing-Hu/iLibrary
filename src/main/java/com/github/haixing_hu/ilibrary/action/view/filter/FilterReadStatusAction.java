@@ -19,29 +19,26 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to filter documents by their read status.
  *
  * @author Haixing Hu
  */
-public class FilterReadStatusAction extends BaseDropDownAction {
+public class FilterReadStatusAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".filter.read";
 
-  private static final String SUB_ACTIONS[] = {
-    FilterReadStatusAllAction.ID,
-    FilterReadStatusUnreadAction.ID,
-    FilterReadStatusToReadAction.ID,
-    FilterReadStatusReadingAction.ID,
-    FilterReadStatusHasReadAction.ID,
-  };
-
-  public FilterReadStatusAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public FilterReadStatusAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new FilterReadStatusAllAction(application));
+    addSubAction(am, new FilterReadStatusUnreadAction(application));
+    addSubAction(am, new FilterReadStatusToReadAction(application));
+    addSubAction(am, new FilterReadStatusReadingAction(application));
+    addSubAction(am, new FilterReadStatusHasReadAction(application));
   }
 }

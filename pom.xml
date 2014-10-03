@@ -13,15 +13,6 @@
 	<packaging>jar</packaging>
 	<name>iLibrary</name>
 	<url>https://github.com/Haixing-Hu/iLibrary/</url>
-	<!-- <profiles> <profile> <id>mac_x86_64</id> <activation> <os> <name>mac 
-		os x</name> </os> </activation> <build> <plugins> <plugin> <groupId>org.codehaus.mojo</groupId> 
-		<artifactId>osxappbundle-maven-plugin</artifactId> <version>1.0-alpha-4-SNAPSHOT</version> 
-		<configuration> <mainClass>com.github.haixing_hu.ilibrary.Application</mainClass> 
-		<jvmVersion>1.6+</jvmVersion> <vmOptions>-XstartOnFirstThread</vmOptions> 
-		<iconFile>${basedir}/src/main/resources/iLibrary.icns</iconFile> </configuration> 
-		<executions> <execution> <phase>package</phase> <goals> <goal>bundle</goal> 
-		</goals> </execution> </executions> </plugin> </plugins> </build> </profile> 
-		</profiles> -->
 
 	<build>
 		<plugins>
@@ -33,7 +24,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>com.github.haixing_hu.ilibrary.Application2</mainClass>
+							<mainClass>com.github.haixing_hu.ilibrary.Application</mainClass>
 							<classpathPrefix>lib/</classpathPrefix>
 						</manifest>
 					</archive>
@@ -58,34 +49,17 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>com.zenjava</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.github.haixing_hu.ilibrary.Application</mainClass>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.swt</groupId>
-			<artifactId>${swt.artifactId}</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jface</groupId>
-			<artifactId>org.eclipse.jface</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>com.github.haixing_hu</groupId>
 			<artifactId>java-commons</artifactId>
@@ -96,16 +70,19 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.haixing_hu</groupId>
-			<artifactId>swt-widgets</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.github.haixing_hu</groupId>
 			<artifactId>javafx-widgets</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.aquafx-project</groupId>
-			<artifactId>aquafx</artifactId>
-			<version>0.1</version>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
 		</dependency>
 	</dependencies>
 </project>

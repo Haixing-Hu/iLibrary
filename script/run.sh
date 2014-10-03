@@ -33,6 +33,6 @@ CLASSPATH=${CLASSPATH}:${TARGET_DIR}/classes
 
 #echo "Executing the application ..."
 
-APP_CLASS=com.github.haixing_hu.ilibrary.Application2
+APP_CLASS=com.github.haixing_hu.ilibrary.Application
 
 java -cp ${CLASSPATH} ${APP_CLASS} "$@"

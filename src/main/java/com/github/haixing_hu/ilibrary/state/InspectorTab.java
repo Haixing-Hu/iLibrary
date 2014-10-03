@@ -18,19 +18,34 @@
 
 package com.github.haixing_hu.ilibrary.state;
 
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorInfoTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorNotesTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorOverviewTabAction;
+import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorActivityTabAction;
+
 
 /**
- * The enumeration of tabs of the inspector panel.
+ * The enumeration of panels of the inspector panel.
  *
  * @author Haixing Hu
  */
 public enum InspectorTab {
 
-  OVERVIEW,
+  OVERVIEW(InspectorOverviewTabAction.ID),
 
-  INFO,
+  INFO(InspectorInfoTabAction.ID),
 
-  NOTES,
+  NOTES(InspectorNotesTabAction.ID),
 
-  REVIEWS,
+  ACTIVITY(InspectorActivityTabAction.ID);
+
+  private String actionId;
+
+  private InspectorTab(String actionId) {
+    this.actionId = actionId;
+  }
+
+  public String actionId() {
+    return actionId;
+  }
 }

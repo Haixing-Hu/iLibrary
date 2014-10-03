@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file.document;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new web site.
@@ -31,12 +30,7 @@ public class NewWebSiteAction extends BaseAction {
 
   public static final String ID = NewAction.ID + ".website";
 
-  public NewWebSiteAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.newWebSite();
+  public NewWebSiteAction(Application application) {
+    super(ID, application);
   }
 }

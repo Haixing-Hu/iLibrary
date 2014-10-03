@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.help;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to visit the website of the application.
@@ -31,7 +30,7 @@ public class WebsiteAction extends BaseAction {
 
   public static final String ID = HelpAction.ID + ".website";
 
-  public WebsiteAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public WebsiteAction(Application application) {
+    super(ID, application);
   }
 }

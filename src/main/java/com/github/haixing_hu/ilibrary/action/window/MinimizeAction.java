@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to minimize the current window.
@@ -31,7 +30,7 @@ public class MinimizeAction extends BaseAction {
 
   public static final String ID = WindowAction.ID + ".minimize";
 
-  public MinimizeAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public MinimizeAction(Application application) {
+    super(ID, application);
   }
 }

@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to import document entries.
@@ -31,9 +30,8 @@ public class ImportAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".import";
 
-  public ImportAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public ImportAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 
 }

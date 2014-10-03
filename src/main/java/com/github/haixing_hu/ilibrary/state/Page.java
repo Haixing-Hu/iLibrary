@@ -14,6 +14,13 @@
 
 package com.github.haixing_hu.ilibrary.state;
 
+import com.github.haixing_hu.ilibrary.action.window.page.PageAuthorsAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageLibraryAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageReaderAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageSearchAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageSourcesAction;
+import com.github.haixing_hu.ilibrary.action.window.page.PageTagsAction;
+
 /**
  * The enumeration of pages.
  *
@@ -24,36 +31,46 @@ public enum Page {
   /**
    * Represents the search page.
    */
-  SEARCH,
+  SEARCH(PageSearchAction.ID),
 
   /**
    * Represents the library page.
    */
-  LIBRARY,
+  LIBRARY(PageLibraryAction.ID),
 
   /**
    * Represents the tags page.
    */
-  TAGS,
+  TAGS(PageTagsAction.ID),
 
   /**
    * Represents the authors page.
    */
-  AUTHORS,
+  AUTHORS(PageAuthorsAction.ID),
 
   /**
    * Represents the sources page.
    */
-  SOURCES,
+  SOURCES(PageSourcesAction.ID),
 
   /**
    * Represents the reader page.
    */
-  READER;
+  READER(PageReaderAction.ID);
 
   /**
    * Total number of pages.
    */
   public static final int TOTAL = 6;
 
+
+  private String actionId;
+
+  private Page(String actionId) {
+    this.actionId = actionId;
+  }
+
+  public String actionId() {
+    return actionId;
+  }
 }

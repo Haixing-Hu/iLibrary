@@ -19,7 +19,7 @@
 package com.github.haixing_hu.ilibrary.action.window;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.window.page.PageAuthorsAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageLibraryAction;
 import com.github.haixing_hu.ilibrary.action.window.page.PageReaderAction;
@@ -31,39 +31,37 @@ import com.github.haixing_hu.ilibrary.action.window.tab.CloseTabAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.CycleTabsAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.NextTabAction;
 import com.github.haixing_hu.ilibrary.action.window.tab.PreviousTabAction;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to show the drop down menu of window related actions.
  *
  * @author Haixing Hu
  */
-public class WindowAction extends BaseDropDownAction {
+public class WindowAction extends BaseActionGroup {
 
   public static final String ID = "action.window";
 
-  private static final String SUB_ACTIONS[] = {
-    MinimizeAction.ID,
-    MinimizeAllAction.ID,
-    MaximizeAction.ID,
-    Separator.ID,
-    PageSearchAction.ID,
-    PageLibraryAction.ID,
-    PageTagsAction.ID,
-    PageAuthorsAction.ID,
-    PageSourcesAction.ID,
-    PageReaderAction.ID,
-    Separator.ID,
-    CycleTabsAction.ID,
-    PreviousTabAction.ID,
-    NextTabAction.ID,
-    Separator.ID,
-    CloseTabAction.ID,
-    CloseAllTabsAction.ID,
-  };
-
-  public WindowAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public WindowAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new MinimizeAction(application));
+    addSubAction(am, new MinimizeAllAction(application));
+    addSubAction(am, new MaximizeAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new PageSearchAction(application));
+    addSubAction(am, new PageLibraryAction(application));
+    addSubAction(am, new PageTagsAction(application));
+    addSubAction(am, new PageAuthorsAction(application));
+    addSubAction(am, new PageSourcesAction(application));
+    addSubAction(am, new PageReaderAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new CycleTabsAction(application));
+    addSubAction(am, new PreviousTabAction(application));
+    addSubAction(am, new NextTabAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new CloseTabAction(application));
+    addSubAction(am, new CloseAllTabsAction(application));
   }
 }

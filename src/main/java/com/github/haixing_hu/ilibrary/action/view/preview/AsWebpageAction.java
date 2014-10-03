@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view.preview;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to preview the item's webpage.
@@ -31,8 +30,8 @@ public class AsWebpageAction extends BaseAction {
 
   public static final String ID = PreviewAction.ID + ".as-webpage";
 
-  public AsWebpageAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public AsWebpageAction(Application application) {
+    super(ID, application);
   }
 
 }

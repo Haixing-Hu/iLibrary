@@ -19,26 +19,24 @@
 package com.github.haixing_hu.ilibrary.action.file.collection;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.file.FileAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to create a new collection.
  *
  * @author Haixing Hu
  */
-public class NewCollectionAction extends BaseDropDownAction {
+public class NewCollectionAction extends BaseActionGroup {
 
   public static final String ID = FileAction.ID + ".new-collection";
 
-  private static final String SUB_ACTIONS[] = {
-    NewNormalCollectionAction.ID,
-    NewSmartCollectionAction.ID,
-    NewCollectionFromSelectionAction.ID,
-  };
-
-  public NewCollectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public NewCollectionAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new NewNormalCollectionAction(application));
+    addSubAction(am, new NewSmartCollectionAction(application));
+    addSubAction(am, new NewCollectionFromSelectionAction(application));
   }
 }

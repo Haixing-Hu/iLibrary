@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to set the display font.
@@ -30,8 +29,8 @@ import com.github.haixing_hu.swt.action.IActionManager;
 public class FontAction extends BaseAction {
   public static final String ID = EditAction.ID + ".font";
 
-  public FontAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public FontAction(Application application) {
+    super(ID, application);
   }
 
 }

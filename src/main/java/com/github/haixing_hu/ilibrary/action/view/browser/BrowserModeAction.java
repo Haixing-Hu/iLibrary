@@ -15,28 +15,26 @@
 package com.github.haixing_hu.ilibrary.action.view.browser;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action of switching the browser mode.
  *
  * @author Haixing Hu
  */
-public class BrowserModeAction extends BaseDropDownAction {
+public class BrowserModeAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".browser-mode";
 
-  private static final String[] SUB_ACTIONS = {
-      AsListAction.ID,
-      AsColumnsAction.ID,
-      AsIconsAction.ID,
-      AsCoverFlowAction.ID,
-  };
-
-  public BrowserModeAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public BrowserModeAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new AsListAction(application));
+    addSubAction(am, new AsColumnsAction(application));
+    addSubAction(am, new AsIconsAction(application));
+    addSubAction(am, new AsCoverFlowAction(application));
   }
 
 }

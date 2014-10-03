@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.open;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to open the URL of the selected document in the external browser.
@@ -32,8 +31,8 @@ public class OpenUrlInBrowserAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".open-url-in-browser";
 
-  public OpenUrlInBrowserAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public OpenUrlInBrowserAction(Application application) {
+    super(ID, application);
   }
 
 }

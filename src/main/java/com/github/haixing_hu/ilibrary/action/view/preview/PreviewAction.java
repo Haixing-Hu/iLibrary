@@ -19,30 +19,28 @@
 package com.github.haixing_hu.ilibrary.action.view.preview;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to switch the preview modes.
  *
  * @author Haixing Hu
  */
-public class PreviewAction extends BaseDropDownAction {
+public class PreviewAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".preview";
 
-  private static final String[] SUB_ACTIONS = {
-    AsDocumentAction.ID,
-    AsThumbnailsAction.ID,
-    AsWebpageAction.ID,
-    Separator.ID,
-    HidePreviewAction.ID,
-    ShowPreviewAction.ID,
-  };
-
-  public PreviewAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public PreviewAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new AsDocumentAction(application));
+    addSubAction(am, new AsThumbnailsAction(application));
+    addSubAction(am, new AsWebpageAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new HidePreviewAction(application));
+    addSubAction(am, new ShowPreviewAction(application));
   }
 }

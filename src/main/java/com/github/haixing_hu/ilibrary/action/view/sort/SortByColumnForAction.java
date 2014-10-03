@@ -20,18 +20,17 @@ package com.github.haixing_hu.ilibrary.action.view.sort;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.lang.EnumUtils;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to select a sorting column.
  *
  * @author Haixing Hu
  */
-public class SortByColumnForAction extends BaseCheckBoxAction {
+public class SortByColumnForAction extends BaseAction {
 
   private final FieldType column;
 
@@ -51,12 +50,9 @@ public class SortByColumnForAction extends BaseCheckBoxAction {
    *          the column as the sorting key.
    * @param application
    *          the application.
-   * @param actionManager
-   *          the action manager.
    */
-  public SortByColumnForAction( FieldType column, Application application,
-      IActionManager actionManager) {
-    super(getActionId(column), application, actionManager);
+  public SortByColumnForAction( FieldType column, Application application) {
+    super(getActionId(column), application, BaseAction.CHECK);
     this.column = column;
     logger.debug("Create a SortByColumnAction '{}' for column {}.",
         getId(), column);
@@ -78,8 +74,12 @@ public class SortByColumnForAction extends BaseCheckBoxAction {
     return builder.toString();
   }
 
-  @Override
-  public void run() {
-    application.setSortColumn(column);
+  /**
+   * Gets the sorting column.
+   *
+   * @return the sorting column.
+   */
+  public FieldType getColumn() {
+    return column;
   }
 }

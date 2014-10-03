@@ -41,6 +41,11 @@
     -fx-padding: 0 1 0 1;  
 }
   
+.split-pane {
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+}
+
 /******************************************************************************
  *
  *  Style for global class
@@ -102,14 +107,19 @@
     -fx-pref-width: 160;
 }
 
-.working-panel {
-    -fx-min-width: 200;  
+.content-panel {
+    -fx-min-width: 300;  
     -fx-pref-width: 640;   
+}
+
+.left-panel {
+    -fx-min-width: 440;  
+    -fx-pref-width: 800;   
 }
 
 .inspector-panel {
     -fx-min-width: 160;  
-    -fx-pref-width: 200;    
+    -fx-pref-width: 200; 
 }
 
 .header {
@@ -147,186 +157,186 @@
 	-fx-box-border: transparent;
 }
 
-#button-library {
+.button-library {
     -fx-graphic: url(images/page-library.png);    
 }
 
-#button-library:hover {
+.button-library:hover {
     -fx-graphic: url(images/page-library-a.png);    
 }
 
-#button-library:selected {
+.button-library:selected {
     -fx-graphic: url(images/page-library-a.png);    
 }
 
-#button-search {
+.button-search {
     -fx-graphic: url(images/page-search.png);    
 }
 
-#button-search:hover {
+.button-search:hover {
     -fx-graphic: url(images/page-search-a.png);    
 }
 
-#button-search:selected {
+.button-search:selected {
     -fx-graphic: url(images/page-search-a.png);    
 }
 
-#button-tags {
+.button-tags {
     -fx-graphic: url(images/page-tags.png);    
 }
 
-#button-tags:hover {
+.button-tags:hover {
     -fx-graphic: url(images/page-tags-a.png);    
 }
 
-#button-tags:selected {
+.button-tags:selected {
     -fx-graphic: url(images/page-tags-a.png);    
 }
 
-#button-authors {
+.button-authors {
     -fx-graphic: url(images/page-authors.png);    
 }
 
-#button-authors:hover {
+.button-authors:hover {
     -fx-graphic: url(images/page-authors-a.png);    
 }
 
-#button-authors:selected {
+.button-authors:selected {
     -fx-graphic: url(images/page-authors-a.png);    
 }
 
-#button-sources {
+.button-sources {
     -fx-graphic: url(images/page-sources.png);    
 }
 
-#button-sources:hover {
+.button-sources:hover {
     -fx-graphic: url(images/page-sources-a.png);    
 }
 
-#button-sources:selected {
+.button-sources:selected {
     -fx-graphic: url(images/page-sources-a.png);    
 }
 
-#button-reader {
+.button-reader {
     -fx-graphic: url(images/page-reader.png);    
 }
 
-#button-reader:hover {
+.button-reader:hover {
     -fx-graphic: url(images/page-reader-a.png);    
 }
 
-#button-reader:selected {
+.button-reader:selected {
     -fx-graphic: url(images/page-reader-a.png);    
 }
 
-#button-overview {
+.button-overview {
 	-fx-graphic: url(images/inspector-overview.png);    
 }
 
-#button-overview:hover {
+.button-overview:hover {
 	-fx-graphic: url(images/inspector-overview-a.png);    
 }
 
-#button-overview:selected {
+.button-overview:selected {
 	-fx-graphic: url(images/inspector-overview-a.png);    
 }
 
-#button-info {
+.button-info {
 	-fx-graphic: url(images/inspector-info.png);    
 }
 
-#button-info:hover {
+.button-info:hover {
 	-fx-graphic: url(images/inspector-info-a.png);    
 }
 
-#button-info:selected {
+.button-info:selected {
 	-fx-graphic: url(images/inspector-info-a.png);    
 }
 
-#button-notes {
+.button-notes {
 	-fx-graphic: url(images/inspector-notes.png);    
 }
 
-#button-notes:hover {
+.button-notes:hover {
 	-fx-graphic: url(images/inspector-notes-a.png);    
 }
 
-#button-notes:selected {
+.button-notes:selected {
 	-fx-graphic: url(images/inspector-notes-a.png);    
 }
 
-#button-reviews {
-	-fx-graphic: url(images/inspector-reviews.png);    
+.button-activity {
+	-fx-graphic: url(images/inspector-activity.png);    
 }
 
-#button-reviews:hover {
-	-fx-graphic: url(images/inspector-reviews-a.png);    
+.button-activity:hover {
+	-fx-graphic: url(images/inspector-activity-a.png);    
 }
 
-#button-reviews:selected {
-	-fx-graphic: url(images/inspector-reviews-a.png);    
+.button-activity:selected {
+	-fx-graphic: url(images/inspector-activity-a.png);    
 }
 
-#button-hide-navigator {
+.button-hide-navigator {
 	-fx-graphic: url(images/left-arrow.png);    
 }
 
-#button-hide-navigator:hover {
+.button-hide-navigator:hover {
 	-fx-graphic: url(images/left-arrow-a.png);    
 }
 
-#button-show-navigator {
+.button-show-navigator {
 	-fx-graphic: url(images/right-arrow.png);    
 }
 
-#button-show-navigator:hover {
+.button-show-navigator:hover {
 	-fx-graphic: url(images/right-arrow-a.png);    
 }
 
-#button-hide-inspector {
+.button-hide-inspector {
 	-fx-graphic: url(images/right-arrow.png);    
 }
 
-#button-hide-inspector:hover {
+.button-hide-inspector:hover {
 	-fx-graphic: url(images/right-arrow-a.png);    
 }
 
-#button-show-inspector {
+.button-show-inspector {
 	-fx-graphic: url(images/left-arrow.png);    
 }
 
-#button-show-inspector:hover {
+.button-show-inspector:hover {
 	-fx-graphic: url(images/left-arrow-a.png);    
 }
 
-#button-hide-preview {
+.button-hide-preview {
 	-fx-graphic: url(images/preview-a.png);    
 }
 
-#button-hide-preview:hover {
+.button-hide-preview:hover {
 	-fx-graphic: url(images/preview.png);    
 }
 
-#button-show-preview {
+.button-show-preview {
 	-fx-graphic: url(images/preview.png);    
 }
 
-#button-show-preview:hover {
+.button-show-preview:hover {
 	-fx-graphic: url(images/preview-a.png);    
 }
 
-#button-add {
+.button-add {
 	-fx-graphic: url(images/add.png);    
 }
 
-#button-add:hover {
+.button-add:hover {
 	-fx-graphic: url(images/add-a.png);    
 }
 
-#button-manage {
+.button-manage {
 	-fx-graphic: url(images/manage.png);    
 }
 
-#button-manage:hover {
+.button-manage:hover {
 	-fx-graphic: url(images/manage-a.png);    
 }

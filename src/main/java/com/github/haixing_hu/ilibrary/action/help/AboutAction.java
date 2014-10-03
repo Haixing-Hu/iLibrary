@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.help;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to display the about dialog.
@@ -31,7 +30,7 @@ public class AboutAction extends BaseAction {
 
   public static final String ID = HelpAction.ID + ".about";
 
-  public AboutAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public AboutAction(Application application) {
+    super(ID, application);
   }
 }

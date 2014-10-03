@@ -20,8 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view.browser;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.ilibrary.state.BrowserMode;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to view the documents as cover flow.
@@ -32,13 +30,8 @@ public class AsCoverFlowAction extends BaseAction {
 
   public static final String ID = BrowserModeAction.ID + ".as-cover-flow";
 
-  public AsCoverFlowAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setBrowserMode(BrowserMode.COVER_FLOW);
+  public AsCoverFlowAction(Application application) {
+    super(ID, application);
   }
 
 }

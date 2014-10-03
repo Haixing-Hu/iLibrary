@@ -19,27 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.library.collection;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to manage collections.
  *
  * @author Haixing Hu
  */
-public class ManageCollectionAction extends BaseDropDownAction {
+public class ManageCollectionAction extends BaseActionGroup {
 
   public static final String ID = LibraryAction.ID + ".manage-collection";
 
-  private static final String SUB_ACTIONS[] = {
-    EditCollectionAction.ID,
-    RefreshCollectionAction.ID,
-    DuplicateCollectionAction.ID,
-    DeleteCollectionAction.ID,
-  };
-
-  public ManageCollectionAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public ManageCollectionAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new EditCollectionAction(application));
+    addSubAction(am, new RefreshCollectionAction(application));
+    addSubAction(am, new DuplicateCollectionAction(application));
+    addSubAction(am, new DeleteCollectionAction(application));
   }
 }

@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.view.read;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to goto the table of contents of the current document.
@@ -32,7 +31,7 @@ public class TableOfContentsAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".table-of-contents";
 
-  public TableOfContentsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public TableOfContentsAction(Application application) {
+    super(ID, application);
   }
 }

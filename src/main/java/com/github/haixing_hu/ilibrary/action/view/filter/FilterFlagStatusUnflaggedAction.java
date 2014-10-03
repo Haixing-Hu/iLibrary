@@ -19,27 +19,19 @@
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
-import com.github.haixing_hu.ilibrary.model.FlagStatus;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
  * The action to filter documents which are unflagged.
  *
  * @author Haixing Hu
  */
-public class FilterFlagStatusUnflaggedAction extends BaseCheckBoxAction {
+public class FilterFlagStatusUnflaggedAction extends BaseAction {
 
   public static final String ID = FilterFlagStatusAction.ID + ".unflagged";
 
-  public FilterFlagStatusUnflaggedAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.setFlagStatusFilter(FlagStatus.UNFLAGGED);
+  public FilterFlagStatusUnflaggedAction(Application application) {
+    super(ID, application, BaseAction.CHECK);
   }
 
 }

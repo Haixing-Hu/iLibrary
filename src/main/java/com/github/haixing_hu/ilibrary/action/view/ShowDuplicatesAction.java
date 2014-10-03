@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to show only the duplicates documents.
@@ -31,8 +30,8 @@ public class ShowDuplicatesAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".show-duplicates";
 
-  public ShowDuplicatesAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public ShowDuplicatesAction(Application application) {
+    super(ID, application);
   }
 
 }

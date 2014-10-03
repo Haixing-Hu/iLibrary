@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.mark;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to mark the selected documents as unread.
@@ -32,7 +31,7 @@ public class MarkUnreadAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".mark-unread";
 
-  public MarkUnreadAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public MarkUnreadAction(Application application) {
+    super(ID, application);
   }
 }

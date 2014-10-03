@@ -18,36 +18,29 @@
 
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.IAction;
 
 /**
  * The action to filter documents by their types.
  *
  * @author Haixing Hu
  */
-public class FilterDocumentTypeAction extends BaseDropDownAction {
+public class FilterDocumentTypeAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".filter.type";
 
-  public FilterDocumentTypeAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager, getSubactionIds());
-  }
-
-  private static String[] getSubactionIds() {
-    final List<String> ids = new ArrayList<String>();
-    ids.add(FilterDocumentTypeAllAction.ID);
+  public FilterDocumentTypeAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new FilterDocumentTypeAllAction(application));
     for (final DocumentType type : DocumentType.values()) {
-      final String id = FilterDocumentTypeForAction.getActionId(type);
-      ids.add(id);
+      final IAction action = new FilterDocumentTypeForAction(type, application);
+      addSubAction(am, action);
     }
-    return ids.toArray(new String[0]);
   }
 }

@@ -18,25 +18,23 @@
 
 package com.github.haixing_hu.ilibrary.action.file.document;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
+import com.github.haixing_hu.javafx.action.ActionManager;
 import com.github.haixing_hu.lang.EnumUtils;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new document of a specified type.
  *
  * @author Haixing Hu
  */
-public class NewDocumentAction extends BaseDropDownAction {
+public class NewDocumentAction extends BaseActionGroup {
 
   private final DocumentType type;
 
@@ -44,32 +42,33 @@ public class NewDocumentAction extends BaseDropDownAction {
    * Construct a {@link NewDocumentAction} object.
    *
    * @param type
-   *    A document type.
+   *          A document type.
    * @param application
-   *    The application.
-   * @param actionManager
-   *    The action manager.
+   *          The application.
    */
-  public NewDocumentAction(DocumentType type, Application application,
-          IActionManager actionManager) {
-    super(getActionId(type), application, actionManager,
-          getSubActionIds(application.getConfig(), type));
+  public NewDocumentAction(DocumentType type, Application application) {
+    super(getActionId(type), application);
     this.type = type;
     logger.debug("Creates an NewDocumentAction '{}' for document type '{}'.",
         getId(), type);
-  }
-
-  private static String[] getSubActionIds(AppConfig config, DocumentType type) {
+    final AppConfig config = application.getConfig();
     final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
     final Collection<DocumentTemplate> templates = service.getAll(type);
-    final List<String> ids = new ArrayList<String>();
+    final ActionManager am = application.getActionManager();
     for (final DocumentTemplate template : templates) {
-      final String id = NewDocumentFormTemplateAction.getActionId(template);
-      ids.add(id);
+      final NewDocumentFormTemplateAction action =
+          new NewDocumentFormTemplateAction(template, application);
+      addSubAction(am, action);
     }
-    return ids.toArray(new String[0]);
   }
 
+  /**
+   * Gets the id of the action for creating a document in the specified type .
+   *
+   * @param type
+   *          a document type.
+   * @return the id of the action for creating a document in the specified type.
+   */
   public static String getActionId(DocumentType type) {
     return NewAction.ID + "." + EnumUtils.getShortName(type);
   }

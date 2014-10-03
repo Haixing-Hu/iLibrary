@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to delete the selected text or the selected document.
@@ -28,9 +27,10 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class DeleteAction extends BaseAction {
+
   public static final String ID = EditAction.ID + ".delete";
 
-  public DeleteAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public DeleteAction(Application application) {
+    super(ID, application);
   }
 }

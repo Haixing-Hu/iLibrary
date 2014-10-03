@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.window.tab;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to close the current tab.
@@ -32,8 +31,8 @@ public class CloseTabAction extends BaseAction {
 
   public static final String ID = WindowAction.ID + ".close-tab";
 
-  public CloseTabAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CloseTabAction(Application application) {
+    super(ID, application);
   }
 
 }

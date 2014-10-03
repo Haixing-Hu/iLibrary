@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file.document;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to create a new author.
@@ -31,12 +30,7 @@ public class NewAuthorAction extends BaseAction {
 
   public static final String ID = NewAction.ID + ".author";
 
-  public NewAuthorAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-  }
-
-  @Override
-  public void run() {
-    application.newAuthor();
+  public NewAuthorAction(Application application) {
+    super(ID, application);
   }
 }

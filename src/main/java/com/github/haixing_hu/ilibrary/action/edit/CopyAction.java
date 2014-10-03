@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to copy the selected text.
@@ -31,7 +30,7 @@ public class CopyAction extends BaseAction {
 
   public static final String ID = EditAction.ID + ".copy";
 
-  public CopyAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CopyAction(Application application) {
+    super(ID, application);
   }
 }

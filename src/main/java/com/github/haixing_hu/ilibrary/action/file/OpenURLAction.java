@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to open an URL.
@@ -31,8 +30,7 @@ public class OpenURLAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".open-url";
 
-  public OpenURLAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    setShowDialog(true);
+  public OpenURLAction(Application application) {
+    super(ID, application, BaseAction.DIALOG);
   }
 }

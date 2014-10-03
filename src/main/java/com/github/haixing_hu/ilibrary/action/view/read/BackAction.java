@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.view.read;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to go back in the visiting history.
@@ -32,7 +31,7 @@ public class BackAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".back";
 
-  public BackAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public BackAction(Application application) {
+    super(ID, application);
   }
 }
