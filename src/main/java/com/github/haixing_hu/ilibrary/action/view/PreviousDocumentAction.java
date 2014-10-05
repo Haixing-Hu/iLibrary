@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to select the previous document.
@@ -31,7 +30,7 @@ public class PreviousDocumentAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".previous-document";
 
-  public PreviousDocumentAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public PreviousDocumentAction(Application application) {
+    super(ID, application);
   }
 }

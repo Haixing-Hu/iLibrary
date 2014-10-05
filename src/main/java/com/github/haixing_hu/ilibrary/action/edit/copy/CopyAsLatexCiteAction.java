@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit.copy;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to copy the LaTeX citation command of the selected document.
@@ -31,7 +30,7 @@ public class CopyAsLatexCiteAction extends BaseAction {
 
   public static final String ID = CopyAsAction.ID + ".latex";
 
-  public CopyAsLatexCiteAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CopyAsLatexCiteAction(Application application) {
+    super(ID, application);
   }
 }

@@ -19,31 +19,25 @@
 package com.github.haixing_hu.ilibrary.action.view.inspector;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The action to switch the view modes.
  *
  * @author Haixing Hu
  */
-public class InspectorAction extends BaseDropDownAction {
+public class InspectorAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".inspector";
 
-  private static final String[] SUB_ACTIONS = {
-    InspectorOverviewTabAction.ID,
-    InspectorInfoTabAction.ID,
-    InspectorNotesTabAction.ID,
-    InspectorReviewsTabAction.ID,
-    Separator.ID,
-    HideInspectorAction.ID,
-    ShowInspectorAction.ID,
-  };
-
-  public InspectorAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public InspectorAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new InspectorOverviewTabAction(application));
+    addSubAction(am, new InspectorInfoTabAction(application));
+    addSubAction(am, new InspectorNotesTabAction(application));
+    addSubAction(am, new InspectorActivityTabAction(application));
   }
 }

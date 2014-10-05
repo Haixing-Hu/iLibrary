@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to find the next match.
@@ -30,8 +29,8 @@ import com.github.haixing_hu.swt.action.IActionManager;
 public class FindNextAction extends BaseAction {
   public static final String ID = EditAction.ID + ".find-next";
 
-  public FindNextAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public FindNextAction(Application application) {
+    super(ID, application);
   }
 
 }

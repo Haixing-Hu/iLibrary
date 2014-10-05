@@ -21,10 +21,9 @@ package com.github.haixing_hu.ilibrary.action.window.tab;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to cycle between tabs.
+ * The action to cycle between panels.
  *
  * @author Haixing Hu
  */
@@ -32,7 +31,7 @@ public class CycleTabsAction extends BaseAction {
 
   public static final String ID = WindowAction.ID + ".cycle-tabs";
 
-  public CycleTabsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CycleTabsAction(Application application) {
+    super(ID, application);
   }
 }

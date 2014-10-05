@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to find the previous match.
@@ -28,10 +27,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class FindPreviousAction extends BaseAction {
+
   public static final String ID = EditAction.ID + ".find-previous";
 
-  public FindPreviousAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public FindPreviousAction(Application application) {
+    super(ID, application);
   }
 
 }

@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to restore the selected documents from the trash.
@@ -31,8 +30,8 @@ public class RestoreFromTrashAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".restore-from-trash";
 
-  public RestoreFromTrashAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public RestoreFromTrashAction(Application application) {
+    super(ID, application);
   }
 
 }

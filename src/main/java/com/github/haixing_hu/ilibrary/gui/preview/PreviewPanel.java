@@ -2,89 +2,106 @@
  *
  * Copyright (c) 2014  Haixing Hu
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Contributors:
+ *     Haixing Hu (https://github.com/Haixing-Hu/) - Initial implementation and API.
  *
  ******************************************************************************/
 
 package com.github.haixing_hu.ilibrary.gui.preview;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Composite;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
-import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.KeySuffix;
-import com.github.haixing_hu.ilibrary.gui.MainWindow;
-
-import static com.github.haixing_hu.ilibrary.KeySuffix.DEFAULT_HEIGHT;
+import com.github.haixing_hu.ilibrary.gui.VBoxBase;
 
 /**
- * The preview panel.
+ * The preview panel
  *
  * @author Haixing Hu
  */
-public class PreviewPanel extends Composite implements KeySuffix {
+public class PreviewPanel extends VBoxBase {
 
-  public static final String ID = MainWindow.ID + ".preview";
+  public static final String STYLE_CLASS = "preview-panel";
 
-  private final Application application;
-  private final int defaultHeight;
-  private final int minHeight;
-  private final int maxHeight;
+  public static final String HEADER_STYLE_CLASS = "preview-panel-header";
 
-  public PreviewPanel(Application application, Composite parent) {
-    super(parent, SWT.NONE);
-    this.application = application;
-    final AppConfig config = application.getConfig();
-    defaultHeight = config.getInt(ID + DEFAULT_HEIGHT);
-    minHeight = config.getInt(ID + MIN_HEIGHT);
-    maxHeight = config.getInt(ID + MAX_HEIGHT);
-    setBackground(config.getColor(ID + BACKGROUND_COLOR));
+  public static final String URL_FIELD_STYLE_CLASS = "preview-panel-url";
+
+  private final HBox header;
+  private final Region content;
+  private final TextField urlField;
+
+  public PreviewPanel(Application application) {
+    super(application);
+    //getStyleClass().add(STYLE_CLASS);
+    header = createHeader();
+    content = createContent();
+    urlField = new TextField();
+    urlField.getStyleClass().add(URL_FIELD_STYLE_CLASS);
+
+    VBox.setVgrow(header, Priority.NEVER);
+    VBox.setVgrow(content, Priority.ALWAYS);
+    getChildren().addAll(header, content);
+    init();
   }
 
-  /**
-   * Gets the application.
-   *
-   * @return the application.
-   */
-  public Application getApplication() {
-    return application;
+  private void init() {
+    configHeader();
+    configContent();
   }
 
-  /**
-   * Gets the default height.
-   *
-   * @return the default height.
-   */
-  public int getDefaultHeight() {
-    return defaultHeight;
+  private HBox createHeader() {
+    final HBox header = new HBox();
+    header.getStyleClass().addAll(STYLE_CLASS, HEADER_STYLE_CLASS);
+    return header;
   }
 
-  /**
-   * Gets the minimum height.
-   *
-   * @return the minimum height.
-   */
-  public int getMinHeight() {
-    return minHeight;
+  private Region createContent() {
+    final Pane pane = new Pane();
+    pane.getStyleClass().add(STYLE_CLASS);
+    //  TODO
+    return pane;
   }
 
-  /**
-   * Gets the maximum height.
-   *
-   * @return the maximum height.
-   */
-  public int getMaxHeight() {
-    return maxHeight;
+  private void configHeader() {
+//    final ActionManager am = application.getActionManager();
+//
+//    final HBox leftToolBar = new HBox();
+//    leftToolBar.getStyleClass().addAll(STYLE_CLASS, TOOLBAR, ALIGN_CENTER_LEFT);
+//    final ButtonBase preview = am.createButton(PreviewAction.ID);
+//    leftToolBar.getChildren().add(preview);
+//
+//    final HBox centerToolBar = new HBox();
+//    centerToolBar.getStyleClass().addAll(STYLE_CLASS, TOOLBAR, ALIGN_CENTER);
+//    centerToolBar.getChildren().add(urlField);
+//
+//    final HBox rightToolBar = new HBox();
+//    rightToolBar.getStyleClass().addAll(STYLE_CLASS, TOOLBAR, ALIGN_CENTER_RIGHT);
+//    final ButtonBase backward = am.createButton(BackwardAction.ID);
+//    final ButtonBase forward = am.createButton(ForwardAction.ID);
+//    rightToolBar.getChildren().addAll(backward, forward);
+//
+//    HBox.setHgrow(leftToolBar, Priority.NEVER);
+//    HBox.setHgrow(centerToolBar, Priority.ALWAYS);
+//    HBox.setHgrow(rightToolBar, Priority.NEVER);
+//    header.getChildren().addAll(leftToolBar, centerToolBar, rightToolBar);
+  }
+
+  private void configContent() {
+    //  TODO
+  }
+
+  public void setUrl(String url) {
+    urlField.setText(url);
   }
 }

@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to select the next document.
@@ -31,7 +30,7 @@ public class NextDocumentAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".next-document";
 
-  public NextDocumentAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public NextDocumentAction(Application application) {
+    super(ID, application);
   }
 }

@@ -18,39 +18,59 @@
 
 package com.github.haixing_hu.ilibrary.action;
 
+import javafx.event.ActionEvent;
+import javafx.scene.input.KeyCombination;
+
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.StringUtils;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.MessageKey;
-import com.github.haixing_hu.swt.action.ActionEx;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
+import com.github.haixing_hu.javafx.action.Action;
+import com.github.haixing_hu.javafx.action.ActionOption;
+import com.github.haixing_hu.lang.StringUtils;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
- * The base class for all actions.
+ * The base class for all actions used in this application.
  *
  * @author Haixing Hu
  */
-public class BaseAction extends ActionEx {
+public class BaseAction extends Action {
+
+  public static final int DEFAULT = ActionOption.DEFAULT
+                                  | ActionOption.HIDE_MENU_ITEM_GRAPHIC
+                                  | ActionOption.HIDE_BUTTON_TEXT;
+
+  public static final int DIALOG = ActionOption.DEFAULT
+                                 | ActionOption.HIDE_MENU_ITEM_GRAPHIC
+                                 | ActionOption.HIDE_BUTTON_TEXT
+                                 | ActionOption.SHOW_DIALOG;
+
+  public static final int TOGGLE = ActionOption.TOGGLE_BUTTON
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC
+                                | ActionOption.HIDE_BUTTON_TEXT;
+
+  public static final int TOGGLE_SHOW_TEXT = ActionOption.TOGGLE_BUTTON
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC;
+
+  public static final int CHECKBOX = ActionOption.CHECK_BOX
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC
+                                | ActionOption.HIDE_BUTTON_TEXT;
+
+  public static final int CHECKBOX_SHOW_TEXT = ActionOption.CHECK_BOX
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC;
 
   protected final Application application;
-  protected final IActionManager actionManager;
   protected final Logger logger;
-  protected final String title;
-  protected final String shortcut;
-  protected ImageDescriptor icon;
-  protected ImageDescriptor activeIcon;
 
   /**
    * Constructs an action.
@@ -59,12 +79,9 @@ public class BaseAction extends ActionEx {
    *          the ID of the new action.
    * @param application
    *          the application the new action belongs to.
-   * @param actionManager
-   *          the action manager, which is a map from the action's ID to the action.
    */
-  public BaseAction(String id, Application application, IActionManager actionManager) {
-    this(id, null, application, actionManager, SWT.NONE);
-    setShowImage(true);
+  public BaseAction(String id, Application application) {
+    this(id, null, application, DEFAULT);
   }
 
   /**
@@ -72,18 +89,13 @@ public class BaseAction extends ActionEx {
    *
    * @param id
    *          the ID of the new action.
-   * @param title
-   *          the title of the new action.
    * @param application
    *          the application the new action belongs to.
-   * @param actionManager
-   *          the action manager, which is a map from the action's ID to the
-   *          action.
+   * @param options
+   *          the options of the new action.
    */
-  public BaseAction(String id, String title, Application application,
-      IActionManager actionManager) {
-    this(id, title, application, actionManager, SWT.NONE);
-    setShowImage(true);
+  public BaseAction(String id, Application application, int options) {
+    this(id, null, application, options);
   }
 
   /**
@@ -95,19 +107,17 @@ public class BaseAction extends ActionEx {
    *          the title of the new action, or null if none.
    * @param application
    *          the application the new action belongs to.
-   * @param actionManager
-   *          the action manager, which is a map from the action's ID to the
-   *          action.
-   * @param style
-   *          the style of the new action.
+   * @param options
+   *          the options of the new action.
    */
   protected BaseAction(String id, @Nullable String title,
-      Application application, IActionManager actionManager, int style) {
-    super(id, style);
+      Application application, int options) {
+    super(id, options);
+
     this.application = requireNonNull("application", application);
-    this.actionManager = requireNonNull("actionManager", actionManager);
     logger = LoggerFactory.getLogger(this.getClass());
-    setId(id);
+
+    logger.trace("Creating the action: {}", id);
     final AppConfig config = application.getConfig();
     if (title == null) {
       title = config.getTitle(id);
@@ -116,125 +126,27 @@ public class BaseAction extends ActionEx {
       logger.error("Cannot get the title for action: {}", id);
       title = config.getMessage(MessageKey.ERROR_NO_TITLE);
     }
-    this.title = title;
-    shortcut = config.getShortcut(id);
-    if (shortcut == null) {
-      setText(title);
-    } else {
-      setText(title + "@" + shortcut);
+    logger.trace("Set title to {}.", title);
+    setText(title);
+
+    final String shortcut = config.getShortcut(id);
+    if (! StringUtils.isEmpty(shortcut)) {
+      logger.trace("Set shortcut to {}.", shortcut);
+      final KeyCombination accelerator = KeyCombination.valueOf(shortcut);
+      setAccelerator(accelerator);
     }
-    final String description = config.getDescription(id);
-    if (description != null) {
-      setDescription(description);
-      setToolTipText(description);
-    } else {
-      setToolTipText(title);
+
+    String description = config.getDescription(id);
+    if (StringUtils.isEmpty(description)) {
+      description = title;
     }
-    final String iconPath = config.getIcon(id);
-    if (iconPath != null) {
-      final Image img = SWTResourceManager.getImage(this.getClass(), iconPath);
-      icon = ImageDescriptor.createFromImage(img);
-      setImageDescriptor(icon);
-    } else {
-      icon = null;
-    }
-    final String activeIconPath = config.getActiveIcon(id);
-    if (activeIconPath != null) {
-      final Image img = SWTResourceManager.getImage(this.getClass(), activeIconPath);
-      activeIcon = ImageDescriptor.createFromImage(img);
-      //this.setHoverImageDescriptor(activeIcon);
-    } else {
-      activeIcon = null;
-    }
-    //  do not show image by default
-    setShowImage(false);
-  }
-
-  /**
-   * Gets the application this action belongs to.
-   *
-   * @return the application this action belongs to.
-   */
-  public Application getApplication() {
-    return application;
-  }
-
-  /**
-   * Gets the title.
-   *
-   * @return the title.
-   */
-  public String getTitle() {
-    return title;
-  }
-
-  /**
-   * Gets the shortcut.
-   *
-   * @return the shortcut.
-   */
-  public String getShortcut() {
-    return shortcut;
-  }
-
-  /**
-   * Gets the icon.
-   *
-   * @return the icon.
-   */
-  public ImageDescriptor getIcon() {
-    return icon;
-  }
-
-  /**
-   * Sets the icon.
-   *
-   * @param icon the icon.
-   */
-  public void setIcon(ImageDescriptor icon) {
-    this.icon = icon;
-  }
-
-  /**
-   * Gets the active icon.
-   *
-   * @return the active icon.
-   */
-  public ImageDescriptor getActiveIcon() {
-    return activeIcon;
-  }
-
-  /**
-   * Sets the active icon.
-   *
-   * @param icon the active icon.
-   */
-  public void setActiveIcon(ImageDescriptor activeIcon) {
-    this.activeIcon = activeIcon;
+    logger.trace("Set description to {}.", description);
+    setDescription(description);
   }
 
   @Override
-  public void setChecked(boolean checked) {
-    super.setChecked(checked);
-    if (checked) {
-      if (activeIcon != null) {
-        setImageDescriptor(activeIcon);
-      }
-    } else {
-      if (icon != null) {
-        setImageDescriptor(icon);
-      }
-    }
-  }
-
-  @Override
-  public void run() {
+  public void handle(ActionEvent event) {
     //  default implementation is to display an error message.
     application.displayUnimplementedError(getId());
-  }
-
-  @Override
-  public void runWithEvent(Event event) {
-    run();
   }
 }

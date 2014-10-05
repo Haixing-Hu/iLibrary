@@ -28,11 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
-import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
-import com.github.haixing_hu.ilibrary.gui.inspector.InspectorPanel;
-import com.github.haixing_hu.ilibrary.gui.navigator.NavigatorPanel;
-import com.github.haixing_hu.ilibrary.gui.preview.PreviewPanel;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.model.FieldType;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
@@ -53,11 +50,10 @@ public final class ApplicationState {
   private final Logger logger;
   private Page page;
   private AnnotateMode annotateMode;
-  private BrowserMode browserMode;
-  private int navigatorWidth;
+  private BrowseMode browseMode;
   private boolean navigatorVisible;
-  private int inspectorWidth;
-  private int previewHeight;
+  private boolean inspectorVisible;
+  private boolean previewVisible;
   private InspectorTab inspectorTab;
   private int layoutMode;
 
@@ -74,11 +70,10 @@ public final class ApplicationState {
     logger = LoggerFactory.getLogger(ApplicationState.class);
     page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
-    browserMode = BrowserMode.COLUMNS;
-    navigatorWidth = 0;
+    browseMode = BrowseMode.COLUMNS;
     navigatorVisible = true;
-    inspectorWidth = 0;
-    previewHeight =0;
+    inspectorVisible = true;
+    previewVisible = true;
     inspectorTab = InspectorTab.OVERVIEW;
     layoutMode = LayoutMode.ALL;
     allFlagStatusFilters = new Set[Page.TOTAL];
@@ -106,10 +101,7 @@ public final class ApplicationState {
    *    an application configuration.
    */
   public void load(AppConfig config) {
-    loadNavigatorWidth(config);
     loadNavigatorVisible(config);
-    loadInspectorWidth(config);
-    loadPreviewHeight(config);
     loadInspectorTab(config);
     loadLayoutMode(config);
     loadBrowserMode(config);
@@ -122,21 +114,10 @@ public final class ApplicationState {
     loadSortOrder(config);
   }
 
-  private void loadNavigatorWidth(AppConfig config) {
-    navigatorWidth = config.getInt(NavigatorPanel.ID + DEFAULT_WIDTH);
-  }
 
   private void loadNavigatorVisible(AppConfig config) {
     //  FIXME
     navigatorVisible = true;
-  }
-
-  private void loadInspectorWidth(AppConfig config) {
-    inspectorWidth = config.getInt(InspectorPanel.ID + DEFAULT_WIDTH);
-  }
-
-  private void loadPreviewHeight(AppConfig config) {
-    previewHeight = config.getInt(PreviewPanel.ID + DEFAULT_HEIGHT);
   }
 
   private void loadInspectorTab(AppConfig config) {
@@ -151,7 +132,7 @@ public final class ApplicationState {
 
   private void loadBrowserMode(AppConfig config) {
     //  FIXME
-    browserMode = BrowserMode.COLUMNS;
+    browseMode = BrowseMode.COLUMNS;
   }
 
   private void loadFlagStatusFilters(AppConfig config) {
@@ -183,7 +164,7 @@ public final class ApplicationState {
   }
 
   private void loadDisplayColumns(AppConfig config) {
-    final String key = SelectColumnsAction.ID + DEFAULT;
+    final String key = ColumnsAction.ID + DEFAULT;
     final String[] values = config.getStringArray(key);
     for (final String value : values) {
       final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
@@ -262,39 +243,21 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the browser mode.
+   * Gets the browsing mode.
    *
-   * @return the browser mode.
+   * @return the browsing mode.
    */
-  public BrowserMode getBrowserMode() {
-    return browserMode;
+  public BrowseMode getBrowseMode() {
+    return browseMode;
   }
 
   /**
    * Sets the browser mode.
    *
-   * @param browserMode the new browser mode to set.
+   * @param browseMode the new browsing mode to set.
    */
-  public void setBrowserMode(BrowserMode browserMode) {
-    this.browserMode = browserMode;
-  }
-
-  /**
-   * Gets the navigatorWidth.
-   *
-   * @return the navigatorWidth.
-   */
-  public int getNavigatorWidth() {
-    return navigatorWidth;
-  }
-
-  /**
-   * Sets the navigatorWidth.
-   *
-   * @param width the new navigatorWidth to set.
-   */
-  public void setNavigatorWidth(int width) {
-    navigatorWidth = width;
+  public void setBrowseMode(BrowseMode browseMode) {
+    this.browseMode = browseMode;
   }
 
   /**
@@ -318,49 +281,23 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the inspectorWidth.
-   *
-   * @return the inspectorWidth.
-   */
-  public int getInspectorWidth() {
-    return inspectorWidth;
-  }
-
-  /**
-   * Sets the inspectorWidth.
-   *
-   * @param width the new inspectorWidth to set.
-   */
-  public void setInspectorWidth(int width) {
-    inspectorWidth = width;
-  }
-
-  /**
    * Gets the visibility of the inspector panel.
    *
    * @return <code>true</code> if the inspector panel is visible;
    *         <code>false</code> otherwise.
    */
   public boolean isInspectorVisible() {
-    return (layoutMode & LayoutMode.INSPECTOR) != 0;
+    return inspectorVisible;
   }
 
   /**
-   * Gets the previewHeight.
+   * Sets the visibility of the inspector panel.
    *
-   * @return the previewHeight.
+   * @return <code>true</code> if the preview panel is set to visible;
+   *         <code>false</code> otherwise.
    */
-  public int getPreviewHeight() {
-    return previewHeight;
-  }
-
-  /**
-   * Sets the previewHeight.
-   *
-   * @param height the new previewHeight to set.
-   */
-  public void setPreviewHeight(int height) {
-    previewHeight = height;
+  public void setInspectorVisible(boolean visible) {
+    inspectorVisible = visible;
   }
 
   /**
@@ -370,7 +307,17 @@ public final class ApplicationState {
    *         <code>false</code> otherwise.
    */
   public boolean isPreviewVisible() {
-    return (layoutMode & LayoutMode.PREVIEW) != 0;
+    return previewVisible;
+  }
+
+  /**
+   * Sets the visibility of the preview panel.
+   *
+   * @return <code>true</code> if the preview panel is set to visible;
+   *         <code>false</code> otherwise.
+   */
+  public void setPreviewVisible(boolean visible) {
+    previewVisible = visible;
   }
 
   /**

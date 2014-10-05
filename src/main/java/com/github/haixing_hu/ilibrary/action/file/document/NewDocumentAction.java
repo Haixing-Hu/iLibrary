@@ -18,69 +18,31 @@
 
 package com.github.haixing_hu.ilibrary.action.file.document;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
-import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
+import com.github.haixing_hu.ilibrary.action.file.FileAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
-import com.github.haixing_hu.lang.EnumUtils;
-import com.github.haixing_hu.swt.action.IActionManager;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.IAction;
 
 /**
- * The action to create a new document of a specified type.
+ * The action to create a new document.
  *
  * @author Haixing Hu
  */
-public class NewDocumentAction extends BaseDropDownAction {
+public class NewDocumentAction extends BaseActionGroup {
 
-  private final DocumentType type;
+  public static final String ID = FileAction.ID + ".new-document";
 
-  /**
-   * Construct a {@link NewDocumentAction} object.
-   *
-   * @param type
-   *    A document type.
-   * @param application
-   *    The application.
-   * @param actionManager
-   *    The action manager.
-   */
-  public NewDocumentAction(DocumentType type, Application application,
-          IActionManager actionManager) {
-    super(getActionId(type), application, actionManager,
-          getSubActionIds(application.getConfig(), type));
-    this.type = type;
-    logger.debug("Creates an NewDocumentAction '{}' for document type '{}'.",
-        getId(), type);
-  }
+  public static final String BUTTON_ID = "button-new-document";
 
-  private static String[] getSubActionIds(AppConfig config, DocumentType type) {
-    final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
-    final Collection<DocumentTemplate> templates = service.getAll(type);
-    final List<String> ids = new ArrayList<String>();
-    for (final DocumentTemplate template : templates) {
-      final String id = NewDocumentFormTemplateAction.getActionId(template);
-      ids.add(id);
+  public NewDocumentAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_ID);
+    final ActionManager am = application.getActionManager();
+    for (final DocumentType type : DocumentType.values()) {
+      final IAction action = new NewDocumentForTypeAction(type, application);
+      addSubAction(am, action);
     }
-    return ids.toArray(new String[0]);
   }
-
-  public static String getActionId(DocumentType type) {
-    return NewAction.ID + "." + EnumUtils.getShortName(type);
-  }
-
-  /**
-   * Gets the document type.
-   *
-   * @return the document type.
-   */
-  public DocumentType getType() {
-    return type;
-  }
-
 }

@@ -18,33 +18,28 @@
 
 package com.github.haixing_hu.ilibrary.action.file;
 
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to quit the application.
  *
  * @author Haixing Hu
  */
-public class QuitAction extends BaseAction implements Listener {
+public class QuitAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".quit";
 
-  public QuitAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public QuitAction(Application application) {
+    super(ID, application);
   }
 
   @Override
-  public void run() {
-    application.getMainWindow().close();
-  }
-
-  @Override
-  public void handleEvent(Event event) {
-    this.run();
+  public void handle(ActionEvent event) {
+    logger.info("Quit the application.");
+    Platform.exit();
   }
 }

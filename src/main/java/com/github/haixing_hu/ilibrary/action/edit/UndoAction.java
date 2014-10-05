@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to undo the last operation.
@@ -30,7 +29,7 @@ import com.github.haixing_hu.swt.action.IActionManager;
 public class UndoAction extends BaseAction {
   public static final String ID = EditAction.ID + ".undo";
 
-  public UndoAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public UndoAction(Application application) {
+    super(ID, application);
   }
 }

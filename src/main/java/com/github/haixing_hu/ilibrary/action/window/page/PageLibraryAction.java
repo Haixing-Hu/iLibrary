@@ -18,11 +18,12 @@
 
 package com.github.haixing_hu.ilibrary.action.window.page;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
 import com.github.haixing_hu.ilibrary.state.Page;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to switch to the library page.
@@ -33,12 +34,15 @@ public class PageLibraryAction extends BaseAction {
 
   public static final String ID = WindowAction.ID + ".library";
 
-  public PageLibraryAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-library";
+
+  public PageLibraryAction(Application application) {
+    super(ID, application, TOGGLE_SHOW_TEXT);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  public void run() {
-    application.setPage(Page.LIBRARY);
+  public void handle(ActionEvent event) {
+    application.getLayoutController().setPage(Page.LIBRARY);
   }
 }

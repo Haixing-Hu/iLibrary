@@ -19,34 +19,35 @@
 package com.github.haixing_hu.ilibrary.action.share;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.file.ExportAction;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to show the drop down menu of sharing related actions.
  *
  * @author Haixing Hu
  */
-public class ShareAction extends BaseDropDownAction {
+public class ShareAction extends BaseActionGroup {
 
   public static final String ID = "action.share";
 
-  private static final String SUB_ACTIONS[] = {
-    TwitterAction.ID,
-    FacebookAction.ID,
-    GooglePlusAction.ID,
-    SinaAction.ID,
-    TencentAction.ID,
-    Separator.ID,
-    EmailAction.ID,
-    Separator.ID,
-    ExportAction.ID,
-  };
+  public static final String BUTTON_CLASS = "button-share";
 
-  public ShareAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public ShareAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_CLASS);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new TwitterAction(application));
+    addSubAction(am, new FacebookAction(application));
+    addSubAction(am, new GooglePlusAction(application));
+    addSubAction(am, new SinaAction(application));
+    addSubAction(am, new TencentAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new EmailAction(application));
+    addSubAction(am, new SeparatorAction());
+    add(am.get(ExportAction.ID));
   }
 
 }

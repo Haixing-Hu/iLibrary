@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to archive the selected documents.
@@ -31,7 +30,7 @@ public class ArchiveAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".archive";
 
-  public ArchiveAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public ArchiveAction(Application application) {
+    super(ID, application);
   }
 }

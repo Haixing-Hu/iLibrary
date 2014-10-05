@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to show all the documents.
@@ -31,7 +30,7 @@ public class ShowAllAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".show-all";
 
-  public ShowAllAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public ShowAllAction(Application application) {
+    super(ID, application);
   }
 }

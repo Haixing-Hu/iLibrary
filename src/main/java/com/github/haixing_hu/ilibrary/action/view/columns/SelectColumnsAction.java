@@ -14,29 +14,40 @@
 
 package com.github.haixing_hu.ilibrary.action.view.columns;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.ButtonBase;
+
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.ExplorerToolBarBalloonWindowAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.gui.explorer.SelectColumnsWindow;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.window.BalloonWindow;
+import com.github.haixing_hu.ilibrary.gui.ContentPanel;
+import com.github.haixing_hu.ilibrary.gui.MainContent;
+import com.github.haixing_hu.ilibrary.gui.document.SelectColumnsPopOver;
 
 /**
  * The action for selecting displayed columns.
  *
  * @author Haixing Hu
  */
-public class SelectColumnsAction extends ExplorerToolBarBalloonWindowAction {
+public class SelectColumnsAction extends BaseAction {
 
-  public static final String ID = ViewAction.ID + ".columns";
+  public static final String ID = ViewAction.ID + ".select-columns";
 
-  public SelectColumnsAction(Application application,
-      IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-select-columns";
+
+  public SelectColumnsAction(Application application) {
+    super(ID, application, DIALOG);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  protected BalloonWindow createBalloonWindow() {
-    return new SelectColumnsWindow(application);
+  public void handle(ActionEvent event) {
+    final MainContent mainContent = application.findNodeById(MainContent.ID);
+    final ContentPanel content = mainContent.getCurrentContent();
+    final ButtonBase button = content.findNodeByClass(BUTTON_CLASS);
+    if (button != null) {
+      final SelectColumnsPopOver win = new SelectColumnsPopOver(application);
+      win.show(button);
+    }
   }
 }

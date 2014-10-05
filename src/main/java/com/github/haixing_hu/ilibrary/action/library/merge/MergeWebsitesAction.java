@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.merge;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to merge the selected websites.
@@ -32,9 +31,8 @@ public class MergeWebsitesAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".merge-websites";
 
-  public MergeWebsitesAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public MergeWebsitesAction(Application application) {
+    super(ID, application, DIALOG);
   }
 
 }

@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to export document entries.
@@ -31,8 +30,7 @@ public class ExportAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".export";
 
-  public ExportAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public ExportAction(Application application) {
+    super(ID, application, DIALOG);
   }
 }

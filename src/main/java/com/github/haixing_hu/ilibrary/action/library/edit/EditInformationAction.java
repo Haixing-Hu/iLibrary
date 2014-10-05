@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.edit;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to edit the information of the current document.
@@ -32,8 +31,7 @@ public class EditInformationAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".edit-information";
 
-  public EditInformationAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public EditInformationAction(Application application) {
+    super(ID, application, DIALOG);
   }
 }

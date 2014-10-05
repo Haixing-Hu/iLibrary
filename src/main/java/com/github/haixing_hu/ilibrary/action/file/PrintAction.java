@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to print the current document.
@@ -31,7 +30,10 @@ public class PrintAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".print";
 
-  public PrintAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-print";
+
+  public PrintAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 }

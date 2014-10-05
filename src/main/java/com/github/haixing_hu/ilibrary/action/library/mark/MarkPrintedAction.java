@@ -21,7 +21,6 @@ package com.github.haixing_hu.ilibrary.action.library.mark;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to mark the selected documents as printed.
@@ -32,7 +31,7 @@ public class MarkPrintedAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".mark-printed";
 
-  public MarkPrintedAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public MarkPrintedAction(Application application) {
+    super(ID, application);
   }
 }

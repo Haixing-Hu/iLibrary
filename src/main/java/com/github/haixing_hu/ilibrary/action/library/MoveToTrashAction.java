@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to move the selected documents to the trash.
@@ -31,7 +30,7 @@ public class MoveToTrashAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".move-to-trash";
 
-  public MoveToTrashAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public MoveToTrashAction(Application application) {
+    super(ID, application);
   }
 }

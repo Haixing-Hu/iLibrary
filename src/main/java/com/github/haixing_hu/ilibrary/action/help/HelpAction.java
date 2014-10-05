@@ -19,30 +19,28 @@
 package com.github.haixing_hu.ilibrary.action.help;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseDropDownAction;
-import com.github.haixing_hu.swt.action.IActionManager;
-import com.github.haixing_hu.swt.toolbar.Separator;
+import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
+import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to show the drop down menu of helping related actions.
  *
  * @author Haixing Hu
  */
-public class HelpAction extends BaseDropDownAction {
+public class HelpAction extends BaseActionGroup {
 
   public static final String ID = "action.help";
 
-  private static final String SUB_ACTIONS[] = {
-    ManualAction.ID,
-    FaqAction.ID,
-    WebsiteAction.ID,
-    FeedbackAction.ID,
-    Separator.ID,
-    AboutAction.ID,
-  };
-
-  public HelpAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager, SUB_ACTIONS);
+  public HelpAction(Application application) {
+    super(ID, application);
+    final ActionManager am = application.getActionManager();
+    addSubAction(am, new ManualAction(application));
+    addSubAction(am, new FaqAction(application));
+    addSubAction(am, new WebsiteAction(application));
+    addSubAction(am, new FeedbackAction(application));
+    addSubAction(am, new SeparatorAction());
+    addSubAction(am, new AboutAction(application));
   }
 
 }

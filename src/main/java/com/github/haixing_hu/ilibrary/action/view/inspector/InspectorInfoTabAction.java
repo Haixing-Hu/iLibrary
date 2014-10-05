@@ -18,10 +18,11 @@
 
 package com.github.haixing_hu.ilibrary.action.view.inspector;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 
 /**
@@ -33,12 +34,15 @@ public class InspectorInfoTabAction extends BaseAction {
 
   public static final String ID = InspectorAction.ID + ".info";
 
-  public InspectorInfoTabAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-info";
+
+  public InspectorInfoTabAction(Application application) {
+    super(ID, application, TOGGLE);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  public void run() {
-    application.setInspectorTab(InspectorTab.INFO);
+  public void handle(ActionEvent event) {
+    application.getLayoutController().setInspectorTab(InspectorTab.INFO);
   }
 }

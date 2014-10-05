@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.file;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to close the current library.
@@ -31,7 +30,7 @@ public class CloseLibraryAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".close-library";
 
-  public CloseLibraryAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CloseLibraryAction(Application application) {
+    super(ID, application);
   }
 }

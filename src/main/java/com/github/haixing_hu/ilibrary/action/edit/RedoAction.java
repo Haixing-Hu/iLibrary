@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to redo the last operation.
@@ -28,10 +27,11 @@ import com.github.haixing_hu.swt.action.IActionManager;
  * @author Haixing Hu
  */
 public class RedoAction extends BaseAction {
+
   public static final String ID = EditAction.ID + ".redo";
 
-  public RedoAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public RedoAction(Application application) {
+    super(ID, application);
   }
 
 }

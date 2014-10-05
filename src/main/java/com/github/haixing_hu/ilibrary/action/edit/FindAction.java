@@ -20,7 +20,6 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to find the specified text or the specified document.
@@ -30,9 +29,8 @@ import com.github.haixing_hu.swt.action.IActionManager;
 public class FindAction extends BaseAction {
   public static final String ID = EditAction.ID + ".find";
 
-  public FindAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowDialog(true);
+  public FindAction(Application application) {
+    super(ID, application);
   }
 
 }

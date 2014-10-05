@@ -18,7 +18,6 @@
 
 package com.github.haixing_hu.ilibrary;
 
-import com.github.haixing_hu.swt.utils.SWTResourceManager;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.math.BigDecimal;
@@ -28,11 +27,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
+
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -79,10 +77,10 @@ public final class AppConfig implements ApplicationContext,
     }
     name = context.getMessage(Application.ID + NAME, null, locale);
     version = config.getString(Application.ID + VERSION);
-    String css = config.getString(Application.ID + STYLE);
+    final String css = config.getString(Application.ID + STYLE);
     stylesheet = this.getClass().getResource(css).toExternalForm();
 
-    logger.info("{}, {}", name, version);
+    logger.info("{} {}", name, version);
     logger.info("Sets the locale to {}.", locale);
   }
 
@@ -312,7 +310,7 @@ public final class AppConfig implements ApplicationContext,
     String shortcut = config.getString(id + KeySuffix.SHORTCUT);
     if (! StringUtils.isEmpty(shortcut)) {
       //  substitute the META key according to the operating system
-      final String meta = (SystemUtils.IS_OS_MAC ? "COMMAND" : "CTRL");
+      final String meta = (SystemUtils.IS_OS_MAC ? "META" : "CTRL");
       shortcut = shortcut.replace("META", meta);
     } else {
       shortcut = null;
@@ -653,41 +651,5 @@ public final class AppConfig implements ApplicationContext,
   public List<Object> getList(String key, List<?> defaultValue) {
     logger.trace("Getting list: {}", key);
     return config.getList(key, defaultValue);
-  }
-
-  /**
-   * Gets the color specified by a key.
-   *
-   * @param key
-   *          the key.
-   * @return the color specified by the key. The color must be specified in the
-   *         RGB form "#aabbcc". If there is no value corresponding to the
-   *         specified key, returns null.
-   */
-  public Color getColor(String key) {
-    final String rgb = getString(key, null);
-    if (rgb == null) {
-      return null;
-    } else {
-      return SWTResourceManager.getColor(rgb);
-    }
-  }
-
-  /**
-   * Gets the image specified by a key.
-   *
-   * @param key
-   *          the key.
-   * @return the image specified by the key. The image must be specified as
-   *         the path of a resource. If there is no value corresponding to the
-   *         specified key, returns null.
-   */
-  public Image getImage(Class<?> cls, String key) {
-    final String url = getString(key, null);
-    if (url == null) {
-      return null;
-    } else {
-      return SWTResourceManager.getImage(cls, url);
-    }
   }
 }

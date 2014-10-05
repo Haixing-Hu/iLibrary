@@ -18,11 +18,12 @@
 
 package com.github.haixing_hu.ilibrary.action.window.page;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
 import com.github.haixing_hu.ilibrary.state.Page;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to switch to the authors page.
@@ -33,12 +34,15 @@ public class PageAuthorsAction extends BaseAction {
 
   public static final String ID = WindowAction.ID + ".authors";
 
-  public PageAuthorsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public static final String BUTTON_CLASS = "button-authors";
+
+  public PageAuthorsAction(Application application) {
+    super(ID, application, TOGGLE_SHOW_TEXT);
+    styleClass.add(BUTTON_CLASS);
   }
 
   @Override
-  public void run() {
-    application.setPage(Page.AUTHORS);
+  public void handle(ActionEvent event) {
+    application.getLayoutController().setPage(Page.AUTHORS);
   }
 }

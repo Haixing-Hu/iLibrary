@@ -21,10 +21,9 @@ package com.github.haixing_hu.ilibrary.action.window.tab;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to close all tabs.
+ * The action to close all panels.
  *
  * @author Haixing Hu
  */
@@ -32,8 +31,8 @@ public class CloseAllTabsAction extends BaseAction {
 
   public static final String ID = WindowAction.ID + ".close-all-tabs";
 
-  public CloseAllTabsAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public CloseAllTabsAction(Application application) {
+    super(ID, application);
   }
 
 }

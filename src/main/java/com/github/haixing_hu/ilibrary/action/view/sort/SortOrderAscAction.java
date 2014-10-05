@@ -18,19 +18,22 @@
 
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseCheckBoxAction;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.state.SortOrder;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
  * The action to set the sorting order to "asc".
  *
  * @author Haixing Hu
  */
-public class SortOrderAscAction extends BaseCheckBoxAction {
+public class SortOrderAscAction extends BaseAction {
 
   public static final String ID = SortAction.ID + ".order.asc";
+
+  public static final String BUTTON_CLASS = "button-sort-asc";
 
   /**
    * Constructs a {@link SortOrderAscAction}.
@@ -40,13 +43,12 @@ public class SortOrderAscAction extends BaseCheckBoxAction {
    * @param actionManager
    *          the action manager.
    */
-  public SortOrderAscAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
-    this.setShowImage(false);
+  public SortOrderAscAction(Application application) {
+    super(ID, application, TOGGLE);
   }
 
   @Override
-  public void run() {
-    application.setSortOrder(SortOrder.ASC);
+  public void handle(ActionEvent event) {
+    application.getExplorerController().setSortOrder(SortOrder.ASC);
   }
 }

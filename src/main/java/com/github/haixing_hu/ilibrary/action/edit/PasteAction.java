@@ -20,17 +20,17 @@ package com.github.haixing_hu.ilibrary.action.edit;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
-import com.github.haixing_hu.swt.action.IActionManager;
 
 /**
- * The action to paste the text in the clipboard.
+ * The action to paste the text in the clip board.
  *
  * @author Haixing Hu
  */
 public class PasteAction extends BaseAction {
+
   public static final String ID = EditAction.ID + ".paste";
 
-  public PasteAction(Application application, IActionManager actionManager) {
-    super(ID, application, actionManager);
+  public PasteAction(Application application) {
+    super(ID, application);
   }
 }
