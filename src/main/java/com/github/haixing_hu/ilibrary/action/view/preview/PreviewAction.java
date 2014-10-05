@@ -22,7 +22,6 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.javafx.action.ActionManager;
-import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to switch the preview modes.
@@ -33,14 +32,14 @@ public class PreviewAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".preview";
 
+  public static final String BUTTON_CLASS = "button-preview-mode";
+
   public PreviewAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
     final ActionManager am = application.getActionManager();
-    addSubAction(am, new AsDocumentAction(application));
-    addSubAction(am, new AsThumbnailsAction(application));
-    addSubAction(am, new AsWebpageAction(application));
-    addSubAction(am, new SeparatorAction());
-    addSubAction(am, new HidePreviewAction(application));
-    addSubAction(am, new ShowPreviewAction(application));
+    addSubAction(am, new PreviewAsDocumentAction(application));
+    addSubAction(am, new PreviewAsThumbnailsAction(application));
+    addSubAction(am, new PreviewAsWebpageAction(application));
   }
 }

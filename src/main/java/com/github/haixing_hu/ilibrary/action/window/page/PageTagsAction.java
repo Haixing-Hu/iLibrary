@@ -37,7 +37,7 @@ public class PageTagsAction extends BaseAction {
   public static final String BUTTON_CLASS = "button-tags";
 
   public PageTagsAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE_SHOW_TEXT);
     styleClass.add(BUTTON_CLASS);
   }
 

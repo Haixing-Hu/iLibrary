@@ -31,6 +31,6 @@ public class OpenLibraryAction extends BaseAction {
   public static final String ID = FileAction.ID + ".open-library";
 
   public OpenLibraryAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

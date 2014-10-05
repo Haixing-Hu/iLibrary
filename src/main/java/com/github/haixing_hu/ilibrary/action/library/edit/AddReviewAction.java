@@ -32,6 +32,6 @@ public class AddReviewAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".add-review";
 
   public AddReviewAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

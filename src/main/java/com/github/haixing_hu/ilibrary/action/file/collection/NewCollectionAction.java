@@ -32,8 +32,11 @@ public class NewCollectionAction extends BaseActionGroup {
 
   public static final String ID = FileAction.ID + ".new-collection";
 
+  public static final String BUTTON_CLASS = "button-new-collection";
+
   public NewCollectionAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
     final ActionManager am = application.getActionManager();
     addSubAction(am, new NewNormalCollectionAction(application));
     addSubAction(am, new NewSmartCollectionAction(application));

@@ -36,7 +36,7 @@ public class InspectorNotesTabAction extends BaseAction {
   public static final String BUTTON_CLASS = "button-notes";
 
   public InspectorNotesTabAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE);
     styleClass.add(BUTTON_CLASS);
   }
 

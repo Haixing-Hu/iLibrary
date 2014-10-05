@@ -31,7 +31,10 @@ public class ForwardAction extends BaseAction {
 
   public static final String ID = ViewAction.ID + ".forward";
 
+  public static final String BUTTON_CLASS = "button-forward";
+
   public ForwardAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 }

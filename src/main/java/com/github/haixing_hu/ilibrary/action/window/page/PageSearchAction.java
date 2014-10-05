@@ -37,7 +37,7 @@ public class PageSearchAction extends BaseAction {
   public static final String BUTTON_CLASS = "button-search";
 
   public PageSearchAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE_SHOW_TEXT);
     styleClass.add(BUTTON_CLASS);
   }
 

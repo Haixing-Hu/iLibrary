@@ -20,13 +20,15 @@ package com.github.haixing_hu.ilibrary.action.view;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
-import com.github.haixing_hu.ilibrary.action.view.browser.BrowserModeAction;
-import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.browse.BrowseAsColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.browse.BrowseAsCoverFlowAction;
+import com.github.haixing_hu.ilibrary.action.view.browse.BrowseAsIconsAction;
+import com.github.haixing_hu.ilibrary.action.view.browse.BrowseAsListAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FilterAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.FilterDocumentTypeAction;
 import com.github.haixing_hu.ilibrary.action.view.inspector.InspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.preview.PreviewAction;
-import com.github.haixing_hu.ilibrary.action.view.read.BackAction;
+import com.github.haixing_hu.ilibrary.action.view.read.BackwardAction;
 import com.github.haixing_hu.ilibrary.action.view.read.ForwardAction;
 import com.github.haixing_hu.ilibrary.action.view.read.GotoPageAction;
 import com.github.haixing_hu.ilibrary.action.view.read.NextPageAction;
@@ -53,18 +55,26 @@ public class ViewAction extends BaseActionGroup {
   public ViewAction(Application application) {
     super(ID, application);
     final ActionManager am = application.getActionManager();
-    addSubAction(am, new BrowserModeAction(application));
+    //addSubAction(am, new BrowseModeAction(application));
+
+    addSubAction(am, new BrowseAsListAction(application));
+    addSubAction(am, new BrowseAsColumnsAction(application));
+    addSubAction(am, new BrowseAsIconsAction(application));
+    addSubAction(am, new BrowseAsCoverFlowAction(application));
+
     addSubAction(am, new SeparatorAction());
     addSubAction(am, new HideNavigatorAction(application));
     addSubAction(am, new ShowNavigatorAction(application));
+    addSubAction(am, new HideInspectorAction(application));
+    addSubAction(am, new ShowInspectorAction(application));
+    addSubAction(am, new HidePreviewAction(application));
+    addSubAction(am, new ShowPreviewAction(application));
     addSubAction(am, new InspectorAction(application));
     addSubAction(am, new PreviewAction(application));
     addSubAction(am, new SeparatorAction());
-    addSubAction(am, new SelectColumnsAction(application));
+    addSubAction(am, new ColumnsAction(application));
     addSubAction(am, new SortAction(application));
     addSubAction(am, new FilterAction(application));
-    addSubAction(am, new SeparatorAction());
-    addSubAction(am, new FilterDocumentTypeAction(application));
     addSubAction(am, new SeparatorAction());
     addSubAction(am, new PreviousDocumentAction(application));
     addSubAction(am, new NextDocumentAction(application));
@@ -78,7 +88,7 @@ public class ViewAction extends BaseActionGroup {
     addSubAction(am, new PreviousPageAction(application));
     addSubAction(am, new NextPageAction(application));
     addSubAction(am, new GotoPageAction(application));
-    addSubAction(am, new BackAction(application));
+    addSubAction(am, new BackwardAction(application));
     addSubAction(am, new ForwardAction(application));
   }
 }

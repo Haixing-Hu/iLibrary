@@ -31,7 +31,7 @@ public class ImportAction extends BaseAction {
   public static final String ID = FileAction.ID + ".import";
 
   public ImportAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

@@ -31,7 +31,7 @@ public class PageSetupAction extends BaseAction {
   public static final String ID = FileAction.ID + ".page-setup";
 
   public PageSetupAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

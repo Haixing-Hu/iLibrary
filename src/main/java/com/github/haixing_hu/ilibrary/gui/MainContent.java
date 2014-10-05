@@ -51,6 +51,14 @@ public class MainContent extends SplitPaneEx implements NodeLookup {
 
   public static final String LEFT_PANE_CLASS = "left-panel";
 
+  private static final int NAVIGATOR_INDEX = 0;
+
+  private static final int INSPECTOR_INDEX = 1;
+
+  private static final int ONE_COLUMN_PANE_INDEX = 0;
+
+  private static final int TWO_COLUMNS_PANE_INDEX = 1;
+
   private final Logger logger;
   private final Application application;
   private final CardPane oneColumnPane;
@@ -109,7 +117,8 @@ public class MainContent extends SplitPaneEx implements NodeLookup {
     final ContentPanel tags = new DocumentContentPanel(application, Page.TAGS);
     final ContentPanel authors = new DocumentContentPanel(application, Page.AUTHORS);
     final ContentPanel sources = new DocumentContentPanel(application, Page.SOURCES);
-    contents.addAllCards(search, library, tags, authors, sources);
+    final ContentPanel reader = new ReaderContentPanel(application);
+    contents.addAllCards(search, library, tags, authors, sources, reader);
   }
 
   private void createInspectors() {
@@ -123,7 +132,7 @@ public class MainContent extends SplitPaneEx implements NodeLookup {
   }
 
   private void configLeftPane() {
-    oneColumnPane.addCard(new ReaderContentPanel(application));
+    oneColumnPane.addCard(contents.getCard(Page.READER.ordinal()));
     SplitPane.setResizableWithParent(navigators, false);
     SplitPane.setResizableWithParent(contents, true);
     twoColumnPane.getItems().addAll(navigators, contents);
@@ -131,24 +140,36 @@ public class MainContent extends SplitPaneEx implements NodeLookup {
     leftPane.addAllCards(oneColumnPane, twoColumnPane);
   }
 
-
   public void setNavigatorVisible(boolean visible) {
-    twoColumnPane.setItemVisible(0, visible);
+    twoColumnPane.setItemVisible(NAVIGATOR_INDEX, visible);
   }
 
   public void setInspectorVisible(boolean visible) {
-    setItemVisible(1, visible);
+    setItemVisible(INSPECTOR_INDEX, visible);
+  }
+
+  public void setPreviewVisible(boolean visible) {
+    for (final Page page : Page.values()) {
+      final ContentPanel panel = (ContentPanel) contents.getCard(page.ordinal());
+      panel.setPreviewVisible(visible);
+    }
   }
 
   public void switchToPage(Page page) {
     logger.trace("Swtich to page {}", page);
     switch (page) {
       case READER:
-        leftPane.showCard(0);
+        leftPane.showCard(ONE_COLUMN_PANE_INDEX);
+        inspectors.showCard(page.ordinal());
+        break;
+      case SEARCH:
+        leftPane.showCard(TWO_COLUMNS_PANE_INDEX);
+        navigators.showCard(page.ordinal());
+        contents.showCard(page.ordinal());
         inspectors.showCard(page.ordinal());
         break;
       default:
-        leftPane.showCard(1);
+        leftPane.showCard(TWO_COLUMNS_PANE_INDEX);
         navigators.showCard(page.ordinal());
         contents.showCard(page.ordinal());
         inspectors.showCard(page.ordinal());
@@ -165,6 +186,17 @@ public class MainContent extends SplitPaneEx implements NodeLookup {
     }
   }
 
+  public NavigatorPanel getCurrentNavigator() {
+    return (NavigatorPanel) navigators.getCurrentCard();
+  }
+
+  public ContentPanel getCurrentContent() {
+    return (ContentPanel) contents.getCurrentCard();
+  }
+
+  public InspectorPanel getCurrentInspector() {
+    return (InspectorPanel) inspectors.getCurrentCard();
+  }
 
   @SuppressWarnings("unchecked")
   @Override

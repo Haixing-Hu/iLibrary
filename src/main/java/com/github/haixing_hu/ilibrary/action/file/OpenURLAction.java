@@ -31,6 +31,6 @@ public class OpenURLAction extends BaseAction {
   public static final String ID = FileAction.ID + ".open-url";
 
   public OpenURLAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

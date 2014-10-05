@@ -30,7 +30,10 @@ public class PrintAction extends BaseAction {
 
   public static final String ID = FileAction.ID + ".print";
 
+  public static final String BUTTON_CLASS = "button-print";
+
   public PrintAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 }

@@ -31,7 +31,7 @@ public class FacebookAction extends BaseAction {
   public static final String ID = ShareAction.ID + ".facebook";
 
   public FacebookAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

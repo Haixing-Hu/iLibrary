@@ -31,6 +31,6 @@ public class PreferencesAction extends BaseAction {
   public static final String ID = EditAction.ID + ".preferences";
 
   public PreferencesAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

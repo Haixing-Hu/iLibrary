@@ -31,7 +31,10 @@ public class AttachFileAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".attach-file";
 
+  public static final String BUTTON_CLASS = "button-attach-file";
+
   public AttachFileAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
+    styleClass.add(BUTTON_CLASS);
   }
 }

@@ -31,6 +31,6 @@ public class TencentAction extends BaseAction {
   public static final String ID = ShareAction.ID + ".tencent";
 
   public TencentAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

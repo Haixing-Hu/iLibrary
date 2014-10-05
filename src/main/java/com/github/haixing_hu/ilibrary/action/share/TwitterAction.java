@@ -31,7 +31,7 @@ public class TwitterAction extends BaseAction {
   public static final String ID = ShareAction.ID + ".twitter";
 
   public TwitterAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

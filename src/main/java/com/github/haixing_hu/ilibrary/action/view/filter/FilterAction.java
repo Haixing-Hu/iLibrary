@@ -35,9 +35,9 @@ public class FilterAction extends BaseActionGroup {
   public FilterAction(Application application) {
     super(ID, application);
     final ActionManager am = application.getActionManager();
-    addSubAction(am, new FilterFlagStatusAction(application));
-    addSubAction(am, new FilterReadStatusAction(application));
-    addSubAction(am, new FilterFileStatusAction(application));
-    addSubAction(am, new FilterDocumentTypeAction(application));
+    addSubAction(am, new FlagFilterAction(application));
+    addSubAction(am, new StatusFilterAction(application));
+    addSubAction(am, new FileFilterAction(application));
+    addSubAction(am, new TypeFilterAction(application));
   }
 }

@@ -31,6 +31,6 @@ public class EditCollectionAction extends BaseAction {
   public static final String ID = ManageCollectionAction.ID + ".edit";
 
   public EditCollectionAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

@@ -24,22 +24,22 @@ public enum FieldType {
   /**
    * The flag status of the document.
    */
-  FLAG_STATUS,
+  FLAG,
 
   /**
    * Indicates whether the document has attached files.
    */
-  FILE_STATUS,
+  FILE,
 
   /**
    * The print status of the document.
    */
-  PRINT_STATUS,
+  PRINT,
 
   /**
    * The reading status of the document.
    */
-  READ_STATUS,
+  STATUS,
 
   /**
    * The authors of the document, which could be one or more persons or
@@ -173,11 +173,6 @@ public enum FieldType {
    * The citation key of the document.
    */
   CITE_KEY,
-
-  /**
-   * The status of the document.
-   */
-  STATUS,
 
   /**
    * The rating of the document.

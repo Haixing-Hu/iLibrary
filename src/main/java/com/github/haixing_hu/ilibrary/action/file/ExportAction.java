@@ -31,6 +31,6 @@ public class ExportAction extends BaseAction {
   public static final String ID = FileAction.ID + ".export";
 
   public ExportAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

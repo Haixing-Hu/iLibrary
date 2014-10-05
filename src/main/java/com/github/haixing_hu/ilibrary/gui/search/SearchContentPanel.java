@@ -14,12 +14,18 @@
 
 package com.github.haixing_hu.ilibrary.gui.search;
 
+import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.share.ShareAction;
+import com.github.haixing_hu.ilibrary.action.view.ShowInspectorAction;
+import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
 import com.github.haixing_hu.ilibrary.gui.ContentPanel;
 import com.github.haixing_hu.ilibrary.state.Page;
+import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
  * The panel for the search page.
@@ -30,6 +36,9 @@ public class SearchContentPanel extends ContentPanel {
 
   public SearchContentPanel(Application application) {
     super(application, Page.SEARCH);
+    configHeader();
+    configContent();
+    configFooter();
   }
 
   @Override
@@ -46,11 +55,26 @@ public class SearchContentPanel extends ContentPanel {
   @Override
   protected void configContent() {
     // TODO Auto-generated method stub
-    content.getChildren().add(new Label("SEARCH"));
+    ((Pane) content).getChildren().add(new Label("SEARCH"));
   }
 
   @Override
-  protected void configFooter() {
-    // TODO Auto-generated method stub
+  protected void configFooterLeftToolBar(HBox toolBar) {
+    final ActionManager am = application.getActionManager();
+    final ButtonBase showNavigator = am.createButton(ShowNavigatorAction.ID);
+    toolBar.getChildren().addAll(showNavigator);
+  }
+
+  @Override
+  protected void configFooterRightToolBar(HBox toolBar) {
+    final ActionManager am = application.getActionManager();
+    final ButtonBase share = am.createButton(ShareAction.ID);
+    final ButtonBase showInspector = am.createButton(ShowInspectorAction.ID);
+    toolBar.getChildren().addAll(share, showInspector);
+  }
+
+  @Override
+  public void setPreviewVisible(boolean visible) {
+    //  do nothing
   }
 }

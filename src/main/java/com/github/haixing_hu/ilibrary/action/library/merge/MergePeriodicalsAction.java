@@ -32,7 +32,7 @@ public class MergePeriodicalsAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".merge-periodicals";
 
   public MergePeriodicalsAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

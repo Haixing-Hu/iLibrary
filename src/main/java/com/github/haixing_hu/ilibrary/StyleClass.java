@@ -38,6 +38,8 @@ public interface StyleClass {
 
   public static final String TITLE = "title";
 
+  public static final String CONTENT = "content";
+
   public static final String PAGE_TITLE = "page-title";
 
   public static final String TREE_VIEW = "tree-view";

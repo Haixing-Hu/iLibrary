@@ -21,6 +21,16 @@
  *  Modification for Styles of Default Controls
  *
  ******************************************************************************/ 
+
+/* Sets the width of split pane divider to be 1 */
+.split-pane > .split-pane-divider {  
+    -fx-padding: 0 1 0 1;  
+}
+  
+.split-pane {
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+}
  
 /* Makes the button flat */
 .button {
@@ -31,19 +41,84 @@
 
 /* Makes the toggle button flat */
 .toggle-button {
-     -fx-background-color: transparent, transparent, transparent, transparent;
+    -fx-background-color: transparent;
     -fx-box-border: transparent;
     -fx-padding: 0;
 }
 
-/* Sets the width of split pane divider to be 1 */
-.split-pane > .split-pane-divider {  
-    -fx-padding: 0 1 0 1;  
+.menu-button.no-arrow {
+	-fx-background-color: transparent; 
+    -fx-background-insets: 0;
 }
-  
-.split-pane {
-    -fx-background-insets: 0, 0;
+
+.menu-button.no-arrow .label { 
+	-fx-padding: 0;
+}
+
+/* .check-box .box {
+    -fx-padding: 0.15em; 
+    
+   	-fx-background-color: rgb(250.0, 250.0, 250.0),
+        linear-gradient(
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
+            rgb(243.0, 243.0, 243.0) 100.0% );
+            
+	-fx-background-insets: -0.5 0.0 0.5 0.0, 0.5 1.0 1.5 1.0;
+    -fx-background-radius: 2.5, 2.5;
+    
+    -fx-border-radius: 2.5;
+    -fx-border-width: 0.5;
+    -fx-border-insets: -0.5 0.0 0.5 0.0;
+    -fx-border-color: rgb(129.0, 129.0, 129.0);
+}
+ */
+
+
+/******************************************************************************
+ *
+ *  Mac style check box
+ *
+ ******************************************************************************/ 
+ 
+.check-box {
+    -fx-skin: "com.sun.javafx.scene.control.skin.CheckBoxSkin";
+    -fx-label-padding: 0 5 0 5;
     -fx-padding: 0;
+}
+
+.check-box .box, 
+.check-box:focused .box {
+    -fx-effect: null;
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.12) , 1, 0 , 0 , 0 );*/
+    -fx-background-color: 
+    	#999999 /*rgba(79, 79, 79, .5)*/, 
+    	rgba(0, 0, 0, 0.12), 
+    	linear-gradient(to bottom, #FFFFFF 0%, #f4f4f4 44%, #ececec 46%, #eeeeee 100%);
+    -fx-padding: 1 1 1 1;
+    -fx-background-radius: 4, 3;
+    -fx-background-insets: 0, 1, 1;
+    -fx-border-color: null;
+}
+
+.check-box:selected .box, 
+.check-box:selected:focused .box {
+    -fx-border-color: null;
+    -fx-background-color: 
+    	/*Stroke*/   linear-gradient(to bottom, derive(#060e74, 65%) 0%, derive(#373a59, 65%) 100%),     	
+    	/*gradient*/ linear-gradient(to bottom, #e3f5ff 0%, #a6d3f9 50%, #86c4f9 50.1%, #d5f6ff 100%);     	
+    -fx-background-insets: 0, 1;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #001831;
+    -fx-background-insets: 0;
+    -fx-padding: 0.427em; /* 4 -- this is half the size of the mark */
+    -fx-scale-shape: false;
+    -fx-position-shape: false;
+    -fx-shape: "M1,6 l4,4 l8,-12 l-3,-1 l-5,10 l-3,-2 Z";
+    -fx-stroke-width: 3;
+    -fx-stroke-line-cap: round;
 }
 
 /******************************************************************************
@@ -66,7 +141,7 @@
 
 .title {
 	-fx-font-weight: bold;
-	-fx-font-color: -fx-mid-text-color;
+	-fx-text-fill: rgba(40, 40, 40, .8);
 }
 
 .toolbar {
@@ -111,15 +186,37 @@
     -fx-min-width: 300;  
     -fx-pref-width: 640;   
 }
-
+/* 
 .left-panel {
     -fx-min-width: 440;  
     -fx-pref-width: 800;   
-}
+} */
 
 .inspector-panel {
     -fx-min-width: 160;  
     -fx-pref-width: 200; 
+}
+
+.preview-panel {
+	-fx-min-height: 120;  
+    -fx-pref-height: 180; 
+    -fx-max-height: 500; 
+    -fx-background-color: #929292;
+}
+
+.preview-panel-header {
+	-fx-min-height: 30;
+	-fx-pref-height: 30;
+	-fx-max-height: 30;	
+	-fx-background-color:
+        linear-gradient(to bottom, derive(#828282,-30%), derive(#828282,-60%)),
+        #828282;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.explorer-panel {
+	fx-min-height: 300;  
+    -fx-pref-height: 600; 
 }
 
 .header {
@@ -325,18 +422,295 @@
 	-fx-graphic: url(images/preview-a.png);    
 }
 
-.button-add {
+.button-share {
+	-fx-graphic: url(images/share.png); 
+}
+
+.button-share:hover {
+	-fx-graphic: url(images/share-a.png); 
+}
+
+.button-browse-mode {
+	-fx-graphic: url(images/as-columns-a.png); 
+}
+
+.button-browse-as-columns {
+	-fx-graphic: url(images/as-columns.png); 
+}
+
+.button-browse-as-columns:hover {
+	-fx-graphic: url(images/as-columns-a.png); 
+}
+
+.button-browse-as-list {
+	-fx-graphic: url(images/as-list.png); 
+}
+
+.button-browse-as-list:hover {
+	-fx-graphic: url(images/as-list-a.png); 
+}
+
+.button-browse-as-icons {
+	-fx-graphic: url(images/as-icons.png); 
+}
+
+.button-browse-as-icons:hover {
+	-fx-graphic: url(images/as-icons-a.png); 
+}
+
+.button-browse-as-cover-flow {
+	-fx-graphic: url(images/as-cover-flow.png); 
+}
+
+.button-browse-as-cover-flow:hover {
+	-fx-graphic: url(images/as-cover-flow-a.png); 
+}
+
+.button-preview-mode {
+	-fx-graphic: url(images/preview-as-document.png); 
+}
+
+.button-preview-mode:hover {
+	-fx-graphic: url(images/preview-as-document-a.png); 
+}
+
+.button-preview-as-document {
+	-fx-graphic: url(images/preview-as-document.png); 
+}
+
+.button-preview-as-document:hover {
+	-fx-graphic: url(images/preview-as-document-a.png); 
+}
+
+.button-preview-as-thumbnails {
+	-fx-graphic: url(images/preview-as-thumbnails.png); 
+}
+
+.button-preview-as-thumbnails:hover {
+	-fx-graphic: url(images/preview-as-thumbnails-a.png); 
+}
+
+.button-preview-as-webpage {
+	-fx-graphic: url(images/preview-as-webpage.png); 
+}
+
+.button-preview-as-webpage:hover {
+	-fx-graphic: url(images/preview-as-webpage-a.png); 
+}
+
+.button-select-columns {
+	-fx-graphic: url(images/select-columns.png); 
+}
+
+.button-select-columns:hover {
+	-fx-graphic: url(images/select-columns-a.png); 
+}
+
+.button-filter {
+	-fx-graphic: url(images/filter.png); 
+}
+
+.button-filter:hover {
+	-fx-graphic: url(images/filter-a.png); 
+}
+
+.button-set-filters {
+	-fx-graphic: url(images/filter.png); 
+}
+
+.button-set-filters:selected {
+	-fx-graphic: url(images/filter-a.png); 
+}
+
+.button-set-filters:hover {
+	-fx-graphic: url(images/filter-a.png); 
+}
+
+.button-sort {
+	-fx-graphic: url(images/sort-desc.png); 
+}
+
+.button-sort:hover {
+	-fx-graphic: url(images/sort-desc-a.png); 
+}
+
+.button-sort:selected {
+	-fx-graphic: url(images/sort-desc-a.png); 
+}
+
+.button-sort-asc {
+	-fx-graphic: url(images/sort-asc.png); 
+}
+
+.button-sort-asc:hover {
+	-fx-graphic: url(images/sort-asc-a.png); 
+}
+
+.button-sort-asc:selected {
+	-fx-graphic: url(images/sort-asc-a.png); 
+}
+
+.button-sort-desc {
+	-fx-graphic: url(images/sort-desc.png); 
+}
+
+.button-sort-desc:hover {
+	-fx-graphic: url(images/sort-desc-a.png); 
+}
+
+.button-sort-desc:selected {
+	-fx-graphic: url(images/sort-desc-a.png); 
+}
+
+
+.button-print {
+	-fx-graphic: url(images/print.png);    
+}
+
+.button-print:hover {
+	-fx-graphic: url(images/print-a.png);    
+}
+
+.button-highlight {
+	-fx-graphic: url(images/highlight.png);    
+}
+
+.button-highlight:hover {
+	-fx-graphic: url(images/highlight-a.png);    
+}
+
+.button-underline {
+	-fx-graphic: url(images/underline.png);    
+}
+
+.button-underline:hover {
+	-fx-graphic: url(images/underline-a.png);    
+}
+
+.button-strikethrough {
+	-fx-graphic: url(images/strikethrough.png);    
+}
+
+.button-strikethrough:hover {
+	-fx-graphic: url(images/strikethrough-a.png);    
+}
+
+.button-create-note {
+	-fx-graphic: url(images/create-note.png);    
+}
+
+.button-create-note:hover {
+	-fx-graphic: url(images/create-note-a.png);    
+}
+
+.button-mark-flagged {
+	-fx-graphic: url(images/mark-flagged.png);    
+}
+
+.button-mark-flagged:hover {
+	-fx-graphic: url(images/mark-flagged-a.png);    
+}
+
+.button-mark-unflagged {
+	-fx-graphic: url(images/mark-unflagged.png);    
+}
+
+.button-mark-unflagged:hover {
+	-fx-graphic: url(images/mark-unflagged-a.png);    
+}
+
+.button-edit-keywords {
+	-fx-graphic: url(images/edit-keywords.png);    
+}
+
+.button-edit-keywords:hover {
+	-fx-graphic: url(images/edit-keywords-a.png);    
+}
+
+.button-attach-file {
+	-fx-graphic: url(images/attach-file.png);    
+}
+
+.button-attach-file:hover {
+	-fx-graphic: url(images/attach-file-a.png);    
+}
+
+.button-new-collection {
 	-fx-graphic: url(images/add.png);    
 }
 
-.button-add:hover {
+.button-new-collection:hover {
 	-fx-graphic: url(images/add-a.png);    
 }
 
-.button-manage {
+.button-manage-collection {
 	-fx-graphic: url(images/manage.png);    
 }
 
-.button-manage:hover {
+.button-manage-collection:hover {
 	-fx-graphic: url(images/manage-a.png);    
+}
+
+.button-new-tag {
+	-fx-graphic: url(images/add.png);    
+}
+
+.button-new-tag:hover {
+	-fx-graphic: url(images/add-a.png);    
+}
+
+.button-manage-tag {
+	-fx-graphic: url(images/manage.png);    
+}
+
+.button-manage-tag:hover {
+	-fx-graphic: url(images/manage-a.png);    
+}
+
+.button-new-author {
+	-fx-graphic: url(images/add.png);    
+}
+
+.button-new-author:hover {
+	-fx-graphic: url(images/add-a.png);    
+}
+
+.button-manage-author {
+	-fx-graphic: url(images/manage.png);    
+}
+
+.button-manage-author:hover {
+	-fx-graphic: url(images/manage-a.png);    
+}
+
+.button-new-source {
+	-fx-graphic: url(images/add.png);    
+}
+
+.button-new-source:hover {
+	-fx-graphic: url(images/add-a.png);    
+}
+
+.button-manage-source {
+	-fx-graphic: url(images/manage.png);    
+}
+
+.button-manage-source:hover {
+	-fx-graphic: url(images/manage-a.png);    
+}
+
+.button-backward {
+	-fx-graphic: url(images/left-arrow.png); 
+}
+
+.button-backward:hover {
+	-fx-graphic: url(images/left-arrow-a.png); 
+}
+
+.button-forward {
+	-fx-graphic: url(images/right-arrow.png); 
+}
+
+.button-forward:hover {
+	-fx-graphic: url(images/right-arrow-a.png); 
 }

@@ -20,6 +20,7 @@ package com.github.haixing_hu.ilibrary.action.library;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
+import com.github.haixing_hu.ilibrary.action.library.author.ManageAuthorAction;
 import com.github.haixing_hu.ilibrary.action.library.collection.AddToCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.collection.ManageCollectionAction;
 import com.github.haixing_hu.ilibrary.action.library.edit.AddReviewAction;
@@ -44,6 +45,8 @@ import com.github.haixing_hu.ilibrary.action.library.open.OpenFileWithAction;
 import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlAction;
 import com.github.haixing_hu.ilibrary.action.library.open.OpenUrlInBrowserAction;
 import com.github.haixing_hu.ilibrary.action.library.open.RevealFilePositionAction;
+import com.github.haixing_hu.ilibrary.action.library.source.ManageSourceAction;
+import com.github.haixing_hu.ilibrary.action.library.tag.ManageTagAction;
 import com.github.haixing_hu.javafx.action.ActionManager;
 import com.github.haixing_hu.javafx.action.SeparatorAction;
 
@@ -83,6 +86,9 @@ public class LibraryAction extends BaseActionGroup {
     addSubAction(am, new OpenUrlInBrowserAction(application));
     addSubAction(am, new RevealFilePositionAction(application));
     addSubAction(am, new SeparatorAction());
+    addSubAction(am, new ManageTagAction(application));
+    addSubAction(am, new ManageAuthorAction(application));
+    addSubAction(am, new ManageSourceAction(application));
     addSubAction(am, new ManageCollectionAction(application));
     addSubAction(am, new AddToCollectionAction(application));
     addSubAction(am, new SeparatorAction());

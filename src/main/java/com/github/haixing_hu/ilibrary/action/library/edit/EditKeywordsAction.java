@@ -31,7 +31,10 @@ public class EditKeywordsAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".edit-keywords";
 
+  public static final String BUTTON_CLASS = "button-edit-keywords";
+
   public EditKeywordsAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
+    styleClass.add(BUTTON_CLASS);
   }
 }

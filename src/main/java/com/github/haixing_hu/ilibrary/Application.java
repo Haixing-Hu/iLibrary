@@ -31,9 +31,12 @@ import com.github.haixing_hu.ilibrary.action.help.HelpAction;
 import com.github.haixing_hu.ilibrary.action.library.LibraryAction;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
+import com.github.haixing_hu.ilibrary.action.view.browse.BrowseModeAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.SetFiltersAction;
 import com.github.haixing_hu.ilibrary.action.window.WindowAction;
+import com.github.haixing_hu.ilibrary.controller.ExplorerController;
 import com.github.haixing_hu.ilibrary.controller.LayoutController;
-import com.github.haixing_hu.ilibrary.controller.LibraryController;
 import com.github.haixing_hu.ilibrary.controller.ReaderController;
 import com.github.haixing_hu.ilibrary.controller.SearchController;
 import com.github.haixing_hu.ilibrary.gui.MainWindow;
@@ -58,7 +61,7 @@ public class Application extends javafx.application.Application
   private final ApplicationState state;
   private final ActionManager actionManager;
   private final LayoutController layoutController;
-  private final LibraryController libraryController;
+  private final ExplorerController explorerController;
   private final SearchController searchController;
   private final ReaderController readerController;
   private final MenuBar menuBar;
@@ -73,19 +76,11 @@ public class Application extends javafx.application.Application
     config = new AppConfig(CONTEXT_FILE);
     state = new ApplicationState();
     actionManager = new ActionManager();
-    actionManager.add(new FileAction(this));
-    actionManager.add(new EditAction(this));
-    actionManager.add(new ViewAction(this));
-    actionManager.add(new LibraryAction(this));
-    actionManager.add(new ShareAction(this));
-    actionManager.add(new WindowAction(this));
-    actionManager.add(new HelpAction(this));
-
+    createActions();
     layoutController = new LayoutController(this);
-    libraryController = new LibraryController(this);
+    explorerController = new ExplorerController(this);
     searchController = new SearchController(this);
     readerController = new ReaderController(this);
-
     menuBar = actionManager.createMenuBar(FileAction.ID, EditAction.ID,
         ViewAction.ID, LibraryAction.ID, ShareAction.ID, WindowAction.ID,
         HelpAction.ID);
@@ -94,21 +89,18 @@ public class Application extends javafx.application.Application
     scene = new Scene(mainWindow);
   }
 
-  private void syncState() {
-      logger.info("Synchronizing the application state ...");
-  //    explorerControler.updateNavigatorWidth();
-  //    explorerControler.updateNavigatorVisibility();
-  //    explorerControler.updateInspectorWidth();
-  //    explorerControler.updatePreviewHeight();
-  //    explorerControler.updateLayoutMode();
-  //    explorerControler.updateInspectorTab();
-
-      //explorerControler.updateBrowserMode();
-
-      //readerControler.updateAnnotateMode();
-
-      layoutController.update();
-    }
+  private void createActions() {
+    actionManager.add(new FileAction(this));
+    actionManager.add(new EditAction(this));
+    actionManager.add(new ViewAction(this));
+    actionManager.add(new LibraryAction(this));
+    actionManager.add(new ShareAction(this));
+    actionManager.add(new WindowAction(this));
+    actionManager.add(new HelpAction(this));
+    actionManager.add(new SelectColumnsAction(this));
+    actionManager.add(new SetFiltersAction(this));
+    actionManager.add(new BrowseModeAction(this));
+  }
 
   public AppConfig getConfig() {
     return config;
@@ -126,8 +118,8 @@ public class Application extends javafx.application.Application
     return layoutController;
   }
 
-  public LibraryController getLibraryController() {
-    return libraryController;
+  public ExplorerController getExplorerController() {
+    return explorerController;
   }
 
   public SearchController getSearchController() {
@@ -180,8 +172,16 @@ public class Application extends javafx.application.Application
     primaryStage.setMinWidth(config.getInt(ID + KeySuffix.MIN_WIDTH));
     primaryStage.setMinHeight(config.getInt(ID + KeySuffix.MIN_HEIGHT));
     primaryStage.setTitle(config.getAppName() + " " + config.getAppVersion());
+
+    state.load(config);
     syncState();
     primaryStage.show();
+  }
+
+  private void syncState() {
+    logger.info("Synchronizing the application state ...");
+    layoutController.update();
+    explorerController.update();
   }
 
   public static void main(String[] args) {

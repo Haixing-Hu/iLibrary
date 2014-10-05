@@ -37,7 +37,7 @@ public class PageSourcesAction extends BaseAction {
   public static final String BUTTON_CLASS = "button-sources";
 
   public PageSourcesAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE_SHOW_TEXT);
     styleClass.add(BUTTON_CLASS);
   }
 

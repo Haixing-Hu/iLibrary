@@ -32,6 +32,6 @@ public class MergeAuthorsAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".merge-authors";
 
   public MergeAuthorsAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

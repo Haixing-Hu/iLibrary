@@ -18,6 +18,8 @@
 
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 
@@ -39,6 +41,12 @@ public class SortByDefaultColumnAction extends BaseAction {
    *          the action manager.
    */
   public SortByDefaultColumnAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE);
+  }
+
+
+  @Override
+  public void handle(ActionEvent event) {
+    application.getExplorerController().setSortColumn(null);
   }
 }

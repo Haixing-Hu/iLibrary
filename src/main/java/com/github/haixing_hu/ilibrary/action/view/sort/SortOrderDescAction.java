@@ -18,8 +18,11 @@
 
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.state.SortOrder;
 
 /**
  * The action to set the sorting order to "desc".
@@ -30,6 +33,8 @@ public class SortOrderDescAction extends BaseAction {
 
   public static final String ID = SortAction.ID + ".order.desc";
 
+  public static final String BUTTON_CLASS = "button-sort-desc";
+
   /**
    * Constructs a {@link SortOrderDescAction}.
    *
@@ -39,6 +44,12 @@ public class SortOrderDescAction extends BaseAction {
    *          the action manager.
    */
   public SortOrderDescAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE);
+  }
+
+
+  @Override
+  public void handle(ActionEvent event) {
+    application.getExplorerController().setSortOrder(SortOrder.DESC);
   }
 }

@@ -22,7 +22,6 @@ import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
 import com.github.haixing_hu.javafx.action.ActionManager;
-import com.github.haixing_hu.javafx.action.SeparatorAction;
 
 /**
  * The action to switch the view modes.
@@ -40,8 +39,5 @@ public class InspectorAction extends BaseActionGroup {
     addSubAction(am, new InspectorInfoTabAction(application));
     addSubAction(am, new InspectorNotesTabAction(application));
     addSubAction(am, new InspectorActivityTabAction(application));
-    addSubAction(am, new SeparatorAction());
-    addSubAction(am, new HideInspectorAction(application));
-    addSubAction(am, new ShowInspectorAction(application));
   }
 }

@@ -35,15 +35,18 @@ public class SortAction extends BaseActionGroup {
 
   public static final String ID = ViewAction.ID + ".sort";
 
+  public static final String BUTTON_CLASS = "button-sort";
+
   public SortAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
     final ActionManager am = application.getActionManager();
     addSubAction(am, new SortOrderAscAction(application));
     addSubAction(am, new SortOrderDescAction(application));
     addSubAction(am, new SeparatorAction());
     addSubAction(am, new SortByDefaultColumnAction(application));
     for (final FieldType col : FieldType.values()) {
-      final IAction action = new  SortByColumnForAction(col, application);
+      final IAction action = new  SortByColumnOfAction(col, application);
       addSubAction(am, action);
     }
   }

@@ -51,10 +51,23 @@ public class BaseAction extends Action {
                                  | ActionOption.HIDE_BUTTON_TEXT
                                  | ActionOption.SHOW_DIALOG;
 
-  public static final int CHECK = ActionOption.TOGGLE_BUTTON
+  public static final int TOGGLE = ActionOption.TOGGLE_BUTTON
                                 | ActionOption.CHECK_MENU_ITEM
                                 | ActionOption.HIDE_MENU_ITEM_GRAPHIC
                                 | ActionOption.HIDE_BUTTON_TEXT;
+
+  public static final int TOGGLE_SHOW_TEXT = ActionOption.TOGGLE_BUTTON
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC;
+
+  public static final int CHECKBOX = ActionOption.CHECK_BOX
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC
+                                | ActionOption.HIDE_BUTTON_TEXT;
+
+  public static final int CHECKBOX_SHOW_TEXT = ActionOption.CHECK_BOX
+                                | ActionOption.CHECK_MENU_ITEM
+                                | ActionOption.HIDE_MENU_ITEM_GRAPHIC;
 
   protected final Application application;
   protected final Logger logger;
@@ -100,6 +113,7 @@ public class BaseAction extends Action {
   protected BaseAction(String id, @Nullable String title,
       Application application, int options) {
     super(id, options);
+
     this.application = requireNonNull("application", application);
     logger = LoggerFactory.getLogger(this.getClass());
 

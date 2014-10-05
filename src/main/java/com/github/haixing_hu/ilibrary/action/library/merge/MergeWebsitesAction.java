@@ -32,7 +32,7 @@ public class MergeWebsitesAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".merge-websites";
 
   public MergeWebsitesAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

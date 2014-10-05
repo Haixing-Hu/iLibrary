@@ -28,7 +28,10 @@ public class MarkUnflaggedAction extends BaseAction {
 
   public static final String ID = LibraryAction.ID + ".mark-unflagged";
 
+  public static final String BUTTON_CLASS = "button-mark-unflagged";
+
   public MarkUnflaggedAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
   }
 }

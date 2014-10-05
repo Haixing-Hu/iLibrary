@@ -43,6 +43,11 @@ import static com.github.haixing_hu.lang.Argument.requireNonNull;
  */
 public class BaseActionGroup extends ActionGroup {
 
+  public static final int DEFAULT = ActionOption.DEFAULT
+                                  | ActionOption.HIDE_MENU_ITEM_GRAPHIC
+                                  | ActionOption.HIDE_BUTTON_TEXT
+                                  | ActionOption.NO_ARROW;
+
   protected final Application application;
   protected final Logger logger;
 
@@ -55,7 +60,7 @@ public class BaseActionGroup extends ActionGroup {
    *          the application the new action group belongs to.
    */
   public BaseActionGroup(String id, Application application) {
-    this(id, null, application, ActionOption.DEFAULT);
+    this(id, null, application, DEFAULT);
   }
 
   /**
@@ -88,6 +93,7 @@ public class BaseActionGroup extends ActionGroup {
   public BaseActionGroup(String id, @Nullable String title,
       Application application, int options) {
     super(id, options);
+
     this.application = requireNonNull("application", application);
     logger = LoggerFactory.getLogger(this.getClass());
 

@@ -21,7 +21,7 @@ import javafx.scene.control.ButtonBase;
 import javafx.scene.layout.Pane;
 
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
+import com.github.haixing_hu.ilibrary.action.view.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
 import com.github.haixing_hu.ilibrary.state.Page;
 import com.github.haixing_hu.javafx.action.ActionManager;
@@ -32,7 +32,7 @@ import com.github.haixing_hu.javafx.pane.CardPane;
  *
  * @author Haixing Hu
  */
-public abstract class InspectorPanel extends PanelWithHeaderFooter {
+public abstract class InspectorPanel extends BasicPanel {
 
   public static final String STYLE_CLASS = "inspector-panel";
 
@@ -42,13 +42,11 @@ public abstract class InspectorPanel extends PanelWithHeaderFooter {
     super(application);
     this.page = page;
     getStyleClass().add(STYLE_CLASS);
-    configHeader();
-    configContent();
-    configFooter();
+    init();
   }
 
   @Override
-  protected Pane createContent() {
+  protected final Pane createContent() {
     return new CardPane();
   }
 
@@ -56,7 +54,7 @@ public abstract class InspectorPanel extends PanelWithHeaderFooter {
    * Configures the footer.
    */
   @Override
-  protected void configFooter() {
+  protected final void configFooter() {
     final ActionManager am = application.getActionManager();
     final ButtonBase hideInspectorButton = am.createButton(HideInspectorAction.ID);
     footer.getChildren().add(hideInspectorButton);

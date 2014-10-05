@@ -33,8 +33,11 @@ public class ShareAction extends BaseActionGroup {
 
   public static final String ID = "action.share";
 
+  public static final String BUTTON_CLASS = "button-share";
+
   public ShareAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
     final ActionManager am = application.getActionManager();
     addSubAction(am, new TwitterAction(application));
     addSubAction(am, new FacebookAction(application));
@@ -44,7 +47,7 @@ public class ShareAction extends BaseActionGroup {
     addSubAction(am, new SeparatorAction());
     addSubAction(am, new EmailAction(application));
     addSubAction(am, new SeparatorAction());
-    addSubAction(am, new ExportAction(application));
+    add(am.get(ExportAction.ID));
   }
 
 }

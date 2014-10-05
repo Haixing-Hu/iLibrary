@@ -32,6 +32,6 @@ public class EditInformationAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".edit-information";
 
   public EditInformationAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

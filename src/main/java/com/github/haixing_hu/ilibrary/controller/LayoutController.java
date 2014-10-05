@@ -20,10 +20,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.view.HideInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.HideNavigatorAction;
+import com.github.haixing_hu.ilibrary.action.view.HidePreviewAction;
+import com.github.haixing_hu.ilibrary.action.view.ShowInspectorAction;
 import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
-import com.github.haixing_hu.ilibrary.action.view.inspector.HideInspectorAction;
-import com.github.haixing_hu.ilibrary.action.view.inspector.ShowInspectorAction;
+import com.github.haixing_hu.ilibrary.action.view.ShowPreviewAction;
 import com.github.haixing_hu.ilibrary.gui.MainContent;
 import com.github.haixing_hu.ilibrary.state.ApplicationState;
 import com.github.haixing_hu.ilibrary.state.InspectorTab;
@@ -49,7 +51,9 @@ public class LayoutController {
   public void update() {
     updatePage();
     updateNavigatorVisible();
+    updateInspectorVisible();
     updateInspectorTab();
+    updatePreviewVisible();
   }
 
   public void setPage(Page page) {
@@ -61,6 +65,17 @@ public class LayoutController {
     state.setPage(page);
     updatePage();
     updateInspectorTab();
+    switch (page) {
+      case LIBRARY:
+      case TAGS:
+      case AUTHORS:
+      case SOURCES:
+        final ExplorerController controller = application.getExplorerController();
+        controller.update();
+        break;
+      default:
+        break;
+    }
   }
 
   private void updatePage() {
@@ -79,9 +94,6 @@ public class LayoutController {
 
   public void setNavigatorVisible(boolean visible) {
     final ApplicationState state = application.getState();
-    if (state.isNavigatorVisible() == visible) {
-      return;
-    }
     logger.info("Set navigator visibles: {}", visible);
     state.setNavigatorVisible(visible);
     updateNavigatorVisible();
@@ -92,8 +104,13 @@ public class LayoutController {
     final ApplicationState state = application.getState();
     final boolean visible = state.isNavigatorVisible();
     final ActionManager am = application.getActionManager();
-    am.setVisible(HideNavigatorAction.ID, visible);
-    am.setVisible(ShowNavigatorAction.ID, (! visible));
+    if (visible) {
+      am.hide(ShowNavigatorAction.ID);
+      am.show(HideNavigatorAction.ID);
+    } else {
+      am.show(ShowNavigatorAction.ID);
+      am.hide(HideNavigatorAction.ID);
+    }
     //  all page panel has the same navigator visibility
     final MainContent content = application.findNodeById(MainContent.ID);
     content.setNavigatorVisible(visible);
@@ -101,9 +118,6 @@ public class LayoutController {
 
   public void setInspectorVisible(boolean visible) {
     final ApplicationState state = application.getState();
-    if (state.isInspectorVisible() == visible) {
-      return;
-    }
     logger.info("Set inspector visibles: {}", visible);
     state.setInspectorVisible(visible);
     updateInspectorVisible();
@@ -114,8 +128,13 @@ public class LayoutController {
     final ApplicationState state = application.getState();
     final boolean visible = state.isInspectorVisible();
     final ActionManager am = application.getActionManager();
-    am.setVisible(HideInspectorAction.ID, visible);
-    am.setVisible(ShowInspectorAction.ID, (! visible));
+    if (visible) {
+      am.hide(ShowInspectorAction.ID);
+      am.show(HideInspectorAction.ID);
+    } else {
+      am.show(ShowInspectorAction.ID);
+      am.hide(HideInspectorAction.ID);
+    }
     //  all page panel has the same navigator visibility
     final MainContent content = application.findNodeById(MainContent.ID);
     content.setInspectorVisible(visible);
@@ -123,9 +142,6 @@ public class LayoutController {
 
   public void setInspectorTab(InspectorTab tab) {
     final ApplicationState state = application.getState();
-    if (state.getInspectorTab() == tab) {
-      return;
-    }
     logger.info("Set inspector tab: {}", tab);
     state.setInspectorTab(tab);
     updateInspectorTab();
@@ -149,5 +165,29 @@ public class LayoutController {
     }
     final MainContent content = application.findNodeById(MainContent.ID);
     content.swtichToInspectorTab(tab);
+  }
+
+  public void setPreviewVisible(boolean visible) {
+    final ApplicationState state = application.getState();
+    logger.info("Set preview visibles: {}", visible);
+    state.setPreviewVisible(visible);
+    updatePreviewVisible();
+  }
+
+  private void updatePreviewVisible() {
+    logger.debug("Updating preview visibles.");
+    final ApplicationState state = application.getState();
+    final boolean visible = state.isPreviewVisible();
+    final ActionManager am = application.getActionManager();
+    if (visible) {
+      am.hide(ShowPreviewAction.ID);
+      am.show(HidePreviewAction.ID);
+    } else {
+      am.show(ShowPreviewAction.ID);
+      am.hide(HidePreviewAction.ID);
+    }
+    //  all page panel has the same navigator visibility
+    final MainContent content = application.findNodeById(MainContent.ID);
+    content.setPreviewVisible(visible);
   }
 }

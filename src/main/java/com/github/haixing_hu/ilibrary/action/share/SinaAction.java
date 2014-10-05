@@ -31,7 +31,7 @@ public class SinaAction extends BaseAction {
   public static final String ID = ShareAction.ID + ".sina";
 
   public SinaAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

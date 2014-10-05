@@ -32,7 +32,7 @@ public class OpenFileWithAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".open-file-with";
 
   public OpenFileWithAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 
 }

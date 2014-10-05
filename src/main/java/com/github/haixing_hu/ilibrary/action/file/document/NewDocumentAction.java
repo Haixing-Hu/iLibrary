@@ -18,68 +18,31 @@
 
 package com.github.haixing_hu.ilibrary.action.file.document;
 
-import java.util.Collection;
-
-import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
-import com.github.haixing_hu.ilibrary.model.DocumentTemplate;
+import com.github.haixing_hu.ilibrary.action.file.FileAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.ilibrary.service.DocumentTemplateService;
 import com.github.haixing_hu.javafx.action.ActionManager;
-import com.github.haixing_hu.lang.EnumUtils;
+import com.github.haixing_hu.javafx.action.IAction;
 
 /**
- * The action to create a new document of a specified type.
+ * The action to create a new document.
  *
  * @author Haixing Hu
  */
 public class NewDocumentAction extends BaseActionGroup {
 
-  private final DocumentType type;
+  public static final String ID = FileAction.ID + ".new-document";
 
-  /**
-   * Construct a {@link NewDocumentAction} object.
-   *
-   * @param type
-   *          A document type.
-   * @param application
-   *          The application.
-   */
-  public NewDocumentAction(DocumentType type, Application application) {
-    super(getActionId(type), application);
-    this.type = type;
-    logger.debug("Creates an NewDocumentAction '{}' for document type '{}'.",
-        getId(), type);
-    final AppConfig config = application.getConfig();
-    final DocumentTemplateService service = config.getBean(DocumentTemplateService.class);
-    final Collection<DocumentTemplate> templates = service.getAll(type);
+  public static final String BUTTON_ID = "button-new-document";
+
+  public NewDocumentAction(Application application) {
+    super(ID, application);
+    styleClass.add(BUTTON_ID);
     final ActionManager am = application.getActionManager();
-    for (final DocumentTemplate template : templates) {
-      final NewDocumentFormTemplateAction action =
-          new NewDocumentFormTemplateAction(template, application);
+    for (final DocumentType type : DocumentType.values()) {
+      final IAction action = new NewDocumentForTypeAction(type, application);
       addSubAction(am, action);
     }
   }
-
-  /**
-   * Gets the id of the action for creating a document in the specified type .
-   *
-   * @param type
-   *          a document type.
-   * @return the id of the action for creating a document in the specified type.
-   */
-  public static String getActionId(DocumentType type) {
-    return NewAction.ID + "." + EnumUtils.getShortName(type);
-  }
-
-  /**
-   * Gets the document type.
-   *
-   * @return the document type.
-   */
-  public DocumentType getType() {
-    return type;
-  }
-
 }

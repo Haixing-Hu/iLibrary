@@ -32,8 +32,11 @@ public class ManageCollectionAction extends BaseActionGroup {
 
   public static final String ID = LibraryAction.ID + ".manage-collection";
 
+  public static final String BUTTON_CLASS = "button-manage-collection";
+
   public ManageCollectionAction(Application application) {
     super(ID, application);
+    styleClass.add(BUTTON_CLASS);
     final ActionManager am = application.getActionManager();
     addSubAction(am, new EditCollectionAction(application));
     addSubAction(am, new RefreshCollectionAction(application));

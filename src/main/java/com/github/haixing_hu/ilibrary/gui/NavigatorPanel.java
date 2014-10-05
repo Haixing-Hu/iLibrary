@@ -17,11 +17,9 @@
  */
 package com.github.haixing_hu.ilibrary.gui;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
@@ -37,7 +35,7 @@ import com.github.haixing_hu.lang.EnumUtils;
  *
  * @author Haixing Hu
  */
-public abstract class NavigatorPanel extends PanelWithHeaderFooter {
+public abstract class NavigatorPanel extends BasicPanel {
 
   public static final String STYLE_CLASS = "navigator-panel";
 
@@ -50,13 +48,11 @@ public abstract class NavigatorPanel extends PanelWithHeaderFooter {
   public NavigatorPanel(final Application application, Page page) {
     super(application);
     this.page = page;
-    configHeader();
-    configContent();
-    configFooter();
+    init();
   }
 
   @Override
-  protected void configHeader() {
+  protected final void configHeader() {
     final AppConfig config = application.getConfig();
     final String pageId = EnumUtils.getShortName(page);
     final String title = config.getTitle(pageId);
@@ -66,12 +62,7 @@ public abstract class NavigatorPanel extends PanelWithHeaderFooter {
   }
 
   @Override
-  protected Pane createContent() {
-    return new Pane();
-  }
-
-  @Override
-  protected void configFooter() {
+  protected final void configFooter() {
     final ActionManager am = application.getActionManager();
 
     final HBox footerLeft = new HBox();
@@ -79,20 +70,15 @@ public abstract class NavigatorPanel extends PanelWithHeaderFooter {
     HBox.setHgrow(footerLeft, Priority.ALWAYS);
     footer.getChildren().add(footerLeft);
 
-    final Button addButton = new Button();
-    addButton.getStyleClass().add(ADD_BUTTON_CLASS);
-    footerLeft.getChildren().add(addButton);
-
-    final Button manageButton = new Button();
-    manageButton.getStyleClass().add(MANAGE_BUTTON_CLASS);
-    footerLeft.getChildren().add(manageButton);
+    configFooterLeftToolBar(footerLeft);
 
     final HBox footerRight = new HBox();
     footerRight.getStyleClass().addAll(StyleClass.TOOLBAR, StyleClass.ALIGN_CENTER_RIGHT);
     HBox.setHgrow(footerRight, Priority.NEVER);
     footer.getChildren().add(footerRight);
-
     final ButtonBase hideNavigatorButton = am.createButton(HideNavigatorAction.ID);
     footerRight.getChildren().add(hideNavigatorButton);
   }
+
+  protected abstract void configFooterLeftToolBar(HBox toolBar);
 }

@@ -32,6 +32,6 @@ public class MergeInstitutesAction extends BaseAction {
   public static final String ID = LibraryAction.ID + ".merge-institutes";
 
   public MergeInstitutesAction(Application application) {
-    super(ID, application, BaseAction.DIALOG);
+    super(ID, application, DIALOG);
   }
 }

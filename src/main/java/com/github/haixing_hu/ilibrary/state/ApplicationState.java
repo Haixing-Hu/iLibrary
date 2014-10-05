@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.haixing_hu.ilibrary.AppConfig;
-import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
+import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
 import com.github.haixing_hu.ilibrary.model.FieldType;
@@ -50,7 +50,7 @@ public final class ApplicationState {
   private final Logger logger;
   private Page page;
   private AnnotateMode annotateMode;
-  private BrowserMode browserMode;
+  private BrowseMode browseMode;
   private boolean navigatorVisible;
   private boolean inspectorVisible;
   private boolean previewVisible;
@@ -70,7 +70,7 @@ public final class ApplicationState {
     logger = LoggerFactory.getLogger(ApplicationState.class);
     page = Page.LIBRARY;
     annotateMode = AnnotateMode.SELECTION;
-    browserMode = BrowserMode.COLUMNS;
+    browseMode = BrowseMode.COLUMNS;
     navigatorVisible = true;
     inspectorVisible = true;
     previewVisible = true;
@@ -132,7 +132,7 @@ public final class ApplicationState {
 
   private void loadBrowserMode(AppConfig config) {
     //  FIXME
-    browserMode = BrowserMode.COLUMNS;
+    browseMode = BrowseMode.COLUMNS;
   }
 
   private void loadFlagStatusFilters(AppConfig config) {
@@ -164,7 +164,7 @@ public final class ApplicationState {
   }
 
   private void loadDisplayColumns(AppConfig config) {
-    final String key = SelectColumnsAction.ID + DEFAULT;
+    final String key = ColumnsAction.ID + DEFAULT;
     final String[] values = config.getStringArray(key);
     for (final String value : values) {
       final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
@@ -243,27 +243,27 @@ public final class ApplicationState {
   }
 
   /**
-   * Gets the browser mode.
+   * Gets the browsing mode.
    *
-   * @return the browser mode.
+   * @return the browsing mode.
    */
-  public BrowserMode getBrowserMode() {
-    return browserMode;
+  public BrowseMode getBrowseMode() {
+    return browseMode;
   }
 
   /**
    * Sets the browser mode.
    *
-   * @param browserMode the new browser mode to set.
+   * @param browseMode the new browsing mode to set.
    */
-  public void setBrowserMode(BrowserMode browserMode) {
-    this.browserMode = browserMode;
+  public void setBrowseMode(BrowseMode browseMode) {
+    this.browseMode = browseMode;
   }
 
   /**
    * Gets the visibility of the navigator panel.
    *
-   * @return <code>true</code> if the navigator panel is visibles;
+   * @return <code>true</code> if the navigator panel is visible;
    *         <code>false</code> otherwise.
    */
   public boolean isNavigatorVisible() {
@@ -273,7 +273,7 @@ public final class ApplicationState {
   /**
    * Sets the visibility of the navigator panel.
    *
-   * @return <code>true</code> if the navigator panel is set to visibles;
+   * @return <code>true</code> if the navigator panel is set to visible;
    *         <code>false</code> otherwise.
    */
   public void setNavigatorVisible(boolean visible) {
@@ -283,7 +283,7 @@ public final class ApplicationState {
   /**
    * Gets the visibility of the inspector panel.
    *
-   * @return <code>true</code> if the inspector panel is visibles;
+   * @return <code>true</code> if the inspector panel is visible;
    *         <code>false</code> otherwise.
    */
   public boolean isInspectorVisible() {
@@ -293,7 +293,7 @@ public final class ApplicationState {
   /**
    * Sets the visibility of the inspector panel.
    *
-   * @return <code>true</code> if the preview panel is set to visibles;
+   * @return <code>true</code> if the preview panel is set to visible;
    *         <code>false</code> otherwise.
    */
   public void setInspectorVisible(boolean visible) {
@@ -303,7 +303,7 @@ public final class ApplicationState {
   /**
    * Gets the visibility of the preview panel.
    *
-   * @return <code>true</code> if the preview panel is visibles;
+   * @return <code>true</code> if the preview panel is visible;
    *         <code>false</code> otherwise.
    */
   public boolean isPreviewVisible() {
@@ -313,7 +313,7 @@ public final class ApplicationState {
   /**
    * Sets the visibility of the preview panel.
    *
-   * @return <code>true</code> if the preview panel is set to visibles;
+   * @return <code>true</code> if the preview panel is set to visible;
    *         <code>false</code> otherwise.
    */
   public void setPreviewVisible(boolean visible) {

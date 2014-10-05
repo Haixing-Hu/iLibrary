@@ -18,8 +18,11 @@
 
 package com.github.haixing_hu.ilibrary.action.edit.annotation;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.state.AnnotateMode;
 
 /**
  * The action to switch to the highlight mode.
@@ -30,8 +33,19 @@ public class AnnotateHighlightAction extends BaseAction {
 
   public static final String ID = AnnotateAction.ID + ".highlight";
 
+  public static final String BUTTON_CLASS = "button-highlight";
+
   public AnnotateHighlightAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE);
+    styleClass.add(BUTTON_CLASS);
   }
 
+  @Override
+  public void handle(ActionEvent event) {
+    if (isSelected()) {
+      application.getExplorerController().setAnnotateMode(AnnotateMode.HIGHLIGHT);
+    } else {
+      application.getExplorerController().setAnnotateMode(AnnotateMode.SELECTION);
+    }
+  }
 }

@@ -21,7 +21,8 @@ package com.github.haixing_hu.ilibrary.action.file;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.file.collection.NewCollectionAction;
-import com.github.haixing_hu.ilibrary.action.file.document.NewAction;
+import com.github.haixing_hu.ilibrary.action.file.document.NewDocumentAction;
+import com.github.haixing_hu.ilibrary.action.file.source.NewSourceAction;
 import com.github.haixing_hu.javafx.action.ActionManager;
 import com.github.haixing_hu.javafx.action.SeparatorAction;
 
@@ -41,8 +42,11 @@ public class FileAction extends BaseActionGroup {
     addSubAction(am, new OpenLibraryAction(application));
     addSubAction(am, new CloseLibraryAction(application));
     addSubAction(am, new SeparatorAction());
-    addSubAction(am, new NewAction(application));
+    addSubAction(am, new NewDocumentAction(application));
     addSubAction(am, new NewCollectionAction(application));
+    addSubAction(am, new NewTagAction(application));
+    addSubAction(am, new NewAuthorAction(application));
+    addSubAction(am, new NewSourceAction(application));
     addSubAction(am, new OpenURLAction(application));
     addSubAction(am, new SeparatorAction());
     addSubAction(am, new ImportAction(application));

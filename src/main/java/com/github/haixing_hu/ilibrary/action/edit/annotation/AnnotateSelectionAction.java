@@ -18,8 +18,11 @@
 
 package com.github.haixing_hu.ilibrary.action.edit.annotation;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.state.AnnotateMode;
 
 /**
  * The action to switch to the text selection mode.
@@ -30,7 +33,15 @@ public class AnnotateSelectionAction extends BaseAction {
 
   public static final String ID = AnnotateAction.ID + ".selection";
 
+  public static final String BUTTON_CLASS = "button-selection";
+
   public AnnotateSelectionAction(Application application) {
-    super(ID, application, BaseAction.CHECK);
+    super(ID, application, TOGGLE);
+    styleClass.add(BUTTON_CLASS);
+  }
+
+  @Override
+  public void handle(ActionEvent event) {
+    application.getExplorerController().setAnnotateMode(AnnotateMode.SELECTION);
   }
 }

@@ -14,6 +14,9 @@
 
 package com.github.haixing_hu.ilibrary.gui.search;
 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.gui.NavigatorPanel;
 import com.github.haixing_hu.ilibrary.state.Page;
@@ -30,7 +33,18 @@ public class SearchNavigatorPanel extends NavigatorPanel {
   }
 
   @Override
+  protected Pane createContent() {
+    return new Pane();
+  }
+
+  @Override
   protected void configContent() {
     // TODO Auto-generated method stub
+  }
+
+  @Override
+  protected void configFooterLeftToolBar(HBox toolBar) {
+    // TODO Auto-generated method stub
+
   }
 }
