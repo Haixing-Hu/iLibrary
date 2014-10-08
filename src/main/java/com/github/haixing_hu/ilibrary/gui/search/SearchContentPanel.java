@@ -18,6 +18,7 @@ import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.share.ShareAction;
@@ -26,6 +27,7 @@ import com.github.haixing_hu.ilibrary.action.view.ShowNavigatorAction;
 import com.github.haixing_hu.ilibrary.gui.ContentPanel;
 import com.github.haixing_hu.ilibrary.state.Page;
 import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.javafx.control.textfield.SearchBox;
 
 /**
  * The panel for the search page.
@@ -49,7 +51,9 @@ public class SearchContentPanel extends ContentPanel {
 
   @Override
   protected void configHeader() {
-    // TODO Auto-generated method stub
+    final SearchBox search = new SearchBox();
+    HBox.setHgrow(search, Priority.ALWAYS);
+    header.getChildren().add(search);
   }
 
   @Override

@@ -70,6 +70,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.haixing_hu</groupId>
+			<artifactId>criteria</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.haixing_hu</groupId>
 			<artifactId>javafx-widgets</artifactId>
 		</dependency>
 		<dependency>

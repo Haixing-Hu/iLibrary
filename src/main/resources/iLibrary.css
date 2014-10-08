@@ -1,41 +1,41 @@
-/*
- * Copyright (C) 2014 Haixing Hu
+/******************************************************************************
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * Copyright (c) 2014  Haixing Hu
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
-  
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ ******************************************************************************/
+
 /******************************************************************************
  *
  *  Modification for Styles of Default Controls
  *
- ******************************************************************************/ 
+ ******************************************************************************/
 
 /* Sets the width of split pane divider to be 1 */
-.split-pane > .split-pane-divider {  
-    -fx-padding: 0 1 0 1;  
+.split-pane > .split-pane-divider {
+    -fx-padding: 0 1 0 1;
 }
-  
+
 .split-pane {
     -fx-background-insets: 0, 0;
     -fx-padding: 0;
 }
- 
+
 /* Makes the button flat */
 .button {
     -fx-background-color: transparent, transparent, transparent, transparent;
-    -fx-box-border: transparent; 
+    -fx-box-border: transparent;
     -fx-padding: 0;
 }
 
@@ -47,26 +47,26 @@
 }
 
 .menu-button.no-arrow {
-	-fx-background-color: transparent; 
+	-fx-background-color: transparent;
     -fx-background-insets: 0;
 }
 
-.menu-button.no-arrow .label { 
+.menu-button.no-arrow .label {
 	-fx-padding: 0;
 }
 
 /* .check-box .box {
-    -fx-padding: 0.15em; 
-    
+    -fx-padding: 0.15em;
+
    	-fx-background-color: rgb(250.0, 250.0, 250.0),
         linear-gradient(
-            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,  
+            rgb(255.0, 255.0, 255.0) 0.0%, rgb(253.0,253.0,253.0) 25.0%,
             rgb(244.0, 244.0, 244.0) 50.0%, rgb(236.0, 236.0, 236.0) 51.0%,
             rgb(243.0, 243.0, 243.0) 100.0% );
-            
+
 	-fx-background-insets: -0.5 0.0 0.5 0.0, 0.5 1.0 1.5 1.0;
     -fx-background-radius: 2.5, 2.5;
-    
+
     -fx-border-radius: 2.5;
     -fx-border-width: 0.5;
     -fx-border-insets: -0.5 0.0 0.5 0.0;
@@ -79,21 +79,21 @@
  *
  *  Mac style check box
  *
- ******************************************************************************/ 
- 
+ ******************************************************************************/
+
 .check-box {
     -fx-skin: "com.sun.javafx.scene.control.skin.CheckBoxSkin";
     -fx-label-padding: 0 5 0 5;
     -fx-padding: 0;
 }
 
-.check-box .box, 
+.check-box .box,
 .check-box:focused .box {
     -fx-effect: null;
     /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.12) , 1, 0 , 0 , 0 );*/
-    -fx-background-color: 
-    	#999999 /*rgba(79, 79, 79, .5)*/, 
-    	rgba(0, 0, 0, 0.12), 
+    -fx-background-color:
+    	#999999 /*rgba(79, 79, 79, .5)*/,
+    	rgba(0, 0, 0, 0.12),
     	linear-gradient(to bottom, #FFFFFF 0%, #f4f4f4 44%, #ececec 46%, #eeeeee 100%);
     -fx-padding: 1 1 1 1;
     -fx-background-radius: 4, 3;
@@ -101,12 +101,12 @@
     -fx-border-color: null;
 }
 
-.check-box:selected .box, 
+.check-box:selected .box,
 .check-box:selected:focused .box {
     -fx-border-color: null;
-    -fx-background-color: 
-    	/*Stroke*/   linear-gradient(to bottom, derive(#060e74, 65%) 0%, derive(#373a59, 65%) 100%),     	
-    	/*gradient*/ linear-gradient(to bottom, #e3f5ff 0%, #a6d3f9 50%, #86c4f9 50.1%, #d5f6ff 100%);     	
+    -fx-background-color:
+    	/*Stroke*/   linear-gradient(to bottom, derive(#060e74, 65%) 0%, derive(#373a59, 65%) 100%),
+    	/*gradient*/ linear-gradient(to bottom, #e3f5ff 0%, #a6d3f9 50%, #86c4f9 50.1%, #d5f6ff 100%);
     -fx-background-insets: 0, 1;
 }
 
@@ -125,11 +125,11 @@
  *
  *  Style for global class
  *
- ******************************************************************************/ 
- 
+ ******************************************************************************/
+
 .align-center-left {
 	-fx-alignment: center-left;
-}  
+}
 
 .align-center {
 	-fx-alignment: center;
@@ -153,14 +153,14 @@
  *
  *  Style for Application GUI Components
  *
- ******************************************************************************/ 
- 
+ ******************************************************************************/
+
 #main-window {
     -fx-min-width: 700;
     -fx-pref-width: 1000;
     -fx-min-height: 500;
-    -fx-pref-height: 600;    
-    -fx-background-color: #E1E1E1;  
+    -fx-pref-height: 600;
+    -fx-background-color: #E1E1E1;
 }
 
 #main-header {
@@ -174,7 +174,7 @@
         linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
         linear-gradient(to bottom, derive(-fx-base,65%) 2%, derive(-fx-base,-20%) 95%);
     -fx-background-insets: 0, 1 0 1 0;
-    -fx-background-radius: 0, 0;	
+    -fx-background-radius: 0, 0;
 }
 
 .navigator-panel {
@@ -183,31 +183,31 @@
 }
 
 .content-panel {
-    -fx-min-width: 300;  
-    -fx-pref-width: 640;   
+    -fx-min-width: 300;
+    -fx-pref-width: 640;
 }
-/* 
+/*
 .left-panel {
-    -fx-min-width: 440;  
-    -fx-pref-width: 800;   
+    -fx-min-width: 440;
+    -fx-pref-width: 800;
 } */
 
 .inspector-panel {
-    -fx-min-width: 160;  
-    -fx-pref-width: 200; 
+    -fx-min-width: 160;
+    -fx-pref-width: 200;
 }
 
 .preview-panel {
-	-fx-min-height: 120;  
-    -fx-pref-height: 180; 
-    -fx-max-height: 500; 
+	-fx-min-height: 120;
+    -fx-pref-height: 180;
+    -fx-max-height: 500;
     -fx-background-color: #929292;
 }
 
 .preview-panel-header {
 	-fx-min-height: 30;
 	-fx-pref-height: 30;
-	-fx-max-height: 30;	
+	-fx-max-height: 30;
 	-fx-background-color:
         linear-gradient(to bottom, derive(#828282,-30%), derive(#828282,-60%)),
         #828282;
@@ -215,8 +215,8 @@
 }
 
 .explorer-panel {
-	fx-min-height: 300;  
-    -fx-pref-height: 600; 
+	fx-min-height: 300;
+    -fx-pref-height: 600;
 }
 
 .header {
@@ -228,7 +228,7 @@
     	linear-gradient(to bottom, derive(-fx-base,-30%), derive(-fx-base,-60%)),
     	-fx-base;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-background-radius: 0, 0;	
+    -fx-background-radius: 0, 0;
     -fx-padding: 0 5 0 5;
     -fx-spacing: 0;
 }
@@ -254,463 +254,467 @@
 	-fx-box-border: transparent;
 }
 
+.search-box {
+	-fx-max-height: 22;
+	-fx-min-height: 22;
+}
+
 .button-library {
-    -fx-graphic: url(images/page-library.png);    
+    -fx-graphic: url(images/page-library.png);
 }
 
 .button-library:hover {
-    -fx-graphic: url(images/page-library-a.png);    
+    -fx-graphic: url(images/page-library-a.png);
 }
 
 .button-library:selected {
-    -fx-graphic: url(images/page-library-a.png);    
+    -fx-graphic: url(images/page-library-a.png);
 }
 
 .button-search {
-    -fx-graphic: url(images/page-search.png);    
+    -fx-graphic: url(images/page-search.png);
 }
 
 .button-search:hover {
-    -fx-graphic: url(images/page-search-a.png);    
+    -fx-graphic: url(images/page-search-a.png);
 }
 
 .button-search:selected {
-    -fx-graphic: url(images/page-search-a.png);    
+    -fx-graphic: url(images/page-search-a.png);
 }
 
 .button-tags {
-    -fx-graphic: url(images/page-tags.png);    
+    -fx-graphic: url(images/page-tags.png);
 }
 
 .button-tags:hover {
-    -fx-graphic: url(images/page-tags-a.png);    
+    -fx-graphic: url(images/page-tags-a.png);
 }
 
 .button-tags:selected {
-    -fx-graphic: url(images/page-tags-a.png);    
+    -fx-graphic: url(images/page-tags-a.png);
 }
 
 .button-authors {
-    -fx-graphic: url(images/page-authors.png);    
+    -fx-graphic: url(images/page-authors.png);
 }
 
 .button-authors:hover {
-    -fx-graphic: url(images/page-authors-a.png);    
+    -fx-graphic: url(images/page-authors-a.png);
 }
 
 .button-authors:selected {
-    -fx-graphic: url(images/page-authors-a.png);    
+    -fx-graphic: url(images/page-authors-a.png);
 }
 
 .button-sources {
-    -fx-graphic: url(images/page-sources.png);    
+    -fx-graphic: url(images/page-sources.png);
 }
 
 .button-sources:hover {
-    -fx-graphic: url(images/page-sources-a.png);    
+    -fx-graphic: url(images/page-sources-a.png);
 }
 
 .button-sources:selected {
-    -fx-graphic: url(images/page-sources-a.png);    
+    -fx-graphic: url(images/page-sources-a.png);
 }
 
 .button-reader {
-    -fx-graphic: url(images/page-reader.png);    
+    -fx-graphic: url(images/page-reader.png);
 }
 
 .button-reader:hover {
-    -fx-graphic: url(images/page-reader-a.png);    
+    -fx-graphic: url(images/page-reader-a.png);
 }
 
 .button-reader:selected {
-    -fx-graphic: url(images/page-reader-a.png);    
+    -fx-graphic: url(images/page-reader-a.png);
 }
 
 .button-overview {
-	-fx-graphic: url(images/inspector-overview.png);    
+	-fx-graphic: url(images/inspector-overview.png);
 }
 
 .button-overview:hover {
-	-fx-graphic: url(images/inspector-overview-a.png);    
+	-fx-graphic: url(images/inspector-overview-a.png);
 }
 
 .button-overview:selected {
-	-fx-graphic: url(images/inspector-overview-a.png);    
+	-fx-graphic: url(images/inspector-overview-a.png);
 }
 
 .button-info {
-	-fx-graphic: url(images/inspector-info.png);    
+	-fx-graphic: url(images/inspector-info.png);
 }
 
 .button-info:hover {
-	-fx-graphic: url(images/inspector-info-a.png);    
+	-fx-graphic: url(images/inspector-info-a.png);
 }
 
 .button-info:selected {
-	-fx-graphic: url(images/inspector-info-a.png);    
+	-fx-graphic: url(images/inspector-info-a.png);
 }
 
 .button-notes {
-	-fx-graphic: url(images/inspector-notes.png);    
+	-fx-graphic: url(images/inspector-notes.png);
 }
 
 .button-notes:hover {
-	-fx-graphic: url(images/inspector-notes-a.png);    
+	-fx-graphic: url(images/inspector-notes-a.png);
 }
 
 .button-notes:selected {
-	-fx-graphic: url(images/inspector-notes-a.png);    
+	-fx-graphic: url(images/inspector-notes-a.png);
 }
 
 .button-activity {
-	-fx-graphic: url(images/inspector-activity.png);    
+	-fx-graphic: url(images/inspector-activity.png);
 }
 
 .button-activity:hover {
-	-fx-graphic: url(images/inspector-activity-a.png);    
+	-fx-graphic: url(images/inspector-activity-a.png);
 }
 
 .button-activity:selected {
-	-fx-graphic: url(images/inspector-activity-a.png);    
+	-fx-graphic: url(images/inspector-activity-a.png);
 }
 
 .button-hide-navigator {
-	-fx-graphic: url(images/left-arrow.png);    
+	-fx-graphic: url(images/left-arrow.png);
 }
 
 .button-hide-navigator:hover {
-	-fx-graphic: url(images/left-arrow-a.png);    
+	-fx-graphic: url(images/left-arrow-a.png);
 }
 
 .button-show-navigator {
-	-fx-graphic: url(images/right-arrow.png);    
+	-fx-graphic: url(images/right-arrow.png);
 }
 
 .button-show-navigator:hover {
-	-fx-graphic: url(images/right-arrow-a.png);    
+	-fx-graphic: url(images/right-arrow-a.png);
 }
 
 .button-hide-inspector {
-	-fx-graphic: url(images/right-arrow.png);    
+	-fx-graphic: url(images/right-arrow.png);
 }
 
 .button-hide-inspector:hover {
-	-fx-graphic: url(images/right-arrow-a.png);    
+	-fx-graphic: url(images/right-arrow-a.png);
 }
 
 .button-show-inspector {
-	-fx-graphic: url(images/left-arrow.png);    
+	-fx-graphic: url(images/left-arrow.png);
 }
 
 .button-show-inspector:hover {
-	-fx-graphic: url(images/left-arrow-a.png);    
+	-fx-graphic: url(images/left-arrow-a.png);
 }
 
 .button-hide-preview {
-	-fx-graphic: url(images/preview-a.png);    
+	-fx-graphic: url(images/preview-a.png);
 }
 
 .button-hide-preview:hover {
-	-fx-graphic: url(images/preview.png);    
+	-fx-graphic: url(images/preview.png);
 }
 
 .button-show-preview {
-	-fx-graphic: url(images/preview.png);    
+	-fx-graphic: url(images/preview.png);
 }
 
 .button-show-preview:hover {
-	-fx-graphic: url(images/preview-a.png);    
+	-fx-graphic: url(images/preview-a.png);
 }
 
 .button-share {
-	-fx-graphic: url(images/share.png); 
+	-fx-graphic: url(images/share.png);
 }
 
 .button-share:hover {
-	-fx-graphic: url(images/share-a.png); 
+	-fx-graphic: url(images/share-a.png);
 }
 
 .button-browse-mode {
-	-fx-graphic: url(images/as-columns-a.png); 
+	-fx-graphic: url(images/as-columns-a.png);
 }
 
 .button-browse-as-columns {
-	-fx-graphic: url(images/as-columns.png); 
+	-fx-graphic: url(images/as-columns-a.png);
 }
 
 .button-browse-as-columns:hover {
-	-fx-graphic: url(images/as-columns-a.png); 
+	-fx-graphic: url(images/as-columns-a.png);
 }
 
 .button-browse-as-list {
-	-fx-graphic: url(images/as-list.png); 
+	-fx-graphic: url(images/as-list-a.png);
 }
 
 .button-browse-as-list:hover {
-	-fx-graphic: url(images/as-list-a.png); 
+	-fx-graphic: url(images/as-list-a.png);
 }
 
 .button-browse-as-icons {
-	-fx-graphic: url(images/as-icons.png); 
+	-fx-graphic: url(images/as-icons-a.png);
 }
 
 .button-browse-as-icons:hover {
-	-fx-graphic: url(images/as-icons-a.png); 
+	-fx-graphic: url(images/as-icons-a.png);
 }
 
 .button-browse-as-cover-flow {
-	-fx-graphic: url(images/as-cover-flow.png); 
+	-fx-graphic: url(images/as-cover-flow-a.png);
 }
 
 .button-browse-as-cover-flow:hover {
-	-fx-graphic: url(images/as-cover-flow-a.png); 
+	-fx-graphic: url(images/as-cover-flow-a.png);
 }
 
 .button-preview-mode {
-	-fx-graphic: url(images/preview-as-document.png); 
+	-fx-graphic: url(images/preview-as-document.png);
 }
 
 .button-preview-mode:hover {
-	-fx-graphic: url(images/preview-as-document-a.png); 
+	-fx-graphic: url(images/preview-as-document-a.png);
 }
 
 .button-preview-as-document {
-	-fx-graphic: url(images/preview-as-document.png); 
+	-fx-graphic: url(images/preview-as-document.png);
 }
 
 .button-preview-as-document:hover {
-	-fx-graphic: url(images/preview-as-document-a.png); 
+	-fx-graphic: url(images/preview-as-document-a.png);
 }
 
 .button-preview-as-thumbnails {
-	-fx-graphic: url(images/preview-as-thumbnails.png); 
+	-fx-graphic: url(images/preview-as-thumbnails.png);
 }
 
 .button-preview-as-thumbnails:hover {
-	-fx-graphic: url(images/preview-as-thumbnails-a.png); 
+	-fx-graphic: url(images/preview-as-thumbnails-a.png);
 }
 
 .button-preview-as-webpage {
-	-fx-graphic: url(images/preview-as-webpage.png); 
+	-fx-graphic: url(images/preview-as-webpage.png);
 }
 
 .button-preview-as-webpage:hover {
-	-fx-graphic: url(images/preview-as-webpage-a.png); 
+	-fx-graphic: url(images/preview-as-webpage-a.png);
 }
 
 .button-select-columns {
-	-fx-graphic: url(images/select-columns.png); 
+	-fx-graphic: url(images/select-columns.png);
 }
 
 .button-select-columns:hover {
-	-fx-graphic: url(images/select-columns-a.png); 
+	-fx-graphic: url(images/select-columns-a.png);
 }
 
 .button-filter {
-	-fx-graphic: url(images/filter.png); 
+	-fx-graphic: url(images/filter.png);
 }
 
 .button-filter:hover {
-	-fx-graphic: url(images/filter-a.png); 
+	-fx-graphic: url(images/filter-a.png);
 }
 
 .button-set-filters {
-	-fx-graphic: url(images/filter.png); 
+	-fx-graphic: url(images/filter.png);
 }
 
 .button-set-filters:selected {
-	-fx-graphic: url(images/filter-a.png); 
+	-fx-graphic: url(images/filter-a.png);
 }
 
 .button-set-filters:hover {
-	-fx-graphic: url(images/filter-a.png); 
+	-fx-graphic: url(images/filter-a.png);
 }
 
 .button-sort {
-	-fx-graphic: url(images/sort-desc.png); 
+	-fx-graphic: url(images/sort-desc.png);
 }
 
 .button-sort:hover {
-	-fx-graphic: url(images/sort-desc-a.png); 
+	-fx-graphic: url(images/sort-desc-a.png);
 }
 
 .button-sort:selected {
-	-fx-graphic: url(images/sort-desc-a.png); 
+	-fx-graphic: url(images/sort-desc-a.png);
 }
 
 .button-sort-asc {
-	-fx-graphic: url(images/sort-asc.png); 
+	-fx-graphic: url(images/sort-asc.png);
 }
 
 .button-sort-asc:hover {
-	-fx-graphic: url(images/sort-asc-a.png); 
+	-fx-graphic: url(images/sort-asc-a.png);
 }
 
-.button-sort-asc:selected {
-	-fx-graphic: url(images/sort-asc-a.png); 
+.button-sort-asc:active {
+	-fx-graphic: url(images/sort-asc-a.png);
 }
 
 .button-sort-desc {
-	-fx-graphic: url(images/sort-desc.png); 
+	-fx-graphic: url(images/sort-desc.png);
 }
 
 .button-sort-desc:hover {
-	-fx-graphic: url(images/sort-desc-a.png); 
+	-fx-graphic: url(images/sort-desc-a.png);
 }
 
-.button-sort-desc:selected {
-	-fx-graphic: url(images/sort-desc-a.png); 
+.button-sort-desc:active {
+	-fx-graphic: url(images/sort-desc-a.png);
 }
-
 
 .button-print {
-	-fx-graphic: url(images/print.png);    
+	-fx-graphic: url(images/print.png);
 }
 
 .button-print:hover {
-	-fx-graphic: url(images/print-a.png);    
+	-fx-graphic: url(images/print-a.png);
 }
 
 .button-highlight {
-	-fx-graphic: url(images/highlight.png);    
+	-fx-graphic: url(images/highlight.png);
 }
 
 .button-highlight:hover {
-	-fx-graphic: url(images/highlight-a.png);    
+	-fx-graphic: url(images/highlight-a.png);
 }
 
 .button-underline {
-	-fx-graphic: url(images/underline.png);    
+	-fx-graphic: url(images/underline.png);
 }
 
 .button-underline:hover {
-	-fx-graphic: url(images/underline-a.png);    
+	-fx-graphic: url(images/underline-a.png);
 }
 
 .button-strikethrough {
-	-fx-graphic: url(images/strikethrough.png);    
+	-fx-graphic: url(images/strikethrough.png);
 }
 
 .button-strikethrough:hover {
-	-fx-graphic: url(images/strikethrough-a.png);    
+	-fx-graphic: url(images/strikethrough-a.png);
 }
 
 .button-create-note {
-	-fx-graphic: url(images/create-note.png);    
+	-fx-graphic: url(images/create-note.png);
 }
 
 .button-create-note:hover {
-	-fx-graphic: url(images/create-note-a.png);    
+	-fx-graphic: url(images/create-note-a.png);
 }
 
 .button-mark-flagged {
-	-fx-graphic: url(images/mark-flagged.png);    
+	-fx-graphic: url(images/mark-flagged.png);
 }
 
 .button-mark-flagged:hover {
-	-fx-graphic: url(images/mark-flagged-a.png);    
+	-fx-graphic: url(images/mark-flagged-a.png);
 }
 
 .button-mark-unflagged {
-	-fx-graphic: url(images/mark-unflagged.png);    
+	-fx-graphic: url(images/mark-unflagged.png);
 }
 
 .button-mark-unflagged:hover {
-	-fx-graphic: url(images/mark-unflagged-a.png);    
+	-fx-graphic: url(images/mark-unflagged-a.png);
 }
 
 .button-edit-keywords {
-	-fx-graphic: url(images/edit-keywords.png);    
+	-fx-graphic: url(images/edit-keywords.png);
 }
 
 .button-edit-keywords:hover {
-	-fx-graphic: url(images/edit-keywords-a.png);    
+	-fx-graphic: url(images/edit-keywords-a.png);
 }
 
 .button-attach-file {
-	-fx-graphic: url(images/attach-file.png);    
+	-fx-graphic: url(images/attach-file.png);
 }
 
 .button-attach-file:hover {
-	-fx-graphic: url(images/attach-file-a.png);    
+	-fx-graphic: url(images/attach-file-a.png);
 }
 
 .button-new-collection {
-	-fx-graphic: url(images/add.png);    
+	-fx-graphic: url(images/add.png);
 }
 
 .button-new-collection:hover {
-	-fx-graphic: url(images/add-a.png);    
+	-fx-graphic: url(images/add-a.png);
 }
 
 .button-manage-collection {
-	-fx-graphic: url(images/manage.png);    
+	-fx-graphic: url(images/manage.png);
 }
 
 .button-manage-collection:hover {
-	-fx-graphic: url(images/manage-a.png);    
+	-fx-graphic: url(images/manage-a.png);
 }
 
 .button-new-tag {
-	-fx-graphic: url(images/add.png);    
+	-fx-graphic: url(images/add.png);
 }
 
 .button-new-tag:hover {
-	-fx-graphic: url(images/add-a.png);    
+	-fx-graphic: url(images/add-a.png);
 }
 
 .button-manage-tag {
-	-fx-graphic: url(images/manage.png);    
+	-fx-graphic: url(images/manage.png);
 }
 
 .button-manage-tag:hover {
-	-fx-graphic: url(images/manage-a.png);    
+	-fx-graphic: url(images/manage-a.png);
 }
 
 .button-new-author {
-	-fx-graphic: url(images/add.png);    
+	-fx-graphic: url(images/add.png);
 }
 
 .button-new-author:hover {
-	-fx-graphic: url(images/add-a.png);    
+	-fx-graphic: url(images/add-a.png);
 }
 
 .button-manage-author {
-	-fx-graphic: url(images/manage.png);    
+	-fx-graphic: url(images/manage.png);
 }
 
 .button-manage-author:hover {
-	-fx-graphic: url(images/manage-a.png);    
+	-fx-graphic: url(images/manage-a.png);
 }
 
 .button-new-source {
-	-fx-graphic: url(images/add.png);    
+	-fx-graphic: url(images/add.png);
 }
 
 .button-new-source:hover {
-	-fx-graphic: url(images/add-a.png);    
+	-fx-graphic: url(images/add-a.png);
 }
 
 .button-manage-source {
-	-fx-graphic: url(images/manage.png);    
+	-fx-graphic: url(images/manage.png);
 }
 
 .button-manage-source:hover {
-	-fx-graphic: url(images/manage-a.png);    
+	-fx-graphic: url(images/manage-a.png);
 }
 
 .button-backward {
-	-fx-graphic: url(images/left-arrow.png); 
+	-fx-graphic: url(images/left-arrow.png);
 }
 
 .button-backward:hover {
-	-fx-graphic: url(images/left-arrow-a.png); 
+	-fx-graphic: url(images/left-arrow-a.png);
 }
 
 .button-forward {
-	-fx-graphic: url(images/right-arrow.png); 
+	-fx-graphic: url(images/right-arrow.png);
 }
 
 .button-forward:hover {
-	-fx-graphic: url(images/right-arrow-a.png); 
+	-fx-graphic: url(images/right-arrow-a.png);
 }

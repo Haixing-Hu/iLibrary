@@ -18,11 +18,11 @@
 
 package com.github.haixing_hu.ilibrary.model.tag;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import com.github.haixing_hu.lang.Equality;
+import com.github.haixing_hu.lang.Hash;
+import com.github.haixing_hu.text.tostring.ToStringBuilder;
 
-import com.github.haixing_hu.lang.Argument;
+import static com.github.haixing_hu.lang.Argument.requireNonEmpty;
 
 /**
  * The model of tag, which store the information of a tag.
@@ -58,10 +58,10 @@ public class Tag {
    *          empty.
    */
   public Tag(String scope, String name) {
-    this.id = - 1;
-    this.scope = Argument.requireNonEmpty("scope", scope);
-    this.name = Argument.requireNonEmpty("name", name);
-    this.parentId = - 1;
+    id = - 1;
+    this.scope = requireNonEmpty("scope", scope);
+    this.name = requireNonEmpty("name", name);
+    parentId = - 1;
   }
 
   /**
@@ -77,9 +77,9 @@ public class Tag {
    *          the ID of the parent of the new tag.
    */
   public Tag(String scope, String name, int parentId) {
-    this.id = - 1;
-    this.scope = Argument.requireNonEmpty("scope", scope);
-    this.name = Argument.requireNonEmpty("name", name);
+    id = - 1;
+    this.scope = requireNonEmpty("scope", scope);
+    this.name = requireNonEmpty("name", name);
     this.parentId = parentId;
   }
 
@@ -118,7 +118,7 @@ public class Tag {
    *          the new scope to set, which cannot be <code>null</code> nor empty.
    */
   public void setScope(String scope) {
-    this.scope = Argument.requireNonEmpty("scope", scope);
+    this.scope = requireNonEmpty("scope", scope);
   }
 
   /**
@@ -137,7 +137,7 @@ public class Tag {
    *          the new name to set, which cannot be <code>null</code> nor empty.
    */
   public void setName(String name) {
-    this.name = Argument.requireNonEmpty("name", name);
+    this.name = requireNonEmpty("name", name);
   }
 
   /**
@@ -159,33 +159,39 @@ public class Tag {
     this.parentId = parentId;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
-    return HashCodeBuilder.reflectionHashCode(this);
+    int code = 7;
+    final int multiplier = 3;
+    code = Hash.combine(code, multiplier, id);
+    code = Hash.combine(code, multiplier, scope);
+    code = Hash.combine(code, multiplier, name);
+    code = Hash.combine(code, multiplier, parentId);
+    return code;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object obj) {
-    return EqualsBuilder.reflectionEquals(this, obj);
+    if (obj == null) {
+      return false;
+    }
+    if (! (obj instanceof Tag)) {
+      return false;
+    }
+    final Tag other = (Tag) obj;
+    return (id == other.id)
+        && (parentId == other.parentId)
+        && Equality.equals(scope, other.scope)
+        && Equality.equals(name, other.name);
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
-    return ToStringBuilder.reflectionToString(this);
+    return new ToStringBuilder(this)
+                .append("id", id)
+                .append("scope", scope)
+                .append("name", name)
+                .append("parentId", parentId)
+                .toString();
   }
 }
