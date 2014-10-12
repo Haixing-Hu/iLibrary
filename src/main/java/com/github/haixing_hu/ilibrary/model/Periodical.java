@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.github.haixing_hu.ilibrary.model.tag.AccessModeTag;
 import com.github.haixing_hu.ilibrary.model.tag.PeriodicalTypeTag;
@@ -539,7 +537,7 @@ public final class Periodical extends Taggable {
    * <p>
    * This function will check the tags of this object, and returns the name of
    * the first tag whose scope is {@link TagScope#PERIODICAL_TYPE}. If there is
-   * no such tag, this function will return <code>null</code>.
+   * no such tag, this function will return {@code null}.
    *
    * @return the name of the type of this periodical.
    */

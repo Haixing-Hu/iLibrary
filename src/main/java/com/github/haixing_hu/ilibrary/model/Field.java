@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
@@ -34,9 +32,7 @@ import static com.github.haixing_hu.lang.Argument.requireNonNull;
 public final class Field {
 
   private int id;
-  private String name;
-  private FieldDataType type;
-  private boolean list;
+  private FieldTemplate template;
   private Object value;
   private String rawValue;
 
@@ -44,12 +40,10 @@ public final class Field {
    * Default constructs a {@link Field}.
    */
   public Field() {
-    this.id = - 1;
-    this.name = "";
-    this.type = FieldDataType.STRING;
-    this.list = false;
-    this.value = null;
-    this.rawValue = null;
+    id = - 1;
+    template = null;
+    value = null;
+    rawValue = null;
   }
 
   /**
@@ -57,14 +51,13 @@ public final class Field {
    *
    * @param name
    *          the name of the new filed.
-   * @param type
-   *          the type of the new field.
+   * @param template
+   *          the template of the new field.
    */
-  public Field(String name, FieldDataType type) {
-    this.id = - 1;
-    this.name = requireNonNull("name", name);
-    this.type = requireNonNull("type", type);
-    this.value = null;
+  public Field(final String name, final FieldTemplate template) {
+    id = - 1;
+    this.template = requireNonNull("template", template);
+    value = null;
   }
 
   /**
@@ -72,16 +65,17 @@ public final class Field {
    *
    * @param name
    *          the name of the new filed.
-   * @param type
-   *          the type of the new field.
-   * @param list
-   *          indicates whether this field has a list of values.
+   * @param template
+   *          the template of the new field.
+   * @param value
+   *          the value of the new field, or {@code null} if the new field has
+   *          no value.
    */
-  public Field(String name, FieldDataType type, boolean list) {
-    this.id = - 1;
-    this.name = requireNonNull("name", name);
-    this.type = requireNonNull("type", type);
-    this.value = null;
+  public Field(final String name, final FieldTemplate template, @Nullable final Object value) {
+    id = - 1;
+    this.template = requireNonNull("template", template);
+    this.value = value;
+    rawValue = null;
   }
 
   /**
@@ -99,67 +93,27 @@ public final class Field {
    * @param id
    *          the new id to set.
    */
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
   /**
-   * Gets the name.
+   * Gets the template of this field.
    *
-   * @return the name.
+   * @return the template of this field.
    */
-  public String getName() {
-    return name;
+  public FieldTemplate getTemplate() {
+    return template;
   }
 
   /**
-   * Sets the name.
+   * Sets the template of this field.
    *
-   * @param name
-   *          the new name to set, which cannot be <code>null</code>.
+   * @param template
+   *          the new template to set, which cannot be {@code null}.
    */
-  public void setName(String name) {
-    this.name = requireNonNull("name", name);
-  }
-
-  /**
-   * Gets the type.
-   *
-   * @return the type.
-   */
-  public FieldDataType getType() {
-    return type;
-  }
-
-  /**
-   * Sets the type.
-   *
-   * @param type
-   *          the new type to set, which cannot be <code>null</code>.
-   */
-  public void setType(FieldDataType type) {
-    this.type = requireNonNull("type", type);
-  }
-
-  /**
-   * Tests whether this field has a list of values.
-   *
-   * @return <code>true</code> if this field has a list of values;
-   *         <code>false</code> otherwise.
-   */
-  public boolean isList() {
-    return list;
-  }
-
-  /**
-   * Sets whether this field has a list of values.
-   *
-   * @param list
-   *          <code>true</code> if this field has a list of values;
-   *          <code>false</code> otherwise.
-   */
-  public void setList(boolean list) {
-    this.list = list;
+  public void setTemplate(final FieldTemplate template) {
+    this.template = requireNonNull("template", template);
   }
 
   /**
@@ -175,9 +129,9 @@ public final class Field {
    * Sets the value.
    *
    * @param value
-   *          the new value to set, which can be <code>null</code>.
+   *          the new value to set, which can be {@code null}.
    */
-  public void setValue(@Nullable Object value) {
+  public void setValue(@Nullable final Object value) {
     this.value = value;
   }
 
@@ -196,7 +150,7 @@ public final class Field {
    *
    * @param rawValue the new rawValue to set.
    */
-  public void setRawValue(@Nullable String rawValue) {
+  public void setRawValue(@Nullable final String rawValue) {
     this.rawValue = rawValue;
   }
 
@@ -206,7 +160,7 @@ public final class Field {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 

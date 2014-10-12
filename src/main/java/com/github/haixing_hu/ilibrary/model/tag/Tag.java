@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model.tag;
 
 import com.github.haixing_hu.lang.Equality;
@@ -51,10 +49,10 @@ public class Tag {
    * Constructs a {@link Tag}.
    *
    * @param scope
-   *          the scope of the new tag, which cannot be <code>null</code> nor
+   *          the scope of the new tag, which cannot be {@code null} nor
    *          empty.
    * @param name
-   *          the name of the new tag, which cannot be <code>null</code> nor
+   *          the name of the new tag, which cannot be {@code null} nor
    *          empty.
    */
   public Tag(String scope, String name) {
@@ -68,10 +66,10 @@ public class Tag {
    * Constructs a {@link Tag}.
    *
    * @param scope
-   *          the scope of the new tag, which cannot be <code>null</code> nor
+   *          the scope of the new tag, which cannot be {@code null} nor
    *          empty.
    * @param name
-   *          the name of the new tag, which cannot be <code>null</code> nor
+   *          the name of the new tag, which cannot be {@code null} nor
    *          empty.
    * @param parentId
    *          the ID of the parent of the new tag.
@@ -115,7 +113,7 @@ public class Tag {
    * Sets the scope.
    *
    * @param scope
-   *          the new scope to set, which cannot be <code>null</code> nor empty.
+   *          the new scope to set, which cannot be {@code null} nor empty.
    */
   public void setScope(String scope) {
     this.scope = requireNonEmpty("scope", scope);
@@ -134,7 +132,7 @@ public class Tag {
    * Sets the name.
    *
    * @param name
-   *          the new name to set, which cannot be <code>null</code> nor empty.
+   *          the new name to set, which cannot be {@code null} nor empty.
    */
   public void setName(String name) {
     this.name = requireNonEmpty("name", name);

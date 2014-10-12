@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>abstract</name>
-	<type>string</type>
+  <name>abstract</name>
+  <type>string</type>
+  <multiple>false</multiple>
+  <variable>abstract</variable>
 </field>

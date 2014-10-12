@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.action.view.sort;
 
 import javafx.event.ActionEvent;
@@ -45,7 +43,7 @@ public class SortByColumnOfAction extends BaseAction {
    * {@link SelectColumnsAction} action concatenate to a dot and the short name of the
    * enumerator representing the column. For example, if the column is
    * {@link FieldType#CITE_KEY}, the ID of the new action is
-   * <code>{@link SelectColumnsAction#KEY} + ".cite-key"</code>.
+   * {@code {@link SelectColumnsAction#KEY} + ".cite-key"}.
    * <p>
    * A short name of an {@link Enum} value comes from lowercase the enumeration
    * name of the {@link Enum} value and replacing all '_' with '-'.

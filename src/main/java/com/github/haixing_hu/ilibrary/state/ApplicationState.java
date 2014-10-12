@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.state;
 
 import java.util.HashSet;
@@ -23,7 +21,7 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -263,8 +261,8 @@ public final class ApplicationState {
   /**
    * Gets the visibility of the navigator panel.
    *
-   * @return <code>true</code> if the navigator panel is visible;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if the navigator panel is visible;
+   *         {@code false} otherwise.
    */
   public boolean isNavigatorVisible() {
     return navigatorVisible;
@@ -273,8 +271,8 @@ public final class ApplicationState {
   /**
    * Sets the visibility of the navigator panel.
    *
-   * @return <code>true</code> if the navigator panel is set to visible;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if the navigator panel is set to visible;
+   *         {@code false} otherwise.
    */
   public void setNavigatorVisible(boolean visible) {
     navigatorVisible = visible;
@@ -283,8 +281,8 @@ public final class ApplicationState {
   /**
    * Gets the visibility of the inspector panel.
    *
-   * @return <code>true</code> if the inspector panel is visible;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if the inspector panel is visible;
+   *         {@code false} otherwise.
    */
   public boolean isInspectorVisible() {
     return inspectorVisible;
@@ -293,8 +291,8 @@ public final class ApplicationState {
   /**
    * Sets the visibility of the inspector panel.
    *
-   * @return <code>true</code> if the preview panel is set to visible;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if the preview panel is set to visible;
+   *         {@code false} otherwise.
    */
   public void setInspectorVisible(boolean visible) {
     inspectorVisible = visible;
@@ -303,8 +301,8 @@ public final class ApplicationState {
   /**
    * Gets the visibility of the preview panel.
    *
-   * @return <code>true</code> if the preview panel is visible;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if the preview panel is visible;
+   *         {@code false} otherwise.
    */
   public boolean isPreviewVisible() {
     return previewVisible;
@@ -313,8 +311,8 @@ public final class ApplicationState {
   /**
    * Sets the visibility of the preview panel.
    *
-   * @return <code>true</code> if the preview panel is set to visible;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if the preview panel is set to visible;
+   *         {@code false} otherwise.
    */
   public void setPreviewVisible(boolean visible) {
     previewVisible = visible;
@@ -540,7 +538,7 @@ public final class ApplicationState {
 //   *
 //   * @return all sorting order for all pages.
 //   */
-//  public SortOrder[] getAllSortOrders() {
+//  public SortDirection[] getAllSortOrders() {
 //    return allSortOrder;
 //  }
 

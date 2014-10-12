@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.github.haixing_hu.ilibrary.model.tag.Taggable;
 
@@ -389,8 +387,8 @@ public final class Person extends Taggable {
    *
    * @param other
    *          the other author.
-   * @return <code>true</code> if the name of this author equals the other
-   *         author; <code>false</code> otherwise.
+   * @return {@code true} if the name of this author equals the other
+   *         author; {@code false} otherwise.
    */
   public boolean isNameEquals(Person other) {
     return StringUtils.equalsIgnoreCase(this.firstName, other.firstName)

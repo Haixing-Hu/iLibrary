@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-package com.github.haixing_hu.ilibrary.controller;
+ */package com.github.haixing_hu.ilibrary.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

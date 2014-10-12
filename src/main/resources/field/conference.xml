@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>conference</name>
-	<type>event</type>
+  <name>conference</name>
+  <type>event</type>
+  <multiple>false</multiple>
+  <variable>event</variable>
 </field>

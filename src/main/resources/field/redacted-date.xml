@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>redacted-date</name>
-	<type>day</type>
+  <name>redacted-date</name>
+  <type>date</type>
+  <multiple>false</multiple>
 </field>

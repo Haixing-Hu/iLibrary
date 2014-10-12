@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model.tag;
 
 import java.util.List;
@@ -39,11 +37,11 @@ public class KeywordTag extends Tag {
    * <p>
    * This function will check the tags of the tag list, and returns the names of
    * the tags in the scope {@link TagScope#KEYWORD}. If there is no such tag,
-   * this function will return <code>null</code>.
+   * this function will return {@code null}.
    *
    * @param tags
    *          a list of tags, which could be null or empty.
-   * @return the list of keywords get from the tag list, or <code>null</code> if
+   * @return the list of keywords get from the tag list, or {@code null} if
    *         not found.
    */
   public static List<String> getKeywords(@Nullable List<Tag> tags) {
@@ -60,14 +58,14 @@ public class KeywordTag extends Tag {
    *
    * @param tags
    *          the list of tags, where to update the keywords. It could be null.
-   *          If it is <code>null</code>, this function will create a new tag
+   *          If it is {@code null}, this function will create a new tag
    *          list, put the tags of keywords to the new tag list, and return
    *          the new tag list.
    * @param keywords
-   *          the list of keywords to be set, which cannot be <code>null</code>,
-   *          and every elements in the array cannot be <code>null</code> nor empty.
+   *          the list of keywords to be set, which cannot be {@code null},
+   *          and every elements in the array cannot be {@code null} nor empty.
    * @return the tag list after updating, or a new tag list if the tag list
-   *         passed to the argument is <code>null</code>.
+   *         passed to the argument is {@code null}.
    */
   public static List<Tag> setKeywords(@Nullable List<Tag> tags, List<String> keywords) {
     Argument.requireNonEmpty("keywords", keywords);
@@ -79,14 +77,14 @@ public class KeywordTag extends Tag {
    *
    * @param tags
    *          the list of tags, where to update the keywords. It could be null.
-   *          If it is <code>null</code>, this function will create a new tag
+   *          If it is {@code null}, this function will create a new tag
    *          list, put the tag of the keyword to the new tag list, and return
    *          the new tag list.
    * @param keyword
-   *          the keywords to be added, which cannot be <code>null</code>, and
-   *          every elements in the array cannot be <code>null</code> nor empty.
+   *          the keywords to be added, which cannot be {@code null}, and
+   *          every elements in the array cannot be {@code null} nor empty.
    * @return the tag list after updating, or a new tag list if the tag list
-   *         passed to the argument is <code>null</code>.
+   *         passed to the argument is {@code null}.
    */
   public static List<Tag> addKeyword(@Nullable List<Tag> tags, String keyword) {
     Argument.requireNonEmpty("keyword", keyword);
@@ -98,14 +96,14 @@ public class KeywordTag extends Tag {
    *
    * @param tags
    *          the list of tags, where to update the keywords. It could be null.
-   *          If it is <code>null</code>, this function will create a new tag
+   *          If it is {@code null}, this function will create a new tag
    *          list, put the tags of keywords to the new tag list, and return
    *          the new tag list.
    * @param keywords
-   *          the list of keywords to be added, which cannot be <code>null</code>,
-   *          and every elements in the array cannot be <code>null</code> nor empty.
+   *          the list of keywords to be added, which cannot be {@code null},
+   *          and every elements in the array cannot be {@code null} nor empty.
    * @return the tag list after updating, or a new tag list if the tag list
-   *         passed to the argument is <code>null</code>.
+   *         passed to the argument is {@code null}.
    */
   public static List<Tag> addKeywords(@Nullable List<Tag> tags, List<String> keywords) {
     Argument.requireNonEmpty("keywords", keywords);
@@ -118,7 +116,7 @@ public class KeywordTag extends Tag {
    * @param tags
    *          the list of tags, where to update the keywords, which could be null.
    * @param keyword
-   *          the keywords to be removed, which cannot be <code>null</code> nor empty.
+   *          the keywords to be removed, which cannot be {@code null} nor empty.
    */
   public static void removeKeyword(@Nullable List<Tag> tags, String keyword) {
     Argument.requireNonEmpty("keyword", keyword);
@@ -131,8 +129,8 @@ public class KeywordTag extends Tag {
    * @param tags
    *          the list of tags, where to update the keywords, which could be null.
    * @param keywords
-   *          the keywords to be removed, which cannot be <code>null</code>, and
-   *          every elements in the array cannot be <code>null</code> nor empty.
+   *          the keywords to be removed, which cannot be {@code null}, and
+   *          every elements in the array cannot be {@code null} nor empty.
    */
   public static void removeKeywords(@Nullable List<Tag> tags, List<String> keywords) {
     Argument.requireNonEmpty("keywords", keywords);

@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.annotation.Nullable;
+import javax.annotation.concurrent.Immutable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.github.haixing_hu.csl.Variable;
+
+import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
  * The model of templates of documents.
@@ -37,129 +41,123 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @author Haixing Hu
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name="document")
+@XmlRootElement(name = "document")
+@Immutable
 public final class DocumentTemplate {
 
-  @XmlElement(name="name", required=true)
-  private String name;
+  @XmlElement(name = "name", required = true)
+  private final String name;
 
-  @XmlElement(name="type", required=true)
-  private DocumentType type;
+  @XmlElement(name = "type", required = true)
+  private final DocumentType type;
 
-  @XmlElement(name="default-kind", required=true)
-  private String defaultKind;
+  @XmlElement(name = "default-kind", required = true)
+  private final String defaultKind;
 
-  @XmlElementWrapper(name="kinds")
-  @XmlElement(name="kind")
-  private List<String> kinds;
+  @XmlElementWrapper(name = "kinds")
+  @XmlElement(name = "kind")
+  private final List<String> kinds;
 
-  @XmlElementWrapper(name="fields")
-  @XmlElement(name="field")
-  private List<String> fields;
+  @XmlElementWrapper(name = "fields")
+  @XmlElement(name = "field")
+  private final List<String> fields;
+
+  @XmlElementWrapper(name = "csl-mapping")
+  @XmlElement(name = "rule")
+  private final Map<Variable, String> cslMapping;
 
   /**
-   * Constructs a {@link DocumentTemplate}.
+   * Default constructor.
+   * <p>
+   * This default constructor is presented for JAXB.
    */
-  public DocumentTemplate() {
-    name = null;
+  DocumentTemplate() {
+    name = StringUtils.EMPTY;
     type = DocumentType.ARTICLE;
     defaultKind = null;
     kinds = null;
     fields = null;
+    cslMapping = null;
   }
 
   /**
-   * Gets the name.
+   * Constructs a {@link DocumentTemplate}.
    *
-   * @return the name.
+   * @param name
+   *          the name of the document template.
+   * @param type
+   *          the type of the documents created by the document template.
+   * @param defaultKind
+   *          the default kind of the documents created by the document
+   * @param kinds
+   *          the list of kinds of the documents created by the document
+   *          template. template.
+   * @param fields
+   *          the list of names of fields for the documents created by the
+   *          document template.
+   * @param cslMapping
+   *          a mapping from CSL standard variables to property expressions.
+   */
+  public DocumentTemplate(final String name, final DocumentType type,
+      final String defaultKind, final List<String> kinds,
+      final List<String> fields, final Map<Variable, String> cslMapping) {
+    this.name = requireNonNull("name", name);
+    this.type = requireNonNull("type", type);
+    this.defaultKind = requireNonNull("defaultKind", defaultKind);
+    this.kinds = requireNonNull("kinds", kinds);
+    this.fields = requireNonNull("fields", fields);
+    this.cslMapping = requireNonNull("cslMapping", cslMapping);
+  }
+
+  /**
+   * Gets the name of this document template.
+   *
+   * @return the name of this document template, which will never be
+   *         {@code null}.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * Sets the name.
+   * Gets the type of documents created from this document template.
    *
-   * @param name
-   *          the new name to set.
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  /**
-   * Gets the type.
-   *
-   * @return the type.
+   * @return the type of documents created from this document template, which
+   *         will never be {@code null}.
    */
   public DocumentType getType() {
     return type;
   }
 
   /**
-   * Sets the type.
+   * Gets the default kind of documents created from this document template.
    *
-   * @param type
-   *          the new type to set.
-   */
-  public void setType(DocumentType type) {
-    this.type = type;
-  }
-
-  /**
-   * Gets the defaultKind.
-   *
-   * @return the defaultKind.
+   * @return the default kind of documents created from this document
+   *         template,which will never be {@code null}.
    */
   public String getDefaultKind() {
     return defaultKind;
   }
 
   /**
-   * Sets the defaultKind.
+   * Gets the list of kinds of documents created from this document template.
    *
-   * @param defaultKind the new defaultKind to set.
-   */
-  public void setDefaultKind(String defaultKind) {
-    this.defaultKind = defaultKind;
-  }
-
-  /**
-   * Gets the kinds.
-   *
-   * @return the kinds.
+   * @return the list of kinds of documents created from this document template,
+   *         which will never be {@code null}.
    */
   public List<String> getKinds() {
     return kinds;
   }
 
   /**
-   * Sets the kinds.
+   * Gets the the list of names of fields for the documents created from this
+   * document template.
    *
-   * @param kinds
-   *          the new kinds to set.
-   */
-  public void setKinds(@Nullable List<String> kinds) {
-    this.kinds = kinds;
-  }
-
-  /**
-   * Gets the fields.
-   *
-   * @return the fields.
+   * @return the list of names of fields for the documents created from this
+   *         document template, which will never be {@code null}.
    */
   public List<String> getFields() {
     return fields;
-  }
-
-  /**
-   * Sets the fields.
-   *
-   * @param fields
-   *          the new fields to set.
-   */
-  public void setFields(@Nullable List<String> fields) {
-    this.fields = fields;
   }
 
   @Override
@@ -168,7 +166,7 @@ public final class DocumentTemplate {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 

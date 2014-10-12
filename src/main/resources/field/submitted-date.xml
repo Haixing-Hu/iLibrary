@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>submitted-date</name>
-	<type>day</type>
+  <name>submitted-date</name>
+  <type>date</type>
+  <multiple>false</multiple>
+  <variable>submitted</variable>
 </field>

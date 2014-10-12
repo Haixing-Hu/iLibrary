@@ -143,5 +143,5 @@ The menu items of the iLibrary are designed as follows:
   * About: display the information (version number, author, copyrights, etc) of the applicaiton
   
   
-  
+![Use Case](./design/Business Use Case.svg)  
 

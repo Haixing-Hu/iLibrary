@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
 import java.util.Date;
@@ -24,9 +22,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.github.haixing_hu.ilibrary.model.tag.Taggable;
 
@@ -336,7 +334,7 @@ public final class Document extends Taggable {
   /**
    * Gets the last print date of this document.
    *
-   * @return the last print date of this document, or <code>null</code> if this
+   * @return the last print date of this document, or {@code null} if this
    *         document has not been printed.
    */
   public Date getLastPrintDate() {
@@ -347,7 +345,7 @@ public final class Document extends Taggable {
    * Sets the last read print of this document.
    *
    * @param lastPrintDate
-   *          the new last print date to set, or <code>null</code> if this
+   *          the new last print date to set, or {@code null} if this
    *          document has not been printed.
    */
   public void setLastPrintDate(@Nullable Date lastPrintDate) {
@@ -357,7 +355,7 @@ public final class Document extends Taggable {
   /**
    * Gets the list of files of this document.
    *
-   * @return the list of files of this document, or <code>null</code> if this
+   * @return the list of files of this document, or {@code null} if this
    *         document has no file.
    */
   public List<File> getFiles() {
@@ -367,7 +365,7 @@ public final class Document extends Taggable {
   /**
    * Sets the list of files of this document.
    *
-   * @return the new list of files of this document, or <code>null</code> if
+   * @return the new list of files of this document, or {@code null} if
    *         this document has no file.
    */
   public void setFiles(@Nullable List<File> files) {

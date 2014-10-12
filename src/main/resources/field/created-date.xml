@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>created-date</name>
-	<type>day</type>
+  <name>created-date</name>
+  <type>date</type>
+  <multiple>false</multiple>
 </field>

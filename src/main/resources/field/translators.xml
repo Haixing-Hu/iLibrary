@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<field list='true'>
-	<name>translators</name>
-	<type>responsibility</type>
+<field>
+  <name>translators</name>
+  <type>responsibility</type>
+  <multiple>true</multiple>
+  <variable>translator</variable>
 </field>

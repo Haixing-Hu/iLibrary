@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.service.impl;
 
 import java.io.InputStream;
@@ -48,22 +46,26 @@ public final class DocumentTemplateServiceImpl implements DocumentTemplateServic
   private final Logger logger;
   private final Map<String, DocumentTemplate> templates;
 
-  public DocumentTemplateServiceImpl(String resourcePattern) {
+  public DocumentTemplateServiceImpl(final String resourcePattern) {
     logger = LoggerFactory.getLogger(DocumentTemplateServiceImpl.class);
     templates = new HashMap<String, DocumentTemplate>();
     //  load all the field templates
-    final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+    final PathMatchingResourcePatternResolver resolver =
+        new PathMatchingResourcePatternResolver();
     try {
-      final JAXBContext jaxbContext = JAXBContext.newInstance(DocumentTemplate.class);
-      final Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+      final JAXBContext context =
+          JAXBContext.newInstance(DocumentTemplate.class);
+      final Unmarshaller unmarshaller = context.createUnmarshaller();
       final Resource[] resources = resolver.getResources(resourcePattern);
       for (final Resource resource : resources) {
         final InputStream is = resource.getInputStream();
-        final DocumentTemplate document = (DocumentTemplate) unmarshaller.unmarshal(is);
+        final DocumentTemplate document =
+            (DocumentTemplate) unmarshaller.unmarshal(is);
         templates.put(document.getName(), document);
       }
     } catch (final Exception e) {
-      logger.error("Failed to load the document templates from: {}", resourcePattern, e);
+      logger.error("Failed to load the document templates from: {}",
+          resourcePattern, e);
       throw new RuntimeException(e);
     }
   }
@@ -74,7 +76,7 @@ public final class DocumentTemplateServiceImpl implements DocumentTemplateServic
   }
 
   @Override
-  public Collection<DocumentTemplate> getAll(DocumentType type)
+  public Collection<DocumentTemplate> getAll(final DocumentType type)
       throws DataAccessException {
     final List<DocumentTemplate> result = new ArrayList<DocumentTemplate>();
     for (final DocumentTemplate template : templates.values()) {
@@ -86,7 +88,7 @@ public final class DocumentTemplateServiceImpl implements DocumentTemplateServic
   }
 
   @Override
-  public DocumentTemplate get(String name) throws DataAccessException {
+  public DocumentTemplate get(final String name) throws DataAccessException {
     return templates.get(name);
   }
 

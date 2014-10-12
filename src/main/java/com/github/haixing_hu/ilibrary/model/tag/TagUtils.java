@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model.tag;
 
 import java.util.LinkedList;
@@ -37,10 +35,10 @@ public class TagUtils {
    * Gets the list of tags in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code>.
-   * @return the list of tags in the specified scope, or <code>null</code> if no such
+   *          the list of tags, which could be {@code null}.
+   * @return the list of tags in the specified scope, or {@code null} if no such
    *         tag.
    */
   public static List<Tag> getTagsInScope(String scope, @Nullable List<Tag> tags) {
@@ -61,10 +59,10 @@ public class TagUtils {
    * Gets the first tag in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code>.
-   * @return the first tag in the specified scope, or <code>null</code> if no such
+   *          the list of tags, which could be {@code null}.
+   * @return the first tag in the specified scope, or {@code null} if no such
    *         tag.
    */
   public static Tag getFirstTagInScope(String scope, @Nullable List<Tag> tags) {
@@ -84,11 +82,11 @@ public class TagUtils {
    * Gets the list of names of the tags in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code>.
+   *          the list of tags, which could be {@code null}.
    * @return the list of names of the tags in the specified scope, or
-   *         <code>null</code> if no such tag.
+   *         {@code null} if no such tag.
    */
   public static List<String> getTagNamesInScope(String scope, @Nullable List<Tag> tags) {
     Argument.requireNonEmpty("scope", scope);
@@ -108,11 +106,11 @@ public class TagUtils {
    * Gets the name of the first tag in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code>.
+   *          the list of tags, which could be {@code null}.
    * @return the name of the first tag in the specified scope, or
-   *         <code>null</code> if no such tag.
+   *         {@code null} if no such tag.
    */
   public static String getFirstTagNameInScope(String scope, @Nullable List<Tag> tags) {
     Argument.requireNonEmpty("scope", scope);
@@ -131,15 +129,15 @@ public class TagUtils {
    * Adds a tag in the specified scope to a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code> or empty. If it
-   *          is <code>null</code> or empty, this function will create a new tag
+   *          the list of tags, which could be {@code null} or empty. If it
+   *          is {@code null} or empty, this function will create a new tag
    *          list, add the new tag to the list, and return the new tag list.
    * @param name
    *          the name of new tag in the specified scope to be added to the tag
    *          list.
-   * @return the tag list after update, which cannot be <code>null</code>.
+   * @return the tag list after update, which cannot be {@code null}.
    */
   public static List<Tag> addTagInScope(String scope,
       @Nullable List<Tag> tags, String name) {
@@ -156,15 +154,15 @@ public class TagUtils {
    * Adds the tags in the specified scope to a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code> or empty. If it
-   *          is <code>null</code> or empty, this function will create a new tag
+   *          the list of tags, which could be {@code null} or empty. If it
+   *          is {@code null} or empty, this function will create a new tag
    *          list, add the new tags to the list, and return the new tag list.
    * @param names
    *          the names of new tags in the specified scope to be added to the tag
    *          list.
-   * @return the tag list after update, which may be <code>null</code>.
+   * @return the tag list after update, which may be {@code null}.
    */
   public static List<Tag> addTagsInScope(String scope,
       @Nullable List<Tag> tags, List<String> names) {
@@ -186,15 +184,15 @@ public class TagUtils {
    * Updates a tag in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code> or empty. If it
-   *          is <code>null</code> or empty, this function will create a new tag
+   *          the list of tags, which could be {@code null} or empty. If it
+   *          is {@code null} or empty, this function will create a new tag
    *          list, add the new tag to the list, and return the new tag list.
    * @param name
    *          the name of new tag in the specified scope to be updated to the tag
    *          list.
-   * @return the tag list after update, which cannot be <code>null</code>.
+   * @return the tag list after update, which cannot be {@code null}.
    */
   public static List<Tag> updateTagInScope(String scope,
       @Nullable List<Tag> tags, String name) {
@@ -213,15 +211,15 @@ public class TagUtils {
    * Updates the tags in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code> or empty. If it
-   *          is <code>null</code> or empty, this function will create a new tag
+   *          the list of tags, which could be {@code null} or empty. If it
+   *          is {@code null} or empty, this function will create a new tag
    *          list, add the new tags to the list, and return the new tag list.
    * @param names
    *          the names of new tags in the specified scope to be updated to the tag
    *          list.
-   * @return the tag list after update, which may be <code>null</code>.
+   * @return the tag list after update, which may be {@code null}.
    */
   public static List<Tag> updateTagsInScope(String scope,
       @Nullable List<Tag> tags, List<String> names) {
@@ -245,10 +243,10 @@ public class TagUtils {
    * Removes a tag in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code> or empty. If it
-   *          is <code>null</code> or empty, this function will create a new tag
+   *          the list of tags, which could be {@code null} or empty. If it
+   *          is {@code null} or empty, this function will create a new tag
    *          list, add the new tag to the list, and return the new tag list.
    * @param name
    *          the name of tag in the specified scope to be removed from the tag
@@ -274,10 +272,10 @@ public class TagUtils {
    * Removes tags in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which could be <code>null</code> or empty. If it
-   *          is <code>null</code> or empty, this function will create a new tag
+   *          the list of tags, which could be {@code null} or empty. If it
+   *          is {@code null} or empty, this function will create a new tag
    *          list, add the new tag to the list, and return the new tag list.
    * @param names
    *          the names of tags in the specified scope to be removed from the tag
@@ -305,9 +303,9 @@ public class TagUtils {
    * Removes all the tags in the specified scope from a tag list.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param tags
-   *          the list of tags, which may be <code>null</code>.
+   *          the list of tags, which may be {@code null}.
    */
   public static void removeTagsInScope(String scope, @Nullable List<Tag> tags) {
     if (tags == null) {

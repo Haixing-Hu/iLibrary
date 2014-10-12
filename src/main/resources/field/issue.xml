@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>issue</name>
-	<type>string</type>
+  <name>issue</name>
+  <type>string</type>
+  <multiple>false</multiple>
+  <variable>issue</variable>
 </field>

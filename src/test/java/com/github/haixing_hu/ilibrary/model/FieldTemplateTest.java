@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.github.haixing_hu.csl.Variable;
 
 /**
  * Unit test of the {@link FieldTemplate} class.
@@ -28,65 +25,61 @@ import java.util.Map;
  */
 public class FieldTemplateTest extends XmlSerializationTest<FieldTemplate> {
 
-  private static final Map<FieldTemplate, String> MARSHAL_TEST_DATA;
-  private static final Map<String, FieldTemplate> UNMARSHAL_TEST_DATA;
-
-  static {
-    MARSHAL_TEST_DATA = new HashMap<FieldTemplate, String>();
-    UNMARSHAL_TEST_DATA = new HashMap<String, FieldTemplate>();
-
-    final FieldTemplate title = new FieldTemplate();
-    title.setName("title");
-    title.setType(FieldDataType.STRING);
-    title.setRequired(true);
-    MARSHAL_TEST_DATA.put(title,
-                 "<field required='true' list='false'>"
-                 + "<name>title</name>"
-                 + "<type>string</type>"
-                 + "</field>");
-
-    UNMARSHAL_TEST_DATA.put("<field required='true'>"
-        + "<name>title</name>"
-        + "<type>string</type>"
-        + "</field>",
-        title);
-
-    final FieldTemplate authors = new FieldTemplate();
-    authors.setName("authors");
-    authors.setType(FieldDataType.RESPONSIBILITY);
-    authors.setRequired(true);
-    authors.setList(true);
-    MARSHAL_TEST_DATA.put(authors,
-        "<field required='true' list='true'>"
-        + "<name>authors</name>"
-        + "<type>responsibility</type>"
-        + "</field>");
-
-    UNMARSHAL_TEST_DATA.put("<field required='true' list='true'>"
-        + "<name>authors</name>"
-        + "<type>responsibility</type>"
-        + "</field>",
-        authors);
-
-    final FieldTemplate submittedDate = new FieldTemplate();
-    submittedDate.setName("submitted-date");
-    submittedDate.setType(FieldDataType.DAY);
-
-    MARSHAL_TEST_DATA.put(submittedDate,
-        "<field required='false' list='false'>"
-        + "<name>submitted-date</name>"
-        + "<type>day</type>"
-        + "</field>");
-
-    UNMARSHAL_TEST_DATA.put("<field>"
-        + "<name>submitted-date</name>"
-        + "<type>day</type>"
-        + "</field>",
-        submittedDate);
+  public FieldTemplateTest() {
+    super(FieldTemplate.class);
+    addAbstract();
+    addAcceptedData();
+    addAuthors();
   }
 
-  public FieldTemplateTest() {
-    super(FieldTemplate.class, MARSHAL_TEST_DATA, UNMARSHAL_TEST_DATA);
+  private void addAbstract() {
+    final FieldTemplateBuilder builder = new FieldTemplateBuilder();
+    final FieldTemplate template = builder.setName("abstract")
+                                          .setType(FieldDataType.STRING)
+                                          .setMultiple(false)
+                                          .setVariable(Variable.ABSTRACT)
+                                          .build();
+    final String xml = "<field>"
+               + "<name>abstract</name>"
+               + "<type>string</type>"
+               + "<multiple>false</multiple>"
+               + "<variable>abstract</variable>"
+               + "</field>";
+    marshalTestData.put(template, xml);
+    unmarshalTestData.put(xml, template);
+  }
+
+  private void addAcceptedData() {
+    final FieldTemplateBuilder builder = new FieldTemplateBuilder();
+    final FieldTemplate template = builder.setName("accepted-data")
+                                          .setType(FieldDataType.DATE)
+                                          .setMultiple(false)
+                                          .setVariable(null)
+                                          .build();
+    final String xml = "<field>"
+               + "<name>accepted-data</name>"
+               + "<type>date</type>"
+               + "<multiple>false</multiple>"
+               + "</field>";
+    marshalTestData.put(template, xml);
+    unmarshalTestData.put(xml, template);
+  }
+
+  private void addAuthors() {
+    final FieldTemplateBuilder builder = new FieldTemplateBuilder();
+    final FieldTemplate template = builder.setName("authors")
+                                          .setType(FieldDataType.RESPONSIBILITY)
+                                          .setMultiple(true)
+                                          .setVariable(Variable.AUTHOR)
+                                          .build();
+    final String xml = "<field>"
+               + "<name>authors</name>"
+               + "<type>responsibility</type>"
+               + "<multiple>true</multiple>"
+               + "<variable>author</variable>"
+               + "</field>";
+    marshalTestData.put(template, xml);
+    unmarshalTestData.put(xml, template);
   }
 
 }

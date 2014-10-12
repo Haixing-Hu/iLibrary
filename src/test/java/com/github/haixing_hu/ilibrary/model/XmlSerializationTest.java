@@ -20,6 +20,7 @@ package com.github.haixing_hu.ilibrary.model;
 
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
@@ -29,6 +30,7 @@ import javax.xml.bind.Unmarshaller;
 import org.custommonkey.xmlunit.Diff;
 import org.custommonkey.xmlunit.ElementNameAndTextQualifier;
 import org.custommonkey.xmlunit.XMLAssert;
+import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,12 +47,20 @@ import static org.junit.Assert.assertEquals;
 public abstract class XmlSerializationTest<T> {
 
   protected final Class<T> cls;
-  protected final Map<T, String> marshalTestData;
-  protected final Map<String, T> unmarshalTestData;
+  protected Map<T, String> marshalTestData;
+  protected Map<String, T> unmarshalTestData;
   protected Logger logger;
 
-  protected XmlSerializationTest(Class<T> cls, Map<T, String> marshalTestData,
-      Map<String, T> unmarshalTestData) {
+  protected XmlSerializationTest(final Class<T> cls) {
+    this.cls = cls;
+    this.marshalTestData = new HashMap<T, String>();
+    this.unmarshalTestData = new HashMap<String, T>();
+    this.logger = LoggerFactory.getLogger(this.getClass());
+  }
+
+  protected XmlSerializationTest(final Class<T> cls,
+      final Map<T, String> marshalTestData,
+      final Map<String, T> unmarshalTestData) {
     this.cls = cls;
     this.marshalTestData = marshalTestData;
     this.unmarshalTestData = unmarshalTestData;
@@ -61,7 +71,9 @@ public abstract class XmlSerializationTest<T> {
   public void testXmlMarshal() throws Exception {
     final JAXBContext context = JAXBContext.newInstance(cls);
     final Marshaller mr = context.createMarshaller();
-    mr.setProperty("jaxb.fragment", Boolean.TRUE);
+    mr.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+    mr.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+    XMLUnit.setIgnoreWhitespace(true);
     for (final Map.Entry<T, String> entry : marshalTestData.entrySet()) {
       final T obj = entry.getKey();
       final String xml = entry.getValue();

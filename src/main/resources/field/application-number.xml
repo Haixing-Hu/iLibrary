@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <field>
-	<name>application-number</name>
-	<type>string</type>
+  <name>application-number</name>
+  <type>string</type>
+  <multiple>false</multiple>
+  <variable>number</variable>
 </field>

@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
-import com.github.haixing_hu.util.jaxb.EnumXmlAdapter;
+import com.github.haixing_hu.text.xml.jaxb.EnumXmlAdapter;
 
 /**
  * The XML adapter for the {@link FieldDataType} enumeration class.

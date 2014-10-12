@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-package com.github.haixing_hu.ilibrary.model;
+ */package com.github.haixing_hu.ilibrary.model;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.github.haixing_hu.criteria.Criterion;
 
@@ -39,8 +37,8 @@ public class DocumentCollection {
   private Criterion criterion;
 
   public DocumentCollection() {
-    id = -1;
-    parentId = -1;
+    id = - 1;
+    parentId = - 1;
     name = StringUtils.EMPTY;
     description = StringUtils.EMPTY;
     smart = false;
@@ -59,7 +57,8 @@ public class DocumentCollection {
   /**
    * Sets the id.
    *
-   * @param id the new id to set.
+   * @param id
+   *          the new id to set.
    */
   public void setId(int id) {
     this.id = id;
@@ -77,7 +76,8 @@ public class DocumentCollection {
   /**
    * Sets the parentId.
    *
-   * @param parentId the new parentId to set.
+   * @param parentId
+   *          the new parentId to set.
    */
   public void setParentId(int parentId) {
     this.parentId = parentId;
@@ -95,7 +95,8 @@ public class DocumentCollection {
   /**
    * Sets the name.
    *
-   * @param name the new name to set.
+   * @param name
+   *          the new name to set.
    */
   public void setName(String name) {
     this.name = name;
@@ -113,43 +114,48 @@ public class DocumentCollection {
   /**
    * Sets the description.
    *
-   * @param description the new description to set.
+   * @param description
+   *          the new description to set.
    */
   public void setDescription(String description) {
     this.description = description;
   }
 
   /**
-   * Gets the smart.
+   * Tests whether this collection is a smart collection.
    *
-   * @return the smart.
+   * @return {@code true} if this collection is a smart collection;
+   *         {@code false} otherwise.
    */
   public boolean isSmart() {
     return smart;
   }
 
   /**
-   * Sets the smart.
+   * Sets whether this collection is a smart collection.
    *
-   * @param smart the new smart to set.
+   * @param smart
+   *          {@code true} to set this collection to be a smart collection;
+   *          {@code false} otherwise.
    */
   public void setSmart(boolean smart) {
     this.smart = smart;
   }
 
   /**
-   * Gets the criterion.
+   * Gets the criterion used to filter documents in this smart collection.
    *
-   * @return the criterion.
+   * @return the criterion used to filter documents in this smart collection
    */
   public Criterion getCriterion() {
     return criterion;
   }
 
   /**
-   * Sets the criterion.
+   * Sets the criterion used to filter documents in this smart collection.
    *
-   * @param criterion the new criterion to set.
+   * @param criterion
+   *          the new criterion to set.
    */
   public void setCriterion(Criterion criterion) {
     this.criterion = criterion;

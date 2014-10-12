@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 /**
  * The mode of cities.
@@ -166,7 +164,7 @@ public final class City {
    * Sets the abbreviation.
    *
    * @param abbreviation
-   *          the new abbreviation to set, which may be <code>null</code>.
+   *          the new abbreviation to set, which may be {@code null}.
    */
   public void setAbbreviation(@Nullable String abbreviation) {
     this.abbreviation = abbreviation;
@@ -185,7 +183,7 @@ public final class City {
    * Sets the province.
    *
    * @param province
-   *          the new province to set, which may be <code>null</code>.
+   *          the new province to set, which may be {@code null}.
    */
   public void setProvince(@Nullable String province) {
     this.province = province;
@@ -204,7 +202,7 @@ public final class City {
    * Sets the country.
    *
    * @param country
-   *          the new country to set, which may be <code>null</code>.
+   *          the new country to set, which may be {@code null}.
    */
   public void setCountry(@Nullable Country country) {
     this.country = country;

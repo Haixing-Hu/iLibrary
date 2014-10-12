@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model.tag;
 
 import java.util.List;
@@ -68,12 +66,12 @@ public class PeriodicalTypeTag extends Tag {
    * <p>
    * This function will check the tags in the tag list, and returns the name of
    * the first tag in the scope {@link TagScope#PERIODICAL_TYPE}. If there is no
-   * such tag, this function will return the <code>null</code>.
+   * such tag, this function will return the {@code null}.
    *
    * @param tags
    *          a list of tags, which could be null or empty.
    * @return the name of the periodical type get from the tag list, or
-   *         <code>null</code> if not found.
+   *         {@code null} if not found.
    */
   public static String getPeriodicalType(@Nullable List<Tag> tags) {
     if (tags == null) {
@@ -97,14 +95,14 @@ public class PeriodicalTypeTag extends Tag {
    *
    * @param tags
    *          the list of tags, where to update the periodical type. It could be
-   *          null. If it is <code>null</code>, this function will create a new
+   *          null. If it is {@code null}, this function will create a new
    *          tag list, put the tag of periodical type to the new tag list, and
    *          return the new tag list.
    * @param periodicalType
    *          the name of the periodical type to be set, which cannot be null
    *          nor empty.
    * @return the tag list after updating, or a new tag list if the tag list
-   *         passed to the argument is <code>null</code>.
+   *         passed to the argument is {@code null}.
    */
   public static List<Tag> setPeriodicalType(@Nullable List<Tag> tags,
       String periodicalType) {

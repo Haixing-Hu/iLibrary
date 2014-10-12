@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model.tag;
 
 import java.util.List;
@@ -114,13 +112,13 @@ public class LabelTag extends Tag {
    *
    * @param tags
    *          the list of tags, where to update the label. It could be null. If
-   *          it is <code>null</code>, this function will create a new tag list,
+   *          it is {@code null}, this function will create a new tag list,
    *          put the tag of the label to the new tag list, and return the new tag
    *          list.
    * @param label
-   *          the label to be set, which cannot be <code>null</code>.
+   *          the label to be set, which cannot be {@code null}.
    * @return the tag list after updating, or a new tag list if the tag list
-   *         passed to the argument is <code>null</code>.
+   *         passed to the argument is {@code null}.
    */
   public static List<Tag> setLabel(@Nullable List<Tag> tags, Label label) {
     Argument.requireNonNull("label", label);
@@ -132,7 +130,7 @@ public class LabelTag extends Tag {
    * Constructs a tag representing a label.
    *
    * @param label
-   *          the label to be represented, which cannot be <code>null</code>.
+   *          the label to be represented, which cannot be {@code null}.
    */
   public LabelTag(Label label) {
     super(TagScope.LABEL.name(), label.name());

@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model.tag;
 
 import java.util.List;
@@ -64,8 +62,8 @@ public class Taggable {
    * object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
-   * @return the list of tags in the specified scope, or <code>null</code> if no
+   *          the scope of tags, which cannot be {@code null} nor empty.
+   * @return the list of tags in the specified scope, or {@code null} if no
    *         such tag.
    */
   public final List<Tag> getTagsInScope(String scope) {
@@ -76,8 +74,8 @@ public class Taggable {
    * Gets the first tag in the specified scope from the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
-   * @return the first tag in the specified scope, or <code>null</code> if no
+   *          the scope of tags, which cannot be {@code null} nor empty.
+   * @return the first tag in the specified scope, or {@code null} if no
    *         such tag.
    */
   public final Tag getFirstTagInScope(String scope) {
@@ -88,7 +86,7 @@ public class Taggable {
    * Adds a tag in the specified scope to the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param name
    *          the name of new tag in the specified scope to be added to the tag
    *          list.
@@ -101,7 +99,7 @@ public class Taggable {
    * Adds the tags in the specified scope to the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param names
    *          the names of new tags in the specified scope to be added to the tag
    *          list.
@@ -114,7 +112,7 @@ public class Taggable {
    * Updates a tag in the specified scope from the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param newName
    *          the name of new tag in the specified scope to be added to the tag
    *          list.
@@ -127,7 +125,7 @@ public class Taggable {
    * Updates the tags in the specified scope from the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param newNames
    *          the names of new tags in the specified scope to be added to the
    *          tag list.
@@ -140,7 +138,7 @@ public class Taggable {
    * Removes a tag in the specified scope from the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param name
    *          the name of tag in the specified scope to be removed from the tag
    *          list.
@@ -153,7 +151,7 @@ public class Taggable {
    * Removes tags in the specified scope from the tag list of this object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    * @param names
    *          the names of tags in the specified scope to be removed from the tag
    *          list.
@@ -167,7 +165,7 @@ public class Taggable {
    * object.
    *
    * @param scope
-   *          the scope of tags, which cannot be <code>null</code> nor empty.
+   *          the scope of tags, which cannot be {@code null} nor empty.
    */
   public final void removeTagsInScope(String scope) {
     TagUtils.removeTagsInScope(scope, tags);
@@ -205,9 +203,9 @@ public class Taggable {
    * <p>
    * This function will check the tags of this object, and returns the name of
    * the first tag whose scope is {@link TagScope#DOMAIN}. If there is no such
-   * tag, this function will return <code>null</code>.
+   * tag, this function will return {@code null}.
    *
-   * @return the name of the domain of this object, or <code>null</code> if
+   * @return the name of the domain of this object, or {@code null} if
    *         the domain is not set for this object.
    */
   public final String getDomain() {
@@ -233,9 +231,9 @@ public class Taggable {
    * <p>
    * This function will check the tags of the tag list, and returns the names of
    * the tags in the scope {@link TagScope#KEYWORD}. If there is no such tag,
-   * this function will return <code>null</code>.
+   * this function will return {@code null}.
    *
-   * @return the list of keywords of this object, or <code>null</code> if no
+   * @return the list of keywords of this object, or {@code null} if no
    *         keyword was set.
    */
   public final List<String> getKeywords() {
@@ -246,8 +244,8 @@ public class Taggable {
    * Sets the keywords of this object.
    *
    * @param keywords
-   *          the list of keywords to be set, which cannot be <code>null</code>,
-   *          and every elements in the array cannot be <code>null</code> nor empty.
+   *          the list of keywords to be set, which cannot be {@code null},
+   *          and every elements in the array cannot be {@code null} nor empty.
    */
   public final void setKeywords(List<String> keywords) {
     tags = KeywordTag.setKeywords(tags, keywords);
@@ -257,7 +255,7 @@ public class Taggable {
    * Adds a keyword to this object.
    *
    * @param keyword
-   *          the keywords to be added, which cannot be <code>null</code> nor empty.
+   *          the keywords to be added, which cannot be {@code null} nor empty.
    */
   public final void addKeyword(String keyword) {
     tags = KeywordTag.addKeyword(tags, keyword);
@@ -267,8 +265,8 @@ public class Taggable {
    * Adds keywords to this object.
    *
    * @param keywords
-   *          the list of keywords to be added, which cannot be <code>null</code>,
-   *          and every elements in the array cannot be <code>null</code> nor empty.
+   *          the list of keywords to be added, which cannot be {@code null},
+   *          and every elements in the array cannot be {@code null} nor empty.
    */
   public final void addKeywords(List<String> keywords) {
     tags = KeywordTag.addKeywords(tags, keywords);
@@ -278,7 +276,7 @@ public class Taggable {
    * Removes a keyword from this object.
    *
    * @param keyword
-   *          the keywords to be removed, which cannot be <code>null</code> nor empty.
+   *          the keywords to be removed, which cannot be {@code null} nor empty.
    */
   public final void removeKeyword(String keyword) {
     KeywordTag.removeKeyword(tags, keyword);
@@ -288,8 +286,8 @@ public class Taggable {
    * Removes keywords from this object.
    *
    * @param keywords
-   *          the keywords to be removed, which cannot be <code>null</code>, and
-   *          every elements in the array cannot be <code>null</code> nor empty.
+   *          the keywords to be removed, which cannot be {@code null}, and
+   *          every elements in the array cannot be {@code null} nor empty.
    */
   public final void removeKeywords(List<String> keywords) {
     KeywordTag.removeKeywords(tags, keywords);

@@ -1,5 +1,4 @@
-/******************************************************************************
- *
+/*
  * Copyright (c) 2014  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- ******************************************************************************/
-
+ */
 package com.github.haixing_hu.ilibrary.model;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
@@ -69,8 +67,8 @@ public final class Responsibility {
   /**
    * Tests whether this responsibility is a person.
    *
-   * @return <code>true</code> if this responsibility is a person;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if this responsibility is a person;
+   *         {@code false} otherwise.
    */
   public boolean isPerson() {
     return (person != null);
@@ -79,8 +77,8 @@ public final class Responsibility {
   /**
    * Tests whether this responsibility is an institute.
    *
-   * @return <code>true</code> if this responsibility is an institute;
-   *         <code>false</code> otherwise.
+   * @return {@code true} if this responsibility is an institute;
+   *         {@code false} otherwise.
    */
   public boolean isInstitute() {
     return (institute != null);
@@ -91,7 +89,7 @@ public final class Responsibility {
    *
    * @return the person represented by this responsibility. If this
    *         responsibility represents a institute, this function will returns
-   *         <code>null</code>.
+   *         {@code null}.
    */
   public Person getPerson() {
     return person;
@@ -100,7 +98,7 @@ public final class Responsibility {
   /**
    * Sets the person represented by this responsibility.
    * <p>
-   * <b>NOTE:</b> This function will clear the <code>institute</code> field of
+   * <b>NOTE:</b> This function will clear the {@code institute} field of
    * this {@link Responsibility} object.
    *
    * @param person
@@ -116,7 +114,7 @@ public final class Responsibility {
    *
    * @return the institute represented by this responsibility. If this
    *         responsibility represents a person, this function will returns
-   *         <code>null</code>.
+   *         {@code null}.
    */
   public Organization getInstitute() {
     return institute;
@@ -125,7 +123,7 @@ public final class Responsibility {
   /**
    * Sets the institute represented by this responsibility.
    * <p>
-   * <b>NOTE:</b> This function will clear the <code>person</code> field of this
+   * <b>NOTE:</b> This function will clear the {@code person} field of this
    * {@link Responsibility} object.
    *
    * @param institute

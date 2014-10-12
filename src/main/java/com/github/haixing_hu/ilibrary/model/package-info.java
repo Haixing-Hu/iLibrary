@@ -17,6 +17,11 @@
  ******************************************************************************/
 
 @XmlJavaTypeAdapters({
+  @XmlJavaTypeAdapter(type=CitationFormat.class, value=CitationFormatXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=Field.class, value=FieldXmlAdaptor.class),
+  @XmlJavaTypeAdapter(type=SortDirection.class, value=SortDirectionXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=Variable.class, value=VariableXmlAdapter.class),
+
   @XmlJavaTypeAdapter(type=Date.class, value=DateXmlAdaptor.class),
   @XmlJavaTypeAdapter(type=FieldDataType.class, value=FieldDataTypeXmlAdapter.class),
   @XmlJavaTypeAdapter(type=DocumentType.class, value=DocumentTypeXmlAdapter.class),
@@ -28,5 +33,12 @@ import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters;
 
-import com.github.haixing_hu.util.jaxb.DateXmlAdaptor;
+import com.github.haixing_hu.csl.CitationFormat;
+import com.github.haixing_hu.csl.CitationFormatXmlAdapter;
+import com.github.haixing_hu.csl.FieldXmlAdaptor;
+import com.github.haixing_hu.csl.SortDirection;
+import com.github.haixing_hu.csl.SortDirectionXmlAdapter;
+import com.github.haixing_hu.csl.Variable;
+import com.github.haixing_hu.csl.VariableXmlAdapter;
+import com.github.haixing_hu.text.xml.jaxb.DateXmlAdaptor;
 
