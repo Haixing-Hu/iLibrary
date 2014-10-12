@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<field>
+  <name>accessed-date</name>
+  <type>date</type>
+  <multiple>false</multiple>
+  <variable>issued</variable>
+</field>
