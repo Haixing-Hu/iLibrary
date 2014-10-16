@@ -21,10 +21,14 @@
   @XmlJavaTypeAdapter(type=Field.class, value=FieldXmlAdaptor.class),
   @XmlJavaTypeAdapter(type=SortDirection.class, value=SortDirectionXmlAdapter.class),
   @XmlJavaTypeAdapter(type=Variable.class, value=VariableXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=Type.class, value=TypeXmlAdapter.class),
 
   @XmlJavaTypeAdapter(type=Date.class, value=DateXmlAdaptor.class),
-  @XmlJavaTypeAdapter(type=FieldDataType.class, value=FieldDataTypeXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=DataType.class, value=DataTypeXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=Column.class, value=ColumnXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=FieldGroup.class, value=FieldGroupXmlAdapter.class),
   @XmlJavaTypeAdapter(type=DocumentType.class, value=DocumentTypeXmlAdapter.class),
+  @XmlJavaTypeAdapter(type=VariableMapping.class, value=VariableMappingXmlAdapter.class),
 })
 package com.github.haixing_hu.ilibrary.model;
 
@@ -35,9 +39,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapters;
 
 import com.github.haixing_hu.csl.CitationFormat;
 import com.github.haixing_hu.csl.CitationFormatXmlAdapter;
+import com.github.haixing_hu.csl.Field;
 import com.github.haixing_hu.csl.FieldXmlAdaptor;
 import com.github.haixing_hu.csl.SortDirection;
 import com.github.haixing_hu.csl.SortDirectionXmlAdapter;
+import com.github.haixing_hu.csl.Type;
+import com.github.haixing_hu.csl.TypeXmlAdapter;
 import com.github.haixing_hu.csl.Variable;
 import com.github.haixing_hu.csl.VariableXmlAdapter;
 import com.github.haixing_hu.text.xml.jaxb.DateXmlAdaptor;

@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<field>
-  <name>original-title</name>
-  <type>string</type>
-  <multiple>false</multiple>
-  <variable>original-title</variable>
-</field>

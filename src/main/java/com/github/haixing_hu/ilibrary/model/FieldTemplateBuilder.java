@@ -16,11 +16,7 @@
  */
 package com.github.haixing_hu.ilibrary.model;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.lang3.StringUtils;
-
-import com.github.haixing_hu.csl.Variable;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
@@ -32,15 +28,13 @@ import static com.github.haixing_hu.lang.Argument.requireNonNull;
 public final class FieldTemplateBuilder {
 
   private String name;
-  private FieldDataType type;
+  private DataType type;
   private boolean multiple;
-  private Variable variable;
 
   public FieldTemplateBuilder() {
     name = StringUtils.EMPTY;
-    type = FieldDataType.STRING;
+    type = DataType.STRING;
     multiple = false;
-    variable = null;
   }
 
   public FieldTemplateBuilder setName(final String name) {
@@ -48,7 +42,7 @@ public final class FieldTemplateBuilder {
     return this;
   }
 
-  public FieldTemplateBuilder setType(final FieldDataType type) {
+  public FieldTemplateBuilder setType(final DataType type) {
     this.type = requireNonNull("type", type);
     return this;
   }
@@ -58,12 +52,14 @@ public final class FieldTemplateBuilder {
     return this;
   }
 
-  public FieldTemplateBuilder setVariable(@Nullable final Variable variable) {
-    this.variable = variable;
+  public FieldTemplateBuilder reset() {
+    name = StringUtils.EMPTY;
+    type = DataType.STRING;
+    multiple = false;
     return this;
   }
 
   public FieldTemplate build() {
-    return new FieldTemplate(name, type, multiple, variable);
+    return new FieldTemplate(name, type, multiple);
   }
 }

@@ -27,7 +27,7 @@ import com.github.haixing_hu.criteria.Criterion;
  *
  * @author Haixing Hu
  */
-public class DocumentCollection {
+public final class DocumentCollection {
 
   private int id;
   private int parentId;
@@ -60,7 +60,7 @@ public class DocumentCollection {
    * @param id
    *          the new id to set.
    */
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -79,7 +79,7 @@ public class DocumentCollection {
    * @param parentId
    *          the new parentId to set.
    */
-  public void setParentId(int parentId) {
+  public void setParentId(final int parentId) {
     this.parentId = parentId;
   }
 
@@ -98,7 +98,7 @@ public class DocumentCollection {
    * @param name
    *          the new name to set.
    */
-  public void setName(String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 
@@ -117,7 +117,7 @@ public class DocumentCollection {
    * @param description
    *          the new description to set.
    */
-  public void setDescription(String description) {
+  public void setDescription(final String description) {
     this.description = description;
   }
 
@@ -138,7 +138,7 @@ public class DocumentCollection {
    *          {@code true} to set this collection to be a smart collection;
    *          {@code false} otherwise.
    */
-  public void setSmart(boolean smart) {
+  public void setSmart(final boolean smart) {
     this.smart = smart;
   }
 
@@ -157,7 +157,7 @@ public class DocumentCollection {
    * @param criterion
    *          the new criterion to set.
    */
-  public void setCriterion(Criterion criterion) {
+  public void setCriterion(final Criterion criterion) {
     this.criterion = criterion;
   }
 
@@ -167,7 +167,7 @@ public class DocumentCollection {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 

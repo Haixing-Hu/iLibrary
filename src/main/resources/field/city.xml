@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<field>
-  <name>city</name>
-  <type>city</type>
-  <multiple>false</multiple>
-  <variable>event-place</variable>
-</field>

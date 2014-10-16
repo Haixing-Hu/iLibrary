@@ -21,6 +21,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.haixing_hu.csl.Type;
+import com.github.haixing_hu.csl.Variable;
+
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
@@ -32,16 +35,20 @@ public final class DocumentTemplateBuilder {
 
   private String name;
   private DocumentType type;
+  private Type cslType;
   private final List<String> kinds;
   private String defaultKind;
-  private final List<String> fields;
+  private final List<FieldGroupTemplate> fieldGroups;
+  private final VariableMapping variableMapping;
 
   public DocumentTemplateBuilder() {
     name = StringUtils.EMPTY;
     type = DocumentType.ARTICLE;
-    kinds = new ArrayList<String>();
+    cslType = Type.ARTICLE;
+    kinds = new ArrayList<>();
     defaultKind = StringUtils.EMPTY;
-    fields = new ArrayList<String>();
+    fieldGroups = new ArrayList<>();
+    variableMapping = new VariableMapping();
   }
 
   public DocumentTemplateBuilder setName(final String name) {
@@ -51,6 +58,11 @@ public final class DocumentTemplateBuilder {
 
   public DocumentTemplateBuilder setType(final DocumentType type) {
     this.type = requireNonNull("type", type);
+    return this;
+  }
+
+  public DocumentTemplateBuilder setCslType(final Type cslType) {
+    this.cslType = requireNonNull("cslType", cslType);
     return this;
   }
 
@@ -64,14 +76,29 @@ public final class DocumentTemplateBuilder {
     return this;
   }
 
-  public DocumentTemplateBuilder addField(final String field) {
-    fields.add(requireNonNull("field", field));
+  public DocumentTemplateBuilder addFieldGroup(final FieldGroupTemplate group) {
+    fieldGroups.add(requireNonNull("group", group));
+    return this;
+  }
+
+  public DocumentTemplateBuilder addVariableMapping(final Variable variable,
+      final String field) {
+    variableMapping.put(variable, field);
+    return this;
+  }
+
+  public DocumentTemplateBuilder reset() {
+    name = StringUtils.EMPTY;
+    type = DocumentType.ARTICLE;
+    kinds.clear();
+    defaultKind = StringUtils.EMPTY;
+    fieldGroups.clear();
+    variableMapping.clear();
     return this;
   }
 
   public DocumentTemplate build() {
-    //return new DocumentTemplate(name, type, defaultKind, kinds, fields);
-    //  FIXME:
-    return null;
+    return new DocumentTemplate(name, type, cslType, defaultKind, kinds,
+        fieldGroups, variableMapping);
   }
 }

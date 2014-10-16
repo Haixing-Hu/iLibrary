@@ -16,7 +16,21 @@
  */
 package com.github.haixing_hu.ilibrary.model;
 
-import com.github.haixing_hu.csl.Variable;
+import java.util.List;
+
+import org.apache.commons.beanutils.DynaProperty;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getAuthorsField;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getAuthorsFieldXml;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getJournalField;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getJournalFieldXml;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getPublishedDateField;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getPublishedDateFieldXml;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getTitleField;
+import static com.github.haixing_hu.ilibrary.model.JournalArticle.getTitleFieldXml;
 
 /**
  * Unit test of the {@link FieldTemplate} class.
@@ -27,59 +41,40 @@ public class FieldTemplateTest extends XmlSerializationTest<FieldTemplate> {
 
   public FieldTemplateTest() {
     super(FieldTemplate.class);
-    addAbstract();
-    addAcceptedData();
-    addAuthors();
+
+    final FieldTemplate title = getTitleField();
+    final String titleXml = getTitleFieldXml();
+    marshalTestData.put(title, titleXml);
+    unmarshalTestData.put(titleXml, title);
+
+    final FieldTemplate authors = getAuthorsField();
+    final String authorsXml = getAuthorsFieldXml();
+    marshalTestData.put(authors, authorsXml);
+    unmarshalTestData.put(authorsXml, authors);
+
+    final FieldTemplate journal = getJournalField();
+    final String journalXml = getJournalFieldXml();
+    marshalTestData.put(journal, journalXml);
+    unmarshalTestData.put(journalXml, journal);
+
+    final FieldTemplate publishedDate = getPublishedDateField();
+    final String publishedDateXml = getPublishedDateFieldXml();
+    marshalTestData.put(publishedDate, publishedDateXml);
+    unmarshalTestData.put(publishedDateXml, publishedDate);
   }
 
-  private void addAbstract() {
-    final FieldTemplateBuilder builder = new FieldTemplateBuilder();
-    final FieldTemplate template = builder.setName("abstract")
-                                          .setType(FieldDataType.STRING)
-                                          .setMultiple(false)
-                                          .setVariable(Variable.ABSTRACT)
-                                          .build();
-    final String xml = "<field>"
-               + "<name>abstract</name>"
-               + "<type>string</type>"
-               + "<multiple>false</multiple>"
-               + "<variable>abstract</variable>"
-               + "</field>";
-    marshalTestData.put(template, xml);
-    unmarshalTestData.put(xml, template);
-  }
+  @Test
+  public void testToDynaProperty() {
+    final FieldTemplate title = getTitleField();
+    final DynaProperty titleProp = title.toDynaProperty();
+    assertEquals("title", titleProp.getName());
+    assertEquals(String.class, titleProp.getType());
 
-  private void addAcceptedData() {
-    final FieldTemplateBuilder builder = new FieldTemplateBuilder();
-    final FieldTemplate template = builder.setName("accepted-data")
-                                          .setType(FieldDataType.DATE)
-                                          .setMultiple(false)
-                                          .setVariable(null)
-                                          .build();
-    final String xml = "<field>"
-               + "<name>accepted-data</name>"
-               + "<type>date</type>"
-               + "<multiple>false</multiple>"
-               + "</field>";
-    marshalTestData.put(template, xml);
-    unmarshalTestData.put(xml, template);
-  }
-
-  private void addAuthors() {
-    final FieldTemplateBuilder builder = new FieldTemplateBuilder();
-    final FieldTemplate template = builder.setName("authors")
-                                          .setType(FieldDataType.RESPONSIBILITY)
-                                          .setMultiple(true)
-                                          .setVariable(Variable.AUTHOR)
-                                          .build();
-    final String xml = "<field>"
-               + "<name>authors</name>"
-               + "<type>responsibility</type>"
-               + "<multiple>true</multiple>"
-               + "<variable>author</variable>"
-               + "</field>";
-    marshalTestData.put(template, xml);
-    unmarshalTestData.put(xml, template);
+    final FieldTemplate authors = getAuthorsField();
+    final DynaProperty authorsProp = authors.toDynaProperty();
+    assertEquals("authors", authorsProp.getName());
+    assertEquals(List.class, authorsProp.getType());
+    assertEquals(Responsibility.class, authorsProp.getContentType());
   }
 
 }

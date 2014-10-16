@@ -17,7 +17,6 @@
 package com.github.haixing_hu.ilibrary.model;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.concurrent.Immutable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,13 +24,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.github.haixing_hu.csl.Variable;
+import com.github.haixing_hu.csl.Type;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
@@ -51,6 +51,9 @@ public final class DocumentTemplate {
   @XmlElement(name = "type", required = true)
   private final DocumentType type;
 
+  @XmlElement(name = "csl-type", required = true)
+  private final Type cslType;
+
   @XmlElement(name = "default-kind", required = true)
   private final String defaultKind;
 
@@ -59,12 +62,12 @@ public final class DocumentTemplate {
   private final List<String> kinds;
 
   @XmlElementWrapper(name = "fields")
-  @XmlElement(name = "field")
-  private final List<String> fields;
+  @XmlElement(name = "group")
+  private final List<FieldGroupTemplate> fieldGroups;
 
-  @XmlElementWrapper(name = "csl-mapping")
-  @XmlElement(name = "rule")
-  private final Map<Variable, String> cslMapping;
+  @XmlJavaTypeAdapter(VariableMappingXmlAdapter.class)
+  @XmlElement(name = "variable-mapping")
+  private final VariableMapping variableMapping;
 
   /**
    * Default constructor.
@@ -74,10 +77,11 @@ public final class DocumentTemplate {
   DocumentTemplate() {
     name = StringUtils.EMPTY;
     type = DocumentType.ARTICLE;
+    cslType = Type.ARTICLE;
     defaultKind = null;
     kinds = null;
-    fields = null;
-    cslMapping = null;
+    fieldGroups = null;
+    variableMapping = null;
   }
 
   /**
@@ -87,26 +91,31 @@ public final class DocumentTemplate {
    *          the name of the document template.
    * @param type
    *          the type of the documents created by the document template.
+   * @param cslType
+   *          the CSL type of the documents created by the document template.
    * @param defaultKind
    *          the default kind of the documents created by the document
    * @param kinds
    *          the list of kinds of the documents created by the document
    *          template. template.
-   * @param fields
-   *          the list of names of fields for the documents created by the
-   *          document template.
-   * @param cslMapping
-   *          a mapping from CSL standard variables to property expressions.
+   * @param fieldGroups
+   *          the list of templates of field groups for the documents created by
+   *          the document template.
+   * @param variableMapping
+   *          the mapping from CSL standard variables to property values of a
+   *          document.
    */
   public DocumentTemplate(final String name, final DocumentType type,
-      final String defaultKind, final List<String> kinds,
-      final List<String> fields, final Map<Variable, String> cslMapping) {
+      final Type cslType, final String defaultKind, final List<String> kinds,
+      final List<FieldGroupTemplate> fieldGroups,
+      final VariableMapping variableMapping) {
     this.name = requireNonNull("name", name);
     this.type = requireNonNull("type", type);
+    this.cslType = requireNonNull("cslType", cslType);
     this.defaultKind = requireNonNull("defaultKind", defaultKind);
     this.kinds = requireNonNull("kinds", kinds);
-    this.fields = requireNonNull("fields", fields);
-    this.cslMapping = requireNonNull("cslMapping", cslMapping);
+    this.fieldGroups = requireNonNull("fieldGroups", fieldGroups);
+    this.variableMapping = requireNonNull("variableMapping", variableMapping);
   }
 
   /**
@@ -150,14 +159,25 @@ public final class DocumentTemplate {
   }
 
   /**
-   * Gets the the list of names of fields for the documents created from this
-   * document template.
+   * Gets the the list of templates of field groups for the documents created
+   * from this document template.
    *
-   * @return the list of names of fields for the documents created from this
-   *         document template, which will never be {@code null}.
+   * @return the list of templates of field groups for the documents created
+   *         from this document template, which will never be {@code null}.
    */
-  public List<String> getFields() {
-    return fields;
+  public List<FieldGroupTemplate> getFieldGroups() {
+    return fieldGroups;
+  }
+
+  /**
+   * Gets the mapping from CSL standard variables to property values of a
+   * document.
+   *
+   * @return the mapping from CSL standard variables to property values of a
+   *         document.
+   */
+  public VariableMapping getVariableMapping() {
+    return variableMapping;
   }
 
   @Override

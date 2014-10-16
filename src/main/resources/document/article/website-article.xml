@@ -2,33 +2,122 @@
 <document>
   <name>website-article</name>
   <type>article</type>
+  <csl-type>webpage</csl-type>
   <default-kind>article</default-kind>
   <kinds>
     <kind>article</kind>
     <kind>blog-post</kind>
     <kind>commentary</kind>
+    <kind>dictionary-entry</kind>
     <kind>editorial</kind>
     <kind>forum-post</kind>
     <kind>letter</kind>
     <kind>news-and-views</kind>
     <kind>review</kind>
+    <kind>social-network</kind>
     <kind>tutorial</kind>
-    <kind>tweet</kind>
-    <kind>wikipedia-entry</kind>
+    <kind>encyclopedia-entry</kind>
+    <kind>---</kind>
+    <kind>erratum</kind>
+    <kind>retraction</kind>
   </kinds>
+
   <fields>
-    <field>title</field>
-    <field>subtitle</field>
-    <field>original-title</field>
-    <field>authors</field>
-    <field>editors</field>
-    <field>photographers</field>
-    <field>translators</field>
-    <field>abstract</field>
-    <field>website</field>
-    <field>version</field>
-    <field>created-date</field>
-    <field>updated-date</field>
-    <field>accessed-date</field>
+    <group name="title">
+      <field name="title" type="string" />
+      <field name="original-title" type="string" />
+    </group>
+    <group name="responsibility">
+      <field name="authors" type="responsibility" multiple="true" />
+      <field name="editors" type="responsibility" multiple="true" />
+      <field name="translators" type="responsibility" multiple="true" />
+      <field name="photographers" type="responsibility" multiple="true" />
+    </group>
+    <group name="abstract">
+      <field name="abstract" type="string" />
+    </group>
+    <group name="publication">
+      <field name="website" type="website" />
+      <field name="version" type="string" />
+      <field name="created-date" type="date" />
+      <field name="updated-date" type="date" />
+      <field name="accessed-date" type="date" />
+      <field name="language" type="language" />
+      <field name="copyright" type="string" />
+    </group>
+    <group name="access">
+      <field name="access-mode" type="access-mode" />
+      <field name="url" type="string" />
+      <field name="pdf-url" type="string" />
+      <field name="cite-key" type="string" />
+    </group>
+    <group name="status">
+      <field name="status" type="string" />
+      <field name="read" type="read-status" />
+      <field name="printed" type="print-status" />
+    </group>
   </fields>
+
+  <variable-mapping>
+    <rule>
+      <variable>title</variable>
+      <field>title</field>
+    </rule>
+    <rule>
+      <variable>original-title</variable>
+      <field>original-title</field>
+    </rule>
+    <rule>
+      <variable>author</variable>
+      <field>authors.name</field>
+    </rule>
+    <rule>
+      <variable>editor</variable>
+      <field>editors.name</field>
+    </rule>
+    <rule>
+      <variable>translator</variable>
+      <field>translators.name</field>
+    </rule>
+    <rule>
+      <variable>abstract</variable>
+      <field>abstract</field>
+    </rule>
+    <rule>
+      <variable>container-title</variable>
+      <field>website.title</field>
+    </rule>
+    <rule>
+      <variable>container-title-short</variable>
+      <field>website.short-title</field>
+    </rule>
+    <rule>
+      <variable>url</variable>
+      <field>url</field>
+    </rule>
+    <rule>
+      <variable>version</variable>
+      <field>version</field>
+    </rule>
+    <rule>
+      <variable>accessed</variable>
+      <field>accessed-date</field>
+    </rule>
+    <rule>
+      <variable>URL</variable>
+      <field>url</field>
+    </rule>   
+    <rule>
+      <variable>DOI</variable>
+      <field>doi</field>
+    </rule>
+    <rule>
+      <variable>status</variable>
+      <field>status</field>
+    </rule>
+    <rule>
+      <variable>genre</variable>
+      <field>kind</field>
+    </rule>
+  </variable-mapping>
 </document>

@@ -1,40 +1,119 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <document>
-	<name>patent</name>
-	<type>legal</type>
-	<default-kind>utility-patent</default-kind>
-	<kinds>
-		<kind>biological-patent</kind>
-		<kind>business-method-patent</kind>
-		<kind>chemical-patent</kind>
-		<kind>design-patent</kind>
-		<kind>invention-patent</kind>
-		<kind>plant-patent</kind>		
-		<kind>reissue-patent</kind>
-		<kind>software-patent</kind>
-		<kind>utility-model</kind>
-		<kind>utility-patent</kind>		
-		<kind>-</kind>
-		<kind>defensive-publication</kind>
-		<kind>statutory-invention-registration</kind>
-	</kinds>
-	<fields>
-		<field>title</field>
-		<field>subtitle</field>
-		<field>inventors</field>
-		<field>applicants</field>
-		<field>examiners</field>
-		<field>translators</field>
-		<field>abstract</field>
-		<field>patent-office</field>
-		<field>patent-number</field>
-		<field>version</field>
-		<field>application-number</field>
-		<field>classification</field>
-		<field>international-classification</field>		
-		<field>designated-states</field>		
-		<field>filed-date</field>
-		<field>issued-date</field>
-		<field>expired-date</field>
-	</fields>	
+  <name>patent</name>
+  <type>legal</type>
+  <csl-type>patent</csl-type>
+  <default-kind>utility-patent</default-kind>
+  <kinds>
+    <kind>biological-patent</kind>
+    <kind>business-method-patent</kind>
+    <kind>chemical-patent</kind>
+    <kind>design-patent</kind>
+    <kind>invention-patent</kind>
+    <kind>plant-patent</kind>
+    <kind>reissue-patent</kind>
+    <kind>software-patent</kind>
+    <kind>utility-model</kind>
+    <kind>utility-patent</kind>
+    <kind>---</kind>
+    <kind>defensive-publication</kind>
+    <kind>statutory-invention-registration</kind>
+  </kinds>
+
+  <fields>
+    <group name="title">
+      <field name="title" type="string" />
+      <field name="original-title" type="string" />
+    </group>
+    <group name="responsibility">
+      <field name="inventors" type="responsibility" multiple="true" />
+      <field name="applicants" type="responsibility" multiple="true" />
+      <field name="examiners" type="responsibility" multiple="true" />
+      <field name="translators" type="responsibility" multiple="true" />
+    </group>
+    <group name="abstract">
+      <field name="abstract" type="string" />
+    </group>
+    <group name="publication">
+      <field name="patent-office" type="organization" />
+      <field name="patent-number" type="string" />
+      <field name="application-number" type="string" />
+      <field name="version" type="string" />
+      <field name="classification" type="string" />
+      <field name="international-classification" type="string" />
+      <field name="designated-states" type="string" />
+      <field name="filled-date" type="date" />
+      <field name="issued-date" type="date" />
+      <field name="expired-date" type="date" />
+      <field name="language" type="language" />
+      <field name="copyright" type="string" />
+    </group>
+    <group name="access">
+      <field name="access-mode" type="access-mode" />
+      <field name="url" type="string" />
+      <field name="pdf-url" type="string" />
+      <field name="doi" type="string" />
+      <field name="cite-key" type="string" />
+    </group>
+    <group name="status">
+      <field name="status" type="string" />
+      <field name="read" type="read-status" />
+      <field name="printed" type="print-status" />
+    </group>
+  </fields>
+
+  <variable-mapping>
+    <rule>
+      <variable>title</variable>
+      <field>title</field>
+    </rule>
+    <rule>
+      <variable>original-title</variable>
+      <field>original-title</field>
+    </rule>
+    <rule>
+      <variable>author</variable>
+      <field>inventors.name</field>
+    </rule>
+    <rule>
+      <variable>abstract</variable>
+      <field>abstract</field>
+    </rule>
+    <rule>
+      <variable>number</variable>
+      <field>patent-number</field>
+    </rule>
+    <rule>
+      <variable>jurisdiction</variable>
+      <field>designated-states</field>
+    </rule>
+    <rule>
+      <variable>version</variable>
+      <field>version</field>
+    </rule>
+    <rule>
+      <variable>submitted</variable>
+      <field>filled-date</field>
+    </rule>
+    <rule>
+      <variable>issued</variable>
+      <field>issued-date</field>
+    </rule>
+    <rule>
+      <variable>URL</variable>
+      <field>url</field>
+    </rule>
+    <rule>
+      <variable>DOI</variable>
+      <field>doi</field>
+    </rule>
+    <rule>
+      <variable>status</variable>
+      <field>status</field>
+    </rule>
+    <rule>
+      <variable>genre</variable>
+      <field>kind</field>
+    </rule>
+  </variable-mapping>
 </document>

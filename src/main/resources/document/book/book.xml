@@ -1,42 +1,166 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <document>
-	<name>book</name>
-	<type>book</type>
-	<default-kind>monograph</default-kind>
-	<kinds>
-		<kind>ancient-text</kind>
-		<kind>classical-work</kind>		
-		<kind>dictionary</kind>
-		<kind>edited-book</kind>
-		<kind>encyclopedia</kind>
-		<kind>fiction</kind>
-		<kind>folio</kind>
-		<kind>handbook</kind>
-		<kind>letter</kind>
-		<kind>monograph</kind>
-		<kind>non-fiction</kind>
-		<kind>novel</kind>
-		<kind>poetry</kind>	
-		<kind>textbook</kind>
-	</kinds>
-	<fields>
-		<field>title</field>
-		<field>subtitle</field>
-		<field>series</field>
-		<field>authors</field>
-		<field>editors</field>
-		<field>illustrators</field>
-		<field>translators</field>
-		<field>synopsis</field>
-		<field>publisher</field>
-		<field>edition</field>
-		<field>number</field>		
-		<field>volume</field>
-		<field>issue</field>
-		<field>pages</field>		
-		<field>submitted-date</field>
-		<field>reviewed-date</field>
-		<field>first-edition-date</field>
-		<field>published-date</field>
-	</fields>	
+  <name>book</name>
+  <type>book</type>
+  <csl-type>book</csl-type>
+  <default-kind>monograph</default-kind>
+  <kinds>
+    <kind>ancient-text</kind>
+    <kind>classical-work</kind>
+    <kind>dictionary</kind>
+    <kind>edited-book</kind>
+    <kind>encyclopedia</kind>
+    <kind>fiction</kind>
+    <kind>folio</kind>
+    <kind>handbook</kind>
+    <kind>letter</kind>
+    <kind>monograph</kind>
+    <kind>non-fiction</kind>
+    <kind>novel</kind>
+    <kind>poetry</kind>
+    <kind>textbook</kind>
+  </kinds>
+
+  <fields>
+    <group name="title">
+      <field name="title" type="string" />
+      <field name="subtitle" type="string"/>
+      <field name="original-title" type="string" />
+      <field name="series" type="string" />
+    </group>
+    <group name="responsibility">
+      <field name="authors" type="responsibility" multiple="true" />
+      <field name="editors" type="responsibility" multiple="true" />
+      <field name="translators" type="responsibility" multiple="true" />
+      <field name="illustrators" type="responsibility" multiple="true" />
+      <field name="series-editors" type="responsibility" multiple="true" />
+    </group>
+    <group name="abstract">
+      <field name="synopsis" type="string" />
+    </group>
+    <group name="publication">
+      <field name="publisher" type="organization" />
+      <field name="publisher-city" type="city" />
+      <field name="edition" type="edition" />
+      <field name="series-numbers" type="string" />
+      <field name="volume" type="string" />
+      <field name="issue" type="string" />
+      <field name="number" type="string" />
+      <field name="pages" type="string" />
+      <field name="submitted-date" type="date" />
+      <field name="reviewed-date" type="date" />
+      <field name="first-edition-date" type="date" />
+      <field name="published-date" type="date" />
+      <field name="isbn" type="string" />
+      <field name="language" type="language" />
+      <field name="copyright" type="string" />
+    </group>
+    <group name="access">
+      <field name="access-mode" type="access-mode" />
+      <field name="url" type="string" />
+      <field name="pdf-url" type="string" />
+      <field name="doi" type="string" />
+      <field name="cite-key" type="string" />
+    </group>
+    <group name="status">
+      <field name="status" type="string" />
+      <field name="read" type="read-status" />
+      <field name="printed" type="print-status" />
+    </group>
+  </fields>
+
+  <variable-mapping>
+    <rule>
+      <variable>title</variable>
+      <field>title + (subtitle ? ": " + subtitle)</field>
+    </rule>
+    <rule>
+      <variable>original-title</variable>
+      <field>original-title</field>
+    </rule>
+    <rule>
+      <variable>author</variable>
+      <field>authors.name</field>
+    </rule>
+    <rule>
+      <variable>editor</variable>
+      <field>editors.name</field>
+    </rule>
+    <rule>
+      <variable>translator</variable>
+      <field>translators.name</field>
+    </rule>
+    <rule>
+      <variable>collection-title</variable>
+      <field>series</field>
+    </rule>
+    <rule>
+      <variable>collection-number</variable>
+      <field>series-number</field>
+    </rule>
+    <rule>
+      <variable>collection-editor</variable>
+      <field>series-editors.name</field>
+    </rule>
+    <rule>
+      <variable>abstract</variable>
+      <field>synopsis</field>
+    </rule>
+    <rule>
+      <variable>publisher</variable>
+      <field>publisher.name</field>
+    </rule>
+    <rule>
+      <variable>publisher-place</variable>
+      <field>publisher.city</field>
+    </rule>
+    <rule>
+      <variable>edition</variable>
+      <field>edition</field>
+    </rule>
+    <rule>
+      <variable>volume</variable>
+      <field>volume</field>
+    </rule>
+    <rule>
+      <variable>issue</variable>
+      <field>issue</field>
+    </rule>
+    <rule>
+      <variable>number</variable>
+      <field>number</field>
+    </rule>
+    <rule>
+      <variable>page</variable>
+      <field>pages</field>
+    </rule>
+    <rule>
+      <variable>submitted</variable>
+      <field>submitted-date</field>
+    </rule>
+    <rule>
+      <variable>issued</variable>
+      <field>published-date</field>
+    </rule>
+    <rule>
+      <variable>ISBN</variable>
+      <field>isbn</field>
+    </rule>
+    <rule>
+      <variable>URL</variable>
+      <field>url</field>
+    </rule>   
+    <rule>
+      <variable>DOI</variable>
+      <field>doi</field>
+    </rule>    
+    <rule>
+      <variable>status</variable>
+      <field>status</field>
+    </rule>
+    <rule>
+      <variable>genre</variable>
+      <field>kind</field>
+    </rule>
+  </variable-mapping>
 </document>

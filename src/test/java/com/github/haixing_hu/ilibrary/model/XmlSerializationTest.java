@@ -28,12 +28,14 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.ElementNameAndTextQualifier;
 import org.custommonkey.xmlunit.XMLAssert;
 import org.custommonkey.xmlunit.XMLUnit;
+import org.custommonkey.xmlunit.examples.RecursiveElementNameAndTextQualifier;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.github.haixing_hu.text.xml.XmlUtils;
 
 import static org.junit.Assert.assertEquals;
 
@@ -81,11 +83,11 @@ public abstract class XmlSerializationTest<T> {
       mr.marshal(obj, writer);
       final String actual = writer.toString();
       logger.info("Object is:\n{}", obj);
-      logger.info("Expected XML is:\n{}", xml);
+      logger.info("Expected XML is:\n{}", XmlUtils.formatXml(xml));
       logger.info("Actual XML is:\n{}\n", actual);
       final Diff diff = new Diff(xml, actual);
       // we don't care about ordering
-      diff.overrideElementQualifier(new ElementNameAndTextQualifier());
+      diff.overrideElementQualifier(new RecursiveElementNameAndTextQualifier());
       XMLAssert.assertXMLEqual(diff, true);
     }
   }
@@ -106,4 +108,6 @@ public abstract class XmlSerializationTest<T> {
       assertEquals(obj, actual);
     }
   }
+
+
 }

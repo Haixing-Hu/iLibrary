@@ -14,22 +14,28 @@
  * limitations under the License.
  *
  */
-package com.github.haixing_hu.ilibrary.model;
+package com.github.haixing_hu.ilibrary.action.view.filter;
 
+import javafx.event.ActionEvent;
+
+import com.github.haixing_hu.ilibrary.Application;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
 
 /**
- * Unit test of the {@link DocumentTemplate} class.
+ * The action to filter documents with all read status.
  *
  * @author Haixing Hu
  */
-public class DocumentTemplateTest extends XmlSerializationTest<DocumentTemplate> {
+public class ReadFilterAllAction extends BaseAction {
 
-  public DocumentTemplateTest() {
-    super(DocumentTemplate.class);
+  public static final String ID = ReadFilterAction.ID + ".all";
 
-    final DocumentTemplate journalArticle = JournalArticle.getDocumentTemplate();
-    final String journalArticleXml = JournalArticle.getDocumentTemplateXml();
-    marshalTestData.put(journalArticle, journalArticleXml);
-    unmarshalTestData.put(journalArticleXml, journalArticle);
+  public ReadFilterAllAction(Application application) {
+    super(ID, application, CHECKBOX_SHOW_TEXT);
+  }
+
+  @Override
+  public void handle(ActionEvent event) {
+    application.getExplorerController().clearReadStatusFilters();
   }
 }

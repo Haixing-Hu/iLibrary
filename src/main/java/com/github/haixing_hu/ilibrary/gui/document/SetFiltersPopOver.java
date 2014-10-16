@@ -34,12 +34,12 @@ import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterAllAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterFlaggedAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterUnflaggedAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterHasReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterReadingAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterToReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterUnreadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterHasReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterToReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.SetFiltersAction;
 import com.github.haixing_hu.ilibrary.gui.BasicPopOver;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
@@ -103,20 +103,20 @@ public class SetFiltersPopOver extends BasicPopOver {
   private int addReadFilterActions(GridPane pane, int row, int totalColumns) {
     final ActionManager am = application.getActionManager();
     final Label title = new Label();
-    title.setText(am.getText(StatusFilterAction.ID));
+    title.setText(am.getText(ReadFilterAction.ID));
     title.getStyleClass().add(StyleClass.TITLE);
     pane.add(title, 0, row++, totalColumns, 1);
     pane.add(new Separator(), 0, row++, totalColumns, 1);
 
-    pane.add(am.createButton(StatusFilterAllAction.ID),
+    pane.add(am.createButton(ReadFilterAllAction.ID),
             (0 % totalColumns), (0 / totalColumns) + row);
-    pane.add(am.createButton(StatusFilterUnreadAction.ID),
+    pane.add(am.createButton(ReadFilterUnreadAction.ID),
             (1 % totalColumns), (1 / totalColumns) + row);
-    pane.add(am.createButton(StatusFilterToReadAction.ID),
+    pane.add(am.createButton(ReadFilterToReadAction.ID),
             (2 % totalColumns), (2 / totalColumns) + row);
-    pane.add(am.createButton(StatusFilterReadingAction.ID),
+    pane.add(am.createButton(ReadFilterReadingAction.ID),
             (3 % totalColumns), (3 / totalColumns) + row);
-    pane.add(am.createButton(StatusFilterHasReadAction.ID),
+    pane.add(am.createButton(ReadFilterHasReadAction.ID),
             (4 % totalColumns), (4 / totalColumns) + row);
     row += (5 + (totalColumns - 1)) / totalColumns;
     return row;

@@ -1,42 +1,130 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <document>
-	<name>artwork</name>
-	<type>media</type>
-	<default-kind>contemporary-art</default-kind>
-	<kinds>
-		<kind>abstract-art</kind>
-		<kind>contemporary-art</kind>		
-		<kind>digital-fine-art</kind>
-		<kind>expressionistic-art</kind>
-		<kind>fantasy-art</kind>
-		<kind>figurative-art</kind>
-		<kind>freestanding-art</kind>
-		<kind>impressionistic-art</kind>
-		<kind>modern-art</kind>
-		<kind>representational-art</kind>
-		<kind>surrealistic-art</kind>
-		<kind>symbolistic-art</kind>
-		<kind>traditional-art</kind>	
-	</kinds>
-	<fields>
-		<field>title</field>
-		<field>subtitle</field>
-		<field>artists</field>
-		<field>designers</field>		
-		<field>critics</field>		
-		<field>reviewers</field>	
-		<field>synopsis</field>		
-		<field>exhibition</field>		
-		<field>edition</field>
-		<field>number</field>
-		<field>location</field>
-		<field>dimensions</field>
-		<field>material</field>
-		<field>technique</field>
-		<field>value</field>					
-		<field>designed-date</field>
-		<field>created-date</field>
-		<field>sold-date</field>
-		<field>restored-date</field>
-	</fields>	
+  <name>artwork</name>
+  <type>media</type>
+  <csl-type>graphic</csl-type>
+  <default-kind>contemporary-art</default-kind>
+  <kinds>
+    <kind>abstract-art</kind>
+    <kind>contemporary-art</kind>
+    <kind>digital-fine-art</kind>
+    <kind>expressionistic-art</kind>
+    <kind>fantasy-art</kind>
+    <kind>figurative-art</kind>
+    <kind>freestanding-art</kind>
+    <kind>impressionistic-art</kind>
+    <kind>modern-art</kind>
+    <kind>representational-art</kind>
+    <kind>surrealistic-art</kind>
+    <kind>symbolistic-art</kind>
+    <kind>traditional-art</kind>
+  </kinds>
+
+  <fields>
+    <group name="title">
+      <field name="title" type="string" />
+      <field name="subtitle" type="string" />
+    </group>
+    <group name="responsibility">
+      <field name="artists" type="responsibility" multiple="true" />
+      <field name="designers" type="responsibility" multiple="true" />
+      <field name="critics" type="responsibility" multiple="true" />
+      <field name="reviewers" type="responsibility" multiple="true" />
+    </group>
+    <group name="abstract">
+      <field name="synopsis" type="string" />
+    </group>
+    <group name="publication">
+      <field name="exposition" type="event" />
+      <field name="reference-number" type="string" />
+      <field name="edition" type="edition" />
+      <field name="location" type="string" />
+      <field name="dimensions" type="string" />
+      <field name="material" type="string" />
+      <field name="technique" type="string" />
+      <field name="value" type="string" />
+      <field name="designed-date" type="date" />
+      <field name="created-date" type="date" />
+      <field name="sold-date" type="date" />
+      <field name="restored-date" type="date" />
+      <field name="exhibition-date" type="date" />
+      <field name="language" type="language" />
+      <field name="copyright" type="string" />
+    </group>
+    <group name="access">
+      <field name="access-mode" type="access-mode" />
+      <field name="url" type="string" />
+      <field name="pdf-url" type="string" />
+      <field name="doi" type="string" />
+      <field name="cite-key" type="string" />
+    </group>
+    <group name="status">
+      <field name="status" type="string" />
+      <field name="read" type="read-status" />
+      <field name="printed" type="print-status" />
+    </group>
+  </fields>
+
+  <variable-mapping>
+    <rule>
+      <variable>title</variable>
+      <field>title + (subtitle ? ": " + subtitle)</field>
+    </rule>
+    <rule>
+      <variable>author</variable>
+      <field>artists.name</field>
+    </rule>
+    <rule>
+      <variable>abstract</variable>
+      <field>synopsis</field>
+    </rule>
+    <rule>
+      <variable>event</variable>
+      <field>exposition.title</field>
+    </rule>
+    <rule>
+      <variable>event-date</variable>
+      <field>exposition.date</field>
+    </rule>
+    <rule>
+      <variable>event-place</variable>
+      <field>exposition.place</field>
+    </rule>
+    <rule>
+      <variable>number</variable>
+      <field>reference-number</field>
+    </rule>
+    <rule>
+      <variable>edition</variable>
+      <field>edition</field>
+    </rule>
+    <rule>
+      <variable>dimensions</variable>
+      <field>dimensions</field>
+    </rule>
+    <rule>
+      <variable>medium</variable>
+      <field>material</field>
+    </rule>
+    <rule>
+      <variable>issued</variable>
+      <field>exhibition-date</field>
+    </rule>
+    <rule>
+      <variable>URL</variable>
+      <field>url</field>
+    </rule>
+    <rule>
+      <variable>DOI</variable>
+      <field>doi</field>
+    </rule>
+    <rule>
+      <variable>status</variable>
+      <field>status</field>
+    </rule>
+    <rule>
+      <variable>genre</variable>
+      <field>kind</field>
+    </rule>
+  </variable-mapping>
 </document>

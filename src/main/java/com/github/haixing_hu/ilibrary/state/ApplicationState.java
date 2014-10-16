@@ -29,7 +29,7 @@ import com.github.haixing_hu.ilibrary.AppConfig;
 import com.github.haixing_hu.ilibrary.action.view.columns.ColumnsAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.model.Column;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
 import com.github.haixing_hu.ilibrary.model.FlagStatus;
 import com.github.haixing_hu.ilibrary.model.ReadStatus;
@@ -59,8 +59,8 @@ public final class ApplicationState {
   private final Set<ReadStatus> allReadStatusFilters[];
   private final Set<DocumentType> allDocumentTypeFilters[];
   private final Set<FileStatus> allFileStatusFilters[];
-  private final Set<FieldType> allColumns[];
-  private final FieldType allSortColumn[];
+  private final Set<Column> allColumns[];
+  private final Column allSortColumn[];
   private final SortOrder allSortOrder[];
 
   @SuppressWarnings("unchecked")
@@ -79,14 +79,14 @@ public final class ApplicationState {
     allDocumentTypeFilters = new Set[Page.TOTAL];
     allFileStatusFilters = new Set[Page.TOTAL];
     allColumns = new Set[Page.TOTAL];
-    allSortColumn = new FieldType[Page.TOTAL];
+    allSortColumn = new Column[Page.TOTAL];
     allSortOrder = new SortOrder[Page.TOTAL];
     for (int i = 0; i < Page.TOTAL; ++i) {
       allFlagStatusFilters[i] = new HashSet<FlagStatus>();
       allReadStatusFilters[i] = new HashSet<ReadStatus>();
       allDocumentTypeFilters[i] = new HashSet<DocumentType>();
       allFileStatusFilters[i] = new HashSet<FileStatus>();
-      allColumns[i] = new HashSet<FieldType>();
+      allColumns[i] = new HashSet<Column>();
       allSortColumn[i] = null;
       allSortOrder[i] = SortOrder.ASC;
     }
@@ -165,11 +165,11 @@ public final class ApplicationState {
     final String key = ColumnsAction.ID + DEFAULT;
     final String[] values = config.getStringArray(key);
     for (final String value : values) {
-      final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
+      final Column col = EnumUtils.forName(value, true, true, Column.class);
       if (col == null) {
         logger.error("Invalid column name: {}", value);
       } else {
-        for (final Set<FieldType> cols : allColumns) {
+        for (final Set<Column> cols : allColumns) {
           cols.add(col);
         }
       }
@@ -182,7 +182,7 @@ public final class ApplicationState {
     if (StringUtils.isEmpty(value)) {
       setAllSortColumns(null);
     } else {
-      final FieldType col = EnumUtils.forName(value, true, true, FieldType.class);
+      final Column col = EnumUtils.forName(value, true, true, Column.class);
       if (col == null) {
         logger.error("Invalid column name: {}", value);
         setAllSortColumns(null);
@@ -455,7 +455,7 @@ public final class ApplicationState {
    *
    * @return the display columns for the current page.
    */
-  public Set<FieldType> getColumns() {
+  public Set<Column> getColumns() {
     return allColumns[page.ordinal()];
   }
 //
@@ -464,7 +464,7 @@ public final class ApplicationState {
 //   *
 //   * @return the display columns for all pages.
 //   */
-//  public Set<FieldType>[] getAllColumns() {
+//  public Set<Column>[] getAllColumns() {
 //    return allColumns;
 //  }
 
@@ -474,7 +474,7 @@ public final class ApplicationState {
    * @return the sorting column for the current page. A null value indicates no
    *         sorting column is specified and thus sorts in the default column.
    */
-  public FieldType getSortColumn() {
+  public Column getSortColumn() {
     return allSortColumn[page.ordinal()];
   }
 
@@ -486,7 +486,7 @@ public final class ApplicationState {
    *          indicates no sorting column is specified and thus sorts in the
    *          default column.
    */
-  public void setSortColumn(@Nullable FieldType column) {
+  public void setSortColumn(@Nullable Column column) {
     allSortColumn[page.ordinal()] = column;
   }
 //
@@ -496,7 +496,7 @@ public final class ApplicationState {
 //   * @return all sorting column for all pages. A null value indicates no sorting
 //   *         column is specified and thus sorts in the default column.
 //   */
-//  public FieldType[] getAllSortColumns() {
+//  public Column[] getAllSortColumns() {
 //    return allSortColumn;
 //  }
 
@@ -508,7 +508,7 @@ public final class ApplicationState {
    *          no sorting column is specified and thus sorts in the default
    *          column.
    */
-  private void setAllSortColumns(@Nullable FieldType column) {
+  private void setAllSortColumns(@Nullable Column column) {
     for (int i = 0; i < allSortColumn.length; ++i) {
       allSortColumn[i] = column;
     }

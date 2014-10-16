@@ -16,281 +16,92 @@
  */
 package com.github.haixing_hu.ilibrary.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.apache.commons.beanutils.BasicDynaBean;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.github.haixing_hu.ilibrary.model.tag.Taggable;
+import com.github.haixing_hu.data.model.tag.Tag;
+import com.github.haixing_hu.data.model.tag.Taggable;
+
+import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
  * The model of documents.
  *
  * @author Haixing Hu
  */
-public final class Document extends Taggable {
+public final class Document extends BasicDynaBean implements Taggable {
+
+  private static final long serialVersionUID = 5715588482333187201L;
 
   /**
-   *  The name of the default template of documents.
+   * The name of the default template of documents.
    */
   public static final String DEFAULT_TEMPLATE = "journal-article";
 
-  private int id;
-  private String template;
-  private String kind;
-  private String category;
-  private String subCategory;
-  private List<Field> fields;
-  private String url;
-  private Map<DigitIdentifier, String> digitIds;
-  private Language language;
-  private String copyright;
-  private String citeKey;
+  private final DocumentTemplate template;
+  private Integer id;
   private Date importDate;
   private Date lastReadDate;
   private Date lastPrintDate;
-  private List<File> files;
-  private byte rating;
-  private ReadStatus readStatus;
+  private List<String> paths;
+  private List<Tag> tags;
 
   /**
-   * Construct a {@link Document}.
+   * Construct a {@link Document} instance.
+   *
+   * @param dynaClass
+   *          the dynamic class of the new {@link Document} instance.
    */
-  public Document() {
-    id = - 1;
-    template = DEFAULT_TEMPLATE;
-    fields = null;
-    category = null;
-    subCategory = null;
-    url = null;
-    digitIds = null;
-    language = null;
-    copyright = null;
-    citeKey = null;
-    rating = - 1;
+  public Document(final DocumentClass dynaClass) {
+    super(dynaClass);
+    template = dynaClass.getTemplate();
+    id = null;
     importDate = null;
     lastReadDate = null;
     lastPrintDate = null;
-    files = null;
-    readStatus = ReadStatus.UNREAD;
+    paths = null;
+    tags = new ArrayList<Tag>();
+  }
+
+  @Override
+  public DocumentClass getDynaClass() {
+    return (DocumentClass) super.getDynaClass();
   }
 
   /**
-   * Gets the id.
+   * Gets the ID of this document.
    *
-   * @return the id.
+   * @return the ID of this document, or {@code null} if none.
    */
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
   /**
-   * Sets the id.
+   * Sets the ID of this document.
    *
    * @param id
-   *          the new id to set.
+   *          the new ID to set, or {@code null} to set none.
    */
-  public void setId(int id) {
+  public void setId(@Nullable final Integer id) {
     this.id = id;
   }
 
   /**
-   * Gets the name of the template of this document.
+   * Gets the template of this document.
    *
-   * @return the name of the template of this document, which will never be
-   *         null.
+   * @return the template of this document, which will never be {@code null}.
    */
-  public String getTemplate() {
+  public DocumentTemplate getTemplate() {
     return template;
-  }
-
-  /**
-   * Sets the name of the template of this document.
-   *
-   * @param template
-   *          the name of the new template of this document, which cannot be
-   *          null.
-   */
-  public void setTemplate(String template) {
-    this.template = template;
-  }
-
-  /**
-   * Gets the kind of the document.
-   *
-   * @return the kind of the document.
-   */
-  public String getKind() {
-    return kind;
-  }
-
-  /**
-   * Sets the kind of the document.
-   *
-   * @param kind
-   *          the new kind to set.
-   */
-  public void setKind(@Nullable String kind) {
-    this.kind = kind;
-  }
-
-  /**
-   * Gets the category of the document.
-   *
-   * @return the category of the document.
-   */
-  public String getCategory() {
-    return category;
-  }
-
-  /**
-   * Sets the category of the document.
-   *
-   * @param category
-   *          the new category to set.
-   */
-  public void setCategory(@Nullable String category) {
-    this.category = category;
-  }
-
-  /**
-   * Gets the sub-category of the document.
-   *
-   * @return the sub-category of the document.
-   */
-  public String getSubCategory() {
-    return subCategory;
-  }
-
-  /**
-   * Sets the sub-category of the document.
-   *
-   * @param subCategory
-   *          the new sub-category to set.
-   */
-  public void setSubCategory(@Nullable String subCategory) {
-    this.subCategory = subCategory;
-  }
-
-  /**
-   * Gets the fields of the document.
-   *
-   * @return the fields of the document.
-   */
-  public List<Field> getFields() {
-    return fields;
-  }
-
-  /**
-   * Sets the fields of the document.
-   *
-   * @param fields
-   *          the new fields to set.
-   */
-  public void setFields(@Nullable List<Field> fields) {
-    this.fields = fields;
-  }
-
-  /**
-   * Gets the URL of the document.
-   *
-   * @return the URL of the document.
-   */
-  public String getUrl() {
-    return url;
-  }
-
-  /**
-   * Sets the URL of the document.
-   *
-   * @param url
-   *          the new URL to set.
-   */
-  public void setUrl(@Nullable String url) {
-    this.url = url;
-  }
-
-  /**
-   * Gets the digit identifiers of this document.
-   *
-   * @return the digit identifiers of this document, represented as a map for
-   *         the digit identifier types to their values.
-   */
-  public Map<DigitIdentifier, String> getDigitIds() {
-    return digitIds;
-  }
-
-  /**
-   * Sets the digit identifiers of this document.
-   *
-   * @param digitIds
-   *          the new digit identifiers of this document, represented as a map
-   *          for the digit identifier types to their values.
-   */
-  public void setDigitIds(@Nullable Map<DigitIdentifier, String> digitIds) {
-    this.digitIds = digitIds;
-  }
-
-  /**
-   * Gets the language of this document.
-   *
-   * @return the language of this document.
-   */
-  public Language getLanguage() {
-    return language;
-  }
-
-  /**
-   * Sets the language of this document.
-   *
-   * @param language
-   *          the new language to set.
-   */
-  public void setLanguage(@Nullable Language language) {
-    this.language = language;
-  }
-
-  /**
-   * Gets the copyright of this document.
-   *
-   * @return the copyright of this document.
-   */
-  public String getCopyright() {
-    return copyright;
-  }
-
-  /**
-   * Sets the copyright of this document.
-   *
-   * @param copyright
-   *          the new copyright to set.
-   */
-  public void setCopyright(@Nullable String copyright) {
-    this.copyright = copyright;
-  }
-
-  /**
-   * Gets the citation key of this document.
-   *
-   * @return the citation key of this document.
-   */
-  public String getCiteKey() {
-    return citeKey;
-  }
-
-  /**
-   * Sets the citation key of this document.
-   *
-   * @param citeKey
-   *          the new citation key to set.
-   */
-  public void setCiteKey(@Nullable String citeKey) {
-    this.citeKey = citeKey;
   }
 
   /**
@@ -308,7 +119,7 @@ public final class Document extends Taggable {
    * @param importDate
    *          the new importing date to set.
    */
-  public void setImportDate(@Nullable Date importDate) {
+  public void setImportDate(@Nullable final Date importDate) {
     this.importDate = importDate;
   }
 
@@ -327,7 +138,7 @@ public final class Document extends Taggable {
    * @param lastReadDate
    *          the new last read date to set.
    */
-  public void setLastReadDate(@Nullable Date lastReadDate) {
+  public void setLastReadDate(@Nullable final Date lastReadDate) {
     this.lastReadDate = lastReadDate;
   }
 
@@ -345,73 +156,40 @@ public final class Document extends Taggable {
    * Sets the last read print of this document.
    *
    * @param lastPrintDate
-   *          the new last print date to set, or {@code null} if this
-   *          document has not been printed.
+   *          the new last print date to set, or {@code null} if this document
+   *          has not been printed.
    */
-  public void setLastPrintDate(@Nullable Date lastPrintDate) {
+  public void setLastPrintDate(@Nullable final Date lastPrintDate) {
     this.lastPrintDate = lastPrintDate;
   }
 
   /**
-   * Gets the list of files of this document.
+   * Gets the list of file paths of this document.
    *
-   * @return the list of files of this document, or {@code null} if this
-   *         document has no file.
+   * @return the list of file paths of this document.
    */
-  public List<File> getFiles() {
-    return files;
+  public List<String> getPaths() {
+    return paths;
   }
 
   /**
-   * Sets the list of files of this document.
+   * Sets the list of file paths of this document.
    *
-   * @return the new list of files of this document, or {@code null} if
-   *         this document has no file.
+   * @param paths
+   *          the new list of file paths to set.
    */
-  public void setFiles(@Nullable List<File> files) {
-    this.files = files;
+  public void setPaths(final List<String> paths) {
+    this.paths = paths;
   }
 
-  /**
-   * Gets the rating of this document.
-   * <p>
-   * A value of -1 indicates that this document has not been rated.
-   *
-   * @return the rating of this document.
-   */
-  public byte getRating() {
-    return rating;
+  @Override
+  public List<Tag> getTags() {
+    return tags;
   }
 
-  /**
-   * Sets the rating of this document.
-   * <p>
-   * A value of -1 indicates that this document has not been rated.
-   *
-   * @param rating
-   *          the new rating to set.
-   */
-  public void setRating(byte rating) {
-    this.rating = rating;
-  }
-
-  /**
-   * Gets the readStatus.
-   *
-   * @return the readStatus.
-   */
-  public ReadStatus getReadStatus() {
-    return readStatus;
-  }
-
-  /**
-   * Sets the readStatus.
-   *
-   * @param readStatus
-   *          the new readStatus to set.
-   */
-  public void setReadStatus(ReadStatus readStatus) {
-    this.readStatus = readStatus;
+  @Override
+  public void setTags(final List<Tag> tags) {
+    this.tags = requireNonNull("tags", tags);
   }
 
   @Override
@@ -420,7 +198,7 @@ public final class Document extends Taggable {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 

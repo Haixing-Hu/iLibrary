@@ -69,8 +69,16 @@
       <artifactId>commons-configuration</artifactId>
     </dependency>
     <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.github.haixing_hu</groupId>
-      <artifactId>java-commons</artifactId>
+      <artifactId>commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.haixing_hu</groupId>
+      <artifactId>bean</artifactId>
     </dependency>
     <dependency>
       <groupId>com.github.haixing_hu</groupId>
@@ -79,6 +87,10 @@
     <dependency>
       <groupId>com.github.haixing_hu</groupId>
       <artifactId>criteria</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.haixing_hu</groupId>
+      <artifactId>data-access</artifactId>
     </dependency>
     <dependency>
       <groupId>com.github.haixing_hu</groupId>

@@ -25,7 +25,7 @@ import com.github.haixing_hu.ilibrary.StyleClass;
 import com.github.haixing_hu.ilibrary.action.view.columns.ColumnOfAction;
 import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
 import com.github.haixing_hu.ilibrary.gui.BasicPopOver;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.model.Column;
 import com.github.haixing_hu.javafx.action.ActionManager;
 import com.github.haixing_hu.javafx.control.popover.ArrowLocation;
 
@@ -65,7 +65,7 @@ public class SelectColumnsPopOver extends BasicPopOver {
 //    final Separator separator = new Separator();
 //    pane.add(separator, 0, row++, totalColumns, 1);
 
-    final FieldType[] types = FieldType.values();
+    final Column[] types = Column.values();
     for (int i = 0; i < types.length; ++i) {
       final String actionId = ColumnOfAction.getActionId(types[i]);
       final ButtonBase button = am.createButton(actionId);

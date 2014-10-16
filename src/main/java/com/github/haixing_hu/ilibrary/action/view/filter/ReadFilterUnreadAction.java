@@ -16,26 +16,31 @@
  */
 package com.github.haixing_hu.ilibrary.action.view.filter;
 
+import javafx.event.ActionEvent;
+
 import com.github.haixing_hu.ilibrary.Application;
-import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
-import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.javafx.action.ActionManager;
+import com.github.haixing_hu.ilibrary.action.BaseAction;
+import com.github.haixing_hu.ilibrary.model.ReadStatus;
 
 /**
- * The action to filter documents
+ * The action to filter documents which have not been read.
  *
  * @author Haixing Hu
  */
-public class FilterAction extends BaseActionGroup {
+public class ReadFilterUnreadAction extends BaseAction {
 
-  public static final String ID = ViewAction.ID + ".filter";
+  public static final String ID = ReadFilterAction.ID + ".unread";
 
-  public FilterAction(Application application) {
-    super(ID, application);
-    final ActionManager am = application.getActionManager();
-    addSubAction(am, new FlagFilterAction(application));
-    addSubAction(am, new ReadFilterAction(application));
-    addSubAction(am, new FileFilterAction(application));
-    addSubAction(am, new TypeFilterAction(application));
+  public ReadFilterUnreadAction(Application application) {
+    super(ID, application, CHECKBOX_SHOW_TEXT);
+  }
+
+  @Override
+  public void handle(ActionEvent event) {
+    if (selected.get()) {
+      application.getExplorerController().addReadStatusFilter(ReadStatus.UNREAD);
+    } else {
+      application.getExplorerController().removeReadStatusFilter(ReadStatus.UNREAD);
+    }
   }
 }

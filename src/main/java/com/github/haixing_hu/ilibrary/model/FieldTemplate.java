@@ -16,18 +16,18 @@
  */
 package com.github.haixing_hu.ilibrary.model;
 
-import javax.annotation.Nullable;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.commons.beanutils.DynaProperty;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import com.github.haixing_hu.csl.Variable;
 
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
@@ -40,17 +40,14 @@ import static com.github.haixing_hu.lang.Argument.requireNonNull;
 @XmlRootElement(name = "field")
 public final class FieldTemplate {
 
-  @XmlElement(required = true)
+  @XmlAttribute(name = "name", required = true)
   private final String name;
 
-  @XmlElement(required = true)
-  private final FieldDataType type;
+  @XmlAttribute(name = "type", required = true)
+  private final DataType type;
 
-  @XmlElement(required = false)
+  @XmlAttribute(name = "multiple", required = false)
   private final boolean multiple;
-
-  @XmlElement(required = false)
-  private final Variable variable;
 
   /**
    * Default Constructs a {@link FieldTemplate}.
@@ -59,73 +56,69 @@ public final class FieldTemplate {
    */
   FieldTemplate() {
     name = StringUtils.EMPTY;
-    type = FieldDataType.STRING;
+    type = DataType.STRING;
     multiple = false;
-    variable = null;
   }
 
   /**
    * Constructs a {@link FieldTemplate}.
    *
    * @param name
-   *          the name of the field.
+   *          the name of the fieldType.
    * @param type
    *          the data type of the field.
    * @param multiple
-   *          indicates whether the field can have multiple values.
-   * @param variable
-   *          the CSL standard variable corresponds to the field, or
-   *          {@code null} if it has none.
+   *          indicates whether the fieldType can have multiple values.
    */
-  public FieldTemplate(final String name, final FieldDataType type,
-      final boolean multiple, @Nullable final Variable variable) {
+  public FieldTemplate(final String name, final DataType type,
+      final boolean multiple) {
     this.name = requireNonNull("name", name);
     this.type = requireNonNull("type", type);
     this.multiple = multiple;
-    this.variable = variable;
   }
 
   /**
-   * Gets the name of the field.
+   * Gets the name of the fieldType.
    *
-   * @return the name of the field, which will never be {@code null}.
+   * @return the name of the fieldType, which will never be {@code null}.
    */
   public String getName() {
     return name;
   }
 
   /**
-   * Gets the data type of values of the field.
+   * Gets the data type of values of the fieldType.
    *
-   * @return the data type of values of the field, which will never be
+   * @return the data type of values of the fieldType, which will never be
    *         {@code null}.
    */
-  public FieldDataType getType() {
+  public DataType getType() {
     return type;
   }
 
   /**
-   * Tests whether this field can have multiple values.
+   * Tests whether this fieldType can have multiple values.
    * <p>
    * The default value of this property is {@code false}.
    *
-   * @return {@code true} if this field can have multiple values; {@code false}
-   *         otherwise.
+   * @return {@code true} if this fieldType can have multiple values;
+   *         {@code false} otherwise.
    */
   public boolean isMultiple() {
     return multiple;
   }
 
   /**
-   * Gets the CSL standard variable corresponds to the field.
-   * <p>
-   * The default value of this property is {@code null}.
+   * Gets the dynamic property for the fields defined by this template.
    *
-   * @return the CSL standard variable corresponds to the field, or {@code null}
-   *         if it has none.
+   * @return the dynamic property for the fields defined by this template.
    */
-  public Variable getVariable() {
-    return variable;
+  public DynaProperty toDynaProperty() {
+    if (multiple) {
+      return new DynaProperty(name, List.class, type.toClass());
+    } else {
+      return new DynaProperty(name, type.toClass());
+    }
   }
 
   @Override

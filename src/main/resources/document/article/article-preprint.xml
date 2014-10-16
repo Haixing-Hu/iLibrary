@@ -2,32 +2,121 @@
 <document>
   <name>article-preprint</name>
   <type>article</type>
+  <csl-type>article</csl-type>
   <default-kind>article</default-kind>
+  
   <kinds>
     <kind>article</kind>
-    <kind>abstract</kind>
     <kind>commentary</kind>
     <kind>editorial</kind>
     <kind>electronic-article</kind>
-    <kind>erratum</kind>
     <kind>letter</kind>
     <kind>news-and-views</kind>
-    <kind>rebuttal</kind>
-    <kind>retraction</kind>
     <kind>review</kind>
-  </kinds>
+    <kind>---</kind>
+    <kind>erratum</kind>
+    <kind>retraction</kind>
+  </kinds>  
+  
   <fields>
-    <field>title</field>
-    <field>subtitle</field>
-    <field>authors</field>
-    <field>editors</field>
-    <field>abstract</field>
-    <field>category</field>
-    <field>subcategory</field>
-    <field>website</field>
-    <field>submitted-date</field>
-    <field>revised-date</field>
-    <field>accepted-date</field>
-    <field>published-date</field>
+    <group name="title">
+      <field name="title" type="string" />
+    </group>
+    <group name="responsibility">
+      <field name="authors" type="responsibility" multiple="true" />
+    </group>
+    <group name="abstract">
+      <field name="abstract" type="string" />
+    </group>
+    <group name="publication">
+      <field name="website" type="website" />
+      <field name="category" type="string" />
+      <field name="subcategory" type="string" />
+      <field name="number" type="string" />
+      <field name="version" type="string" />
+      <field name="submitted-date" type="date" />
+      <field name="revised-date" type="date" />
+      <field name="accepted-date" type="date" />
+      <field name="published-date" type="date" />
+      <field name="language" type="language" />
+      <field name="copyright" type="string" />
+    </group>
+    <group name="access">
+      <field name="access-mode" type="access-mode" />
+      <field name="url" type="string" />
+      <field name="pdf-url" type="string" />
+      <field name="doi" type="string" />
+      <field name="pmcid" type="string" />
+      <field name="pmid" type="string" />
+      <field name="cite-key" type="string" />
+    </group>
+    <group name="status">
+      <field name="status" type="string" />
+      <field name="read" type="read-status" />
+      <field name="printed" type="print-status" />
+    </group>
   </fields>
+  
+  <variable-mapping>
+    <rule>
+      <variable>title</variable>
+      <field>title</field>
+    </rule>
+    <rule>
+      <variable>author</variable>
+      <field>authors.name</field>
+    </rule>
+    <rule>
+      <variable>abstract</variable>
+      <field>abstract</field>
+    </rule>
+    <rule>
+      <variable>container-title</variable>
+      <field>website.title</field>
+    </rule>
+    <rule>
+      <variable>container-title-short</variable>
+      <field>website.short-title</field>
+    </rule>
+    <rule>
+      <variable>volume</variable>
+      <field>category</field>
+    </rule>
+    <rule>
+      <variable>issue</variable>
+      <field>subcategory</field>
+    </rule>
+    <rule>
+      <variable>number</variable>
+      <field>number</field>
+    </rule>
+    <rule>
+      <variable>version</variable>
+      <field>version</field>
+    </rule>
+    <rule>
+      <variable>submitted</variable>
+      <field>submitted-date</field>
+    </rule>
+    <rule>
+      <variable>issued</variable>
+      <field>published-date</field>
+    </rule>
+    <rule>
+      <variable>URL</variable>
+      <field>url</field>
+    </rule>   
+    <rule>
+      <variable>DOI</variable>
+      <field>doi</field>
+    </rule>     
+    <rule>
+      <variable>status</variable>
+      <field>status</field>
+    </rule>
+    <rule>
+      <variable>genre</variable>
+      <field>kind</field>
+    </rule>
+  </variable-mapping>
 </document>

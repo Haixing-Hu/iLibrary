@@ -16,20 +16,17 @@
  */
 package com.github.haixing_hu.ilibrary.model;
 
+import com.github.haixing_hu.text.xml.jaxb.EnumXmlAdapter;
 
 /**
- * Unit test of the {@link DocumentTemplate} class.
+ * The XML adapter for the {@link FieldGroup} enumeration class.
  *
  * @author Haixing Hu
  */
-public class DocumentTemplateTest extends XmlSerializationTest<DocumentTemplate> {
+public final class FieldGroupXmlAdapter extends EnumXmlAdapter<FieldGroup> {
 
-  public DocumentTemplateTest() {
-    super(DocumentTemplate.class);
-
-    final DocumentTemplate journalArticle = JournalArticle.getDocumentTemplate();
-    final String journalArticleXml = JournalArticle.getDocumentTemplateXml();
-    marshalTestData.put(journalArticle, journalArticleXml);
-    unmarshalTestData.put(journalArticleXml, journalArticle);
+  public FieldGroupXmlAdapter() {
+    super(FieldGroup.class);
   }
+
 }

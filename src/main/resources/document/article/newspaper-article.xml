@@ -2,6 +2,7 @@
 <document>
   <name>newspaper-article</name>
   <type>article</type>
+  <csl-type>article-newspaper</csl-type>
   <default-kind>article</default-kind>
   <kinds>
     <kind>advertisement</kind>
@@ -9,31 +10,125 @@
     <kind>column</kind>
     <kind>commentary</kind>
     <kind>editorial</kind>
-    <kind>erratum</kind>
     <kind>feature-article</kind>
     <kind>letter</kind>
     <kind>news-and-views</kind>
     <kind>online-article</kind>
     <kind>opinion</kind>
-    <kind>retraction</kind>
     <kind>review</kind>
+    <kind>---</kind>
+    <kind>erratum</kind>
+    <kind>retraction</kind>
   </kinds>
+
   <fields>
-    <field>title</field>
-    <field>subtitle</field>
-    <field>reporters</field>
-    <field>editors</field>
-    <field>photographers</field>
-    <field>abstract</field>
-    <field>newspaper</field>
-    <field>number</field>
-    <field>section</field>
-    <field>volume</field>
-    <field>issue</field>
-    <field>pages</field>
-    <field>submitted-date</field>
-    <field>redacted-date</field>
-    <field>accepted-date</field>
-    <field>published-date</field>
+    <group name="title">
+      <field name="title" type="string" />
+    </group>
+    <group name="responsibility">
+      <field name="reporters" type="responsibility" multiple="true" />
+      <field name="editors" type="responsibility" multiple="true" />
+      <field name="photographers" type="responsibility" multiple="true" />
+    </group>
+    <group name="abstract">
+      <field name="abstract" type="string" />
+    </group>
+    <group name="publication">
+      <field name="newspaper" type="periodical" />
+      <field name="section" type="string" />
+      <field name="volume" type="string" />
+      <field name="issue" type="string" />
+      <field name="number" type="string" />
+      <field name="pages" type="string" />
+      <field name="submitted-date" type="date" />
+      <field name="redacted-date" type="date" />
+      <field name="accepted-date" type="date" />
+      <field name="published-date" type="date" />
+      <field name="language" type="language" />
+      <field name="copyright" type="string" />
+    </group>
+    <group name="access">
+      <field name="access-mode" type="access-mode" />
+      <field name="url" type="string" />
+      <field name="pdf-url" type="string" />
+      <field name="doi" type="string" />
+      <field name="cite-key" type="string" />
+    </group>
+    <group name="status">
+      <field name="status" type="string" />
+      <field name="read" type="read-status" />
+      <field name="printed" type="print-status" />
+    </group>
   </fields>
+
+  <variable-mapping>
+    <rule>
+      <variable>title</variable>
+      <field>title</field>
+    </rule>
+    <rule>
+      <variable>author</variable>
+      <field>reporters.name</field>
+    </rule>
+    <rule>
+      <variable>editor</variable>
+      <field>editors.name</field>
+    </rule>
+    <rule>
+      <variable>abstract</variable>
+      <field>abstract</field>
+    </rule>
+    <rule>
+      <variable>container-title</variable>
+      <field>newspaper.title</field>
+    </rule>
+    <rule>
+      <variable>container-title-short</variable>
+      <field>newspaper.short-title</field>
+    </rule>
+    <rule>
+      <variable>section</variable>
+      <field>section</field>
+    </rule>
+    <rule>
+      <variable>volume</variable>
+      <field>volume</field>
+    </rule>
+    <rule>
+      <variable>issue</variable>
+      <field>issue</field>
+    </rule>
+    <rule>
+      <variable>number</variable>
+      <field>number</field>
+    </rule>
+    <rule>
+      <variable>page</variable>
+      <field>pages</field>
+    </rule>
+    <rule>
+      <variable>submitted</variable>
+      <field>submitted-date</field>
+    </rule>
+    <rule>
+      <variable>issued</variable>
+      <field>published-date</field>
+    </rule>
+    <rule>
+      <variable>URL</variable>
+      <field>url</field>
+    </rule>   
+    <rule>
+      <variable>DOI</variable>
+      <field>doi</field>
+    </rule>
+    <rule>
+      <variable>status</variable>
+      <field>status</field>
+    </rule>
+    <rule>
+      <variable>genre</variable>
+      <field>kind</field>
+    </rule>
+  </variable-mapping>
 </document>

@@ -24,7 +24,7 @@ import com.github.haixing_hu.ilibrary.KeySuffix;
 import com.github.haixing_hu.ilibrary.action.BaseAction;
 import com.github.haixing_hu.ilibrary.action.view.columns.ColumnOfAction;
 import com.github.haixing_hu.ilibrary.action.view.columns.SelectColumnsAction;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.model.Column;
 import com.github.haixing_hu.lang.EnumUtils;
 
 /**
@@ -34,7 +34,7 @@ import com.github.haixing_hu.lang.EnumUtils;
  */
 public class SortByColumnOfAction extends BaseAction {
 
-  private final FieldType column;
+  private final Column column;
 
   /**
    * Constructs a {@link SortByColumnOfAction}.
@@ -42,7 +42,7 @@ public class SortByColumnOfAction extends BaseAction {
    * <b>NOTE:</b> the ID of the new action is the ID of the
    * {@link SelectColumnsAction} action concatenate to a dot and the short name of the
    * enumerator representing the column. For example, if the column is
-   * {@link FieldType#CITE_KEY}, the ID of the new action is
+   * {@link Column#CITE_KEY}, the ID of the new action is
    * {@code {@link SelectColumnsAction#KEY} + ".cite-key"}.
    * <p>
    * A short name of an {@link Enum} value comes from lowercase the enumeration
@@ -53,14 +53,14 @@ public class SortByColumnOfAction extends BaseAction {
    * @param application
    *          the application.
    */
-  public SortByColumnOfAction( FieldType column, Application application) {
+  public SortByColumnOfAction( Column column, Application application) {
     super(getActionId(column), getTitle(application, column), application, TOGGLE);
     this.column = column;
     logger.debug("Create a SortByColumnAction '{}' for column {}.",
         getId(), column);
   }
 
-  private static String getTitle(Application application, FieldType column) {
+  private static String getTitle(Application application, Column column) {
     final AppConfig config = application.getConfig();
     final String selectColumnActionId = ColumnOfAction.getActionId(column);
     return config.getTitle(selectColumnActionId);
@@ -73,7 +73,7 @@ public class SortByColumnOfAction extends BaseAction {
    *          a column.
    * @return the ID of the {@link SortByColumnOfAction} for the column.
    */
-  public static String getActionId(FieldType column) {
+  public static String getActionId(Column column) {
     final StringBuilder builder = new StringBuilder();
     builder.append(SortAction.ID)
            .append(KeySuffix.COLUMN)
@@ -87,7 +87,7 @@ public class SortByColumnOfAction extends BaseAction {
    *
    * @return the sorting column.
    */
-  public FieldType getColumn() {
+  public Column getColumn() {
     return column;
   }
 

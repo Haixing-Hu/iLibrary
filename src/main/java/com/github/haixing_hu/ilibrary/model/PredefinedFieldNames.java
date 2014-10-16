@@ -1,5 +1,6 @@
-/*
- * Copyright (c) 2014  Haixing Hu
+/******************************************************************************
+ *
+ * Copyright (c) 2013  Haixing Hu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,34 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- */
+ ******************************************************************************/
+
 package com.github.haixing_hu.ilibrary.model;
 
 /**
- * The enumeration of access modes of publications.
+ * This interface defines some predefined field names.
  *
  * @author Haixing Hu
  */
-public enum AccessMode {
+public interface PredefinedFieldNames {
 
-  /**
-   * Indicates a closed access.
-   */
-  CLOSED,
+  public static final String URL = "url";
 
-  /**
-   * Indicates an open access.
-   */
-  OPEN,
+  public static final String DOI = "doi";
 
-  /**
-   * Indicates a free access.
-   */
-  FREE,
+  public static final String KIND = "kind";
 
-  /**
-   * Indicates none of the above.
-   */
-  NONE,
+  public static final String CITE_KEY = "cite-key";
+
+  public static final String READ = "read";
+
+  public static final String PRINTED = "printed";
 
 }

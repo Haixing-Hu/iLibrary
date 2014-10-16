@@ -44,11 +44,11 @@ import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterAllAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterFlaggedAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.FlagFilterUnflaggedAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.SetFiltersAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterAllAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterHasReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterReadingAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterToReadAction;
-import com.github.haixing_hu.ilibrary.action.view.filter.StatusFilterUnreadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterAllAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterHasReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterReadingAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterToReadAction;
+import com.github.haixing_hu.ilibrary.action.view.filter.ReadFilterUnreadAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.TypeFilterAllAction;
 import com.github.haixing_hu.ilibrary.action.view.filter.TypeFilterOfAction;
 import com.github.haixing_hu.ilibrary.action.view.sort.SortAction;
@@ -60,7 +60,7 @@ import com.github.haixing_hu.ilibrary.gui.ContentPanel;
 import com.github.haixing_hu.ilibrary.gui.MainContent;
 import com.github.haixing_hu.ilibrary.gui.document.DocumentExplorerPanel;
 import com.github.haixing_hu.ilibrary.model.DocumentType;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.model.Column;
 import com.github.haixing_hu.ilibrary.model.FileStatus;
 import com.github.haixing_hu.ilibrary.model.FlagStatus;
 import com.github.haixing_hu.ilibrary.model.ReadStatus;
@@ -331,11 +331,11 @@ public class ExplorerController {
     final ApplicationState state = application.getState();
     final ActionManager am = application.getActionManager();
     //  TODO: set the filter in the document list table
-    final IAction all = am.get(StatusFilterAllAction.ID);
-    final IAction unread = am.get(StatusFilterUnreadAction.ID);
-    final IAction toread = am.get(StatusFilterToReadAction.ID);
-    final IAction reading = am.get(StatusFilterReadingAction.ID);
-    final IAction hasRead = am.get(StatusFilterHasReadAction.ID);
+    final IAction all = am.get(ReadFilterAllAction.ID);
+    final IAction unread = am.get(ReadFilterUnreadAction.ID);
+    final IAction toread = am.get(ReadFilterToReadAction.ID);
+    final IAction reading = am.get(ReadFilterReadingAction.ID);
+    final IAction hasRead = am.get(ReadFilterHasReadAction.ID);
     all.setSelected(false);
     unread.setSelected(false);
     toread.setSelected(false);
@@ -533,10 +533,10 @@ public class ExplorerController {
    * @param column
    *    the column to be added.
    */
-  public void addColumn(FieldType column) {
+  public void addColumn(Column column) {
     logger.info("Adds a column {}.", column);
     final ApplicationState state = application.getState();
-    final Set<FieldType> columns = state.getColumns();
+    final Set<Column> columns = state.getColumns();
     columns.add(column);
     //  note that even if the column has already been contained, we should still
     //  update the columns, in order to make the GUI components consistent.
@@ -549,10 +549,10 @@ public class ExplorerController {
    * @param column
    *    the column to be added.
    */
-  public void removeColumn(FieldType column) {
+  public void removeColumn(Column column) {
     logger.info("Removes a column {}.", column);
     final ApplicationState state = application.getState();
-    final Set<FieldType> columns = state.getColumns();
+    final Set<Column> columns = state.getColumns();
     columns.remove(column);
     //  note that even if the column has not been contained, we should still
     //  update the columns, in order to make the GUI components consistent.
@@ -565,11 +565,11 @@ public class ExplorerController {
   private void updateColumns() {
     final ApplicationState state = application.getState();
     final ActionManager am = application.getActionManager();
-    final Set<FieldType> columns = state.getColumns();
+    final Set<Column> columns = state.getColumns();
     final Page page = state.getPage();
     logger.debug("Updating the columns for page {}: {}", page, columns);
     //  update the menu actions
-    for (final FieldType col : FieldType.values()) {
+    for (final Column col : Column.values()) {
       final String columnActionId = ColumnOfAction.getActionId(col);
       final String sortByColumnId = SortByColumnOfAction.getActionId(col);
       if (columns.contains(col)) {
@@ -580,7 +580,7 @@ public class ExplorerController {
         am.hide(sortByColumnId);
       }
     }
-    final FieldType sortColumn = state.getSortColumn();
+    final Column sortColumn = state.getSortColumn();
     if (sortColumn != null) {
       final String sortByColumnId = SortByColumnOfAction.getActionId(sortColumn);
       am.show(sortByColumnId);
@@ -596,7 +596,7 @@ public class ExplorerController {
    *          indicates no sorting column is specified and thus sorts in the
    *          default column.
    */
-  public void setSortColumn(@Nullable FieldType column) {
+  public void setSortColumn(@Nullable Column column) {
     logger.info("Sets sort column: {}", column);
     final ApplicationState state = application.getState();
     state.setSortColumn(column);
@@ -608,10 +608,10 @@ public class ExplorerController {
     final ApplicationState state = application.getState();
     final ActionManager am = application.getActionManager();
     final Page page = state.getPage();
-    final FieldType column = state.getSortColumn();
+    final Column column = state.getSortColumn();
     logger.debug("Updating the sorting column for the page {}: {}", page, column);
     final IAction sortByDefault = am.get(SortByDefaultColumnAction.ID);
-    for (final FieldType col : FieldType.values()) {
+    for (final Column col : Column.values()) {
       final String id = SortByColumnOfAction.getActionId(col);
       am.setSelected(id, false);
     }

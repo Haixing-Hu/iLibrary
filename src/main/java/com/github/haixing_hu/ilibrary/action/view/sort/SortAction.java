@@ -19,7 +19,7 @@ package com.github.haixing_hu.ilibrary.action.view.sort;
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
 import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.model.FieldType;
+import com.github.haixing_hu.ilibrary.model.Column;
 import com.github.haixing_hu.javafx.action.ActionManager;
 import com.github.haixing_hu.javafx.action.IAction;
 import com.github.haixing_hu.javafx.action.SeparatorAction;
@@ -43,7 +43,7 @@ public class SortAction extends BaseActionGroup {
     addSubAction(am, new SortOrderDescAction(application));
     addSubAction(am, new SeparatorAction());
     addSubAction(am, new SortByDefaultColumnAction(application));
-    for (final FieldType col : FieldType.values()) {
+    for (final Column col : Column.values()) {
       final IAction action = new  SortByColumnOfAction(col, application);
       addSubAction(am, action);
     }

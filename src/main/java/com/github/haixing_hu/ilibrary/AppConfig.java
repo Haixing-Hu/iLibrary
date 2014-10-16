@@ -467,7 +467,7 @@ public final class AppConfig implements ApplicationContext,
 
   @Override
   public Properties getProperties(final String key) {
-    logger.trace("Getting properties: {}", key);
+    logger.trace("Getting descriptors: {}", key);
     return config.getProperties(key);
   }
 

@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<field>
-  <name>reporters</name>
-  <type>responsibility</type>
-  <multiple>true</multiple>
-  <variable>author</variable>
-</field>

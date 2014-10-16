@@ -14,28 +14,28 @@
  * limitations under the License.
  *
  */
-package com.github.haixing_hu.ilibrary.action.view.columns;
+package com.github.haixing_hu.ilibrary.action.view.filter;
 
 import com.github.haixing_hu.ilibrary.Application;
 import com.github.haixing_hu.ilibrary.action.BaseActionGroup;
-import com.github.haixing_hu.ilibrary.action.view.ViewAction;
-import com.github.haixing_hu.ilibrary.model.Column;
 import com.github.haixing_hu.javafx.action.ActionManager;
 
 /**
- * The action to filter documents by their file status.
+ * The action to filter documents by their read status.
  *
  * @author Haixing Hu
  */
-public class ColumnsAction extends BaseActionGroup {
+public class ReadFilterAction extends BaseActionGroup {
 
-  public static final String ID = ViewAction.ID + ".columns";
+  public static final String ID = FilterAction.ID + ".read";
 
-  public ColumnsAction(Application application) {
+  public ReadFilterAction(final Application application) {
     super(ID, application);
     final ActionManager am = application.getActionManager();
-    for (final Column col : Column.values()) {
-      addSubAction(am, new ColumnOfAction(col, application));
-    }
+    addSubAction(am, new ReadFilterAllAction(application));
+    addSubAction(am, new ReadFilterUnreadAction(application));
+    addSubAction(am, new ReadFilterToReadAction(application));
+    addSubAction(am, new ReadFilterReadingAction(application));
+    addSubAction(am, new ReadFilterHasReadAction(application));
   }
 }

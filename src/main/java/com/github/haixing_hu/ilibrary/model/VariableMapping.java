@@ -16,20 +16,22 @@
  */
 package com.github.haixing_hu.ilibrary.model;
 
+import java.util.HashMap;
+
+import com.github.haixing_hu.csl.Variable;
 
 /**
- * Unit test of the {@link DocumentTemplate} class.
+ * A {@link VariableMapping} represents the mapping from CSL standard
+ * variables to the property values of a document.
  *
  * @author Haixing Hu
  */
-public class DocumentTemplateTest extends XmlSerializationTest<DocumentTemplate> {
+public final class VariableMapping extends HashMap<Variable, String> {
 
-  public DocumentTemplateTest() {
-    super(DocumentTemplate.class);
+  private static final long serialVersionUID = -1256514089091829214L;
 
-    final DocumentTemplate journalArticle = JournalArticle.getDocumentTemplate();
-    final String journalArticleXml = JournalArticle.getDocumentTemplateXml();
-    marshalTestData.put(journalArticle, journalArticleXml);
-    unmarshalTestData.put(journalArticleXml, journalArticle);
+  public VariableMapping() {
+    super();
   }
+
 }

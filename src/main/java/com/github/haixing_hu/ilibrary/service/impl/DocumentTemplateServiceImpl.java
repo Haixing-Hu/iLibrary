@@ -61,7 +61,9 @@ public final class DocumentTemplateServiceImpl implements DocumentTemplateServic
         final InputStream is = resource.getInputStream();
         final DocumentTemplate document =
             (DocumentTemplate) unmarshaller.unmarshal(is);
-        templates.put(document.getName(), document);
+        final String name = document.getName();
+        logger.info("Adds a document template: {}", name);
+        templates.put(name, document);
       }
     } catch (final Exception e) {
       logger.error("Failed to load the document templates from: {}",
