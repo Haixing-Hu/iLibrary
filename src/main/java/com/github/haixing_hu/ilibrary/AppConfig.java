@@ -652,4 +652,19 @@ public final class AppConfig implements ApplicationContext,
     logger.trace("Getting list: {}", key);
     return config.getList(key, defaultValue);
   }
+
+  @Override
+  public String[] getBeanNamesForAnnotation(Class<? extends Annotation> arg0) {
+    return context.getBeanNamesForAnnotation(arg0);
+  }
+
+  @Override
+  public <T> T getBean(Class<T> arg0, Object... arg1) throws BeansException {
+    return context.getBean(arg0, arg1);
+  }
+
+  @Override
+  public String getApplicationName() {
+    return context.getApplicationName();
+  }
 }

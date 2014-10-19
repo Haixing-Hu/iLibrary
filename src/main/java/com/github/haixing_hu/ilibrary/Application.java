@@ -163,19 +163,19 @@ public class Application extends javafx.application.Application
   }
 
   @Override
-  public void start(Stage primaryStage) throws Exception {
+  public void start(Stage stage) throws Exception {
     scene.getStylesheets().add(config.getStylesheet());
-    menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
-    primaryStage.setScene(scene);
-    primaryStage.setWidth(config.getInt(ID + KeySuffix.WIDTH));
-    primaryStage.setHeight(config.getInt(ID + KeySuffix.HEIGHT));
-    primaryStage.setMinWidth(config.getInt(ID + KeySuffix.MIN_WIDTH));
-    primaryStage.setMinHeight(config.getInt(ID + KeySuffix.MIN_HEIGHT));
-    primaryStage.setTitle(config.getAppName() + " " + config.getAppVersion());
+    menuBar.prefWidthProperty().bind(stage.widthProperty());
+    stage.setScene(scene);
+    stage.setWidth(config.getInt(ID + KeySuffix.WIDTH));
+    stage.setHeight(config.getInt(ID + KeySuffix.HEIGHT));
+    stage.setMinWidth(config.getInt(ID + KeySuffix.MIN_WIDTH));
+    stage.setMinHeight(config.getInt(ID + KeySuffix.MIN_HEIGHT));
+    stage.setTitle(config.getAppName() + " " + config.getAppVersion());
 
     state.load(config);
     syncState();
-    primaryStage.show();
+    stage.show();
   }
 
   private void syncState() {

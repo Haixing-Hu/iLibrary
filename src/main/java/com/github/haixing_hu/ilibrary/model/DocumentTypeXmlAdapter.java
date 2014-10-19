@@ -18,7 +18,7 @@
 
 package com.github.haixing_hu.ilibrary.model;
 
-import com.github.haixing_hu.util.jaxb.EnumXmlAdapter;
+import com.github.haixing_hu.text.xml.jaxb.EnumXmlAdapter;
 
 /**
  * The XML adapter for the {@link DocumentType} enumeration class.
