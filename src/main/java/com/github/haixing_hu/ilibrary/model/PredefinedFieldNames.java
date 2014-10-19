@@ -18,6 +18,8 @@
 
 package com.github.haixing_hu.ilibrary.model;
 
+import com.github.haixing_hu.text.xml.jaxb.EnumXmlAdapter;
+
 /**
  * This interface defines some predefined field names.
  *
