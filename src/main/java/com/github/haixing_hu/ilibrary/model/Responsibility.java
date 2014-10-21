@@ -20,6 +20,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import com.github.haixing_hu.data.model.common.Organization;
+import com.github.haixing_hu.data.model.common.Person;
+
 import static com.github.haixing_hu.lang.Argument.requireNonNull;
 
 /**
@@ -48,9 +51,9 @@ public final class Responsibility {
    * @param person
    *    the person to be represented.
    */
-  public Responsibility(Person person) {
+  public Responsibility(final Person person) {
     this.person = requireNonNull("person", person);
-    this.institute = null;
+    institute = null;
   }
 
   /**
@@ -59,8 +62,8 @@ public final class Responsibility {
    * @param institute
    *    the institute to be represented.
    */
-  public Responsibility(Organization institute) {
-    this.person = null;
+  public Responsibility(final Organization institute) {
+    person = null;
     this.institute = requireNonNull("institute", institute);
   }
 
@@ -104,9 +107,9 @@ public final class Responsibility {
    * @param person
    *          the new person represented by this responsibility.
    */
-  public void setPerson(Person person) {
+  public void setPerson(final Person person) {
     this.person = requireNonNull("person", person);
-    this.institute = null;
+    institute = null;
   }
 
   /**
@@ -129,9 +132,9 @@ public final class Responsibility {
    * @param institute
    *          the new institute represented by this responsibility.
    */
-  public void setInstitute(Organization institute) {
+  public void setInstitute(final Organization institute) {
     this.institute = requireNonNull("institute", institute);
-    this.person = null;
+    person = null;
   }
 
   @Override
@@ -140,7 +143,7 @@ public final class Responsibility {
   }
 
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 

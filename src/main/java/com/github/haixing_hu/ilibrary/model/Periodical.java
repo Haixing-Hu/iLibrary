@@ -24,17 +24,14 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.github.haixing_hu.ilibrary.model.tag.AccessModeTag;
-import com.github.haixing_hu.ilibrary.model.tag.PeriodicalTypeTag;
-import com.github.haixing_hu.ilibrary.model.tag.TagScope;
-import com.github.haixing_hu.ilibrary.model.tag.Taggable;
+import com.github.haixing_hu.data.model.common.Organization;
 
 /**
  * The model of periodical, which store the information of an periodical.
  *
  * @author Haixing Hu
  */
-public final class Periodical extends Taggable {
+public final class Periodical {
 
   private int id;
   private String title;
@@ -102,7 +99,7 @@ public final class Periodical extends Taggable {
    * @param id
    *          the new id to set.
    */
-  public void setId(int id) {
+  public void setId(final int id) {
     this.id = id;
   }
 
@@ -121,7 +118,7 @@ public final class Periodical extends Taggable {
    * @param title
    *          the new title to set.
    */
-  public void setTitle(@Nullable String title) {
+  public void setTitle(@Nullable final String title) {
     this.title = title;
   }
 
@@ -140,7 +137,7 @@ public final class Periodical extends Taggable {
    * @param subtitle
    *          the new subtitle to set.
    */
-  public void setSubtitle(@Nullable String subtitle) {
+  public void setSubtitle(@Nullable final String subtitle) {
     this.subtitle = subtitle;
   }
 
@@ -159,7 +156,7 @@ public final class Periodical extends Taggable {
    * @param editors
    *          the new editors to set.
    */
-  public void setEditors(@Nullable List<Responsibility> editors) {
+  public void setEditors(@Nullable final List<Responsibility> editors) {
     this.editors = editors;
   }
 
@@ -178,7 +175,7 @@ public final class Periodical extends Taggable {
    * @param publisher
    *          the new publisher to set.
    */
-  public void setPublisher(@Nullable Organization publisher) {
+  public void setPublisher(@Nullable final Organization publisher) {
     this.publisher = publisher;
   }
 
@@ -197,7 +194,7 @@ public final class Periodical extends Taggable {
    * @param synopsis
    *          the new synopsis to set.
    */
-  public void setSynopsis(@Nullable String synopsis) {
+  public void setSynopsis(@Nullable final String synopsis) {
     this.synopsis = synopsis;
   }
 
@@ -216,7 +213,7 @@ public final class Periodical extends Taggable {
    * @param abbreviation
    *          the new abbreviation to set.
    */
-  public void setAbbreviation(@Nullable String abbreviation) {
+  public void setAbbreviation(@Nullable final String abbreviation) {
     this.abbreviation = abbreviation;
   }
 
@@ -235,7 +232,7 @@ public final class Periodical extends Taggable {
    * @param city
    *          the new city to set.
    */
-  public void setCity(@Nullable String city) {
+  public void setCity(@Nullable final String city) {
     this.city = city;
   }
 
@@ -254,7 +251,7 @@ public final class Periodical extends Taggable {
    * @param circulation
    *          the new circulation to set.
    */
-  public void setCirculation(long circulation) {
+  public void setCirculation(final long circulation) {
     this.circulation = circulation;
   }
 
@@ -273,7 +270,7 @@ public final class Periodical extends Taggable {
    * @param factor
    *          the new factor to set.
    */
-  public void setFactor(double factor) {
+  public void setFactor(final double factor) {
     this.factor = factor;
   }
 
@@ -292,7 +289,7 @@ public final class Periodical extends Taggable {
    * @param startDate
    *          the new startDate to set.
    */
-  public void setStartDate(@Nullable DatePoint startDate) {
+  public void setStartDate(@Nullable final DatePoint startDate) {
     this.startDate = startDate;
   }
 
@@ -311,7 +308,7 @@ public final class Periodical extends Taggable {
    * @param endDate
    *          the new endDate to set.
    */
-  public void setEndDate(@Nullable DatePoint endDate) {
+  public void setEndDate(@Nullable final DatePoint endDate) {
     this.endDate = endDate;
   }
 
@@ -330,7 +327,7 @@ public final class Periodical extends Taggable {
    * @param frequency
    *          the new frequency to set.
    */
-  public void setFrequency(@Nullable Frequency frequency) {
+  public void setFrequency(@Nullable final Frequency frequency) {
     this.frequency = frequency;
   }
 
@@ -349,7 +346,7 @@ public final class Periodical extends Taggable {
    * @param url
    *          the new url to set.
    */
-  public void setUrl(@Nullable String url) {
+  public void setUrl(@Nullable final String url) {
     this.url = url;
   }
 
@@ -368,7 +365,7 @@ public final class Periodical extends Taggable {
    * @param rss
    *          the new rss to set.
    */
-  public void setRss(@Nullable String rss) {
+  public void setRss(@Nullable final String rss) {
     this.rss = rss;
   }
 
@@ -387,7 +384,7 @@ public final class Periodical extends Taggable {
    * @param doi
    *          the new doi to set.
    */
-  public void setDoi(@Nullable String doi) {
+  public void setDoi(@Nullable final String doi) {
     this.doi = doi;
   }
 
@@ -406,7 +403,7 @@ public final class Periodical extends Taggable {
    * @param issn
    *          the new issn to set.
    */
-  public void setIssn(@Nullable String issn) {
+  public void setIssn(@Nullable final String issn) {
     this.issn = issn;
   }
 
@@ -425,7 +422,7 @@ public final class Periodical extends Taggable {
    * @param citeKey
    *          the new citeKey to set.
    */
-  public void setCiteKey(@Nullable String citeKey) {
+  public void setCiteKey(@Nullable final String citeKey) {
     this.citeKey = citeKey;
   }
 
@@ -444,7 +441,7 @@ public final class Periodical extends Taggable {
    * @param language
    *          the new language to set.
    */
-  public void setLanguage(@Nullable Language language) {
+  public void setLanguage(@Nullable final Language language) {
     this.language = language;
   }
 
@@ -463,7 +460,7 @@ public final class Periodical extends Taggable {
    * @param subscribed
    *          the new subscribed to set.
    */
-  public void setSubscribed(boolean subscribed) {
+  public void setSubscribed(final boolean subscribed) {
     this.subscribed = subscribed;
   }
 
@@ -482,7 +479,7 @@ public final class Periodical extends Taggable {
    * @param copyright
    *          the new copyright to set.
    */
-  public void setCopyright(@Nullable String copyright) {
+  public void setCopyright(@Nullable final String copyright) {
     this.copyright = copyright;
   }
 
@@ -501,63 +498,63 @@ public final class Periodical extends Taggable {
    * @param documentCount
    *          the new document count to set.
    */
-  public void setDocumentCount(int documentCount) {
+  public void setDocumentCount(final int documentCount) {
     this.documentCount = documentCount;
   }
 
-  /**
-   * Gets the access mode of this periodical.
-   * <p>
-   * This function will check the tags of this object, and returns the name of
-   * the first tag whose scope is {@link TagScope#ACCESS_MODE}. If there is no
-   * such tag, this function will return the name of {@link AccessMode#NONE}.
-   *
-   * @return the name of the access mode of this periodical.
-   */
-  public String getAccessMode() {
-    return AccessModeTag.getAccessMode(tags);
-  }
-
-  /**
-   * Sets the access mode to this periodical.
-   * <p>
-   * After calling this function, the old tag or tags representing an access
-   * mode will be removed, and a new tag representing the specified access mode
-   * will be added to the tag list.
-   *
-   * @param accessMode
-   *          the name of the new access mode to be set to this periodical.
-   */
-  public void setAccessMode(String accessMode) {
-    tags = AccessModeTag.setAccessMode(tags, accessMode);
-  }
-
-  /**
-   * Gets the type of this periodical.
-   * <p>
-   * This function will check the tags of this object, and returns the name of
-   * the first tag whose scope is {@link TagScope#PERIODICAL_TYPE}. If there is
-   * no such tag, this function will return {@code null}.
-   *
-   * @return the name of the type of this periodical.
-   */
-  public String getType() {
-    return PeriodicalTypeTag.getPeriodicalType(tags);
-  }
-
-  /**
-   * Sets the type of this periodical.
-   * <p>
-   * After calling this function, the old tag or tags representing a periodical
-   * will be removed, and a new tag representing the specified periodical type
-   * will be added to the tag list.
-   *
-   * @param type
-   *          the name of the new periodical type to be set to this periodical.
-   */
-  public void setType(String type) {
-    tags = PeriodicalTypeTag.setPeriodicalType(tags, type);
-  }
+//  /**
+//   * Gets the access mode of this periodical.
+//   * <p>
+//   * This function will check the tags of this object, and returns the name of
+//   * the first tag whose scope is {@link TagScope#ACCESS_MODE}. If there is no
+//   * such tag, this function will return the name of {@link AccessMode#NONE}.
+//   *
+//   * @return the name of the access mode of this periodical.
+//   */
+//  public String getAccessMode() {
+//    return AccessModeTag.getAccessMode(tags);
+//  }
+//
+//  /**
+//   * Sets the access mode to this periodical.
+//   * <p>
+//   * After calling this function, the old tag or tags representing an access
+//   * mode will be removed, and a new tag representing the specified access mode
+//   * will be added to the tag list.
+//   *
+//   * @param accessMode
+//   *          the name of the new access mode to be set to this periodical.
+//   */
+//  public void setAccessMode(final String accessMode) {
+//    tags = AccessModeTag.setAccessMode(tags, accessMode);
+//  }
+//
+//  /**
+//   * Gets the type of this periodical.
+//   * <p>
+//   * This function will check the tags of this object, and returns the name of
+//   * the first tag whose scope is {@link TagScope#PERIODICAL_TYPE}. If there is
+//   * no such tag, this function will return {@code null}.
+//   *
+//   * @return the name of the type of this periodical.
+//   */
+//  public String getType() {
+//    return PeriodicalTypeTag.getPeriodicalType(tags);
+//  }
+//
+//  /**
+//   * Sets the type of this periodical.
+//   * <p>
+//   * After calling this function, the old tag or tags representing a periodical
+//   * will be removed, and a new tag representing the specified periodical type
+//   * will be added to the tag list.
+//   *
+//   * @param type
+//   *          the name of the new periodical type to be set to this periodical.
+//   */
+//  public void setType(final String type) {
+//    tags = PeriodicalTypeTag.setPeriodicalType(tags, type);
+//  }
 
   /* (non-Javadoc)
    * @see java.lang.Object#hashCode()
@@ -571,7 +568,7 @@ public final class Periodical extends Taggable {
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
-  public boolean equals(Object obj) {
+  public boolean equals(final Object obj) {
     return EqualsBuilder.reflectionEquals(this, obj);
   }
 

@@ -18,6 +18,9 @@ package com.github.haixing_hu.ilibrary.model;
 
 import javax.xml.bind.annotation.XmlEnum;
 
+import com.github.haixing_hu.data.model.common.Organization;
+import com.github.haixing_hu.data.model.common.Person;
+
 /**
  * The enumeration of data types used in the values of documents.
  *
@@ -86,15 +89,15 @@ public enum DataType {
    */
   PERIODICAL(Periodical.class),
 
-  /**
-   * A value in this class represents a {@link Event} object.
-   */
-  EVENT(Event.class),
-
-  /**
-   * A value in this class represents a {@link Website} object.
-   */
-  WEBSITE(Website.class),
+//  /**
+//   * A value in this class represents a {@link Event} object.
+//   */
+//  EVENT(Event.class),
+//
+//  /**
+//   * A value in this class represents a {@link Website} object.
+//   */
+//  WEBSITE(Website.class),
 
   /**
    * A value in this class represents a {@link Language} object.
